@@ -9613,7 +9613,7 @@
 											"top": 365,
 											"width": 126.80712890625,
 											"height": 13,
-											"text": "+getTexture(): Texture",
+											"text": "+getTexture(): editor.Texture",
 											"horizontalAlignment": 0
 										},
 										{
@@ -11275,7 +11275,7 @@
 											"top": 31,
 											"width": 54.18359375,
 											"height": 13,
-											"text": "Panneau"
+											"text": "editor.Panneau"
 										},
 										{
 											"_type": "LabelView",
@@ -12099,7 +12099,7 @@
 											"top": 351,
 											"width": 201.2333984375,
 											"height": 13,
-											"text": "Texture"
+											"text": "editor.Texture"
 										},
 										{
 											"_type": "LabelView",
@@ -12988,7 +12988,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFuOCdAkkdAxok="
 									},
-									"type": "Texture",
+									"type": "editor.Texture",
 									"direction": "return"
 								}
 							]
@@ -13256,7 +13256,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFuOA6RhwMSnsE="
 					},
-					"name": "Panneau",
+					"name": "editor.Panneau",
 					"ownedElements": [
 						{
 							"_type": "UMLInterfaceRealization",
@@ -13367,7 +13367,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFuOA6RhwMSnsE="
 					},
-					"name": "Texture",
+					"name": "editor.Texture",
 					"operations": [
 						{
 							"_type": "UMLOperation",
