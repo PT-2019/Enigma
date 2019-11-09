@@ -1,8 +1,14 @@
 package editor.texture;
 
-public enum Ratata implements TextureType{
+public enum Wall implements TextureType{
+	//ces valeurs sont fictives
+	NORTH(0,0),
+	SOUTH(0,1),
+	OUEST(0,2),
+	EAST(0,3);
 
-	private final static String path="019.png";
+	//a remplir
+	private final static String path="";
 
 	private int col;
 

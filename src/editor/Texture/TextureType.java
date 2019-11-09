@@ -1,26 +1,14 @@
-package editor.Texture;
+package editor.texture;
 
-public abstract class  TextureType{
-	
-	protected int col;
+public interface TextureType{
 
-	protected int row;
+	public int getCol();
 
-	public int getCol() {
-		return col;
-	}
+	public int getRow();
 
-	public int getRow() {
-		return row;
-	}
+	public void setCol(int col);
 
-	public void setCol(int col) {
-		this.col = col; 
-	}
+	public void setRow(int row);
 
-	public void setRow(int row) {
-		this.row  = row;
-	}
-
-	public abstract String getPath();
+	public String getPath();
 }
