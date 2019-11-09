@@ -1,3 +1,4 @@
+package editor.Texture;
 
 public abstract class  TextureType{
 	
