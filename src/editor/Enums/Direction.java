@@ -1,7 +1,22 @@
+/**
+* Déplacements possibles 
+*/
 public enum Direction
 {
+	/**
+	* Nord
+	*/
 	NORTH,
+	/**
+	* Est
+	*/
 	EAST,
+	/**
+	* Sud
+	*/
 	SOUTH,
-	ESAT
+	/**
+	* OUEST
+	*/
+	WEST
 }
