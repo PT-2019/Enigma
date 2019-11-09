@@ -1,9 +1,18 @@
 
-public abstract class  TextureType{
-	
-	protected int col;
+public enum TextureType{
+	TERRE(0,0),
+	EAU(0,0),
+	SOL(0,0),
+	MUR(0,0);
 
-	protected int row;
+	private int col;
+
+	private int row;
+
+	TextureType(int col,int row) {
+		this.col = col;
+		this.row = row;
+	}
 
 	public int getCol() {
 		return col;
@@ -20,6 +29,4 @@ public abstract class  TextureType{
 	public void setRow(int row) {
 		this.row  = row;
 	}
-
-	public abstract String getPath();
 }
