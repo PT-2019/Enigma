@@ -1,0 +1,7 @@
+public enum Layer
+{
+	DECORATIONS1,
+	DECORATIONS2,
+	FLOOR1,
+	FLOOR2
+}
