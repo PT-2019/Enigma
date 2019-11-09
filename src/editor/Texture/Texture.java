@@ -6,7 +6,7 @@ public class Texture{
 
 	private BufferedImage buffer;
 
-	
+	private String path;
 
 	private int dim;
 
