@@ -1,3 +1,4 @@
+package editor.Texture.Ancienne_Structure;
 
 public enum TextureType{
 	TERRE(0,0),

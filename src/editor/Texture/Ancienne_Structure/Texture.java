@@ -1,3 +1,5 @@
+package editor.Texture.Ancienne_Structure;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.*;

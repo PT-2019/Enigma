@@ -1,3 +1,5 @@
+package editor.Texture;
+
 public class Ratata extends TextureType{
 
 	private final static String path="019.png";
