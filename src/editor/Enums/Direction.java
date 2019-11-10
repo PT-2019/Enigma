@@ -1,3 +1,5 @@
+package editor.Enums;
+
 /**
 * Déplacements possibles 
 */

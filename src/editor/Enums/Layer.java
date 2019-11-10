@@ -1,3 +1,5 @@
+package editor.Enums;
+
 /*
 * Nom des couches pour l'affichage de la map
 */
