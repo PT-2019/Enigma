@@ -1,5 +1,8 @@
 package editor.texture;
 
+/**
+ * Enum surement à remplir bientôt
+ */
 public enum Wall implements TextureType{
 	//ces valeurs sont fictives
 	NORTH(0,0),
@@ -27,16 +30,6 @@ public enum Wall implements TextureType{
 	@Override
 	public int getRow() {
 		return row;
-	}
-
-	@Override
-	public void setCol(int col) {
-		this.col = col; 
-	}
-
-	@Override
-	public void setRow(int row) {
-		this.row  = row;
 	}
 
 	@Override

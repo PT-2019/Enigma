@@ -1,8 +1,13 @@
 package editor.texture;
 
+/**
+ * Enum pour tester
+ */
 public enum Ratata implements TextureType{
-	DEVANT_1(0,0)
-	;//enum sans valeurs
+	DEVANT_1(0,0),//enum sans valeurs
+    GAUCHE_1(1,0),
+	DROITE_1(2,1),
+    DERRIERE_1(3,0);
 
 	private final static String path="assets/monsters/019.png";
 
@@ -23,16 +28,6 @@ public enum Ratata implements TextureType{
 	@Override
 	public int getRow() {
 		return row;
-	}
-
-	@Override
-	public void setCol(int col) {
-		this.col = col; 
-	}
-
-	@Override
-	public void setRow(int row) {
-		this.row  = row;
 	}
 
 	@Override
