@@ -9613,7 +9613,7 @@
 											"top": 365,
 											"width": 126.80712890625,
 											"height": 13,
-											"text": "+getTexture(): editor.Texture",
+											"text": "+getTexture(): editor.texture",
 											"horizontalAlignment": 0
 										},
 										{
@@ -12099,7 +12099,7 @@
 											"top": 351,
 											"width": 201.2333984375,
 											"height": 13,
-											"text": "editor.Texture"
+											"text": "editor.texture"
 										},
 										{
 											"_type": "LabelView",
@@ -12988,7 +12988,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFuOCdAkkdAxok="
 									},
-									"type": "editor.Texture",
+									"type": "editor.texture",
 									"direction": "return"
 								}
 							]
@@ -13367,7 +13367,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFuOA6RhwMSnsE="
 					},
-					"name": "editor.Texture",
+					"name": "editor.texture",
 					"operations": [
 						{
 							"_type": "UMLOperation",

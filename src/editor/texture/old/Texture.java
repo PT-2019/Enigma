@@ -1,4 +1,4 @@
-package editor.Texture;
+package editor.texture.old;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,17 +8,20 @@ public class Texture{
 
 	private BufferedImage buffer;
 
+	private String path;
+
 	private int dim;
 
-	public Texture(int dim) {
+	public Texture(String path,int dim) {
 		buffer = null;
+		this.path = path;
 		this.dim = dim;
 	}
 
 	public Image getImage(TextureType type) {
 
 		if (buffer==null) {			
-			ImageIcon image = new ImageIcon(type.getPath());
+			ImageIcon image = new ImageIcon(path);
 
 			if (image.getIconHeight() < 0 || image.getIconWidth() < 0) {
 				throw new IllegalStateException("File not found. Bad Path.");
@@ -44,13 +47,13 @@ public class Texture{
 
 		fenetre.setSize(new Dimension(322,322));
 
-		Texture t = new Texture(64);
+		Texture t = new Texture("019.png",64);
 
-		TextureType type = new Ratata(0,0);
+		TextureType type = TextureType.TERRE;
 
 		type.setRow(2);
 
-		//type.setCol(3);
+		type.setCol(4);
 
 		Panneau panel = new Panneau(t.getImage(type));
 

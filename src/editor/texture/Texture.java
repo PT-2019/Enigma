@@ -1,4 +1,4 @@
-package editor.Texture.Ancienne_Structure;
+package editor.texture;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,20 +8,17 @@ public class Texture{
 
 	private BufferedImage buffer;
 
-	private String path;
-
 	private int dim;
 
-	public Texture(String path,int dim) {
+	public Texture(int dim) {
 		buffer = null;
-		this.path = path;
 		this.dim = dim;
 	}
 
 	public Image getImage(TextureType type) {
 
 		if (buffer==null) {			
-			ImageIcon image = new ImageIcon(path);
+			ImageIcon image = new ImageIcon(type.getPath());
 
 			if (image.getIconHeight() < 0 || image.getIconWidth() < 0) {
 				throw new IllegalStateException("File not found. Bad Path.");
@@ -47,13 +44,13 @@ public class Texture{
 
 		fenetre.setSize(new Dimension(322,322));
 
-		Texture t = new Texture("019.png",64);
+		Texture t = new Texture(64);
 
-		TextureType type = TextureType.TERRE;
+		TextureType type = Ratata.DEVANT_1;//enum donc pas instanciable
 
-		type.setRow(2);
+		//type.setRow(2); //on ne peut pas modifier la ligne/col de devant, faudra la mettre final
 
-		type.setCol(4);
+		//type.setCol(3);
 
 		Panneau panel = new Panneau(t.getImage(type));
 
@@ -71,7 +68,7 @@ class Panneau extends JComponent{
 		img = i;
 	}
 
-		@Override
+	@Override
   	protected void paintComponent(Graphics pinceau) {
     	Graphics secondPinceau = pinceau.create();
     if (this.isOpaque()) {
