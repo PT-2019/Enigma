@@ -4,7 +4,7 @@ package editor.texture;
  * Enum pour tester
  */
 public enum Ratata implements TextureType{
-	DEVANT_1(0,0),//enum sans valeurs
+	DEVANT_1(0,0),
     GAUCHE_1(1,0),
 	DROITE_1(2,1),
     DERRIERE_1(3,0);

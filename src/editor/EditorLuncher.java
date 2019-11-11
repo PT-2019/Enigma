@@ -1,26 +1,36 @@
 package editor;
 
-import editor.listener.CloseWindowLibgdxApplication;
-import editor.listener.LoadGameLibgdxApplication;
+import editor.api.Application;
+import editor.utils.Window;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
+/**
+ * Lanceur de l'éditeur d'escape game
+ */
+public class EditorLuncher implements Application {
 
-public class EditorLuncher extends JFrame {
+	/** la fenêtre dans laquelle il est lancé **/
+	private Window window;
 
+	/**
+	 * Construit l'éditeur d'escape game
+	 *
+	 * @param width largeur de la fenêtre
+	 * @param height hauteur de la fenêtre
+	 */
 	public EditorLuncher(int width, int height) {
-		super();
-		this.setSize(width,height);
-		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		this.addWindowListener(new CloseWindowLibgdxApplication(null));//pas d'application à fermer
+		//préparer ici l'application pour son démarrage
+		this.window = new Window(width,height);//TODO: coder la classe fenêtre
 
-		//un exemple : ce bouton charge l'application libgdx si on clique
-		JButton next = new JButton("charger le jeu");
-		this.add(next);
-		next.addActionListener(new LoadGameLibgdxApplication(this));
+		//titre de la fenêtre
+		//this.window.setTitle("Enigma");
+
+		// Icône de l'application
+		// this.window.setIconImage();
 	}
 
+	@Override
 	public void start() {
-		this.setVisible(true);
+		//on démarre l'application
+		this.window.setVisible(true);
 	}
 }
