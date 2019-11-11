@@ -1,7 +1,7 @@
 package editor.texture;
 
 /**
- * Enum surement à remplir bientôt
+ * Enum sûrement à remplir bientôt
  */
 public enum Wall implements TextureType{
 	//ces valeurs sont fictives

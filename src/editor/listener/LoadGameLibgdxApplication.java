@@ -10,6 +10,7 @@ import java.awt.Container;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowListener;
 import java.util.Objects;
 
 /**
@@ -37,13 +38,25 @@ public class LoadGameLibgdxApplication implements ActionListener {
      */
     @Override
     public void actionPerformed(@Nullable ActionEvent actionEvent) {
-        final Container container = this.frame.getContentPane();//récupère contenu fenêtre
-        container.removeAll();//vide la fenêtre
+        //récupère contenu fenêtre et on la vide
+        final Container container = this.frame.getContentPane();
+        container.removeAll();
         container.setLayout(new BorderLayout());
-        LwjglAWTCanvas canvas = new LwjglAWTCanvas(new MyGame());//Récupère le jeu
+
+        //Récupère le jeu
+        LwjglAWTCanvas canvas = new LwjglAWTCanvas(new MyGame());
         container.add(canvas.getCanvas(), BorderLayout.CENTER);//ajoute le jeu
-        //change le listiner pour qu'il ferme l'application
+
+        //vire tous les listeners de la classe CloseWindowLibgdxApplication
+        //pour éviter un conflit
+        for (WindowListener windowListener:this.frame.getWindowListeners()) {
+            if(windowListener instanceof CloseWindowLibgdxApplication)
+                this.frame.removeWindowListener(windowListener);
+        }
+
+        //ajoute un Listener CloseWindowLibgdxApplication qui ferme l'application libgdx
+        //dès que la fenêtre est fermée
         this.frame.addWindowListener(new CloseWindowLibgdxApplication(canvas));
-        this.frame.revalidate();//met à jour #burk
+        this.frame.revalidate();//met à jour
     }
 }
