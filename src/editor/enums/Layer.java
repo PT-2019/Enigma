@@ -1,6 +1,6 @@
-package editor.Enums;
+package editor.enums;
 
-/*
+/**
 * Nom des couches pour l'affichage de la map
 */
 public enum Layer
