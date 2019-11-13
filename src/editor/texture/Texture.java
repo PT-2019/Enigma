@@ -25,13 +25,19 @@ public class Texture{
 	private int height;
 
 	/**
+	 * Chemin vers le fichier
+	 */	
+	private String path;
+
+	/**
 	 * @param width Longeur des sous-textures désiré
 	 * @param height Hauteur des sous-textures désiré
 	 */
-	public Texture(int width,int height) {
+	public Texture(int width,int height,String path) {
 		buffer = null;
 		this.width = width;
 		this.height = height;
+		this.path = path;
 	}
 
 	/**
@@ -40,13 +46,13 @@ public class Texture{
 	 * @throws IllegalStateException Fichier de l'image impossible à charger
 	 * @throws IllegalStateException Valeur trop élevé, soit les dimensions width et
 	 * height, soit les attributs col et row de la TextureType
-	 * @param type
+	 * @param col,row
 	 * @return Sous-Image décrite par la TextureType
 	 */
-	public Image getImage(TextureType type) {
+	public Image getImage(int row,int col) {
 
 		if (buffer==null) {			
-			ImageIcon image = new ImageIcon(type.getPath());
+			ImageIcon image = new ImageIcon(path);
 
 			if (image.getIconHeight() < 0 || image.getIconWidth() < 0) {
 				throw new IllegalStateException("File not found. Bad Path.");
@@ -59,11 +65,11 @@ public class Texture{
 			g.drawImage(image.getImage(),0,0,new JLabel());
 	}
 
-		if (type.getRow()*width >= buffer.getWidth() || type.getCol()*height >= buffer.getHeight()) {
+		if (row*width >= buffer.getWidth() || col*height >= buffer.getHeight()) {
 			throw new IllegalStateException("The arguments of TextureType are to big");
 		}
 
-		return buffer.getSubimage(type.getRow()*width,type.getCol()*height,width,height);
+		return buffer.getSubimage(row*width,col*height,width,height);
 	}
 
 	//main for the test
@@ -73,11 +79,9 @@ public class Texture{
 		fenetre.setSize(new Dimension(322,322));
 		fenetre.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-		Texture t = new Texture(64,64);
+		Texture t = new Texture(64,64,"assets/monsters/019.png");
 
-		TextureType type = Ratata.DROITE_1;//enum donc pas instanciable
-
-		Panneau panel = new Panneau(t.getImage(type));
+		Panneau panel = new Panneau(t.getImage(1,2));
 
 		fenetre.add(panel,BorderLayout.CENTER);
 
