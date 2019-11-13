@@ -2,6 +2,7 @@ package editor.Enums;
 
 /*
 * Nom des couches pour l'affichage de la map
+* @version 0.0
 */
 public enum Layer
 {
