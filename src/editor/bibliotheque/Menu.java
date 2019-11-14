@@ -5,6 +5,8 @@ import java.awt.*;
 
 public class Menu extends JFrame {
 
+    private JScrollPane scroll;
+
     public Menu(){
         this.setTitle("Création de l'escape Game");
         this.setSize(1000,700);
@@ -28,7 +30,9 @@ public class Menu extends JFrame {
         c1.weightx=0.5f;
         c1.weighty=1.0f;
 
-        JScrollBar scroll = new JScrollBar();
+        scroll = new JScrollPane(menuChoix);
+        scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 
         //création de la zone d'affichage de la map (partie droite)
         JPanel map = new JPanel();
@@ -68,9 +72,10 @@ public class Menu extends JFrame {
         sidebar.add(b3);
         sidebar.add(b4);
 
+
         panneau.add(sidebar,c3);
         panneau.add(map,c2);
-        panneau.add(menuChoix,c1);
+        panneau.add(scroll,c1);
         this.add(panneau);
 
         this.setVisible(true);
