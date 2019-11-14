@@ -6,50 +6,61 @@ import java.awt.image.*;
 
 /**
  * La classe Texture permet de chargé des images et de les décomposer
- * Cette classe sont fonctionnement est lié avec TextureType
- *@see TextureType
+ * Cette classe sont fonctionnement est lié avec TextureProxy
+ * @see TextureProxy
  */
 public class Texture{
 	/**
 	 * L'image qui va être chargé sera stocké ici
 	 */
 	private BufferedImage buffer;
-	/**
-	 * Longeur des sous-textures
-	 */
-	private int width;
 
 	/**
-	 * Hauteur des sous-textures
+	 * Le minimum de la texture dans le fichier
 	 */
-	private int height;
+	private int min;
 
 	/**
-	 * Chemin vers le fichier
-	 */	
+	 * Le maximum de la texture dans le fichier
+	 */
+	private int max;
+
+	private int tile;
+
 	private String path;
 
-	/**
-	 * @param width Longeur des sous-textures désiré
-	 * @param height Hauteur des sous-textures désiré
-	 */
-	public Texture(int width,int height,String path) {
-		buffer = null;
-		this.width = width;
-		this.height = height;
-		this.path = path;
-	}
+	private int nbcol;
 
 	/**
-	 * Cette méthode va découper, une image charger en fonction de la TextureType
-	 * @see TextureType
-	 * @throws IllegalStateException Fichier de l'image impossible à charger
-	 * @throws IllegalStateException Valeur trop élevé, soit les dimensions width et
-	 * height, soit les attributs col et row de la TextureType
-	 * @param col,row
-	 * @return Sous-Image décrite par la TextureType
+	 * @param path fichier de la texture
+	 * @param tile dimention d'une sous-texture
+	 * @param nbcol nombre de sous-texture par ligne
+     * @param min valeur min dans le fichier qui décrit la texture
+     * @param max valeur max dans le fichier qui décrit la texture
 	 */
-	public Image getImage(int row,int col) {
+	public Texture(int tile,String path,int nbcol,int min,int max) {
+		buffer = null;
+		this.tile = tile;
+		this.path = path;
+		this.nbcol = nbcol;
+		this.max = max;
+		this.min = min;
+	}
+
+    /**
+     * Cette méthode va découper, une image charger en fonction du paramètre
+     * @param under_texture
+     * @throws IllegalStateException Fichier de l'image impossible à charger
+     * @throws IllegalStateException Valeur trop élevé, soit les dimensions width et
+     * height, soit les attributs col et row de la TextureType
+     * @return Sous-Image décrite par la TextureType
+     */
+	public Image getImage(int under_texture) {
+        int texture_value;
+
+		if (under_texture < min  || under_texture > max) {
+			throw new IllegalStateException("under_texture to low or to hight");
+		}	
 
 		if (buffer==null) {			
 			ImageIcon image = new ImageIcon(path);
@@ -58,55 +69,27 @@ public class Texture{
 				throw new IllegalStateException("File not found. Bad Path.");
 			}
 
-			buffer = new BufferedImage(image.getIconWidth(),image.getIconHeight(),BufferedImage.TYPE_3BYTE_BGR);
+			buffer = new  BufferedImage(image.getIconWidth(),image.getIconHeight(),BufferedImage.TYPE_3BYTE_BGR);
 
 			Graphics g = buffer.getGraphics();
 
 			g.drawImage(image.getImage(),0,0,new JLabel());
-	}
-
-		if (row*width >= buffer.getWidth() || col*height >= buffer.getHeight()) {
-			throw new IllegalStateException("The arguments of TextureType are to big");
 		}
 
-		return buffer.getSubimage(row*width,col*height,width,height);
+        texture_value = under_texture - min;
+
+		return buffer.getSubimage((texture_value%nbcol)*tile,(texture_value/nbcol)*tile,tile,tile);
 	}
 
-	//main for the test
-	public static void main(String[] args) {
-		JFrame fenetre = new JFrame();
-
-		fenetre.setSize(new Dimension(322,322));
-		fenetre.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-		Texture t = new Texture(64,64,"assets/monsters/019.png");
-
-		Panneau panel = new Panneau(t.getImage(1,2));
-
-		fenetre.add(panel,BorderLayout.CENTER);
-
-		fenetre.setVisible(true);
-	}
-}
-
-//test class
-class Panneau extends JComponent{
-	private Image img;
-
-	public Panneau(Image i){
-		img = i;
+	public int getMax(){
+		return max;
 	}
 
-	@Override
-  	protected void paintComponent(Graphics pinceau) {
-    	Graphics secondPinceau = pinceau.create();
-    if (this.isOpaque()) {
-      // obligatoire : on repeint toute la surface avec la couleur de fond
-      secondPinceau.setColor(this.getBackground());
-      secondPinceau.fillRect(0, 0, this.getWidth(), this.getHeight());
-    }
-    	// maintenant on dessine ce que l'on veut
-    	secondPinceau.setColor(Color.GREEN);
-    	secondPinceau.drawImage(img,0,0,this);
-  	}
+	public int getMin(){
+		return min;
+	}
+
+	public String getPath(){
+		return path;
+	}
 }

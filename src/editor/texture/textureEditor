@@ -1,0 +1,5 @@
+// path tile nbcol min max
+assets/monsters/019.png 64 4 0 15
+assets/places/donjon10.png 16 6 16 117
+
+//classe pour nous aider info nécessaire -> dimension_image tile max précédent
