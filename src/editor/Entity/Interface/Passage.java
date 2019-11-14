@@ -1,8 +1,8 @@
 package editor.Entity.Interface;
 
-public interface Passage {
+import editor.Entity.Item.Room;
 
+public interface Passage {
     public Room getRoom1();
     public Room getRoom2();
-    public boolean isLocked();
 }

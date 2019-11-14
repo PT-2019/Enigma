@@ -7,6 +7,9 @@ public class Player implements Entity {
 
 
     @Override
+    public void interactsWith(Player p) {}
+
+    @Override
     public Texture getTexture() {
         return null;
     }
