@@ -1,7 +1,8 @@
 package editor.Enums;
 
 /**
-* Déplacements possibles 
+* Déplacements possibles
+* @version 0.0
 */
 public enum Direction
 {
