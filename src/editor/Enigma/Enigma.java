@@ -3,9 +3,8 @@ package editor.Enigma;
 import editor.Enigma.Condition.Condition;
 import editor.Enigma.Operation.Operation;
 import editor.Entity.Player.Player;
-import org.lwjgl.Sys;
 
-import javax.swing.*;
+import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Iterator;
@@ -17,28 +16,32 @@ public class Enigma implements ActionListener {
     private String description;
     private ArrayList<Condition> conditions;
     private ArrayList<Operation> operations;
-    private ArrayList<Advice> advices;
+    private ArrayList<String> advices;
     private int currentAdvice;
     private boolean known;
+    private Timer timer;
+    private final static int ONE_MINUTES_IN_MILLISECOND = 60000;
+    private static int TIME_BETWEEN_ADVICES = 2;
+    private final static int CURRENT_ADVICE_INDEX_STARTING_VALUE = -1;
 
     public Enigma(){
-        this.currentAdvice = -1;
+        this.currentAdvice = CURRENT_ADVICE_INDEX_STARTING_VALUE;
         this.title = "";
         this.description = "";
         this.known = false;
         this.conditions = new ArrayList<Condition>();
         this.operations = new ArrayList<Operation>();
-        this.advices = new ArrayList<Advice>();
+        this.advices = new ArrayList<String>();
     }
 
     public Enigma(String title, String description){
-        this.currentAdvice = -1;
+        this.currentAdvice = CURRENT_ADVICE_INDEX_STARTING_VALUE;
         this.title = title;
         this.description = description;
         this.known = false;
         this.conditions = new ArrayList<Condition>();
         this.operations = new ArrayList<Operation>();
-        this.advices = new ArrayList<Advice>();
+        this.advices = new ArrayList<String>();
     }
 
     public void verifyConditions(Player p){
@@ -63,6 +66,7 @@ public class Enigma implements ActionListener {
     }
 
     public void addCondition(Condition c){
+        if(this.conditions.contains(c)) throw new IllegalArgumentException("Cet élément existe déjà dans la liste");
         this.conditions.add(c);
     }
 
@@ -70,13 +74,12 @@ public class Enigma implements ActionListener {
         this.conditions.remove(c);
     }
 
-    public void switchConditions(int index1, int index2){
-        Condition c = this.conditions.get(index1);
-        this.conditions.set(index1,this.conditions.get(index2));
-        this.conditions.set(index2,c);
+    public Iterator<Condition> getAllConditions(){
+        return this.conditions.iterator();
     }
 
     public void addOperation(Operation o){
+        if(this.operations.contains(o)) throw new IllegalArgumentException("Cet élément existe déjà dans la liste");
         this.operations.add(o);
     }
 
@@ -84,10 +87,8 @@ public class Enigma implements ActionListener {
         this.operations.remove(o);
     }
 
-    public void switchOperations(int index1, int index2){
-        Operation o = this.operations.get(index1);
-        this.operations.set(index1,this.operations.get(index2));
-        this.operations.set(index2,o);
+    public Iterator<Operation> getAllOperations(){
+        return this.operations.iterator();
     }
 
     public String getTitle() {
@@ -106,44 +107,62 @@ public class Enigma implements ActionListener {
         this.description = description;
     }
 
-    public Advice getAdvice(){
-        if(this.currentAdvice != -1) return this.advices.get(this.currentAdvice);
-        else return null;
-    }
-
-    public String getTextAdvice(){
-        if(this.currentAdvice != -1) return this.advices.get(this.currentAdvice).getAdvice();
-        else return "";
-    }
-
-    public void addAdvice(Advice a){
+    public void addAdvice(String a){
+        if(this.advices.contains(a)) throw new IllegalArgumentException("Cet élément existe déjà dans la liste");
         this.advices.add(a);
     }
 
-    public void removeAdvice(Advice a){
+    public void removeAdvice(String a){
         this.advices.remove(a);
     }
 
     public void switchAdvices(int index1, int index2){
-        Advice a = this.advices.get(index1);
+        String a = this.advices.get(index1);
         this.advices.set(index1,this.advices.get(index2));
         this.advices.set(index2,a);
+    }
+
+    public String getAdvice(){
+        if(this.currentAdvice != CURRENT_ADVICE_INDEX_STARTING_VALUE) return this.advices.get(this.currentAdvice);
+        else return "Aucune aide pour l'instant";
+    }
+
+    public ArrayList<String> get(){
+        return this.advices;
+    }
+
+    public Iterator<String> getAllAdvices(){
+        return this.advices.iterator();
+    }
+
+    public void setTimeBetweenAdvices(int minutes){
+        TIME_BETWEEN_ADVICES = minutes;
+    }
+
+    public static int getTimeBetweenAdvices() {
+        return TIME_BETWEEN_ADVICES;
     }
 
     public boolean isKnown(){
         return this.known;
     }
 
-    public void hasBeenDiscovered(){
-        this.actionPerformed(null);
+    public void discovered(){
+        this.known = true;
+        this.timer = new Timer(TIME_BETWEEN_ADVICES * ONE_MINUTES_IN_MILLISECOND,this);
+        this.timer.setRepeats(true);
+        this.timer.start();
+        System.out.println("Nouvelle enigme découverte!");
+        System.out.println(this.getTitle()+" : "+this.getDescription());
     }
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        this.currentAdvice++;
-        if(this.currentAdvice < this.advices.size()){
-            Timer t = new Timer(this.advices.get(this.currentAdvice).getDuration(),this);
-            t.start();
+        System.out.println((this.currentAdvice + 1)+" "+this.advices.size());
+        if(this.currentAdvice + 1 < this.advices.size()) {
+            this.currentAdvice++;
+        }else {
+            this.timer.stop();
         }
     }
 }

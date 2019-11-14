@@ -12,6 +12,7 @@ public class Activated extends Condition {
     @Override
     public boolean verify(Player p) {
         Activatable a = (Activatable)this.entity;
+        System.out.println("La porte est dévérouillée");
         return a.isActivated();
     }
 }

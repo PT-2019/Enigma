@@ -19,7 +19,8 @@ public class Book implements Item, Content {
     @Override
     public void interactsWith(Player p){
         for(Enigma e : this.enigmas){
-            e.verifyConditions(p);
+            if(!e.isKnown()) e.discovered();
+            else e.verifyConditions(p);
         }
     }
 

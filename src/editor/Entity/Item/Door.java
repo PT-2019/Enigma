@@ -6,7 +6,6 @@ import editor.Entity.Interface.Lockable;
 import editor.Entity.Interface.Passage;
 import editor.Entity.Player.Player;
 import editor.texture.Texture;
-import org.lwjgl.Sys;
 
 import java.util.ArrayList;
 
@@ -23,8 +22,8 @@ public class Door implements Item, Passage, Lockable {
     @Override
     public void interactsWith(Player p){
         for(Enigma e : this.enigmas){
-            if(!e.isKnown()) e.hasBeenDiscovered();
-            e.verifyConditions(p);
+            if(!e.isKnown()) e.discovered();
+            else e.verifyConditions(p);
         }
     }
 

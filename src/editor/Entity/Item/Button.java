@@ -5,8 +5,19 @@ import editor.Entity.Player.Player;
 import editor.texture.Texture;
 
 public class Button extends Activatable {
+
+    public Button() {
+        super(false);
+    }
+
+    public Button(boolean activated) {
+        super(activated);
+    }
+
     @Override
-    public void interactsWith(Player p) {}
+    public void interactsWith(Player p) {
+        this.activated = !this.activated;
+    }
 
     @Override
     public Texture getTexture() {return null;}
@@ -21,5 +32,7 @@ public class Button extends Activatable {
     public void removeEnigma(Enigma e) {}
 
     @Override
-    public boolean isActivated() {return false;}
+    public boolean isActivated() {
+        return this.activated;
+    }
 }

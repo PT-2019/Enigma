@@ -9,6 +9,9 @@ public abstract class Activatable implements Item {
 
     protected boolean activated;
 
+    public Activatable(boolean activated){
+        this.activated = activated;
+    }
     @Override
     public abstract void interactsWith(Player p);
     @Override
