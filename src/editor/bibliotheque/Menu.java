@@ -3,10 +3,22 @@ package editor.bibliotheque;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ *  classe Menu
+ *  @author Jorys-Micke ALAÏS
+ *  @author Louka DOZ
+ *  @author Loic SENECAT
+ *  @author Quentin RAMSAMY-AGEORGES
+ *
+ *  @version 1.0
+ */
 public class Menu extends JFrame {
 
     private JScrollPane scroll;
 
+    /**
+     * @since 1.0
+     */
     public Menu(){
         this.setTitle("Création de l'escape Game");
         this.setSize(1000,700);
@@ -29,7 +41,7 @@ public class Menu extends JFrame {
         c1.insets= new Insets(0,0,0,0);
         c1.weightx=0.5f;
         c1.weighty=1.0f;
-
+        //création d'une scrollbar pour la partie gauche
         scroll = new JScrollPane(menuChoix);
         scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
