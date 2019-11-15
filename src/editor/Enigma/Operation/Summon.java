@@ -17,4 +17,13 @@ public class Summon extends Operation {
     public void doOperation(Player p) {
        //faire apparaitre this.entity sur this.spawn
     }
+
+    @Override
+    public String toString(){
+        return "[Summon]";
+    }
+
+    public String toLongString(){
+        return "[Summon  : entity = " + this.entity + "]";
+    }
 }

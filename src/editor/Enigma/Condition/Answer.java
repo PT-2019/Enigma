@@ -13,4 +13,13 @@ public class Answer extends Condition {
         //poser la question et tester si la réponse est bonne
         return false;
     }
+
+    @Override
+    public String toString(){
+        return "[Answer]";
+    }
+    public String toLongString(){
+        return "[Answer]";
+    }
+
 }

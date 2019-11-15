@@ -15,4 +15,13 @@ public class Unlock extends Operation {
         Lockable l = (Lockable)this.entity;
         l.unlock();
     }
+
+    @Override
+    public String toString(){
+        return "[Unlock]";
+    }
+
+    public String toLongString(){
+        return "[Unlock  : entity = " + this.entity + "]";
+    }
 }

@@ -28,6 +28,8 @@ public class MainTestEnigma {
         door.addEnigma(enigma);
         door.interactsWith(player); //Première interraction
 
+        System.out.println(door.toLongString());
+
         //Attendre les indices
         System.out.println("aide début = "+enigma.getAdvice());
         Thread.sleep(61000); //attendre + de 1min (60000 millisecondes = 1min)

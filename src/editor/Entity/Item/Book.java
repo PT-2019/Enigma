@@ -11,6 +11,9 @@ import java.util.ArrayList;
 public class Book implements Item, Content {
 
     private ArrayList<Enigma> enigmas;
+    private String content;
+    private String dialog;
+    private Texture texture;
 
     public Book(){
         this.enigmas = new ArrayList<Enigma>();
@@ -26,7 +29,7 @@ public class Book implements Item, Content {
 
     @Override
     public Texture getTexture() {
-        return null;
+        return this.texture;
     }
 
     @Override
@@ -43,10 +46,30 @@ public class Book implements Item, Content {
     }
 
     @Override
-    public void addContent(String content) {}
+    public void addContent(String content) {
+        this.content = content;
+    }
 
     @Override
     public String getContent() {
-        return null;
+        return this.content;
     }
+
+    @Override
+    public String toString(){
+        return "[Book  : dialog = " + this.dialog + ", content = " + this.content + ", texture = " + this.texture;
+    }
+    public String toLongString(){
+        StringBuilder s = new StringBuilder("[Book  : dialog = " + this.dialog + ", content = " + this.content + ", texture = " + this.texture + ", enigmas = {");
+        int size = this.enigmas.size() - 1;
+        int i = 0;
+        for(Enigma e : this.enigmas) {
+            s.append(e.toLongString());
+            if(i < size) s.append(", ");
+            i++;
+        }
+        s.append("}]");
+        return s.toString();
+    }
+
 }

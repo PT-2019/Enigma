@@ -15,4 +15,13 @@ public class HaveInInventory extends Condition {
         //tester si p à i dans son inventaire
         return false;
     }
+
+    @Override
+    public String toString(){
+        return "[HaveInInventory]";
+    }
+
+    public String toLongString(){
+        return "[HaveInInventory  : entity = " + this.entity + "]";
+    }
 }

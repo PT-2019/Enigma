@@ -2,6 +2,7 @@ package editor.Enigma;
 
 import editor.Enigma.Condition.Condition;
 import editor.Enigma.Operation.Operation;
+import editor.Entity.Interface.Content;
 import editor.Entity.Player.Player;
 
 import javax.swing.Timer;
@@ -20,35 +21,34 @@ public class Enigma implements ActionListener {
     private int currentAdvice;
     private boolean known;
     private Timer timer;
+    private int timeBetweenAdvices;
     private final static int ONE_MINUTES_IN_MILLISECOND = 60000;
-    private static int TIME_BETWEEN_ADVICES = 2;
-    private final static int CURRENT_ADVICE_INDEX_STARTING_VALUE = -1;
+    private final static int ADVICE_INDEX_STARTING_VALUE = -1;
 
     public Enigma(){
-        this.currentAdvice = CURRENT_ADVICE_INDEX_STARTING_VALUE;
+        this.currentAdvice = ADVICE_INDEX_STARTING_VALUE;
         this.title = "";
         this.description = "";
         this.known = false;
+        this.timeBetweenAdvices = 2;
         this.conditions = new ArrayList<Condition>();
         this.operations = new ArrayList<Operation>();
         this.advices = new ArrayList<String>();
     }
 
     public Enigma(String title, String description){
-        this.currentAdvice = CURRENT_ADVICE_INDEX_STARTING_VALUE;
+        this.currentAdvice = ADVICE_INDEX_STARTING_VALUE;
         this.title = title;
         this.description = description;
         this.known = false;
+        this.timeBetweenAdvices = 2;
         this.conditions = new ArrayList<Condition>();
         this.operations = new ArrayList<Operation>();
         this.advices = new ArrayList<String>();
     }
 
     public void verifyConditions(Player p){
-        Iterator<Condition> conditions = this.conditions.iterator();
-        Condition condition;
-        while (conditions.hasNext()) {
-            condition = conditions.next();
+        for (Condition condition : this.conditions) {
             //On teste que les conditions sont remplies, si ce n'est pas le cas, la méthode s'arrête là
             if(!condition.verify(p)){
                 System.out.println("Toutes les conditions n'ont pas été validées");
@@ -56,11 +56,8 @@ public class Enigma implements ActionListener {
             }
         }
 
-        Iterator<Operation> operations = this.operations.iterator();
-        Operation operation;
         //On lance toutes les opérations de l'enigme
-        while (operations.hasNext()) {
-            operation = operations.next();
+        for (Operation operation : this.operations) {
             operation.doOperation(p);
         }
     }
@@ -123,7 +120,7 @@ public class Enigma implements ActionListener {
     }
 
     public String getAdvice(){
-        if(this.currentAdvice != CURRENT_ADVICE_INDEX_STARTING_VALUE) return this.advices.get(this.currentAdvice);
+        if(this.currentAdvice != ADVICE_INDEX_STARTING_VALUE) return this.advices.get(this.currentAdvice);
         else return "Aucune aide pour l'instant";
     }
 
@@ -136,11 +133,12 @@ public class Enigma implements ActionListener {
     }
 
     public void setTimeBetweenAdvices(int minutes){
-        TIME_BETWEEN_ADVICES = minutes;
+        //verifier qu'il est bien inférieur à la durée maximale de la partie
+        this.timeBetweenAdvices = minutes;
     }
 
-    public static int getTimeBetweenAdvices() {
-        return TIME_BETWEEN_ADVICES;
+    public int getTimeBetweenAdvices() {
+        return this.timeBetweenAdvices;
     }
 
     public boolean isKnown(){
@@ -149,7 +147,7 @@ public class Enigma implements ActionListener {
 
     public void discovered(){
         this.known = true;
-        this.timer = new Timer(TIME_BETWEEN_ADVICES * ONE_MINUTES_IN_MILLISECOND,this);
+        this.timer = new Timer(this.timeBetweenAdvices * ONE_MINUTES_IN_MILLISECOND,this);
         this.timer.setRepeats(true);
         this.timer.start();
         System.out.println("Nouvelle enigme découverte!");
@@ -164,5 +162,43 @@ public class Enigma implements ActionListener {
         }else {
             this.timer.stop();
         }
+    }
+
+    @Override
+    public String toString(){
+        return "[Enigma  : title = \"" + this.title + "\", descrption = \"" + this.description + "\", isKnown = " + this.isKnown() + ", timeBetweenAdvices = " + this.timeBetweenAdvices + ", currentAdviceIndex = " + this.currentAdvice + ", currentAdvice = \"" + this.getAdvice() + "\"";
+    }
+
+    public String toLongString(){
+        StringBuilder s = new StringBuilder("[Enigma  : title = \"" + this.title + "\", descrption = \"" + this.description + "\", isKnown = " + this.isKnown() + ", timeBetweenAdvices = " + this.timeBetweenAdvices + ", currentAdviceIndex = " + this.currentAdvice + ", currentAdvice = \"" + this.getAdvice() + "\", allAdvices = {");
+        int sizeA = this.advices.size() - 1;
+        int sizeC = this.conditions.size() - 1;
+        int sizeO = this.operations.size() - 1;
+        int i = 0;
+
+        for(String a : this.advices) {
+            s.append("\"").append(a).append("\"");
+            if(i < sizeA) s.append(", ");
+            i++;
+        }
+
+        i = 0;
+        s.append("}, allCondtitions = {");
+        for(Condition c : this.conditions) {
+            s.append(c);
+            if(i < sizeC) s.append(", ");
+            i++;
+        }
+
+        i = 0;
+        s.append("}, allOperations = {");
+        for(Operation o : this.operations) {
+            s.append(o);
+            if(i < sizeO) s.append(", ");
+            i++;
+        }
+
+        s.append("}]");
+        return s.toString();
     }
 }

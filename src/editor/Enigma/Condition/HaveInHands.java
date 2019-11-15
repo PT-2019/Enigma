@@ -15,4 +15,13 @@ public class HaveInHands extends Condition {
         //tester si p à i dans ses mains
         return false;
     }
+
+    @Override
+    public String toString(){
+        return "[HaveInHands]";
+    }
+
+    public String toLongString(){
+        return "[HaveInHands  : entity = " + this.entity + "]";
+    }
 }

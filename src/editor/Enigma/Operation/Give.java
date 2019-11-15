@@ -15,4 +15,13 @@ public class Give extends Operation {
         Item i = (Item)this.entity;
         //Donner i à p
     }
+
+    @Override
+    public String toString(){
+        return "[Give]";
+    }
+
+    public String toLongString(){
+        return "[Give  : entity = " + this.entity + "]";
+    }
 }

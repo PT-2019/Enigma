@@ -15,4 +15,13 @@ public class Activated extends Condition {
         System.out.println("La porte est dévérouillée");
         return a.isActivated();
     }
+
+    @Override
+    public String toString(){
+        return "[Activated]";
+    }
+
+    public String toLongString(){
+        return "[Activated  : entity = " + this.entity + "]";
+    }
 }
