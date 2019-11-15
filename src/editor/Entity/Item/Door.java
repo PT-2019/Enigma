@@ -4,7 +4,6 @@ import editor.Enigma.Enigma;
 import editor.Entity.Interface.Item;
 import editor.Entity.Interface.Lockable;
 import editor.Entity.Interface.Passage;
-import editor.Entity.Interface.Room;
 import editor.Entity.Player.Player;
 import editor.texture.Texture;
 
