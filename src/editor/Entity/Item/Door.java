@@ -46,6 +46,7 @@ public class Door implements Item, Passage, Lockable {
 
     @Override
     public void addEnigma(Enigma e) {
+        if(this.enigmas.contains(e)) throw new IllegalArgumentException("Cette énigme existe déjà dans la liste");
         this.enigmas.add(e);
     }
 

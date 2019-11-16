@@ -12,4 +12,12 @@ public abstract class Condition {
     }
 
     public abstract boolean verify(Player p);
+
+    public Entity getEntity(){
+        return this.entity;
+    }
+
+    public void setEntity(Entity e){
+        this.entity = e;
+    }
 }
