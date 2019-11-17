@@ -13,8 +13,8 @@ import java.util.ArrayList;
 /**
  * Enigma gère une énigme. Une énigme est définie par les {@link editor.Enigma.Condition.Condition conditions} à satisfaire pour résoudre l'énigme ainsi que les {@link editor.Enigma.Operation.Operation opérations} réalisées si toutes les conditions sont satisfaites.
  * Une énigme contient aussi des indices déstinés aux joueurs.
- * @see Condition
- * @see Operation
+ * @see editor.Enigma.Condition.Condition
+ * @see editor.Enigma.Operation.Operation
  * @version 1.0
  */
 public class Enigma implements ActionListener {

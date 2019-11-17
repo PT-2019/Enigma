@@ -4,6 +4,7 @@ import editor.Enigma.Enigma;
 
 /**
  * Permet à une {@link editor.Entity.Interface.Entity entité} de contenir des énigmes
+ * @version 1.0
  */
 public interface EnigmaContainer {
 
