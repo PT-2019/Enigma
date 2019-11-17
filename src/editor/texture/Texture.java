@@ -5,9 +5,8 @@ import java.awt.*;
 import java.awt.image.*;
 
 /**
- * La classe Texture permet de chargé des images et de les décomposer
- * Cette classe sont fonctionnement est lié avec TextureProxy
- * @see TextureProxy
+ * La classe Texture permet de chargé des images contenant différente
+ * texture et de les décomposer.
  */
 public class Texture{
 	/**
@@ -25,10 +24,16 @@ public class Texture{
 	 */
 	private int max;
 
+    /**
+     * Dimension d'une sous-texture
+     */
 	private int tile;
 
 	private String path;
 
+	/**
+     * Nombre de sous-texture différente sur chaque ligne de l'image
+     */
 	private int nbcol;
 
 	/**

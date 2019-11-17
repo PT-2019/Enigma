@@ -3,6 +3,9 @@ package editor.texture;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -38,6 +41,7 @@ public class TextureProxy{
 		return img;
 	}
 
+
 	public void addTexture(Texture texture){
 		boolean exist = false;
 		//on vérifie si il y a pas déjà la texture
@@ -50,6 +54,57 @@ public class TextureProxy{
 
 		if (!exist) {
 			textures.add(texture);
+		}
+	}
+
+	/**
+	 * Charge en mémoire toutes les textures décrites dans le fichier donné en argument.
+	 * Voir le format du fichier en quesiton.
+	 * @param pathFile
+	 * @throws NumberFormatException causé par un fichier mal conçu
+	 */
+	public void loadTexture(String pathFile){
+		BufferedReader buff;
+		FileReader file;
+		String line="";
+		String tmpString="";
+		String[] info = new String[5];
+		char currentChar;
+
+		try {
+
+			file = new FileReader(pathFile);
+			buff = new BufferedReader(file);
+
+			while ((line = buff.readLine()) != null ){
+
+				for(int j = 0,i = 0; i < line.length();i++){
+					currentChar = line.charAt(i);
+
+					if (currentChar == ' ') {
+
+						info[j]=tmpString;
+						j++;
+						tmpString="";
+					}else{
+						tmpString += currentChar;
+					}
+				}
+
+				info[4] = tmpString;
+
+				Texture t = new Texture(Integer.parseInt(info[1]),info[0],Integer.parseInt(info[2]),Integer.parseInt(info[3]),Integer.parseInt(info[4]));
+
+				this.addTexture(t);
+
+				tmpString="";
+			}
+
+			file.close();
+			buff.close();
+
+		}catch(IOException e){
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -66,9 +121,9 @@ public class TextureProxy{
 
 		TextureProxy content = new TextureProxy();
 
-		content.addTexture(t);
+		content.loadTexture("src/editor/texture/textureEditor");
 
-		Image img = content.getImage(16);
+		Image img = content.getImage(14);
 
 		if (img == null){
 			System.out.println("Aucune texture ne correspond au numéro donné");
