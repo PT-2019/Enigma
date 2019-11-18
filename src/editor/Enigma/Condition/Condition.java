@@ -6,6 +6,7 @@ import editor.Entity.Player.Player;
 /**
  * Une condition à pour but d'être satisfaite par une action des joueurs. Elle diffère fonction du type de condition
  * Elle est utilisée dans les {@link editor.Enigma.Enigma énigmes} pour déterminer si elles ont été résolues
+ * @see editor.Enigma.Enigma
  * @version 1.0
  */
 public abstract class Condition {

@@ -12,9 +12,10 @@ import java.util.ArrayList;
 
 /**
  * Enigma gère une énigme. Une énigme est définie par les {@link editor.Enigma.Condition.Condition conditions} à satisfaire pour résoudre l'énigme ainsi que les {@link editor.Enigma.Operation.Operation opérations} réalisées si toutes les conditions sont satisfaites.
- * Une énigme contient aussi des indices déstinés aux joueurs.
+ * Une énigme contient aussi des {@link editor.Enigma.Advice indices} déstinés aux joueurs.
  * @see editor.Enigma.Condition.Condition
  * @see editor.Enigma.Operation.Operation
+ * @see editor.Enigma.Advice
  * @version 1.0
  */
 public class Enigma implements ActionListener {
@@ -42,7 +43,7 @@ public class Enigma implements ActionListener {
     /**
      * Indices. Ils sont rangés par ordre d'importance
      */
-    private ArrayList<String> advices;
+    private ArrayList<Advice> advices;
 
     /**
      * Index pointant l'indice actuel
@@ -82,7 +83,7 @@ public class Enigma implements ActionListener {
         this.timeBetweenAdvices = 2;
         this.conditions = new ArrayList<Condition>();
         this.operations = new ArrayList<Operation>();
-        this.advices = new ArrayList<String>();
+        this.advices = new ArrayList<Advice>();
     }
 
     /**
@@ -97,7 +98,7 @@ public class Enigma implements ActionListener {
         this.timeBetweenAdvices = 2;
         this.conditions = new ArrayList<Condition>();
         this.operations = new ArrayList<Operation>();
-        this.advices = new ArrayList<String>();
+        this.advices = new ArrayList<Advice>();
     }
 
     /**
@@ -148,10 +149,10 @@ public class Enigma implements ActionListener {
     /**
      * Ajoute une opération
      * @param o Opération à ajouter
-     * @throws IllegalArgumentException Si l'opération existe déjà dans l'énigme
+     * @throws IllegalStateException Si l'opération existe déjà dans l'énigme
      */
     public void addOperation(Operation o){
-        if(this.operations.contains(o)) throw new IllegalArgumentException("Cet élément existe déjà dans la liste");
+        if(this.operations.contains(o)) throw new IllegalStateException("Cet élément existe déjà dans la liste");
         this.operations.add(o);
     }
 
@@ -206,10 +207,10 @@ public class Enigma implements ActionListener {
     /**
      * Ajoute un indice
      * @param a Indice à ajouter
-     * @throws IllegalArgumentException Si l'indice existe déjà dans l'énigme
+     * @throws IllegalStateException Si l'indice existe déjà dans l'énigme
      */
-    public void addAdvice(String a){
-        if(this.advices.contains(a)) throw new IllegalArgumentException("Cet élément existe déjà dans la liste");
+    public void addAdvice(Advice a){
+        if(this.advices.contains(a)) throw new IllegalStateException("Cet élément existe déjà dans la liste");
         this.advices.add(a);
     }
 
@@ -217,7 +218,7 @@ public class Enigma implements ActionListener {
      * Retire un indice
      * @param a Indice à retirer
      */
-    public void removeAdvice(String a){
+    public void removeAdvice(Advice a){
         this.advices.remove(a);
     }
 
@@ -227,25 +228,34 @@ public class Enigma implements ActionListener {
      * @param index2 Index du second indice
      */
     public void switchAdvices(int index1, int index2){
-        String a = this.advices.get(index1);
+        Advice a = this.advices.get(index1);
         this.advices.set(index1,this.advices.get(index2));
         this.advices.set(index2,a);
     }
 
     /**
-     * Obtenir l'indice actuel
-     * @return Indice actuel
+     * Obtenir le texte de l'indice actuel
+     * @return Texte de l'indice actuel
      */
-    public String getAdvice(){
-        if(this.currentAdvice != ADVICE_INDEX_STARTING_VALUE) return this.advices.get(this.currentAdvice);
+    public String getTextAdvice(){
+        if(this.currentAdvice != ADVICE_INDEX_STARTING_VALUE) return this.advices.get(this.currentAdvice).getAdvice();
         else return "Aucune aide pour l'instant";
+    }
+
+    /**
+     * Obtenir l'indice actuel
+     * @return Indice actuel, null sinon
+     */
+    public Advice getAdvice(){
+        if(this.currentAdvice != ADVICE_INDEX_STARTING_VALUE) return this.advices.get(this.currentAdvice);
+        else return null;
     }
 
     /**
      * Obtenir la liste des indices
      * @return Iterator<String> de tous les indices de l'énigme
      */
-    public Iterator<String> getAllAdvices(){
+    public Iterator<Advice> getAllAdvices(){
         return this.advices.iterator();
     }
 
@@ -282,22 +292,18 @@ public class Enigma implements ActionListener {
         this.timer = new Timer(this.timeBetweenAdvices * ONE_MINUTES_IN_MILLISECOND,this);
         this.timer.setRepeats(true);
         this.timer.start();
-        System.out.println("Nouvelle enigme découverte!");
+        System.out.println("Nouvelle énigme découverte!");
         System.out.println(this.getTitle()+" : "+this.getDescription());
     }
 
     /**
      * Passe à l'indice suivant
-     * @param actionEvent
+     * @param actionEvent Evénement
      */
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        System.out.println((this.currentAdvice + 1)+" "+this.advices.size());
-        if(this.currentAdvice + 1 < this.advices.size()) {
-            this.currentAdvice++;
-        }else {
-            this.timer.stop();
-        }
+        if(this.currentAdvice + 1 < this.advices.size()) this.currentAdvice++;
+        else this.timer.stop();
     }
 
     /**
@@ -320,7 +326,7 @@ public class Enigma implements ActionListener {
      */
     @Override
     public String toString(){
-        return "[Enigma  : title = \"" + this.title + "\", descrption = \"" + this.description + "\", isKnown = " + this.isKnown() + ", timeBetweenAdvices = " + this.timeBetweenAdvices + ", currentAdviceIndex = " + this.currentAdvice + ", currentAdvice = \"" + this.getAdvice() + "\"";
+        return "[Enigma  : title = \"" + this.title + "\", descrption = \"" + this.description + "\", isKnown = " + this.isKnown() + ", timeBetweenAdvices = " + this.timeBetweenAdvices + ", currentAdviceIndex = " + this.currentAdvice + ", currentAdvice = \"" + this.getAdvice() + "\"]";
     }
 
     /**
@@ -334,7 +340,7 @@ public class Enigma implements ActionListener {
         int sizeO = this.operations.size() - 1;
         int i = 0;
 
-        for(String a : this.advices) {
+        for(Advice a : this.advices) {
             s.append("\"").append(a).append("\"");
             if(i < sizeA) s.append(", ");
             i++;
