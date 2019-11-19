@@ -3,6 +3,7 @@ package editor.Enigma;
 import editor.Enigma.Condition.Condition;
 import editor.Enigma.Operation.Operation;
 import editor.Entity.Player.Player;
+import org.lwjgl.Sys;
 
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;
@@ -61,11 +62,6 @@ public class Enigma implements ActionListener {
     private Timer timer;
 
     /**
-     * Indique le temps qui sépare deux énigmes
-     */
-    private int timeBetweenAdvices;
-
-    /**
      * Une minute en millisecondes
      */
     private final static int ONE_MINUTES_IN_MILLISECOND = 60000;
@@ -80,7 +76,7 @@ public class Enigma implements ActionListener {
         this.title = "";
         this.description = "";
         this.known = false;
-        this.timeBetweenAdvices = 2;
+        this.timer = new Timer(0,this);
         this.conditions = new ArrayList<Condition>();
         this.operations = new ArrayList<Operation>();
         this.advices = new ArrayList<Advice>();
@@ -95,7 +91,7 @@ public class Enigma implements ActionListener {
         this.title = title;
         this.description = description;
         this.known = false;
-        this.timeBetweenAdvices = 2;
+        this.timer = new Timer(0,this);
         this.conditions = new ArrayList<Condition>();
         this.operations = new ArrayList<Operation>();
         this.advices = new ArrayList<Advice>();
@@ -224,13 +220,18 @@ public class Enigma implements ActionListener {
 
     /**
      * Echange de position deux indices
-     * @param index1 Index du premier indice
-     * @param index2 Index du second indice
+     * @param advice1 Premier indice
+     * @param advice2 Second indice
+     * @throws IllegalArgumentException Si le premier indice n'existe pas dans l'énigme
+     * @throws IllegalArgumentException Si le second indice n'existe pas dans l'énigme
      */
-    public void switchAdvices(int index1, int index2){
-        Advice a = this.advices.get(index1);
-        this.advices.set(index1,this.advices.get(index2));
-        this.advices.set(index2,a);
+    public void switchAdvices(Advice advice1, Advice advice2){
+        if(!this.advices.contains(advice1)) throw new IllegalArgumentException("Le premier indice transmis n'existe pas dans l'énigme");
+        if(!this.advices.contains(advice2)) throw new IllegalArgumentException("Le second indice transmis n'existe pas dans l'énigme");
+        int index1 = this.advices.indexOf(advice1);
+        int index2 = this.advices.indexOf(advice2);
+        this.advices.set(index1,advice2);
+        this.advices.set(index2,advice1);
     }
 
     /**
@@ -260,23 +261,6 @@ public class Enigma implements ActionListener {
     }
 
     /**
-     * Indique le temps qui sépare un indice du suivant
-     * @param minutes Temps en minute
-     */
-    public void setTimeBetweenAdvices(int minutes){
-        //verifier qu'il est bien inférieur à la durée maximale de la partie
-        this.timeBetweenAdvices = minutes;
-    }
-
-    /**
-     * Obtenir le temps qui sépare un indice du suivant
-     * @return Temps en minute
-     */
-    public int getTimeBetweenAdvices() {
-        return this.timeBetweenAdvices;
-    }
-
-    /**
      * Savoir si l'énigme à déjà été découverte
      * @return true si l'énigme à été découverte, false sinon
      */
@@ -289,11 +273,13 @@ public class Enigma implements ActionListener {
      */
     public void discovered(){
         this.known = true;
-        this.timer = new Timer(this.timeBetweenAdvices * ONE_MINUTES_IN_MILLISECOND,this);
-        this.timer.setRepeats(true);
-        this.timer.start();
         System.out.println("Nouvelle énigme découverte!");
         System.out.println(this.getTitle()+" : "+this.getDescription());
+        if(this.currentAdvice + 1 < this.advices.size()) {
+            this.timer.setInitialDelay(this.advices.get(this.currentAdvice + 1).getDelay() * ONE_MINUTES_IN_MILLISECOND);
+            this.timer.setRepeats(false);
+            this.timer.start();
+        }
     }
 
     /**
@@ -302,8 +288,13 @@ public class Enigma implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        if(this.currentAdvice + 1 < this.advices.size()) this.currentAdvice++;
-        else this.timer.stop();
+        if(this.currentAdvice + 1 < this.advices.size()) {
+            this.currentAdvice++;
+            if(this.currentAdvice + 1 < this.advices.size()) {
+                this.timer.setInitialDelay(this.advices.get(this.currentAdvice + 1).getDelay() * ONE_MINUTES_IN_MILLISECOND);
+                this.timer.start();
+            }
+        }
     }
 
     /**
@@ -326,7 +317,7 @@ public class Enigma implements ActionListener {
      */
     @Override
     public String toString(){
-        return "[Enigma  : title = \"" + this.title + "\", descrption = \"" + this.description + "\", isKnown = " + this.isKnown() + ", timeBetweenAdvices = " + this.timeBetweenAdvices + ", currentAdviceIndex = " + this.currentAdvice + ", currentAdvice = \"" + this.getAdvice() + "\"]";
+        return "[Enigma  : title = \"" + this.title + "\", descrption = \"" + this.description + "\", isKnown = " + this.isKnown() + ", currentAdviceIndex = " + this.currentAdvice + ", currentAdvice = " + this.getAdvice() + ", currentTextAdvice = \"" + this.getTextAdvice() + "\"]";
     }
 
     /**
@@ -334,14 +325,14 @@ public class Enigma implements ActionListener {
      * @return Texte représentant l'énigme
      */
     public String toLongString(){
-        StringBuilder s = new StringBuilder("[Enigma  : title = \"" + this.title + "\", descrption = \"" + this.description + "\", isKnown = " + this.isKnown() + ", timeBetweenAdvices = " + this.timeBetweenAdvices + ", currentAdviceIndex = " + this.currentAdvice + ", currentAdvice = \"" + this.getAdvice() + "\", allAdvices = {");
+        StringBuilder s = new StringBuilder("[Enigma  : title = \"" + this.title + "\", descrption = \"" + this.description + "\", isKnown = " + this.isKnown() + ", currentAdviceIndex = " + this.currentAdvice + ", currentAdvice = " + this.getAdvice() + ", currentTextAdvice = \"" + this.getTextAdvice() + "\", allAdvices = {");
         int sizeA = this.advices.size() - 1;
         int sizeC = this.conditions.size() - 1;
         int sizeO = this.operations.size() - 1;
         int i = 0;
 
         for(Advice a : this.advices) {
-            s.append("\"").append(a).append("\"");
+            s.append(a);
             if(i < sizeA) s.append(", ");
             i++;
         }

@@ -14,12 +14,31 @@ public class Advice {
     private String advice;
 
     /**
+     * Délai avant de montrer l'indice (2 minute de base)
+     */
+    private int delay;
+
+    /**
      * @param a Indice
      * @throws IllegalArgumentException Si la chaîne de caractères est vide
      */
     public Advice(String a){
         if(a.length() < 1) throw new IllegalArgumentException("L'indice ne peut pas être vide");
         this.advice = a;
+        this.delay = 2;
+    }
+
+    /**
+     * @param a Indice
+     * @param delay Délai en minute avant de montrer l'indice
+     * @throws IllegalArgumentException Si la chaîne de caractères est vide
+     * @throws IllegalArgumentException Si le délai est inférieur à 0
+     */
+    public Advice(String a, int delay){
+        if(a.length() < 1) throw new IllegalArgumentException("L'indice ne peut pas être vide");
+        if(delay < 1) throw new IllegalArgumentException("Le délai ne peut pas être inférieur à 0");
+        this.advice = a;
+        this.delay = delay;
     }
 
     /**
@@ -33,11 +52,29 @@ public class Advice {
     }
 
     /**
+     * Indiquer le délai avant de montrer l'indice
+     * @param delay Délai en minute avant de montrer l'indice
+     * @throws IllegalArgumentException Si le délai est inférieur à 0
+     */
+    public void setDelay(int delay){
+        if(delay < 1) throw new IllegalArgumentException("Le délai ne peut pas être inférieur à 0");
+        this.delay = delay;
+    }
+
+    /**
      * Obtenir l'indice
      * @return Indice
      */
     public String getAdvice(){
         return this.advice;
+    }
+
+    /**
+     * Obtenir le délai avant de montrer l'indice
+     * @return Le délai en minute
+     */
+    public int getDelay(){
+        return this.delay;
     }
 
     /**
@@ -60,6 +97,6 @@ public class Advice {
      */
     @Override
     public String toString(){
-        return "[Advice  : advice = \"" + this.advice + "\"]";
+        return "[Advice  : advice = \"" + this.advice + "\", delay = " + this.delay + "]";
     }
 }
