@@ -86,6 +86,31 @@ public class Texture{
 		return buffer.getSubimage((texture_value%nbcol)*tile,(texture_value/nbcol)*tile,tile,tile);
 	}
 
+	/**
+	 * Cette méthode static renvoi une sous-image en fonction des paramètres
+	 * @param col
+	 * @param row
+	 * @return
+	 */
+	public Image getImage(int col,int row,String other_path,int other_tile) {
+
+		if (buffer==null) {
+			ImageIcon image = new ImageIcon(other_path);
+
+			if (image.getIconHeight() < 0 || image.getIconWidth() < 0) {
+				throw new IllegalStateException("File not found. Bad Path.");
+			}
+
+			buffer = new  BufferedImage(image.getIconWidth(),image.getIconHeight(),BufferedImage.TYPE_3BYTE_BGR);
+
+			Graphics g = buffer.getGraphics();
+
+			g.drawImage(image.getImage(),0,0,new JLabel());
+		}
+
+		return buffer.getSubimage(row*other_tile,col*other_tile,other_tile,other_tile);
+	}
+
 	public int getMax(){
 		return max;
 	}
