@@ -136,10 +136,12 @@ public class Enigma implements ActionListener {
 
     /**
      * Obtenir la liste des conditions
-     * @return Iterator<Condition> de toutes les conditions de l'énigme
+     * @return Iterator de toutes les conditions de l'énigme
      */
+    @SuppressWarnings("unchecked")
     public Iterator<Condition> getAllConditions(){
-        return this.conditions.iterator();
+        ArrayList<Condition> c = (ArrayList<Condition>)this.operations.clone();
+        return c.iterator();
     }
 
     /**
@@ -162,10 +164,12 @@ public class Enigma implements ActionListener {
 
     /**
      * Obtenir la liste des opérations
-     * @return Iterator<Operation> de toutes les opérations de l'énigme
+     * @return Iterator de toutes les opérations de l'énigme
      */
+    @SuppressWarnings("unchecked")
     public Iterator<Operation> getAllOperations(){
-        return this.operations.iterator();
+        ArrayList<Operation> o = (ArrayList<Operation>)this.operations.clone();
+        return o.iterator();
     }
 
     /**
@@ -254,10 +258,12 @@ public class Enigma implements ActionListener {
 
     /**
      * Obtenir la liste des indices
-     * @return Iterator<String> de tous les indices de l'énigme
+     * @return Iterator de tous les indices de l'énigme
      */
+    @SuppressWarnings("unchecked")
     public Iterator<Advice> getAllAdvices(){
-        return this.advices.iterator();
+        ArrayList<Advice> a = (ArrayList<Advice>)this.advices.clone();
+        return a.iterator();
     }
 
     /**

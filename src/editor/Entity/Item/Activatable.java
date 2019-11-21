@@ -5,6 +5,8 @@ import editor.Entity.Interface.Item;
 import editor.Entity.Player.Player;
 import editor.texture.Texture;
 
+import java.util.Iterator;
+
 /**
  * Désigne des objets pouvant être activés ou désactivés
  * @see editor.Entity.Interface.Item
@@ -58,6 +60,12 @@ public abstract class Activatable implements Item {
      */
     @Override
     public abstract void removeEnigma(Enigma e);
+
+    /**
+     * Obtenir toutes les énigmes
+     * @return Iterator des énigmes
+     */
+    public abstract Iterator<Enigma> getAllEnigmas();
 
     /**
      * Indique si l'objet est activé

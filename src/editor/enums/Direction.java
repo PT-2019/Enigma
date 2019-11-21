@@ -1,0 +1,24 @@
+package editor.enums;
+
+/**
+* Déplacements possibles 
+*/
+public enum Direction
+{
+	/**
+	* Nord
+	*/
+	NORTH,
+	/**
+	* Est
+	*/
+	EAST,
+	/**
+	* Sud
+	*/
+	SOUTH,
+	/**
+	* OUEST
+	*/
+	WEST
+}

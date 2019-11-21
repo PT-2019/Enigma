@@ -5,9 +5,11 @@ import editor.Entity.Interface.Item;
 import editor.Entity.Interface.Lockable;
 import editor.Entity.Interface.Passage;
 import editor.Entity.Player.Player;
+import editor.map.Room;
 import editor.texture.Texture;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * @see editor.Entity.Interface.Item
@@ -105,6 +107,17 @@ public class Door implements Item, Passage, Lockable {
     @Override
     public void removeEnigma(Enigma e) {
         this.enigmas.remove(e);
+    }
+
+    /**
+     * Obtenir toutes les énigmes
+     * @return Iterator des énigmes
+     */
+    @Override
+    @SuppressWarnings("unchecked")
+    public Iterator<Enigma> getAllEnigmas() {
+        ArrayList<Enigma> e = (ArrayList<Enigma>)this.enigmas.clone();
+        return e.iterator();
     }
 
     /**
