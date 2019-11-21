@@ -10,7 +10,7 @@ import java.util.Iterator;
  * Définie une entité comme un item
  * @see editor.Entity.Interface.EnigmaContainer
  * @see editor.Entity.Interface.Entity
- * @version 1.0
+ * @version 2.0
  */
 public interface Item extends EnigmaContainer, Entity {
 

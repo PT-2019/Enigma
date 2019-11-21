@@ -10,7 +10,7 @@ import java.util.Iterator;
 /**
  * Désigne des objets pouvant être activés ou désactivés
  * @see editor.Entity.Interface.Item
- * @version 1.0
+ * @version 2.0
  */
 public abstract class Activatable implements Item {
 

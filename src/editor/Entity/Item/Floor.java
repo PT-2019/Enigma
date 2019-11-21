@@ -10,7 +10,7 @@ import java.util.Iterator;
 
 /**
  * @see editor.Entity.Interface.Item
- * @version 1.0
+ * @version 2.0
  */
 public class Floor implements Item {
 
