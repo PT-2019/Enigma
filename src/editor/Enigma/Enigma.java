@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * @see editor.Enigma.Condition.Condition
  * @see editor.Enigma.Operation.Operation
  * @see editor.Enigma.Advice
- * @version 1.0
+ * @version 2.0
  */
 public class Enigma implements ActionListener {
 
