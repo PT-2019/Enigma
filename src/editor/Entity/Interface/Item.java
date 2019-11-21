@@ -4,6 +4,8 @@ import editor.Enigma.Enigma;
 import editor.Entity.Player.Player;
 import editor.texture.Texture;
 
+import java.util.Iterator;
+
 /**
  * Définie une entité comme un item
  * @see editor.Entity.Interface.EnigmaContainer
@@ -41,4 +43,10 @@ public interface Item extends EnigmaContainer, Entity {
      * @param e Enigme à supprimer
      */
     public void removeEnigma(Enigma e);
+
+    /**
+     * Obtenir toutes les énigmes
+     * @return Iterator des énigmes
+     */
+    public Iterator<Enigma> getAllEnigmas();
 }
