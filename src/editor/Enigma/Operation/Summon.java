@@ -3,6 +3,7 @@ package editor.Enigma.Operation;
 
 import editor.Entity.Interface.Entity;
 import editor.Entity.Player.Player;
+import editor.map.Case;
 
 /**
  * Fait apparaître une entité sur une case donnée

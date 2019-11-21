@@ -1,5 +1,7 @@
 package editor.Entity.Interface;
 
+import editor.map.Room;
+
 /**
  * Définie une entité comme traversable pour faire le lien entre deux pièces
  */

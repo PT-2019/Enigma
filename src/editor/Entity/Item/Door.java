@@ -5,6 +5,7 @@ import editor.Entity.Interface.Item;
 import editor.Entity.Interface.Lockable;
 import editor.Entity.Interface.Passage;
 import editor.Entity.Player.Player;
+import editor.map.Room;
 import editor.texture.Texture;
 
 import java.util.ArrayList;
