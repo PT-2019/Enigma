@@ -57,6 +57,15 @@ public class Player implements Entity, Living {
     public int getHP() {
         return this.pv;
     }
+
+    /**
+     * Version texte de l'objet
+     * @return Texte représentant l'objet
+     */
+    @Override
+    public String toString(){
+        return "[Player  : dialog = " + this.dialog + ", pv = " + this.pv + ", texture = " + this.texture + "]";
+    }
 }
 
 

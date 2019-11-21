@@ -156,7 +156,7 @@ public class Door implements Item, Passage, Lockable {
      */
     @Override
     public String toString(){
-        return "[Door  : dialog = " + this.dialog + ", locked = " + this.locked + ", texture = " + this.texture + ", Room1 = " + this.room1 + ", Room2 = " + this.room2;
+        return "[Door  : dialog = " + this.dialog + ", locked = " + this.locked + ", texture = " + this.texture + ", Room1 = " + this.room1 + ", Room2 = " + this.room2 + "]";
     }
 
     /**

@@ -24,15 +24,20 @@ public class MainTestEnigma {
         Advice advice1 = new Advice("activez le levier bon sang!",1);
         Advice toDeleteAdvice = new Advice("à supprimer",1);
         Advice advice2 = new Advice("activez le levier",1);
+
         enigma.addAdvice(advice1);
         enigma.addAdvice(toDeleteAdvice);
         enigma.addAdvice(advice2);
+
         //suppression d'un indice
         enigma.removeAdvice(toDeleteAdvice);
+
         //changement dans l'ordre des indices
         enigma.switchAdvices(advice1,advice2);
+
         //ajout d'une condition
         enigma.addCondition(switchCond);
+
         //ajout d'une opération
         enigma.addOperation(openDoor);
 

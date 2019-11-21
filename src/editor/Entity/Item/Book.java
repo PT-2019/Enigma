@@ -109,7 +109,7 @@ public class Book implements Item, Content {
      */
     @Override
     public String toString(){
-        return "[Book  : dialog = " + this.dialog + ", content = " + this.content + ", texture = " + this.texture;
+        return "[Book  : dialog = " + this.dialog + ", content = " + this.content + ", texture = " + this.texture + "]";
     }
 
     /**

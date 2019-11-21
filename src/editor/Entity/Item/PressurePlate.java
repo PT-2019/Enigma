@@ -104,7 +104,7 @@ public class PressurePlate extends Activatable {
      */
     @Override
     public String toString(){
-        return "[PressurePlate  : dialog = " + this.dialog + ", activated = " + this.activated + ", texture = " + this.texture;
+        return "[PressurePlate  : dialog = " + this.dialog + ", activated = " + this.activated + ", texture = " + this.texture + "]";
     }
 
     /**

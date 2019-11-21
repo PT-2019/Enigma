@@ -104,7 +104,7 @@ public class Button extends Activatable {
      */
     @Override
     public String toString(){
-        return "[Button  : dialog = " + this.dialog + ", activated = " + this.activated + ", texture = " + this.texture;
+        return "[Button  : dialog = " + this.dialog + ", activated = " + this.activated + ", texture = " + this.texture + "]";
     }
 
     /**

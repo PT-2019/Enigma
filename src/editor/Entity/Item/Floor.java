@@ -85,7 +85,7 @@ public class Floor implements Item {
      */
     @Override
     public String toString(){
-        return "[Floor  : dialog = " + this.dialog + ", texture = " + this.texture;
+        return "[Floor  : dialog = " + this.dialog + ", texture = " + this.texture + "]";
     }
 
     /**

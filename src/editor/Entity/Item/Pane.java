@@ -110,7 +110,7 @@ public class Pane implements Content, Item {
      */
     @Override
     public String toString(){
-        return "[Pane  : dialog = " + this.dialog + ", content = " + this.content + ", texture = " + this.texture;
+        return "[Pane  : dialog = " + this.dialog + ", content = " + this.content + ", texture = " + this.texture + "]";
     }
 
     /**

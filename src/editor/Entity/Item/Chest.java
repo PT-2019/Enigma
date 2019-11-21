@@ -126,7 +126,7 @@ public class Chest implements Item, Lockable {
      */
     @Override
     public String toString(){
-        return "[Chest  : dialog = " + this.dialog + ", locked = " + this.locked + ", texture = " + this.texture;
+        return "[Chest  : dialog = " + this.dialog + ", locked = " + this.locked + ", texture = " + this.texture + "]";
     }
 
     /**

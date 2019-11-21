@@ -104,7 +104,7 @@ public class Switch extends Activatable {
      */
     @Override
     public String toString(){
-        return "[Switch  : dialog = " + this.dialog + ", activated = " + this.activated + ", texture = " + this.texture;
+        return "[Switch  : dialog = " + this.dialog + ", activated = " + this.activated + ", texture = " + this.texture + "]";
     }
 
     /**
@@ -123,5 +123,4 @@ public class Switch extends Activatable {
         s.append("}]");
         return s.toString();
     }
-
 }
