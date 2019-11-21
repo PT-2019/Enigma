@@ -13,6 +13,7 @@ import java.util.Iterator;
 /**
  * @see editor.Entity.Interface.Lockable
  * @see editor.Entity.Interface.Item
+ * @version 2.0
  */
 public class Chest implements Item, Lockable {
 

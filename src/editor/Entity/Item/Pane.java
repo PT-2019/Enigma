@@ -12,7 +12,7 @@ import java.util.Iterator;
 /**
  * @see editor.Entity.Interface.Item
  * @see editor.Entity.Interface.Content
- * @version 1.0
+ * @version 2.0
  */
 public class Pane implements Content, Item {
 

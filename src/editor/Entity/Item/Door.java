@@ -15,7 +15,7 @@ import java.util.Iterator;
  * @see editor.Entity.Interface.Item
  * @see editor.Entity.Interface.Lockable
  * @see editor.Entity.Interface.Passage
- * @version 1.0
+ * @version 2.0
  */
 public class Door implements Item, Passage, Lockable {
 
