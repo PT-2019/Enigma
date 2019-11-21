@@ -115,15 +115,17 @@ public class TextureProxy{
 		frame.setSize(new Dimension(322,322));
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-		//Texture t = new Texture(64,"assets/monsters/019.png",4,0,15);
+		Texture t = new Texture(64,"assets/monsters/019.png",4,0,15);
 
-		Texture t = new Texture(16,"assets/places/donjon10.png",6,16,117);
+		//Texture t = new Texture(16,"assets/places/donjon10.png",6,16,117);
 
 		TextureProxy content = new TextureProxy();
 
-		content.loadTexture("src/editor/texture/textureEditor");
+		//content.loadTexture("src/editor/texture/textureEditor");
 
-		Image img = content.getImage(14);
+		content.addTexture(t);
+
+		Image img = content.getImage(10);
 
 		if (img == null){
 			System.out.println("Aucune texture ne correspond au numéro donné");
