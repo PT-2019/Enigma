@@ -16,12 +16,12 @@ public class TextureProxy{
 
 	/**
 	 * Toutes les textures déjà chargé sont stocké ici
-	 * @see Texture
+	 * @see TextureArea
 	 */
-	private ArrayList<Texture> textures;
+	private ArrayList<TextureArea> textures;
 
 	public TextureProxy(){
-		textures = new ArrayList<Texture>();
+		textures = new ArrayList<TextureArea>();
 	}
 
 	/**
@@ -32,7 +32,7 @@ public class TextureProxy{
 	public Image getImage(int id_texture) {
 		Image img = null;
 
-		for (Texture t : textures) {
+		for (TextureArea t : textures) {
 			if(t.getMax() >= id_texture && t.getMin() <= id_texture){
 				img = t.getImage(id_texture);
 			}
@@ -42,10 +42,10 @@ public class TextureProxy{
 	}
 
 
-	public void addTexture(Texture texture){
+	public void addTexture(TextureArea texture){
 		boolean exist = false;
 		//on vérifie si il y a pas déjà la texture
-		for (Texture t : textures) {
+		for (TextureArea t : textures) {
 			if (t.getPath().equals(texture.getPath())) {
 				exist = true;
 				break;
@@ -93,7 +93,7 @@ public class TextureProxy{
 
 				info[4] = tmpString;
 
-				Texture t = new Texture(Integer.parseInt(info[1]),info[0],Integer.parseInt(info[2]),Integer.parseInt(info[3]),Integer.parseInt(info[4]));
+				TextureArea t = new TextureArea(Integer.parseInt(info[1]),info[0],Integer.parseInt(info[2]),Integer.parseInt(info[3]),Integer.parseInt(info[4]));
 
 				this.addTexture(t);
 
@@ -115,7 +115,7 @@ public class TextureProxy{
 		frame.setSize(new Dimension(322,322));
 		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-		Texture t = new Texture(64,"assets/monsters/019.png",4,0,15);
+		TextureArea t = new TextureArea(64,"assets/monsters/019.png",4,0,15);
 
 		//Texture t = new Texture(16,"assets/places/donjon10.png",6,16,117);
 
