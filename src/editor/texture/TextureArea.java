@@ -123,4 +123,20 @@ public class TextureArea{
 	public String getPath(){
 		return path;
 	}
+
+	public int getTile() {
+		return tile;
+	}
+
+	public int getNbcol() {
+		return nbcol;
+	}
+
+	public int getWidth(){
+		return  buffer.getWidth();
+	}
+
+	public int getHeight(){
+		return buffer.getHeight();
+	}
 }

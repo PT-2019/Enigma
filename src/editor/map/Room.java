@@ -1,7 +1,11 @@
 package editor.map;
 
 import editor.enums.Direction;
+import editor.enums.Layer;
+import editor.texture.Texture;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.HashMap;
 
 /**
@@ -27,9 +31,16 @@ public class Room {
 
 		this.cases = new Case[this.row*this.col];
 
+		//pour les tests
+		ImageIcon img = new ImageIcon("assets/monsters/019.png");
+
 		for (int i = 0; i < this.cases.length ; i++) {
 			this.cases[i] = new Case();
 			this.cases[i].setWalkable(true);
+			this.cases[i].setTexture(Layer.DECORATIONS1,new Texture(5,img.getImage()));
+			this.cases[i].setTexture(Layer.DECORATIONS2,new Texture(5,img.getImage()));
+			this.cases[i].setTexture(Layer.FLOOR1,new Texture(5,img.getImage()));
+			this.cases[i].setTexture(Layer.FLOOR2,new Texture(5,img.getImage()));
 		}
 
 		this.walls = new HashMap<>();

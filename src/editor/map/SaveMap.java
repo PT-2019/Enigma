@@ -2,19 +2,32 @@ package editor.map;
 
 import java.awt.*;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import javax.xml.parsers.*;
 import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import editor.texture.Texture;
+import editor.texture.TextureArea;
+import editor.texture.TextureProxy;
 import org.lwjgl.Sys;
 import org.w3c.dom.*;
  
 public class SaveMap {
 
-	public static void saveMap(Map gameMap){
+    private ArrayList<TextureArea> textures;
+
+    private Map gameMap;
+
+    public SaveMap(ArrayList<TextureArea>textures,Map game){
+        this.gameMap = game;
+        this.textures = textures;
+    }
+
+	public void saveMap(){
 		DocumentBuilderFactory fabrique = DocumentBuilderFactory.newInstance();
 		try {
 			DocumentBuilder xML_Constructeur = fabrique.newDocumentBuilder();
@@ -33,6 +46,8 @@ public class SaveMap {
 
 			Element[] datas = new Element[4];
 
+			Element[] tileset = new Element[textures.size()];
+
 			//element map in xml file
 			Element map = document.createElement("map");
 			document.appendChild(map);
@@ -48,23 +63,29 @@ public class SaveMap {
 			map.setAttribute("nextlayerid", "M@teo21");
 			map.setAttribute("nextobjectid", "M@teo21");
 
-			//tileset TODO: faire en sorte que ça marche avec les textures
-			Element tileset = document.createElement("tileset");
-			tileset.setAttribute("firstgid", "0");
-			tileset.setAttribute("name","0");
-			tileset.setAttribute("tilewidth","0");
-			tileset.setAttribute("tileheight","0");
-			tileset.setAttribute("tilecount","0");
-			tileset.setAttribute("columns","0");
+			//tileset
 
-			map.appendChild(tileset);
+            for (int i = 0; i < textures.size(); i++) {
+                tileset[i] = document.createElement("tileset");
+                tileset[i].setAttribute("firstgid", String.valueOf(textures.get(i).getMin()));
+                tileset[i].setAttribute("name", String.valueOf(i));
+                tileset[i].setAttribute("tilewidth",String.valueOf(textures.get(i).getTile()));
+                tileset[i].setAttribute("tileheight",String.valueOf(textures.get(i).getTile()));
+                int tmp = textures.get(i).getMax() - textures.get(i).getMin();
+                tileset[i].setAttribute("tilecount", String.valueOf(tmp));
+                tileset[i].setAttribute("columns",String.valueOf(textures.get(i).getNbcol()));
 
-			Element image= document.createElement("image");
-			image.setAttribute("source","0");
-			image.setAttribute("width","0");
-			image.setAttribute("height","0");
+                map.appendChild(tileset[i]);
 
-			tileset.appendChild(image);
+                Element image= document.createElement("image");
+                image.setAttribute("source",textures.get(i).getPath());
+
+                image.setAttribute("width",String.valueOf(textures.get(i).getWidth()));
+                image.setAttribute("height",String.valueOf(textures.get(i).getHeight()));
+
+                tileset[i].appendChild(image);
+            }
+
 
 			int i = 0;
 			for (editor.enums.Layer type : editor.enums.Layer.values()) {
@@ -79,20 +100,23 @@ public class SaveMap {
 				datas[i].setAttribute("encoding","csv");
 
 				tmpstring = "\n";
-				for (int k=0 ; i < gameMap.getRow();k++){
+				for (int k=0 ; k < gameMap.getRow();k++){
 					for (int j=0; j < gameMap.getCol();j++ ){
 						if (tmpCase[k*gameMap.getCol()+j] == null){
 
-							tmpstring = tmpstring + "0";
+							tmpstring = tmpstring + "0,";
 						}else{
 							HashMap hash = tmpCase[k*gameMap.getCol()+j].getTextures();
 
 							Texture texture =(Texture) hash.get(type);
 							tmpstring += texture.getPosition();
+							tmpstring += ",";
 						}
 					}
 					tmpstring += "\n";
 				}
+				tmpstring = tmpstring.substring(0,tmpstring.length()-2);
+				tmpstring += "\n";
 				datas[i].setTextContent(tmpstring);
 				layers[i].appendChild(datas[i]);
 				i++;
@@ -124,7 +148,8 @@ public class SaveMap {
 				}
 				tmpstring += "\n";
 			}
-			tmpstring = tmpstring.substring(0,tmpstring.length()-1) ;
+			tmpstring = tmpstring.substring(0,tmpstring.length()-2) ;
+			tmpstring += "\n";
 			data.setTextContent(tmpstring);
 			colision.appendChild(data);
 
@@ -150,7 +175,16 @@ public class SaveMap {
 		Map map = new Map(30,20);
 		Room room1 = new Room();
 		Room room2 = new Room();
-		SaveMap save = new SaveMap();
+
+        TextureProxy p =  new TextureProxy();
+
+        TextureArea a = new TextureArea(16,"assets/monsters/019.png",4,0,15);
+
+        p.addTexture(a);
+
+		SaveMap save = new SaveMap(p.getTextureArea(),map);
+
+		p.getImage(5);
 
 		map.addRoom(1,3, room1);
 
@@ -158,6 +192,6 @@ public class SaveMap {
 
 		map.render();
 
-		save.saveMap(map);
+		save.saveMap();
 	}
 }

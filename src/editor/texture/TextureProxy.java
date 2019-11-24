@@ -108,6 +108,10 @@ public class TextureProxy{
 		}
 	}
 
+	public ArrayList<TextureArea> getTextureArea(){
+		return this.textures;
+	}
+
 	//main for the test
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();

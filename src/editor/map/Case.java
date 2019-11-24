@@ -70,10 +70,6 @@ public class Case {
 	 */
 	public int getHeight() { return this.height; }
 
-	public void addTexture(Layer l,Texture t){
-		textures.put(l,t);
-	}
-
 	public HashMap<Layer, Texture> getTextures() {
 		return textures;
 	}
