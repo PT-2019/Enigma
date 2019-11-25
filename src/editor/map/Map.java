@@ -90,4 +90,28 @@ public class Map {
 
 		System.out.println(sb);
 	}
+
+	public int getCol() {
+		return col;
+	}
+
+	public int getRow() {
+		return row;
+	}
+
+	public HashMap<Point, Room> getRooms() {
+		return rooms;
+	}
+
+	public void setRooms(HashMap<Point, Room> rooms) {
+		this.rooms = rooms;
+	}
+
+	public Case[] getCases() {
+		return cases;
+	}
+
+	public void setCases(Case[] cases) {
+		this.cases = cases;
+	}
 }

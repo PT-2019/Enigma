@@ -29,10 +29,13 @@ public class Room {
 
 		for (int i = 0; i < this.cases.length ; i++) {
 			this.cases[i] = new Case();
+			this.cases[i].setWalkable(true);
 		}
 
 		this.walls = new HashMap<>();
 	}
+
+
 
 	/**
 	 * Return le nombre de colonnes
