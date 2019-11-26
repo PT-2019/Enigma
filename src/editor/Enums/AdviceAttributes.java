@@ -1,4 +1,4 @@
-package editor.enums;
+package editor.Enums;
 
 /**
  * Nom des attributs d'un indice

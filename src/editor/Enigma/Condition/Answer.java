@@ -1,11 +1,15 @@
 package editor.Enigma.Condition;
 
 import editor.Entity.Player.Player;
+import editor.Enums.ConditionAttributes;
+import editor.FileReader.EnigmaFileWriter;
+
+import java.util.EnumMap;
 
 /**
  * Vérifie que l'utilisateur donne une réponse correcte
  * @see editor.Enigma.Condition.Condition
- * @version 1.0
+ * @version 2.0
  */
 public class Answer extends Condition {
 
@@ -22,6 +26,18 @@ public class Answer extends Condition {
     public boolean verify(Player p) {
         //poser la question et tester si la réponse est bonne
         return false;
+    }
+
+    /**
+     * Obtenir un EnumMap de l'objet avec ses attributs et leur état
+     * @return EnumMap de l'objet
+     * @see editor.Enums.ConditionAttributes
+     */
+    public EnumMap<ConditionAttributes,String> objectToMap(){
+        EnumMap<ConditionAttributes,String> object = new EnumMap<ConditionAttributes,String>(ConditionAttributes.class);
+        object.put(ConditionAttributes.PATH,this.getClass().getName());
+        object.put(ConditionAttributes.ENTITY, EnigmaFileWriter.getID(this.entity) + "");
+        return object;
     }
 
     /**

@@ -2,6 +2,7 @@ package editor.Enigma.Operation;
 
 import editor.Entity.Interface.Entity;
 import editor.Entity.Player.Player;
+import editor.FileReader.EnigmaFileWriter;
 
 /**
  * Un opération définie une action à réaliser sur une entité

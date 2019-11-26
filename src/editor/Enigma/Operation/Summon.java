@@ -3,12 +3,16 @@ package editor.Enigma.Operation;
 
 import editor.Entity.Interface.Entity;
 import editor.Entity.Player.Player;
+import editor.Enums.SummonAttributes;
+import editor.FileReader.EnigmaFileWriter;
 import editor.map.Case;
+
+import java.util.EnumMap;
 
 /**
  * Fait apparaître une entité sur une case donnée
  * @see editor.Enigma.Operation.Operation
- * @version 1.0
+ * @version 2.0
  */
 public class Summon extends Operation {
 
@@ -33,6 +37,19 @@ public class Summon extends Operation {
     @Override
     public void doOperation(Player p) {
        //faire apparaitre this.entity sur this.spawn
+    }
+
+    /**
+     * Obtenir un EnumMap de l'objet avec ses attributs et leur état
+     * @return EnumMap de l'objet
+     * @see editor.Enums.SummonAttributes
+     */
+    public EnumMap<SummonAttributes,String> objectToMap(){
+        EnumMap<SummonAttributes,String> object = new EnumMap<SummonAttributes,String>(SummonAttributes.class);
+        object.put(SummonAttributes.PATH,this.getClass().getName());
+        object.put(SummonAttributes.ENTITY,EnigmaFileWriter.getID(this.entity) + "");
+        object.put(SummonAttributes.CASE,EnigmaFileWriter.getID(this.spawn) + "");
+        return object;
     }
 
     /**
