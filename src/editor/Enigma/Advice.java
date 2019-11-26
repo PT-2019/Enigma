@@ -1,10 +1,15 @@
 package editor.Enigma;
 
+import editor.enums.AdviceAttributes;
+
+import java.util.EnumMap;
+
 /**
  * Advice définie les indices donnés aux joueurs pour les aider à résoudre une énigme
  * Les indices sont utilisés dans les {@link editor.Enigma.Enigma énigmes}
  * @see editor.Enigma.Enigma
- * @version 1.0
+ * @see editor.enums.AdviceAttributes
+ * @version 2.0
  */
 public class Advice {
 
@@ -75,6 +80,18 @@ public class Advice {
      */
     public int getDelay(){
         return this.delay;
+    }
+
+    /**
+     * Obtenir un EnumMap de l'objet avec ses attributs et leur état
+     * @return EnumMap de l'objet
+     */
+    public EnumMap<AdviceAttributes,Object> objectToMap(){
+        EnumMap<AdviceAttributes,Object> object = new EnumMap<AdviceAttributes,Object>(AdviceAttributes.class);
+        object.put(AdviceAttributes.PATH,this.getClass().getName());
+        object.put(AdviceAttributes.ADVICE,this.advice);
+        object.put(AdviceAttributes.DELAY,this.delay);
+        return object;
     }
 
     /**

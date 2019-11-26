@@ -3,11 +3,13 @@ package editor.Enigma;
 import editor.Enigma.Condition.Condition;
 import editor.Enigma.Operation.Operation;
 import editor.Entity.Player.Player;
-import org.lwjgl.Sys;
+import editor.enums.AdviceAttributes;
+import editor.enums.EnigmaAttributes;
 
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.EnumMap;
 import java.util.Iterator;
 import java.util.ArrayList;
 
@@ -17,7 +19,8 @@ import java.util.ArrayList;
  * @see editor.Enigma.Condition.Condition
  * @see editor.Enigma.Operation.Operation
  * @see editor.Enigma.Advice
- * @version 2.0
+ * @see editor.enums.EnigmaAttributes
+ * @version 2.1
  */
 public class Enigma implements ActionListener {
 
@@ -301,6 +304,20 @@ public class Enigma implements ActionListener {
                 this.timer.start();
             }
         }
+    }
+
+    /**
+     * Obtenir un EnumMap de l'objet avec ses attributs et leur état
+     * @return EnumMap de l'objet
+     */
+    public EnumMap<EnigmaAttributes,Object> objectToMap(){
+        EnumMap<EnigmaAttributes,Object> object = new EnumMap<EnigmaAttributes,Object>(EnigmaAttributes.class);
+        object.put(EnigmaAttributes.PATH,this.getClass().getName());
+        object.put(EnigmaAttributes.TITLE,this.title);
+        object.put(EnigmaAttributes.DESCRITPION,this.description);
+        object.put(EnigmaAttributes.KNOWN,this.known);
+        object.put(EnigmaAttributes.CURRENT_ADVICE_INDEX,this.currentAdvice);
+        return object;
     }
 
     /**
