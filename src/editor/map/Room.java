@@ -5,7 +5,6 @@ import editor.enums.Layer;
 import editor.texture.Texture;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.HashMap;
 
 /**

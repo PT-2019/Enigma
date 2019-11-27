@@ -3,6 +3,9 @@
     <tileset columns="4" firstgid="0" name="0" tilecount="15" tileheight="16" tilewidth="16">
         <image height="256" source="assets/monsters/019.png" width="256"/>
     </tileset>
+    <tileset columns="4" firstgid="16" name="1" tilecount="101" tileheight="16" tilewidth="16">
+        <image height="256" source="assets/monsters/023s.png" width="256"/>
+    </tileset>
     <layer height="20" id="0" name="DECORATIONS2" width="30">
         <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
