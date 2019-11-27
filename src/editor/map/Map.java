@@ -41,7 +41,7 @@ public class Map {
 	 * @param room la pièce à ajouter
 	 * @throws IllegalArgumentException si la colonne ou la ligne est invalide
 	 */
-	public void addRoom(int col, int row, Room room){
+	public void addRoom(int col, int row, Room room){//todo : affecter les cases sans render
 		int w = room.getCol(), h = room.getRow();
 
 		//check if the position is correct
@@ -89,29 +89,5 @@ public class Map {
 		}
 
 		System.out.println(sb);
-	}
-
-	public int getCol() {
-		return col;
-	}
-
-	public int getRow() {
-		return row;
-	}
-
-	public HashMap<Point, Room> getRooms() {
-		return rooms;
-	}
-
-	public void setRooms(HashMap<Point, Room> rooms) {
-		this.rooms = rooms;
-	}
-
-	public Case[] getCases() {
-		return cases;
-	}
-
-	public void setCases(Case[] cases) {
-		this.cases = cases;
 	}
 }

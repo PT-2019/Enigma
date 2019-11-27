@@ -67,7 +67,7 @@ public class TextureProxy{
 		BufferedReader buff;
 		FileReader file;
 		String line="";
-		String tmpString="";
+		StringBuilder tmpString= new StringBuilder();
 		String[] info = new String[5];
 		char currentChar;
 
@@ -83,21 +83,21 @@ public class TextureProxy{
 
 					if (currentChar == ' ') {
 
-						info[j]=tmpString;
+						info[j]= tmpString.toString();
 						j++;
-						tmpString="";
+						tmpString = new StringBuilder();
 					}else{
-						tmpString += currentChar;
+						tmpString.append(currentChar);
 					}
 				}
 
-				info[4] = tmpString;
+				info[4] = tmpString.toString();
 
 				TextureArea t = new TextureArea(Integer.parseInt(info[1]),info[0],Integer.parseInt(info[2]),Integer.parseInt(info[3]),Integer.parseInt(info[4]));
 
 				this.addTexture(t);
 
-				tmpString="";
+				tmpString = new StringBuilder();
 			}
 
 			file.close();
@@ -137,26 +137,26 @@ public class TextureProxy{
 
 		frame.setVisible(true);
 	}
-}
 
-//test class
-class Panneau extends JComponent{
-	private Image img;
+	static final //test class
+	class Panneau extends JComponent{
+		private Image img;
 
-	public Panneau(Image i){
-		img = i;
-	}
-
-	@Override
-	protected void paintComponent(Graphics pinceau) {
-		Graphics secondPinceau = pinceau.create();
-		if (this.isOpaque()) {
-			// obligatoire : on repeint toute la surface avec la couleur de fond
-			secondPinceau.setColor(this.getBackground());
-			secondPinceau.fillRect(0, 0, this.getWidth(), this.getHeight());
+		Panneau(Image i){
+			img = i;
 		}
-		// maintenant on dessine ce que l'on veut
-		secondPinceau.setColor(Color.GREEN);
-		secondPinceau.drawImage(img,0,0,this);
+
+		@Override
+		protected void paintComponent(Graphics pinceau) {
+			Graphics secondPinceau = pinceau.create();
+			if (this.isOpaque()) {
+				// obligatoire : on repeint toute la surface avec la couleur de fond
+				secondPinceau.setColor(this.getBackground());
+				secondPinceau.fillRect(0, 0, this.getWidth(), this.getHeight());
+			}
+			// maintenant on dessine ce que l'on veut
+			secondPinceau.setColor(Color.GREEN);
+			secondPinceau.drawImage(img,0,0,this);
+		}
 	}
 }

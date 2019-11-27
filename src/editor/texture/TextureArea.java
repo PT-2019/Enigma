@@ -94,10 +94,10 @@ public class TextureArea{
 	 * @param row
 	 * @return
 	 */
-	public static Image getImage(int col,int row,String other_path,int other_tile) {
+	public static Image getImage(int col,int row,String path,int tileSize) {
 		BufferedImage buffer;
 
-		ImageIcon image = new ImageIcon(other_path);
+		ImageIcon image = new ImageIcon(path);
 
 		if (image.getIconHeight() < 0 || image.getIconWidth() < 0) {
 			throw new IllegalStateException("File not found. Bad Path.");
@@ -109,7 +109,7 @@ public class TextureArea{
 
 		g.drawImage(image.getImage(),0,0,new JLabel());
 
-		return buffer.getSubimage(row*other_tile,col*other_tile,other_tile,other_tile);
+		return buffer.getSubimage(row*tileSize,col*tileSize,tileSize,tileSize);
 	}
 
 	public int getMax(){
