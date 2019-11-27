@@ -6,6 +6,7 @@ import java.util.Iterator;
 
 /**
  * Permet à une {@link editor.Entity.Interface.Entity entité} de contenir des énigmes
+ * @see editor.Enigma.Enigma
  * @version 2.0
  */
 public interface EnigmaContainer {

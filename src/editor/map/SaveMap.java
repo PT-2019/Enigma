@@ -1,6 +1,5 @@
 package editor.map;
 
-import java.awt.*;
 import java.io.File;
 import java.util.HashMap;
 import javax.xml.parsers.*;
@@ -9,7 +8,6 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import editor.texture.Texture;
-import org.lwjgl.Sys;
 import org.w3c.dom.*;
  
 public class SaveMap {
@@ -67,7 +65,7 @@ public class SaveMap {
 			tileset.appendChild(image);
 
 			int i = 0;
-			for (editor.enums.Layer type : editor.enums.Layer.values()) {
+			for (editor.Enums.Layer type : editor.Enums.Layer.values()) {
 				layers[i] = document.createElement("layer");
 				layers[i].setAttribute("id", String.valueOf(i));
 				layers[i].setAttribute("name", String.valueOf(type));

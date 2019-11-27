@@ -2,8 +2,11 @@ package editor.Enums;
 
 /**
  * Nom des attributs d'une opération "faire apparare"
+ * @see editor.Enigma.Operation.Summon
+ * @see editor.Enums.Attributes
+ * @version 2.0
  */
-public enum SummonAttributes {
+public enum SummonAttributes implements Attributes {
 
     /**
      * Chemin de la classe

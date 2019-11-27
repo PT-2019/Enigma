@@ -10,7 +10,7 @@ import java.util.Iterator;
  * Définie une entité comme un item
  * @see editor.Entity.Interface.EnigmaContainer
  * @see editor.Entity.Interface.Entity
- * @version 2.0
+ * @version 2.1
  */
 public interface Item extends EnigmaContainer, Entity {
 
@@ -49,4 +49,16 @@ public interface Item extends EnigmaContainer, Entity {
      * @return Iterator des énigmes
      */
     public Iterator<Enigma> getAllEnigmas();
+
+    /**
+     * Obtenir l'ID
+     * @return L'ID, -1 si pas initialisé
+     */
+    public int getID();
+
+    /**
+     * Définir l'ID
+     * @param id ID
+     */
+    public void setID(int id);
 }

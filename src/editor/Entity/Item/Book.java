@@ -12,7 +12,7 @@ import java.util.Iterator;
 /**
  * @see editor.Entity.Interface.Item
  * @see editor.Entity.Interface.Content
- * @version 2.0
+ * @version 2.1
  */
 public class Book implements Item, Content {
 
@@ -36,9 +36,24 @@ public class Book implements Item, Content {
      */
     private Texture texture;
 
+    /**
+     * ID
+     */
+    private int id;
+
     public Book(){
         this.enigmas = new ArrayList<Enigma>();
+        this.id = -1;
     }
+
+    /**
+     * @param id ID
+     */
+    public Book(int id){
+        this.enigmas = new ArrayList<Enigma>();
+        this.id = id;
+    }
+
 
     /**
      * Est appelé quand un joueur intéragit avec l'objet
@@ -113,6 +128,24 @@ public class Book implements Item, Content {
     @Override
     public String getContent() {
         return this.content;
+    }
+
+    /**
+     * Obtenir l'ID
+     * @return L'ID, -1 si pas initialisé
+     */
+    @Override
+    public int getID() {
+        return this.id;
+    }
+
+    /**
+     * Définir l'ID
+     * @param id ID
+     */
+    @Override
+    public void setID(int id) {
+        this.id = id;
     }
 
     /**

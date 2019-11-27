@@ -7,6 +7,7 @@ import java.util.HashMap;
  * Une map, c'est un tableau de cases. Certaines sont des pièces.
  * @see Room
  * @see Case
+ * @version 2.0
  */
 public class Map {
 
@@ -23,6 +24,11 @@ public class Map {
 	private Case[] cases;
 
 	/**
+	 * ID
+	 */
+	private int id;
+
+	/**
 	 * Crée une map
 	 * @param col son nombre de colonnes
 	 * @param row son nombre de lignes
@@ -32,6 +38,20 @@ public class Map {
 		this.row = row;
 		this.cases = new Case[col*row];
 		this.rooms = new HashMap<>();
+	}
+
+	/**
+	 * Crée une map
+	 * @param col son nombre de colonnes
+	 * @param row son nombre de lignes
+	 * @param id ID
+	 */
+	public Map(int col, int row, int id){
+		this.col = col;
+		this.row = row;
+		this.cases = new Case[col*row];
+		this.rooms = new HashMap<>();
+		this.id = id;
 	}
 
 	/**
@@ -113,5 +133,21 @@ public class Map {
 
 	public void setCases(Case[] cases) {
 		this.cases = cases;
+	}
+
+	/**
+	 * Obtenir l'ID
+	 * @return L'ID, -1 si pas initialisé
+	 */
+	public int getID() {
+		return this.id;
+	}
+
+	/**
+	 * Définir l'ID
+	 * @param id ID
+	 */
+	public void setID(int id) {
+		this.id = id;
 	}
 }

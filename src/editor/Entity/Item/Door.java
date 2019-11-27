@@ -49,10 +49,26 @@ public class Door implements Item, Passage, Lockable {
      */
     private Room room2;
 
+    /**
+     * ID
+     */
+    private int id;
+
     public Door(){
         this.enigmas = new ArrayList<Enigma>();
         this.locked = true;
+        this.id = -1;
     }
+
+    /**
+     * @param id ID
+     */
+    public Door(int id){
+        this.enigmas = new ArrayList<Enigma>();
+        this.locked = true;
+        this.id = id;
+    }
+
 
     /**
      * @param locked true si l'objet est verrouillé de base, false sinon
@@ -161,6 +177,24 @@ public class Door implements Item, Passage, Lockable {
     @Override
     public boolean isLocked() {
         return this.locked;
+    }
+
+    /**
+     * Obtenir l'ID
+     * @return L'ID, -1 si pas initialisé
+     */
+    @Override
+    public int getID() {
+        return this.id;
+    }
+
+    /**
+     * Définir l'ID
+     * @param id ID
+     */
+    @Override
+    public void setID(int id) {
+        this.id = id;
     }
 
     /**

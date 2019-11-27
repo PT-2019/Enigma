@@ -34,12 +34,29 @@ public class Switch extends Activatable {
     }
 
     /**
+     * @param id ID
+     */
+    public Switch(int id){
+        super(false,id);
+        this.enigmas = new ArrayList<Enigma>();
+    }
+
+    /**
      * @param activated true si l'objet est activé de base, false sinon
      */
     public Switch(boolean activated) {
         super(activated);
         this.enigmas = new ArrayList<Enigma>();
     }
+    /**
+     * @param activated true si l'objet est activé de base, false sinon
+     * @param id ID
+     */
+    public Switch(boolean activated,int id) {
+        super(activated,id);
+        this.enigmas = new ArrayList<Enigma>();
+    }
+
 
     /**
      * Est appelé quand un joueur intéragit avec l'objet

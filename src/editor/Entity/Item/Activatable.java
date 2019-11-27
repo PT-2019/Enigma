@@ -10,7 +10,7 @@ import java.util.Iterator;
 /**
  * Désigne des objets pouvant être activés ou désactivés
  * @see editor.Entity.Interface.Item
- * @version 2.0
+ * @version 2.1
  */
 public abstract class Activatable implements Item {
 
@@ -20,10 +20,25 @@ public abstract class Activatable implements Item {
     protected boolean activated;
 
     /**
+     * ID
+     */
+    private int id;
+
+    /**
      * @param activated true si l'objet est activé de base, false sinon
      */
     public Activatable(boolean activated){
         this.activated = activated;
+        this.id = -1;
+    }
+
+    /**
+     * @param activated true si l'objet est activé de base, false sinon
+     * @param id ID
+     */
+    public Activatable(boolean activated,int id){
+        this.activated = activated;
+        this.id = id;
     }
 
     /**
@@ -72,4 +87,22 @@ public abstract class Activatable implements Item {
      * @return true si l'objet est activé, false sinon
      */
     public abstract boolean isActivated();
+
+    /**
+     * Obtenir l'ID
+     * @return L'ID, -1 si pas initialisé
+     */
+    @Override
+    public int getID() {
+        return this.id;
+    }
+
+    /**
+     * Définir l'ID
+     * @param id ID
+     */
+    @Override
+    public void setID(int id) {
+        this.id = id;
+    }
 }

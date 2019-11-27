@@ -12,7 +12,7 @@ import java.util.Iterator;
 /**
  * @see editor.Entity.Interface.Item
  * @see editor.Entity.Interface.Content
- * @version 2.0
+ * @version 2.1
  */
 public class Pane implements Content, Item {
 
@@ -36,8 +36,22 @@ public class Pane implements Content, Item {
      */
     private Texture texture;
 
+    /**
+     * ID
+     */
+    private int id;
+
     public Pane(){
         this.enigmas = new ArrayList<Enigma>();
+        this.id = -1;
+    }
+
+    /**
+     * @param id ID
+     */
+    public Pane(int id){
+        this.enigmas = new ArrayList<Enigma>();
+        this.id = id;
     }
 
     /**
@@ -114,6 +128,24 @@ public class Pane implements Content, Item {
     public Iterator<Enigma> getAllEnigmas() {
         ArrayList<Enigma> e = (ArrayList<Enigma>)this.enigmas.clone();
         return e.iterator();
+    }
+
+    /**
+     * Obtenir l'ID
+     * @return L'ID, -1 si pas initialisé
+     */
+    @Override
+    public int getID() {
+        return this.id;
+    }
+
+    /**
+     * Définir l'ID
+     * @param id ID
+     */
+    @Override
+    public void setID(int id) {
+        this.id = id;
     }
 
     /**

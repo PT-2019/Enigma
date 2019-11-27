@@ -2,6 +2,7 @@ package editor.Entity.Interface;
 
 /**
  * Définie une entité comme tuable
+ * @version 1.0
  */
 public interface Living {
 

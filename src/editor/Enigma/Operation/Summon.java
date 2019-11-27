@@ -3,16 +3,17 @@ package editor.Enigma.Operation;
 
 import editor.Entity.Interface.Entity;
 import editor.Entity.Player.Player;
+import editor.Enums.Attributes;
 import editor.Enums.SummonAttributes;
-import editor.FileReader.EnigmaFileWriter;
+import editor.FileReader.IDFactory;
 import editor.map.Case;
 
-import java.util.EnumMap;
+import java.util.HashMap;
 
 /**
  * Fait apparaître une entité sur une case donnée
  * @see editor.Enigma.Operation.Operation
- * @version 2.0
+ * @version 2.1
  */
 public class Summon extends Operation {
 
@@ -39,16 +40,19 @@ public class Summon extends Operation {
        //faire apparaitre this.entity sur this.spawn
     }
 
+
+
     /**
      * Obtenir un EnumMap de l'objet avec ses attributs et leur état
      * @return EnumMap de l'objet
      * @see editor.Enums.SummonAttributes
      */
-    public EnumMap<SummonAttributes,String> objectToMap(){
-        EnumMap<SummonAttributes,String> object = new EnumMap<SummonAttributes,String>(SummonAttributes.class);
+    @Override
+    public HashMap<Attributes,String> objectToMap(){
+        HashMap<Attributes,String> object = new HashMap<Attributes,String>();
         object.put(SummonAttributes.PATH,this.getClass().getName());
-        object.put(SummonAttributes.ENTITY,EnigmaFileWriter.getID(this.entity) + "");
-        object.put(SummonAttributes.CASE,EnigmaFileWriter.getID(this.spawn) + "");
+        object.put(SummonAttributes.ENTITY, this.entity.getID() + "");
+        object.put(SummonAttributes.CASE, this.spawn.getID() + "");
         return object;
     }
 

@@ -10,7 +10,7 @@ import java.util.Iterator;
 
 /**
  * @see editor.Entity.Interface.Item
- * @version 2.0
+ * @version 2.1
  */
 public class Floor implements Item {
 
@@ -29,8 +29,22 @@ public class Floor implements Item {
      */
     private Texture texture;
 
+    /**
+     * ID
+     */
+    private int id;
+
     public Floor(){
         this.enigmas = new ArrayList<Enigma>();
+        this.id = -1;
+    }
+
+    /**
+     * @param id ID
+     */
+    public Floor(int id){
+        this.enigmas = new ArrayList<Enigma>();
+        this.id = id;
     }
 
     /**
@@ -89,6 +103,24 @@ public class Floor implements Item {
     public Iterator<Enigma> getAllEnigmas() {
         ArrayList<Enigma> e = (ArrayList<Enigma>)this.enigmas.clone();
         return e.iterator();
+    }
+
+    /**
+     * Obtenir l'ID
+     * @return L'ID, -1 si pas initialisé
+     */
+    @Override
+    public int getID() {
+        return this.id;
+    }
+
+    /**
+     * Définir l'ID
+     * @param id ID
+     */
+    @Override
+    public void setID(int id) {
+        this.id = id;
     }
 
     /**

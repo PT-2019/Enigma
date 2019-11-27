@@ -8,7 +8,7 @@ import editor.texture.Texture;
  * Définie un personnage contrôlable : un joueur
  * @see editor.Entity.Interface.Entity
  * @see editor.Entity.Interface.Living
- * @version 1.0
+ * @version 2.0
  */
 public class Player implements Entity, Living {
 
@@ -16,6 +16,11 @@ public class Player implements Entity, Living {
      * Point de vie du joueur
      */
     private int pv;
+
+    /**
+     * Points de vie maximaux du joueur
+     */
+    public final int MAX_PLAYER_PV = 100;
 
     /**
      * Dialogue de l'objet
@@ -26,6 +31,23 @@ public class Player implements Entity, Living {
      * Texture de l'objet
      */
     private Texture texture;
+
+    /**
+     * ID
+     */
+    private int id;
+
+    public Player(){
+        this.pv = MAX_PLAYER_PV;
+    }
+
+    /**
+     * @param id ID
+     */
+    public Player(int id){
+        this.pv = MAX_PLAYER_PV;
+        this.id = id;
+    }
 
     /**
      * Est appelé quand un joueur intéragit avec l'objet
@@ -56,6 +78,24 @@ public class Player implements Entity, Living {
     @Override
     public int getHP() {
         return this.pv;
+    }
+
+    /**
+     * Obtenir l'ID
+     * @return L'ID, -1 si pas initialisé
+     */
+    @Override
+    public int getID() {
+        return this.id;
+    }
+
+    /**
+     * Définir l'ID
+     * @param id ID
+     */
+    @Override
+    public void setID(int id) {
+        this.id = id;
     }
 
     /**

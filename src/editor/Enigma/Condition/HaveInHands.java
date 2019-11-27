@@ -2,15 +2,11 @@ package editor.Enigma.Condition;
 
 import editor.Entity.Interface.Item;
 import editor.Entity.Player.Player;
-import editor.Enums.ConditionAttributes;
-import editor.FileReader.EnigmaFileWriter;
-
-import java.util.EnumMap;
 
 /**
  * Vérifie que le joueur tien un item défini dans ses mains
  * @see editor.Enigma.Condition.Condition
- * @version 2.0
+ * @version 2.1
  */
 public class HaveInHands extends Condition {
 
@@ -31,18 +27,6 @@ public class HaveInHands extends Condition {
         Item i = (Item)this.entity;
         //tester si p a i dans ses mains
         return false;
-    }
-
-    /**
-     * Obtenir un EnumMap de l'objet avec ses attributs et leur état
-     * @return EnumMap de l'objet
-     * @see editor.Enums.ConditionAttributes
-     */
-    public EnumMap<ConditionAttributes,String> objectToMap(){
-        EnumMap<ConditionAttributes,String> object = new EnumMap<ConditionAttributes,String>(ConditionAttributes.class);
-        object.put(ConditionAttributes.PATH,this.getClass().getName());
-        object.put(ConditionAttributes.ENTITY, EnigmaFileWriter.getID(this.entity) + "");
-        return object;
     }
 
     /**

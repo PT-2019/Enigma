@@ -5,6 +5,7 @@ import editor.texture.Texture;
 
 /**
  * Définie une entité
+ * @version 2.0
  */
 public interface Entity{
 
@@ -24,4 +25,16 @@ public interface Entity{
      * Affiche un dialogue avec l'objet
      */
     public void showDialog();
+
+    /**
+     * Obtenir l'ID
+     * @return L'ID, -1 si pas initialisé
+     */
+    public int getID();
+
+    /**
+     * Définir l'ID
+     * @param id ID
+     */
+    public void setID(int id);
 }

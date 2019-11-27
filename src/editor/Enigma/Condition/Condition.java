@@ -2,12 +2,17 @@ package editor.Enigma.Condition;
 
 import editor.Entity.Interface.Entity;
 import editor.Entity.Player.Player;
+import editor.Enums.Attributes;
+import editor.Enums.ConditionAttributes;
+import editor.FileReader.IDFactory;
+
+import java.util.HashMap;
 
 /**
  * Une condition à pour but d'être satisfaite par une action des joueurs. Elle diffère fonction du type de condition
  * Elle est utilisée dans les {@link editor.Enigma.Enigma énigmes} pour déterminer si elles ont été résolues
  * @see editor.Enigma.Enigma
- * @version 1.0
+ * @version 2.0
  */
 public abstract class Condition {
 
@@ -44,5 +49,17 @@ public abstract class Condition {
      */
     public void setEntity(Entity e){
         this.entity = e;
+    }
+
+    /**
+     * Obtenir un EnumMap de l'objet avec ses attributs et leur état
+     * @return EnumMap de l'objet
+     * @see editor.Enums.ConditionAttributes
+     */
+    public HashMap<Attributes,String> objectToMap(){
+        HashMap<Attributes,String> object = new HashMap<Attributes,String>();
+        object.put(ConditionAttributes.PATH,this.getClass().getName());
+        object.put(ConditionAttributes.ENTITY, this.entity.getID() + "");
+        return object;
     }
 }

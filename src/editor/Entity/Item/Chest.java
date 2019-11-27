@@ -13,7 +13,7 @@ import java.util.Iterator;
 /**
  * @see editor.Entity.Interface.Lockable
  * @see editor.Entity.Interface.Item
- * @version 2.0
+ * @version 2.1
  */
 public class Chest implements Item, Lockable {
 
@@ -33,6 +33,11 @@ public class Chest implements Item, Lockable {
     private Texture texture;
 
     /**
+     * ID
+     */
+    private int id;
+
+    /**
      * Indique si l'objet est verrouillé
      */
     private boolean locked;
@@ -40,6 +45,16 @@ public class Chest implements Item, Lockable {
     public Chest(){
         this.locked = false;
         this.enigmas = new ArrayList<Enigma>();
+        this.id = -1;
+    }
+
+    /**
+     * @param id ID
+     */
+    public Chest(int id){
+        this.locked = false;
+        this.enigmas = new ArrayList<Enigma>();
+        this.id = id;
     }
 
     /**
@@ -48,6 +63,17 @@ public class Chest implements Item, Lockable {
     public Chest(boolean locked){
         this.locked = locked;
         this.enigmas = new ArrayList<Enigma>();
+        this.id = -1;
+    }
+
+    /**
+     * @param locked true si l'objet est verrouillé de base, false sinon
+     * @param id ID
+     */
+    public Chest(boolean locked,int id){
+        this.locked = locked;
+        this.enigmas = new ArrayList<Enigma>();
+        this.id = id;
     }
 
     /**
@@ -131,6 +157,24 @@ public class Chest implements Item, Lockable {
     @Override
     public boolean isLocked() {
         return this.locked;
+    }
+
+    /**
+     * Obtenir l'ID
+     * @return L'ID, -1 si pas initialisé
+     */
+    @Override
+    public int getID() {
+        return this.id;
+    }
+
+    /**
+     * Définir l'ID
+     * @param id ID
+     */
+    @Override
+    public void setID(int id) {
+        this.id = id;
     }
 
     /**

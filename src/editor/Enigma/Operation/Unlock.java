@@ -3,15 +3,11 @@ package editor.Enigma.Operation;
 import editor.Entity.Interface.Item;
 import editor.Entity.Interface.Lockable;
 import editor.Entity.Player.Player;
-import editor.Enums.OperationAttributes;
-import editor.FileReader.EnigmaFileWriter;
-
-import java.util.EnumMap;
 
 /**
  * Déverrouille un objet verrouillable
  * @see editor.Enigma.Operation.Operation
- * @version 2.0
+ * @version 2.1
  */
 public class Unlock extends Operation {
 
@@ -30,18 +26,6 @@ public class Unlock extends Operation {
     public void doOperation(Player p) {
         Lockable l = (Lockable)this.entity;
         l.unlock();
-    }
-
-    /**
-     * Obtenir un EnumMap de l'objet avec ses attributs et leur état
-     * @return EnumMap de l'objet
-     * @see editor.Enums.OperationAttributes
-     */
-    public EnumMap<OperationAttributes,String> objectToMap(){
-        EnumMap<OperationAttributes,String> object = new EnumMap<OperationAttributes,String>(OperationAttributes.class);
-        object.put(OperationAttributes.PATH,this.getClass().getName());
-        object.put(OperationAttributes.ENTITY, EnigmaFileWriter.getID(this.entity) + "");
-        return object;
     }
 
     /**

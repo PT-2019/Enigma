@@ -3,12 +3,13 @@ package editor.Enigma;
 import editor.Enigma.Condition.Condition;
 import editor.Enigma.Operation.Operation;
 import editor.Entity.Player.Player;
+import editor.Enums.Attributes;
 import editor.Enums.EnigmaAttributes;
 
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.ArrayList;
 
@@ -309,13 +310,16 @@ public class Enigma implements ActionListener {
      * @return EnumMap de l'objet
      * @see editor.Enums.EnigmaAttributes
      */
-    public EnumMap<EnigmaAttributes,String> objectToMap(){
-        EnumMap<EnigmaAttributes,String> object = new EnumMap<EnigmaAttributes,String>(EnigmaAttributes.class);
+    public HashMap<Attributes,Object> objectToMap(){
+        HashMap<Attributes,Object> object = new HashMap<Attributes,Object>();
         object.put(EnigmaAttributes.PATH,this.getClass().getName());
         object.put(EnigmaAttributes.TITLE,this.title);
         object.put(EnigmaAttributes.DESCRITPION,this.description);
         object.put(EnigmaAttributes.KNOWN,this.known + "");
         object.put(EnigmaAttributes.CURRENT_ADVICE_INDEX,this.currentAdvice + "");
+        object.put(EnigmaAttributes.ADVICES,this.getAllAdvices());
+        object.put(EnigmaAttributes.CONDITIONS,this.getAllConditions());
+        object.put(EnigmaAttributes.OPERATIONS,this.getAllOperations());
         return object;
     }
 
