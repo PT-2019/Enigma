@@ -15,7 +15,12 @@ import editor.texture.TextureArea;
 import editor.texture.TextureProxy;
 import org.lwjgl.Sys;
 import org.w3c.dom.*;
- 
+
+/**
+ * Class en développement à voir si on garde cette organisation.
+ * Permet de sauvegarder la map avec la méthode DOM.
+ *
+ */
 public class SaveMap {
 
     private ArrayList<TextureArea> textures;
@@ -70,6 +75,7 @@ public class SaveMap {
                 tileset.setAttribute("name", String.valueOf(i));
                 tileset.setAttribute("tilewidth",String.valueOf(textures.get(i).getTile()));
                 tileset.setAttribute("tileheight",String.valueOf(textures.get(i).getTile()));
+
                 int tmp = textures.get(i).getMax() - textures.get(i).getMin();
                 tileset.setAttribute("tilecount", String.valueOf(tmp));
                 tileset.setAttribute("columns",String.valueOf(textures.get(i).getNbcol()));
@@ -159,7 +165,6 @@ public class SaveMap {
 				rooms.setAttribute("heigth",String.valueOf(room.getValue().getRow()));
 				rooms.setAttribute("x", String.valueOf(room.getKey().getX()));
 				rooms.setAttribute("y", String.valueOf(room.getKey().getY()));
-
 
 				map.appendChild(rooms);
 			}
