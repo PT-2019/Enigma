@@ -21,7 +21,7 @@ public enum EnigmaAttributes implements Attributes {
     /**
      * Délai
      */
-    DESCRITPION,
+    DESCRIPTION,
 
     /**
      * L'énimge à été découverte ou nom

@@ -142,7 +142,7 @@ public class Enigma implements ActionListener {
      */
     @SuppressWarnings("unchecked")
     public Iterator<Condition> getAllConditions(){
-        ArrayList<Condition> c = (ArrayList<Condition>)this.operations.clone();
+        ArrayList<Condition> c = (ArrayList<Condition>)this.conditions.clone();
         return c.iterator();
     }
 
@@ -310,16 +310,13 @@ public class Enigma implements ActionListener {
      * @return EnumMap de l'objet
      * @see editor.Enums.EnigmaAttributes
      */
-    public HashMap<Attributes,Object> objectToMap(){
-        HashMap<Attributes,Object> object = new HashMap<Attributes,Object>();
+    public HashMap<Attributes,String> objectToMap(){
+        HashMap<Attributes,String> object = new HashMap<Attributes,String>();
         object.put(EnigmaAttributes.PATH,this.getClass().getName());
         object.put(EnigmaAttributes.TITLE,this.title);
-        object.put(EnigmaAttributes.DESCRITPION,this.description);
+        object.put(EnigmaAttributes.DESCRIPTION,this.description);
         object.put(EnigmaAttributes.KNOWN,this.known + "");
         object.put(EnigmaAttributes.CURRENT_ADVICE_INDEX,this.currentAdvice + "");
-        object.put(EnigmaAttributes.ADVICES,this.getAllAdvices());
-        object.put(EnigmaAttributes.CONDITIONS,this.getAllConditions());
-        object.put(EnigmaAttributes.OPERATIONS,this.getAllOperations());
         return object;
     }
 
