@@ -90,4 +90,12 @@ public class Map {
 
 		System.out.println(sb);
 	}
+
+	public int getCol() { return this.col; }
+
+	public int getRow() {
+		return this.row;
+	}
+
+    public Case[] getCases() { return this.cases; }
 }

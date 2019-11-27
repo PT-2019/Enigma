@@ -49,7 +49,7 @@ public class CalculHeader{
         System.out.println("Maximum de la dernière texture :");
         int max = sc.nextInt();
 
-        t.dispInfo(width,height,tile,max);
+        dispInfo(width,height,tile,max);
     }
 }
 

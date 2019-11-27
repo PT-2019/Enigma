@@ -2,14 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4b6e0b2a-a6ad-4eff-b2cc-63f9693ec5fe" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/editor/utils/JsonFile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/editor/utils/JsonReader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/editor/utils/TextureJson.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/map/Case.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/map/Case.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/editor/map/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/map/Map.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/texture/TextureArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/texture/TextureArea.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/texture/TextureProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/texture/TextureProxy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/texture/CalculHeader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/texture/CalculHeader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/texture/Ratata.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/texture/Texture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/texture/Texture.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/texture/TextureType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/texture/Wall.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/texture/textureEditor" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/utils/JsonFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/utils/JsonFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/utils/JsonReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/utils/JsonReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/utils/JsonSubTexture.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/utils/TextureJson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/utils/TextureJson.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

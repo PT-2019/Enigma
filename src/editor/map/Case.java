@@ -16,7 +16,7 @@ public class Case {
 	/** détermine s'il est possible de se rendre sur la case */
 	private boolean walkable;
 
-	/** Map, pour chaque niveau, on va possible une texture **/
+	/** Map, pour chaque niveau, on a possiblement une texture **/
 	private HashMap<Layer, Texture> textures;
 
 	/** taille de la case **/
@@ -69,4 +69,8 @@ public class Case {
 	 * @return la hauteur de la case
 	 */
 	public int getHeight() { return this.height; }
+
+	public HashMap<Layer,Texture> getTextures() {
+		return this.textures;
+	}
 }

@@ -1,5 +1,7 @@
 package editor.utils;
 
+import org.jetbrains.annotations.TestOnly;
+
 import javax.swing.JFrame;
 import javax.swing.JComponent;
 import java.awt.Dimension;
@@ -9,14 +11,28 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.util.HashMap;
 
+/**
+ * Charge une sous-texture depuis son nom et son fichier .atlas
+ *
+ * @version 2.0
+ */
 public class TextureJson {
 
-	private static HashMap<String, JsonFile> loadedTextures;
+	/**
+	 * garde les anciennes textures pour éviter de devoir le recharger
+	 * String = chemin du .atlas
+	 * JSonFile = fichier .atlas
+	 */
+	private static HashMap<String, JsonFile> loadedTextures = new HashMap<>();
 
-	static {
-		TextureJson.loadedTextures = new HashMap<>();
-	}
-
+	/**
+	 * Renvoi l'image correspond a la sous-texture name dans file.
+	 *
+	 * @param name nom de la clef (=son nom) de la sous-texture
+	 * @param file le chemin du fichier .atlas
+	 * @return la sous-image voulue
+	 * @since 2.0
+	 */
 	public static Image getTexture(String name, String file){
 		if(!loadedTextures.containsKey(file)){
 			JsonFile json = JsonReader.importJson(file);
@@ -25,17 +41,29 @@ public class TextureJson {
 		return loadedTextures.get(file).getTexture(name);
 	}
 
-	public static void main(String[] args) {
+	/**
+	 * Charge une sous-texture d'un fichier atlas pour vérifier que ça marche
+	 */
+	@TestOnly
+	public static void main(String[] ignore) {
 		JFrame frame = new JFrame();
 		frame.setSize(new Dimension(322,322));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		Panneau panel = new Panneau(getTexture("tile912", "assets/test.atlas"));//ask for a texture by name
+		//on met a gauche le nom de la sous-texture et a droite son fichier
+		Panneau panel = new Panneau(getTexture("tile723", "assets/test.atlas"));
 
 		frame.add(panel,BorderLayout.CENTER);
 		frame.setVisible(true);
 	}
 
+	/**
+	 * Un panneau qui affiche une Image.
+	 * Utilisé pour tester que l'image est bien récupérée
+	 *
+	 * @version 1.0
+	 */
+	@TestOnly
 	static final class Panneau extends JComponent {
 		private Image img;
 
@@ -56,6 +84,4 @@ public class TextureJson {
 			secondPinceau.drawImage(img,0,0,this);
 		}
 	}
-
-
 }

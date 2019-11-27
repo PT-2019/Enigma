@@ -1,77 +1,83 @@
 package editor.utils;
 
-import java.awt.*;
-import java.io.BufferedReader;
+import org.jetbrains.annotations.TestOnly;
+
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.HashMap;
+
+/**
+ * Classe qui importe un fichier JSon (extension .atlas ou .pack) dans le programme.
+ *
+ * Voici un exemple de fichier :
+ *
+ * *ligne vide*
+ * test.png
+ * size: 2048,1024
+ * format: RGBA8888
+ * filter: Nearest,Nearest
+ * repeat: none
+ * tile000
+ *   rotate: false
+ *   xy: 70, 580
+ *   size: 32, 32
+ *   orig: 32, 32
+ *   offset: 0, 0
+ *   index: -1
+ * tile 001
+ * 	...
+ *
+ * Le logiciel libgdx-texture packer génère automatiquement ce genre de fichiers.
+ *
+ * @version 2.0
+ */
 public class JsonReader {
 
-	public static void main(String[] args) {//test
+	/**
+	 * Ce main montre les information gardées en mémoire après
+	 * la lecture du json.
+	 */
+	@TestOnly
+	public static void main(String[] ignore) {//test
 		System.out.println(JsonReader.importJson("assets/uiskin.atlas"));
 	}
 
-	private static String readFile(String path){
-		// on va mettre tout notre fichier dans string
-		StringBuilder string = new StringBuilder();
-		// on lit tout notre fichier mais il faut refaire les sauts de ligne
-		BufferedReader bufferReader;
-
-		try{
-			// lis tout le fichier
-			bufferReader = new BufferedReader(new FileReader(new File(path)));
-			String line; // stocke la ligne courante
-
-			// lecture ligne par ligne
-			while((line = bufferReader.readLine()) != null){
-				//ajoute la ligne
-				string.append(line);
-				// ajoute saut de ligne (pas conservé de base)
-				string.append("\n");
-			}
-			bufferReader.close(); //fermeture du fichier
-		}catch(IOException e){
-			e.printStackTrace();
-		}
-
-		return string.toString();
-	}
-
+	/**
+	 * Importe un fichier json dans le programme et renvoi un objet le représentant
+	 *
+	 * @param path chemin du fichier
+	 * @return le fichier lu sous la forme d'un JsonFile
+	 *
+	 * @see JsonFile
+	 *
+	 * @throws IllegalStateException si le fichier n'est pas valide.
+	 *
+	 * @since 2.0
+	 */
 	public static JsonFile importJson(final String path){
 		final int lastSlash = path.lastIndexOf(File.separator);
-		String[] jsonFile = JsonReader.readFile(path).split(System.lineSeparator());//get file as an array of string
+		String[] jsonFile = Utility.readFile(path).split(System.lineSeparator());//read file
 		String imagePath;
-		if(lastSlash > 0)
-			imagePath = path.substring(0, lastSlash) + "/" + jsonFile[1];//path of image relative to .atlas file
+		if(lastSlash > 0)//imagePath is relative to .atlas file so we append .atlas's path if needed
+			imagePath = path.substring(0, lastSlash) + "/" + jsonFile[1];
 		else imagePath = jsonFile[1];
 
 		final StringBuilder sb = new StringBuilder();//string builder for errors
-		HashMap<String, Point> map = new HashMap<>();//map sub-texture name => line in the file
+		HashMap<String, Integer> map = new HashMap<>();//map sub-texture name => line in the file
 
 		if(!jsonFile[0].isEmpty())//first line should be empty
 			sb.append("should start with an empty line.");
 
-		Point p = new Point();
-		p.x = -1;
-		boolean inside = false;
-
-		for (int i = 6; i < jsonFile.length ; i++) {
+		for (int i = 6; i < jsonFile.length ; i++) {//file should start a 6th line
 			if(!jsonFile[i].startsWith("  ")){
-				if(inside){
-					p.y = i-1;
-					map.put(jsonFile[p.x-1],new Point(p));
-					p.x = -1;
-					inside = false;
-				}
-				if(p.x == -1) p.x = i+1;
-			} else {
-				inside = true;
+				map.put(jsonFile[i],i+1);
 			}
 		}
 
+		if(map.isEmpty())
+			sb.append("Le fichier ne contient aucune donnée.");
+
 		if(!sb.toString().isEmpty())
-			System.out.println(sb.toString());
+			throw new IllegalStateException(sb.toString());
 
 		return new JsonFile(imagePath, map, jsonFile);
 

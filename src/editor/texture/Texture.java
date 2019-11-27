@@ -83,6 +83,10 @@ public class Texture{
 
 		fenetre.setVisible(true);
 	}
+
+	public String getPosition() {
+		return null;
+	}
 }
 
 //test class
