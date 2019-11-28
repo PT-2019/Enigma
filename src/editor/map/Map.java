@@ -114,4 +114,12 @@ public class Map {
 	public void setCases(Case[] cases) {
 		this.cases = cases;
 	}
+
+	public Case getCase(int i){
+		return cases[i];
+	}
+
+	public void setCase(int indice,Case c){
+		cases[indice] = c;
+	}
 }

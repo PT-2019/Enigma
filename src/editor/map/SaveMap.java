@@ -32,7 +32,7 @@ public class SaveMap {
         this.textures = textures;
     }
 
-	public void saveMap(){
+	public void saveMap(String fichier){
 		DocumentBuilderFactory fabrique = DocumentBuilderFactory.newInstance();
 		
 		try {
@@ -57,15 +57,15 @@ public class SaveMap {
 			document.appendChild(map);
 			map.setAttribute("version", "M@teo21");
 			map.setAttribute("tiledversion", "M@teo21");
-			map.setAttribute("orientation", "M@teo21");
+			map.setAttribute("orientation", "orthogonal");
 			map.setAttribute("renderorder", "M@teo21");
-			map.setAttribute("width", "M@teo21");
-			map.setAttribute("height", "M@teo21");
-			map.setAttribute("tilewidth", "M@teo21");
-			map.setAttribute("tileheight", "M@teo21");
-			map.setAttribute("infinite", "M@teo21");
-			map.setAttribute("nextlayerid", "M@teo21");
-			map.setAttribute("nextobjectid", "M@teo21");
+			map.setAttribute("width", String.valueOf(gameMap.getCol()));
+			map.setAttribute("height", String.valueOf(gameMap.getRow()));
+			map.setAttribute("tilewidth", "M");
+			map.setAttribute("tileheight", "M");
+			map.setAttribute("infinite", "0");
+			map.setAttribute("nextlayerid", "M");
+			map.setAttribute("nextobjectid", "M");
 
 			//tileset représente les textures dans le fichier xml
             for (int i = 0; i < textures.size(); i++) {
@@ -176,7 +176,7 @@ public class SaveMap {
 
 			DOMSource source = new DOMSource(document);
 
-			StreamResult resultat = new StreamResult(new File("result.tmx"));
+			StreamResult resultat = new StreamResult(new File(fichier));
 			transformer.transform(source, resultat);
 
 		} catch (ParserConfigurationException pce) {
@@ -193,8 +193,8 @@ public class SaveMap {
 
         TextureProxy p =  new TextureProxy();
 
-        TextureArea a = new TextureArea(16,"assets/monsters/019.png",4,0,15);
-		TextureArea b = new TextureArea(16,"assets/monsters/023s.png",4,16,117);
+        TextureArea a = new TextureArea(16,"assets/monsters/019.png",4,1,16);
+		TextureArea b = new TextureArea(16,"assets/monsters/023s.png",4,17,117);
         p.addTexture(a);
         p.addTexture(b);
 
@@ -209,6 +209,6 @@ public class SaveMap {
 
 		map.render();
 
-		save.saveMap();
+		save.saveMap("result.tmx");
 	}
 }

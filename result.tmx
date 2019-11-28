@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<map height="M@teo21" infinite="M@teo21" nextlayerid="M@teo21" nextobjectid="M@teo21" orientation="M@teo21" renderorder="M@teo21" tiledversion="M@teo21" tileheight="M@teo21" tilewidth="M@teo21" version="M@teo21" width="M@teo21">
-    <tileset columns="4" firstgid="0" name="0" tilecount="15" tileheight="16" tilewidth="16">
+<map height="20" infinite="0" nextlayerid="M" nextobjectid="M" orientation="orthogonal" renderorder="M@teo21" tiledversion="M@teo21" tileheight="M" tilewidth="M" version="M@teo21" width="30">
+    <tileset columns="4" firstgid="1" name="0" tilecount="15" tileheight="16" tilewidth="16">
         <image height="256" source="assets/monsters/019.png" width="256"/>
     </tileset>
-    <tileset columns="4" firstgid="16" name="1" tilecount="101" tileheight="16" tilewidth="16">
+    <tileset columns="4" firstgid="17" name="1" tilecount="101" tileheight="16" tilewidth="16">
         <image height="256" source="assets/monsters/023s.png" width="256"/>
     </tileset>
     <layer height="20" id="0" name="DECORATIONS2" width="30">
@@ -12,7 +12,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,5,5,5,5,5,5,5,5,0,0,0,0,0,0,0,0,0,0,0,
 0,5,5,5,5,5,5,5,5,0,0,5,5,5,5,5,5,5,5,0,0,0,0,0,0,0,0,0,0,0,
-0,5,5,5,5,5,5,5,5,0,0,5,5,5,5,5,5,5,5,0,0,0,0,0,0,0,0,0,0,0,
+0,5,5,5,5,5,5,5,5,0,0,5,5,5,19,5,5,5,5,0,0,0,0,0,0,0,0,0,0,0,
 0,5,5,5,5,5,5,5,5,0,0,5,5,5,5,5,5,5,5,0,0,0,0,0,0,0,0,0,0,0,
 0,5,5,5,5,5,5,5,5,0,0,5,5,5,5,5,5,5,5,0,0,0,0,0,0,0,0,0,0,0,
 0,5,5,5,5,5,5,5,5,0,0,5,5,5,5,5,5,5,5,0,0,0,0,0,0,0,0,0,0,0,
