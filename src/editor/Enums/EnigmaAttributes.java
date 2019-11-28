@@ -4,7 +4,7 @@ package editor.Enums;
  * Nom des attributs d'une énigme
  * @see editor.Enigma.Enigma
  * @see editor.Enums.Attributes
- * @version 2.0
+ * @version 2.1
  */
 public enum EnigmaAttributes implements Attributes {
 
@@ -46,6 +46,14 @@ public enum EnigmaAttributes implements Attributes {
     /**
      * Indices de l'énigme
      */
-    ADVICES
+    ADVICES;
+
+    /**
+     * Obtenir sous forme de String en minuscule
+     * @return Chaine de caractères en minuscule
+     */
+    public String toLowerString(){
+        return this.toString().toLowerCase();
+    }
 }
 

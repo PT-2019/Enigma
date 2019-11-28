@@ -19,7 +19,7 @@ import java.util.ArrayList;
  * @see editor.Enigma.Condition.Condition
  * @see editor.Enigma.Operation.Operation
  * @see editor.Enigma.Advice
- * @version 2.2
+ * @version 2.3
  */
 public class Enigma implements ActionListener {
 
@@ -207,6 +207,17 @@ public class Enigma implements ActionListener {
     }
 
     /**
+     * Index de l'indice actuel
+     * Un index supérieur au nombre d'indices est accépté, cependant, il affiche le dernier indic
+     * @param currentAdvice Index pointant vers l'indice actuel
+     * @throws IllegalArgumentException Si l'index est inférieur à -1
+     */
+    public void setCurrentAdvice(int currentAdvice) {
+        if(currentAdvice < -1) throw new IllegalArgumentException("L'index transmis est inférieur à -1");
+        this.currentAdvice = currentAdvice;
+    }
+
+    /**
      * Ajoute un indice
      * @param a Indice à ajouter
      * @throws IllegalStateException Si l'indice existe déjà dans l'énigme
@@ -245,7 +256,7 @@ public class Enigma implements ActionListener {
      * @return Texte de l'indice actuel
      */
     public String getTextAdvice(){
-        if(this.currentAdvice != ADVICE_INDEX_STARTING_VALUE) return this.advices.get(this.currentAdvice).getAdvice();
+        if(this.currentAdvice != ADVICE_INDEX_STARTING_VALUE && this.currentAdvice < this.advices.size()) return this.advices.get(this.currentAdvice).getAdvice();
         else return "Aucune aide pour l'instant";
     }
 
@@ -254,7 +265,7 @@ public class Enigma implements ActionListener {
      * @return Indice actuel, null sinon
      */
     public Advice getAdvice(){
-        if(this.currentAdvice != ADVICE_INDEX_STARTING_VALUE) return this.advices.get(this.currentAdvice);
+        if(this.currentAdvice != ADVICE_INDEX_STARTING_VALUE && this.currentAdvice < this.advices.size()) return this.advices.get(this.currentAdvice);
         else return null;
     }
 
@@ -274,6 +285,14 @@ public class Enigma implements ActionListener {
      */
     public boolean isKnown(){
         return this.known;
+    }
+
+    /**
+     * Définie si l'énigme à été découverte
+     * @param known L'énigme à été découverte ou non
+     */
+    public void setIsKnown(boolean known){
+        this.known = known;
     }
 
     /**

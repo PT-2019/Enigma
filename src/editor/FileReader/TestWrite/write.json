@@ -1,89 +1,107 @@
 Enigma: [
      {
-          PATH: editor.Enigma.Enigma
-          TITLE: enigme
-          DESCRIPTION: oui c'est une énigme
-          CURRENT_ADVICE_INDEX: -1
-          KNOWN: false
-          ADVICES: [
+          title: "enigme"
+          description: "oui c'est une énigme"
+          current_advice_index: 2
+          known: false
+          advices: [
                {
-                    PATH: editor.Enigma.Advice
-                    ADVICE: advice
-                    DELAY: 2
+                    ~path: editor.Enigma.Advice
+                    advice: "advice"
+                    delay: 2
                }
-          
+
                {
-                    PATH: editor.Enigma.Advice
-                    ADVICE: advice2
-                    DELAY: 2
-               }
-          ]
-          CONDITIONS: [
-               {
-                    PATH: editor.Enigma.Condition.HaveInHands
-                    ENTITY: 0
-               }
-          
-               {
-                    PATH: editor.Enigma.Condition.Activated
-                    ENTITY: 1
+                    ~path: editor.Enigma.Advice
+                    advice: "advice2"
+                    delay: 2
                }
           ]
-          OPERATIONS: [
+          conditions: [
                {
-                    PATH: editor.Enigma.Operation.Summon
-                    ENTITY: 2
-                    CASE: 3
+                    ~path: editor.Enigma.Condition.HaveInHands
+                    entity: 0
                }
-          
+
                {
-                    PATH: editor.Enigma.Operation.Unlock
-                    ENTITY: 4
+                    ~path: editor.Enigma.Condition.Activated
+                    entity: 1
+               }
+          ]
+          operations: [
+               {
+                    ~path: null
+                    entity: null
+               }
+
+               {
+                    ~path: editor.Enigma.Operation.Summon
+                    entity: 2
+                    case: 3
+               }
+
+               {
+                    ~path: editor.Enigma.Operation.Unlock
+                    entity: 4
+               }
+
+               {
+                    ~path: editor.Enigma.Operation.Unlock
+                    entity: 4
                }
           ]
      }
-]
-Enigma: [
+
      {
-          PATH: editor.Enigma.Enigma
-          TITLE: enigme
-          DESCRIPTION: oui c'est une énigme
-          CURRENT_ADVICE_INDEX: -1
-          KNOWN: false
-          ADVICES: [
+          ~path: editor.Enigma.Enigma
+          title: "enigme"
+          description: "oui c'est une énigme"
+          current_advice_index: -1
+          known: false
+          advices: [
                {
-                    PATH: editor.Enigma.Advice
-                    ADVICE: advice
-                    DELAY: 2
+                    ~path: editor.Enigma.Advice
+                    advice: "advice"
+                    delay: 2
                }
-          
+
                {
-                    PATH: editor.Enigma.Advice
-                    ADVICE: advice2
-                    DELAY: 2
-               }
-          ]
-          CONDITIONS: [
-               {
-                    PATH: editor.Enigma.Condition.HaveInHands
-                    ENTITY: 0
-               }
-          
-               {
-                    PATH: editor.Enigma.Condition.Activated
-                    ENTITY: 1
+                    ~path: editor.Enigma.Advice
+                    advice: "advice2"
+                    delay: 2
                }
           ]
-          OPERATIONS: [
+          conditions: [
                {
-                    PATH: editor.Enigma.Operation.Summon
-                    ENTITY: 2
-                    CASE: 3
+                    ~path: editor.Enigma.Condition.HaveInHands
+                    entity: 0
                }
-          
+
                {
-                    PATH: editor.Enigma.Operation.Unlock
-                    ENTITY: 4
+                    ~path: editor.Enigma.Condition.Activated
+                    entity: 1
+               }
+          ]
+          operations: [
+               {
+                    ~path: null
+                    entity: null
+               }
+
+               {
+                    ~path: editor.Enigma.Operation.Summon
+                    entity: 2
+                    case: 3
+               }
+
+               {
+                    ~path: editor.Enigma.Operation.Unlock
+                    entity: 4
+               }
+
+               {
+                    ~path: editor.Enigma.Operation.Unlock
+                    entity: 4
                }
           ]
      }
