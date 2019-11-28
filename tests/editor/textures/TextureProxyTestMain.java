@@ -13,7 +13,7 @@ public class TextureProxyTestMain {
 		//Texture t = new Texture(16,"assets/places/donjon10.png",6,16,117);
 		TextureProxy content = new TextureProxy();
 		//content.loadTexture("src/editor/texture/textureEditor");
-		content.addTexture(64,"assets/monsters/019.png",4,0,15);
+		content.addTexture(64,"assets/files/atlas/monsters/019.png",4,0,15);
 
 		try {
 			Image img = content.getImage(10);

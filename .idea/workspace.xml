@@ -2,143 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4b6e0b2a-a6ad-4eff-b2cc-63f9693ec5fe" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/editor/textures/JsonFile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/editor/textures/JsonReader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/editor/textures/JsonTextureLoader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/editor/textures/Readme.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/editor/textures/TextureArea.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/editor/textures/TextureProxy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/editor/utils/LoadGameLibgdxApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/game/api/LibgdxGame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/game/screen/TestScreen.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/editor/textures/JsonReaderTestMain.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/editor/textures/JsonTextureLoaderTestMain.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/editor/textures/Panneau.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/editor/textures/TextureProxyTestMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/editor/entities/interfaces/Entity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/editor/entities/interfaces/Living.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/editor/enums/Direction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/editor/enums/Layer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/editor/map/Case.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/editor/map/Wall.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/editor/textures/Texture.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/editor/map/MapTestMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/Map/scenario.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/map/scenario.tmx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/Museum/Museum.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/map/Museum.tmx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/default.fnt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/atlas/default.fnt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/EquipmentPro.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/assets/ui/fonts/EquipmentPro.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/ExpressionPro.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/assets/ui/fonts/ExpressionPro.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/FutilePro.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/assets/ui/fonts/FutilePro.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/MatchupPro.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/assets/ui/fonts/MatchupPro.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/PokemonMarks.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/assets/ui/fonts/PokemonMarks.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/PokemonNumFat.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/assets/ui/fonts/PokemonNumFat.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/PotatoFont.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/assets/ui/fonts/PotatoFont.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/TinyTitle.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/assets/ui/fonts/TinyTitle.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/big-monster.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/assets/ui/fonts/big-monster.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/fontlarge.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/ui/fonts/fontlarge.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/fontsmall1.gif" beforeDir="false" afterPath="$PROJECT_DIR$/assets/ui/fonts/fontsmall1.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/fontsmall2.gif" beforeDir="false" afterPath="$PROJECT_DIR$/assets/ui/fonts/fontsmall2.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/little-conquest.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/assets/ui/fonts/little-conquest.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/m3x6.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/assets/ui/fonts/m3x6.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/m5x7.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/assets/ui/fonts/m5x7.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/m6x11.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/assets/ui/fonts/m6x11.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/octavius.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/assets/ui/fonts/octavius.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/pix-riddim.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/assets/ui/fonts/pix-riddim.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/pkmndp.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/assets/ui/fonts/pkmndp.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/pkmndpb.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/assets/ui/fonts/pkmndpb.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/pkmnem.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/assets/ui/fonts/pkmnem.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/pkmnemn.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/assets/ui/fonts/pkmnemn.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/pkmnems.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/assets/ui/fonts/pkmnems.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/pkmnfl.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/assets/ui/fonts/pkmnfl.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/pkmnrs.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/assets/ui/fonts/pkmnrs.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/pkmnrsi.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/assets/ui/fonts/pkmnrsi.ttf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/hud/Interface.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/ui/hud/Interface.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/hud/hud-bg.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/ui/hud/hud-bg.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/hud/pipo-popupemotes.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/ui/hud/pipo-popupemotes.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/items/Item__38.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/items/Item__38.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/items/Item__68.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/items/Item__68.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/items/Item__69.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/items/Item__69.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/monsters/019.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/monsters/019.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/monsters/023s.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/monsters/023s.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/music/Battle-Conflict.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/music/Battle-Conflict.mp3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/music/Battle-Furious.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/music/Battle-Furious.mp3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/music/Bittersweet Anthem.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/music/Bittersweet Anthem.mp3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/music/Calamity.wav" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/music/Calamity.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/music/Dastardly Dungeon.ogg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/music/Dastardly Dungeon.ogg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/music/Demented Nightmare MP3.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/music/Demented Nightmare MP3.mp3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/music/Destiny.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/music/Destiny.mp3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/music/Dubious.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/music/Dubious.mp3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/music/Foggy Woods.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/music/Foggy Woods.mp3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/music/Pay The Reaper MP3.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/music/Pay The Reaper MP3.mp3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/music/Scythuz - Her Blade.m4a" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/music/Scythuz - Her Blade.m4a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/music/Somewhere.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/music/Somewhere.mp3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/music/Vengeance.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/music/Vengeance.mp3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/music/ambience01.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/music/ambience01.mp3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/music/ambience02.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/music/ambience02.mp3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/music/ambience03.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/music/ambience03.mp3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/music/ambience04.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/music/ambience04.mp3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/music/ambience05.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/music/ambience05.mp3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/music/narrative02.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/music/narrative02.mp3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/music/occasion02.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/music/occasion02.mp3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/music/occasion03.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/music/occasion03.mp3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/players/$Lanto181.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/players/$Lanto181.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/players/$Lanto182.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/players/$Lanto182.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/sound/019Cry.wav" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/sound/019Cry.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/sound/023Cry.wav" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/sound/023Cry.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/sound/open_door_1.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/sound/open_door_1.mp3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/test.atlas" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/atlas/test.atlas" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/test.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/atlas/test.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/uiskin.atlas" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/atlas/uiskin.atlas" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/uiskin.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/atlas/uiskin.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/uiskin.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/atlas/uiskin.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DesktopLuncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DesktopLuncher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/EditorLuncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/EditorLuncher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/Enigma/Advice.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/Enigma/Condition/Activated.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/Enigma/Condition/Answer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/Enigma/Condition/Condition.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/Enigma/Condition/HaveInHands.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/Enigma/Condition/HaveInInventory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/Enigma/Enigma.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/Enigma/MainTestEnigma.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/Enigma/Operation/Give.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/Enigma/Operation/Operation.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/Enigma/Operation/Summon.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/Enigma/Operation/Unlock.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/Entity/Interface/Content.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/Entity/Interface/EnigmaContainer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/Entity/Interface/Entity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/Entity/Interface/Item.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/Entity/Interface/Living.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/Entity/Interface/Lockable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/Entity/Interface/Passage.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/Entity/Item/Activatable.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/Entity/Item/Book.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/Entity/Item/Button.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/Entity/Item/Chest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/Entity/Item/Door.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/Entity/Item/Floor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/Entity/Item/Pane.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/Entity/Item/PressurePlate.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/Entity/Item/Switch.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/Entity/Player/Player.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/Enums/Direction.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/Enums/Layer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/api/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/api/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/enums/Direction.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/enums/Layer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/listener/CloseWindowLibgdxApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/listener/LoadGameLibgdxApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/map/Case.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/map/Map.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/map/Room.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/map/SaveMap.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/map/Wall.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/texture/CalculHeader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/texture/Texture.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/texture/TextureArea.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/texture/TextureProxy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/utils/JsonFile.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/utils/JsonReader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/utils/TextureJson.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/utils/Utility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/utils/Utility.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/utils/Window.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/MyGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/EnigmaGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/TestMap.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/EnigmaGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/EnigmaGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/editor/textures/JsonReaderTestMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/editor/textures/JsonReaderTestMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/editor/textures/JsonTextureLoaderTestMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/editor/textures/JsonTextureLoaderTestMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/editor/textures/TextureProxyTestMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/editor/textures/TextureProxyTestMain.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -153,6 +29,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -175,6 +52,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="editor.entities" />
       <recent name="editor.textures" />
       <recent name="" />
     </key>
@@ -202,7 +80,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.DesktopLuncher">
+  <component name="RunManager" selected="Application.MapTestMain">
     <configuration name="DesktopLuncher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="DesktopLuncher" />
       <module name="enigma" />
@@ -236,6 +114,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MapTestMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="editor.map.MapTestMain" />
+      <module name="enigma" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="editor.map.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TextureProxyTestMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="editor.textures.TextureProxyTestMain" />
       <module name="enigma" />
@@ -254,9 +145,11 @@
       <item itemvalue="Application.JsonTextureLoaderTestMain" />
       <item itemvalue="Application.TextureProxyTestMain" />
       <item itemvalue="Application.DesktopLuncher" />
+      <item itemvalue="Application.MapTestMain" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MapTestMain" />
         <item itemvalue="Application.DesktopLuncher" />
         <item itemvalue="Application.TextureProxyTestMain" />
         <item itemvalue="Application.JsonTextureLoaderTestMain" />

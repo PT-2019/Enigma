@@ -10,7 +10,7 @@ public class JsonReaderTestMain {
 	 */
 	@TestOnly
 	public static void main(String[] ignore) {
-		System.out.println(JsonReader.importJson("assets/uiskin.atlas"));
+		System.out.println(JsonReader.importJson("assets/files/atlas/uiskin.atlas"));
 	}
 
 }
