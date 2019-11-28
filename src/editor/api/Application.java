@@ -1,9 +1,11 @@
 package editor.api;
 
+import game.EnigmaGame;
+
 /**
  * Représentation d'une application
  * @see editor.EditorLuncher
- * @see game.MyGame
+ * @see EnigmaGame
  */
 public interface Application {
 

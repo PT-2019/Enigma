@@ -4,9 +4,9 @@ import javax.swing.SwingUtilities;
 
 /**
  * Lance la version pc de l'application
+ * @version 1.0
  */
 public class DesktopLuncher implements Runnable {
-
 
     //cette méthode contient le code de lancement de l'éditeur
     //après chargement de la libgdx par SwingUtilities.invokeLater(Runnable)
@@ -16,11 +16,7 @@ public class DesktopLuncher implements Runnable {
         editorLuncher.start();
     }
 
-    /**
-     * Lance la version pc de l'application
-     * @param args aucun
-     */
-    public static void main(String[] args) {
+    public static void main(String[] ignore) {
         //appelle après initialisation de la libgdx, l'éditeur
         SwingUtilities.invokeLater(new DesktopLuncher());
     }
