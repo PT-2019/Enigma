@@ -181,7 +181,7 @@ public class SaveMap {
 			Transformer transformer = factoryTrans.newTransformer();
 
 			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-			transformer.setOutputProperty(OutputKeys.DOCTYPE_SYSTEM, "mapDtd.dtd");
+			transformer.setOutputProperty(OutputKeys.DOCTYPE_SYSTEM, "../../assets/map/mapDtd.dtd");
 
 			DOMSource source = new DOMSource(document);
 

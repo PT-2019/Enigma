@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <!ELEMENT map (tileset+,layer+,room+)>
+        <!ATTLIST map width CDATA #REQUIRED>
+        <!ATTLIST map height CDATA #REQUIRED>
+
+        <!ATTLIST map infinite CDATA #IMPLIED>
+        <!ATTLIST map nextlayerid CDATA #IMPLIED>
+        <!ATTLIST map nextobjectid CDATA #IMPLIED>
+        <!ATTLIST map orientation CDATA #IMPLIED>
+        <!ATTLIST map renderorder CDATA #IMPLIED>
+        <!ATTLIST map tiledversion CDATA #IMPLIED>
+        <!ATTLIST map tileheight CDATA #IMPLIED>
+        <!ATTLIST map tilewidth CDATA #IMPLIED>
+        <!ATTLIST map version CDATA #IMPLIED>
+
+    <!ELEMENT image (#PCDATA)>
+        <!ATTLIST image source CDATA #REQUIRED>
+        <!ATTLIST image height CDATA #IMPLIED>
+        <!ATTLIST image width CDATA #IMPLIED>
+
+    <!ELEMENT tileset (image)>
+        <!ATTLIST tileset columns CDATA #REQUIRED>
+        <!ATTLIST tileset tileheight CDATA #REQUIRED>
+        <!ATTLIST tileset firstgid CDATA #REQUIRED>
+        <!ATTLIST tileset tilecount CDATA #REQUIRED>
+        <!ATTLIST tileset name CDATA #IMPLIED>
+        <!ATTLIST tileset tilewidth CDATA #IMPLIED>
+
+    <!ELEMENT layer (data)>
+        <!ATTLIST layer name CDATA #REQUIRED>
+        <!ATTLIST layer height CDATA #IMPLIED>
+        <!ATTLIST layer id CDATA #IMPLIED>
+        <!ATTLIST layer width CDATA #IMPLIED>
+
+    <!ELEMENT data (#PCDATA)>
+        <!ATTLIST data encoding CDATA #IMPLIED>
+
+    <!ELEMENT room (#PCDATA)>
+        <!ATTLIST room heigth CDATA #REQUIRED>
+        <!ATTLIST room width CDATA #REQUIRED>
+        <!ATTLIST room heigthpos CDATA #REQUIRED>
+        <!ATTLIST room widthpos CDATA #REQUIRED>
