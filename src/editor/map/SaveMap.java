@@ -17,21 +17,29 @@ import org.lwjgl.Sys;
 import org.w3c.dom.*;
 
 /**
- * Class en développement à voir si on garde cette organisation.
+ * Sauvegarde une map et les textures associés.
  * Permet de sauvegarder la map avec la méthode DOM.
- *
  */
 public class SaveMap {
-
+	/**
+	 * Texture à sauvegarder dans le fichier
+	 */
     private ArrayList<TextureArea> textures;
 
-    private Map gameMap;
+	/**
+	 * Map à sauvegarder.
+	 */
+	private Map gameMap;
 
     public SaveMap(ArrayList<TextureArea>textures,Map game){
         this.gameMap = game;
         this.textures = textures;
     }
 
+	/**
+	 * Sauvegarde la map et texture.
+	 * @param fichier nom du fichier de sauvegarde.
+	 */
 	public void saveMap(String fichier){
 		DocumentBuilderFactory fabrique = DocumentBuilderFactory.newInstance();
 		
@@ -56,13 +64,13 @@ public class SaveMap {
 			Element map = document.createElement("map");
 			document.appendChild(map);
 			map.setAttribute("version", "M@teo21");
-			map.setAttribute("tiledversion", "M@teo21");
+			map.setAttribute("tiledversion", "1.0");
 			map.setAttribute("orientation", "orthogonal");
 			map.setAttribute("renderorder", "M@teo21");
 			map.setAttribute("width", String.valueOf(gameMap.getCol()));
 			map.setAttribute("height", String.valueOf(gameMap.getRow()));
-			map.setAttribute("tilewidth", "M");
-			map.setAttribute("tileheight", "M");
+			map.setAttribute("tilewidth", "16");
+			map.setAttribute("tileheight", "16");
 			map.setAttribute("infinite", "0");
 			map.setAttribute("nextlayerid", "M");
 			map.setAttribute("nextobjectid", "M");
@@ -163,8 +171,8 @@ public class SaveMap {
 				rooms = document.createElement("room");
 				rooms.setAttribute("width",String.valueOf(room.getValue().getCol()));
 				rooms.setAttribute("heigth",String.valueOf(room.getValue().getRow()));
-				rooms.setAttribute("x", String.valueOf(room.getKey().getX()));
-				rooms.setAttribute("y", String.valueOf(room.getKey().getY()));
+				rooms.setAttribute("widthpos", String.valueOf((int)room.getKey().getX()));
+				rooms.setAttribute("heigthpos", String.valueOf((int)room.getKey().getY()));
 
 				map.appendChild(rooms);
 			}
@@ -173,6 +181,7 @@ public class SaveMap {
 			Transformer transformer = factoryTrans.newTransformer();
 
 			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+			transformer.setOutputProperty(OutputKeys.DOCTYPE_SYSTEM, "mapDtd.dtd");
 
 			DOMSource source = new DOMSource(document);
 
@@ -184,31 +193,5 @@ public class SaveMap {
 		} catch (TransformerException tfe) {
 			tfe.printStackTrace();
 		}
-	}
- 
-	public static void main(String argv[]) {
-		Map map = new Map(30,20);
-		Room room1 = new Room();
-		Room room2 = new Room();
-
-        TextureProxy p =  new TextureProxy();
-
-        TextureArea a = new TextureArea(16,"assets/monsters/019.png",4,1,16);
-		TextureArea b = new TextureArea(16,"assets/monsters/023s.png",4,17,117);
-        p.addTexture(a);
-        p.addTexture(b);
-
-		SaveMap save = new SaveMap(p.getTextureArea(),map);
-
-		p.getImage(5);
-		p.getImage(19);
-
-		map.addRoom(1,3, room1);
-
-		map.addRoom(11,2, room2);
-
-		map.render();
-
-		save.saveMap("result.tmx");
 	}
 }

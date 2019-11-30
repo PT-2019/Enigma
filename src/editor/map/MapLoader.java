@@ -9,19 +9,30 @@ import javax.xml.parsers.SAXParserFactory;
 import java.io.IOException;
 
 /**
- * Utilisation de la méthode DOM car on veut utilisé de nombreuse données du
- * fichier XML.
+ * Classe qui va chargé une map.
+ * Utilisation de la méthode Sax.
  */
 public class MapLoader{
-
+    /**
+     * map chargé
+     */
     private Map map;
 
+    /**
+     * proxy qui va contenir toutes les textures nécessaire
+     */
     private TextureProxy textureproxy;
 
+    /**
+     * Chargement du fichier map
+     * @param fichier
+     */
     public void load(String fichier){
         try {
             SAXParserFactory factory = SAXParserFactory.newInstance();
             LoadHandler handler = new LoadHandler();
+            factory.setValidating(true);
+
             SAXParser parser = factory.newSAXParser();
 
             parser.parse(fichier, handler);

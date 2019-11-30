@@ -6,8 +6,14 @@ import editor.texture.TextureArea;
 import editor.texture.TextureProxy;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
 
+/**
+ * Cette classe va activé certaine de ses méthodes lors du parcours d'un
+ * fichier xml représentant une map.
+ * @see DefaultHandler
+ */
 public class LoadHandler extends DefaultHandler {
 
     private String currentName;
@@ -27,6 +33,15 @@ public class LoadHandler extends DefaultHandler {
         indice = 0;
     }
 
+    /**
+     * Cette méthode est activé lorsqu'une balise xml est détecté dans le fichier. Elle permet
+     * de récupérer les différents attributs des balises et donc créer les objets de la map.
+     * @param uri
+     * @param localName
+     * @param qName
+     * @param attributes
+     * @throws SAXException
+     */
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
         currentName = qName;
@@ -51,35 +66,59 @@ public class LoadHandler extends DefaultHandler {
             indice = 0;
             currentLayer = attributes.getValue("name");
 
-        } else if(qName.equals("data")){
-
         } else if(qName.equals("room")){
+            int row = Integer.parseInt(attributes.getValue("heigth"));
+            int col = Integer.parseInt(attributes.getValue("width"));
+            int pointrow = Integer.parseInt(attributes.getValue("heigthpos"));
+            int pointcol = Integer.parseInt(attributes.getValue("widthpos"));
+            Case[] mapcase = loadMap.getCases();
+            Case[] roomcase = new Case[row*col];
+
+            for (int i = 0,k = pointrow; k < row+pointrow; i++,k++) {
+                for (int j = 0,n = pointcol; n < col+pointcol; j++,n++) {
+
+                    roomcase[i*col+j] = mapcase[k*loadMap.getCol()+n];
+                }
+            }
+
+            Room r = new Room(col,row,roomcase);
+
+            loadMap.addRoom(pointcol,pointrow,r);
 
         }
     }
 
+    /**
+     * Cette méthode permet de récupérer le contenu qu'il y a dans un noeud xml.
+     * Elle est invoqué lorsqu'un noeud avec contenu est détecté.
+     * @param value
+     * @param start
+     * @param length
+     * @throws SAXException
+     */
     @Override
     public void characters(char[] value, int start, int length) throws SAXException {
-
+        String numText = "";
         String str = new String(value, start, length);
-
-        str = str.replaceAll("\\D","");
+        str = str.replaceAll("\\s","");
 
         if (currentName.equals("data")){
-            System.out.println(str);
 
             for (int i = 0; i < str.length(); i++) {
                 char tmp = str.charAt(i);
 
-                //on rentre dans le if que si il y a un caractère qui nous intéresse
-                Case tmpCase = loadMap.getCase(indice);
+                //Le point virgule signifie qu'on change de numéro de texture
+                if(tmp == ',' ){
 
-                int num = Integer.parseInt(String.valueOf(tmp));
+                    Case tmpCase = loadMap.getCase(indice);
+                    int num = Integer.parseInt(numText);
 
-                if (tmpCase == null){
-                    tmpCase = new Case();
-                    loadMap.setCase(indice,tmpCase);
-                }
+                    //si la case est null on l'instancie
+                    if (tmpCase == null){
+                        tmpCase = new Case();
+                        loadMap.setCase(indice,tmpCase);
+                    }
+                    //si c'est une collision on applique une méthode différente
                     if (currentLayer.equals("Colision")){
                         if (num == 1){
                             tmpCase.setWalkable(true);
@@ -87,10 +126,64 @@ public class LoadHandler extends DefaultHandler {
                     }else{
                         tmpCase.setTexture(Layer.valueOf(currentLayer),new Texture(num,proxyTexture.getImage(num)));
                     }
+                    indice++;
+                    numText="";
+                }else{
+                    //on ajoute le caractère
+                    numText += tmp;
+                }
+            }
+            if (!numText.equals("")){
+                Case tmpCase = loadMap.getCase(indice);
+                int num = Integer.parseInt(numText);
+
+                //si la case est null on l'instancie
+                if (tmpCase == null){
+                    tmpCase = new Case();
+                    loadMap.setCase(indice,tmpCase);
+                }
+                //si c'est une collision on applique une méthode différente
+                if (currentLayer.equals("Colision")){
+                    if (num == 1){
+                        tmpCase.setWalkable(true);
+                    }
+                }else{
+                    tmpCase.setTexture(Layer.valueOf(currentLayer),new Texture(num,proxyTexture.getImage(num)));
+                }
                 indice++;
             }
         }
     }
+
+    /**
+     * invoqué si le fichier ne respecte pas le dtd.
+     * @param e
+     * @throws SAXException
+     */
+    @Override
+    public void error(SAXParseException e) throws SAXException {
+        System.out.println("ERROR : " + e.getMessage());
+        throw e;
+    }
+
+    /**
+     * Invoqué lors d'une erreur avec une des règles du xml.
+     * @param e
+     * @throws SAXException
+     */
+    @Override
+    public void fatalError(SAXParseException e) throws SAXException {
+        System.out.println("FATAL ERROR : " + e.getMessage());
+        throw e;
+    }
+
+    /**
+     * Warning du parseur.
+     * @param e
+     * @throws SAXException
+     */
+    @Override
+    public void warning(SAXParseException e) throws SAXException {}
 
     public  Map getMap(){
         return loadMap;

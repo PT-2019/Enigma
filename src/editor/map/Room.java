@@ -45,6 +45,13 @@ public class Room {
 		this.walls = new HashMap<>();
 	}
 
+	public Room(int col,int row,Case[] cases){
+		this.col = col;
+		this.row = row;
+		this.walls = new HashMap<>();
+		this.cases = cases;
+	}
+
 
 
 	/**

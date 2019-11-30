@@ -16,11 +16,13 @@ public class MapLoaderTest {
     public static void main(String[] args) {
         MapLoader m = new MapLoader();
 
-        m.load("result.tmx");
+        m.load("tests/editor/map/result.tmx");
 
-        //SaveMap save = new SaveMap(m.getTextureproxy().getTextureArea(),m.getMap());
+        m.getMap().render();
 
-        //save.saveMap("test.tmx");
+        SaveMap save = new SaveMap(m.getTextureproxy().getTextureArea(),m.getMap());
+
+        save.saveMap("tests/editor/map/Loadtest.tmx");
     }
 
 }
