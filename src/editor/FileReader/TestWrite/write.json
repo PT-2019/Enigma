@@ -1,108 +1,91 @@
-Enigma: [
-     {
-          title: "enigme"
-          description: "oui c'est une énigme"
-          current_advice_index: 2
-          known: false
-          advices: [
-               {
-                    ~path: editor.Enigma.Advice
-                    advice: "advice"
-                    delay: 2
-               }
+{
+     "Enigmas": [
+          {
+               "~path": "editor.Enigma.Enigma",
+               "title": "enigme",
+               "description": "oui c'est une énigme",
+               "known": "false",
+               "current_advice_index": "-1",
+               "conditions": [
+                    {
+                         "~path": "editor.Enigma.Condition.HaveInHands",
+                         "entity": "0"
+                    },
 
-               {
-                    ~path: editor.Enigma.Advice
-                    advice: "advice2"
-                    delay: 2
-               }
-          ]
-          conditions: [
-               {
-                    ~path: editor.Enigma.Condition.HaveInHands
-                    entity: 0
-               }
+                    {
+                         "~path": "editor.Enigma.Condition.Activated",
+                         "entity": "1"
+                    }
+               ],
+               "operations": [
+                    {
+                         "~PATH": "editor.Enigma.Operation.Summon",
+                         "entity": "2",
+                         "case": "3"
+                    },
 
-               {
-                    ~path: editor.Enigma.Condition.Activated
-                    entity: 1
-               }
-          ]
-          operations: [
-               {
-                    ~path: null
-                    entity: null
-               }
+                    {
+                         "~PATH": "editor.Enigma.Operation.Unlock",
+                         "entity": "4"
+                    }
+               ],
+               "advices": [
+                    {
+                         "~path": "editor.Enigma.Advice",
+                         "advice": "advice",
+                         "delay": "2"
+                    },
 
-               {
-                    ~path: editor.Enigma.Operation.Summon
-                    entity: 2
-                    case: 3
-               }
+                    {
+                         "~path": "editor.Enigma.Advice",
+                         "advice": "advice2",
+                         "delay": "2"
+                    }
+               ]
+          },
 
-               {
-                    ~path: editor.Enigma.Operation.Unlock
-                    entity: 4
-               }
+          {
+               "~path": "editor.Enigma.Enigma",
+               "title": "enigme2",
+               "description": "oui c'est une énigme",
+               "known": "false",
+               "current_advice_index": "-1",
+               "conditions": [
+                    {
+                         "~path": "editor.Enigma.Condition.HaveInHands",
+                         "entity": "0"
+                    },
 
-               {
-                    ~path: editor.Enigma.Operation.Unlock
-                    entity: 4
-               }
-          ]
-     }
+                    {
+                         "~path": "editor.Enigma.Condition.Activated",
+                         "entity": "1"
+                    }
+               ],
+               "operations": [
+                    {
+                         "~PATH": "editor.Enigma.Operation.Summon",
+                         "entity": "2",
+                         "case": "3"
+                    },
 
-     {
-          ~path: editor.Enigma.Enigma
-          title: "enigme"
-          description: "oui c'est une énigme"
-          current_advice_index: -1
-          known: false
-          advices: [
-               {
-                    ~path: editor.Enigma.Advice
-                    advice: "advice"
-                    delay: 2
-               }
+                    {
+                         "~PATH": "editor.Enigma.Operation.Unlock",
+                         "entity": "4"
+                    }
+               ],
+               "advices": [
+                    {
+                         "~path": "editor.Enigma.Advice",
+                         "advice": "advice",
+                         "delay": "2"
+                    },
 
-               {
-                    ~path: editor.Enigma.Advice
-                    advice: "advice2"
-                    delay: 2
-               }
-          ]
-          conditions: [
-               {
-                    ~path: editor.Enigma.Condition.HaveInHands
-                    entity: 0
-               }
-
-               {
-                    ~path: editor.Enigma.Condition.Activated
-                    entity: 1
-               }
-          ]
-          operations: [
-               {
-                    ~path: null
-                    entity: null
-               }
-
-               {
-                    ~path: editor.Enigma.Operation.Summon
-                    entity: 2
-                    case: 3
-               }
-
-               {
-                    ~path: editor.Enigma.Operation.Unlock
-                    entity: 4
-               }
-
-               {
-                    ~path: editor.Enigma.Operation.Unlock
-                    entity: 4
-               }
-          ]
-     }
-]
+                    {
+                         "~path": "editor.Enigma.Advice",
+                         "advice": "advice2",
+                         "delay": "2"
+                    }
+               ]
+          }
+     ]
+}

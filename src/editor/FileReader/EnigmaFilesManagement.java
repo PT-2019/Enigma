@@ -15,12 +15,7 @@ import editor.Enums.*;
 import editor.map.Case;
 
 import java.io.*;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.IllegalFormatException;
-import java.util.Iterator;
+import java.util.*;
 
 /**
  * Classe responsable de l'écriture de fichier pour la sauvegarde des énigmes
@@ -33,6 +28,11 @@ public class EnigmaFilesManagement {
      * Contient le nombre d'intentaions
      */
     private int indentation;
+
+    /**
+     * Ecrivain
+     */
+    private BufferedWriter writer;
 
     /**
      * Syntaxe d'une indentation
@@ -74,206 +74,207 @@ public class EnigmaFilesManagement {
      * @return Indentation
      */
     private String getIndentation(){
-        StringBuilder s = new StringBuilder();
-        for(int i = 0; i < this.indentation; i++) s.append(INDENTATION);
-        return s.toString();
+        return INDENTATION.repeat(Math.max(0, this.indentation));
+    }
+
+    /**
+     * Enregistre les indices dans un fichier
+     * @param advices Indices à enregistrer
+     * @throws IOException En cas d'erreur d'écriture
+     */
+    private void writeAdvices(Iterator<Advice> advices) throws IOException {
+
+        while (advices.hasNext()) {
+            HashMap<Attributes,String> advicesAtt = advices.next().objectToMap();
+            boolean firstRound = true;
+
+            this.writer.newLine();
+            this.writer.write(this.getIndentation() + NEW_OBJECT_SYNTAX);
+            this.indentation++;
+
+            for (AdviceAttributes aAtt : AdviceAttributes.values()) {
+                if(!firstRound) this.writer.write(",");
+                else firstRound = false;
+                this.writer.newLine();
+                if(aAtt.equals(AdviceAttributes.PATH)) this.writer.write(this.getIndentation() + "\"" + NOT_ATTRIBUTE_BEFORE_SYNTAX + aAtt.toLowerString() + "\"" + CLASSIC_ATTRIBUTE_SYNTAX + "\"" + advicesAtt.get(aAtt) + "\"");
+                else this.writer.write(this.getIndentation() + "\"" + aAtt.toLowerString() + "\"" + CLASSIC_ATTRIBUTE_SYNTAX + "\"" + advicesAtt.get(aAtt) + "\"");
+            }
+
+            this.writer.newLine();
+            this.indentation--;
+            this.writer.write(this.getIndentation() + END_OBJECT_SYNTAX);
+            if (advices.hasNext()) this.writer.write(",");
+            this.writer.newLine();
+        }
+    }
+
+    /**
+     * Enregistre les conditions dans un fichier
+     * @param conditions Conditions à enregistrer
+     * @throws IOException En cas d'erreur d'écriture
+     */
+    private void writeConditions(Iterator<Condition> conditions) throws IOException {
+
+        while (conditions.hasNext()) {
+            Condition c = conditions.next();
+            HashMap<Attributes,String> conditionsAtt = c.objectToMap();
+            boolean firstRound = true;
+
+            this.writer.newLine();
+            this.writer.write(this.getIndentation() + NEW_OBJECT_SYNTAX);
+            this.indentation++;
+
+            switch(c.getClass().getSimpleName()){
+                default:
+                    for (ConditionAttributes cAtt : ConditionAttributes.values()) {
+                        if(!firstRound) this.writer.write(",");
+                        else firstRound = false;
+                        this.writer.newLine();
+                        if(cAtt.equals(ConditionAttributes.PATH)) this.writer.write(this.getIndentation() + "\"" + NOT_ATTRIBUTE_BEFORE_SYNTAX + cAtt.toLowerString() + "\"" + CLASSIC_ATTRIBUTE_SYNTAX + "\"" + conditionsAtt.get(cAtt) + "\"");
+                        else this.writer.write(this.getIndentation() + "\"" + cAtt.toLowerString() + "\"" + CLASSIC_ATTRIBUTE_SYNTAX + "\"" + conditionsAtt.get(cAtt) + "\"");
+                    }
+                    break;
+            }
+
+
+            this.writer.newLine();
+            this.indentation--;
+            this.writer.write(this.getIndentation() + END_OBJECT_SYNTAX);
+            if (conditions.hasNext()) this.writer.write(",");
+            this.writer.newLine();
+        }
+    }
+
+    /**
+     * Enregistre des opérations dans un fichier
+     * @param operations Opérations à enregistrer
+     * @throws IOException En cas d'erreur d'écriture
+     */
+    private void writeOperations(Iterator<Operation> operations) throws IOException {
+
+        while (operations.hasNext()) {
+            Operation o = operations.next();
+            HashMap<Attributes,String> operationsAtt = o.objectToMap();
+            boolean firstRound = true;
+
+            this.writer.newLine();
+            this.writer.write(this.getIndentation() + NEW_OBJECT_SYNTAX);
+            this.indentation++;
+
+            switch (o.getClass().getSimpleName()) {
+                default:
+                    for (OperationAttributes oAtt : OperationAttributes.values()) {
+                        if (!firstRound) this.writer.write(",");
+                        else firstRound = false;
+                        this.writer.newLine();
+                        if (oAtt.equals(OperationAttributes.PATH)) this.writer.write(this.getIndentation() + "\"" + NOT_ATTRIBUTE_BEFORE_SYNTAX + oAtt + "\"" + CLASSIC_ATTRIBUTE_SYNTAX + "\"" + operationsAtt.get(oAtt) + "\"");
+                        else this.writer.write(this.getIndentation() + "\"" + oAtt.toLowerString() + "\"" + CLASSIC_ATTRIBUTE_SYNTAX + "\"" + operationsAtt.get(oAtt) + "\"");
+                    }
+                    break;
+                case "Summon":
+                    for (SummonAttributes sAtt : SummonAttributes.values()) {
+                        if (!firstRound) this.writer.write(",");
+                        else firstRound = false;
+                        this.writer.newLine();
+                        if (sAtt.equals(SummonAttributes.PATH)) this.writer.write(this.getIndentation() + "\"" + NOT_ATTRIBUTE_BEFORE_SYNTAX + sAtt + "\"" + CLASSIC_ATTRIBUTE_SYNTAX + "\"" + operationsAtt.get(sAtt) + "\"");
+                        else this.writer.write(this.getIndentation() + "\"" + sAtt.toLowerString() + "\"" + CLASSIC_ATTRIBUTE_SYNTAX + "\"" + operationsAtt.get(sAtt) + "\"");
+                    }
+                    break;
+            }
+
+            this.writer.newLine();
+            this.indentation--;
+            this.writer.write(this.getIndentation() + END_OBJECT_SYNTAX);
+            if (operations.hasNext()) this.writer.write(",");
+            this.writer.newLine();
+        }
     }
 
     /**
      * Enregistre des énigmes dans un fichier
      * @param enigmas Enigmes à enregistrer
      * @throws IOException En cas de problème d'écriture
-     * @throws NullPointerException Si enigmas est null
+     * @throws IllegalArgumentException Si le fichier n'est pas un ".json"
      */
     public void writeEnigmas(String filePath, ArrayList<Enigma> enigmas) throws IOException {
         if(!filePath.endsWith(".json")) throw new IllegalArgumentException("Le fichier n'est pas dans un format valide \".json\"");
 
         this.indentation = 0;
-        BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
+        this.writer = new BufferedWriter(new FileWriter(filePath));
 
         //Ecriture des énigmes
-        writer.write( "Enigma" + CLASS_TAB_SYNTAX);
+        this.writer.write(NEW_OBJECT_SYNTAX);
+        this.indentation++;
 
+        this.writer.newLine();
+        this.writer.write( this.getIndentation() + "\"Enigmas\"" + CLASS_TAB_SYNTAX);
+        this.indentation++;
+
+        boolean firstEnigma = true;
         for (Enigma e: enigmas) {
+            if(!firstEnigma) {
+                this.writer.write(",");
+                this.writer.newLine();
+            }
+            else firstEnigma = false;
+
+            this.writer.newLine();
+            this.writer.write(this.getIndentation() + NEW_OBJECT_SYNTAX);
+            this.indentation++;
+
+            boolean firstAtt = true;
             HashMap<Attributes,String> enigmaAttributes = e.objectToMap();
+            for (EnigmaAttributes eAtt : EnigmaAttributes.values()) {
+                if(!firstAtt) this.writer.write(",");
+                else firstAtt = false;
+                this.writer.newLine();
 
-            this.indentation++;
-            writer.newLine();
-            writer.write(this.getIndentation() + NEW_OBJECT_SYNTAX);
-            this.indentation++;
-            writer.newLine();
-
-            //////ATTRIBUTS ENIGME//////
-            writer.write( this.getIndentation() + NOT_ATTRIBUTE_BEFORE_SYNTAX + EnigmaAttributes.PATH.toLowerString() + CLASSIC_ATTRIBUTE_SYNTAX + enigmaAttributes.get(EnigmaAttributes.PATH));
-            writer.newLine();
-
-            writer.write( this.getIndentation() + EnigmaAttributes.TITLE.toLowerString() + CLASSIC_ATTRIBUTE_SYNTAX + "\"" + enigmaAttributes.get(EnigmaAttributes.TITLE) + "\"");
-            writer.newLine();
-
-            writer.write( this.getIndentation() + EnigmaAttributes.DESCRIPTION.toLowerString() + CLASSIC_ATTRIBUTE_SYNTAX + "\"" + enigmaAttributes.get(EnigmaAttributes.DESCRIPTION) + "\"");
-            writer.newLine();
-
-            writer.write( this.getIndentation() + EnigmaAttributes.CURRENT_ADVICE_INDEX.toLowerString() + CLASSIC_ATTRIBUTE_SYNTAX + enigmaAttributes.get(EnigmaAttributes.CURRENT_ADVICE_INDEX));
-            writer.newLine();
-
-            writer.write( this.getIndentation() + EnigmaAttributes.KNOWN.toLowerString() + CLASSIC_ATTRIBUTE_SYNTAX + enigmaAttributes.get(EnigmaAttributes.KNOWN));
-            writer.newLine();
-
-            //Ecriture des indices de l'énigme actuelle
-            writer.write( this.getIndentation() + EnigmaAttributes.ADVICES.toLowerString() + CLASS_TAB_SYNTAX);
-
-            Iterator<Advice> ita = e.getAllAdvices();
-            while (ita.hasNext()) {
-                Advice a = ita.next();
-                HashMap<Attributes, String> adviceAttributes = a.objectToMap();
-
-                this.indentation++;
-                writer.newLine();
-                writer.write(this.getIndentation() + NEW_OBJECT_SYNTAX);
-                this.indentation++;
-                writer.newLine();
-
-                //////ATTRIBUTS INDICE//////
-                writer.write(  this.getIndentation() + NOT_ATTRIBUTE_BEFORE_SYNTAX + AdviceAttributes.PATH.toLowerString() + CLASSIC_ATTRIBUTE_SYNTAX + adviceAttributes.get(AdviceAttributes.PATH));
-                writer.newLine();
-
-                writer.write(this.getIndentation() + AdviceAttributes.ADVICE.toLowerString() + CLASSIC_ATTRIBUTE_SYNTAX + "\"" + adviceAttributes.get(AdviceAttributes.ADVICE) + "\"");
-                writer.newLine();
-
-                writer.write(this.getIndentation() + AdviceAttributes.DELAY.toLowerString() + CLASSIC_ATTRIBUTE_SYNTAX + adviceAttributes.get(AdviceAttributes.DELAY));
-                this.indentation--;
-                writer.newLine();
-                //////FIN ATTRIBUTS INDICE//////
-
-                writer.write(this.getIndentation() + END_OBJECT_SYNTAX);
-                this.indentation--;
-                writer.newLine();
-            }
-
-            writer.write(this.getIndentation() + END_CLASS_TAB_SYNTAX);
-            writer.newLine();
-
-            //Ecriture des condition de l'énigme actuelle
-            writer.write( this.getIndentation() + EnigmaAttributes.CONDITIONS.toLowerString() + CLASS_TAB_SYNTAX);
-
-            Iterator<Condition> itc = e.getAllConditions();
-            while (itc.hasNext()) {
-                Condition c = itc.next();
-                HashMap<Attributes, String> conditionAttributes = c.objectToMap();
-
-                this.indentation++;
-                writer.newLine();
-                writer.write(this.getIndentation() + NEW_OBJECT_SYNTAX);
-                this.indentation++;
-                writer.newLine();
-
-                //////ATTRIBUTS CONDITION//////
-                writer.write(this.getIndentation() + NOT_ATTRIBUTE_BEFORE_SYNTAX + ConditionAttributes.PATH.toLowerString() + CLASSIC_ATTRIBUTE_SYNTAX + conditionAttributes.get(ConditionAttributes.PATH));
-                writer.newLine();
-
-                writer.write(this.getIndentation() + ConditionAttributes.ENTITY.toLowerString() + CLASSIC_ATTRIBUTE_SYNTAX + conditionAttributes.get(ConditionAttributes.ENTITY));
-                this.indentation--;
-                writer.newLine();
-                //////FIN ATTRIBUTS CONDITION//////
-
-                writer.write(this.getIndentation() + END_OBJECT_SYNTAX);
-                this.indentation--;
-                writer.newLine();
-            }
-
-            writer.write(this.getIndentation() + END_CLASS_TAB_SYNTAX);
-            writer.newLine();
-
-            //Ecriture des opérations de l'énigme actuelle
-            writer.write( this.getIndentation() + EnigmaAttributes.OPERATIONS.toLowerString() + CLASS_TAB_SYNTAX);
-
-            Iterator<Operation> ito = e.getAllOperations();
-            while (ito.hasNext()) {
-                Operation o = ito.next();
-                HashMap<Attributes, String> operationAttributes = o.objectToMap();
-
-                this.indentation++;
-                writer.newLine();
-                writer.write(this.getIndentation() + NEW_OBJECT_SYNTAX);
-                this.indentation++;
-                writer.newLine();
-
-                //////ATTRIBUTS OPERATION//////
-                writer.write(this.getIndentation() + NOT_ATTRIBUTE_BEFORE_SYNTAX + OperationAttributes.PATH.toLowerString() + CLASSIC_ATTRIBUTE_SYNTAX + operationAttributes.get(OperationAttributes.PATH));
-                writer.newLine();
-
-                writer.write(this.getIndentation() + OperationAttributes.ENTITY.toLowerString() + CLASSIC_ATTRIBUTE_SYNTAX + operationAttributes.get(OperationAttributes.ENTITY));
-                this.indentation--;
-                writer.newLine();
-                //////FIN ATTRIBUTS OPERATION//////
-
-                writer.write(this.getIndentation() + END_OBJECT_SYNTAX);
-                this.indentation--;
-                writer.newLine();
-
-                //Si l'opération est de type "faire apparître" car les attributs diffères
-                if(o instanceof Summon) {
-
-                    this.indentation++;
-                    writer.newLine();
-                    writer.write(this.getIndentation() + NEW_OBJECT_SYNTAX);
-                    this.indentation++;
-                    writer.newLine();
-
-                    //////ATTRIBUTS SUMMON//////
-                    writer.write(this.getIndentation() + NOT_ATTRIBUTE_BEFORE_SYNTAX + SummonAttributes.PATH.toLowerString() + CLASSIC_ATTRIBUTE_SYNTAX + operationAttributes.get(SummonAttributes.PATH));
-                    writer.newLine();
-
-                    writer.write(this.getIndentation() + SummonAttributes.ENTITY.toLowerString() + CLASSIC_ATTRIBUTE_SYNTAX + operationAttributes.get(SummonAttributes.ENTITY));
-                    writer.newLine();
-
-                    writer.write(this.getIndentation() + SummonAttributes.CASE.toLowerString() + CLASSIC_ATTRIBUTE_SYNTAX + operationAttributes.get(SummonAttributes.CASE));
-                    this.indentation--;
-                    writer.newLine();
-                    //////FIN ATTRIBUTS SUMMON//////
-
-                    writer.write(this.getIndentation() + END_OBJECT_SYNTAX);
-                    this.indentation--;
-                    writer.newLine();
-                }else{
-                    //Si ce n'est pas de type "faire apparaître"
-
-                    this.indentation++;
-                    writer.newLine();
-                    writer.write(this.getIndentation() + NEW_OBJECT_SYNTAX);
-                    this.indentation++;
-                    writer.newLine();
-
-                    //////ATTRIBUTS OPERATION//////
-                    writer.write(this.getIndentation() + NOT_ATTRIBUTE_BEFORE_SYNTAX + OperationAttributes.PATH.toLowerString() + CLASSIC_ATTRIBUTE_SYNTAX + operationAttributes.get(OperationAttributes.PATH));
-                    writer.newLine();
-
-                    writer.write(this.getIndentation() + OperationAttributes.ENTITY.toLowerString() + CLASSIC_ATTRIBUTE_SYNTAX + operationAttributes.get(OperationAttributes.ENTITY));
-                    this.indentation--;
-                    writer.newLine();
-                    //////FIN ATTRIBUTS OPERATION//////
-
-                    writer.write(this.getIndentation() + END_OBJECT_SYNTAX);
-                    this.indentation--;
-                    writer.newLine();
+                switch (eAtt){
+                    default:
+                        this.writer.write( this.getIndentation() + "\"" + eAtt.toLowerString() + "\"" + CLASSIC_ATTRIBUTE_SYNTAX + "\"" + enigmaAttributes.get(eAtt) + "\"");
+                        break;
+                    case PATH:
+                        this.writer.write( this.getIndentation() + "\"" + NOT_ATTRIBUTE_BEFORE_SYNTAX + eAtt.toLowerString() + "\"" + CLASSIC_ATTRIBUTE_SYNTAX + "\"" + enigmaAttributes.get(eAtt) + "\"");
+                        break;
+                    case ADVICES:
+                        this.writer.write( this.getIndentation() + "\"" + eAtt.toLowerString() + "\"" + CLASS_TAB_SYNTAX);
+                        this.indentation++;
+                        this.writeAdvices(e.getAllAdvices());
+                        this.indentation--;
+                        this.writer.write(this.getIndentation() + END_CLASS_TAB_SYNTAX);
+                        break;
+                    case CONDITIONS:
+                        this.writer.write( this.getIndentation() + "\"" + eAtt.toLowerString() + "\"" + CLASS_TAB_SYNTAX);
+                        this.indentation++;
+                        this.writeConditions(e.getAllConditions());
+                        this.indentation--;
+                        this.writer.write(this.getIndentation() + END_CLASS_TAB_SYNTAX);
+                        break;
+                    case OPERATIONS:
+                        this.writer.write( this.getIndentation() + "\"" + eAtt.toLowerString() + "\"" + CLASS_TAB_SYNTAX);
+                        this.indentation++;
+                        this.writeOperations(e.getAllOperations());
+                        this.indentation--;
+                        this.writer.write(this.getIndentation() + END_CLASS_TAB_SYNTAX);
+                        break;
                 }
             }
-            //////FIN ATTRIBUTS ENIGME//////
 
-            writer.write(this.getIndentation() + END_CLASS_TAB_SYNTAX);
+            this.writer.newLine();
             this.indentation--;
-            writer.newLine();
-
-            writer.write(this.getIndentation() + END_OBJECT_SYNTAX);
-            this.indentation--;
-            writer.newLine();
+            this.writer.write(this.getIndentation() + END_OBJECT_SYNTAX);
         }
 
-        writer.write(this.getIndentation() + END_CLASS_TAB_SYNTAX);
         this.indentation--;
-        writer.newLine();
+        this.writer.newLine();
+        this.writer.write(this.getIndentation() + END_CLASS_TAB_SYNTAX);
 
-        writer.close();
+        this.writer.newLine();
+        this.indentation--;
+        this.writer.write(this.getIndentation() + END_OBJECT_SYNTAX);
+
+
+        this.writer.close();
     }
 
     /**
@@ -285,6 +286,7 @@ public class EnigmaFilesManagement {
      * @throws IllegalStateException
      * @throws IllegalArgumentException
      */
+    @SuppressWarnings("unchecked")
     public ArrayList<Enigma> readEnigmas(String filePath) throws IOException {
         if(!filePath.endsWith(".json")) throw new IllegalArgumentException("Le fichier n'est pas dans un format valide \".json\"");
 
@@ -368,82 +370,33 @@ public class EnigmaFilesManagement {
         return (ArrayList<Enigma>)enigmas.clone();
     }
 
-    public ArrayList<Advice> readAdvices(BufferedReader reader, int line) throws IOException {
-
-        ArrayList<Advice> advices = new ArrayList<Advice>();
-        String read;
-        String filtred = "";
-        int braceCount = 0;
-        int bracketCount = 0;
-        Advice currentAdvice = null;
-        boolean pass;
-
-        bracketCount++;
-        while((read = reader.readLine()) != null) {
-            pass = false;
-
-            if (read.contains(NEW_OBJECT_SYNTAX)) {
-                if (braceCount == 0 && bracketCount == 1){
-                    System.out.println(currentAdvice);
-                    currentAdvice = new Advice("null");
-                }
-                braceCount++;
-                pass = true;
-            }
-
-            if (read.contains(END_OBJECT_SYNTAX)) {
-                if(braceCount > 0) braceCount--;
-                pass = true;
-            }
-
-            if (read.contains(END_CLASS_TAB_SYNTAX)) {
-                if(bracketCount > 0) bracketCount--;
-                pass = true;
-            }
-
-            if (!pass){
-                if(currentAdvice == null) throw new IllegalStateException(line + ": Le fichier n'est pas dans un format valide. Il est peut être corrompu");
-                if(read.contains(CLASSIC_ATTRIBUTE_SYNTAX)) {
-
-                    filtred = read.substring(0,read.indexOf(CLASSIC_ATTRIBUTE_SYNTAX)).trim();
-                    String value = read.substring(read.indexOf(CLASSIC_ATTRIBUTE_SYNTAX)).replace(CLASSIC_ATTRIBUTE_SYNTAX, "");
-
-
-                }else if(!read.equals("")) throw new IllegalStateException(line + ": Le fichier n'est pas dans un format valide. Il est peut être corrompu");
-            }
-        }
-
-        if(braceCount > 0) throw new IllegalStateException("Le fichier n'est pas dans un format valide. Accolade fermante manquante");
-        if(braceCount < 0) throw new IllegalStateException("Le fichier n'est pas dans un format valide. Accolade ouvrante manquante");
-        if(bracketCount > 0) throw new IllegalStateException("Le fichier n'est pas dans un format valide. Crochet fermant manquant");
-        if(bracketCount < 0) throw new IllegalStateException("Le fichier n'est pas dans un format valide. Crochet ouvrant manquant");
-
-        return (ArrayList<Advice>)advices.clone();
-    }
-
     public static void main(String[] args) {
         EnigmaFilesManagement efw = new EnigmaFilesManagement();
-        Enigma[] en = new Enigma[2];
-        /*en[0] = new Enigma("enigme","oui c'est une énigme");
-        en[0].addAdvice(new Advice("advice"));
-        en[0].addAdvice(new Advice("advice2"));
-        en[0].addCondition(new HaveInHands(new Switch(0)));
-        en[0].addCondition(new Activated(new Switch(1)));
-        en[0].addOperation(new Summon(new Player(2),new Case(3)));
-        en[0].addOperation(new Unlock(new Door(4)));
-        en[1] = new Enigma("enigme","oui c'est une énigme");
-        en[1].addAdvice(new Advice("advice"));
-        en[1].addAdvice(new Advice("advice2"));
-        en[1].addCondition(new HaveInHands(new Switch(0)));
-        en[1].addCondition(new Activated(new Switch(1)));
-        en[1].addOperation(new Summon(new Player(2),new Case(3)));
-        en[1].addOperation(new Unlock(new Door(4)));*/
+        ArrayList<Enigma> enigmas = new ArrayList<Enigma>();
+        Enigma e = new Enigma("enigme","oui c'est une énigme");
+        e.addAdvice(new Advice("advice"));
+        e.addAdvice(new Advice("advice2"));
+        e.addCondition(new HaveInHands(new Switch(0)));
+        e.addCondition(new Activated(new Switch(1)));
+        e.addOperation(new Summon(new Player(2),new Case(3)));
+        e.addOperation(new Unlock(new Door(4)));
+
+        Enigma e2 = new Enigma("enigme2","oui c'est une énigme");
+        e2.addAdvice(new Advice("advice"));
+        e2.addAdvice(new Advice("advice2"));
+        e2.addCondition(new HaveInHands(new Switch(0)));
+        e2.addCondition(new Activated(new Switch(1)));
+        e2.addOperation(new Summon(new Player(2),new Case(3)));
+        e2.addOperation(new Unlock(new Door(4)));
+
+        enigmas.add(e);
+        enigmas.add(e2);
 
         try {
-            /*efw.writeEnigmas("TestWrite/write.json",en);*/
-            ArrayList<Enigma> enigmas = efw.readEnigmas("TestWrite/write.json");
-        }catch(IOException e){
-            System.err.println("oups"+e.getMessage());
+            /*efw.writeEnigmas("TestWrite/write.json",enigmas)*/
+           enigmas = efw.readEnigmas("TestWrite/write.json");
+        }catch(IOException ex){
+            System.err.println("oups"+ex.getMessage());
         }
     }
 }
