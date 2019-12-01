@@ -99,6 +99,34 @@ public class Enigma implements ActionListener {
         this.advices = new ArrayList<Advice>();
     }
 
+
+
+    /**
+     * @param title Titre de l'énigme
+     * @param description Description de l'énigme
+     * @param currentAdviceIndex Index pointant l'indice actuel
+     * @param known Indique si l'énigme à été découverte
+     * @param advices Indices
+     * @param conditions Conditions
+     * @param operations Opérations
+     */
+    public Enigma(String title, String description, boolean known, int currentAdviceIndex, ArrayList<Advice> advices, ArrayList<Condition> conditions, ArrayList<Operation> operations){
+        this.currentAdvice = currentAdviceIndex;
+        this.title = title;
+        this.description = description;
+        this.known = known;
+        this.timer = new Timer(0,this);
+        this.conditions = conditions;
+        this.operations = operations;
+        this.advices = advices;
+
+        if (this.known && this.currentAdvice + 1 < this.advices.size()) {
+            this.timer.setInitialDelay(this.advices.get(this.currentAdvice + 1).getDelay() * ONE_MINUTES_IN_MILLISECOND);
+            this.timer.setRepeats(false);
+            this.timer.start();
+        }
+    }
+
     /**
      * Vérifie que toutes les conditions sont satisfaites
      * @param p Joueur ayant intéragit avec l'entité ayant appelé cette méthode
@@ -207,17 +235,6 @@ public class Enigma implements ActionListener {
     }
 
     /**
-     * Index de l'indice actuel
-     * Un index supérieur au nombre d'indices est accépté, cependant, il affiche le dernier indic
-     * @param currentAdvice Index pointant vers l'indice actuel
-     * @throws IllegalArgumentException Si l'index est inférieur à -1
-     */
-    public void setCurrentAdvice(int currentAdvice) {
-        if(currentAdvice < -1) throw new IllegalArgumentException("L'index transmis est inférieur à -1");
-        this.currentAdvice = currentAdvice;
-    }
-
-    /**
      * Ajoute un indice
      * @param a Indice à ajouter
      * @throws IllegalStateException Si l'indice existe déjà dans l'énigme
@@ -288,24 +305,18 @@ public class Enigma implements ActionListener {
     }
 
     /**
-     * Définie si l'énigme à été découverte
-     * @param known L'énigme à été découverte ou non
-     */
-    public void setIsKnown(boolean known){
-        this.known = known;
-    }
-
-    /**
      * Indique que l'énigme à été découverte
      */
     public void discovered(){
-        this.known = true;
-        System.out.println("Nouvelle énigme découverte!");
-        System.out.println(this.getTitle()+" : "+this.getDescription());
-        if(this.currentAdvice + 1 < this.advices.size()) {
-            this.timer.setInitialDelay(this.advices.get(this.currentAdvice + 1).getDelay() * ONE_MINUTES_IN_MILLISECOND);
-            this.timer.setRepeats(false);
-            this.timer.start();
+        if(!this.known) {
+            this.known = true;
+            System.out.println("Nouvelle énigme découverte!");
+            System.out.println(this.getTitle() + " : " + this.getDescription());
+            if (this.currentAdvice + 1 < this.advices.size()) {
+                this.timer.setInitialDelay(this.advices.get(this.currentAdvice + 1).getDelay() * ONE_MINUTES_IN_MILLISECOND);
+                this.timer.setRepeats(false);
+                this.timer.start();
+            }
         }
     }
 

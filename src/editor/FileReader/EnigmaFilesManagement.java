@@ -13,6 +13,7 @@ import editor.Entity.Item.Switch;
 import editor.Entity.Player.Player;
 import editor.Enums.*;
 import editor.map.Case;
+import org.lwjgl.Sys;
 
 import java.io.*;
 import java.util.*;
@@ -42,7 +43,7 @@ public class EnigmaFilesManagement {
     /**
      * Syntaxe d'un nouveau tableau de "classe"
      */
-    private final static String CLASS_TAB_SYNTAX = ": [";
+    private final static String NEW_CLASS_TAB_SYNTAX = ": [";
 
     /**
      * Syntaxe de fin d'un tableau de "classe"
@@ -207,7 +208,7 @@ public class EnigmaFilesManagement {
         this.indentation++;
 
         this.writer.newLine();
-        this.writer.write( this.getIndentation() + "\"Enigmas\"" + CLASS_TAB_SYNTAX);
+        this.writer.write( this.getIndentation() + "\"Enigmas\"" + NEW_CLASS_TAB_SYNTAX);
         this.indentation++;
 
         boolean firstEnigma = true;
@@ -237,21 +238,21 @@ public class EnigmaFilesManagement {
                         this.writer.write( this.getIndentation() + "\"" + NOT_ATTRIBUTE_BEFORE_SYNTAX + eAtt.toLowerString() + "\"" + CLASSIC_ATTRIBUTE_SYNTAX + "\"" + enigmaAttributes.get(eAtt) + "\"");
                         break;
                     case ADVICES:
-                        this.writer.write( this.getIndentation() + "\"" + eAtt.toLowerString() + "\"" + CLASS_TAB_SYNTAX);
+                        this.writer.write( this.getIndentation() + "\"" + eAtt.toLowerString() + "\"" + NEW_CLASS_TAB_SYNTAX);
                         this.indentation++;
                         this.writeAdvices(e.getAllAdvices());
                         this.indentation--;
                         this.writer.write(this.getIndentation() + END_CLASS_TAB_SYNTAX);
                         break;
                     case CONDITIONS:
-                        this.writer.write( this.getIndentation() + "\"" + eAtt.toLowerString() + "\"" + CLASS_TAB_SYNTAX);
+                        this.writer.write( this.getIndentation() + "\"" + eAtt.toLowerString() + "\"" + NEW_CLASS_TAB_SYNTAX);
                         this.indentation++;
                         this.writeConditions(e.getAllConditions());
                         this.indentation--;
                         this.writer.write(this.getIndentation() + END_CLASS_TAB_SYNTAX);
                         break;
                     case OPERATIONS:
-                        this.writer.write( this.getIndentation() + "\"" + eAtt.toLowerString() + "\"" + CLASS_TAB_SYNTAX);
+                        this.writer.write( this.getIndentation() + "\"" + eAtt.toLowerString() + "\"" + NEW_CLASS_TAB_SYNTAX);
                         this.indentation++;
                         this.writeOperations(e.getAllOperations());
                         this.indentation--;
@@ -285,86 +286,59 @@ public class EnigmaFilesManagement {
      * @throws NumberFormatException
      * @throws IllegalStateException
      * @throws IllegalArgumentException
+     * @throws ClassNotFoundException
      */
     @SuppressWarnings("unchecked")
-    public ArrayList<Enigma> readEnigmas(String filePath) throws IOException {
+    public ArrayList<Enigma> readEnigmas(String filePath) throws IOException, ClassNotFoundException {
         if(!filePath.endsWith(".json")) throw new IllegalArgumentException("Le fichier n'est pas dans un format valide \".json\"");
 
         ArrayList<Enigma> enigmas = new ArrayList<Enigma>();
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
         String read;
         String filtred = "";
+        String value;
         int braceCount = 0;
         int bracketCount = 0;
         int line = 0;
-        Enigma currentEnigma = null;
-        boolean pass;
+        HashMap<EnigmaAttributes,String> eAtt = new HashMap<EnigmaAttributes,String>();
 
-        if((read  = reader.readLine()).contains(CLASS_TAB_SYNTAX) && read.substring(0,read.indexOf(CLASS_TAB_SYNTAX)).equals("Enigma")){
-            bracketCount++;
+        if(reader.readLine().trim().equals(NEW_OBJECT_SYNTAX)){
+            braceCount++;
             line++;
-            while((read = reader.readLine()) != null) {
+            read = reader.readLine().replaceAll("\"", "").trim();
+            if(read.contains(NEW_CLASS_TAB_SYNTAX) && read.substring(0,read.indexOf(NEW_CLASS_TAB_SYNTAX)).equals("Enigmas")) {
+                bracketCount++;
                 line++;
-                pass = false;
+                while ((read = reader.readLine()) != null) {
+                    line++;
+                    read = read.replaceAll("\"", "").replaceAll(",", "").trim();
 
-                if (read.contains(NEW_OBJECT_SYNTAX)) {
-                    if (braceCount == 0 && bracketCount == 1){
-                        System.out.println(currentEnigma);
-                        currentEnigma = new Enigma();
+                    if (read.equals(NEW_OBJECT_SYNTAX)) braceCount++;
+                    if (read.equals(END_CLASS_TAB_SYNTAX)) bracketCount--;
+                    if (read.equals(END_OBJECT_SYNTAX)) {
+                        braceCount--;
+                        System.out.println(eAtt.get(EnigmaAttributes.TITLE)+" "+eAtt.get(EnigmaAttributes.DESCRIPTION)+" "+Boolean.parseBoolean(eAtt.get(EnigmaAttributes.KNOWN))+" "+Integer.parseInt(eAtt.get(EnigmaAttributes.CURRENT_ADVICE_INDEX)));
+                        if(braceCount == 1 && bracketCount == 1) enigmas.add(new Enigma(eAtt.get(EnigmaAttributes.TITLE),eAtt.get(EnigmaAttributes.DESCRIPTION),Boolean.parseBoolean(eAtt.get(EnigmaAttributes.KNOWN)),Integer.parseInt(eAtt.get(EnigmaAttributes.CURRENT_ADVICE_INDEX)),null,null,null));
                     }
-                    braceCount++;
-                    pass = true;
-                }
 
-                if (read.contains(END_OBJECT_SYNTAX)) {
-                    if(braceCount > 0) braceCount--;
-                    pass = true;
-                }
-
-                if (read.contains(END_CLASS_TAB_SYNTAX)) {
-                    if(bracketCount > 0) bracketCount--;
-                    pass = true;
-                }
-
-                if (!pass){
-                    if(currentEnigma == null) throw new IllegalStateException(line + ": Le fichier n'est pas dans un format valide. Il est peut être corrompu");
-                    if(read.contains(CLASS_TAB_SYNTAX)) {
-
-                        filtred = read.substring(0,read.indexOf(CLASS_TAB_SYNTAX)).trim();
-                        System.out.println(filtred);
-
-                        if(filtred.equals(EnigmaAttributes.ADVICES.toLowerString())){
-                            this.readAdvices(reader,line);
-                        }
-
+                    if (read.contains(NEW_CLASS_TAB_SYNTAX)) {
+                        bracketCount++;
                     }else if(read.contains(CLASSIC_ATTRIBUTE_SYNTAX)) {
+                        filtred = read.substring(0,read.indexOf(CLASSIC_ATTRIBUTE_SYNTAX));
+                        value = read.substring(read.indexOf(CLASSIC_ATTRIBUTE_SYNTAX)).replace(":","").trim();
 
-                        filtred = read.substring(0,read.indexOf(CLASSIC_ATTRIBUTE_SYNTAX)).trim();
-                        String value = read.substring(read.indexOf(CLASSIC_ATTRIBUTE_SYNTAX)).replace(CLASSIC_ATTRIBUTE_SYNTAX, "");
-
-                        if(filtred.equals(EnigmaAttributes.TITLE.toLowerString())){
-                            currentEnigma.setTitle(value.replaceAll("\"",""));
-                        }
-
-                        if(filtred.equals(EnigmaAttributes.DESCRIPTION.toLowerString())){
-                            currentEnigma.setDescription(value.replaceAll("\"",""));
-                        }
-
-                        if(filtred.equals(EnigmaAttributes.CURRENT_ADVICE_INDEX.toLowerString())){
-                                currentEnigma.setCurrentAdvice(Integer.parseInt(value));
-                        }
-
-                        if(filtred.equals(EnigmaAttributes.KNOWN.toLowerString())){
-                            currentEnigma.setIsKnown(Boolean.parseBoolean(value));
-                        }
-                    }else if(!read.equals("")) throw new IllegalStateException(line + ": Le fichier n'est pas dans un format valide. Il est peut être corrompu");
+                        if(filtred.equals(EnigmaAttributes.TITLE.toLowerString())) eAtt.put(EnigmaAttributes.TITLE,value);
+                        if(filtred.equals(EnigmaAttributes.DESCRIPTION.toLowerString())) eAtt.put(EnigmaAttributes.DESCRIPTION,value);
+                        if(filtred.equals(EnigmaAttributes.KNOWN.toLowerString())) eAtt.put(EnigmaAttributes.KNOWN,value);
+                        if(filtred.equals(EnigmaAttributes.CURRENT_ADVICE_INDEX.toLowerString())) eAtt.put(EnigmaAttributes.CURRENT_ADVICE_INDEX,value);
+                    }
                 }
-            }
 
-            if(braceCount > 0) throw new IllegalStateException("Le fichier n'est pas dans un format valide. Accolade fermante manquante");
-            if(braceCount < 0) throw new IllegalStateException("Le fichier n'est pas dans un format valide. Accolade ouvrante manquante");
-            if(bracketCount > 0) throw new IllegalStateException("Le fichier n'est pas dans un format valide. Crochet fermant manquant");
-            if(bracketCount < 0) throw new IllegalStateException("Le fichier n'est pas dans un format valide. Crochet ouvrant manquant");
+                if (braceCount > 0) throw new IllegalStateException("Le fichier n'est pas dans un format valide. Accolade fermante manquante");
+                if (braceCount < 0) throw new IllegalStateException("Le fichier n'est pas dans un format valide. Accolade ouvrante manquante");
+                if (bracketCount > 0) throw new IllegalStateException("Le fichier n'est pas dans un format valide. Crochet fermant manquant");
+                if (bracketCount < 0) throw new IllegalStateException("Le fichier n'est pas dans un format valide. Crochet ouvrant manquant");
+            }else throw new IllegalStateException(line + ": Le fichier n'est pas dans un format valide. Il est peut être corrompu");
         }else throw new IllegalStateException(line + ": Le fichier n'est pas dans un format valide. Il est peut être corrompu");
 
         return (ArrayList<Enigma>)enigmas.clone();
@@ -395,7 +369,10 @@ public class EnigmaFilesManagement {
         try {
             /*efw.writeEnigmas("TestWrite/write.json",enigmas)*/
            enigmas = efw.readEnigmas("TestWrite/write.json");
-        }catch(IOException ex){
+            for (Enigma en: enigmas) {
+                System.out.println(en);
+            }
+        }catch(IOException | ClassNotFoundException ex){
             System.err.println("oups"+ex.getMessage());
         }
     }
