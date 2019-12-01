@@ -19,13 +19,13 @@
                ],
                "operations": [
                     {
-                         "~PATH": "editor.Enigma.Operation.Summon",
+                         "~path": "editor.Enigma.Operation.Summon",
                          "entity": "2",
                          "case": "3"
                     },
 
                     {
-                         "~PATH": "editor.Enigma.Operation.Unlock",
+                         "~path": "editor.Enigma.Operation.Unlock",
                          "entity": "4"
                     }
                ],
@@ -63,13 +63,13 @@
                ],
                "operations": [
                     {
-                         "~PATH": "editor.Enigma.Operation.Summon",
+                         "~path": "editor.Enigma.Operation.Summon",
                          "entity": "2",
                          "case": "3"
                     },
 
                     {
-                         "~PATH": "editor.Enigma.Operation.Unlock",
+                         "~path": "editor.Enigma.Operation.Unlock",
                          "entity": "4"
                     }
                ],
