@@ -11,7 +11,7 @@ public class SaveMapTest {
 
         TextureProxy p =  new TextureProxy();
 
-        TextureArea a = new TextureArea(16,"assets/monsters/019.png",4,1,16);
+        TextureArea a = new TextureArea(64,"assets/monsters/019.png",4,1,16);
         TextureArea b = new TextureArea(16,"assets/monsters/023s.png",4,17,117);
         p.addTexture(a);
         p.addTexture(b);

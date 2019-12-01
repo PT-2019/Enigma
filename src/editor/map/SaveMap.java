@@ -63,17 +63,17 @@ public class SaveMap {
 			//element map in xml file
 			Element map = document.createElement("map");
 			document.appendChild(map);
-			map.setAttribute("version", "M@teo21");
+			map.setAttribute("version", "1.3.1");
 			map.setAttribute("tiledversion", "1.0");
 			map.setAttribute("orientation", "orthogonal");
-			map.setAttribute("renderorder", "M@teo21");
+			map.setAttribute("renderorder", "right-down");
 			map.setAttribute("width", String.valueOf(gameMap.getCol()));
 			map.setAttribute("height", String.valueOf(gameMap.getRow()));
-			map.setAttribute("tilewidth", "16");
-			map.setAttribute("tileheight", "16");
+			map.setAttribute("tilewidth", String.valueOf(textures.get(0).getTile()));
+			map.setAttribute("tileheight", String.valueOf(textures.get(0).getTile()));
 			map.setAttribute("infinite", "0");
-			map.setAttribute("nextlayerid", "M");
-			map.setAttribute("nextobjectid", "M");
+			map.setAttribute("nextlayerid", "1");
+			map.setAttribute("nextobjectid", "3");
 
 			//tileset représente les textures dans le fichier xml
             for (int i = 0; i < textures.size(); i++) {
@@ -91,7 +91,7 @@ public class SaveMap {
                 map.appendChild(tileset);
 
                 Element image = document.createElement("image");
-                image.setAttribute("source",textures.get(i).getPath());
+                image.setAttribute("source","../../"+textures.get(i).getPath());
 
                 image.setAttribute("width",String.valueOf(textures.get(i).getWidth()));
                 image.setAttribute("height",String.valueOf(textures.get(i).getHeight()));
