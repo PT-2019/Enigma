@@ -39,10 +39,10 @@ public abstract class Operation {
      * @return EnumMap de l'objet
      * @see editor.Enums.OperationAttributes
      */
-    public HashMap<Attributes,String> objectToMap(){
-        HashMap<Attributes,String> object = new HashMap<Attributes,String>();
-        object.put(OperationAttributes.PATH,this.getClass().getName());
-        object.put(OperationAttributes.ENTITY, this.entity.getID() + "");
+    public HashMap<String,Object> objectToMap(){
+        HashMap<String,Object> object = new HashMap<>();
+        object.put("path",this.getClass().getName());
+        object.put("entity", this.entity.getID() + "");
         return object;
     }
 }

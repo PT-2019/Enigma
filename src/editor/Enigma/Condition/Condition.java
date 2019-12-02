@@ -56,10 +56,10 @@ public abstract class Condition {
      * @return EnumMap de l'objet
      * @see editor.Enums.ConditionAttributes
      */
-    public HashMap<Attributes,String> objectToMap(){
-        HashMap<Attributes,String> object = new HashMap<Attributes,String>();
-        object.put(ConditionAttributes.PATH,this.getClass().getName());
-        object.put(ConditionAttributes.ENTITY, this.entity.getID() + "");
+    public HashMap<String,Object> objectToMap(){
+        HashMap<String,Object> object = new HashMap<>();
+        object.put("path",this.getClass().getName());
+        object.put("entity", this.entity.getID() + "");
         return object;
     }
 }

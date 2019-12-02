@@ -340,13 +340,31 @@ public class Enigma implements ActionListener {
      * @return EnumMap de l'objet
      * @see editor.Enums.EnigmaAttributes
      */
-    public HashMap<Attributes,String> objectToMap(){
-        HashMap<Attributes,String> object = new HashMap<Attributes,String>();
-        object.put(EnigmaAttributes.PATH,this.getClass().getName());
-        object.put(EnigmaAttributes.TITLE,this.title);
-        object.put(EnigmaAttributes.DESCRIPTION,this.description);
-        object.put(EnigmaAttributes.KNOWN,this.known + "");
-        object.put(EnigmaAttributes.CURRENT_ADVICE_INDEX,this.currentAdvice + "");
+    public HashMap<String,Object> objectToMap(){
+        HashMap<String,Object> object = new HashMap<>();
+        object.put("path",this.getClass().getName());
+        object.put("title",this.title);
+        object.put("description",this.description);
+        object.put("known",this.known + "");
+        object.put("currentAdviceIndex",this.currentAdvice + "");
+
+        ArrayList<HashMap<String,Object>> advices = new ArrayList<>();
+        for(Advice a : this.advices) {
+            advices.add(a.objectToMap());
+        }
+        object.put("advices",advices);
+
+        ArrayList<HashMap<String,Object>> conditions = new ArrayList<>();
+        for(Condition c : this.conditions) {
+            conditions.add(c.objectToMap());
+        }
+        object.put("conditions",conditions);
+
+        ArrayList<HashMap<String,Object>> operations = new ArrayList<>();
+        for(Operation o : this.operations) {
+            operations.add(o.objectToMap());
+        }
+        object.put("operations",operations);
         return object;
     }
 

@@ -86,7 +86,7 @@ public class EnigmaFilesManagement {
      * @return Indentation
      */
     private String getIndentation(){
-        return INDENTATION.repeat(Math.max(0, this.indentation));
+        return INDENTATION;//.repeat(Math.max(0, this.indentation));
     }
 
     /**

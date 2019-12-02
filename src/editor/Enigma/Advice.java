@@ -87,11 +87,11 @@ public class Advice {
      * @return EnumMap de l'objet
      * @see editor.Enums.AdviceAttributes
      */
-    public HashMap<Attributes,String> objectToMap(){
-        HashMap<Attributes,String> object = new HashMap<Attributes,String>();
-        object.put(AdviceAttributes.PATH,this.getClass().getName());
-        object.put(AdviceAttributes.ADVICE,this.advice);
-        object.put(AdviceAttributes.DELAY,this.delay + "");
+    public HashMap<String,Object> objectToMap(){
+        HashMap<String,Object> object = new HashMap<>();
+        object.put("path",this.getClass().getName());
+        object.put("advice",this.advice);
+        object.put("delay",this.delay + "");
         return object;
     }
 

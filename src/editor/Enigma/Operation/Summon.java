@@ -48,11 +48,11 @@ public class Summon extends Operation {
      * @see editor.Enums.SummonAttributes
      */
     @Override
-    public HashMap<Attributes,String> objectToMap(){
-        HashMap<Attributes,String> object = new HashMap<Attributes,String>();
-        object.put(SummonAttributes.PATH,this.getClass().getName());
-        object.put(SummonAttributes.ENTITY, this.entity.getID() + "");
-        object.put(SummonAttributes.CASE, this.spawn.getID() + "");
+    public HashMap<String,Object> objectToMap(){
+        HashMap<String,Object> object = new HashMap<>();
+        object.put("path",this.getClass().getName());
+        object.put("entity", this.entity.getID() + "");
+        object.put("case", this.spawn.getID() + "");
         return object;
     }
 
