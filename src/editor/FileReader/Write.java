@@ -19,6 +19,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Ecrit des objets dans un fichier.
+ * Ecrit uniquement des énigmes pour l'instant
+ * @see editor.Enigma.Enigma
+ * @version 2.0
+ */
 public class Write {
 
     /**
@@ -52,38 +58,123 @@ public class Write {
     private final static String CLASSIC_ATTRIBUTE_SYNTAX = ": ";
 
     /**
-     * Syntaxe d'un élément qui n'est pas un attribut
+     * Ecrit des énigmes dans un fichier
+     * @param filePath Chemin vers le fichier
+     * @param enigmas Enigmes à écrire
+     * @throws IOException En cas d'erreur d'écriture
+     * @throws IllegalArgumentException Si le fichier n'est pas un .json ou si les énigmes transmises ne correspondent pas à un format valide
      */
-    private final static String NOT_ATTRIBUTE_BEFORE_SYNTAX = "~";
-
-    public static void write(String filePath, ArrayList<Enigma> enigmas) throws IOException {
+    @SuppressWarnings("unchecked")
+    public static void writeEnigmas(String filePath, List<Enigma> enigmas) throws IOException {
         if(!filePath.endsWith(".json")) throw new IllegalArgumentException("Le fichier n'est pas dans un format valide \".json\"");
 
         BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
         int indentation = 0;
 
         writer.write(getIndentationToString(indentation) + NEW_OBJECT_SYNTAX);
-        writer.newLine();
 
-        for(Enigma e: enigmas) write(writer, e.objectToMap(), indentation);
+        boolean firstEnigma = true;
+        for(Enigma e: enigmas) {
+            HashMap<String,Object> hash = e.objectToMap();
+
+            if(hash.containsKey("path")){
+                String className = (String)hash.get("path");
+
+                if(firstEnigma) {
+                    indentation++;
+                    writer.newLine();
+                    writer.write(getIndentationToString(indentation) + "\"" + className + "\"" + NEW_CLASS_TAB_SYNTAX);
+                }
+
+                if(firstEnigma) firstEnigma = false;
+                else writer.write(",");
+
+                indentation++;
+                writer.newLine();
+                writer.write(getIndentationToString(indentation) + NEW_OBJECT_SYNTAX);
+
+                boolean firstAttr = true;
+                for(Map.Entry<String,Object> attribute : hash.entrySet()) {
+                    if(firstAttr) firstAttr = false;
+                    else writer.write(",");
+
+                    if(attribute.getValue() instanceof List){
+
+                        writer.newLine();
+                        indentation++;
+                        writer.write(getIndentationToString(indentation) + "\"" + attribute.getKey() + "\"" + NEW_CLASS_TAB_SYNTAX);
+
+                        writer.newLine();
+                        indentation++;
+                        writer.write(getIndentationToString(indentation) + NEW_OBJECT_SYNTAX);
+
+                        boolean firstAttrClass = true;
+                        for (Object o: (ArrayList)attribute.getValue()) {
+                            if(firstAttrClass) firstAttrClass = false;
+                            else writer.write(",");
+
+                            if(o instanceof Map){
+                                write(writer, (HashMap<String, Object>) o, indentation);
+                            }
+                            else throw new IllegalArgumentException("Erreur dans le map de l'objet: " + className);
+                        }
+
+                        writer.newLine();
+                        writer.write(getIndentationToString(indentation) + END_OBJECT_SYNTAX);
+
+                        writer.newLine();
+                        indentation--;
+                        writer.write(getIndentationToString(indentation) + END_CLASS_TAB_SYNTAX);
+                        indentation--;
+
+                    }else if (attribute.getValue() instanceof String) {
+                        if(!attribute.getKey().equals("path")) {
+                            writer.newLine();
+                            writer.write(getIndentationToString(indentation + 1) + "\"" + attribute.getKey() + "\"" + CLASSIC_ATTRIBUTE_SYNTAX + "\"" + attribute.getValue() + "\"");
+                        }else firstAttr = true;
+
+                    } else throw new IllegalArgumentException("Erreur dans le map de l'objet: " + className + ". Ni un List, ni un String");
+                }
+
+                writer.newLine();
+                writer.write(getIndentationToString(indentation) + END_OBJECT_SYNTAX);
+                indentation--;
+                writer.newLine();
+
+            }else throw new IllegalStateException("Impossible de trouver le chemin de la classe");
+        }
 
         indentation--;
-        writer.write(getIndentationToString(indentation) + END_CLASS_TAB_SYNTAX);
         writer.newLine();
+        writer.write(getIndentationToString(indentation) + END_CLASS_TAB_SYNTAX);
+
+        indentation--;
+        writer.newLine();
+        writer.write(getIndentationToString(indentation) + END_OBJECT_SYNTAX);
+
         writer.close();
     }
 
+    /**
+     * Ecrit un objet dans le fichier
+     * @param writer Ecrivain dans le fichier en question
+     * @param object Object à écrire
+     * @param indentation Nombre d'indentaions actuel
+     * @throws IOException En cas d'erreur d'écriture
+     * @throws IllegalArgumentException Si l'objet transmis ne correspond pas à un format valide
+     */
     @SuppressWarnings("unchecked")
-    private static void write(BufferedWriter writer, HashMap<String,Object> object, int indentation) throws IOException {
+    private static void write(BufferedWriter writer, Map<String,Object> object, int indentation) throws IOException {
 
         if(object.containsKey("path")){
             String className = (String)object.get("path");
 
             indentation++;
-            writer.write(getIndentationToString(indentation) + "\"" + className + "\"" + NEW_CLASS_TAB_SYNTAX);
             writer.newLine();
+            writer.write(getIndentationToString(indentation) + "\"" + className + "\"" + NEW_CLASS_TAB_SYNTAX);
 
             indentation++;
+            writer.newLine();
             writer.write(getIndentationToString(indentation) + NEW_OBJECT_SYNTAX);
 
             boolean first = true;
@@ -94,16 +185,19 @@ public class Write {
                 if(attribute.getValue() instanceof List){
 
                     writer.newLine();
+                    indentation++;
                     writer.write(getIndentationToString(indentation) + "\"" + attribute.getKey() + "\"" + NEW_CLASS_TAB_SYNTAX);
 
                     writer.newLine();
                     indentation++;
                     writer.write(getIndentationToString(indentation) + NEW_OBJECT_SYNTAX);
 
+                    boolean first2 = true;
                     for (Object o: (ArrayList)attribute.getValue()) {
+                        if(first2) first2 = false;
+                        else writer.write(",");
 
                         if(o instanceof Map){
-                            writer.newLine();
                             write(writer, (HashMap<String, Object>) o, indentation);
                         }
                         else throw new IllegalArgumentException("Erreur dans le map de l'objet: " + className);
@@ -115,6 +209,7 @@ public class Write {
                     writer.newLine();
                     indentation--;
                     writer.write(getIndentationToString(indentation) + END_CLASS_TAB_SYNTAX);
+                    indentation--;
 
                 }else if (attribute.getValue() instanceof String) {
                         if(!attribute.getKey().equals("path")) {
@@ -127,15 +222,19 @@ public class Write {
 
             writer.newLine();
             writer.write(getIndentationToString(indentation) + END_OBJECT_SYNTAX);
-            writer.newLine();
 
             indentation--;
+            writer.newLine();
             writer.write(getIndentationToString(indentation) + END_CLASS_TAB_SYNTAX);
-            indentation--;
 
         }else throw new IllegalStateException("Impossible de trouver le chemin de la classe");
     }
 
+    /**
+     * Obtenir un chaine de caractères d'indentations
+     * @param indentation Nombre d'indentations
+     * @return Une String du nombre d'indentation
+     */
     private static String getIndentationToString(int indentation){
         StringBuilder s = new StringBuilder();
         for(int i = 0; i < indentation; i++) s.append(INDENTATION);
@@ -163,6 +262,10 @@ public class Write {
         enigmas.add(e);
         enigmas.add(e2);
 
-        Write.write("TestWrite/write.json",enigmas);
+        Write.writeEnigmas("TestWrite/write.json",enigmas);
+        enigmas = Read.readEnigmas("TestWrite/write.json");
+        for (Enigma en: enigmas) {
+            System.out.println(en.toLongString());
+        }
     }
 }
