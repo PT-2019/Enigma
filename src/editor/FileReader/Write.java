@@ -131,6 +131,7 @@ public class Write {
 
             indentation--;
             writer.write(getIndentationToString(indentation) + END_CLASS_TAB_SYNTAX);
+            indentation--;
 
         }else throw new IllegalStateException("Impossible de trouver le chemin de la classe");
     }
