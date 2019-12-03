@@ -8,7 +8,10 @@
                                    "entity": "2",
                                    "case": "3"
                               }
-                         ],
+                         ]
+                    },
+
+                    {
                          "editor.Enigma.Operation.Unlock": [
                               {
                                    "entity": "4"
@@ -26,7 +29,10 @@
                                    "delay": "2",
                                    "advice": "advice"
                               }
-                         ],
+                         ]
+                    },
+
+                    {
                          "editor.Enigma.Advice": [
                               {
                                    "delay": "2",
@@ -42,7 +48,10 @@
                               {
                                    "entity": "0"
                               }
-                         ],
+                         ]
+                    },
+
+                    {
                          "editor.Enigma.Condition.Activated": [
                               {
                                    "entity": "1"
@@ -50,8 +59,8 @@
                          ]
                     }
                ]
-          }
-,
+          },
+
           {
                "operations": [
                     {
@@ -60,7 +69,10 @@
                                    "entity": "2",
                                    "case": "3"
                               }
-                         ],
+                         ]
+                    },
+
+                    {
                          "editor.Enigma.Operation.Unlock": [
                               {
                                    "entity": "4"
@@ -78,7 +90,10 @@
                                    "delay": "2",
                                    "advice": "advice"
                               }
-                         ],
+                         ]
+                    },
+
+                    {
                          "editor.Enigma.Advice": [
                               {
                                    "delay": "2",
@@ -94,7 +109,10 @@
                               {
                                    "entity": "0"
                               }
-                         ],
+                         ]
+                    },
+
+                    {
                          "editor.Enigma.Condition.Activated": [
                               {
                                    "entity": "1"
@@ -103,6 +121,5 @@
                     }
                ]
           }
-
-]
+     ]
 }

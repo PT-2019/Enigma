@@ -84,10 +84,11 @@ public class Write {
                     indentation++;
                     writer.newLine();
                     writer.write(getIndentationToString(indentation) + "\"" + className + "\"" + NEW_CLASS_TAB_SYNTAX);
+                    firstEnigma = false;
+                } else {
+                    writer.write(",");
+                    writer.newLine();
                 }
-
-                if(firstEnigma) firstEnigma = false;
-                else writer.write(",");
 
                 indentation++;
                 writer.newLine();
@@ -111,7 +112,14 @@ public class Write {
                         boolean firstAttrClass = true;
                         for (Object o: (ArrayList)attribute.getValue()) {
                             if(firstAttrClass) firstAttrClass = false;
-                            else writer.write(",");
+                            else {
+                                writer.newLine();
+                                writer.write(getIndentationToString(indentation) + END_OBJECT_SYNTAX + ",");
+
+                                writer.newLine();
+                                writer.newLine();
+                                writer.write(getIndentationToString(indentation) + NEW_OBJECT_SYNTAX);
+                            }
 
                             if(o instanceof Map){
                                 write(writer, (HashMap<String, Object>) o, indentation);
@@ -139,12 +147,10 @@ public class Write {
                 writer.newLine();
                 writer.write(getIndentationToString(indentation) + END_OBJECT_SYNTAX);
                 indentation--;
-                writer.newLine();
 
             }else throw new IllegalStateException("Impossible de trouver le chemin de la classe");
         }
 
-        indentation--;
         writer.newLine();
         writer.write(getIndentationToString(indentation) + END_CLASS_TAB_SYNTAX);
 

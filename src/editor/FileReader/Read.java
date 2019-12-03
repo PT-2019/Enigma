@@ -7,6 +7,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Read {
 
@@ -40,13 +42,98 @@ public class Read {
      */
     private final static String CLASSIC_ATTRIBUTE_SYNTAX = ": ";
 
+    private static String extractBefore(String string, String regex){
+        return string.substring(0,string.indexOf(regex)).replace("\"","").replace(",","").trim();
+    }
+
+    private static String extractAfter(String string, String regex){
+        return string.substring(string.indexOf(regex)).replace(regex,"").replace("\"","").replace(",","").trim();
+    }
+
+
     public static ArrayList<Enigma> readEnigmas(String filePath) throws IOException {
         if(!filePath.endsWith(".json")) throw new IllegalArgumentException("Le fichier n'est pas dans un format valide \".json\"");
 
+        ArrayList<Object> objects = new ArrayList<>();
         ArrayList<Enigma> enigmas = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
 
+        objects = read(reader,0);
+
+        for (Object o: objects) {
+            enigmas.add((Enigma) o);
+        }
+
         reader.close();
         return enigmas;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static ArrayList<Object> read(BufferedReader reader, int line) throws IOException {
+
+        HashMap<String,Object> attributes = new HashMap<>();
+        ArrayList<Object> objects = new ArrayList<>();
+        String read;
+        boolean firstBrace = true;
+        int braceCount = 0;
+        int bracketCount = 0;
+        int startingClassBrace = -1;
+        int startingClassBracket = -1;
+
+        while((read = reader.readLine()) != null){
+            read = read.trim();
+            line++;
+
+            if (read.contains(NEW_OBJECT_SYNTAX)){
+                braceCount++;
+                if(startingClassBrace < 0 && !firstBrace){
+                    startingClassBrace = braceCount;
+                }
+
+                if (firstBrace) firstBrace = false;
+            }
+
+            if (read.contains(END_OBJECT_SYNTAX)){
+                if(braceCount == startingClassBrace){
+                    attributes = new HashMap<>();
+                    startingClassBrace = -1;
+                }
+                braceCount--;
+            }
+
+            if (read.contains(END_CLASS_TAB_SYNTAX)){
+                if(bracketCount == startingClassBracket){
+                    attributes = new HashMap<>();
+                    startingClassBracket = 1;
+                }
+                bracketCount--;
+            }
+
+            if (read.contains(NEW_CLASS_TAB_SYNTAX)){
+                bracketCount++;
+                if(startingClassBracket < 0){
+                    startingClassBracket = bracketCount;
+                } else {
+                    attributes.put(extractBefore(read, NEW_CLASS_TAB_SYNTAX),read(reader, line));
+                }
+
+            } else {
+                if (read.contains(CLASSIC_ATTRIBUTE_SYNTAX)){
+                    attributes.put(extractBefore(read, CLASSIC_ATTRIBUTE_SYNTAX),extractAfter(read, CLASSIC_ATTRIBUTE_SYNTAX));
+                }
+            }
+
+            /*for(Map.Entry<String,Object> attribute : attributes.entrySet()) {
+                System.out.println(attribute.getKey()+" "+attribute.getValue().toString());
+            }
+            System.out.println();*/
+        }
+
+        if (braceCount > 0) throw new IllegalStateException("Accolade fermante manquante");
+        if (braceCount < 0) throw new IllegalStateException("Accolade ouvrante manquante");
+        if (bracketCount > 0) throw new IllegalStateException("Crochet fermant manquant");
+        if (bracketCount < 0) throw new IllegalStateException("Crochet ovrant manquant");
+
+        return objects;
     }
 }
