@@ -5,6 +5,7 @@ import editor.Enigma.Operation.Operation;
 import editor.Entity.Player.Player;
 import editor.Enums.Attributes;
 import editor.Enums.EnigmaAttributes;
+import org.lwjgl.Sys;
 
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;
@@ -12,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * Enigma gère une énigme. Une énigme est définie par les {@link editor.Enigma.Condition.Condition conditions} à satisfaire pour résoudre l'énigme ainsi que les {@link editor.Enigma.Operation.Operation opérations} réalisées si toutes les conditions sont satisfaites.
@@ -99,27 +101,28 @@ public class Enigma implements ActionListener {
         this.advices = new ArrayList<Advice>();
     }
 
-
-
     /**
-     * @param title Titre de l'énigme
-     * @param description Description de l'énigme
-     * @param currentAdviceIndex Index pointant l'indice actuel
-     * @param known Indique si l'énigme à été découverte
-     * @param advices Indices
-     * @param conditions Conditions
-     * @param operations Opérations
+     * @param attributes Attributs de la classe
+     * @throws IllegalArgumentException Si un attribut est manquant
      */
-    public Enigma(String title, String description, boolean known, int currentAdviceIndex, ArrayList<Advice> advices, ArrayList<Condition> conditions, ArrayList<Operation> operations){
-        this.currentAdvice = currentAdviceIndex;
-        this.title = title;
-        this.description = description;
-        this.known = known;
-        this.timer = new Timer(0,this);
-        this.conditions = conditions;
-        this.operations = operations;
-        this.advices = advices;
+    @SuppressWarnings("unchecked")
+    public Enigma(Map<String,Object> attributes){
+        if(attributes.containsKey("title")) this.title = (String) attributes.get("title");
+        else throw new IllegalArgumentException("Attribut \"title\" abscent");
+        if(attributes.containsKey("description")) this.description = (String) attributes.get("description");
+        else throw new IllegalArgumentException("Attribut \"description\" abscent");
+        if(attributes.containsKey("known")) this.known = Boolean.parseBoolean((String) attributes.get("known"));
+        else throw new IllegalArgumentException("Attribut \"known\" abscent");
+        if(attributes.containsKey("currentAdviceIndex")) this.currentAdvice = Integer.parseInt((String) attributes.get("currentAdviceIndex"));
+        else throw new IllegalArgumentException("Attribut \"currentAdviceIndex\" abscent");
+        if(attributes.containsKey("advices")) this.advices = (ArrayList<Advice>) attributes.get("advices");
+        else throw new IllegalArgumentException("Attribut \"advices\" abscent");
+        if(attributes.containsKey("conditions")) this.conditions = (ArrayList<Condition>) attributes.get("conditions");
+        else throw new IllegalArgumentException("Attribut \"conditions\" abscent");
+        if(attributes.containsKey("operations")) this.operations =  (ArrayList<Operation>) attributes.get("operations");
+        else throw new IllegalArgumentException("Attribut \"operations\" abscent");
 
+        this.timer = new Timer(0,this);
         if (this.known && this.currentAdvice + 1 < this.advices.size()) {
             this.timer.setInitialDelay(this.advices.get(this.currentAdvice + 1).getDelay() * ONE_MINUTES_IN_MILLISECOND);
             this.timer.setRepeats(false);

@@ -7,6 +7,7 @@ import editor.Enums.ConditionAttributes;
 import editor.FileReader.IDFactory;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Une condition à pour but d'être satisfaite par une action des joueurs. Elle diffère fonction du type de condition
@@ -26,6 +27,15 @@ public abstract class Condition {
      */
     public Condition(Entity e){
         this.entity = e;
+    }
+
+    /**
+     * @param attributes Attributs de la classe
+     * @throws IllegalArgumentException Si un attribut est manquant
+     */
+    public Condition(Map<String,Object> attributes){
+        if(attributes.containsKey("entity")) this.entity = new Player();
+        else throw new IllegalArgumentException("Attribut \"entity\" abscent");
     }
 
     /**

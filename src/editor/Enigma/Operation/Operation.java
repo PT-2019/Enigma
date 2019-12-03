@@ -7,6 +7,7 @@ import editor.Enums.OperationAttributes;
 import editor.FileReader.IDFactory;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Un opération définie une action à réaliser sur une entité
@@ -26,6 +27,15 @@ public abstract class Operation {
      */
     public Operation(Entity e){
         this.entity = e;
+    }
+
+    /**
+     * @param attributes Attributs de la classe
+     * @throws IllegalArgumentException Si un attribut est manquant
+     */
+    public Operation(Map<String,Object> attributes){
+        if(attributes.containsKey("entity")) this.entity = new Player();
+        else throw new IllegalArgumentException("Attribut \"entity\" abscent");
     }
 
     /**

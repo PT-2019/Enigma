@@ -3,6 +3,8 @@ package editor.Enigma.Condition;
 import editor.Entity.Item.Activatable;
 import editor.Entity.Player.Player;
 
+import java.util.Map;
+
 /**
  * Vérify qu'un objet activable est activé
  * @see editor.Enigma.Condition.Condition
@@ -15,6 +17,14 @@ public class Activated extends Condition {
      */
     public Activated(Activatable a){
         super(a);
+    }
+
+    /**
+     * @param attributes Attributs de la classe
+     * @throws IllegalArgumentException Si un attribut est manquant
+     */
+    public Activated(Map<String,Object> attributes){
+        super(attributes);
     }
 
     /**

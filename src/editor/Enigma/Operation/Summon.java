@@ -9,6 +9,7 @@ import editor.FileReader.IDFactory;
 import editor.map.Case;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Fait apparaître une entité sur une case donnée
@@ -32,6 +33,16 @@ public class Summon extends Operation {
     }
 
     /**
+     * @param attributes Attributs de la classe
+     * @throws IllegalArgumentException Si un attribut est manquant
+     */
+    public Summon(Map<String,Object> attributes){
+        super(attributes);
+        if(attributes.containsKey("spawn")) this.spawn = new Case();
+        else throw new IllegalArgumentException("Attribut \"spawn\" abscent");
+    }
+
+    /**
      * Effectue l'action
      * @param p Joueur ayant mené à l'appel de cette méthode
      */
@@ -52,7 +63,7 @@ public class Summon extends Operation {
         HashMap<String,Object> object = new HashMap<>();
         object.put("path",this.getClass().getName());
         object.put("entity", this.entity.getID() + "");
-        object.put("case", this.spawn.getID() + "");
+        object.put("spawn", this.spawn.getID() + "");
         return object;
     }
 

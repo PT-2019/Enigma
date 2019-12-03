@@ -3,6 +3,8 @@ package editor.Enigma.Condition;
 import editor.Entity.Interface.Item;
 import editor.Entity.Player.Player;
 
+import java.util.Map;
+
 /**
  * Vérifie que le joueur tien un item défini dans ses mains
  * @see editor.Enigma.Condition.Condition
@@ -15,6 +17,14 @@ public class HaveInHands extends Condition {
      */
     public HaveInHands(Item i){
         super(i);
+    }
+
+    /**
+     * @param attributes Attributs de la classe
+     * @throws IllegalArgumentException Si un attribut est manquant
+     */
+    public HaveInHands(Map<String,Object> attributes){
+        super(attributes);
     }
 
     /**

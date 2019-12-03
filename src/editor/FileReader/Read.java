@@ -1,11 +1,15 @@
 package editor.FileReader;
 
+import editor.Enigma.Advice;
 import editor.Enigma.Enigma;
+import org.lwjgl.Sys;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -51,14 +55,14 @@ public class Read {
     }
 
 
-    public static ArrayList<Enigma> readEnigmas(String filePath) throws IOException {
+    public static ArrayList<Enigma> readEnigmas(String filePath) throws IOException, InterruptedException, ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         if(!filePath.endsWith(".json")) throw new IllegalArgumentException("Le fichier n'est pas dans un format valide \".json\"");
 
         ArrayList<Object> objects = new ArrayList<>();
         ArrayList<Enigma> enigmas = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
 
-        objects = read(reader,0);
+        objects = read(reader,0, 0,0);
 
         for (Object o: objects) {
             enigmas.add((Enigma) o);
@@ -69,14 +73,13 @@ public class Read {
     }
 
     @SuppressWarnings("unchecked")
-    public static ArrayList<Object> read(BufferedReader reader, int line) throws IOException {
+    public static ArrayList<Object> read(BufferedReader reader, int line, int braceCount, int bracketCount) throws IOException, InterruptedException, ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
 
         HashMap<String,Object> attributes = new HashMap<>();
         ArrayList<Object> objects = new ArrayList<>();
         String read;
+        String className = "";
         boolean firstBrace = true;
-        int braceCount = 0;
-        int bracketCount = 0;
         int startingClassBrace = -1;
         int startingClassBracket = -1;
 
@@ -85,7 +88,7 @@ public class Read {
             line++;
 
             if (read.contains(NEW_OBJECT_SYNTAX)){
-                braceCount++;
+                if(!firstBrace) braceCount++;
                 if(startingClassBrace < 0 && !firstBrace){
                     startingClassBrace = braceCount;
                 }
@@ -95,10 +98,17 @@ public class Read {
 
             if (read.contains(END_OBJECT_SYNTAX)){
                 if(braceCount == startingClassBrace){
+
+                    Class c = Class.forName(className);
+                    Constructor constr = c.getConstructor(Class.forName("java.util.Map"));
+                    objects.add(constr.newInstance(attributes));
+
                     attributes = new HashMap<>();
                     startingClassBrace = -1;
                 }
                 braceCount--;
+
+                if(!read.contains(END_OBJECT_SYNTAX + ",") && braceCount == 0) break;
             }
 
             if (read.contains(END_CLASS_TAB_SYNTAX)){
@@ -113,8 +123,9 @@ public class Read {
                 bracketCount++;
                 if(startingClassBracket < 0){
                     startingClassBracket = bracketCount;
+                    className = extractBefore(read, NEW_CLASS_TAB_SYNTAX);
                 } else {
-                    attributes.put(extractBefore(read, NEW_CLASS_TAB_SYNTAX),read(reader, line));
+                    attributes.put(extractBefore(read, NEW_CLASS_TAB_SYNTAX),read(reader, line, braceCount, bracketCount));
                 }
 
             } else {
@@ -122,17 +133,13 @@ public class Read {
                     attributes.put(extractBefore(read, CLASSIC_ATTRIBUTE_SYNTAX),extractAfter(read, CLASSIC_ATTRIBUTE_SYNTAX));
                 }
             }
-
-            /*for(Map.Entry<String,Object> attribute : attributes.entrySet()) {
-                System.out.println(attribute.getKey()+" "+attribute.getValue().toString());
-            }
-            System.out.println();*/
+            //System.out.println(line+" "+read+" "+braceCount+" "+bracketCount+" "+startingClassBrace+" "+startingClassBracket);
         }
 
-        if (braceCount > 0) throw new IllegalStateException("Accolade fermante manquante");
+        /*if (braceCount > 0) throw new IllegalStateException("Accolade fermante manquante");
         if (braceCount < 0) throw new IllegalStateException("Accolade ouvrante manquante");
         if (bracketCount > 0) throw new IllegalStateException("Crochet fermant manquant");
-        if (bracketCount < 0) throw new IllegalStateException("Crochet ovrant manquant");
+        if (bracketCount < 0) throw new IllegalStateException("Crochet ovrant manquant");*/
 
         return objects;
     }

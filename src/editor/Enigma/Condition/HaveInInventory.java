@@ -3,6 +3,8 @@ package editor.Enigma.Condition;
 import editor.Entity.Interface.Item;
 import editor.Entity.Player.Player;
 
+import java.util.Map;
+
 /**
  * Vérifie qu'un joueur à un item défini dans son inventaire
  * @see editor.Enigma.Condition.Condition
@@ -15,6 +17,14 @@ public class HaveInInventory extends Condition {
      */
     public HaveInInventory(Item i){
         super(i);
+    }
+
+    /**
+     * @param attributes Attributs de la classe
+     * @throws IllegalArgumentException Si un attribut est manquant
+     */
+    public HaveInInventory(Map<String,Object> attributes){
+        super(attributes);
     }
 
     /**

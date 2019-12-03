@@ -4,6 +4,8 @@ import editor.Entity.Interface.Item;
 import editor.Entity.Interface.Lockable;
 import editor.Entity.Player.Player;
 
+import java.util.Map;
+
 /**
  * Déverrouille un objet verrouillable
  * @see editor.Enigma.Operation.Operation
@@ -16,6 +18,14 @@ public class Unlock extends Operation {
      */
     public Unlock(Lockable l){
         super((Item)l);
+    }
+
+    /**
+     * @param attributes Attributs de la classe
+     * @throws IllegalArgumentException Si un attribut est manquant
+     */
+    public Unlock(Map<String,Object> attributes){
+        super(attributes);
     }
 
     /**

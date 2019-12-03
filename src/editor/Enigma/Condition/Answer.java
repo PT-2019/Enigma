@@ -1,6 +1,10 @@
 package editor.Enigma.Condition;
 
 import editor.Entity.Player.Player;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Vérifie que l'utilisateur donne une réponse correcte
  * @see editor.Enigma.Condition.Condition
@@ -9,7 +13,15 @@ import editor.Entity.Player.Player;
 public class Answer extends Condition {
 
     public Answer(){
-        super(null);
+        super(new HashMap<>());
+    }
+
+    /**
+     * @param attributes Attributs de la classe
+     * @throws IllegalArgumentException Si un attribut est manquant
+     */
+    public Answer(Map<String,Object> attributes){
+        super(attributes);
     }
 
     /**

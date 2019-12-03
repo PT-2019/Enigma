@@ -4,6 +4,7 @@ import editor.Enums.AdviceAttributes;
 import editor.Enums.Attributes;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Advice définie les indices donnés aux joueurs pour les aider à résoudre une énigme
@@ -44,6 +45,17 @@ public class Advice {
         if(delay < 1) throw new IllegalArgumentException("Le délai ne peut pas être inférieur à 0");
         this.advice = a;
         this.delay = delay;
+    }
+
+    /**
+     * @param attributes Attributs de la classe
+     * @throws IllegalArgumentException Si un attribut est manquant
+     */
+    public Advice(Map<String,Object> attributes) {
+        if (attributes.containsKey("advice")) this.advice = (String) attributes.get("advice");
+        else throw new IllegalArgumentException("Attribut \"advice\" abscent");
+        if (attributes.containsKey("delay")) this.delay = Integer.parseInt((String) attributes.get("delay"));
+        else throw new IllegalArgumentException("Attribut \"delay\" abscent");
     }
 
     /**

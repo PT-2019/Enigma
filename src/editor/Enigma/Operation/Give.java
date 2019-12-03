@@ -4,6 +4,8 @@ package editor.Enigma.Operation;
 import editor.Entity.Interface.Item;
 import editor.Entity.Player.Player;
 
+import java.util.Map;
+
 /**
  * Donne un objet au joueur ayant entrainé le déclenchement de cette opération
  * @see editor.Enigma.Operation.Operation
@@ -16,6 +18,14 @@ public class Give extends Operation {
      */
     public Give(Item i){
         super(i);
+    }
+
+    /**
+     * @param attributes Attributs de la classe
+     * @throws IllegalArgumentException Si un attribut est manquant
+     */
+    public Give(Map<String,Object> attributes){
+        super(attributes);
     }
 
     /**

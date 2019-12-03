@@ -5,8 +5,8 @@
                     {
                          "editor.Enigma.Operation.Summon": [
                               {
-                                   "entity": "2",
-                                   "case": "3"
+                                   "spawn": "3",
+                                   "entity": "2"
                               }
                          ]
                     },
@@ -64,10 +64,9 @@
           {
                "operations": [
                     {
-                         "editor.Enigma.Operation.Summon": [
+                         "editor.Enigma.Operation.Unlock": [
                               {
-                                   "entity": "2",
-                                   "case": "3"
+                                   "entity": "3"
                               }
                          ]
                     },

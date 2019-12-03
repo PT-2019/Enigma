@@ -14,6 +14,7 @@ import editor.map.Case;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -247,7 +248,7 @@ public class Write {
         return s.toString();
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException, ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
         ArrayList<Enigma> enigmas = new ArrayList<Enigma>();
         Enigma e = new Enigma("enigme","oui c'est une énigme");
         e.addAdvice(new Advice("advice"));
@@ -262,13 +263,16 @@ public class Write {
         e2.addAdvice(new Advice("advice2"));
         e2.addCondition(new HaveInHands(new Switch(0)));
         e2.addCondition(new Activated(new Switch(1)));
-        e2.addOperation(new Summon(new Player(2),new Case(3)));
+        e2.addOperation(new Unlock(new Door(3)));
         e2.addOperation(new Unlock(new Door(4)));
 
         enigmas.add(e);
         enigmas.add(e2);
 
         Write.writeEnigmas("TestWrite/write.json",enigmas);
+        for (Enigma en: enigmas) {
+            System.out.println(en.toLongString());
+        }
         enigmas = Read.readEnigmas("TestWrite/write.json");
         for (Enigma en: enigmas) {
             System.out.println(en.toLongString());
