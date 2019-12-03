@@ -58,7 +58,10 @@ public class LoadHandler extends DefaultHandler {
             dataTexture[3] = dataTexture[2] + Integer.parseInt(attributes.getValue("tilecount"));
 
         }else if(qName.equals("image")){
-            TextureArea currentTexture = new TextureArea(dataTexture[0],attributes.getValue("source"),
+            String source = attributes.getValue("source");
+            source = source.substring(6);
+
+            TextureArea currentTexture = new TextureArea(dataTexture[0],source,
                     dataTexture[1],dataTexture[2],dataTexture[3]);
 
             proxyTexture.addTexture(currentTexture);
