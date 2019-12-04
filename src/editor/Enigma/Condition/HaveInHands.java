@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * Vérifie que le joueur tien un item défini dans ses mains
  * @see editor.Enigma.Condition.Condition
- * @version 2.1
+ * @version 2.2
  */
 public class HaveInHands extends Condition {
 
@@ -52,6 +52,7 @@ public class HaveInHands extends Condition {
      * Version texte longue de l'objet
      * @return Texte représentant l'objet
      */
+    @Override
     public String toLongString(){
         return "[HaveInHands  : entity = " + this.entity + "]";
     }

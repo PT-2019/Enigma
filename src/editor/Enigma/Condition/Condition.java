@@ -2,9 +2,6 @@ package editor.Enigma.Condition;
 
 import editor.Entity.Interface.Entity;
 import editor.Entity.Player.Player;
-import editor.Enums.Attributes;
-import editor.Enums.ConditionAttributes;
-import editor.FileReader.IDFactory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,7 +10,7 @@ import java.util.Map;
  * Une condition à pour but d'être satisfaite par une action des joueurs. Elle diffère fonction du type de condition
  * Elle est utilisée dans les {@link editor.Enigma.Enigma énigmes} pour déterminer si elles ont été résolues
  * @see editor.Enigma.Enigma
- * @version 2.0
+ * @version 2.1
  */
 public abstract class Condition {
 
@@ -34,11 +31,8 @@ public abstract class Condition {
      * @throws IllegalArgumentException Si un attribut est manquant
      */
     public Condition(Map<String,Object> attributes){
-        /*for(Map.Entry<String, Object> entry : attributes.entrySet()) {
-            System.out.println("*"+entry.getKey()+"* / "+entry.getValue());
-        }*/
-        if(attributes.containsKey("entity")) this.entity = new Player();
-        //else throw new IllegalArgumentException("Attribut \"entity\" abscent");
+        if(attributes.containsKey("entity")) this.entity = new Player(Integer.parseInt((String) attributes.get("entity")));
+        else throw new IllegalArgumentException("Attribut \"entity\" abscent");
     }
 
     /**
@@ -75,4 +69,10 @@ public abstract class Condition {
         object.put("entity", this.entity.getID() + "");
         return object;
     }
+
+    /**
+     * Version texte longue de l'objet
+     * @return Texte représentant l'objet
+     */
+    public abstract String toLongString();
 }

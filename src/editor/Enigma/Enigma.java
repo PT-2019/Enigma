@@ -3,9 +3,6 @@ package editor.Enigma;
 import editor.Enigma.Condition.Condition;
 import editor.Enigma.Operation.Operation;
 import editor.Entity.Player.Player;
-import editor.Enums.Attributes;
-import editor.Enums.EnigmaAttributes;
-import org.lwjgl.Sys;
 
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;
@@ -21,7 +18,7 @@ import java.util.Map;
  * @see editor.Enigma.Condition.Condition
  * @see editor.Enigma.Operation.Operation
  * @see editor.Enigma.Advice
- * @version 2.3
+ * @version 2.4
  */
 public class Enigma implements ActionListener {
 
@@ -107,10 +104,6 @@ public class Enigma implements ActionListener {
      */
     @SuppressWarnings("unchecked")
     public Enigma(Map<String,Object> attributes){
-
-        /*for(Map.Entry<String, Object> entry : attributes.entrySet()) {
-            System.out.println("*"+entry.getKey()+"* / "+entry.getValue());
-        }*/
         if(attributes.containsKey("title")) this.title = (String) attributes.get("title");
         else throw new IllegalArgumentException("Attribut \"title\" abscent");
         if(attributes.containsKey("description")) this.description = (String) attributes.get("description");
@@ -418,7 +411,7 @@ public class Enigma implements ActionListener {
         i = 0;
         s.append("}, allCondtitions = {");
         for(Condition c : this.conditions) {
-            s.append(c);
+            s.append(c.toLongString());
             if(i < sizeC) s.append(", ");
             i++;
         }
@@ -426,7 +419,7 @@ public class Enigma implements ActionListener {
         i = 0;
         s.append("}, allOperations = {");
         for(Operation o : this.operations) {
-            s.append(o);
+            s.append(o.toLongString());
             if(i < sizeO) s.append(", ");
             i++;
         }

@@ -1,60 +1,64 @@
 {
-     "editor.Enigma.Enigma": [
+     "Enigmas": [
           {
-               "operations": [
+               "editor.Enigma.Enigma": [
                     {
-                         "editor.Enigma.Operation.Summon": [
+                         "operations": [
                               {
-                                   "spawn": "3",
-                                   "entity": "2"
-                              }
-                         ]
-                    },
+                                   "editor.Enigma.Operation.Summon": [
+                                        {
+                                             "spawn": "3",
+                                             "entity": "2"
+                                        }
+                                   ]
+                              },
 
-                    {
-                         "editor.Enigma.Operation.Unlock": [
                               {
-                                   "entity": "4"
+                                   "editor.Enigma.Operation.Unlock": [
+                                        {
+                                             "entity": "4"
+                                        }
+                                   ]
                               }
-                         ]
-                    }
-               ],
-               "known": "false",
-               "currentAdviceIndex": "-1",
-               "description": "oui c'est une énigme",
-               "advices": [
-                    {
-                         "editor.Enigma.Advice": [
+                         ],
+                         "known": "false",
+                         "currentAdviceIndex": "-1",
+                         "description": "oui c'est une énigme",
+                         "advices": [
                               {
-                                   "delay": "2",
-                                   "advice": "advice1"
-                              }
-                         ]
-                    },
+                                   "editor.Enigma.Advice": [
+                                        {
+                                             "delay": "2",
+                                             "advice": "advice1"
+                                        }
+                                   ]
+                              },
 
-                    {
-                         "editor.Enigma.Advice": [
                               {
-                                   "delay": "2",
-                                   "advice": "advice2"
+                                   "editor.Enigma.Advice": [
+                                        {
+                                             "delay": "2",
+                                             "advice": "advice2"
+                                        }
+                                   ]
                               }
-                         ]
-                    }
-               ],
-               "title": "enigme",
-               "conditions": [
-                    {
-                         "editor.Enigma.Condition.HaveInHands": [
+                         ],
+                         "title": "enigme",
+                         "conditions": [
                               {
-                                   "entity": "0"
-                              }
-                         ]
-                    },
+                                   "editor.Enigma.Condition.HaveInHands": [
+                                        {
+                                             "entity": "0"
+                                        }
+                                   ]
+                              },
 
-                    {
-                         "editor.Enigma.Condition.Activated": [
                               {
-                                   "entity": "1"
+                                   "editor.Enigma.Condition.Activated": [
+                                        {
+                                             "entity": "1"
+                                        }
+                                   ]
                               }
                          ]
                     }
@@ -62,59 +66,63 @@
           },
 
           {
-               "operations": [
+               "editor.Enigma.Enigma": [
                     {
-                         "editor.Enigma.Operation.Unlock": [
+                         "operations": [
                               {
-                                   "entity": "3"
-                              }
-                         ]
-                    },
+                                   "editor.Enigma.Operation.Unlock": [
+                                        {
+                                             "entity": "3"
+                                        }
+                                   ]
+                              },
 
-                    {
-                         "editor.Enigma.Operation.Unlock": [
                               {
-                                   "entity": "4"
+                                   "editor.Enigma.Operation.Unlock": [
+                                        {
+                                             "entity": "4"
+                                        }
+                                   ]
                               }
-                         ]
-                    }
-               ],
-               "known": "false",
-               "currentAdviceIndex": "-1",
-               "description": "oui c'est une énigme",
-               "advices": [
-                    {
-                         "editor.Enigma.Advice": [
+                         ],
+                         "known": "false",
+                         "currentAdviceIndex": "-1",
+                         "description": "oui c'est une énigme",
+                         "advices": [
                               {
-                                   "delay": "2",
-                                   "advice": "advice3"
-                              }
-                         ]
-                    },
+                                   "editor.Enigma.Advice": [
+                                        {
+                                             "delay": "2",
+                                             "advice": "advice3"
+                                        }
+                                   ]
+                              },
 
-                    {
-                         "editor.Enigma.Advice": [
                               {
-                                   "delay": "2",
-                                   "advice": "advice4"
+                                   "editor.Enigma.Advice": [
+                                        {
+                                             "delay": "2",
+                                             "advice": "advice4"
+                                        }
+                                   ]
                               }
-                         ]
-                    }
-               ],
-               "title": "enigme2",
-               "conditions": [
-                    {
-                         "editor.Enigma.Condition.HaveInHands": [
+                         ],
+                         "title": "enigme2",
+                         "conditions": [
                               {
-                                   "entity": "0"
-                              }
-                         ]
-                    },
+                                   "editor.Enigma.Condition.HaveInHands": [
+                                        {
+                                             "entity": "0"
+                                        }
+                                   ]
+                              },
 
-                    {
-                         "editor.Enigma.Condition.Activated": [
                               {
-                                   "entity": "1"
+                                   "editor.Enigma.Condition.Activated": [
+                                        {
+                                             "entity": "1"
+                                        }
+                                   ]
                               }
                          ]
                     }

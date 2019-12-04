@@ -13,7 +13,7 @@ import java.util.Iterator;
 /**
  * @see editor.Entity.Interface.Lockable
  * @see editor.Entity.Interface.Item
- * @version 2.1
+ * @version 2.2
  */
 public class Chest implements Item, Lockable {
 
@@ -183,7 +183,7 @@ public class Chest implements Item, Lockable {
      */
     @Override
     public String toString(){
-        return "[Chest  : dialog = " + this.dialog + ", locked = " + this.locked + ", texture = " + this.texture + "]";
+        return "[Chest  : ID = " + this.id + ", dialog = " + this.dialog + ", locked = " + this.locked + ", texture = " + this.texture + "]";
     }
 
     /**
@@ -191,7 +191,7 @@ public class Chest implements Item, Lockable {
      * @return Texte représentant l'objet
      */
     public String toLongString(){
-        StringBuilder s = new StringBuilder("[Chest  : dialog = " + this.dialog + ", locked = " + this.locked + ", texture = " + this.texture + ", enigmas = {");
+        StringBuilder s = new StringBuilder("[Chest  : ID = " + this.id + ", dialog = " + this.dialog + ", locked = " + this.locked + ", texture = " + this.texture + ", enigmas = {");
         int size = this.enigmas.size() - 1;
         int i = 0;
         for(Enigma e : this.enigmas) {

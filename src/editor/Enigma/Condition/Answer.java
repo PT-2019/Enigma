@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * Vérifie que l'utilisateur donne une réponse correcte
  * @see editor.Enigma.Condition.Condition
- * @version 2.1
+ * @version 2.2
  */
 public class Answer extends Condition {
 
@@ -48,6 +48,7 @@ public class Answer extends Condition {
      * Version texte longue de l'objet
      * @return Texte représentant l'objet
      */
+    @Override
     public String toLongString(){
         return "[Answer]";
     }

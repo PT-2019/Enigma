@@ -12,7 +12,7 @@ import java.util.Iterator;
 /**
  * @see editor.Entity.Interface.Item
  * @see editor.Entity.Interface.Content
- * @version 2.1
+ * @version 2.2
  */
 public class Book implements Item, Content {
 
@@ -154,7 +154,7 @@ public class Book implements Item, Content {
      */
     @Override
     public String toString(){
-        return "[Book  : dialog = " + this.dialog + ", content = " + this.content + ", texture = " + this.texture + "]";
+        return "[Book  : ID = " + this.id + ", dialog = " + this.dialog + ", content = " + this.content + ", texture = " + this.texture + "]";
     }
 
     /**
@@ -162,7 +162,7 @@ public class Book implements Item, Content {
      * @return Texte représentant l'objet
      */
     public String toLongString(){
-        StringBuilder s = new StringBuilder("[Book  : dialog = " + this.dialog + ", content = " + this.content + ", texture = " + this.texture + ", enigmas = {");
+        StringBuilder s = new StringBuilder("[Book  : ID = " + this.id + ", dialog = " + this.dialog + ", content = " + this.content + ", texture = " + this.texture + ", enigmas = {");
         int size = this.enigmas.size() - 1;
         int i = 0;
         for(Enigma e : this.enigmas) {

@@ -10,7 +10,7 @@ import java.util.Iterator;
 /**
  * Désigne des objets pouvant être activés ou désactivés
  * @see editor.Entity.Interface.Item
- * @version 2.1
+ * @version 2.2
  */
 public abstract class Activatable implements Item {
 
@@ -22,7 +22,7 @@ public abstract class Activatable implements Item {
     /**
      * ID
      */
-    private int id;
+    protected int id;
 
     /**
      * @param activated true si l'objet est activé de base, false sinon

@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * Vérifie qu'un joueur à un item défini dans son inventaire
  * @see editor.Enigma.Condition.Condition
- * @version 2.1
+ * @version 2.2
  */
 public class HaveInInventory extends Condition {
 
@@ -52,6 +52,7 @@ public class HaveInInventory extends Condition {
      * Version texte longue de l'objet
      * @return Texte représentant l'objet
      */
+    @Override
     public String toLongString(){
         return "[HaveInInventory  : entity = " + this.entity + "]";
     }

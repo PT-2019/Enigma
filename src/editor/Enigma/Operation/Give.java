@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * Donne un objet au joueur ayant entrainé le déclenchement de cette opération
  * @see editor.Enigma.Operation.Operation
- * @version 2.1
+ * @version 2.2
  */
 public class Give extends Operation {
 
@@ -52,6 +52,7 @@ public class Give extends Operation {
      * Version texte longue de l'objet
      * @return Texte représentant l'objet
      */
+    @Override
     public String toLongString(){
         return "[Give  : entity = " + this.entity + "]";
     }

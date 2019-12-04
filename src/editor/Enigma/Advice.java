@@ -10,7 +10,7 @@ import java.util.Map;
  * Advice définie les indices donnés aux joueurs pour les aider à résoudre une énigme
  * Les indices sont utilisés dans les {@link editor.Enigma.Enigma énigmes}
  * @see editor.Enigma.Enigma
- * @version 2.1
+ * @version 2.2
  */
 public class Advice {
 
@@ -52,13 +52,10 @@ public class Advice {
      * @throws IllegalArgumentException Si un attribut est manquant
      */
     public Advice(Map<String,Object> attributes) {
-        for(Map.Entry<String, Object> entry : attributes.entrySet()) {
-            System.out.println("*"+entry.getKey()+"* / "+entry.getValue());
-        }
         if (attributes.containsKey("advice")) this.advice = (String) attributes.get("advice");
-        //else throw new IllegalArgumentException("Attribut \"advice\" abscent");
+        else throw new IllegalArgumentException("Attribut \"advice\" abscent");
         if (attributes.containsKey("delay")) this.delay = Integer.parseInt((String) attributes.get("delay"));
-        //else throw new IllegalArgumentException("Attribut \"delay\" abscent");
+        else throw new IllegalArgumentException("Attribut \"delay\" abscent");
     }
 
     /**

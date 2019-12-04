@@ -52,6 +52,7 @@ public class Activated extends Condition {
      * Version texte longue de l'objet
      * @return Texte représentant l'objet
      */
+    @Override
     public String toLongString(){
         return "[Activated  : entity = " + this.entity + "]";
     }

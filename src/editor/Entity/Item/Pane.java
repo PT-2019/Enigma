@@ -12,7 +12,7 @@ import java.util.Iterator;
 /**
  * @see editor.Entity.Interface.Item
  * @see editor.Entity.Interface.Content
- * @version 2.1
+ * @version 2.2
  */
 public class Pane implements Content, Item {
 
@@ -154,7 +154,7 @@ public class Pane implements Content, Item {
      */
     @Override
     public String toString(){
-        return "[Pane  : dialog = " + this.dialog + ", content = " + this.content + ", texture = " + this.texture + "]";
+        return "[Pane  : ID = " + this.id + ", dialog = " + this.dialog + ", content = " + this.content + ", texture = " + this.texture + "]";
     }
 
     /**
@@ -162,7 +162,7 @@ public class Pane implements Content, Item {
      * @return Texte représentant l'objet
      */
     public String toLongString(){
-        StringBuilder s = new StringBuilder("[Pane  : dialog = " + this.dialog + ", content = " + this.content + ", texture = " + this.texture + ", enigmas = {");
+        StringBuilder s = new StringBuilder("[Pane  : ID = " + this.id + ", dialog = " + this.dialog + ", content = " + this.content + ", texture = " + this.texture + ", enigmas = {");
         int size = this.enigmas.size() - 1;
         int i = 0;
         for(Enigma e : this.enigmas) {

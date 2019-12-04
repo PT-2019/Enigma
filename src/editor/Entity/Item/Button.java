@@ -9,7 +9,7 @@ import java.util.Iterator;
 
 /**
  * @see editor.Entity.Item.Activatable
- * @version 2.0
+ * @version 2.1
  */
 public class Button extends Activatable {
 
@@ -124,7 +124,7 @@ public class Button extends Activatable {
      * @return Texte représentant l'objet
      */
     public String toLongString(){
-        StringBuilder s = new StringBuilder("[Button  : dialog = " + this.dialog + ", activated = " + this.activated + ", texture = " + this.texture + ", enigmas = {");
+        StringBuilder s = new StringBuilder("[Button  : ID = " + this.id + ", dialog = " + this.dialog + ", activated = " + this.activated + ", texture = " + this.texture + ", enigmas = {");
         int size = this.enigmas.size() - 1;
         int i = 0;
         for(Enigma e : this.enigmas) {

@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * Déverrouille un objet verrouillable
  * @see editor.Enigma.Operation.Operation
- * @version 2.1
+ * @version 2.2
  */
 public class Unlock extends Operation {
 
@@ -52,6 +52,7 @@ public class Unlock extends Operation {
      * Version texte longue de l'objet
      * @return Texte représentant l'objet
      */
+    @Override
     public String toLongString(){
         return "[Unlock  : entity = " + this.entity + "]";
     }

@@ -3,9 +3,6 @@ package editor.Enigma.Operation;
 
 import editor.Entity.Interface.Entity;
 import editor.Entity.Player.Player;
-import editor.Enums.Attributes;
-import editor.Enums.SummonAttributes;
-import editor.FileReader.IDFactory;
 import editor.map.Case;
 
 import java.util.HashMap;
@@ -14,7 +11,7 @@ import java.util.Map;
 /**
  * Fait apparaître une entité sur une case donnée
  * @see editor.Enigma.Operation.Operation
- * @version 2.1
+ * @version 2.2
  */
 public class Summon extends Operation {
 
@@ -39,7 +36,7 @@ public class Summon extends Operation {
     public Summon(Map<String,Object> attributes){
         super(attributes);
         if(attributes.containsKey("spawn")) this.spawn = new Case();
-        //else throw new IllegalArgumentException("Attribut \"spawn\" abscent");
+        else throw new IllegalArgumentException("Attribut \"spawn\" abscent");
     }
 
     /**
@@ -80,6 +77,7 @@ public class Summon extends Operation {
      * Version texte longue de l'objet
      * @return Texte représentant l'objet
      */
+    @Override
     public String toLongString(){
         return "[Summon  : entity = " + this.entity + "]";
     }

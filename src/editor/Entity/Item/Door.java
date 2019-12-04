@@ -15,7 +15,7 @@ import java.util.Iterator;
  * @see editor.Entity.Interface.Item
  * @see editor.Entity.Interface.Lockable
  * @see editor.Entity.Interface.Passage
- * @version 2.0
+ * @version 2.1
  */
 public class Door implements Item, Passage, Lockable {
 
@@ -203,7 +203,7 @@ public class Door implements Item, Passage, Lockable {
      */
     @Override
     public String toString(){
-        return "[Door  : dialog = " + this.dialog + ", locked = " + this.locked + ", texture = " + this.texture + ", Room1 = " + this.room1 + ", Room2 = " + this.room2 + "]";
+        return "[Door  : ID = " + this.id + ", dialog = " + this.dialog + ", locked = " + this.locked + ", texture = " + this.texture + ", Room1 = " + this.room1 + ", Room2 = " + this.room2 + "]";
     }
 
     /**
@@ -211,7 +211,7 @@ public class Door implements Item, Passage, Lockable {
      * @return Texte représentant l'objet
      */
     public String toLongString(){
-        StringBuilder s = new StringBuilder("[Door  : dialog = " + this.dialog + ", locked = " + this.locked + ", texture = " + this.texture + ", Room1 = " + this.room1 + ", Room2 = " + this.room2 + ", enigmas = {");
+        StringBuilder s = new StringBuilder("[Door  : ID = " + this.id + ", dialog = " + this.dialog + ", locked = " + this.locked + ", texture = " + this.texture + ", Room1 = " + this.room1 + ", Room2 = " + this.room2 + ", enigmas = {");
         int size = this.enigmas.size() - 1;
         int i = 0;
         for(Enigma e : this.enigmas) {
