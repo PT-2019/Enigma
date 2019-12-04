@@ -107,6 +107,10 @@ public class Enigma implements ActionListener {
      */
     @SuppressWarnings("unchecked")
     public Enigma(Map<String,Object> attributes){
+
+        /*for(Map.Entry<String, Object> entry : attributes.entrySet()) {
+            System.out.println("*"+entry.getKey()+"* / "+entry.getValue());
+        }*/
         if(attributes.containsKey("title")) this.title = (String) attributes.get("title");
         else throw new IllegalArgumentException("Attribut \"title\" abscent");
         if(attributes.containsKey("description")) this.description = (String) attributes.get("description");

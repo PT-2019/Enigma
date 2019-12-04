@@ -27,7 +27,7 @@
                          "editor.Enigma.Advice": [
                               {
                                    "delay": "2",
-                                   "advice": "advice"
+                                   "advice": "advice1"
                               }
                          ]
                     },
@@ -87,7 +87,7 @@
                          "editor.Enigma.Advice": [
                               {
                                    "delay": "2",
-                                   "advice": "advice"
+                                   "advice": "advice3"
                               }
                          ]
                     },
@@ -96,7 +96,7 @@
                          "editor.Enigma.Advice": [
                               {
                                    "delay": "2",
-                                   "advice": "advice2"
+                                   "advice": "advice4"
                               }
                          ]
                     }

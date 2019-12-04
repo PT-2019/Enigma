@@ -251,7 +251,7 @@ public class Write {
     public static void main(String[] args) throws IOException, InterruptedException, ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
         ArrayList<Enigma> enigmas = new ArrayList<Enigma>();
         Enigma e = new Enigma("enigme","oui c'est une énigme");
-        e.addAdvice(new Advice("advice"));
+        e.addAdvice(new Advice("advice1"));
         e.addAdvice(new Advice("advice2"));
         e.addCondition(new HaveInHands(new Switch(0)));
         e.addCondition(new Activated(new Switch(1)));
@@ -259,8 +259,8 @@ public class Write {
         e.addOperation(new Unlock(new Door(4)));
 
         Enigma e2 = new Enigma("enigme2","oui c'est une énigme");
-        e2.addAdvice(new Advice("advice"));
-        e2.addAdvice(new Advice("advice2"));
+        e2.addAdvice(new Advice("advice3"));
+        e2.addAdvice(new Advice("advice4"));
         e2.addCondition(new HaveInHands(new Switch(0)));
         e2.addCondition(new Activated(new Switch(1)));
         e2.addOperation(new Unlock(new Door(3)));

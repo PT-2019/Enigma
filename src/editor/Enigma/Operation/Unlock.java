@@ -4,6 +4,7 @@ import editor.Entity.Interface.Item;
 import editor.Entity.Interface.Lockable;
 import editor.Entity.Player.Player;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**

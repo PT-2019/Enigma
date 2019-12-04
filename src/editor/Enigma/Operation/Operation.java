@@ -1,12 +1,15 @@
 package editor.Enigma.Operation;
 
+import com.badlogic.gdx.utils.Array;
 import editor.Entity.Interface.Entity;
 import editor.Entity.Player.Player;
 import editor.Enums.Attributes;
 import editor.Enums.OperationAttributes;
 import editor.FileReader.IDFactory;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -22,6 +25,8 @@ public abstract class Operation {
      */
     protected Entity entity;
 
+    public final static String test = "entity";
+
     /**
      * @param e Entité concernée par l'opération
      */
@@ -34,8 +39,15 @@ public abstract class Operation {
      * @throws IllegalArgumentException Si un attribut est manquant
      */
     public Operation(Map<String,Object> attributes){
-        if(attributes.containsKey("entity")) this.entity = new Player();
-        else throw new IllegalArgumentException("Attribut \"entity\" abscent");
+        /*for(Map.Entry<String, Object> entry : attributes.entrySet()) {
+            if(entry.getValue() instanceof String)
+            System.out.println("*"+entry.getKey()+"* / "+entry.getValue());
+            else
+                if(entry.getValue() instanceof List)
+                for(Object o: (ArrayList)entry.getValue()) System.out.println(entry.getKey()+"----"+o);
+        }*/
+        if(attributes.get(Operation.test) != null) this.entity = new Player();
+        //else throw new IllegalArgumentException("Attribut \"entity\" abscent");
     }
 
     /**
@@ -52,7 +64,7 @@ public abstract class Operation {
     public HashMap<String,Object> objectToMap(){
         HashMap<String,Object> object = new HashMap<>();
         object.put("path",this.getClass().getName());
-        object.put("entity", this.entity.getID() + "");
+        object.put(Operation.test, this.entity.getID() + "");
         return object;
     }
 }

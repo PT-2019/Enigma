@@ -39,7 +39,7 @@ public class Summon extends Operation {
     public Summon(Map<String,Object> attributes){
         super(attributes);
         if(attributes.containsKey("spawn")) this.spawn = new Case();
-        else throw new IllegalArgumentException("Attribut \"spawn\" abscent");
+        //else throw new IllegalArgumentException("Attribut \"spawn\" abscent");
     }
 
     /**

@@ -34,8 +34,11 @@ public abstract class Condition {
      * @throws IllegalArgumentException Si un attribut est manquant
      */
     public Condition(Map<String,Object> attributes){
+        /*for(Map.Entry<String, Object> entry : attributes.entrySet()) {
+            System.out.println("*"+entry.getKey()+"* / "+entry.getValue());
+        }*/
         if(attributes.containsKey("entity")) this.entity = new Player();
-        else throw new IllegalArgumentException("Attribut \"entity\" abscent");
+        //else throw new IllegalArgumentException("Attribut \"entity\" abscent");
     }
 
     /**

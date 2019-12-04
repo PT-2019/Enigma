@@ -125,7 +125,81 @@ public class Read {
                     startingClassBracket = bracketCount;
                     className = extractBefore(read, NEW_CLASS_TAB_SYNTAX);
                 } else {
-                    attributes.put(extractBefore(read, NEW_CLASS_TAB_SYNTAX),read(reader, line, braceCount, bracketCount));
+                    System.out.println(read+" "+extractBefore(read, NEW_CLASS_TAB_SYNTAX)+" "+extractBefore(read, NEW_CLASS_TAB_SYNTAX).contains("."));
+                    if(extractBefore(read, NEW_CLASS_TAB_SYNTAX).contains(".")) attributes.put(extractBefore(read, NEW_CLASS_TAB_SYNTAX),read(reader, line, braceCount, bracketCount, extractBefore(read, NEW_CLASS_TAB_SYNTAX)));
+                    else attributes.put(extractBefore(read, NEW_CLASS_TAB_SYNTAX),read(reader, line, braceCount, bracketCount));
+                }
+
+            } else {
+                if (read.contains(CLASSIC_ATTRIBUTE_SYNTAX)){
+                    attributes.put(extractBefore(read, CLASSIC_ATTRIBUTE_SYNTAX),extractAfter(read, CLASSIC_ATTRIBUTE_SYNTAX));
+                }
+            }
+            //System.out.println(line+" "+read+" "+braceCount+" "+bracketCount+" "+startingClassBrace+" "+startingClassBracket);
+        }
+
+        /*if (braceCount > 0) throw new IllegalStateException("Accolade fermante manquante");
+        if (braceCount < 0) throw new IllegalStateException("Accolade ouvrante manquante");
+        if (bracketCount > 0) throw new IllegalStateException("Crochet fermant manquant");
+        if (bracketCount < 0) throw new IllegalStateException("Crochet ovrant manquant");*/
+
+        return objects;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static ArrayList<Object> read(BufferedReader reader, int line, int braceCount, int bracketCount, String className) throws IOException, InterruptedException, ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+
+        HashMap<String,Object> attributes = new HashMap<>();
+        ArrayList<Object> objects = new ArrayList<>();
+        String read;
+        boolean firstBrace = true;
+        int startingClassBrace = -1;
+        int startingClassBracket = -1;
+
+        while((read = reader.readLine()) != null){
+            read = read.trim();
+            line++;
+
+            if (read.contains(NEW_OBJECT_SYNTAX)){
+                if(!firstBrace) braceCount++;
+                if(startingClassBrace < 0 && !firstBrace){
+                    startingClassBrace = braceCount;
+                }
+
+                if (firstBrace) firstBrace = false;
+            }
+
+            if (read.contains(END_OBJECT_SYNTAX)){
+                if(braceCount == startingClassBrace){
+
+                    Class c = Class.forName(className);
+                    Constructor constr = c.getConstructor(Class.forName("java.util.Map"));
+                    objects.add(constr.newInstance(attributes));
+
+                    attributes = new HashMap<>();
+                    startingClassBrace = -1;
+                }
+                braceCount--;
+
+                if(!read.contains(END_OBJECT_SYNTAX + ",") && braceCount == 0) break;
+            }
+
+            if (read.contains(END_CLASS_TAB_SYNTAX)){
+                if(bracketCount == startingClassBracket){
+                    attributes = new HashMap<>();
+                    startingClassBracket = 1;
+                }
+                bracketCount--;
+            }
+
+            if (read.contains(NEW_CLASS_TAB_SYNTAX)){
+                bracketCount++;
+                if(startingClassBracket < 0){
+                    startingClassBracket = bracketCount;
+                } else {
+                    System.out.println(read+" "+extractBefore(read, NEW_CLASS_TAB_SYNTAX));
+                    if(extractBefore(read, NEW_CLASS_TAB_SYNTAX).contains(".")) attributes.put(extractBefore(read, NEW_CLASS_TAB_SYNTAX),read(reader, line, braceCount, bracketCount, extractBefore(read, NEW_CLASS_TAB_SYNTAX)));
+                    else attributes.put(extractBefore(read, NEW_CLASS_TAB_SYNTAX),read(reader, line, braceCount, bracketCount));
                 }
 
             } else {

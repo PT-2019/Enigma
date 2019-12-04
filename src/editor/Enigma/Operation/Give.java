@@ -4,6 +4,7 @@ package editor.Enigma.Operation;
 import editor.Entity.Interface.Item;
 import editor.Entity.Player.Player;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
