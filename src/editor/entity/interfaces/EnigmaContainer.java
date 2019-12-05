@@ -1,11 +1,11 @@
-package editor.entities.interfaces;
+package editor.entity.interfaces;
 
 import editor.enigma.Enigma;
 
 import java.util.Iterator;
 
 /**
- * Permet à une {@link editor.entities.interfaces.Entity entité} de contenir des énigmes
+ * Permet à une {@link editor.entity.interfaces.Entity entité} de contenir des énigmes
  * @see editor.enigma.Enigma
  * @version 2.0
  */

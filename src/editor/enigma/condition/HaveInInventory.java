@@ -1,7 +1,7 @@
 package editor.enigma.condition;
 
-import editor.entities.interfaces.Item;
-import editor.entities.Player;
+import editor.entity.interfaces.Item;
+import editor.entity.Player;
 
 import java.util.Map;
 
@@ -54,6 +54,6 @@ public class HaveInInventory extends Condition {
      */
     @Override
     public String toLongString(){
-        return "[HaveInInventory  : entities = " + this.entity + "]";
+        return "[HaveInInventory  : entity = " + this.entity + "]";
     }
 }

@@ -1,22 +1,30 @@
-package editor.entities.item;
+package editor.entity.item;
 
 import editor.enigma.Enigma;
-import editor.entities.Player;
+import editor.entity.Player;
+import editor.entity.interfaces.Content;
+import editor.entity.interfaces.Item;
 import editor.textures.Texture;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- * @see editor.entities.item.Activatable
- * @version 2.1
+ * @see editor.entity.interfaces.Item
+ * @see editor.entity.interfaces.Content
+ * @version 2.2
  */
-public class Button extends Activatable {
+public class Book implements Item, Content {
 
     /**
      * Enigmes données à l'objet
      */
     private ArrayList<Enigma> enigmas;
+
+    /**
+     * Contenu de l'objet
+     */
+    private String content;
 
     /**
      * Dialogue de l'objet
@@ -28,27 +36,31 @@ public class Button extends Activatable {
      */
     private Texture texture;
 
-    public Button() {
-        super(false);
+    /**
+     * ID
+     */
+    private int id;
+
+    public Book(){
         this.enigmas = new ArrayList<Enigma>();
+        this.id = -1;
     }
 
     /**
-     * @param activated true si l'objet est activé de base, false sinon
+     * @param id ID
      */
-    public Button(boolean activated) {
-        super(activated);
+    public Book(int id){
         this.enigmas = new ArrayList<Enigma>();
+        this.id = id;
     }
+
 
     /**
      * Est appelé quand un joueur intéragit avec l'objet
      * @param p Joueur ayant intéragit avec l'objet
      */
     @Override
-    public void interactsWith(Player p) {
-        this.activated = !this.activated;
-
+    public void interactsWith(Player p){
         for(Enigma e : this.enigmas){
             if(!e.isKnown()) e.discovered();
             else e.verifyConditions(p);
@@ -82,7 +94,6 @@ public class Button extends Activatable {
      */
     @Override
     public void addEnigma(Enigma e) {
-        if(this.enigmas.contains(e)) throw new IllegalArgumentException("Cette énigme existe déjà dans la liste");
         this.enigmas.add(e);
     }
 
@@ -107,12 +118,39 @@ public class Button extends Activatable {
     }
 
     /**
-     * Indique si l'objet est activé
-     * @return true si l'objet est activé, false sinon
+     * Ajoute un contenu à l'objet
+     * @param content Contenu à ajouter
      */
     @Override
-    public boolean isActivated() {
-        return this.activated;
+    public void addContent(String content) {
+        this.content = content;
+    }
+
+    /**
+     * Obtenir le contenu
+     * @return le contenu, le contenu peut être vide
+     */
+    @Override
+    public String getContent() {
+        return this.content;
+    }
+
+    /**
+     * Obtenir l'ID
+     * @return L'ID, -1 si pas initialisé
+     */
+    @Override
+    public int getID() {
+        return this.id;
+    }
+
+    /**
+     * Définir l'ID
+     * @param id ID
+     */
+    @Override
+    public void setID(int id) {
+        this.id = id;
     }
 
     /**
@@ -121,7 +159,7 @@ public class Button extends Activatable {
      */
     @Override
     public String toString(){
-        return "[Button  : dialog = " + this.dialog + ", activated = " + this.activated + ", texture = " + this.texture + "]";
+        return "[Book  : ID = " + this.id + ", dialog = " + this.dialog + ", content = " + this.content + ", texture = " + this.texture + "]";
     }
 
     /**
@@ -129,7 +167,7 @@ public class Button extends Activatable {
      * @return Texte représentant l'objet
      */
     public String toLongString(){
-        StringBuilder s = new StringBuilder("[Button  : ID = " + this.id + ", dialog = " + this.dialog + ", activated = " + this.activated + ", texture = " + this.texture + ", enigmas = {");
+        StringBuilder s = new StringBuilder("[Book  : ID = " + this.id + ", dialog = " + this.dialog + ", content = " + this.content + ", texture = " + this.texture + ", enigmas = {");
         int size = this.enigmas.size() - 1;
         int i = 0;
         for(Enigma e : this.enigmas) {
@@ -140,4 +178,5 @@ public class Button extends Activatable {
         s.append("}]");
         return s.toString();
     }
+
 }

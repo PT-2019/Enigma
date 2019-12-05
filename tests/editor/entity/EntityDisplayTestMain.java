@@ -1,10 +1,10 @@
-package editor.entities;
+package editor.entity;
 
-import editor.entities.interfaces.Entity;
-import editor.entities.item.Book;
-import editor.entities.display.EntityPopMenu;
-import editor.entities.display.EntityView;
-import editor.entities.display.EntityViewListener;
+import editor.entity.interfaces.Entity;
+import editor.entity.item.Book;
+import editor.entity.display.EntityPopMenu;
+import editor.entity.display.EntityView;
+import editor.entity.display.EntityViewListener;
 import editor.textures.Texture;
 
 import javax.swing.*;

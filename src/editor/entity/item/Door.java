@@ -1,30 +1,28 @@
-package editor.entities.item;
+package editor.entity.item;
 
 import editor.enigma.Enigma;
-import editor.entities.Player;
-import editor.entities.interfaces.Content;
-import editor.entities.interfaces.Item;
+import editor.entity.interfaces.Item;
+import editor.entity.interfaces.Lockable;
+import editor.entity.interfaces.Passage;
+import editor.entity.Player;
+import editor.map.Room;
 import editor.textures.Texture;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- * @see editor.entities.interfaces.Item
- * @see editor.entities.interfaces.Content
- * @version 2.2
+ * @see editor.entity.interfaces.Item
+ * @see editor.entity.interfaces.Lockable
+ * @see editor.entity.interfaces.Passage
+ * @version 2.1
  */
-public class Book implements Item, Content {
+public class Door implements Item, Passage, Lockable {
 
     /**
      * Enigmes données à l'objet
      */
     private ArrayList<Enigma> enigmas;
-
-    /**
-     * Contenu de l'objet
-     */
-    private String content;
 
     /**
      * Dialogue de l'objet
@@ -37,23 +35,48 @@ public class Book implements Item, Content {
     private Texture texture;
 
     /**
+     * Indique si l'objet est verrouillé
+     */
+    private boolean locked;
+
+    /**
+     * Pièce 1
+     */
+    private Room room1;
+
+    /**
+     * Pièce 2
+     */
+    private Room room2;
+
+    /**
      * ID
      */
     private int id;
 
-    public Book(){
+    public Door(){
         this.enigmas = new ArrayList<Enigma>();
+        this.locked = true;
         this.id = -1;
     }
 
     /**
      * @param id ID
      */
-    public Book(int id){
+    public Door(int id){
         this.enigmas = new ArrayList<Enigma>();
+        this.locked = true;
         this.id = id;
     }
 
+
+    /**
+     * @param locked true si l'objet est verrouillé de base, false sinon
+     */
+    public Door(boolean locked){
+        this.enigmas = new ArrayList<Enigma>();
+        this.locked = locked;
+    }
 
     /**
      * Est appelé quand un joueur intéragit avec l'objet
@@ -94,6 +117,7 @@ public class Book implements Item, Content {
      */
     @Override
     public void addEnigma(Enigma e) {
+        if(this.enigmas.contains(e)) throw new IllegalArgumentException("Cette énigme existe déjà dans la liste");
         this.enigmas.add(e);
     }
 
@@ -118,21 +142,46 @@ public class Book implements Item, Content {
     }
 
     /**
-     * Ajoute un contenu à l'objet
-     * @param content Contenu à ajouter
+     * Obtenir la première pièce
+     * @return La piece, null sinon
      */
     @Override
-    public void addContent(String content) {
-        this.content = content;
+    public Room getRoom1() {
+        return this.room1;
     }
 
     /**
-     * Obtenir le contenu
-     * @return le contenu, le contenu peut être vide
+     * Obtenir la seconde pièce
+     * @return La pièce, null sinon
      */
     @Override
-    public String getContent() {
-        return this.content;
+    public Room getRoom2() {
+        return this.room2;
+    }
+
+    /**
+     * Verrouille l'objet
+     */
+    @Override
+    public void lock() {
+        this.locked = true;
+    }
+
+    /**
+     * Deverrouille l'objet
+     */
+    @Override
+    public void unlock() {
+        this.locked = false;
+    }
+
+    /**
+     * Indique si l'objet est verrouillé
+     * @return true si il est verrouillé, false sinon
+     */
+    @Override
+    public boolean isLocked() {
+        return this.locked;
     }
 
     /**
@@ -159,7 +208,7 @@ public class Book implements Item, Content {
      */
     @Override
     public String toString(){
-        return "[Book  : ID = " + this.id + ", dialog = " + this.dialog + ", content = " + this.content + ", texture = " + this.texture + "]";
+        return "[Door  : ID = " + this.id + ", dialog = " + this.dialog + ", locked = " + this.locked + ", texture = " + this.texture + ", Room1 = " + this.room1 + ", Room2 = " + this.room2 + "]";
     }
 
     /**
@@ -167,7 +216,7 @@ public class Book implements Item, Content {
      * @return Texte représentant l'objet
      */
     public String toLongString(){
-        StringBuilder s = new StringBuilder("[Book  : ID = " + this.id + ", dialog = " + this.dialog + ", content = " + this.content + ", texture = " + this.texture + ", enigmas = {");
+        StringBuilder s = new StringBuilder("[Door  : ID = " + this.id + ", dialog = " + this.dialog + ", locked = " + this.locked + ", texture = " + this.texture + ", Room1 = " + this.room1 + ", Room2 = " + this.room2 + ", enigmas = {");
         int size = this.enigmas.size() - 1;
         int i = 0;
         for(Enigma e : this.enigmas) {
@@ -178,5 +227,4 @@ public class Book implements Item, Content {
         s.append("}]");
         return s.toString();
     }
-
 }

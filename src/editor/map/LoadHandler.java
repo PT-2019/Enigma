@@ -1,8 +1,8 @@
 package editor.map;
 
 import editor.datas.Layer;
-import editor.entities.Player;
-import editor.entities.interfaces.Entity;
+import editor.entity.Player;
+import editor.entity.interfaces.Entity;
 import editor.textures.Texture;
 import editor.textures.TextureProxy;
 import org.xml.sax.Attributes;

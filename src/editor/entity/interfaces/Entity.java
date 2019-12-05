@@ -1,6 +1,6 @@
-package editor.entities.interfaces;
+package editor.entity.interfaces;
 
-import editor.entities.Player;
+import editor.entity.Player;
 import editor.textures.Texture;
 
 /**

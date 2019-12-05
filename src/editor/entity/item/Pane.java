@@ -1,25 +1,30 @@
-package editor.entities.item;
+package editor.entity.item;
 
 import editor.enigma.Enigma;
-import editor.entities.interfaces.Item;
-import editor.entities.interfaces.Lockable;
-import editor.entities.Player;
+import editor.entity.interfaces.Content;
+import editor.entity.interfaces.Item;
+import editor.entity.Player;
 import editor.textures.Texture;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- * @see editor.entities.interfaces.Lockable
- * @see editor.entities.interfaces.Item
+ * @see editor.entity.interfaces.Item
+ * @see editor.entity.interfaces.Content
  * @version 2.2
  */
-public class Chest implements Item, Lockable {
+public class Pane implements Content, Item {
 
     /**
      * Enigmes données à l'objet
      */
     private ArrayList<Enigma> enigmas;
+
+    /**
+     * Contenu de l'objet
+     */
+    private String content;
 
     /**
      * Dialogue de l'objet
@@ -36,13 +41,7 @@ public class Chest implements Item, Lockable {
      */
     private int id;
 
-    /**
-     * Indique si l'objet est verrouillé
-     */
-    private boolean locked;
-
-    public Chest(){
-        this.locked = false;
+    public Pane(){
         this.enigmas = new ArrayList<Enigma>();
         this.id = -1;
     }
@@ -50,27 +49,7 @@ public class Chest implements Item, Lockable {
     /**
      * @param id ID
      */
-    public Chest(int id){
-        this.locked = false;
-        this.enigmas = new ArrayList<Enigma>();
-        this.id = id;
-    }
-
-    /**
-     * @param locked true si l'objet est verrouillé de base, false sinon
-     */
-    public Chest(boolean locked){
-        this.locked = locked;
-        this.enigmas = new ArrayList<Enigma>();
-        this.id = -1;
-    }
-
-    /**
-     * @param locked true si l'objet est verrouillé de base, false sinon
-     * @param id ID
-     */
-    public Chest(boolean locked,int id){
-        this.locked = locked;
+    public Pane(int id){
         this.enigmas = new ArrayList<Enigma>();
         this.id = id;
     }
@@ -85,6 +64,24 @@ public class Chest implements Item, Lockable {
             if(!e.isKnown()) e.discovered();
             else e.verifyConditions(p);
         }
+    }
+
+    /**
+     * Ajoute un contenu à l'objet
+     * @param content Contenu à ajouter
+     */
+    @Override
+    public void addContent(String content) {
+        this.content = content;
+    }
+
+    /**
+     * Obtenir le contenu
+     * @return le contenu, le contenu peut être vide
+     */
+    @Override
+    public String getContent() {
+        return this.content;
     }
 
     /**
@@ -139,31 +136,6 @@ public class Chest implements Item, Lockable {
     }
 
     /**
-     * Verrouille l'objet
-     */
-    @Override
-    public void lock() {
-        this.locked = true;
-    }
-
-    /**
-     * Déverrouille l'objet
-     */
-    @Override
-    public void unlock() {
-        this.locked = false;
-    }
-
-    /**
-     * Indique si l'objet est verrouillé
-     * @return true si il est verrouillé, false sinon
-     */
-    @Override
-    public boolean isLocked() {
-        return this.locked;
-    }
-
-    /**
      * Obtenir l'ID
      * @return L'ID, -1 si pas initialisé
      */
@@ -187,7 +159,7 @@ public class Chest implements Item, Lockable {
      */
     @Override
     public String toString(){
-        return "[Chest  : ID = " + this.id + ", dialog = " + this.dialog + ", locked = " + this.locked + ", texture = " + this.texture + "]";
+        return "[Pane  : ID = " + this.id + ", dialog = " + this.dialog + ", content = " + this.content + ", texture = " + this.texture + "]";
     }
 
     /**
@@ -195,7 +167,7 @@ public class Chest implements Item, Lockable {
      * @return Texte représentant l'objet
      */
     public String toLongString(){
-        StringBuilder s = new StringBuilder("[Chest  : ID = " + this.id + ", dialog = " + this.dialog + ", locked = " + this.locked + ", texture = " + this.texture + ", enigmas = {");
+        StringBuilder s = new StringBuilder("[Pane  : ID = " + this.id + ", dialog = " + this.dialog + ", content = " + this.content + ", texture = " + this.texture + ", enigmas = {");
         int size = this.enigmas.size() - 1;
         int i = 0;
         for(Enigma e : this.enigmas) {
@@ -206,4 +178,5 @@ public class Chest implements Item, Lockable {
         s.append("}]");
         return s.toString();
     }
+
 }

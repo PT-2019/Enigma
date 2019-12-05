@@ -8,7 +8,7 @@
                                    "editor.enigma.operation.Summon": [
                                         {
                                              "spawn": "9",
-                                             "entity": "8"
+                                             "entities": "8"
                                         }
                                    ]
                               },
@@ -16,7 +16,7 @@
                               {
                                    "editor.enigma.operation.Unlock": [
                                         {
-                                             "entity": "4"
+                                             "entities": "4"
                                         }
                                    ]
                               }
@@ -48,7 +48,7 @@
                               {
                                    "editor.enigma.condition.HaveInHands": [
                                         {
-                                             "entity": "0"
+                                             "entities": "0"
                                         }
                                    ]
                               },
@@ -56,7 +56,7 @@
                               {
                                    "editor.enigma.condition.Activated": [
                                         {
-                                             "entity": "1"
+                                             "entities": "1"
                                         }
                                    ]
                               }
@@ -72,7 +72,7 @@
                               {
                                    "editor.enigma.operation.Unlock": [
                                         {
-                                             "entity": "5"
+                                             "entities": "5"
                                         }
                                    ]
                               },
@@ -80,7 +80,7 @@
                               {
                                    "editor.enigma.operation.Unlock": [
                                         {
-                                             "entity": "6"
+                                             "entities": "6"
                                         }
                                    ]
                               }
@@ -112,7 +112,7 @@
                               {
                                    "editor.enigma.condition.HaveInHands": [
                                         {
-                                             "entity": "2"
+                                             "entities": "2"
                                         }
                                    ]
                               },
@@ -120,7 +120,7 @@
                               {
                                    "editor.enigma.condition.Activated": [
                                         {
-                                             "entity": "3"
+                                             "entities": "3"
                                         }
                                    ]
                               }

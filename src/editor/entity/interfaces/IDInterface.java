@@ -1,4 +1,4 @@
-package editor.entities.interfaces;
+package editor.entity.interfaces;
 
 /**
  * Permet de gérer in ID

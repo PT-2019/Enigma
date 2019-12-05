@@ -1,6 +1,6 @@
-package editor.entities.display;
+package editor.entity.display;
 
-import editor.entities.interfaces.Entity;
+import editor.entity.interfaces.Entity;
 
 import javax.swing.*;
 import java.awt.*;

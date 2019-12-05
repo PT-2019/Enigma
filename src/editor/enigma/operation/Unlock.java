@@ -1,8 +1,8 @@
 package editor.enigma.operation;
 
-import editor.entities.interfaces.Item;
-import editor.entities.interfaces.Lockable;
-import editor.entities.Player;
+import editor.entity.interfaces.Item;
+import editor.entity.interfaces.Lockable;
+import editor.entity.Player;
 
 import java.util.Map;
 
@@ -53,6 +53,6 @@ public class Unlock extends Operation {
      */
     @Override
     public String toLongString(){
-        return "[Unlock  : entities = " + this.entity + "]";
+        return "[Unlock  : entity = " + this.entity + "]";
     }
 }

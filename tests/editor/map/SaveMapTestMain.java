@@ -10,8 +10,8 @@ public class SaveMapTestMain {
 
 		TextureProxy p =  new TextureProxy();
 
-		p.addTexture(64,"assets/monsters/019.png",4,1,16);
-		p.addTexture(16,"assets/monsters/023s.png",4,17,117);
+		p.addTexture(64,"assets/entities/monsters/019.png",4,1,16);
+		p.addTexture(16,"assets/entities/monsters/023s.png",4,17,117);
 
 		SaveMap save = new SaveMap(p.getTextures(),map);
 

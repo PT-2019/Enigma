@@ -1,8 +1,8 @@
 package editor.enigma.operation;
 
 
-import editor.entities.Player;
-import editor.entities.interfaces.Item;
+import editor.entity.Player;
+import editor.entity.interfaces.Item;
 
 import java.util.Map;
 
@@ -53,6 +53,6 @@ public class Give extends Operation {
      */
     @Override
     public String toLongString(){
-        return "[Give  : entities = " + this.entity + "]";
+        return "[Give  : entity = " + this.entity + "]";
     }
 }

@@ -1,15 +1,15 @@
-package editor.entities.item;
+package editor.entity.item;
 
 import editor.enigma.Enigma;
-import editor.entities.Player;
-import editor.entities.interfaces.Item;
+import editor.entity.Player;
+import editor.entity.interfaces.Item;
 import editor.textures.Texture;
 
 import java.util.Iterator;
 
 /**
  * Désigne des objets pouvant être activés ou désactivés
- * @see editor.entities.interfaces.Item
+ * @see editor.entity.interfaces.Item
  * @version 2.2
  */
 public abstract class Activatable implements Item {

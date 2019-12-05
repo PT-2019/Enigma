@@ -1,17 +1,17 @@
-package editor.entities.item;
+package editor.entity.item;
 
 import editor.enigma.Enigma;
-import editor.entities.Player;
+import editor.entity.Player;
 import editor.textures.Texture;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- * @see editor.entities.item.Activatable
- * @version 2.0
+ * @see editor.entity.item.Activatable
+ * @version 2.1
  */
-public class Switch extends Activatable {
+public class PressurePlate extends Activatable {
 
     /**
      * Enigmes données à l'objet
@@ -28,35 +28,18 @@ public class Switch extends Activatable {
      */
     private Texture texture;
 
-    public Switch(){
+    public PressurePlate() {
         super(false);
         this.enigmas = new ArrayList<Enigma>();
     }
 
     /**
-     * @param id ID
-     */
-    public Switch(int id){
-        super(false,id);
-        this.enigmas = new ArrayList<Enigma>();
-    }
-
-    /**
      * @param activated true si l'objet est activé de base, false sinon
      */
-    public Switch(boolean activated) {
+    public PressurePlate(boolean activated) {
         super(activated);
         this.enigmas = new ArrayList<Enigma>();
     }
-    /**
-     * @param activated true si l'objet est activé de base, false sinon
-     * @param id ID
-     */
-    public Switch(boolean activated,int id) {
-        super(activated,id);
-        this.enigmas = new ArrayList<Enigma>();
-    }
-
 
     /**
      * Est appelé quand un joueur intéragit avec l'objet
@@ -138,7 +121,7 @@ public class Switch extends Activatable {
      */
     @Override
     public String toString(){
-        return "[Switch  : ID = " + this.id + ", dialog = " + this.dialog + ", activated = " + this.activated + ", texture = " + this.texture + "]";
+        return "[PressurePlate  : ID = " + this.id + ", dialog = " + this.dialog + ", activated = " + this.activated + ", texture = " + this.texture + "]";
     }
 
     /**
@@ -146,7 +129,7 @@ public class Switch extends Activatable {
      * @return Texte représentant l'objet
      */
     public String toLongString(){
-        StringBuilder s = new StringBuilder("[Switch  : ID = " + this.id + ", dialog = " + this.dialog + ", activated = " + this.activated + ", texture = " + this.texture + ", enigmas = {");
+        StringBuilder s = new StringBuilder("[PressurePlate  : ID = " + this.id + ", dialog = " + this.dialog + ", activated = " + this.activated + ", texture = " + this.texture + ", enigmas = {");
         int size = this.enigmas.size() - 1;
         int i = 0;
         for(Enigma e : this.enigmas) {

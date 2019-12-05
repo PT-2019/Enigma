@@ -1,17 +1,17 @@
-package editor.entities.item;
+package editor.entity.item;
 
 import editor.enigma.Enigma;
-import editor.entities.Player;
+import editor.entity.Player;
 import editor.textures.Texture;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- * @see editor.entities.item.Activatable
+ * @see editor.entity.item.Activatable
  * @version 2.1
  */
-public class PressurePlate extends Activatable {
+public class Button extends Activatable {
 
     /**
      * Enigmes données à l'objet
@@ -28,7 +28,7 @@ public class PressurePlate extends Activatable {
      */
     private Texture texture;
 
-    public PressurePlate() {
+    public Button() {
         super(false);
         this.enigmas = new ArrayList<Enigma>();
     }
@@ -36,7 +36,7 @@ public class PressurePlate extends Activatable {
     /**
      * @param activated true si l'objet est activé de base, false sinon
      */
-    public PressurePlate(boolean activated) {
+    public Button(boolean activated) {
         super(activated);
         this.enigmas = new ArrayList<Enigma>();
     }
@@ -121,7 +121,7 @@ public class PressurePlate extends Activatable {
      */
     @Override
     public String toString(){
-        return "[PressurePlate  : ID = " + this.id + ", dialog = " + this.dialog + ", activated = " + this.activated + ", texture = " + this.texture + "]";
+        return "[Button  : dialog = " + this.dialog + ", activated = " + this.activated + ", texture = " + this.texture + "]";
     }
 
     /**
@@ -129,7 +129,7 @@ public class PressurePlate extends Activatable {
      * @return Texte représentant l'objet
      */
     public String toLongString(){
-        StringBuilder s = new StringBuilder("[PressurePlate  : ID = " + this.id + ", dialog = " + this.dialog + ", activated = " + this.activated + ", texture = " + this.texture + ", enigmas = {");
+        StringBuilder s = new StringBuilder("[Button  : ID = " + this.id + ", dialog = " + this.dialog + ", activated = " + this.activated + ", texture = " + this.texture + ", enigmas = {");
         int size = this.enigmas.size() - 1;
         int i = 0;
         for(Enigma e : this.enigmas) {

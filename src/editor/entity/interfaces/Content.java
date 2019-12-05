@@ -1,4 +1,4 @@
-package editor.entities.interfaces;
+package editor.entity.interfaces;
 
 /**
  * Permet à un objet d'avoir un contenu lisible par les joueurs

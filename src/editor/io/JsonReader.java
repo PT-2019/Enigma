@@ -3,6 +3,7 @@ package editor.io;
 import editor.utils.Utility;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -46,7 +47,7 @@ public class JsonReader {
 	 */
 	public static JsonFile importJson(final String path){
 		final int lastSlash = path.lastIndexOf(File.separator);
-		String[] jsonFile = Utility.readFile(path).split(System.lineSeparator());//read file
+		String[] jsonFile = Utility.readFile(path).split("\n");//read file
 		String imagePath;
 		if(lastSlash > 0)//imagePath is relative to .atlas file so we append .atlas's path if needed
 			imagePath = path.substring(0, lastSlash) + "/" + jsonFile[1];
