@@ -1,8 +1,10 @@
 package editor.api;
 
+import editor.EditorLauncher;
+
 /**
  * Représentation d'une application
- * @see editor.EditorLuncher
+ * @see EditorLauncher
  * @see game.MyGame
  */
 public interface Application {
