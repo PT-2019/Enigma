@@ -1,10 +1,10 @@
 package editor.enigma.operation;
 
 
-import editor.attributes.Attributes;
+import editor.datas.Attributes;
 import editor.entity.interfaces.Entity;
-import editor.entity.player.Player;
-import editor.io.IDFactory;
+import editor.entity.Player;
+import editor.entity.IDFactory;
 import editor.map.Case;
 
 import java.util.HashMap;
@@ -56,7 +56,7 @@ public class Summon extends Operation {
     /**
      * Obtenir un EnumMap de l'objet avec ses attributs et leur état
      * @return EnumMap de l'objet
-     * @see editor.attributes.Attributes
+     * @see editor.datas.Attributes
      */
     @Override
     public HashMap<String,Object> objectToMap(){

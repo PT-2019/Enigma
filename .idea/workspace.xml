@@ -2,15 +2,51 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4b6e0b2a-a6ad-4eff-b2cc-63f9693ec5fe" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/assets/map/Loadtest.tmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/map/mapDtd.dtd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/map/result.tmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/editor/datas/Attributes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/editor/entity/display/EntityView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/editor/entity/interfaces/IDInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/editor/entity/item/Activatable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/editor/entity/item/Book.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/editor/entity/item/Button.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/editor/io/EnigmaJsonReader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/editor/io/EnigmaJsonWriter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/editor/io/Readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/editor/map/LoadHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/editor/map/MapLoader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/editor/map/SaveMap.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/editor/utils/CalculHeader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/editor/enigma/EnigmaTestMain.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/editor/entity/EntityDisplayTestMain.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/editor/io/EnigmaJsonTestMain.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/editor/map/MapLoaderTestMain.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/editor/map/SaveMapTestMain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/Museum/Museum.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documents/annexe/CreateurDC.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documents/annexe/CreateurUsage.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documents/annexe/EgnimaCreateurEscapeGame.mdj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/documents/annexe/scenario.tmx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/enigma.iml" beforeDir="false" afterPath="$PROJECT_DIR$/enigma.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/Enums/Direction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/enums/Direction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/Enums/Layer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/enums/Layer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/entities/items/Item__38.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/entities/items/Item__68.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/entities/items/Item__69.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/EditorLuncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/EditorLuncher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entities/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entities/interfaces/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/interfaces/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entities/interfaces/Living.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/interfaces/Living.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/enums/Direction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/datas/Direction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/enums/Layer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/datas/Layer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/map/Case.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/map/Case.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/map/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/map/Map.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/map/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/map/Room.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/map/Wall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/map/Wall.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/textures/JsonFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/io/JsonFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/textures/JsonReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/io/JsonReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/textures/JsonTextureLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/io/JsonTextureLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/textures/Readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/textures/Readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/textures/Texture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/textures/Texture.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/textures/TextureArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/textures/TextureArea.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/textures/TextureProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/textures/TextureProxy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/editor/map/MapTestMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/editor/map/MapTestMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/editor/textures/JsonReaderTestMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/editor/textures/JsonReaderTestMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/editor/textures/JsonTextureLoaderTestMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/editor/textures/JsonTextureLoaderTestMain.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,102 +57,50 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
-  <component name="FileEditorManager">
-    <leaf />
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>width</find>
-      <find>colonnes</find>
-    </findStrings>
-  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/src/game/MyGame.java" />
-        <option value="$PROJECT_DIR$/src/editor/listener/CloseWindowLibgdxApplication.java" />
-        <option value="$PROJECT_DIR$/src/editor/listener/RunEditor.java" />
-        <option value="$PROJECT_DIR$/src/editor/TextureId.java" />
-        <option value="$PROJECT_DIR$/src/editor/TextureType.java" />
-        <option value="$PROJECT_DIR$/src/editor/Texture.java" />
-        <option value="$PROJECT_DIR$/src/editor/texture/TextureType.java" />
-        <option value="$PROJECT_DIR$/tests/TestTextureLoader.java" />
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/tests/MainTestScenario.java" />
-        <option value="$PROJECT_DIR$/src/DesktopLuncher.java" />
-        <option value="$PROJECT_DIR$/src/editor/api/Application.java" />
-        <option value="$PROJECT_DIR$/src/editor/listener/LoadGameLibgdxApplication.java" />
-        <option value="$PROJECT_DIR$/src/editor/texture/Texture.java" />
-        <option value="$PROJECT_DIR$/src/editor/texture/Ratata.java" />
-        <option value="$PROJECT_DIR$/src/editor/texture/Wall.java" />
-        <option value="$PROJECT_DIR$/src/editor/EditorLuncher.java" />
-        <option value="$PROJECT_DIR$/src/editor/utils/Window.java" />
-        <option value="$PROJECT_DIR$/src/editor/enums/Layer.java" />
-        <option value="$PROJECT_DIR$/src/editor/texture/TextureWallFactory.java" />
-        <option value="$PROJECT_DIR$/assets/Museum/Museum.tmx" />
-        <option value="$PROJECT_DIR$/documents/annexe/CreateurUsage.svg" />
-        <option value="$PROJECT_DIR$/src/editor/map/Case.java" />
-        <option value="$PROJECT_DIR$/tests/TestMap.java" />
-        <option value="$PROJECT_DIR$/src/editor/map/Wall.java" />
-        <option value="$PROJECT_DIR$/src/editor/map/Room.java" />
-        <option value="$PROJECT_DIR$/src/editor/map/Map.java" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="640" />
-    <option name="width" value="640" />
-    <option name="height" value="984" />
-  </component>
   <component name="ProjectId" id="1T4PWZYsjf2nuTU9Vgk0aB5pF47" />
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
-  </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/src/editor/entity" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/libs/fr.dic" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.spelling" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/assets/files/atlas" />
+      <recent name="$PROJECT_DIR$/assets/files" />
+      <recent name="$PROJECT_DIR$/assets/Map" />
+      <recent name="$PROJECT_DIR$/assets/entities" />
+      <recent name="$PROJECT_DIR$/assets/ui" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="editor.entities" />
+      <recent name="editor.textures" />
       <recent name="" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="editor.entity" />
+      <recent name="editor.entity.view" />
+      <recent name="game.screen" />
       <recent name="com.enigma.game" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Quentin Ra\Desktop\Enigma" />
-      <recent name="C:\Users\Quentin Ra\Desktop\Enigma\src\editor" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -131,13 +115,13 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.TestMap">
-    <configuration name="DesktopLuncher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="DesktopLuncher" />
+  <component name="RunManager" selected="Application.MapLoaderTestMain">
+    <configuration name="EnigmaJsonTestMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="editor.io.EnigmaJsonTestMain" />
       <module name="enigma" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value=".*" />
+          <option name="PATTERN" value="editor.io.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -145,12 +129,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Texture" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="editor.texture.Texture" />
+    <configuration name="EnigmaTestMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="editor.enigma.EnigmaTestMain" />
       <module name="enigma" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="editor.*" />
+          <option name="PATTERN" value="editor.enigma.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -158,12 +142,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Texture" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="editor.texture.Texture" />
+    <configuration name="JsonReaderTestMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="editor.textures.JsonReaderTestMain" />
       <module name="enigma" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="editor.texture.*" />
+          <option name="PATTERN" value="editor.io.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -171,26 +155,46 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestMap" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MapLoaderTestMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="editor.map.MapLoaderTestMain" />
       <module name="enigma" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestMap" />
-      <option name="TEST_OBJECT" value="class" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="editor.map.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MapTestMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="editor.map.MapTestMain" />
+      <module name="enigma" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="editor.map.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.DesktopLuncher" />
-      <item itemvalue="Application.Texture" />
-      <item itemvalue="JUnit.TestMap" />
+      <item itemvalue="Application.JsonReaderTestMain" />
+      <item itemvalue="Application.MapTestMain" />
+      <item itemvalue="Application.EnigmaTestMain" />
+      <item itemvalue="Application.EnigmaJsonTestMain" />
+      <item itemvalue="Application.MapLoaderTestMain" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TestMap" />
-        <item itemvalue="Application.DesktopLuncher" />
-        <item itemvalue="Application.Texture" />
-        <item itemvalue="Application.Texture" />
+        <item itemvalue="Application.MapLoaderTestMain" />
+        <item itemvalue="Application.EnigmaJsonTestMain" />
+        <item itemvalue="Application.EnigmaTestMain" />
+        <item itemvalue="Application.JsonReaderTestMain" />
+        <item itemvalue="Application.MapTestMain" />
       </list>
     </recent_temporary>
   </component>
@@ -240,357 +244,17 @@
       <configuration name="TestMap" configurationId="JUnit" />
     </history-entry>
   </component>
-  <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
-    <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28883496" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Designer" order="2" />
-      <window_info id="Image Layers" order="3" />
-      <window_info id="Capture Tool" order="4" />
-      <window_info id="UI Designer" order="5" />
-      <window_info id="Learn" order="6" />
-      <window_info id="Favorites" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32949308" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.42281106" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Messages" order="10" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="right" id="Maven" order="6" />
-      <window_info anchor="right" id="make" order="7" />
-      <window_info anchor="right" id="Palette&#9;" order="8" />
-    </layout>
-    <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28398058" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Designer" order="2" />
-      <window_info id="Image Layers" order="3" />
-      <window_info id="Capture Tool" order="4" />
-      <window_info id="UI Designer" order="5" />
-      <window_info id="Learn" order="6" />
-      <window_info id="Favorites" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32949308" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.42281106" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Messages" order="10" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="right" id="Maven" order="6" />
-      <window_info anchor="right" id="make" order="7" />
-      <window_info anchor="right" id="Palette&#9;" order="8" />
-    </layout-to-restore>
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/editor/TextureId.java" />
-    <entry file="file://$PROJECT_DIR$/src/editor/TextureType.java" />
-    <entry file="file://$PROJECT_DIR$/src/editor/Texture.java" />
-    <entry file="file://$PROJECT_DIR$/src/editor/texture/old/Texture.java" />
-    <entry file="file://$PROJECT_DIR$/src/editor/texture/TextureType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/monsters/019.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/TestTextureLoader.java" />
-    <entry file="file://$PROJECT_DIR$/enigma.iml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/MainTestScenario.java" />
-    <entry file="file://$PROJECT_DIR$/src/editor/listener/RunEditor.java" />
-    <entry file="file://$PROJECT_DIR$/src/editor/listener/CloseWindowLibgdxApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="32" column="48" selection-start-line="32" selection-start-column="48" selection-end-line="32" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/texture/Ratata.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="10" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
-          <folding>
-            <element signature="e#398#399#0" expanded="true" />
-            <element signature="e#415#416#0" expanded="true" />
-            <element signature="e#450#451#0" expanded="true" />
-            <element signature="e#467#468#0" expanded="true" />
-            <element signature="e#505#506#0" expanded="true" />
-            <element signature="e#523#524#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/texture/Texture.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="718">
-          <caret line="107" column="1" selection-start-line="107" selection-start-column="1" selection-end-line="107" selection-end-column="1" />
-          <folding>
-            <element signature="e#2355#2356#0" expanded="true" />
-            <element signature="e#2369#2370#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/listener/LoadGameLibgdxApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="969">
-          <caret line="57" column="39" selection-start-line="57" selection-start-column="39" selection-end-line="57" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DesktopLuncher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="43" selection-start-line="19" selection-start-column="43" selection-end-line="19" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/game/MyGame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="9" column="45" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/utils/Window.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="57" selection-start-line="15" selection-start-column="57" selection-end-line="15" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/EditorLuncher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="3" lean-forward="true" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/documents/annexe/CreateurDC.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/documents/annexe/scenario.tmx">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/documents/annexe/CreateurUsage.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/Museum/Museum.tmx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="744">
-          <caret line="394" selection-start-line="394" selection-end-line="394" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" selection-start-line="17" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/enums/Layer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="6" lean-forward="true" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/enums/Direction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/texture/Wall.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="16" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="16" />
-          <folding>
-            <element signature="e#376#377#0" expanded="true" />
-            <element signature="e#393#394#0" expanded="true" />
-            <element signature="e#428#429#0" expanded="true" />
-            <element signature="e#445#446#0" expanded="true" />
-            <element signature="e#483#484#0" expanded="true" />
-            <element signature="e#501#502#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/texture/TextureWallFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-          <folding>
-            <element signature="e#126#127#0" expanded="true" />
-            <element signature="e#144#145#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/api/Application.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="35" selection-start-line="3" selection-start-column="35" selection-end-line="3" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/TestMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="28" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/map/Wall.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="43" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/map/Room.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="850">
-          <caret line="50" column="28" selection-start-line="50" selection-start-column="28" selection-end-line="50" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/map/Map.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/map/Case.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1088">
-          <caret line="68" column="25" selection-start-line="68" selection-start-column="25" selection-end-line="68" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ArtifactsStructureConfigurable.UI">
-        <settings>
-          <artifact-editor />
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="FacetStructureConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="GlobalLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="JdkListConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ModuleStructureConfigurable.UI">
-        <settings>
-          <last-edited>enigma</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-                <option value="0.6" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectLibrariesConfigurable.UI">
-        <settings>
-          <last-edited>libs</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

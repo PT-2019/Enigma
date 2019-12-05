@@ -1,10 +1,11 @@
 package editor;
 
 import editor.api.Application;
-import editor.utils.Window;
+import editor.window.Window;
 
 /**
  * Lanceur de l'éditeur d'escape game
+ * @version 1.0
  */
 public class EditorLuncher implements Application {
 
@@ -19,10 +20,12 @@ public class EditorLuncher implements Application {
 	 */
 	public EditorLuncher(int width, int height) {
 		//préparer ici l'application pour son démarrage
-		this.window = new Window(width,height);//TODO: coder la classe fenêtre
+		this.window = new Window(width,height);
+
+		//ici on configure la fenêtre
 
 		//titre de la fenêtre
-		//this.window.setTitle("Enigma");
+		this.window.setTitle("Enigma");
 
 		// Icône de l'application
 		// this.window.setIconImage();
