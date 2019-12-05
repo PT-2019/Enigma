@@ -1,5 +1,7 @@
 package editor.map;
 
+import editor.entity.interfaces.IDInterface;
+
 import java.awt.Point;
 import java.util.HashMap;
 
@@ -9,7 +11,7 @@ import java.util.HashMap;
  * @see Case
  * @version 2.0
  */
-public class Map {
+public class Map implements IDInterface {
 
 	/** sa taille */
 	private final int col,  row;

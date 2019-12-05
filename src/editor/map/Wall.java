@@ -1,11 +1,13 @@
 package editor.map;
 
+import editor.entity.interfaces.IDInterface;
+
 /**
  * Le mur d'une pièce
  * @see Room
  * @version 2.0
  */
-public class Wall {
+public class Wall implements IDInterface {
 
 	/** la pièce que si charge de l'afficher */
 	private Room printer;

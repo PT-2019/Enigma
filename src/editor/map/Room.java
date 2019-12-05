@@ -1,6 +1,7 @@
 package editor.map;
 
-import editor.Enums.Direction;
+import editor.entity.interfaces.IDInterface;
+import editor.enums.Direction;
 
 import java.util.HashMap;
 
@@ -8,7 +9,7 @@ import java.util.HashMap;
  * Une pièce, c'est un tableau de cases, et elle a 4 murs.
  * @version 2.0
  */
-public class Room {
+public class Room implements IDInterface {
 
 	/** sa taille */
 	private final int col, row;

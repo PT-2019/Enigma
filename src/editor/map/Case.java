@@ -1,6 +1,7 @@
 package editor.map;
 
-import editor.Enums.Layer;
+import editor.entity.interfaces.IDInterface;
+import editor.enums.Layer;
 import editor.texture.Texture;
 
 import java.util.HashMap;
@@ -9,7 +10,7 @@ import java.util.HashMap;
  * Une case de la map
  * @version 2.0
  */
-public class Case {
+public class Case implements IDInterface {
 
 	/** Taille basique d'une case **/
 	private static final int WIDTH = 16, HEIGHT = 16;
