@@ -52,7 +52,6 @@ public class Room implements IDInterface {
 		this.walls = new HashMap<>();
 	}
 
-<<<<<<< HEAD
 	public Room(int col,int row,Case[] cases){
 		this.col = col;
 		this.row = row;
@@ -60,7 +59,7 @@ public class Room implements IDInterface {
 		this.cases = cases;
 	}
 
-=======
+
 	/**
 	 * Crée une pièce
 	 */
@@ -74,8 +73,6 @@ public class Room implements IDInterface {
 			this.cases[i] = new Case();
 			this.cases[i].setWalkable(true);
 		}
->>>>>>> LoukaDOZ/FichierEnigme
-
 		this.walls = new HashMap<>();
 		this.id = id;
 	}

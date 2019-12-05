@@ -137,14 +137,15 @@ public class Map implements IDInterface {
 		this.cases = cases;
 	}
 
-<<<<<<< HEAD
+
 	public Case getCase(int i){
 		return cases[i];
 	}
 
-	public void setCase(int indice,Case c){
+	public void setCase(int indice,Case c) {
 		cases[indice] = c;
-=======
+	}
+
 	/**
 	 * Obtenir l'ID
 	 * @return L'ID, -1 si pas initialisé
@@ -159,6 +160,5 @@ public class Map implements IDInterface {
 	 */
 	public void setID(int id) {
 		this.id = id;
->>>>>>> LoukaDOZ/FichierEnigme
 	}
 }

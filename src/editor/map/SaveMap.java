@@ -1,5 +1,6 @@
 package editor.map;
 
+import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,12 +12,11 @@ import javax.xml.transform.stream.StreamResult;
 
 import editor.enums.Layer;
 import editor.texture.Texture;
-<<<<<<< HEAD
+
 import editor.texture.TextureArea;
 import editor.texture.TextureProxy;
 import org.lwjgl.Sys;
-=======
->>>>>>> LoukaDOZ/FichierEnigme
+
 import org.w3c.dom.*;
 
 /**
@@ -104,7 +104,7 @@ public class SaveMap {
 
 			//écriture des différents layers de la map
 			int i = 0;
-<<<<<<< HEAD
+
 			for (editor.enums.Layer type : editor.enums.Layer.values()) {
 				layers = document.createElement("layer");
 				layers.setAttribute("id", String.valueOf(i));
@@ -112,15 +112,6 @@ public class SaveMap {
 				layers.setAttribute("width",col);
 				layers.setAttribute("height",row);
 				map.appendChild(layers);
-=======
-			for (Layer type : Layer.values()) {
-				layers[i] = document.createElement("layer");
-				layers[i].setAttribute("id", String.valueOf(i));
-				layers[i].setAttribute("name", String.valueOf(type));
-				layers[i].setAttribute("width",col);
-				layers[i].setAttribute("height",row);
-				map.appendChild(layers[i]);
->>>>>>> LoukaDOZ/FichierEnigme
 
 				datas = document.createElement("data");
 				datas.setAttribute("encoding","csv");
