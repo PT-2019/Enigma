@@ -12,21 +12,15 @@ public class IDFactory {
     /**
      * Liste des objets enregistés
      */
-    private static ArrayList<Object> LIST;
+    private static ArrayList<Object> LIST = new ArrayList<>();
 
-    /**
-     * Instance
-     */
-    private static IDFactory INSTANCE = new IDFactory();
+    private IDFactory(){}
 
-    private IDFactory(){
-        LIST = new ArrayList<>();
-    }
-
-    private IDFactory(ArrayList list){
+    private IDFactory(ArrayList<Object> list){
         LIST = list;
     }
 
+    @SuppressWarnings("unchecked")
     public static IDFactory getInstance(){
         return new IDFactory((ArrayList) LIST.clone());
     }

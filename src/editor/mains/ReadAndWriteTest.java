@@ -23,7 +23,7 @@ import java.util.ArrayList;
  * @version 2.0
  */
 public class ReadAndWriteTest {
-    public static void main(String[] args) throws IOException, InterruptedException, ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
         ArrayList<Enigma> enigmas = new ArrayList<Enigma>();
         IDFactory idf = IDFactory.getInstance();
         Switch s1 = new Switch();
