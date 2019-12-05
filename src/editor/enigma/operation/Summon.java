@@ -2,9 +2,9 @@ package editor.enigma.operation;
 
 
 import editor.datas.Attributes;
-import editor.entity.interfaces.Entity;
-import editor.entity.Player;
-import editor.entity.IDFactory;
+import editor.entities.interfaces.Entity;
+import editor.entities.Player;
+import editor.entities.IDFactory;
 import editor.map.Case;
 
 import java.util.HashMap;
@@ -48,7 +48,7 @@ public class Summon extends Operation {
      */
     @Override
     public void doOperation(Player p) {
-       //faire apparaitre this.entity sur this.spawn
+       //faire apparaitre this.entities sur this.spawn
     }
 
 
@@ -82,6 +82,6 @@ public class Summon extends Operation {
      */
     @Override
     public String toLongString(){
-        return "[Summon  : entity = " + this.entity + ", spawn = " + this.spawn + "]";
+        return "[Summon  : entities = " + this.entity + ", spawn = " + this.spawn + "]";
     }
 }

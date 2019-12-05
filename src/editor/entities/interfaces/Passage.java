@@ -1,4 +1,4 @@
-package editor.entity.interfaces;
+package editor.entities.interfaces;
 
 import editor.map.Room;
 

@@ -1,17 +1,18 @@
-package editor.entity.item;
+package editor.entities.item;
 
 import editor.enigma.Enigma;
-import editor.entity.Player;
+import editor.entities.interfaces.Item;
+import editor.entities.Player;
 import editor.textures.Texture;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- * @see editor.entity.item.Activatable
- * @version 2.0
+ * @see editor.entities.interfaces.Item
+ * @version 2.2
  */
-public class Switch extends Activatable {
+public class Floor implements Item {
 
     /**
      * Enigmes données à l'objet
@@ -28,44 +29,30 @@ public class Switch extends Activatable {
      */
     private Texture texture;
 
-    public Switch(){
-        super(false);
+    /**
+     * ID
+     */
+    private int id;
+
+    public Floor(){
         this.enigmas = new ArrayList<Enigma>();
+        this.id = -1;
     }
 
     /**
      * @param id ID
      */
-    public Switch(int id){
-        super(false,id);
+    public Floor(int id){
         this.enigmas = new ArrayList<Enigma>();
+        this.id = id;
     }
-
-    /**
-     * @param activated true si l'objet est activé de base, false sinon
-     */
-    public Switch(boolean activated) {
-        super(activated);
-        this.enigmas = new ArrayList<Enigma>();
-    }
-    /**
-     * @param activated true si l'objet est activé de base, false sinon
-     * @param id ID
-     */
-    public Switch(boolean activated,int id) {
-        super(activated,id);
-        this.enigmas = new ArrayList<Enigma>();
-    }
-
 
     /**
      * Est appelé quand un joueur intéragit avec l'objet
      * @param p Joueur ayant intéragit avec l'objet
      */
     @Override
-    public void interactsWith(Player p) {
-        this.activated = !this.activated;
-
+    public void interactsWith(Player p){
         for(Enigma e : this.enigmas){
             if(!e.isKnown()) e.discovered();
             else e.verifyConditions(p);
@@ -124,12 +111,21 @@ public class Switch extends Activatable {
     }
 
     /**
-     * Indique si l'objet est activé
-     * @return true si l'objet est activé, false sinon
+     * Obtenir l'ID
+     * @return L'ID, -1 si pas initialisé
      */
     @Override
-    public boolean isActivated() {
-        return this.activated;
+    public int getID() {
+        return this.id;
+    }
+
+    /**
+     * Définir l'ID
+     * @param id ID
+     */
+    @Override
+    public void setID(int id) {
+        this.id = id;
     }
 
     /**
@@ -138,7 +134,7 @@ public class Switch extends Activatable {
      */
     @Override
     public String toString(){
-        return "[Switch  : ID = " + this.id + ", dialog = " + this.dialog + ", activated = " + this.activated + ", texture = " + this.texture + "]";
+        return "[Floor  : ID = " + this.id + ", dialog = " + this.dialog + ", texture = " + this.texture + "]";
     }
 
     /**
@@ -146,7 +142,7 @@ public class Switch extends Activatable {
      * @return Texte représentant l'objet
      */
     public String toLongString(){
-        StringBuilder s = new StringBuilder("[Switch  : ID = " + this.id + ", dialog = " + this.dialog + ", activated = " + this.activated + ", texture = " + this.texture + ", enigmas = {");
+        StringBuilder s = new StringBuilder("[Floor  : ID = " + this.id + ", dialog = " + this.dialog + ", texture = " + this.texture + ", enigmas = {");
         int size = this.enigmas.size() - 1;
         int i = 0;
         for(Enigma e : this.enigmas) {

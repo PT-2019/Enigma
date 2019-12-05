@@ -1,7 +1,7 @@
 package editor.enigma.condition;
 
-import editor.entity.Player;
-import editor.entity.item.Activatable;
+import editor.entities.Player;
+import editor.entities.item.Activatable;
 
 import java.util.Map;
 
@@ -54,6 +54,6 @@ public class Activated extends Condition {
      */
     @Override
     public String toLongString(){
-        return "[Activated  : entity = " + this.entity + "]";
+        return "[Activated  : entities = " + this.entity + "]";
     }
 }

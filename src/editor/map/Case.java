@@ -1,8 +1,8 @@
 package editor.map;
 
-import editor.entity.interfaces.Entity;
+import editor.entities.interfaces.Entity;
 import editor.datas.Layer;
-import editor.entity.interfaces.IDInterface;
+import editor.entities.interfaces.IDInterface;
 
 import java.util.HashMap;
 

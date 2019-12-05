@@ -1,23 +1,30 @@
-package editor.entity.item;
+package editor.entities.item;
 
 import editor.enigma.Enigma;
-import editor.entity.interfaces.Item;
-import editor.entity.Player;
+import editor.entities.interfaces.Content;
+import editor.entities.interfaces.Item;
+import editor.entities.Player;
 import editor.textures.Texture;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- * @see editor.entity.interfaces.Item
+ * @see editor.entities.interfaces.Item
+ * @see editor.entities.interfaces.Content
  * @version 2.2
  */
-public class Floor implements Item {
+public class Pane implements Content, Item {
 
     /**
      * Enigmes données à l'objet
      */
     private ArrayList<Enigma> enigmas;
+
+    /**
+     * Contenu de l'objet
+     */
+    private String content;
 
     /**
      * Dialogue de l'objet
@@ -34,7 +41,7 @@ public class Floor implements Item {
      */
     private int id;
 
-    public Floor(){
+    public Pane(){
         this.enigmas = new ArrayList<Enigma>();
         this.id = -1;
     }
@@ -42,7 +49,7 @@ public class Floor implements Item {
     /**
      * @param id ID
      */
-    public Floor(int id){
+    public Pane(int id){
         this.enigmas = new ArrayList<Enigma>();
         this.id = id;
     }
@@ -57,6 +64,24 @@ public class Floor implements Item {
             if(!e.isKnown()) e.discovered();
             else e.verifyConditions(p);
         }
+    }
+
+    /**
+     * Ajoute un contenu à l'objet
+     * @param content Contenu à ajouter
+     */
+    @Override
+    public void addContent(String content) {
+        this.content = content;
+    }
+
+    /**
+     * Obtenir le contenu
+     * @return le contenu, le contenu peut être vide
+     */
+    @Override
+    public String getContent() {
+        return this.content;
     }
 
     /**
@@ -134,7 +159,7 @@ public class Floor implements Item {
      */
     @Override
     public String toString(){
-        return "[Floor  : ID = " + this.id + ", dialog = " + this.dialog + ", texture = " + this.texture + "]";
+        return "[Pane  : ID = " + this.id + ", dialog = " + this.dialog + ", content = " + this.content + ", texture = " + this.texture + "]";
     }
 
     /**
@@ -142,7 +167,7 @@ public class Floor implements Item {
      * @return Texte représentant l'objet
      */
     public String toLongString(){
-        StringBuilder s = new StringBuilder("[Floor  : ID = " + this.id + ", dialog = " + this.dialog + ", texture = " + this.texture + ", enigmas = {");
+        StringBuilder s = new StringBuilder("[Pane  : ID = " + this.id + ", dialog = " + this.dialog + ", content = " + this.content + ", texture = " + this.texture + ", enigmas = {");
         int size = this.enigmas.size() - 1;
         int i = 0;
         for(Enigma e : this.enigmas) {
@@ -153,4 +178,5 @@ public class Floor implements Item {
         s.append("}]");
         return s.toString();
     }
+
 }

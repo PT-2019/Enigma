@@ -1,6 +1,4 @@
-package editor.entity;
-
-import editor.entity.interfaces.IDInterface;
+package editor.entities;
 
 import java.util.ArrayList;
 

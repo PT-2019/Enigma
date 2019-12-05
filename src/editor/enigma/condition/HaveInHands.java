@@ -1,7 +1,7 @@
 package editor.enigma.condition;
 
-import editor.entity.interfaces.Item;
-import editor.entity.Player;
+import editor.entities.interfaces.Item;
+import editor.entities.Player;
 
 import java.util.Map;
 
@@ -54,6 +54,6 @@ public class HaveInHands extends Condition {
      */
     @Override
     public String toLongString(){
-        return "[HaveInHands  : entity = " + this.entity + "]";
+        return "[HaveInHands  : entities = " + this.entity + "]";
     }
 }

@@ -6,10 +6,10 @@ import editor.enigma.condition.Activated;
 import editor.enigma.condition.HaveInHands;
 import editor.enigma.operation.Summon;
 import editor.enigma.operation.Unlock;
-import editor.entity.item.Door;
-import editor.entity.item.Switch;
-import editor.entity.Player;
-import editor.entity.IDFactory;
+import editor.entities.item.Door;
+import editor.entities.item.Switch;
+import editor.entities.Player;
+import editor.entities.IDFactory;
 import editor.map.Case;
 
 import java.io.IOException;

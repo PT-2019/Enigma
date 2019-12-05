@@ -1,6 +1,6 @@
 package editor.map;
 
-import editor.entity.interfaces.IDInterface;
+import editor.entities.interfaces.IDInterface;
 
 import java.awt.*;
 import java.util.HashMap;

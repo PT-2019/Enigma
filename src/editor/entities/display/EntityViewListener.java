@@ -1,4 +1,4 @@
-package editor.entity.display;
+package editor.entities.display;
 
 import javax.swing.*;
 import java.awt.event.MouseEvent;

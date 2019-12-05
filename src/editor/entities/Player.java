@@ -1,13 +1,13 @@
-package editor.entity;
+package editor.entities;
 
-import editor.entity.interfaces.Entity;
-import editor.entity.interfaces.Living;
+import editor.entities.interfaces.Entity;
+import editor.entities.interfaces.Living;
 import editor.textures.Texture;
 
 /**
  * Définie un personnage contrôlable : un joueur
- * @see editor.entity.interfaces.Entity
- * @see editor.entity.interfaces.Living
+ * @see editor.entities.interfaces.Entity
+ * @see editor.entities.interfaces.Living
  * @version 2.0
  */
 public class Player implements Entity, Living {

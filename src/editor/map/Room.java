@@ -2,9 +2,9 @@ package editor.map;
 
 import editor.datas.Direction;
 import editor.datas.Layer;
-import editor.entity.Player;
-import editor.entity.interfaces.Entity;
-import editor.entity.interfaces.IDInterface;
+import editor.entities.Player;
+import editor.entities.interfaces.Entity;
+import editor.entities.interfaces.IDInterface;
 import editor.io.JsonTextureLoader;
 import editor.textures.Texture;
 
@@ -45,7 +45,7 @@ public class Room implements IDInterface {
 
 		//todo: remove this (just for tests)
 		//Begin
-		Entity library = new Entity() {//fake entity
+		Entity library = new Entity() {//fake entities
 			@Override
 			public void interactsWith(Player p) {}
 

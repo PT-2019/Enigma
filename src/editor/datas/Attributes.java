@@ -16,7 +16,7 @@ public interface Attributes {
 	 * @see editor.enigma.condition.Condition
 	 * @see editor.enigma.operation.Operation
 	 */
-	public final static String ENTITY = "entity";
+	public final static String ENTITY = "entities";
 
 	/**
 	 * Case d'apparition

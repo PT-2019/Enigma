@@ -10,7 +10,7 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import editor.datas.Layer;
-import editor.entity.interfaces.Entity;
+import editor.entities.interfaces.Entity;
 import editor.textures.Texture;
 
 import editor.textures.TextureArea;
