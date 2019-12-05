@@ -76,6 +76,11 @@ public class Book implements Item, Content {
         return this.texture;
     }
 
+    @Override
+    public void setTexture(Texture t) {
+        texture = t;
+    }
+
     /**
      * Affiche un dialogue avec l'objet
      */

@@ -64,6 +64,11 @@ public class Button extends Activatable {
         return this.texture;
     }
 
+    @Override
+    public void setTexture(Texture t) {
+        texture = t;
+    }
+
     /**
      * Affiche un dialogue avec l'objet
      */

@@ -99,6 +99,11 @@ public class Door implements Item, Passage, Lockable {
         return this.texture;
     }
 
+    @Override
+    public void setTexture(Texture t) {
+        texture = t;
+    }
+
     /**
      * Affiche un dialogue avec l'objet
      */

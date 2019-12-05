@@ -65,6 +65,11 @@ public class Player implements Entity, Living {
         return null;
     }
 
+    @Override
+    public void setTexture(Texture t) {
+        texture = t;
+    }
+
     /**
      * Affiche un dialogue avec l'objet
      */

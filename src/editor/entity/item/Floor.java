@@ -68,6 +68,11 @@ public class Floor implements Item {
         return this.texture;
     }
 
+    @Override
+    public void setTexture(Texture t) {
+        texture = t;
+    }
+
     /**
      * Affiche un dialogue avec l'objet
      */
