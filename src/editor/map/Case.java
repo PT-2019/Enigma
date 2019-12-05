@@ -1,5 +1,6 @@
 package editor.map;
 
+import editor.entity.interfaces.IDInterface;
 import editor.enums.Layer;
 import editor.texture.Texture;
 
@@ -7,8 +8,9 @@ import java.util.HashMap;
 
 /**
  * Une case de la map
+ * @version 2.0
  */
-public class Case {
+public class Case implements IDInterface {
 
 	/** Taille basique d'une case **/
 	private static final int WIDTH = 16, HEIGHT = 16;
@@ -23,6 +25,11 @@ public class Case {
 	private int width, height;
 
 	/**
+	 * ID
+	 */
+	private int id;
+
+	/**
 	 * Crée une case
 	 */
 	public Case(){
@@ -30,6 +37,18 @@ public class Case {
 		this.height = Case.HEIGHT;
 		this.walkable = false;
 		this.textures = new HashMap<>();
+	}
+
+	/**
+	 * Crée une case
+	 * @param id ID
+	 */
+	public Case(int id){
+		this.width = Case.WIDTH;
+		this.height = Case.HEIGHT;
+		this.walkable = false;
+		this.textures = new HashMap<>();
+		this.id = id;
 	}
 
 	@Override
@@ -72,5 +91,21 @@ public class Case {
 
 	public HashMap<Layer, Texture> getTextures() {
 		return textures;
+	}
+
+	/**
+	 * Obtenir l'ID
+	 * @return L'ID, -1 si pas initialisé
+	 */
+	public int getID() {
+		return this.id;
+	}
+
+	/**
+	 * Définir l'ID
+	 * @param id ID
+	 */
+	public void setID(int id) {
+		this.id = id;
 	}
 }
