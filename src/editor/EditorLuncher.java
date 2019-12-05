@@ -20,10 +20,12 @@ public class EditorLuncher implements Application {
 	 */
 	public EditorLuncher(int width, int height) {
 		//préparer ici l'application pour son démarrage
-		this.window = new Window(width,height);//TODO: coder la classe fenêtre
+		this.window = new Window(width,height);
+
+		//ici on configure la fenêtre
 
 		//titre de la fenêtre
-		//this.window.setTitle("Enigma");
+		this.window.setTitle("Enigma");
 
 		// Icône de l'application
 		// this.window.setIconImage();

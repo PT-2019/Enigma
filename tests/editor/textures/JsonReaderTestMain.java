@@ -1,5 +1,6 @@
 package editor.textures;
 
+import editor.io.JsonReader;
 import org.jetbrains.annotations.TestOnly;
 
 public class JsonReaderTestMain {

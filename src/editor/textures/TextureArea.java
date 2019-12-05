@@ -130,4 +130,24 @@ public class TextureArea {
 	public int getMin(){
 		return min;
 	}
+
+	public int getNbcol() {
+		return nbcol;
+	}
+
+	public int getWidth(){
+		return  buffer.getWidth();
+	}
+
+	public int getHeight(){
+		return buffer.getHeight();
+	}
+
+	public int getTileHeight() {
+		return tileHeight;
+	}
+
+	public int getTileWidth() {
+		return tileWidth;
+	}
 }

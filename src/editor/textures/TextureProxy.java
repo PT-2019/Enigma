@@ -4,6 +4,8 @@ import java.awt.*;
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
 /**
@@ -115,5 +117,9 @@ public class TextureProxy {
 		}catch(IOException e){
 			System.out.println(e.getMessage());
 		}
+	}
+
+	public ArrayList<TextureArea> getTextures() {
+		return new ArrayList<>(textures.values());
 	}
 }

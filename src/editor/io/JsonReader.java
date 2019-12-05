@@ -1,7 +1,6 @@
-package editor.textures;
+package editor.io;
 
 import editor.utils.Utility;
-import org.jetbrains.annotations.TestOnly;
 
 import java.io.File;
 import java.util.HashMap;

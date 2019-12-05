@@ -1,4 +1,4 @@
-package editor.enums;
+package editor.datas;
 
 /**
  * Déplacements possibles

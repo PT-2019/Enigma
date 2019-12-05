@@ -1,4 +1,7 @@
-package editor.textures;
+package editor.io;
+
+import editor.textures.Texture;
+import editor.textures.TextureProxy;
 
 import java.awt.Point;
 import java.awt.Dimension;
@@ -22,7 +25,7 @@ public class JsonFile implements Serializable {
 	/** map des index (noms) et de leur n+1 ligne */
 	private final HashMap<String, Integer> map;
 	/** garde les textures déjà chargées */
-	private final HashMap<String, Image> loadedSubTextures;
+	private final HashMap<String, Texture> loadedSubTextures;
 	/** le fichier sous la forme d'un tableau de string */
 	private final String[] jsonFile;
 
@@ -46,13 +49,13 @@ public class JsonFile implements Serializable {
 	 * @return la sous texture d'une image correspondant a ce nom d'index
 	 * @since 2.0
 	 */
-	public Image getTexture(String name) {
-		if(loadedSubTextures.containsKey(name))
-			return loadedSubTextures.get(name);
+	public Texture getTexture(String name) {
+		if(!loadedSubTextures.containsKey(name)){
+			Image subTexture =  JsonSubTexture.getSubTexture(jsonFile,image, map.get(name));
+			this.loadedSubTextures.put(name, new Texture(map.get(name), subTexture)); //TODO: pb ici
+		}
 
-		Image subTexture =  JsonSubTexture.getSubTexture(jsonFile,image, map.get(name));
-		this.loadedSubTextures.put(name, subTexture);
-		return subTexture;
+		return loadedSubTextures.get(name);
 	}
 
 	@Override

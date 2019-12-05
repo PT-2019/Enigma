@@ -1,11 +1,10 @@
-package editor.enums;
+package editor.datas;
 
 /**
  * Nom des couches pour l'affichage de la map
  * @version 1.0
  */
-public enum Layer
-{
+public enum Layer {
 	//Les couches sont rangées dans l'ordre
 	//Les premières sont rangées en bas tandis que les dernières sont en haut
 	//Exemple : il y a le sol (FLOOR1), sur le sol il y a une assiette (DECORATION1), dans l'assiette il y a à manger (DECORATION2)

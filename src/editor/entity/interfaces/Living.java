@@ -1,4 +1,4 @@
-package editor.entities.interfaces;
+package editor.entity.interfaces;
 
 /**
  * Définie une entité comme tuable

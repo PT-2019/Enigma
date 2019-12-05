@@ -1,6 +1,7 @@
-package editor.textures;
+package editor.io;
 
-import java.awt.Image;
+import editor.textures.Texture;
+
 import java.util.HashMap;
 
 /**
@@ -25,7 +26,7 @@ public class JsonTextureLoader {
 	 * @return la sous-image voulue
 	 * @since 2.0
 	 */
-	public static Image getTexture(String name, String file){
+	public static Texture getTexture(String name, String file){
 		if(!JsonTextureLoader.loadedTextures.containsKey(file)){
 			JsonFile json = JsonReader.importJson(file);
 			JsonTextureLoader.loadedTextures.put(file, json);

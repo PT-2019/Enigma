@@ -1,8 +1,7 @@
 package editor.map;
 
-import editor.enums.Layer;
+import editor.entity.interfaces.IDInterface;
 
-import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
 
@@ -10,8 +9,9 @@ import java.util.HashMap;
  * Une map, c'est un tableau de cases. Certaines sont des pièces.
  * @see Room
  * @see Case
+ * @version 2.0
  */
-public class Map {
+public class Map implements IDInterface {
 
 	/** sa taille */
 	private final int col,  row;
@@ -26,6 +26,11 @@ public class Map {
 	private Case[] cases;
 
 	/**
+	 * ID
+	 */
+	private int id;
+
+	/**
 	 * Crée une map
 	 * @param col son nombre de colonnes
 	 * @param row son nombre de lignes
@@ -35,6 +40,17 @@ public class Map {
 		this.row = row;
 		this.cases = new Case[col*row];
 		this.rooms = new HashMap<>();
+	}
+
+	/**
+	 * Crée une map
+	 * @param col son nombre de colonnes
+	 * @param row son nombre de lignes
+	 * @param id ID
+	 */
+	public Map(int col, int row, int id){
+		this(col, row);
+		this.id = id;
 	}
 
 	/**
@@ -57,13 +73,15 @@ public class Map {
 	}
 
 	/**
-	 * Affiche la map
+	 * Affiche la map dans la console
 	 */
-	public JPanel render(){
-		JPanel panel = new JPanel();
-		panel.setLayout(new GridBagLayout());
-		GridBagConstraints bagConstraints = new GridBagConstraints();
-		panel.setBackground(Color.BLACK);
+	public void render(){
+		StringBuilder sb = new StringBuilder("Map (");
+
+		sb.append(this.col);
+		sb.append("*");
+		sb.append(this.row);
+		sb.append(")\n");
 
 		//put all room's values into map array
 		for (java.util.Map.Entry<Point,Room> room :this.rooms.entrySet()) {
@@ -75,32 +93,21 @@ public class Map {
 			}
 		}
 
+		//print all case into a string builder
 		for (int i = 0; i < this.row ; i++) {
 			for (int j = 0; j < this.col ; j++) {
 				//TODO: find a way to print all layers
 				Case aCase = this.cases[i*this.col+j];
-				bagConstraints.gridx = j;
-				bagConstraints.gridy = i;
-				if(aCase != null) {
-					panel.add(new A(aCase), bagConstraints);
-				}
+				if(aCase != null)
+					sb.append(aCase);
+				else
+					sb.append("x");
+				sb.append("|");
 			}
+			sb.append("\n");
 		}
-		return panel;
-	}
 
-	private static final class A extends JPanel{
-		A(Case aCase){
-			this.setOpaque(false);
-			JLayeredPane pane = new JLayeredPane();
-			/*pane.setPreferredSize(new Dimension(300, 310));
-			pane.setBorder(BorderFactory.createTitledBorder(
-					"Move the Mouse to Move Duke"));*/
-			pane.add(new JLabel(new ImageIcon(aCase.getEntity(Layer.FLOOR1).getTexture().getImage())), 0);
-			pane.add(new JLabel(new ImageIcon(aCase.getEntity(Layer.DECORATIONS1).getTexture().getImage())), 1);
-			pane.add(new JLabel(new ImageIcon(aCase.getEntity(Layer.DECORATIONS2).getTexture().getImage())), 2);
-			this.add(pane);
-		}
+		System.out.println(sb);
 	}
 
 	@Override
@@ -145,6 +152,45 @@ public class Map {
 		return this.row;
 	}
 
-	public Case[] getCases() { return this.cases; }
+	public HashMap<Point, Room> getRooms() {
+		return rooms;
+	}
+
+	public void setRooms(HashMap<Point, Room> rooms) {
+		this.rooms = rooms;
+	}
+
+	public Case[] getCases() {
+		return cases;
+	}
+
+	public void setCases(Case[] cases) {
+		this.cases = cases;
+	}
+
+
+	public Case getCase(int i){
+		return cases[i];
+	}
+
+	public void setCase(int indice,Case c) {
+		cases[indice] = c;
+	}
+
+	/**
+	 * Obtenir l'ID
+	 * @return L'ID, -1 si pas initialisé
+	 */
+	public int getID() {
+		return this.id;
+	}
+
+	/**
+	 * Définir l'ID
+	 * @param id ID
+	 */
+	public void setID(int id) {
+		this.id = id;
+	}
 
 }

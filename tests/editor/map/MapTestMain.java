@@ -27,12 +27,6 @@ public class MapTestMain {
 	}
 
 	public static void main(String[] args) {
-		JFrame frame = new JFrame();
-		frame.setSize(new Dimension(30*32,20*32));
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		//on met a gauche le nom de la sous-texture et a droite son fichier
-
 		Map map = new Map(30,20);
 		Room room1 = new Room();
 		Room room2 = new Room();
@@ -41,8 +35,6 @@ public class MapTestMain {
 
 		map.addRoom(11,2, room2);
 
-		frame.add(map.render(),BorderLayout.CENTER);
-		frame.setVisible(true);
-	}
 
+	}
 }
