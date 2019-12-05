@@ -20,6 +20,8 @@ public interface Entity{
      */
     public Texture getTexture();
 
+    public void setTexture(Texture t);
+
     /**
      * Affiche un dialogue avec l'objet
      */

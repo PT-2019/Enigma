@@ -1,5 +1,6 @@
 package editor.map;
 
+import editor.Entity.Interface.Entity;
 import editor.enums.Layer;
 import editor.texture.Texture;
 
@@ -16,7 +17,7 @@ public class Case {
 	/** détermine s'il est possible de se rendre sur la case */
 	private boolean walkable;
 
-	/** Map, pour chaque niveau, on va possible une texture **/
+	/** Map, pour chaque niveau, on a une texture possible  **/
 	private HashMap<Layer, Texture> textures;
 
 	/** taille de la case **/
