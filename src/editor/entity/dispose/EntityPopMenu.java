@@ -1,4 +1,4 @@
-package editor.Entity.dispose;
+package editor.entity.dispose;
 
 import javax.swing.*;
 

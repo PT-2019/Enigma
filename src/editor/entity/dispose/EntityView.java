@@ -1,6 +1,6 @@
-package editor.Entity.dispose;
+package editor.entity.dispose;
 
-import editor.Entity.Interface.Entity;
+import editor.entity.interfaces.Entity;
 
 import javax.swing.*;
 import java.awt.*;

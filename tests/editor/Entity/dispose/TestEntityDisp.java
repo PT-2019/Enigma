@@ -1,11 +1,13 @@
 package editor.Entity.dispose;
 
-import editor.Entity.Interface.Entity;
-import editor.Entity.Item.Book;
+import javax.swing.*;
+import editor.entity.dispose.EntityPopMenu;
+import editor.entity.dispose.EntityView;
+import editor.entity.interfaces.Entity;
+import editor.entity.item.Book;
 import editor.listener.EntityViewListener;
 import editor.texture.Texture;
 
-import javax.swing.*;
 import java.awt.*;
 
 public class TestEntityDisp {
