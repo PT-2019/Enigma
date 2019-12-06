@@ -135,13 +135,7 @@ public class Button extends JLabel {
         this.border = BorderFactory.createLineBorder(color);
         this.hoveredBorder = BorderFactory.createLineBorder(hoveredColor);
         this.pressedBorder = BorderFactory.createLineBorder(pressedColor);
-        this.setBorder(this.border );
-    }
-
-    public void resetBorders(){
-        this.border = BorderFactory.createEmptyBorder();
-        this.hoveredBorder = BorderFactory.createEmptyBorder();
-        this.pressedBorder = BorderFactory.createEmptyBorder();
+        this.setBorder(this.border);
     }
 
     public void defineBackground(Color color){
@@ -154,35 +148,19 @@ public class Button extends JLabel {
         this.setForeground(this.foreground);
     }
 
-    public void setHoverBackground(Color color){
+    public void defineHoveredBackground(Color color){
         this.hoveredBackground = color;
     }
 
-    public void setHoverForeground(Color color){
+    public void defineHoveredForeground(Color color){
         this.hoveredForeground = color;
     }
 
-    public void resetBackground(){
-        this.setBackground(CLASSIC_BACKGROUND_COLOR);
+    public void definePressedBackground(Color color){
+        this.pressedBackground = color;
     }
 
-    public void resetForeground(){
-        this.setBackground(CLASSIC_FOREGROUND_COLOR);
-    }
-
-    public void resetHoveredBackground(){
-        this.hoveredBackground = CLASSIC_HOVERED_BACKGROUND_COLOR;
-    }
-
-    public void resetHoveredForeground(){
-        this.hoveredForeground = CLASSIC_HOVERED_FOREGROUND_COLOR;
-    }
-
-    public void resetPressedBackground(){
-        this.pressedBackground = CLASSIC_PRESSED_BACKGROUND_COLOR;
-    }
-
-    public void resetPressedForeground(){
-        this.pressedForeground = CLASSIC_PRESSED_FOREGROUND_COLOR;
+    public void definePressedForeground(Color color){
+        this.pressedForeground = color;
     }
 }

@@ -1,15 +1,17 @@
 package desktopLauncher;
 
+import editor.utils.Window;
+
 import javax.swing.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
 public class WindowManager implements WindowListener {
 
-    private JFrame frame;
+    private Window window;
 
-    public WindowManager(JFrame frame){
-        this.frame = frame;
+    public WindowManager(Window window){
+        this.window = window;
     }
 
     @Override
@@ -17,7 +19,7 @@ public class WindowManager implements WindowListener {
 
     @Override
     public void windowClosing(WindowEvent windowEvent) {
-        if (JOptionPane.showConfirmDialog(this.frame, "Voulez-vous vraiment nous quitter si tôt?", "Vous nous quittez?", JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION) System.exit(0);
+        if (JOptionPane.showConfirmDialog(this.window, "Voulez-vous vraiment nous quitter si tôt?", "Vous nous quittez?", JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION) System.exit(0);
     }
 
     @Override
