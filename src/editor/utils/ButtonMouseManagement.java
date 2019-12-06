@@ -5,14 +5,16 @@ import java.awt.event.MouseListener;
 
 public class ButtonMouseManagement implements MouseListener {
 
-    private Button button;
+    private ButtonUI button;
 
-    public ButtonMouseManagement(Button button){
+    public ButtonMouseManagement(ButtonUI button){
         this.button = button;
     }
 
     @Override
-    public void mouseClicked(MouseEvent mouseEvent) {}
+    public void mouseClicked(MouseEvent mouseEvent) {
+        button.pressed();
+    }
 
     @Override
     public void mousePressed(MouseEvent mouseEvent) {

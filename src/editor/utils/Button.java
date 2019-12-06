@@ -21,15 +21,17 @@ public class Button extends JButton {
         this.setOpaque(true);
         this.setBorderPainted(false);
         this.setFocusable(false);
-        this.setContentAreaFilled(false);
+        //this.setContentAreaFilled(false);
         this.setBackground(CLASSIC_BACKGROUND_COLOR);
         this.setForeground(CLASSIC_FOREGROUND_COLOR);
         this.hoverBackground = CLASSIC_HOVER_BACKGROUND_COLOR;
         this.hoverForeground = CLASSIC_HOVER_FOREGROUND_COLOR;
-        this.addMouseListener(new ButtonMouseManagement(this));
+        ButtonUI dick = new ButtonUI(this);
+        this.addMouseListener(new ButtonMouseManagement(dick));
+        this.setUI(dick);
     }
 
-    @Override
+   /* @Override
     public void paintComponent(Graphics g) {
         if(hovered) {
             g.setColor(hoverBackground);
@@ -42,28 +44,28 @@ public class Button extends JButton {
             g.setColor(foreground);
             g.drawString(this.getText(), (this.getWidth() / 2 - this.getText().length() * 2),  this.getHeight() / 2);
         }
-    }
+    }*/
 
     public void on(){
-        this.repaint();
+        super.setBackground(this.hoverBackground);
         super.setForeground(this.hoverForeground);
     }
 
     public void out(){
-        this.repaint();
+        super.setBackground(this.background);
         super.setForeground(this.foreground);
         this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }
 
     public void pressed(){
-        this.repaint();
+        super.setBackground(this.hoverBackground);
         super.setForeground(this.hoverForeground);
         this.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }
 
     public void setBackground(Color color){
         this.background = color;
-        this.repaint();
+        super.setBackground(color);
     }
 
     public void setForeground(Color color){
