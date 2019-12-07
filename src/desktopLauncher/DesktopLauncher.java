@@ -47,8 +47,7 @@ public class DesktopLauncher implements Runnable {
         gbc.insets = new Insets(inset / 2, inset / 2, inset / 2, inset / 2);
         background.add(title, gbc);
 
-        Button button = new Button("Editer une map", Color.DARK_GRAY, Color.WHITE, Color.DARK_GRAY, Color.CYAN, new Color(45, 45 ,45), Color.CYAN);
-        button.defineAllColorBorder(Color.WHITE, Color.CYAN,Color.CYAN);
+        Button button = new Button("Editer une map");
         button.setActionListener(new LauncherManagement(new EditorLauncher()));
         gbc.gridx = 1;
         gbc.gridy = 1;
@@ -60,8 +59,7 @@ public class DesktopLauncher implements Runnable {
         gbc.insets = new Insets(inset, inset, inset, inset / 4);
         background.add(button, gbc);
 
-        button = new Button("Jouer", Color.DARK_GRAY, Color.WHITE, Color.DARK_GRAY, Color.CYAN, new Color(45, 45 ,45), Color.CYAN);
-        button.defineAllColorBorder(Color.WHITE, Color.CYAN, Color.CYAN);
+        button = new Button("Jouer");
         button.setActionListener(new LauncherManagement(new EditorLauncher()));
         gbc.gridx = 1;
         gbc.gridy = 2;
