@@ -136,4 +136,8 @@ public class Room implements IDInterface {
 	public void setID(int id) {
 		this.id = id;
 	}
+
+	public HashMap<Direction, Wall> getWalls() {
+		return walls;
+	}
 }

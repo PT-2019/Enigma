@@ -24,6 +24,6 @@ public class SaveMapTestMain {
 
 		map.render();
 
-		save.saveMap("assets/map/result.tmx");
+		save.saveMap("assets/files/map/result.tmx");
 	}
 }

@@ -9,6 +9,7 @@ import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import editor.datas.Direction;
 import editor.datas.Layer;
 import editor.entity.interfaces.Entity;
 import editor.textures.Texture;
@@ -91,7 +92,7 @@ public class SaveMap {
 				map.appendChild(tileset);
 
 				Element image = document.createElement("image");
-				image.setAttribute("source","../../"+textures.get(i).getPath());
+				image.setAttribute("source","../../../"+textures.get(i).getPath());
 
 				image.setAttribute("width",String.valueOf(textures.get(i).getWidth()));
 				image.setAttribute("height",String.valueOf(textures.get(i).getHeight()));
@@ -174,6 +175,10 @@ public class SaveMap {
 				rooms.setAttribute("heigth",String.valueOf(room.getValue().getRow()));
 				rooms.setAttribute("widthpos", String.valueOf((int)room.getKey().getX()));
 				rooms.setAttribute("heigthpos", String.valueOf((int)room.getKey().getY()));
+
+				/*for (java.util.Map.Entry<Direction, Wall> wall: room.getValue().getWalls().entrySet()) {
+
+				}*/
 
 				map.appendChild(rooms);
 			}
