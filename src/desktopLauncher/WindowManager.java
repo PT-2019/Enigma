@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
-public class WindowManager implements WindowListener {
+class WindowManager implements WindowListener {
 
     private Window window;
 
@@ -19,7 +19,8 @@ public class WindowManager implements WindowListener {
 
     @Override
     public void windowClosing(WindowEvent windowEvent) {
-        if (JOptionPane.showConfirmDialog(this.window, "Voulez-vous vraiment nous quitter si tôt?", "Vous nous quittez?", JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION) System.exit(0);
+        if (JOptionPane.showConfirmDialog(this.window, "Voulez-vous vraiment nous quitter si tôt?", "Vous nous quittez?", JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION)
+            this.window.dispose();
     }
 
     @Override

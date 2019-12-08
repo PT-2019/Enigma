@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 public class Button extends JLabel {
     
@@ -42,7 +44,7 @@ public class Button extends JLabel {
         this.clickable = clickable;
     }
 
-    public void setActionListener(ActionListener actionListener){
+    public void addActionListener(ActionListener actionListener){
         this.actionListener = actionListener;
     }
 
@@ -100,5 +102,39 @@ public class Button extends JLabel {
                 this.setBorder(this.ui.getBorder());
             }
         }
+    }
+}
+
+class ButtonManager implements MouseListener {
+
+    private Button button;
+
+    public ButtonManager(Button button){
+        this.button = button;
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent mouseEvent) {
+        this.button.clicked();
+    }
+
+    @Override
+    public void mousePressed(MouseEvent mouseEvent) {
+        this.button.pressed();
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent mouseEvent) {
+        this.button.released();
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent mouseEvent) {
+        this.button.hovered();
+    }
+
+    @Override
+    public void mouseExited(MouseEvent mouseEvent) {
+        this.button.exited();
     }
 }

@@ -1,7 +1,16 @@
 package editor.utils;
 
+import org.lwjgl.Sys;
+
 import javax.swing.*;
+import javax.swing.plaf.MenuBarUI;
+import javax.swing.plaf.multi.MultiLabelUI;
+import javax.swing.plaf.multi.MultiMenuBarUI;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 //TODO: permettre le plein écran (avec une méthode)
 //TODO: permettre l'ajout d'un fond d'écran
@@ -33,6 +42,15 @@ public class Window extends JFrame {
 		this.setSize(FULL_SCREEN_SIZE);
 		this.setLocation(0,0);
 		this.setMinimumSize(new Dimension((int) screen.getWidth() / 4, (int) screen.getHeight() / 3));
+		this.setUndecorated(false);
+		MenuBar menu = new MenuBar();
+		menu.add(Box.createHorizontalGlue());
+		MenuItem i = new MenuItem("Quit");
+		Button b = new Button("quit");
+		b.getUi().setAllBorders(BorderFactory.createEmptyBorder(), BorderFactory.createEmptyBorder(), BorderFactory.createEmptyBorder());
+		b.addActionListener(new Exit(this, Exit.ASK_BEFORE_CLOSING));
+		menu.add(b);
+		this.setJMenuBar(menu);
 	}
 
 	public Window(String title, int width, int height) {
@@ -68,4 +86,44 @@ public class Window extends JFrame {
 	}
 
 	public void setBackground(ImageIcon image){}
+}
+
+class Exit implements ActionListener {
+
+	public final static boolean ASK_BEFORE_CLOSING = true;
+
+	private Window window;
+	private boolean ask;
+
+	public Exit(Window window){
+		this.window = window;
+		this.ask = false;
+	}
+
+	public Exit(Window window, boolean askBeforeClosing){
+		this.window = window;
+		this.ask = askBeforeClosing;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent actionEvent) {
+		if(this.ask) {
+			if (JOptionPane.showConfirmDialog(this.window, "Voulez-vous vraiment nous quitter si tôt?", "Vous nous quittez?", JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION)
+				this.window.dispose();
+		}else this.window.dispose();
+	}
+}
+
+class Minimize implements ActionListener {
+
+	private Window window;
+
+	public Minimize(Window window){
+		this.window = window;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent actionEvent) {
+		this.window.setExtendedState(JFrame.ICONIFIED);
+	}
 }

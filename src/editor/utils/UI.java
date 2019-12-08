@@ -3,6 +3,7 @@ package editor.utils;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class UI {
 
@@ -92,10 +93,10 @@ public class UI {
         this.pressedForeground = pressedForeground;
     }
 
-    public void setAllBorders(Color border, Color hoveredBorder, Color pressedBorder){
-        this.border = BorderFactory.createLineBorder(border);
-        this.hoveredBorder = BorderFactory.createLineBorder(hoveredBorder);
-        this.pressedBorder = BorderFactory.createLineBorder(pressedBorder);
+    public void setAllBorders(Border border, Border hoveredBorder, Border pressedBorder){
+        this.border = border;
+        this.hoveredBorder = hoveredBorder;
+        this.pressedBorder = pressedBorder;
     }
 
     public void setBackground(Color background) {
