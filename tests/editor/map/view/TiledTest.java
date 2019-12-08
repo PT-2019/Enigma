@@ -3,12 +3,12 @@ package editor.map.view;
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import editor.map.Map;
 import editor.map.MapLoader;
 
 import javax.swing.*;
@@ -20,6 +20,7 @@ public class TiledTest extends Game implements InputProcessor {
 	JComponent component;
 	int[] layers;
 	Border border;
+	RoomView room;
 
 	public TiledTest(JComponent c){
 		component = c;
@@ -31,17 +32,25 @@ public class TiledTest extends Game implements InputProcessor {
 		float w = Gdx.graphics.getWidth();
 		float h = Gdx.graphics.getHeight();
 
-		camera = new OrthographicCamera();
-		camera.setToOrtho(false,w,h);
-		camera.update();
 		tiledMap = new TmxMapLoader().load("assets/map/Loadtest.tmx");
 		MapLoader gameMap = new MapLoader();
 		gameMap.load("assets/map/Loadtest.tmx");
+		Map tmpMap = gameMap.getMap();
 		tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
-		TileMap map = new TileMap(tiledMap,component,gameMap.getMap());
 		MapProperties prop = tiledMap.getProperties();
 
+		camera = new OrthographicCamera();
+		camera.setToOrtho(false,w,h);
+		camera.update();
+		int midx = tmpMap.getCol()*(int)prop.get("tileheight")/2;
+		int midy = tmpMap.getRow()*(int)prop.get("tileheight")/2;
+		camera.position.set(midx,midy,0);
+
+
 		border = new Border((int)prop.get("width"),(int)prop.get("height"),(int)prop.get("tileheight"));
+		room = new RoomView(tmpMap.getRooms(),(int)prop.get("tileheight"),tmpMap.getRow());
+
+		TileMap map = new TileMap(tiledMap,component,tmpMap,room);
 
 		InputMultiplexer multi = new InputMultiplexer();
 		multi.addProcessor(this);
@@ -58,7 +67,8 @@ public class TiledTest extends Game implements InputProcessor {
 		camera.update();
 
 		border.setProjectionMatrix(camera.combined);
-
+		room.setProjectionMatrix(camera.combined);
+		room.draw();
 		border.draw();
 
 		tiledMapRenderer.setView(camera);
@@ -75,11 +85,11 @@ public class TiledTest extends Game implements InputProcessor {
 		if(keycode == Input.Keys.LEFT)
 			camera.translate(-32,0);
 		if(keycode == Input.Keys.RIGHT)
-			camera.translate(-32,0);
+			camera.translate(32,0);
 		if(keycode == Input.Keys.UP)
 			camera.translate(0,32);
 		if(keycode == Input.Keys.DOWN)
-			camera.translate(0,32);
+			camera.translate(0,-32);
 		if(keycode == Input.Keys.NUM_1)
 			tiledMap.getLayers().get(0).setVisible(!tiledMap.getLayers().get(0).isVisible());
 		if(keycode == Input.Keys.NUM_2)

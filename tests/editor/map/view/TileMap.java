@@ -1,6 +1,5 @@
 package editor.map.view;
 
-import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -16,11 +15,11 @@ public class TileMap extends Stage {
 
     private Map gameMap;
 
-    public TileMap(TiledMap m, JComponent component, Map map){
+    public TileMap(TiledMap m, JComponent component, Map map, RoomView r){
         this.map = m;
         gameMap = map;
 
-        EntityPopMenu menu = new EntityPopMenu();
+        EntityPopMenu menu = new EntityPopMenu(r);
 
         MapLayers layers = m.getLayers();
 
