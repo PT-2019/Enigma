@@ -1,15 +1,12 @@
 package desktopLauncher;
 
 import editor.EditorLauncher;
-import editor.utils.Button;
 import editor.utils.Window;
+import editor.utils.ui.ButtonUI;
+import editor.utils.Button;
 
 import javax.swing.*;
-import javax.swing.event.MenuKeyEvent;
-import javax.swing.event.MenuKeyListener;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 /**
  * Lance la version pc de l'application
@@ -53,6 +50,7 @@ public class DesktopLauncher implements Runnable {
 
         Button button = new Button("Editer une map");
         button.addActionListener(new LauncherManagement(new EditorLauncher()));
+        button.setButtonUI(new ButtonUI());
         gbc.gridx = 1;
         gbc.gridy = 1;
         gbc.gridwidth = 1;
@@ -65,14 +63,8 @@ public class DesktopLauncher implements Runnable {
 
         button = new Button("Jouer");
         button.addActionListener(new LauncherManagement(new EditorLauncher()));
-        gbc.gridx = 1;
+        button.setButtonUI(new ButtonUI());
         gbc.gridy = 2;
-        gbc.gridwidth = 1;
-        gbc.gridheight = 1;
-        gbc.fill = GridBagConstraints.BOTH;
-        gbc.weightx = 1;
-        gbc.weighty = 1;
-        gbc.insets = new Insets(inset, inset, inset, inset / 4);
         background.add(button, gbc);
 
         window.add(background);
