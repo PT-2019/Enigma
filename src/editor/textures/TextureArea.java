@@ -104,7 +104,7 @@ public class TextureArea {
 		return buffer.getSubimage((texture_value%nbcol)*tileWidth,(texture_value/nbcol)*tileHeight,tileWidth, tileHeight);
 	}
 
-	private void load(){
+	public void load(){
 		try{
 			//open file
 			FileInputStream input = new FileInputStream(new File(path));

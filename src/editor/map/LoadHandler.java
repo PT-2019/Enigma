@@ -125,29 +125,7 @@ public class LoadHandler extends DefaultHandler {
 							tmpCase.setWalkable(true);
 						}
 					}else{
-						Entity e = new Entity() {//todo: hum ???? fait par quentin car luc demande entité a la place de textures mais ...
-							private Texture texture;
-
-							@Override
-							public void interactsWith(Player p) {}
-
-							@Override
-							public Texture getTexture() {return texture;}
-
-							@Override
-							public void setTexture(Texture t) {texture=t;}
-
-							@Override
-							public void showDialog() {}
-
-							@Override
-							public int getID() {return 0;}
-
-							@Override
-							public void setID(int id) {}
-						};
-						e.setTexture(new Texture(num,proxyTexture.getImage(num)));
-						tmpCase.setEntity(Layer.valueOf(currentLayer), e);
+						tmpCase.setEntity(Layer.valueOf(currentLayer), new Texture(num,proxyTexture.getImage(num)));
 					}
 					indice++;
 					numText = new StringBuilder();
@@ -171,29 +149,7 @@ public class LoadHandler extends DefaultHandler {
 						tmpCase.setWalkable(true);
 					}
 				}else{
-					Entity e = new Entity() {
-						private Texture texture;
-
-						@Override
-						public void interactsWith(Player p) {}
-
-						@Override
-						public Texture getTexture() {return texture;}
-
-						@Override
-						public void setTexture(Texture t) {texture=t;}
-
-						@Override
-						public void showDialog() {}
-
-						@Override
-						public int getID() {return 0;}
-
-						@Override
-						public void setID(int id) {}
-					};
-					e.setTexture(new Texture(num,proxyTexture.getImage(num)));
-					tmpCase.setEntity(Layer.valueOf(currentLayer), e);
+					tmpCase.setEntity(Layer.valueOf(currentLayer), new Texture(num,proxyTexture.getImage(num)));
 				}
 				indice++;
 			}

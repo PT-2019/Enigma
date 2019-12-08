@@ -8,6 +8,7 @@ import editor.entity.interfaces.IDInterface;
 import editor.io.JsonTextureLoader;
 import editor.textures.Texture;
 
+import javax.swing.*;
 import java.util.HashMap;
 
 /**
@@ -43,37 +44,17 @@ public class Room implements IDInterface {
 			this.cases[i] = new Case();
 		}
 
-		//todo: remove this (just for tests)
-		//Begin
-		Entity library = new Entity() {//fake entity
-			@Override
-			public void interactsWith(Player p) {}
-
-			@Override
-			public Texture getTexture() {
-				return JsonTextureLoader.getTexture("tile723", "assets/files/atlas/test.atlas");
-			}
-
-			@Override
-			public void setTexture(Texture t) {}
-
-			@Override
-			public void showDialog() {}
-
-			@Override
-			public int getID() {return 0;}
-
-			@Override
-			public void setID(int id) {}
-		};
 		//fill
+		//pour les tests
+		ImageIcon img = new ImageIcon("assets/monsters/019.png");
+
 		for (int i = 0; i < this.cases.length ; i++) {
 			this.cases[i] = new Case();
 			this.cases[i].setWalkable(true);
-			this.cases[i].setEntity(Layer.DECORATIONS1, library);
-			this.cases[i].setEntity(Layer.DECORATIONS2, library);
-			this.cases[i].setEntity(Layer.FLOOR1, library);
-			this.cases[i].setEntity(Layer.FLOOR2, library);
+			this.cases[i].setEntity(Layer.DECORATIONS1,new Texture(5,img.getImage()));
+			this.cases[i].setEntity(Layer.DECORATIONS2,new Texture(5,img.getImage()));
+			this.cases[i].setEntity(Layer.FLOOR1,new Texture(5,img.getImage()));
+			this.cases[i].setEntity(Layer.FLOOR2,new Texture(5,img.getImage()));
 		}
 
 		//end

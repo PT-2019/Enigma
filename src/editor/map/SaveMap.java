@@ -77,6 +77,7 @@ public class SaveMap {
 
 			//tileset représente les textures dans le fichier xml
 			for (int i = 0; i < textures.size(); i++) {
+				textures.get(i).load();
 
 				tileset = document.createElement("tileset");
 				tileset.setAttribute("firstgid", String.valueOf(textures.get(i).getMin()));
@@ -120,9 +121,9 @@ public class SaveMap {
 
 							tmpstring.append("0,");
 						}else{
-							HashMap<Layer, Entity> hash = tmpCase[k*gameMap.getCol()+j].getEntities();
+							HashMap<Layer, Texture> hash = tmpCase[k*gameMap.getCol()+j].getEntities();
 
-							Texture texture = hash.get(type).getTexture();
+							Texture texture = hash.get(type);
 							tmpstring.append(texture.getPosition());
 							tmpstring.append(",");
 						}
