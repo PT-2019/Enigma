@@ -4,15 +4,27 @@ import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import editor.map.MapLoader;
+
+import javax.swing.*;
 
 public class TiledTest extends Game implements InputProcessor {
 	TiledMap tiledMap;
 	OrthographicCamera camera;
 	TiledMapRenderer tiledMapRenderer;
+	JComponent component;
+	int[] layers;
+	Border border;
+
+	public TiledTest(JComponent c){
+		component = c;
+		layers = new int[]{0,1,2,3};
+	}
 
 	@Override
 	public void create () {
@@ -22,9 +34,19 @@ public class TiledTest extends Game implements InputProcessor {
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false,w,h);
 		camera.update();
-		tiledMap = new TmxMapLoader().load("assets/map/result.tmx");
+		tiledMap = new TmxMapLoader().load("assets/map/Loadtest.tmx");
+		MapLoader gameMap = new MapLoader();
+		gameMap.load("assets/map/Loadtest.tmx");
 		tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
-		Gdx.input.setInputProcessor(this);
+		TileMap map = new TileMap(tiledMap,component,gameMap.getMap());
+		MapProperties prop = tiledMap.getProperties();
+
+		border = new Border((int)prop.get("width"),(int)prop.get("height"),(int)prop.get("tileheight"));
+
+		InputMultiplexer multi = new InputMultiplexer();
+		multi.addProcessor(this);
+		multi.addProcessor(map);
+		Gdx.input.setInputProcessor(multi);
 	}
 
 	@Override
@@ -34,8 +56,13 @@ public class TiledTest extends Game implements InputProcessor {
 		Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		camera.update();
+
+		border.setProjectionMatrix(camera.combined);
+
+		border.draw();
+
 		tiledMapRenderer.setView(camera);
-		tiledMapRenderer.render();
+		tiledMapRenderer.render(layers);
 	}
 
 	@Override
@@ -48,9 +75,9 @@ public class TiledTest extends Game implements InputProcessor {
 		if(keycode == Input.Keys.LEFT)
 			camera.translate(-32,0);
 		if(keycode == Input.Keys.RIGHT)
-			camera.translate(32,0);
+			camera.translate(-32,0);
 		if(keycode == Input.Keys.UP)
-			camera.translate(0,-32);
+			camera.translate(0,32);
 		if(keycode == Input.Keys.DOWN)
 			camera.translate(0,32);
 		if(keycode == Input.Keys.NUM_1)
@@ -88,6 +115,13 @@ public class TiledTest extends Game implements InputProcessor {
 
 	@Override
 	public boolean scrolled(int amount) {
+		if (Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT)){
+			if (amount==1){
+				camera.zoom += 0.05;
+			}else{
+				camera.zoom -= 0.05;
+			}
+		}
 		return false;
 	}
 }

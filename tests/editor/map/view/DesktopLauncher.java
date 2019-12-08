@@ -6,9 +6,9 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 
 public class DesktopLauncher {
 	public static void main (String[] arg) {
-		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+		/*LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		TiledTest game = new TiledTest();
 		config.useGL30 = true;
-		new LwjglApplication(game, config);
+		new LwjglApplication(game, config);*/
 	}
 }

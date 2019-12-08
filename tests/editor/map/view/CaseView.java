@@ -7,8 +7,6 @@ import editor.map.Case;
 public class CaseView extends Actor {
     private Case c;
 
-    //private TiledMapTileLayer tiledLayer;
-
     private TiledMapTileLayer.Cell cell;
 
     public CaseView(TiledMapTileLayer.Cell cell){
