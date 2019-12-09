@@ -1,7 +1,7 @@
 package editor.entity.dispose;
 
 import editor.map.view.PopMenuListener;
-import editor.map.view.RoomView;
+import editor.map.view.*;
 
 import javax.swing.*;
 

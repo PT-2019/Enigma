@@ -15,7 +15,7 @@ public class Border extends ShapeRenderer {
 
     public void draw(){
         this.begin(ShapeType.Line);
-        this.setColor(100,0,50,0);
+        this.setColor(0,0,0,255);
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
                 this.rect(j*tile,tile*i,tile,tile);

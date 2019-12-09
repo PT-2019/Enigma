@@ -1,6 +1,7 @@
 package editor.map.view;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglAWTCanvas;
+import editor.listener.CloseWindowLibgdxApplication;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,6 +19,7 @@ public class MapLauncher extends JFrame {
         pack();
         setVisible(true);
         setSize(800, 600);
+        addWindowListener(new CloseWindowLibgdxApplication(canvas));
     }
 
     public static void main(String[] args) {
