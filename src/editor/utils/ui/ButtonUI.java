@@ -3,6 +3,7 @@ package editor.utils.ui;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicButtonUI;
 import java.awt.*;
+import java.util.Arrays;
 
 public class ButtonUI extends BasicButtonUI {
 
@@ -16,7 +17,11 @@ public class ButtonUI extends BasicButtonUI {
     public final static Color ENIGMA_BUTTON_HOVERED_BORDER = Color.CYAN;
     public final static Color ENIGMA_BUTTON_PRESSED_BORDER = Color.CYAN;
     public final static int ENIGMA_BUTTON_BORDER_SIZE = 1;
+    public final static int ENIGMA_BUTTON_HOVERED_BORDER_SIZE = 1;
+    public final static int ENIGMA_BUTTON_PRESSED_BORDER_SIZE = 1;
     public final static boolean[] ENIGMA_BUTTON_SHOWED_BORDERS = {true,true,true,true};
+    public final static boolean[] ENIGMA_BUTTON_HOVERED_SHOWED_BORDERS = {true,true,true,true};
+    public final static boolean[] ENIGMA_BUTTON_PRESSED_SHOWED_BORDERS = {true,true,true,true};
 
     public final static boolean[] ALL_BORDERS_SHOWED = {true,true,true,true};
     public final static boolean[] ALL_BORDER_HIDDEN = {false,false,false,false};
@@ -39,7 +44,11 @@ public class ButtonUI extends BasicButtonUI {
     private boolean hovered;
     private Cursor cursor;
     private int borderSize;
+    private int hoveredBorderSize;
+    private int pressedBorderSize;
     private boolean[] showedBorders;
+    private boolean[] hoveredShowedBorders;
+    private boolean[] pressedShowedBorders;
 
     public ButtonUI(){
         this.background = ENIGMA_BUTTON_BACKGROUND;
@@ -52,7 +61,11 @@ public class ButtonUI extends BasicButtonUI {
         this.hoveredBorder = ENIGMA_BUTTON_HOVERED_BORDER;
         this.pressedBorder = ENIGMA_BUTTON_PRESSED_BORDER;
         this.borderSize = ENIGMA_BUTTON_BORDER_SIZE;
+        this.hoveredBorderSize = ENIGMA_BUTTON_HOVERED_BORDER_SIZE;
+        this.pressedBorderSize = ENIGMA_BUTTON_PRESSED_BORDER_SIZE;
         this.showedBorders = ENIGMA_BUTTON_SHOWED_BORDERS;
+        this.hoveredShowedBorders = ENIGMA_BUTTON_HOVERED_SHOWED_BORDERS;
+        this.pressedShowedBorders = ENIGMA_BUTTON_PRESSED_SHOWED_BORDERS;
         this.hovered = false;
         this.cursor = new Cursor(Cursor.HAND_CURSOR);
     }
@@ -61,23 +74,23 @@ public class ButtonUI extends BasicButtonUI {
     public void paint(Graphics g, JComponent c) {
         Graphics brush = g.create();
         editor.utils.Button b = (editor.utils.Button)c;
-        b.setBackground(Color.CYAN);
         if(this.hovered){
             b.setBackground(this.hoveredBackground);
             b.setForeground(this.hoveredForeground);
             if(this.hoveredBorder != null){
                 brush.setColor(this.hoveredBorder);
                 for (int i = 0; i < 4; i++) {
-                    if(i == TOP_BORDER && this.showedBorders[i]) brush.fillRect(0,0,b.getWidth(),this.borderSize);
-                    if(i == RIGHT_BORDER && this.showedBorders[i]) brush.fillRect(b.getWidth() - this.borderSize,0,b.getWidth(),b.getHeight());
-                    if(i == BOTTOM_BORDER && this.showedBorders[i]) brush.fillRect(0,b.getHeight() - this.borderSize,b.getWidth(),b.getHeight());
-                    if(i == LEFT_BORDER && this.showedBorders[i]) brush.fillRect(0,0,this.borderSize,b.getHeight());
+                    if(i == TOP_BORDER && this.hoveredShowedBorders[i]) brush.fillRect(0,0,b.getWidth(),this.hoveredBorderSize);
+                    if(i == RIGHT_BORDER && this.hoveredShowedBorders[i]) brush.fillRect(b.getWidth() - this.hoveredBorderSize,0,b.getWidth(),b.getHeight());
+                    if(i == BOTTOM_BORDER && this.hoveredShowedBorders[i]) brush.fillRect(0,b.getHeight() - this.hoveredBorderSize,b.getWidth(),b.getHeight());
+                    if(i == LEFT_BORDER && this.hoveredShowedBorders[i]) brush.fillRect(0,0,this.hoveredBorderSize,b.getHeight());
                 }
             }
         } else {
             b.setBackground(this.background);
             b.setForeground(this.foreground);
             if(this.border != null){
+                brush.setColor(this.border);
                 for (int i = 0; i < 4; i++) {
                     if(i == TOP_BORDER && this.showedBorders[i]) brush.fillRect(0,0,b.getWidth(),this.borderSize);
                     if(i == RIGHT_BORDER && this.showedBorders[i]) brush.fillRect(b.getWidth() - this.borderSize,0,b.getWidth(),b.getHeight());
@@ -100,10 +113,10 @@ public class ButtonUI extends BasicButtonUI {
         if(this.pressedBorder != null){
             brush.setColor(this.pressedBorder);
             for (int i = 0; i < 4; i++) {
-                if(i == TOP_BORDER && this.showedBorders[i]) brush.fillRect(0,0,b.getWidth(),this.borderSize);
-                if(i == RIGHT_BORDER && this.showedBorders[i]) brush.fillRect(b.getWidth() - this.borderSize,0,b.getWidth(),b.getHeight());
-                if(i == BOTTOM_BORDER && this.showedBorders[i]) brush.fillRect(0,b.getHeight() - this.borderSize,b.getWidth(),b.getHeight());
-                if(i == LEFT_BORDER && this.showedBorders[i]) brush.fillRect(0,0,this.borderSize,b.getHeight());
+                if(i == TOP_BORDER && this.pressedShowedBorders[i]) brush.fillRect(0,0,b.getWidth(),this.pressedBorderSize);
+                if(i == RIGHT_BORDER && this.pressedShowedBorders[i]) brush.fillRect(b.getWidth() - this.pressedBorderSize,0,b.getWidth(),b.getHeight());
+                if(i == BOTTOM_BORDER && this.pressedShowedBorders[i]) brush.fillRect(0,b.getHeight() - this.pressedBorderSize,b.getWidth(),b.getHeight());
+                if(i == LEFT_BORDER && this.pressedShowedBorders[i]) brush.fillRect(0,0,this.pressedBorderSize,b.getHeight());
             }
         }
         super.paintButtonPressed(brush, b);
@@ -113,17 +126,69 @@ public class ButtonUI extends BasicButtonUI {
         return this.showedBorders;
     }
 
+    public boolean[] getHoveredShowedBorders(){
+        return this.hoveredShowedBorders;
+    }
+
+    public boolean[] getPressedShowedBorders(){
+        return this.pressedShowedBorders;
+    }
+
     public int getBorderSize() {
-        return borderSize;
+        return this.borderSize;
+    }
+
+    public int getHoveredBorderSize() {
+        return this.hoveredBorderSize;
+    }
+
+    public int getPressedBorderSize() {
+        return this.pressedBorderSize;
+    }
+
+    public void setAllBordersSize(int borderSize, int hoveredBorderSize, int pressedBorderSize){
+        if(borderSize < 0 || hoveredBorderSize < 0 || pressedBorderSize < 0) throw new IllegalArgumentException("La taille des bordures ne peuvent être négatives");
+        this.borderSize = borderSize;
+        this.hoveredBorderSize = hoveredBorderSize;
+        this.pressedBorderSize = pressedBorderSize;
     }
 
     public void setBorderSize(int borderSize) {
+        if(borderSize < 0) throw new IllegalArgumentException("La taille de la bordure ne peut être négative");
         this.borderSize = borderSize;
+    }
+
+    public void setHoveredBorderSize(int hoveredBorderSize) {
+        if(hoveredBorderSize < 0) throw new IllegalArgumentException("La taille de la bordure ne peut être négative");
+        this.hoveredBorderSize = hoveredBorderSize;
+    }
+
+    public void setPressedBorderSize(int pressedBorderSize) {
+        if(pressedBorderSize < 0) throw new IllegalArgumentException("La taille de la bordure ne peut être négative");
+        this.pressedBorderSize = pressedBorderSize;
     }
 
     public void setShowedBorders(boolean[] showedBorders) {
         if(showedBorders.length != 4) throw new IllegalArgumentException("Le tableau doit être de 4 éléments");
         this.showedBorders = showedBorders;
+    }
+
+    public void setHoveredShowedBorders(boolean[] hoveredShowedBorders) {
+        if(showedBorders.length != 4) throw new IllegalArgumentException("Le tableau doit être de 4 éléments");
+        this.hoveredShowedBorders = hoveredShowedBorders;
+        System.out.println(Arrays.toString(this.hoveredShowedBorders));
+    }
+
+    public void setPressedShowedBorders(boolean[] pressedShowedBorders) {
+        if(showedBorders.length != 4) throw new IllegalArgumentException("Le tableau doit être de 4 éléments");
+        this.pressedShowedBorders = pressedShowedBorders;
+    }
+
+    public void setAllShowedBorders(boolean[] showedBorders, boolean[] hoveredShowedBorders, boolean[] pressedShowedBorders){
+        if(showedBorders.length != 4 || hoveredShowedBorders.length != 4 || pressedShowedBorders.length != 4) throw new IllegalArgumentException("Les tableaux doivent être de 4 éléments");
+        this.showedBorders = showedBorders;
+        this.hoveredShowedBorders = hoveredShowedBorders;
+        this.pressedShowedBorders = pressedShowedBorders;
     }
 
     public void setCursor(Cursor cursor){
@@ -248,8 +313,8 @@ public class ButtonUI extends BasicButtonUI {
         clone.setAllForegrounds(this.getForeground(), this.getHoveredForeground(), this.getPressedForeground());
         clone.setAllBorders(this.getBorder(), this.getHoveredBorder(), this.getPressedBorder());
         clone.setIsHovered(this.isHovered());
-        clone.setBorderSize(this.getBorderSize());
-        clone.setShowedBorders(this.getShowedBorders());
+        clone.setAllBordersSize(this.getBorderSize(), this.getHoveredBorderSize(), this.getPressedBorderSize());
+        clone.setAllShowedBorders(this.getShowedBorders(), this.getHoveredShowedBorders(), this.getPressedShowedBorders());
 
         return clone;
     }

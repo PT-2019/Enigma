@@ -1,9 +1,11 @@
 package editor.utils;
 
+import com.badlogic.gdx.Gdx;
 import editor.utils.ui.ButtonUI;
 import editor.utils.ui.MenuBarUI;
 import editor.utils.ui.MenuItemUI;
 import editor.utils.ui.MenuUI;
+import org.w3c.dom.css.Rect;
 
 import javax.swing.*;
 import java.awt.*;
@@ -116,18 +118,18 @@ public class Window extends JFrame {
 
 	public void setSize(int size){
 		Dimension currentScreenSize = this.getSize();
-		Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-		if(size == FULL_SCREEN_SIZE) this.setSize(screenSize);
-		if(size == HALF_SCREEN_SIZE) this.setSize((int) screenSize.getWidth() / 2, (int) screenSize.getHeight() / 2);
+		Rectangle screenSize = this.getGraphicsConfiguration().getBounds();
+		if(size == FULL_SCREEN_SIZE) this.setSize(screenSize.width,screenSize.height);
+		if(size == HALF_SCREEN_SIZE) this.setSize(screenSize.width / 2, screenSize.height / 2);
 		if(size == LAST_SCREEN_SIZE) this.setSize(this.lastDimension);
 		this.lastDimension = currentScreenSize;
 		this.setLocation(CENTER);
 	}
 
 	public Dimension getDimensionOf(int size){
-		Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-		if(size == FULL_SCREEN_SIZE) return screenSize;
-		if(size == HALF_SCREEN_SIZE) return new Dimension((int) screenSize.getWidth() / 2, (int) screenSize.getHeight() / 2);
+		Rectangle screenSize = this.getGraphicsConfiguration().getBounds();
+		if(size == FULL_SCREEN_SIZE) return new Dimension(screenSize.width, screenSize.height);
+		if(size == HALF_SCREEN_SIZE) return new Dimension(screenSize.width / 2, screenSize.height / 2);
 		if(size == LAST_SCREEN_SIZE) return this.lastDimension;
 		return null;
 	}
@@ -138,11 +140,24 @@ public class Window extends JFrame {
 
 	public void setLocation(int location){
 
-		Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-		int sizeW = (int) screenSize.getWidth();
-		int sizeH = (int) screenSize.getHeight();
+		Rectangle screenSize = this.getGraphicsConfiguration().getBounds();
+		int screenPosX = screenSize.x;
+		int screenPosY = screenSize.y;
+		int sizeW = screenSize.width;
+		int sizeH = screenSize.height;
 
-		if(location == CENTER) this.setLocation((sizeW - this.getWidth()) / 2, (sizeH - this.getHeight()) / 2);
+		/*GraphicsDevice[] allScreens = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices();
+		int myScreenIndex = -1;
+		for (int i = 0; i < allScreens.length; i++) {
+			if (allScreens[i].equals(this))
+			{
+				myScreenIndex = i;
+				break;
+			}
+		}
+		System.out.println("window is on screen" + myScreenIndex);*/
+
+		if(location == CENTER) this.setLocation(((sizeW - this.getWidth()) / 2) + screenPosX, (sizeH - this.getHeight()) / 2);
 		if(location == NORTH_WEST) this.setLocation(0,0);
 		if(location == NORTH) this.setLocation((sizeW - this.getWidth()) / 2, 0);
 		if(location == NORTH_EAST) this.setLocation(sizeW - this.getWidth(), 0);
