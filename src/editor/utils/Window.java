@@ -1,18 +1,14 @@
 package editor.utils;
 
-import com.badlogic.gdx.Gdx;
+import editor.utils.managers.*;
 import editor.utils.ui.ButtonUI;
 import editor.utils.ui.MenuBarUI;
 import editor.utils.ui.MenuItemUI;
 import editor.utils.ui.MenuUI;
-import org.w3c.dom.css.Rect;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 
 //TODO: permettre le plein écran (avec une méthode)
 //TODO: permettre l'ajout d'un fond d'écran
@@ -34,6 +30,7 @@ public class Window extends JFrame {
 	public final static int CENTER = 10;
 
 	private Dimension lastDimension;
+	private JPanel content;
 
 	/**
 	 * Initialise une fenêtre de la taille de l'écran
@@ -45,15 +42,55 @@ public class Window extends JFrame {
 		this.setSize(screen);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(FULL_SCREEN_SIZE);
-		this.lastDimension = this.getDimension();
+		this.lastDimension = this.getSize();
 		this.setLocation(0,0);
 		this.setMinimumSize(new Dimension((int) screen.getWidth() / 4, (int) screen.getHeight() / 3));
 		WindowDrag drag = new WindowDrag(this);
 		this.addMouseListener(drag);
-		this.addMouseMotionListener(drag);
+
+		this.addMouseMotionListener(new WindowResize(this));
+		JPanel content = new JPanel();
+		content.setBackground(Color.CYAN);
+		content.setOpaque(true);
+
+		JPanel resizeRight = new JPanel();
+		resizeRight.setBackground(Color.RED);
+		resizeRight.setOpaque(true);
+		Resize resizeListener = new ResizeRight(resizeRight,new Cursor(Cursor.E_RESIZE_CURSOR));
+		resizeRight.addMouseListener(resizeListener);
+		resizeRight.addMouseMotionListener(resizeListener);
+
+		JPanel resizeLeft = new JPanel();
+		resizeLeft.setBackground(Color.GREEN);
+		resizeLeft.setOpaque(true);
+		resizeListener = new ResizeLeft(resizeLeft,new Cursor(Cursor.W_RESIZE_CURSOR));
+		resizeLeft.addMouseListener(resizeListener);
+		resizeLeft.addMouseMotionListener(resizeListener);
+
+		JPanel resizeBottom = new JPanel();
+		resizeBottom.setBackground(Color.ORANGE);
+		resizeBottom.setOpaque(true);
+		resizeListener = new ResizeBottom(resizeBottom,new Cursor(Cursor.S_RESIZE_CURSOR));
+		resizeBottom.addMouseListener(resizeListener);
+		resizeBottom.addMouseMotionListener(resizeListener);
+
+		JPanel resizeTop = new JPanel();
+		resizeTop.setBackground(Color.MAGENTA);
+		resizeTop.setOpaque(true);
+		resizeListener = new ResizeTop(resizeTop,new Cursor(Cursor.N_RESIZE_CURSOR));
+
+		resizeTop.addMouseListener(resizeListener);
+		resizeTop.addMouseMotionListener(resizeListener);
+		this.add(resizeRight,BorderLayout.EAST);
+		this.add(resizeLeft,BorderLayout.WEST);
+		this.add(resizeBottom,BorderLayout.SOUTH);
+		this.add(resizeTop,BorderLayout.NORTH);
+		this.add(content,BorderLayout.CENTER);
+		this.content = content;
 
 		this.setUndecorated(true);
 		MenuBar bar = new MenuBar();
+		bar.addMouseMotionListener(drag);
 		MenuBarUI ui = new MenuBarUI();
 		boolean[] r = new boolean[4];
 		r[MenuBarUI.BOTTOM_BORDER] = MenuBarUI.SHOWED_BORDER;
@@ -104,153 +141,130 @@ public class Window extends JFrame {
 		bar.add(smaller);
 		bar.add(quit);
 		this.setJMenuBar(bar);
+		Timer t = new Timer(500, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent actionEvent) {
+				System.out.println(getSize());
+			}
+		});
+		//t.setRepeats(true); t.start();
 	}
 
 	public Window(String title, int width, int height) {
 		super(title);
 		this.setSize(width,height);
-		this.lastDimension = this.getDimension();
+		this.lastDimension = this.getSize();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocation(0,0);
 		Dimension screen = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 		this.setMinimumSize(new Dimension((int) screen.getWidth() / 4, (int) screen.getHeight() / 3));
 	}
 
+	public JPanel getContentSpace(){
+		return this.content;
+	}
+
+	public boolean isFullScreen(){
+		System.out.println(this.getSize().equals(this.getDimensionOf(FULL_SCREEN_SIZE))+" "+this.getSize()+" "+this.getDimensionOf(FULL_SCREEN_SIZE));
+		return this.getSize().equals(this.getDimensionOf(FULL_SCREEN_SIZE));
+	}
+
 	public void setSize(int size){
-		Dimension currentScreenSize = this.getSize();
 		Rectangle screenSize = this.getGraphicsConfiguration().getBounds();
-		if(size == FULL_SCREEN_SIZE) this.setSize(screenSize.width,screenSize.height);
-		if(size == HALF_SCREEN_SIZE) this.setSize(screenSize.width / 2, screenSize.height / 2);
-		if(size == LAST_SCREEN_SIZE) this.setSize(this.lastDimension);
-		this.lastDimension = currentScreenSize;
+		switch (size){
+			default:
+				return;
+			case FULL_SCREEN_SIZE:
+				this.lastDimension = this.getSize();
+				this.setSize(screenSize.width,screenSize.height);
+				System.out.println("full"+this.getSize());
+				break;
+			case HALF_SCREEN_SIZE:
+				this.lastDimension = this.getSize();
+				this.setSize(screenSize.width / 2, screenSize.height / 2);
+				System.out.println("half"+this.getSize());
+				break;
+			case LAST_SCREEN_SIZE:
+				this.setSize(this.lastDimension);
+				System.out.println("last"+this.getSize());
+				break;
+		}
 		this.setLocation(CENTER);
 	}
 
 	public Dimension getDimensionOf(int size){
 		Rectangle screenSize = this.getGraphicsConfiguration().getBounds();
-		if(size == FULL_SCREEN_SIZE) return new Dimension(screenSize.width, screenSize.height);
-		if(size == HALF_SCREEN_SIZE) return new Dimension(screenSize.width / 2, screenSize.height / 2);
-		if(size == LAST_SCREEN_SIZE) return this.lastDimension;
-		return null;
-	}
-
-	public Dimension getDimension(){
-		return new Dimension(this.getWidth(), this.getHeight());
+		switch (size){
+			default: return null;
+			case FULL_SCREEN_SIZE:
+				return new Dimension(screenSize.width, screenSize.height);
+			case HALF_SCREEN_SIZE:
+				return new Dimension(screenSize.width / 2, screenSize.height / 2);
+			case LAST_SCREEN_SIZE:
+				return this.lastDimension;
+		}
 	}
 
 	public void setLocation(int location){
 
 		Rectangle screenSize = this.getGraphicsConfiguration().getBounds();
-		int screenPosX = screenSize.x;
-		int screenPosY = screenSize.y;
 		int sizeW = screenSize.width;
 		int sizeH = screenSize.height;
+		int windowPosX;
+		int windowPosY;
 
 		/*GraphicsDevice[] allScreens = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices();
 		int myScreenIndex = -1;
 		for (int i = 0; i < allScreens.length; i++) {
-			if (allScreens[i].equals(this))
+			if (allScreens[i].equals(this.getGraphicsConfiguration().getDevice()))
 			{
 				myScreenIndex = i;
 				break;
 			}
 		}
 		System.out.println("window is on screen" + myScreenIndex);*/
-
-		if(location == CENTER) this.setLocation(((sizeW - this.getWidth()) / 2) + screenPosX, (sizeH - this.getHeight()) / 2);
-		if(location == NORTH_WEST) this.setLocation(0,0);
-		if(location == NORTH) this.setLocation((sizeW - this.getWidth()) / 2, 0);
-		if(location == NORTH_EAST) this.setLocation(sizeW - this.getWidth(), 0);
-		if(location == EAST) this.setLocation(sizeW - this.getWidth(), (sizeH - this.getHeight()) / 2);
-		if(location == SOUTH_EAST) this.setLocation(sizeW - this.getWidth(), sizeH - this.getHeight());
-		if(location == SOUTH) this.setLocation((sizeW - this.getWidth()) / 2, sizeH - this.getHeight());
-		if(location == SOUTH_WEST) this.setLocation(0, sizeH - this.getHeight());
-		if(location == WEST) this.setLocation(0, (sizeH - this.getHeight()) / 2);
+		switch (location){
+			default: return;
+			case CENTER:
+				windowPosX = (sizeW - this.getWidth()) / 2;
+				windowPosY = (sizeH - this.getHeight()) / 2;
+				break;
+			case NORTH_WEST:
+				windowPosX = 0;
+				windowPosY = 0;
+				break;
+			case NORTH:
+				windowPosX = (sizeW - this.getWidth()) / 2;
+				windowPosY = 0;
+				break;
+			case NORTH_EAST:
+				windowPosX = sizeW - this.getWidth();
+				windowPosY = 0;
+				break;
+			case EAST:
+				windowPosX = sizeW - this.getWidth();
+				windowPosY = (sizeH - this.getHeight()) / 2;
+				break;
+			case SOUTH_EAST:
+				windowPosX = sizeW - this.getWidth();
+				windowPosY = sizeH - this.getHeight();
+				break;
+			case SOUTH:
+				windowPosX = (sizeW - this.getWidth()) / 2;
+				windowPosY = sizeH - this.getHeight();
+				break;
+			case SOUTH_WEST:
+				windowPosX = 0;
+				windowPosY = sizeH - this.getHeight();
+				break;
+			case WEST:
+				windowPosX = 0;
+				windowPosY = (sizeH - this.getHeight()) / 2;
+				break;
+		}
+		this.setLocation(windowPosX + screenSize.x, windowPosY + screenSize.y);
 	}
 
 	public void setBackground(ImageIcon image){}
 }
 
-class WindowDrag extends MouseAdapter  {
-
-	private final Window window;
-	private Point pressedCords;
-
-
-	public WindowDrag(Window window) {
-		this.window = window;
-	}
-
-	public void mouseReleased(MouseEvent e) {
-		if(this.window.getLocationOnScreen().y <= 0) this.window.setSize(Window.FULL_SCREEN_SIZE);
-	}
-
-	public void mousePressed(MouseEvent e) {
-		this.pressedCords = e.getPoint();
-		if(this.window.getLocationOnScreen().y == 0 && this.window.getDimensionOf(Window.LAST_SCREEN_SIZE).equals(this.window.getDimensionOf(Window.FULL_SCREEN_SIZE)))
-			this.window.setSize(Window.HALF_SCREEN_SIZE);
-		else if(this.window.getLocationOnScreen().y == 0) this.window.setSize(Window.LAST_SCREEN_SIZE);
-	}
-
-	public void mouseDragged(MouseEvent e) {
-		Point currentCords = e.getLocationOnScreen();
-		this.window.setLocation(currentCords.x - this.pressedCords.x, currentCords.y - this.pressedCords.y);
-	}
-}
-
-class Exit implements ActionListener {
-
-	public final static boolean CLOSE_WITHOUT_ASKING = false;
-	public final static boolean ASK_BEFORE_CLOSING = true;
-
-	private Window window;
-	private boolean ask;
-
-	public Exit(Window window){
-		this.window = window;
-		this.ask = false;
-	}
-
-	public Exit(Window window, boolean askBeforeClosing){
-		this.window = window;
-		this.ask = askBeforeClosing;
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent actionEvent) {
-		if(this.ask) {
-			if (JOptionPane.showConfirmDialog(this.window, "Voulez-vous vraiment nous quitter si tôt?", "Vous nous quittez?", JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION)
-				this.window.dispose();
-		}else this.window.dispose();
-	}
-}
-
-class Minimize implements ActionListener {
-
-	private Window window;
-
-	public Minimize(Window window){
-		this.window = window;
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent actionEvent) {
-		this.window.setExtendedState(JFrame.ICONIFIED);
-	}
-}
-
-class Smaller implements ActionListener {
-
-	private Window window;
-
-	public Smaller(Window window){
-		this.window = window;
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent actionEvent) {
-		if(this.window.getDimensionOf(Window.FULL_SCREEN_SIZE).equals(this.window.getDimension()) && !this.window.getDimensionOf(Window.FULL_SCREEN_SIZE).equals(this.window.getDimensionOf(Window.LAST_SCREEN_SIZE))) this.window.setSize(Window.LAST_SCREEN_SIZE);
-		else if(this.window.getDimensionOf(Window.FULL_SCREEN_SIZE).equals(this.window.getDimension())) this.window.setSize(Window.HALF_SCREEN_SIZE);
-		else this.window.setSize(Window.FULL_SCREEN_SIZE);
-	}
-}

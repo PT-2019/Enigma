@@ -22,10 +22,8 @@ public class DesktopLauncher implements Runnable {
         window.setSize(Window.HALF_SCREEN_SIZE);
         window.setLocation(Window.CENTER);
         window.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        window.addWindowListener(new WindowManager(window));
 
-        JPanel background = new JPanel();
-        background.setOpaque(true);
+        JPanel background = window.getContentSpace();
         background.setBackground(Color.DARK_GRAY);
         background.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();

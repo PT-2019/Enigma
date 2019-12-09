@@ -1,5 +1,6 @@
 package editor.utils;
 
+import editor.utils.managers.MenuItemManager;
 import editor.utils.ui.MenuItemUI;
 
 import javax.swing.*;
@@ -33,39 +34,5 @@ public class MenuItem extends JMenuItem {
     public void paintComponent(Graphics g){
         if(this.ui == null) super.paintComponent(g);
         else this.ui.paint(g,this);
-    }
-}
-
-class MenuItemManager implements MouseListener {
-
-    private MenuItem menu;
-
-    public MenuItemManager(MenuItem menu){
-        this.menu = menu;
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent mouseEvent){}
-
-    @Override
-    public void mousePressed(MouseEvent mouseEvent){}
-
-    @Override
-    public void mouseReleased(MouseEvent mouseEvent){}
-
-    @Override
-    public void mouseEntered(MouseEvent mouseEvent){
-        if(this.menu.getMenuItemUI() != null){
-            this.menu.getMenuItemUI().setIsHovered(true);
-            this.menu.repaint();
-        }
-    }
-
-    @Override
-    public void mouseExited(MouseEvent mouseEvent){
-        if(this.menu.getMenuItemUI() != null){
-            this.menu.getMenuItemUI().setIsHovered(false);
-            this.menu.repaint();
-        }
     }
 }
