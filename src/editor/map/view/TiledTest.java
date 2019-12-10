@@ -50,7 +50,7 @@ public class TiledTest extends Game implements InputProcessor {
 		border = new Border((int)prop.get("width"),(int)prop.get("height"),(int)prop.get("tileheight"));
 		room = new RoomView(tmpMap.getRooms(),(int)prop.get("tileheight"),tmpMap.getRow());
 
-		TileMap map = new TileMap(tiledMap,component,tmpMap,room);
+		TileMap map = new TileMap(tiledMap,component,tmpMap,room,camera);
 
 		InputMultiplexer multi = new InputMultiplexer();
 		multi.addProcessor(this);
