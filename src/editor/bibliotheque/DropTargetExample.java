@@ -81,6 +81,8 @@ import java.awt.event.WindowEvent;
             dtde.acceptDrag(dtde.getDropAction());
         }
 
+
+        //PB ICI POUR LA COPIE --> VOIR SI AVOIR A PASSER PAR UN TRANSFER HANDLER OBLIGATOIRE
         public void drop(DropTargetDropEvent dtde) {
             dtde.acceptDrop(dtde.getDropAction());
             try {
