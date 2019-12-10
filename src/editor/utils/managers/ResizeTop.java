@@ -13,12 +13,16 @@ public class ResizeTop extends Resize {
     @Override
     public void mouseDragged(MouseEvent mouseEvent) {
         Point mouseCords = mouseEvent.getPoint();
-        if(mouseCords.y > this.resizeComponent.getHeight()) System.out.println("top less");
-        if(mouseCords.y < 0) System.out.println("top more");
+        Rectangle window = this.window.getBounds();
+        if(this.window.getMinimumSize().height < window.height){
+            this.window.setSize(window.width, window.height - mouseCords.y);
+            this.window.setLocation(window.x, window.y + mouseCords.y);
+        }else if(mouseCords.y < this.resizeComponent.getY()){
+            this.window.setSize(window.width, window.height - mouseCords.y);
+            this.window.setLocation(window.x, window.y + mouseCords.y);
+        }
     }
 
     @Override
-    public void mouseMoved(MouseEvent mouseEvent) {
-        this.resizeComponent.setCursor(this.cursor);
-    }
+    public void mouseMoved(MouseEvent mouseEvent) {}
 }

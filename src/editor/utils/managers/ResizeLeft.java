@@ -13,12 +13,16 @@ public class ResizeLeft extends Resize {
     @Override
     public void mouseDragged(MouseEvent mouseEvent) {
         Point mouseCords = mouseEvent.getPoint();
-        if(mouseCords.x > this.resizeComponent.getWidth()) System.out.println("left less");
-        if(mouseCords.x < 0) System.out.println("left more");
+        Rectangle window = this.window.getBounds();
+        if(this.window.getMinimumSize().width < window.width){
+            this.window.setSize(window.width - mouseCords.x, window.height);
+            this.window.setLocation(window.x + mouseCords.x, window.y);
+        }else if(mouseCords.x < this.resizeComponent.getX()){
+            this.window.setSize(window.width - mouseCords.x, window.height);
+            this.window.setLocation(window.x + mouseCords.x, window.y);
+        }
     }
 
     @Override
-    public void mouseMoved(MouseEvent mouseEvent) {
-        this.resizeComponent.setCursor(this.cursor);
-    }
+    public void mouseMoved(MouseEvent mouseEvent) {}
 }

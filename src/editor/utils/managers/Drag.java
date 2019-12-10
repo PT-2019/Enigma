@@ -17,18 +17,25 @@ public class Drag extends MouseAdapter {
 	}
 
 	public void mouseReleased(MouseEvent e) {
-		if(this.window.getLocationOnScreen().y <= 0) this.window.setSize(Window.FULL_SCREEN_SIZE);
+		if(this.window.getLocationOnScreen().y <= 0) {
+			this.window.setSize(Window.FULL_SCREEN_SIZE);
+			this.window.setPreviousY(0);
+			this.window.wontBeResizedFullScreen();
+		}
 	}
 
 	public void mousePressed(MouseEvent e) {
 		this.pressedCords = e.getPoint();
-		/*if(this.window.getLocationOnScreen().y == 0 && this.window.getDimensionOf(Window.LAST_SCREEN_SIZE).equals(this.window.getDimensionOf(Window.FULL_SCREEN_SIZE)))
-			this.window.setSize(Window.HALF_SCREEN_SIZE);
-		else if(this.window.getLocationOnScreen().y == 0) this.window.setSize(Window.LAST_SCREEN_SIZE);*/
+		if(this.window.isFullScreen()) this.window.setPreviousValues();
 	}
 
 	public void mouseDragged(MouseEvent e) {
 		Point currentCords = e.getLocationOnScreen();
+		System.out.println(currentCords+" "+pressedCords);
 		this.window.setLocation(currentCords.x - this.pressedCords.x, currentCords.y - this.pressedCords.y);
+		/*if(!this.pressedCords.equals(currentCords))
+			this.window.setLocation(this.window.getX() + currentCords.x, this.window.getY() + currentCords.y);*/
+		this.window.wontBeResizedFullScreen();
+		if(this.window.getLocationOnScreen().y <= 0) this.window.willBeResizedFullScreen();
 	}
 }

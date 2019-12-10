@@ -13,11 +13,14 @@ public class ResizeBottom extends Resize {
     @Override
     public void mouseDragged(MouseEvent mouseEvent) {
         Point mouseCords = mouseEvent.getPoint();
-        this.window.setSize(this.window.getWidth(), this.window.getHeight() + mouseCords.y);
+        Rectangle window = this.window.getBounds();
+        if(this.window.getMaximumSize().height > window.height){
+            this.window.setSize(window.width, window.height + mouseCords.y);
+        }else if(mouseCords.x < this.resizeComponent.getHeight()){
+            this.window.setSize(window.width, window.height + mouseCords.y);
+        }
     }
 
     @Override
-    public void mouseMoved(MouseEvent mouseEvent) {
-        this.resizeComponent.setCursor(this.cursor);
-    }
+    public void mouseMoved(MouseEvent mouseEvent) {}
 }
