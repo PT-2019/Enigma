@@ -40,6 +40,7 @@ public class LoadGameLibgdxApplication {
 
 		//ajoute un Listener CloseWindowLibgdxApplication qui ferme l'application libgdx
 		//dès que la fenêtre est fermée
+		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		frame.addWindowListener(new CloseWindowLibgdxApplication(canvas));
 		frame.revalidate();//met à jour
 	}

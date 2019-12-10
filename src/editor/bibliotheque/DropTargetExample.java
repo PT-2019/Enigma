@@ -1,5 +1,9 @@
 package editor.bibliotheque;
 
+import com.badlogic.gdx.backends.lwjgl.LwjglAWTCanvas;
+import editor.utils.LoadGameLibgdxApplication;
+import game.EnigmaGame;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.datatransfer.*;
@@ -104,9 +108,19 @@ public class DropTargetExample implements DragGestureListener, DragSourceListene
     }
 
     public static void main(String[] arg) {
-        Button button = new Button("Drag Button");
-        Frame sourceFrame = new Frame("Source Frame");
+        JButton button = new JButton("Drag Button");
+        JFrame sourceFrame = new JFrame("Source Frame");
         JPanel a = new JPanel();
+        JPanel map = new JPanel();
+
+        map.removeAll();
+        map.setLayout(new BorderLayout());
+
+        //Récupère le jeu
+        LwjglAWTCanvas canvas = new LwjglAWTCanvas(new EnigmaGame());
+        map.add(canvas.getCanvas(), BorderLayout.CENTER);//ajoute le jeu
+
+        a.add(map);
         a.setBackground(Color.BLACK);
         JPanel b = new JPanel();
         b.setBackground(Color.GREEN);
@@ -139,7 +153,10 @@ public class DropTargetExample implements DragGestureListener, DragSourceListene
                         DnDConstants.ACTION_COPY, DragSourceExample);
         sourceFrame.setSize(500, 500);
         //targetFrame.setBounds(220, 200, 100, 60);
-        sourceFrame.setVisible(true);
-        //targetFrame.setVisible(true);
+
+       SwingUtilities.invokeLater(()-> {
+           sourceFrame.setVisible(true);
+           //targetFrame.setVisible(true);
+       });
     }
 }

@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.File;
 import java.io.IOException;
+import java.text.Normalizer;
 
 
 /**
@@ -44,6 +45,20 @@ public class Utility {
 		}
 
 		return string.toString();
+	}
+
+	public static <T extends java.lang.Enum> T stringToEnum(String name, T[] enumValues){
+		name = name.toLowerCase();//lower case
+		//escape non ascii chars
+		name = Normalizer.normalize(name, Normalizer.Form.NFD);
+		name = name.replaceAll("[^\\x00-\\x7F]", "");
+
+		for (T screen: enumValues) {
+			if(screen.name().toLowerCase().equals(name))
+				return screen;
+		}
+
+		throw new IllegalArgumentException("name not found "+name);
 	}
 
 }

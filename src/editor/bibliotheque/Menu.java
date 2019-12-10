@@ -1,21 +1,14 @@
 package editor.bibliotheque;
 
 
+import editor.bibliotheque.ChoixObjet;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.datatransfer.*;
 import java.awt.dnd.*;
 
-/**
- *  classe Menu
- *  @author Jorys-Micke ALAÏS
- *  @author Louka DOZ
- *  @author Loic SENECAT
- *  @author Quentin RAMSAMY-AGEORGES
- *
- *  @version 2.0 05 décembre 2019
- */
-public class Menu extends JFrame implements DragGestureListener, DragSourceListener, DropTargetListener, Transferable {
+public class Menu extends JPanel implements DragGestureListener, DragSourceListener, DropTargetListener, Transferable {
 
     private JScrollPane scroll;
     private CardLayout pageObjet=new CardLayout();
@@ -37,12 +30,7 @@ public class Menu extends JFrame implements DragGestureListener, DragSourceListe
      * @since 1.0 10 novembre 2019
      */
     public Menu(){
-        this.setTitle("Création de l'escape Game");
-        this.setSize(1500,1000);
-        this.setMinimumSize(new Dimension(800,500));
-        this.setLocationRelativeTo(null);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        this.setBackground(Color.RED);
         JPanel panneau = new JPanel();
         panneau.setLayout(new GridBagLayout());
 
@@ -77,7 +65,7 @@ public class Menu extends JFrame implements DragGestureListener, DragSourceListe
         GridBagConstraints c1 = new GridBagConstraints();
         c1.gridx=0;
         c1.gridy=2;
-        c1.gridwidth=3;
+       // c1.gridwidth=GridBagConstraints.;
         c1.gridheight=8;
         c1.fill=GridBagConstraints.BOTH;
         c1.anchor=GridBagConstraints.WEST;
@@ -160,7 +148,7 @@ public class Menu extends JFrame implements DragGestureListener, DragSourceListe
         remplissage(menuChoix3);
         remplissage(menuChoix4);
 
-        this.setVisible(true);
+       // this.setVisible(true);
     }
 
 

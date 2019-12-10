@@ -75,7 +75,7 @@ public class TextureProxy {
 	 * @throws NumberFormatException causé par un fichier mal conçu
 	 * @deprecated since 2.0 car le format a été changé
 	 */
-	@Deprecated(since = "2.0")
+	@Deprecated()
 	public void loadTexture(String pathFile){
 		BufferedReader buff;
 		FileReader file;

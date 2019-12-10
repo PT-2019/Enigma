@@ -1,7 +1,10 @@
 package editor;
 
 import editor.api.Application;
+import editor.bibliotheque.MenuScreen;
 import editor.window.Window;
+
+import java.awt.*;
 
 /**
  * Lanceur de l'éditeur d'escape game
@@ -29,6 +32,11 @@ public class EditorLuncher implements Application {
 
 		// Icône de l'application
 		// this.window.setIconImage();
+
+		this.window.setLayout(new BorderLayout());
+		this.window.setLocationRelativeTo(null);
+		this.window.setDefaultCloseOperation(Window.EXIT_ON_CLOSE);
+		this.window.add(new MenuScreen(this.window), BorderLayout.CENTER);
 	}
 
 	@Override
