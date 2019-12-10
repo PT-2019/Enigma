@@ -1,6 +1,7 @@
 package editor.utils;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglAWTCanvas;
+import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import game.EnigmaGame;
 import org.jetbrains.annotations.NotNull;
 
@@ -28,7 +29,10 @@ public class LoadGameLibgdxApplication {
 		container.setLayout(new BorderLayout());
 
 		//Récupère le jeu
-		LwjglAWTCanvas canvas = new LwjglAWTCanvas(new EnigmaGame());
+		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+		config.width = 10;
+		config.height = 20;
+		LwjglAWTCanvas canvas = new LwjglAWTCanvas(new EnigmaGame(), config);
 		container.add(canvas.getCanvas(), BorderLayout.CENTER);//ajoute le jeu
 
 		//vire tous les listeners de la classe CloseWindowLibgdxApplication
@@ -40,6 +44,7 @@ public class LoadGameLibgdxApplication {
 
 		//ajoute un Listener CloseWindowLibgdxApplication qui ferme l'application libgdx
 		//dès que la fenêtre est fermée
+		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		frame.addWindowListener(new CloseWindowLibgdxApplication(canvas));
 		frame.revalidate();//met à jour
 	}

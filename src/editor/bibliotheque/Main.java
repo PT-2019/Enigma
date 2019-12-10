@@ -9,10 +9,10 @@ package editor.bibliotheque;
  * @version 1.0
  */
 public class Main {
+	/**
+	 @since 1.0
+	 */
     public static void main(String[] args) {
-        /**
-            @since 1.0
-         */
         Menu m = new Menu();
     }
 }
