@@ -22,9 +22,9 @@ public class DesktopLauncher implements Runnable {
         window.setSize(Window.HALF_SCREEN_SIZE);
         window.setLocation(Window.CENTER);
         window.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        window.setWindowBackground(Color.DARK_GRAY);
 
         JPanel background = window.getContentSpace();
-        background.setBackground(Color.DARK_GRAY);
         background.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
@@ -64,8 +64,6 @@ public class DesktopLauncher implements Runnable {
         button.setButtonUI(new ButtonUI());
         gbc.gridy = 2;
         background.add(button, gbc);
-
-        window.add(background);
 
         window.setVisible(true);
     }

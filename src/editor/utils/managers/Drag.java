@@ -6,13 +6,13 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class WindowDrag extends MouseAdapter {
+public class Drag extends MouseAdapter {
 
 	private final Window window;
 	private Point pressedCords;
 
 
-	public WindowDrag(Window window) {
+	public Drag(Window window) {
 		this.window = window;
 	}
 

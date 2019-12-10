@@ -29,8 +29,18 @@ public class Window extends JFrame {
 	public final static int NORTH_WEST = 9;
 	public final static int CENTER = 10;
 
+	private final static int CONTENT = 0;
+	private final static int RIGHT_RESIZER = 1;
+	private final static int LEFT_RESIZER = 2;
+	private final static int BOTTOM_RESIZER = 3;
+	private final static int TOP_RESIZER = 4;
+	private final static int TOP_LEFT_RESIZER = 5;
+	private final static int TOP_RIGHT_RESIZER = 6;
+	private final static int BOTTOM_LEFT_RESIZER = 7;
+	private final static int BOTTOM_RIGHT_RESIZER = 8;
+
 	private Dimension lastDimension;
-	private JPanel content;
+	private static JPanel[] WINDOW_ELEMENTS = new JPanel[9];
 
 	/**
 	 * Initialise une fenêtre de la taille de l'écran
@@ -45,51 +55,62 @@ public class Window extends JFrame {
 		this.lastDimension = this.getSize();
 		this.setLocation(0,0);
 		this.setMinimumSize(new Dimension((int) screen.getWidth() / 4, (int) screen.getHeight() / 3));
-		WindowDrag drag = new WindowDrag(this);
-		this.addMouseListener(drag);
+		for(int i = 0; i < WINDOW_ELEMENTS.length; i++){
+			WINDOW_ELEMENTS[i] = new JPanel();
+			WINDOW_ELEMENTS[i].setOpaque(true);
+		}
 
-		this.addMouseMotionListener(new WindowResize(this));
-		JPanel content = new JPanel();
-		content.setBackground(Color.CYAN);
-		content.setOpaque(true);
+		Resize resizeListener = new ResizeRight(WINDOW_ELEMENTS[RIGHT_RESIZER],new Cursor(Cursor.E_RESIZE_CURSOR));
+		WINDOW_ELEMENTS[RIGHT_RESIZER].addMouseListener(resizeListener);
+		WINDOW_ELEMENTS[RIGHT_RESIZER].addMouseMotionListener(resizeListener);
 
-		JPanel resizeRight = new JPanel();
-		resizeRight.setBackground(Color.RED);
-		resizeRight.setOpaque(true);
-		Resize resizeListener = new ResizeRight(resizeRight,new Cursor(Cursor.E_RESIZE_CURSOR));
-		resizeRight.addMouseListener(resizeListener);
-		resizeRight.addMouseMotionListener(resizeListener);
+		resizeListener = new ResizeLeft(WINDOW_ELEMENTS[LEFT_RESIZER],new Cursor(Cursor.W_RESIZE_CURSOR));
+		WINDOW_ELEMENTS[LEFT_RESIZER].addMouseListener(resizeListener);
+		WINDOW_ELEMENTS[LEFT_RESIZER].addMouseMotionListener(resizeListener);
 
-		JPanel resizeLeft = new JPanel();
-		resizeLeft.setBackground(Color.GREEN);
-		resizeLeft.setOpaque(true);
-		resizeListener = new ResizeLeft(resizeLeft,new Cursor(Cursor.W_RESIZE_CURSOR));
-		resizeLeft.addMouseListener(resizeListener);
-		resizeLeft.addMouseMotionListener(resizeListener);
+		resizeListener = new ResizeBottom(WINDOW_ELEMENTS[BOTTOM_RESIZER],new Cursor(Cursor.S_RESIZE_CURSOR));
+		WINDOW_ELEMENTS[BOTTOM_RESIZER].addMouseListener(resizeListener);
+		WINDOW_ELEMENTS[BOTTOM_RESIZER].addMouseMotionListener(resizeListener);
+		WINDOW_ELEMENTS[BOTTOM_RESIZER].setLayout(new BorderLayout());
 
-		JPanel resizeBottom = new JPanel();
-		resizeBottom.setBackground(Color.ORANGE);
-		resizeBottom.setOpaque(true);
-		resizeListener = new ResizeBottom(resizeBottom,new Cursor(Cursor.S_RESIZE_CURSOR));
-		resizeBottom.addMouseListener(resizeListener);
-		resizeBottom.addMouseMotionListener(resizeListener);
+		resizeListener = new ResizeBottom(WINDOW_ELEMENTS[BOTTOM_LEFT_RESIZER],new Cursor(Cursor.SW_RESIZE_CURSOR));
+		WINDOW_ELEMENTS[BOTTOM_LEFT_RESIZER].addMouseListener(resizeListener);
+		WINDOW_ELEMENTS[BOTTOM_LEFT_RESIZER].addMouseMotionListener(resizeListener);
 
-		JPanel resizeTop = new JPanel();
-		resizeTop.setBackground(Color.MAGENTA);
-		resizeTop.setOpaque(true);
-		resizeListener = new ResizeTop(resizeTop,new Cursor(Cursor.N_RESIZE_CURSOR));
+		resizeListener = new ResizeBottom(WINDOW_ELEMENTS[BOTTOM_RIGHT_RESIZER],new Cursor(Cursor.SE_RESIZE_CURSOR));
+		WINDOW_ELEMENTS[BOTTOM_RIGHT_RESIZER].addMouseListener(resizeListener);
+		WINDOW_ELEMENTS[BOTTOM_RIGHT_RESIZER].addMouseMotionListener(resizeListener);
 
-		resizeTop.addMouseListener(resizeListener);
-		resizeTop.addMouseMotionListener(resizeListener);
-		this.add(resizeRight,BorderLayout.EAST);
-		this.add(resizeLeft,BorderLayout.WEST);
-		this.add(resizeBottom,BorderLayout.SOUTH);
-		this.add(resizeTop,BorderLayout.NORTH);
-		this.add(content,BorderLayout.CENTER);
-		this.content = content;
+		WINDOW_ELEMENTS[BOTTOM_RESIZER].add(WINDOW_ELEMENTS[BOTTOM_LEFT_RESIZER],BorderLayout.WEST);
+		WINDOW_ELEMENTS[BOTTOM_RESIZER].add(WINDOW_ELEMENTS[BOTTOM_RIGHT_RESIZER],BorderLayout.EAST);
+
+		resizeListener = new ResizeTop(WINDOW_ELEMENTS[TOP_RESIZER],new Cursor(Cursor.N_RESIZE_CURSOR));
+		WINDOW_ELEMENTS[TOP_RESIZER].addMouseListener(resizeListener);
+		WINDOW_ELEMENTS[TOP_RESIZER].addMouseMotionListener(resizeListener);
+		WINDOW_ELEMENTS[TOP_RESIZER].setLayout(new BorderLayout());
+
+		resizeListener = new ResizeBottom(WINDOW_ELEMENTS[TOP_LEFT_RESIZER],new Cursor(Cursor.NW_RESIZE_CURSOR));
+		WINDOW_ELEMENTS[TOP_LEFT_RESIZER].addMouseListener(resizeListener);
+		WINDOW_ELEMENTS[TOP_LEFT_RESIZER].addMouseMotionListener(resizeListener);
+
+		resizeListener = new ResizeBottom(WINDOW_ELEMENTS[TOP_RIGHT_RESIZER],new Cursor(Cursor.NE_RESIZE_CURSOR));
+		WINDOW_ELEMENTS[TOP_RIGHT_RESIZER].addMouseListener(resizeListener);
+		WINDOW_ELEMENTS[TOP_RIGHT_RESIZER].addMouseMotionListener(resizeListener);
+
+		WINDOW_ELEMENTS[TOP_RESIZER].add(WINDOW_ELEMENTS[TOP_LEFT_RESIZER],BorderLayout.WEST);
+		WINDOW_ELEMENTS[TOP_RESIZER].add(WINDOW_ELEMENTS[TOP_RIGHT_RESIZER],BorderLayout.EAST);
+
+		this.add(WINDOW_ELEMENTS[RIGHT_RESIZER],BorderLayout.EAST);
+		this.add(WINDOW_ELEMENTS[LEFT_RESIZER],BorderLayout.WEST);
+		this.add(WINDOW_ELEMENTS[BOTTOM_RESIZER],BorderLayout.SOUTH);
+		this.add(WINDOW_ELEMENTS[TOP_RESIZER],BorderLayout.NORTH);
+		this.add(WINDOW_ELEMENTS[CONTENT], BorderLayout.CENTER);
 
 		this.setUndecorated(true);
+
 		MenuBar bar = new MenuBar();
+		Drag drag = new Drag(this);
+		bar.addMouseListener(drag);
 		bar.addMouseMotionListener(drag);
 		MenuBarUI ui = new MenuBarUI();
 		boolean[] r = new boolean[4];
@@ -141,13 +162,6 @@ public class Window extends JFrame {
 		bar.add(smaller);
 		bar.add(quit);
 		this.setJMenuBar(bar);
-		Timer t = new Timer(500, new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent actionEvent) {
-				System.out.println(getSize());
-			}
-		});
-		//t.setRepeats(true); t.start();
 	}
 
 	public Window(String title, int width, int height) {
@@ -161,22 +175,32 @@ public class Window extends JFrame {
 	}
 
 	public JPanel getContentSpace(){
-		return this.content;
+		return WINDOW_ELEMENTS[CONTENT];
+	}
+
+	public void setWindowBackground(Color bgColor){
+		for(JPanel p: WINDOW_ELEMENTS) p.setBackground(bgColor);
+		WINDOW_ELEMENTS[TOP_RESIZER].setBackground(Color.red);
+		WINDOW_ELEMENTS[BOTTOM_RESIZER].setBackground(Color.red);
+		WINDOW_ELEMENTS[TOP_LEFT_RESIZER].setBackground(Color.green);
+		WINDOW_ELEMENTS[BOTTOM_LEFT_RESIZER].setBackground(Color.green);
+		WINDOW_ELEMENTS[TOP_RIGHT_RESIZER].setBackground(Color.green);
+		WINDOW_ELEMENTS[BOTTOM_RIGHT_RESIZER].setBackground(Color.green);
 	}
 
 	public boolean isFullScreen(){
-		System.out.println(this.getSize().equals(this.getDimensionOf(FULL_SCREEN_SIZE))+" "+this.getSize()+" "+this.getDimensionOf(FULL_SCREEN_SIZE));
-		return this.getSize().equals(this.getDimensionOf(FULL_SCREEN_SIZE));
+		return (this.getExtendedState() == JFrame.MAXIMIZED_BOTH);
 	}
 
 	public void setSize(int size){
 		Rectangle screenSize = this.getGraphicsConfiguration().getBounds();
+		this.setExtendedState(JFrame.NORMAL);
 		switch (size){
 			default:
 				return;
 			case FULL_SCREEN_SIZE:
 				this.lastDimension = this.getSize();
-				this.setSize(screenSize.width,screenSize.height);
+				this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				System.out.println("full"+this.getSize());
 				break;
 			case HALF_SCREEN_SIZE:
@@ -196,8 +220,6 @@ public class Window extends JFrame {
 		Rectangle screenSize = this.getGraphicsConfiguration().getBounds();
 		switch (size){
 			default: return null;
-			case FULL_SCREEN_SIZE:
-				return new Dimension(screenSize.width, screenSize.height);
 			case HALF_SCREEN_SIZE:
 				return new Dimension(screenSize.width / 2, screenSize.height / 2);
 			case LAST_SCREEN_SIZE:
