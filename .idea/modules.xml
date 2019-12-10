@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/enigma.iml" filepath="$PROJECT_DIR$/enigma.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Enigma.iml" filepath="$PROJECT_DIR$/Enigma.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libs/packer/core/core.iml" filepath="$PROJECT_DIR$/libs/packer/core/core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libs/packer/desktop/desktop.iml" filepath="$PROJECT_DIR$/libs/packer/desktop/desktop.iml" />
     </modules>
   </component>
 </project>

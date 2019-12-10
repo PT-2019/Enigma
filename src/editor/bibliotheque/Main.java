@@ -6,13 +6,13 @@ package editor.bibliotheque;
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  *
- * @version 1.0
- */
+ * @version 1.0 10 novembre 2019
+ **/
 public class Main {
     public static void main(String[] args) {
         /**
-            @since 1.0
-         */
+         *  @since 1.0
+         **/
         Menu m = new Menu();
     }
 }
