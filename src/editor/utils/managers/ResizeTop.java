@@ -6,33 +6,8 @@ import java.awt.event.MouseEvent;
 
 public class ResizeTop extends Resize {
 
-    public ResizeTop(JPanel resizeComponent, Cursor cursor){
-        super(resizeComponent,cursor);
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent mouseEvent) {
-
-    }
-
-    @Override
-    public void mousePressed(MouseEvent mouseEvent) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent mouseEvent) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent mouseEvent) {
-        this.resizeComponent.setCursor(this.cursor);
-    }
-
-    @Override
-    public void mouseExited(MouseEvent mouseEvent) {
-        this.resizeComponent.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    public ResizeTop(Window window, JPanel resizeComponent, Cursor cursor){
+        super(window,resizeComponent,cursor);
     }
 
     @Override
@@ -44,6 +19,6 @@ public class ResizeTop extends Resize {
 
     @Override
     public void mouseMoved(MouseEvent mouseEvent) {
-
+        this.resizeComponent.setCursor(this.cursor);
     }
 }

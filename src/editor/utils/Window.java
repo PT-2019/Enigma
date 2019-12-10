@@ -60,42 +60,28 @@ public class Window extends JFrame {
 			WINDOW_ELEMENTS[i].setOpaque(true);
 		}
 
-		Resize resizeListener = new ResizeRight(WINDOW_ELEMENTS[RIGHT_RESIZER],new Cursor(Cursor.E_RESIZE_CURSOR));
-		WINDOW_ELEMENTS[RIGHT_RESIZER].addMouseListener(resizeListener);
-		WINDOW_ELEMENTS[RIGHT_RESIZER].addMouseMotionListener(resizeListener);
+		WINDOW_ELEMENTS[RIGHT_RESIZER].addMouseMotionListener(new ResizeRight(this,WINDOW_ELEMENTS[RIGHT_RESIZER],new Cursor(Cursor.E_RESIZE_CURSOR)));
 
-		resizeListener = new ResizeLeft(WINDOW_ELEMENTS[LEFT_RESIZER],new Cursor(Cursor.W_RESIZE_CURSOR));
-		WINDOW_ELEMENTS[LEFT_RESIZER].addMouseListener(resizeListener);
-		WINDOW_ELEMENTS[LEFT_RESIZER].addMouseMotionListener(resizeListener);
+		WINDOW_ELEMENTS[LEFT_RESIZER].addMouseMotionListener(new ResizeLeft(this,WINDOW_ELEMENTS[LEFT_RESIZER],new Cursor(Cursor.W_RESIZE_CURSOR)));
 
-		resizeListener = new ResizeBottom(WINDOW_ELEMENTS[BOTTOM_RESIZER],new Cursor(Cursor.S_RESIZE_CURSOR));
-		WINDOW_ELEMENTS[BOTTOM_RESIZER].addMouseListener(resizeListener);
-		WINDOW_ELEMENTS[BOTTOM_RESIZER].addMouseMotionListener(resizeListener);
+		WINDOW_ELEMENTS[BOTTOM_RESIZER].addMouseMotionListener(new ResizeBottom(this,WINDOW_ELEMENTS[BOTTOM_RESIZER],new Cursor(Cursor.S_RESIZE_CURSOR)));
 		WINDOW_ELEMENTS[BOTTOM_RESIZER].setLayout(new BorderLayout());
 
-		resizeListener = new ResizeBottom(WINDOW_ELEMENTS[BOTTOM_LEFT_RESIZER],new Cursor(Cursor.SW_RESIZE_CURSOR));
-		WINDOW_ELEMENTS[BOTTOM_LEFT_RESIZER].addMouseListener(resizeListener);
-		WINDOW_ELEMENTS[BOTTOM_LEFT_RESIZER].addMouseMotionListener(resizeListener);
-
-		resizeListener = new ResizeBottom(WINDOW_ELEMENTS[BOTTOM_RIGHT_RESIZER],new Cursor(Cursor.SE_RESIZE_CURSOR));
-		WINDOW_ELEMENTS[BOTTOM_RIGHT_RESIZER].addMouseListener(resizeListener);
-		WINDOW_ELEMENTS[BOTTOM_RIGHT_RESIZER].addMouseMotionListener(resizeListener);
+		WINDOW_ELEMENTS[BOTTOM_LEFT_RESIZER].addMouseMotionListener(new ResizeBottom(this,WINDOW_ELEMENTS[BOTTOM_LEFT_RESIZER],new Cursor(Cursor.SW_RESIZE_CURSOR)));
+		WINDOW_ELEMENTS[BOTTOM_LEFT_RESIZER].addMouseMotionListener(new ResizeLeft(this,WINDOW_ELEMENTS[BOTTOM_LEFT_RESIZER],new Cursor(Cursor.SW_RESIZE_CURSOR)));
+		WINDOW_ELEMENTS[BOTTOM_RIGHT_RESIZER].addMouseMotionListener(new ResizeBottom(this,WINDOW_ELEMENTS[BOTTOM_RIGHT_RESIZER],new Cursor(Cursor.SE_RESIZE_CURSOR)));
+		WINDOW_ELEMENTS[BOTTOM_RIGHT_RESIZER].addMouseMotionListener(new ResizeRight(this,WINDOW_ELEMENTS[BOTTOM_RIGHT_RESIZER],new Cursor(Cursor.SE_RESIZE_CURSOR)));
 
 		WINDOW_ELEMENTS[BOTTOM_RESIZER].add(WINDOW_ELEMENTS[BOTTOM_LEFT_RESIZER],BorderLayout.WEST);
 		WINDOW_ELEMENTS[BOTTOM_RESIZER].add(WINDOW_ELEMENTS[BOTTOM_RIGHT_RESIZER],BorderLayout.EAST);
 
-		resizeListener = new ResizeTop(WINDOW_ELEMENTS[TOP_RESIZER],new Cursor(Cursor.N_RESIZE_CURSOR));
-		WINDOW_ELEMENTS[TOP_RESIZER].addMouseListener(resizeListener);
-		WINDOW_ELEMENTS[TOP_RESIZER].addMouseMotionListener(resizeListener);
+		WINDOW_ELEMENTS[TOP_RESIZER].addMouseMotionListener(new ResizeTop(this,WINDOW_ELEMENTS[TOP_RESIZER],new Cursor(Cursor.N_RESIZE_CURSOR)));
 		WINDOW_ELEMENTS[TOP_RESIZER].setLayout(new BorderLayout());
 
-		resizeListener = new ResizeBottom(WINDOW_ELEMENTS[TOP_LEFT_RESIZER],new Cursor(Cursor.NW_RESIZE_CURSOR));
-		WINDOW_ELEMENTS[TOP_LEFT_RESIZER].addMouseListener(resizeListener);
-		WINDOW_ELEMENTS[TOP_LEFT_RESIZER].addMouseMotionListener(resizeListener);
-
-		resizeListener = new ResizeBottom(WINDOW_ELEMENTS[TOP_RIGHT_RESIZER],new Cursor(Cursor.NE_RESIZE_CURSOR));
-		WINDOW_ELEMENTS[TOP_RIGHT_RESIZER].addMouseListener(resizeListener);
-		WINDOW_ELEMENTS[TOP_RIGHT_RESIZER].addMouseMotionListener(resizeListener);
+		WINDOW_ELEMENTS[TOP_LEFT_RESIZER].addMouseMotionListener(new ResizeTop(this,WINDOW_ELEMENTS[TOP_LEFT_RESIZER],new Cursor(Cursor.NW_RESIZE_CURSOR)));
+		WINDOW_ELEMENTS[TOP_LEFT_RESIZER].addMouseMotionListener(new ResizeLeft(this,WINDOW_ELEMENTS[TOP_LEFT_RESIZER],new Cursor(Cursor.NW_RESIZE_CURSOR)));
+		WINDOW_ELEMENTS[TOP_RIGHT_RESIZER].addMouseMotionListener(new ResizeTop(this,WINDOW_ELEMENTS[TOP_RIGHT_RESIZER],new Cursor(Cursor.NE_RESIZE_CURSOR)));
+		WINDOW_ELEMENTS[TOP_RIGHT_RESIZER].addMouseMotionListener(new ResizeRight(this,WINDOW_ELEMENTS[TOP_RIGHT_RESIZER],new Cursor(Cursor.NE_RESIZE_CURSOR)));
 
 		WINDOW_ELEMENTS[TOP_RESIZER].add(WINDOW_ELEMENTS[TOP_LEFT_RESIZER],BorderLayout.WEST);
 		WINDOW_ELEMENTS[TOP_RESIZER].add(WINDOW_ELEMENTS[TOP_RIGHT_RESIZER],BorderLayout.EAST);
@@ -180,12 +166,6 @@ public class Window extends JFrame {
 
 	public void setWindowBackground(Color bgColor){
 		for(JPanel p: WINDOW_ELEMENTS) p.setBackground(bgColor);
-		WINDOW_ELEMENTS[TOP_RESIZER].setBackground(Color.red);
-		WINDOW_ELEMENTS[BOTTOM_RESIZER].setBackground(Color.red);
-		WINDOW_ELEMENTS[TOP_LEFT_RESIZER].setBackground(Color.green);
-		WINDOW_ELEMENTS[BOTTOM_LEFT_RESIZER].setBackground(Color.green);
-		WINDOW_ELEMENTS[TOP_RIGHT_RESIZER].setBackground(Color.green);
-		WINDOW_ELEMENTS[BOTTOM_RIGHT_RESIZER].setBackground(Color.green);
 	}
 
 	public boolean isFullScreen(){

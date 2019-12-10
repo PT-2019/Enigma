@@ -5,13 +5,15 @@ import java.awt.*;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-public abstract class Resize implements MouseListener, MouseMotionListener {
+public abstract class Resize implements MouseMotionListener {
 
-    protected final Cursor cursor;
-    protected final JPanel resizeComponent;
+    protected Cursor cursor;
+    protected JPanel resizeComponent;
+    protected Window window;
 
-    public Resize(JPanel resizeComponent, Cursor cursor){
+    public Resize(Window window, JPanel resizeComponent, Cursor cursor){
         this.resizeComponent = resizeComponent;
         this.cursor = cursor;
+        this.window = window;
     }
 }
