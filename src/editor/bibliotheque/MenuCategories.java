@@ -1,9 +1,10 @@
 package editor.bibliotheque;
 
 public enum MenuCategories {
-	SALLES("Salles"),
+	ROOMS("Salles"),
 	DECORS("Décors"),
-	PERSONNAGES("Personnages"),
+	ITEMS("Objects"),
+	ENTITIES("Personnages"),
 	ACTIONS("Actions");
 
 	public final String name;

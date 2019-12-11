@@ -1,10 +1,13 @@
 package editor.utils;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.File;
-import java.io.IOException;
+import com.badlogic.gdx.utils.Array;
+
+import java.io.*;
 import java.text.Normalizer;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -47,6 +50,14 @@ public class Utility {
 		return string.toString();
 	}
 
+	public static String normalize(String string){
+		string = string.toLowerCase();//lower case
+		//escape non ascii chars
+		string = Normalizer.normalize(string, Normalizer.Form.NFD);
+		string = string.replaceAll("[^\\x00-\\x7F]", "");
+		return string;
+	}
+
 	public static <T extends java.lang.Enum> T stringToEnum(String name, T[] enumValues){
 		name = name.toLowerCase();//lower case
 		//escape non ascii chars
@@ -61,5 +72,26 @@ public class Utility {
 		throw new IllegalArgumentException("name not found "+name);
 	}
 
+	public static Reader loadFile(String path) {
+		try{
+			return new BufferedReader(new FileReader(path));
+		} catch (IOException e){
+			throw new IllegalStateException("error loading file");
+		}
+	}
+
+	public static void printHashMap(HashMap<?, ?> hashMap){
+		for (Map.Entry<?, ?> entry : hashMap.entrySet()) {
+			System.out.println(entry.getKey()+"->");
+			Object value = entry.getValue();
+			if(value instanceof ArrayList){
+				System.out.println(Arrays.toString(((ArrayList) value).toArray()));
+			} else if( value instanceof Array){
+				System.out.println(Arrays.toString(((Array) value).toArray()));
+			} else {
+				System.out.println(value);
+			}
+		}
+	}
 }
 

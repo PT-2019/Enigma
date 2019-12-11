@@ -3,7 +3,6 @@ package editor.io;
 import editor.utils.Utility;
 
 import java.io.File;
-import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -31,7 +30,7 @@ import java.util.HashMap;
  *
  * @version 2.0
  */
-public class JsonReader {
+public class AtlasReader {
 
 	/**
 	 * Importe un fichier json dans le programme et renvoi un objet le représentant
@@ -39,13 +38,13 @@ public class JsonReader {
 	 * @param path chemin du fichier
 	 * @return le fichier lu sous la forme d'un JsonFile
 	 *
-	 * @see JsonFile
+	 * @see AtlasFile
 	 *
 	 * @throws IllegalStateException si le fichier n'est pas valide.
 	 *
 	 * @since 2.0
 	 */
-	public static JsonFile importJson(final String path){
+	public static AtlasFile importJson(final String path){
 		final int lastSlash = path.lastIndexOf(File.separator);
 		String[] jsonFile = Utility.readFile(path).split("\n");//read file
 		String imagePath;
@@ -71,7 +70,7 @@ public class JsonReader {
 		if(!sb.toString().isEmpty())
 			throw new IllegalStateException(sb.toString());
 
-		return new JsonFile(imagePath, map, jsonFile);
+		return new AtlasFile(imagePath, map, jsonFile);
 
 	}
 }

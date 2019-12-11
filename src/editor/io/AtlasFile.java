@@ -18,7 +18,7 @@ import java.util.Map;
  *
  * @version 2.0 27 novembre 2019
  */
-public class JsonFile implements Serializable {
+public class AtlasFile implements Serializable {
 
 	/** chemin de l'image */
 	private final String image;
@@ -36,7 +36,7 @@ public class JsonFile implements Serializable {
 	 * @param mapIndex map des index (noms) et de leur n+1 ligne
 	 * @param jsonFile le fichier sous la forme d'une string
 	 */
-	public JsonFile(String imagePath, HashMap<String, Integer> mapIndex, String[] jsonFile) {
+	public AtlasFile(String imagePath, HashMap<String, Integer> mapIndex, String[] jsonFile) {
 		this.image = imagePath;
 		this.map = mapIndex;
 		this.jsonFile = jsonFile;

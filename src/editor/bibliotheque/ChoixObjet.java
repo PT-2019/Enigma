@@ -15,7 +15,7 @@ import java.awt.event.ActionListener;
  *  @author Loic SENECAT
  *  @author Quentin RAMSAMY-AGEORGES
  *
- *  @see editor.bibliotheque.Menu
+ *  @see editor.bibliotheque.MenuScreen
  *
  *  @version 1.0 14 novembre 2019
  */
@@ -32,7 +32,7 @@ public class ChoixObjet implements ActionListener {
     /**
      * Cet méthode permet de gerer l'affichage de la partie gauche du menu via les boutons grace au card layout
      *
-     * @see Menu
+     * @see MenuScreen
      * @param actionEvent
      *
      * @since 1.0 14 novembre 2019
@@ -41,8 +41,12 @@ public class ChoixObjet implements ActionListener {
     public void actionPerformed(ActionEvent actionEvent) {
         String msg =  actionEvent.getActionCommand();
 
-       this.card.show(this.panneau, Utility.stringToEnum(msg, MenuCategories.values()).name);
-
-        this.panneau.revalidate();
+        for (MenuCategories category : MenuCategories.values()) {
+            if(msg.equals(category.name)){
+                this.card.show(this.panneau, category.name());
+                this.panneau.revalidate();
+                return;
+            }
+        }
     }
 }

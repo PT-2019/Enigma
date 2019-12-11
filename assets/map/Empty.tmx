@@ -9,7 +9,7 @@
  <tileset firstgid="2057" name="[A]Wall-Up_Dungeon1_pipo" tilewidth="16" tileheight="16" tilecount="48" columns="8">
   <image source="tiles/ground/[A]Wall-Up_Dungeon1_pipo.png" width="128" height="96"/>
  </tileset>
- <layer id="1" name="Calque de Tile 1" width="30" height="20">
+ <layer id="1" name="Floor1" width="30" height="20">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

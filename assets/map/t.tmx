@@ -7,7 +7,7 @@
   <image source="collision.png" width="128" height="128"/>
  </tileset>
  <tileset firstgid="2057" name="[A]Wall-Up_Dungeon1_pipo" tilewidth="16" tileheight="16" tilecount="48" columns="8">
-  <image source="../../../TalesOfDemonsLords/assets/maps/tiles/ground/[A]Wall-Up_Dungeon1_pipo.png" width="128" height="96"/>
+  <image source="tiles/ground/[A]Wall-Up_Dungeon1_pipo.png" width="128" height="96"/>
  </tileset>
  <layer id="1" name="Floor1" width="10" height="10">
   <data encoding="csv">

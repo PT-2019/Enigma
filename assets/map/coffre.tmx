@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="left-up" width="1" height="1" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="1">
+ <tileset firstgid="1" name="pipo" tilewidth="16" tileheight="16" tilecount="1992" columns="8">
+  <image source="tiles/pipo.png" width="128" height="3984"/>
+ </tileset>
+ <tileset firstgid="1993" name="collision" tilewidth="16" tileheight="16" tilecount="64" columns="8">
+  <image source="collision.png" width="128" height="128"/>
+ </tileset>
+ <layer id="1" name="Floor1" width="1" height="1">
+  <data encoding="csv">
+862
+</data>
+ </layer>
+ <layer id="2" name="Collision" width="1" height="1" visible="0" opacity="0.38">
+  <data encoding="csv">
+1993
+</data>
+ </layer>
+</map>

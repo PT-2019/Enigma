@@ -1,6 +1,6 @@
 package editor.textures;
 
-import editor.io.JsonReader;
+import editor.io.AtlasReader;
 import org.jetbrains.annotations.TestOnly;
 
 public class JsonReaderTestMain {
@@ -11,7 +11,7 @@ public class JsonReaderTestMain {
 	 */
 	@TestOnly
 	public static void main(String[] ignore) {
-		System.out.println(JsonReader.importJson("assets/files/atlas/uiskin.atlas"));
+		System.out.println(AtlasReader.importJson("assets/files/atlas/uiskin.atlas"));
 	}
 
 }

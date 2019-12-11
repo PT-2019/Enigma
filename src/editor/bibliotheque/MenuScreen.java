@@ -1,7 +1,10 @@
 package editor.bibliotheque;
 
-import editor.utils.LoadGameLibgdxApplication;
+import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.utils.Array;
+import editor.entity.EntityFactory;
 import editor.window.Window;
+import org.intellij.lang.annotations.MagicConstant;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,15 +26,18 @@ import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER;
  */
 public class MenuScreen extends JPanel {
 
+	private DragAndDropDND dragAndDrop;
+
 	/**
 	 * @since 1.0 10 novembre 2019
 	 */
 	public MenuScreen(Window parent){
 		this.setBackground(Color.RED);
 		this.setLayout(new BorderLayout());
+		this.dragAndDrop =  new DragAndDropDND();
 
 		//load entities
-		//EntityFactory.loadEntities("assets/rooms.json");
+		EntityFactory.loadEntities("assets/rooms.json");
 
 		CardLayout pageObjet = new CardLayout();
 
@@ -44,8 +50,8 @@ public class MenuScreen extends JPanel {
 
 		//création de la zone d'affichage de la map (partie droite)
 		JPanel map = new JPanel();
-		LoadGameLibgdxApplication.load(map, parent);
-		new DropTarget(map,	DnDConstants.ACTION_COPY, DragSourceExample);
+		//LoadGameLibgdxApplication.load(map, parent);
+		map.setDropTarget(new DropTarget(map,	DnDConstants.ACTION_COPY, dragAndDrop));
 
 		//ajout des observateurs
 		ChoixObjet choix = new ChoixObjet(menuChoix,pageObjet);
@@ -69,23 +75,13 @@ public class MenuScreen extends JPanel {
 		JPanel menuChoix = new JPanel();
 		menuChoix.setLayout(layout);
 
-		JPanel menuChoix1 = new JPanel(), menuChoix2 = new JPanel();
-		JPanel menuChoix3 = new JPanel(), menuChoix4 = new JPanel();
-
-		menuChoix1.setBackground(Color.RED);
-		menuChoix2.setBackground(Color.YELLOW);
-		menuChoix3.setBackground(Color.GREEN);
-		menuChoix4.setBackground(Color.BLACK);
-
-		JPanel[] menus = new JPanel[]{menuChoix1, menuChoix2, menuChoix3, menuChoix4};
-		MenuCategories[] names = MenuCategories.values();
-
-		for (int i = 0; i < menus.length ; i++) {
+		for (MenuCategories category : MenuCategories.values()) {
+			JPanel menuCategory = new JPanel();
 			//Appel de la fonction de remplissage des entités de construction
-			fill(menus[i]);
-			menuChoix.add(menus[i]);
+			fill(menuCategory, category);
+			menuChoix.add(menuCategory);
 			//ajout au card Layout
-			layout.addLayoutComponent(menus[i], names[i].name);
+			layout.addLayoutComponent(menuCategory, category.name());
 		}
 
 		return menuChoix;
@@ -103,27 +99,29 @@ public class MenuScreen extends JPanel {
 		return sidebar;
 	}
 
-	DropTargetExample DragSourceExample = new DropTargetExample();
-	DragSource dragSource = new DragSource();
-
 	/**
 	 * méthode qui servira à remplir chaque pages avec les entités de construction
 	 *
 	 * @param pane page qui sera remplit
 	 *
+	 * @param name
 	 * @since 2.0 05 décembre 2019
 	 */
-	private void fill(JPanel pane){
+	private void fill(JPanel pane, MenuCategories name){
+		Array<EntityFactory.EntitySerializable> entities = EntityFactory.getEntitiesByCategory(name);
+
 		//affichage des entités
 		pane.setLayout(new GridLayout(6,2,5,5));
-		//pane.setPreferredSize(new Dimension(1/3*this.getWidth(),1/8*this.getHeight()+1000));
-		for (int i=0;i<12;i++){
+
+		for (int i = 0; i < 12 || i < entities.size; i++) {@MagicConstant
 			JPanel pan = new JPanel();
 			JLabel lab = new JLabel();
-			lab.setIcon(new ImageIcon("assets/entities/players/$Lanto181.png"));
+			if(i < entities.size) {
+				lab.setIcon(entities.get(i));
+				new DragSource().createDefaultDragGestureRecognizer(lab, DnDConstants.ACTION_COPY, this.dragAndDrop);
+			}
 			pan.add(lab);
 			pane.add(pan);
-			dragSource.createDefaultDragGestureRecognizer(lab, DnDConstants.ACTION_COPY, DragSourceExample);
 		}
 	}
 }
