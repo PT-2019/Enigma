@@ -33,8 +33,6 @@ public class Drag extends MouseAdapter {
 		Point currentCords = e.getLocationOnScreen();
 		System.out.println(currentCords+" "+pressedCords);
 		this.window.setLocation(currentCords.x - this.pressedCords.x, currentCords.y - this.pressedCords.y);
-		/*if(!this.pressedCords.equals(currentCords))
-			this.window.setLocation(this.window.getX() + currentCords.x, this.window.getY() + currentCords.y);*/
 		this.window.wontBeResizedFullScreen();
 		if(this.window.getLocationOnScreen().y <= 0) this.window.willBeResizedFullScreen();
 	}
