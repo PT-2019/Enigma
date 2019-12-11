@@ -91,12 +91,21 @@ public class DropTargetExample implements DragGestureListener, DragSourceListene
     public void drop(DropTargetDropEvent dtde) {
         dtde.acceptDrop(dtde.getDropAction());
         try {
+        	//get source and target
             Object source = dtde.getTransferable().getTransferData(dataflavor[0]);
             Object target = dtde.getSource();
-            Component component = ((DragSourceContext) source).getComponent();
+
+            //get transfer object (label)
+            JLabel component = (JLabel) ((DragSourceContext) source).getComponent();
+
             Container oldContainer = component.getParent();
             Container newContainer = (Container) ((DropTarget) target).getComponent();
-            newContainer.add(component);
+
+            JLabel copy = new JLabel();
+            copy.setIcon(component.getIcon());
+
+            newContainer.add(copy);
+
             oldContainer.validate();
             oldContainer.repaint();
             newContainer.validate();

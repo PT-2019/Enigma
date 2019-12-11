@@ -5,6 +5,9 @@ import editor.window.Window;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.dnd.DnDConstants;
+import java.awt.dnd.DragSource;
+import java.awt.dnd.DropTarget;
 
 import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED;
 import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER;
@@ -42,6 +45,7 @@ public class MenuScreen extends JPanel {
 		//création de la zone d'affichage de la map (partie droite)
 		JPanel map = new JPanel();
 		LoadGameLibgdxApplication.load(map, parent);
+		new DropTarget(map,	DnDConstants.ACTION_COPY, DragSourceExample);
 
 		//ajout des observateurs
 		ChoixObjet choix = new ChoixObjet(menuChoix,pageObjet);
@@ -99,6 +103,9 @@ public class MenuScreen extends JPanel {
 		return sidebar;
 	}
 
+	DropTargetExample DragSourceExample = new DropTargetExample();
+	DragSource dragSource = new DragSource();
+
 	/**
 	 * méthode qui servira à remplir chaque pages avec les entités de construction
 	 *
@@ -116,6 +123,7 @@ public class MenuScreen extends JPanel {
 			lab.setIcon(new ImageIcon("assets/entities/players/$Lanto181.png"));
 			pan.add(lab);
 			pane.add(pan);
+			dragSource.createDefaultDragGestureRecognizer(lab, DnDConstants.ACTION_COPY, DragSourceExample);
 		}
 	}
 }
