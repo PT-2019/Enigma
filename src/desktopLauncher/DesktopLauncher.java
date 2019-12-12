@@ -1,9 +1,12 @@
 package desktopLauncher;
 
 import editor.EditorLauncher;
+import editor.utils.EnigmaLabel;
+import editor.utils.EnigmaPanel;
 import editor.utils.Window;
-import editor.utils.ui.ButtonUI;
-import editor.utils.Button;
+import editor.utils.ui.EnigmaButtonUI;
+import editor.utils.EnigmaButton;
+import editor.utils.ui.EnigmaLabelUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -44,11 +47,16 @@ public class DesktopLauncher implements Runnable {
         gbc.weightx = 2;
         gbc.weighty = 1;
         gbc.insets = new Insets(inset / 2, inset / 2, inset / 2, inset / 2);
-        background.add(title, gbc);
+        EnigmaLabel p = new EnigmaLabel();
+        EnigmaLabelUI pui = new EnigmaLabelUI();
+        pui.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        pui.setAllBackgrounds(Color.RED,Color.GREEN,Color.BLACK);
+        p.setLabelUI(pui);
+        background.add(p, gbc);
 
-        Button button = new Button("Editer une map");
+        EnigmaButton button = new EnigmaButton("Editer une map");
         button.addActionListener(new LauncherManagement(new EditorLauncher()));
-        button.setButtonUI(new ButtonUI());
+        button.setButtonUI(new EnigmaButtonUI());
         gbc.gridx = 1;
         gbc.gridy = 1;
         gbc.gridwidth = 1;
@@ -59,9 +67,9 @@ public class DesktopLauncher implements Runnable {
         gbc.insets = new Insets(inset, inset, inset, inset / 4);
         background.add(button, gbc);
 
-        button = new Button("Jouer");
+        button = new EnigmaButton("Jouer");
         button.addActionListener(new LauncherManagement(new EditorLauncher()));
-        button.setButtonUI(new ButtonUI());
+        button.setButtonUI(new EnigmaButtonUI());
         gbc.gridy = 2;
         background.add(button, gbc);
 

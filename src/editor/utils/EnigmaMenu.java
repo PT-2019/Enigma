@@ -1,24 +1,22 @@
 package editor.utils;
 
-import editor.utils.managers.MenuManager;
-import editor.utils.ui.MenuUI;
+import editor.utils.managers.EnigmaMenuManager;
+import editor.utils.ui.EnigmaMenuUI;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
-public class Menu extends JMenu {
+public class EnigmaMenu extends JMenu {
 
-    private MenuUI ui;
+    private EnigmaMenuUI ui;
 
-    public Menu(String title){
+    public EnigmaMenu(String title){
         super(title);
-        this.addMouseListener(new MenuManager(this));
+        this.addMouseListener(new EnigmaMenuManager(this));
         this.setOpaque(true);
     }
 
-    public void setMenuUI(MenuUI ui){
+    public void setMenuUI(EnigmaMenuUI ui){
         this.ui = ui.duplicate();
         this.setCursor(this.ui.getCursor());
         this.setFocusPainted(false);
@@ -26,7 +24,7 @@ public class Menu extends JMenu {
         super.setUI(this.ui);
     }
 
-    public MenuUI getMenuUI(){
+    public EnigmaMenuUI getMenuUI(){
         return this.ui;
     }
 

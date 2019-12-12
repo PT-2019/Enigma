@@ -1,15 +1,15 @@
 package editor.utils.managers;
 
-import editor.utils.MenuItem;
+import editor.utils.EnigmaMenuItem;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class MenuItemManager implements MouseListener {
+public class EnigmaMenuItemManager implements MouseListener {
 
-    private MenuItem menu;
+    private EnigmaMenuItem menu;
 
-    public MenuItemManager(MenuItem menu){
+    public EnigmaMenuItemManager(EnigmaMenuItem menu){
         this.menu = menu;
     }
 

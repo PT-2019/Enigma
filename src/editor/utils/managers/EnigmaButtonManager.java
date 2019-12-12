@@ -1,15 +1,15 @@
 package editor.utils.managers;
 
-import editor.utils.Button;
+import editor.utils.EnigmaButton;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class ButtonManager implements MouseListener {
+public class EnigmaButtonManager implements MouseListener {
 
-    private Button button;
+    private EnigmaButton button;
 
-    public ButtonManager(Button button){
+    public EnigmaButtonManager(EnigmaButton button){
         this.button = button;
     }
 

@@ -1,26 +1,26 @@
 package editor.utils.ui;
 
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicMenuItemUI;
+import javax.swing.plaf.basic.BasicLabelUI;
 import java.awt.*;
 
-public class MenuItemUI extends BasicMenuItemUI {
+public class EnigmaLabelUI extends BasicLabelUI {
 
-    public final static Color ENIGMA_MENU_ITEM_BACKGROUND = Color.DARK_GRAY;
-    public final static Color ENIGMA_MENU_ITEM_HOVERED_BACKGROUND = Color.DARK_GRAY;
-    public final static Color ENIGMA_MENU_ITEM_PRESSED_BACKGROUND = new Color(100,100,100);
-    public final static Color ENIGMA_MENU_ITEM_FOREGROUND = Color.WHITE;
-    public final static Color ENIGMA_MENU_ITEM_HOVERED_FOREGROUND = Color.GREEN;
-    public final static Color ENIGMA_MENU_ITEM_PRESSED_FOREGROUND = Color.ORANGE;
-    public final static Color ENIGMA_MENU_ITEM_BORDER = null;
-    public final static Color ENIGMA_MENU_ITEM_HOVERED_BORDER = null;
-    public final static Color ENIGMA_MENU_ITEM_PRESSED_BORDER = null;
-    public final static int ENIGMA_MENU_ITEM_BORDER_SIZE = 1;
-    public final static int ENIGMA_MENU_ITEM_HOVERED_BORDER_SIZE = 1;
-    public final static int ENIGMA_MENU_ITEM_PRESSED_BORDER_SIZE = 1;
-    public final static boolean[] ENIGMA_MENU_ITEM_SHOWED_BORDERS = {true,true,true,true};
-    public final static boolean[] ENIGMA_MENU_ITEM_HOVERED_SHOWED_BORDERS = {true,true,true,true};
-    public final static boolean[] ENIGMA_MENU_ITEM_PRESSED_SHOWED_BORDERS = {true,true,true,true};
+    public final static Color ENIGMA_LABEL_BACKGROUND = Color.DARK_GRAY;
+    public final static Color ENIGMA_LABEL_HOVERED_BACKGROUND = new Color(100,100,100);;
+    public final static Color ENIGMA_LABEL_PRESSED_BACKGROUND = new Color(100,100,100);
+    public final static Color ENIGMA_LABEL_FOREGROUND = Color.WHITE;
+    public final static Color ENIGMA_LABEL_HOVERED_FOREGROUND = Color.WHITE;
+    public final static Color ENIGMA_LABEL_PRESSED_FOREGROUND = Color.WHITE;
+    public final static Color ENIGMA_LABEL_BORDER = null;
+    public final static Color ENIGMA_LABEL_HOVERED_BORDER = null;
+    public final static Color ENIGMA_LABEL_PRESSED_BORDER = null;
+    public final static int ENIGMA_LABEL_BORDER_SIZE = 1;
+    public final static int ENIGMA_LABEL_HOVERED_BORDER_SIZE = 1;
+    public final static int ENIGMA_LABEL_PRESSED_BORDER_SIZE = 1;
+    public final static boolean[] ENIGMA_LABEL_SHOWED_BORDERS = {true,true,true,true};
+    public final static boolean[] ENIGMA_LABEL_HOVERED_SHOWED_BORDERS = {true,true,true,true};
+    public final static boolean[] ENIGMA_LABEL_PRESSED_SHOWED_BORDERS = {true,true,true,true};
 
     public final static boolean[] ALL_BORDERS_SHOWED = {true,true,true,true};
     public final static boolean[] ALL_BORDER_HIDDEN = {false,false,false,false};
@@ -41,6 +41,7 @@ public class MenuItemUI extends BasicMenuItemUI {
     private Color hoveredBorder;
     private Color pressedBorder;
     private boolean hovered;
+    private boolean pressed;
     private Cursor cursor;
     private int borderSize;
     private int hoveredBorderSize;
@@ -49,66 +50,68 @@ public class MenuItemUI extends BasicMenuItemUI {
     private boolean[] hoveredShowedBorders;
     private boolean[] pressedShowedBorders;
 
-    public MenuItemUI(){
-        this.background = ENIGMA_MENU_ITEM_BACKGROUND;
-        this.hoveredBackground = ENIGMA_MENU_ITEM_HOVERED_BACKGROUND;
-        this.pressedBackground = ENIGMA_MENU_ITEM_PRESSED_BACKGROUND;
-        this.foreground = ENIGMA_MENU_ITEM_FOREGROUND;
-        this.hoveredForeground = ENIGMA_MENU_ITEM_HOVERED_FOREGROUND;
-        this.pressedForeground = ENIGMA_MENU_ITEM_PRESSED_FOREGROUND;
-        this.border = ENIGMA_MENU_ITEM_BORDER;
-        this.hoveredBorder = ENIGMA_MENU_ITEM_HOVERED_BORDER;
-        this.pressedBorder = ENIGMA_MENU_ITEM_PRESSED_BORDER;
-        this.borderSize = ENIGMA_MENU_ITEM_BORDER_SIZE;
-        this.hoveredBorderSize = ENIGMA_MENU_ITEM_HOVERED_BORDER_SIZE;
-        this.pressedBorderSize = ENIGMA_MENU_ITEM_PRESSED_BORDER_SIZE;
-        this.showedBorders = ENIGMA_MENU_ITEM_SHOWED_BORDERS;
-        this.hoveredShowedBorders = ENIGMA_MENU_ITEM_HOVERED_SHOWED_BORDERS;
-        this.pressedShowedBorders = ENIGMA_MENU_ITEM_PRESSED_SHOWED_BORDERS;
+    public EnigmaLabelUI(){
+        this.background = ENIGMA_LABEL_BACKGROUND;
+        this.hoveredBackground = ENIGMA_LABEL_HOVERED_BACKGROUND;
+        this.pressedBackground = ENIGMA_LABEL_PRESSED_BACKGROUND;
+        this.foreground = ENIGMA_LABEL_FOREGROUND;
+        this.hoveredForeground = ENIGMA_LABEL_HOVERED_FOREGROUND;
+        this.pressedForeground = ENIGMA_LABEL_PRESSED_FOREGROUND;
+        this.border = ENIGMA_LABEL_BORDER;
+        this.hoveredBorder = ENIGMA_LABEL_HOVERED_BORDER;
+        this.pressedBorder = ENIGMA_LABEL_PRESSED_BORDER;
+        this.borderSize = ENIGMA_LABEL_BORDER_SIZE;
+        this.hoveredBorderSize = ENIGMA_LABEL_HOVERED_BORDER_SIZE;
+        this.pressedBorderSize = ENIGMA_LABEL_PRESSED_BORDER_SIZE;
+        this.showedBorders = ENIGMA_LABEL_SHOWED_BORDERS;
+        this.hoveredShowedBorders = ENIGMA_LABEL_HOVERED_SHOWED_BORDERS;
+        this.pressedShowedBorders = ENIGMA_LABEL_PRESSED_SHOWED_BORDERS;
         this.hovered = false;
+        this.pressed = false;
         this.cursor = new Cursor(Cursor.HAND_CURSOR);
     }
 
     @Override
     public void paint(Graphics g, JComponent c) {
         Graphics brush = g.create();
-        editor.utils.MenuItem mi = (editor.utils.MenuItem)c;
-        if(mi.isSelected()){
-            mi.setBackground(this.pressedBackground);
-            mi.setForeground(this.pressedForeground);
-            System.out.println("p "+mi.isSelected());
+        JLabel l = (JLabel) c;
+        if(this.pressed){
+            l.setBackground(this.pressedBackground);
+            l.setForeground(this.pressedForeground);
+            System.out.println("bzjvbrjlz");
+            brush.setColor(Color.RED);
+            brush.fillRect(0,0,l.getWidth(),l.getHeight());
             if(this.pressedBorder != null){
                 brush.setColor(this.pressedBorder);
                 for (int i = 0; i < 4; i++) {
-                    if(i == TOP_BORDER && this.pressedShowedBorders[i]) brush.fillRect(0,0,mi.getWidth(),this.pressedBorderSize);
-                    if(i == RIGHT_BORDER && this.pressedShowedBorders[i]) brush.fillRect(mi.getWidth() - this.pressedBorderSize,0,mi.getWidth(),mi.getHeight());
-                    if(i == BOTTOM_BORDER && this.pressedShowedBorders[i]) brush.fillRect(0,mi.getHeight() - this.pressedBorderSize,mi.getWidth(),mi.getHeight());
-                    if(i == LEFT_BORDER && this.pressedShowedBorders[i]) brush.fillRect(0,0,this.pressedBorderSize,mi.getHeight());
+                    if(i == TOP_BORDER && this.pressedShowedBorders[i]) brush.fillRect(0,0,l.getWidth(),this.pressedBorderSize);
+                    if(i == RIGHT_BORDER && this.pressedShowedBorders[i]) brush.fillRect(l.getWidth() - this.pressedBorderSize,0,l.getWidth(),l.getHeight());
+                    if(i == BOTTOM_BORDER && this.pressedShowedBorders[i]) brush.fillRect(0,l.getHeight() - this.pressedBorderSize,l.getWidth(),l.getHeight());
+                    if(i == LEFT_BORDER && this.pressedShowedBorders[i]) brush.fillRect(0,0,this.pressedBorderSize,l.getHeight());
                 }
             }
         } else if(this.hovered){
-            mi.setBackground(this.hoveredBackground);
-            mi.setForeground(this.hoveredForeground);
-            System.out.println("h "+hovered);
+            l.setBackground(this.hoveredBackground);
+            l.setForeground(this.hoveredForeground);
             if(this.hoveredBorder != null){
                 brush.setColor(this.hoveredBorder);
                 for (int i = 0; i < 4; i++) {
-                    if(i == TOP_BORDER && this.hoveredShowedBorders[i]) brush.fillRect(0,0,mi.getWidth(),this.hoveredBorderSize);
-                    if(i == RIGHT_BORDER && this.hoveredShowedBorders[i]) brush.fillRect(mi.getWidth() - this.hoveredBorderSize,0,mi.getWidth(),mi.getHeight());
-                    if(i == BOTTOM_BORDER && this.hoveredShowedBorders[i]) brush.fillRect(0,mi.getHeight() - this.hoveredBorderSize,mi.getWidth(),mi.getHeight());
-                    if(i == LEFT_BORDER && this.hoveredShowedBorders[i]) brush.fillRect(0,0,this.hoveredBorderSize,mi.getHeight());
+                    if(i == TOP_BORDER && this.hoveredShowedBorders[i]) brush.fillRect(0,0,l.getWidth(),this.hoveredBorderSize);
+                    if(i == RIGHT_BORDER && this.hoveredShowedBorders[i]) brush.fillRect(l.getWidth() - this.hoveredBorderSize,0,l.getWidth(),l.getHeight());
+                    if(i == BOTTOM_BORDER && this.hoveredShowedBorders[i]) brush.fillRect(0,l.getHeight() - this.hoveredBorderSize,l.getWidth(),l.getHeight());
+                    if(i == LEFT_BORDER && this.hoveredShowedBorders[i]) brush.fillRect(0,0,this.hoveredBorderSize,l.getHeight());
                 }
             }
         } else {
-            mi.setBackground(this.background);
-            mi.setForeground(this.foreground);
-            System.out.println("hp "+hovered+" "+mi.isSelected());
+            l.setBackground(this.background);
+            l.setForeground(this.foreground);
             if(this.border != null){
+                brush.setColor(this.border);
                 for (int i = 0; i < 4; i++) {
-                    if(i == TOP_BORDER && this.showedBorders[i]) brush.fillRect(0,0,mi.getWidth(),this.borderSize);
-                    if(i == RIGHT_BORDER && this.showedBorders[i]) brush.fillRect(mi.getWidth() - this.borderSize,0,mi.getWidth(),mi.getHeight());
-                    if(i == BOTTOM_BORDER && this.showedBorders[i]) brush.fillRect(0,mi.getHeight() - this.borderSize,mi.getWidth(),mi.getHeight());
-                    if(i == LEFT_BORDER && this.showedBorders[i]) brush.fillRect(0,0,this.borderSize,mi.getHeight());
+                    if(i == TOP_BORDER && this.showedBorders[i]) brush.fillRect(0,0,l.getWidth(),this.borderSize);
+                    if(i == RIGHT_BORDER && this.showedBorders[i]) brush.fillRect(l.getWidth() - this.borderSize,0,l.getWidth(),l.getHeight());
+                    if(i == BOTTOM_BORDER && this.showedBorders[i]) brush.fillRect(0,l.getHeight() - this.borderSize,l.getWidth(),l.getHeight());
+                    if(i == LEFT_BORDER && this.showedBorders[i]) brush.fillRect(0,0,this.borderSize,l.getHeight());
                 }
             }
         }
@@ -197,6 +200,14 @@ public class MenuItemUI extends BasicMenuItemUI {
 
     public boolean isHovered() {
         return hovered;
+    }
+
+    public void setIsPressed(boolean isPressed){
+        this.pressed = isPressed;
+    }
+
+    public boolean isPressed() {
+        return pressed;
     }
 
     public Color getBackground() {
@@ -297,8 +308,10 @@ public class MenuItemUI extends BasicMenuItemUI {
         this.pressedBorder = pressedBorder;
     }
 
-    public MenuItemUI duplicate() {
-        MenuItemUI clone = new MenuItemUI();
+
+
+    public EnigmaLabelUI duplicate() {
+        EnigmaLabelUI clone = new EnigmaLabelUI();
 
         clone.setCursor(this.getCursor());
         clone.setAllBackgrounds(this.getBackground(), this.getHoveredBackground(), this.getPressedBackground());

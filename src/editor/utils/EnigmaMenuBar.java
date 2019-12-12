@@ -1,27 +1,27 @@
 package editor.utils;
 
-import editor.utils.ui.MenuBarUI;
+import editor.utils.ui.EnigmaMenuBarUI;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class MenuBar extends JMenuBar {
+public class EnigmaMenuBar extends JMenuBar {
 
-    private MenuBarUI ui;
+    private EnigmaMenuBarUI ui;
 
-    public MenuBar(){
+    public EnigmaMenuBar(){
         super();
         this.ui = null;
         this.setOpaque(true);
     }
 
-    public void setMenuBarUI(MenuBarUI ui){
+    public void setMenuBarUI(EnigmaMenuBarUI ui){
         this.ui = ui.duplicate();
         this.setBorderPainted(false);
         super.setUI(this.ui);
     }
 
-    public MenuBarUI getMenuBarUI(){
+    public EnigmaMenuBarUI getMenuBarUI(){
         return this.ui;
     }
 

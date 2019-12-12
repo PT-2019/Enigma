@@ -1,15 +1,13 @@
 package editor.utils;
 
 import editor.utils.managers.*;
-import editor.utils.ui.ButtonUI;
-import editor.utils.ui.MenuBarUI;
-import editor.utils.ui.MenuItemUI;
-import editor.utils.ui.MenuUI;
+import editor.utils.ui.EnigmaButtonUI;
+import editor.utils.ui.EnigmaMenuBarUI;
+import editor.utils.ui.EnigmaMenuItemUI;
+import editor.utils.ui.EnigmaMenuUI;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
-import java.awt.event.*;
 
 //TODO: permettre le plein écran (avec une méthode)
 //TODO: permettre l'ajout d'un fond d'écran
@@ -100,46 +98,46 @@ public class Window extends JFrame {
 
 		this.setUndecorated(true);
 
-		MenuBar bar = new MenuBar();
+		EnigmaMenuBar bar = new EnigmaMenuBar();
 		Drag drag = new Drag(this);
 		bar.addMouseListener(drag);
 		bar.addMouseMotionListener(drag);
-		MenuBarUI ui = new MenuBarUI();
+		EnigmaMenuBarUI ui = new EnigmaMenuBarUI();
 		boolean[] r = new boolean[4];
-		r[MenuBarUI.BOTTOM_BORDER] = MenuBarUI.SHOWED_BORDER;
+		r[EnigmaMenuBarUI.BOTTOM_BORDER] = EnigmaMenuBarUI.SHOWED_BORDER;
 		ui.setShowedBorders(r);
 		ui.setBorderSize(2);
 		ui.setBorder(Color.RED);
 		bar.setMenuBarUI(ui);
 
-		Button quit = new Button("X");
-		ButtonUI bui = new ButtonUI();
+		EnigmaButton quit = new EnigmaButton("X");
+		EnigmaButtonUI bui = new EnigmaButtonUI();
 		bui.setAllBorders(null,null,null);
-		bui.setAllBackgrounds(ButtonUI.ENIGMA_BUTTON_BACKGROUND,Color.RED,Color.RED);
-		bui.setAllForegrounds(ButtonUI.ENIGMA_BUTTON_FOREGROUND,ButtonUI.ENIGMA_BUTTON_FOREGROUND,ButtonUI.ENIGMA_BUTTON_FOREGROUND);
+		bui.setAllBackgrounds(EnigmaButtonUI.ENIGMA_BUTTON_BACKGROUND,Color.RED,Color.RED);
+		bui.setAllForegrounds(EnigmaButtonUI.ENIGMA_BUTTON_FOREGROUND, EnigmaButtonUI.ENIGMA_BUTTON_FOREGROUND, EnigmaButtonUI.ENIGMA_BUTTON_FOREGROUND);
 		bui.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 		quit.setButtonUI(bui);
 		quit.addActionListener(new Exit(this));
 
-		Button minimize = new Button("-");
-		bui.setAllBackgrounds(ButtonUI.ENIGMA_BUTTON_BACKGROUND,ButtonUI.ENIGMA_BUTTON_PRESSED_BACKGROUND,ButtonUI.ENIGMA_BUTTON_PRESSED_BACKGROUND);
+		EnigmaButton minimize = new EnigmaButton("-");
+		bui.setAllBackgrounds(EnigmaButtonUI.ENIGMA_BUTTON_BACKGROUND, EnigmaButtonUI.ENIGMA_BUTTON_PRESSED_BACKGROUND, EnigmaButtonUI.ENIGMA_BUTTON_PRESSED_BACKGROUND);
 		minimize.setButtonUI(bui);
 		minimize.addActionListener(new Minimize(this));
 
-		Button smaller = new Button("[]");
+		EnigmaButton smaller = new EnigmaButton("[]");
 		smaller.setButtonUI(bui);
 		smaller.addActionListener(new Smaller(this));
 
-		Menu m = new Menu("Fichier");
-		Menu m2 = new Menu("Ouvrir récent");
-		MenuUI mui = new MenuUI();
+		EnigmaMenu m = new EnigmaMenu("Fichier");
+		EnigmaMenu m2 = new EnigmaMenu("Ouvrir récent");
+		EnigmaMenuUI mui = new EnigmaMenuUI();
 		mui.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 		m.setMenuUI(mui);
 		m2.setMenuUI(mui);
 
-		MenuItem mi = new MenuItem("Ouvrir");
-		MenuItem mi2 = new MenuItem("dickpick.png");
-		MenuItemUI miui = new MenuItemUI();
+		EnigmaMenuItem mi = new EnigmaMenuItem("Ouvrir");
+		EnigmaMenuItem mi2 = new EnigmaMenuItem("dickpick.png");
+		EnigmaMenuItemUI miui = new EnigmaMenuItemUI();
 		miui.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 		mi.setMenuItemUI(miui);
 		mi2.setMenuItemUI(miui);

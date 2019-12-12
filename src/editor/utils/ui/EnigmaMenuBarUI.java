@@ -4,7 +4,7 @@ import javax.swing.*;
 import javax.swing.plaf.basic.BasicMenuBarUI;
 import java.awt.*;
 
-public class MenuBarUI extends BasicMenuBarUI {
+public class EnigmaMenuBarUI extends BasicMenuBarUI {
 
     public final static Color ENIGMA_MENU_BAR_BACKGROUND = Color.DARK_GRAY;
     public final static Color ENIGMA_MENU_BAR_BORDER = null;
@@ -25,7 +25,7 @@ public class MenuBarUI extends BasicMenuBarUI {
     private int borderSize;
     private boolean[] showedBorders;
 
-    public MenuBarUI(){
+    public EnigmaMenuBarUI(){
         this.background = ENIGMA_MENU_BAR_BACKGROUND;
         this.border = ENIGMA_MENU_BAR_BORDER;
         this.borderSize = ENIGMA_MENU_BAR_BORDER_SIZE;
@@ -35,7 +35,7 @@ public class MenuBarUI extends BasicMenuBarUI {
     @Override
     public void paint(Graphics g, JComponent c) {
         Graphics brush = g.create();
-        editor.utils.MenuBar mb = (editor.utils.MenuBar)c;
+        JMenuBar mb = (JMenuBar)c;
         brush.setColor(this.background);
         brush.fillRect(0,0,mb.getWidth(),mb.getHeight());
 
@@ -87,8 +87,8 @@ public class MenuBarUI extends BasicMenuBarUI {
 
 
 
-    public MenuBarUI duplicate() {
-        MenuBarUI clone = new MenuBarUI();
+    public EnigmaMenuBarUI duplicate() {
+        EnigmaMenuBarUI clone = new EnigmaMenuBarUI();
 
         clone.setBackground(this.getBackground());
         clone.setBorder(this.getBorder());
