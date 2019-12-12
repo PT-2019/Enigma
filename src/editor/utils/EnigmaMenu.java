@@ -14,6 +14,8 @@ public class EnigmaMenu extends JMenu {
         super(title);
         this.addMouseListener(new EnigmaMenuManager(this));
         this.setOpaque(true);
+        this.setPopupMenuVisible(false);
+        this.getPopupMenu().setBorderPainted(false);
     }
 
     public void setMenuUI(EnigmaMenuUI ui){

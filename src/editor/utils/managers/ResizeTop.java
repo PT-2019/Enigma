@@ -6,20 +6,22 @@ import java.awt.event.MouseEvent;
 
 public class ResizeTop extends Resize {
 
-    public ResizeTop(Window window, JPanel resizeComponent, Cursor cursor){
-        super(window,resizeComponent,cursor);
+    public ResizeTop(Window window, ResizeComponent resizeComponent){
+        super(window,resizeComponent);
     }
 
     @Override
     public void mouseDragged(MouseEvent mouseEvent) {
         Point mouseCords = mouseEvent.getPoint();
         Rectangle window = this.window.getBounds();
-        if(this.window.getMinimumSize().height < window.height){
-            this.window.setSize(window.width, window.height - mouseCords.y);
-            this.window.setLocation(window.x, window.y + mouseCords.y);
-        }else if(mouseCords.y < this.resizeComponent.getY()){
-            this.window.setSize(window.width, window.height - mouseCords.y);
-            this.window.setLocation(window.x, window.y + mouseCords.y);
+        if(this.resizable) {
+            if (this.window.getMinimumSize().height < window.height) {
+                this.window.setSize(window.width, window.height - mouseCords.y);
+                this.window.setLocation(window.x, window.y + mouseCords.y);
+            } else if (mouseCords.y < this.resizeComponent.getY()) {
+                this.window.setSize(window.width, window.height - mouseCords.y);
+                this.window.setLocation(window.x, window.y + mouseCords.y);
+            }
         }
     }
 

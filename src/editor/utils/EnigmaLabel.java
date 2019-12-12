@@ -14,6 +14,14 @@ public class EnigmaLabel extends JLabel {
         super();
         this.addMouseListener(new EnigmaLabelManager(this));
         this.setOpaque(true);
+        this.setHorizontalAlignment(JLabel.CENTER);
+    }
+
+    public EnigmaLabel(String title){
+        super(title);
+        this.addMouseListener(new EnigmaLabelManager(this));
+        this.setOpaque(true);
+        this.setHorizontalAlignment(JLabel.CENTER);
     }
 
     public void setLabelUI(EnigmaLabelUI ui){
@@ -29,9 +37,6 @@ public class EnigmaLabel extends JLabel {
     @Override
     public void paintComponent(Graphics g){
         if(this.ui == null) super.paintComponent(g);
-        else{
-            this.ui.paint(g,this);
-            System.out.println("-------");
-        }
+        else this.ui.paint(g,this);
     }
 }

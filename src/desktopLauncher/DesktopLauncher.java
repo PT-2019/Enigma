@@ -1,12 +1,14 @@
 package desktopLauncher;
 
 import editor.EditorLauncher;
+import editor.enigma.Enigma;
 import editor.utils.EnigmaLabel;
 import editor.utils.EnigmaPanel;
 import editor.utils.Window;
 import editor.utils.ui.EnigmaButtonUI;
 import editor.utils.EnigmaButton;
 import editor.utils.ui.EnigmaLabelUI;
+import editor.utils.ui.EnigmaPanelUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -33,12 +35,12 @@ public class DesktopLauncher implements Runnable {
 
         int inset = 50;
 
-        JLabel title = new JLabel("ENIGMA");
-        title.setOpaque(true);
-        title.setBackground(new Color(100, 100 ,100));
-        title.setForeground(Color.WHITE);
-        title.setHorizontalAlignment(JLabel.CENTER);
-        title.setMaximumSize(title.getSize());
+        EnigmaLabel info = new EnigmaLabel("ENIGMA");
+        EnigmaLabelUI infoUI = new EnigmaLabelUI();
+        Color infoColor = new Color(100,100,100);
+        infoUI.setAllBackgrounds(infoColor,infoColor,infoColor);
+        infoUI.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        info.setLabelUI(infoUI);
         gbc.gridx = 2;
         gbc.gridy = 1;
         gbc.gridwidth = 1;
@@ -47,14 +49,9 @@ public class DesktopLauncher implements Runnable {
         gbc.weightx = 2;
         gbc.weighty = 1;
         gbc.insets = new Insets(inset / 2, inset / 2, inset / 2, inset / 2);
-        EnigmaLabel p = new EnigmaLabel();
-        EnigmaLabelUI pui = new EnigmaLabelUI();
-        pui.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-        pui.setAllBackgrounds(Color.RED,Color.GREEN,Color.BLACK);
-        p.setLabelUI(pui);
-        background.add(p, gbc);
+        background.add(info, gbc);
 
-        EnigmaButton button = new EnigmaButton("Editer une map");
+        EnigmaButton button = new EnigmaButton("Jouer");
         button.addActionListener(new LauncherManagement(new EditorLauncher()));
         button.setButtonUI(new EnigmaButtonUI());
         gbc.gridx = 1;
@@ -67,7 +64,7 @@ public class DesktopLauncher implements Runnable {
         gbc.insets = new Insets(inset, inset, inset, inset / 4);
         background.add(button, gbc);
 
-        button = new EnigmaButton("Jouer");
+        button = new EnigmaButton("Editer une map");
         button.addActionListener(new LauncherManagement(new EditorLauncher()));
         button.setButtonUI(new EnigmaButtonUI());
         gbc.gridy = 2;

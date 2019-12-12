@@ -2,6 +2,7 @@ package editor.utils.managers;
 
 import editor.utils.EnigmaMenu;
 
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -17,7 +18,7 @@ public class EnigmaMenuManager implements MouseListener {
     public void mouseClicked(MouseEvent mouseEvent){}
 
     @Override
-    public void mousePressed(MouseEvent mouseEvent){}
+    public void mousePressed(MouseEvent mouseEvent) {}
 
     @Override
     public void mouseReleased(MouseEvent mouseEvent){}

@@ -15,7 +15,7 @@ public class Smaller implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent actionEvent) {
-		if(this.window.isFullScreen()) this.window.setPreviousValues();
+		if(this.window.isFullScreen()) this.window.setSize(Window.HALF_SCREEN_SIZE);
 		else this.window.setSize(Window.FULL_SCREEN_SIZE);
 	}
 }

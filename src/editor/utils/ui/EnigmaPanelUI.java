@@ -6,37 +6,9 @@ import java.awt.*;
 
 public class EnigmaPanelUI extends BasicPanelUI {
 
-    public final static Color ENIGMA_PANEL_BACKGROUND = Color.DARK_GRAY;
-    public final static Color ENIGMA_PANEL_HOVERED_BACKGROUND = new Color(100,100,100);;
-    public final static Color ENIGMA_PANEL_PRESSED_BACKGROUND = new Color(100,100,100);
-    public final static Color ENIGMA_PANEL_FOREGROUND = Color.WHITE;
-    public final static Color ENIGMA_PANEL_HOVERED_FOREGROUND = Color.WHITE;
-    public final static Color ENIGMA_PANEL_PRESSED_FOREGROUND = Color.WHITE;
-    public final static Color ENIGMA_PANEL_BORDER = null;
-    public final static Color ENIGMA_PANEL_HOVERED_BORDER = null;
-    public final static Color ENIGMA_PANEL_PRESSED_BORDER = null;
-    public final static int ENIGMA_PANEL_BORDER_SIZE = 1;
-    public final static int ENIGMA_PANEL_HOVERED_BORDER_SIZE = 1;
-    public final static int ENIGMA_PANEL_PRESSED_BORDER_SIZE = 1;
-    public final static boolean[] ENIGMA_PANEL_SHOWED_BORDERS = {true,true,true,true};
-    public final static boolean[] ENIGMA_PANEL_HOVERED_SHOWED_BORDERS = {true,true,true,true};
-    public final static boolean[] ENIGMA_PANEL_PRESSED_SHOWED_BORDERS = {true,true,true,true};
-
-    public final static boolean[] ALL_BORDERS_SHOWED = {true,true,true,true};
-    public final static boolean[] ALL_BORDER_HIDDEN = {false,false,false,false};
-    public final static boolean SHOWED_BORDER = true;
-    public final static boolean HIDDEN_BORDER = false;
-    public final static int TOP_BORDER = 0;
-    public final static int RIGHT_BORDER = 1;
-    public final static int BOTTOM_BORDER = 2;
-    public final static int LEFT_BORDER = 3;
-
     private Color background;
-    private Color foreground;
     private Color hoveredBackground;
-    private Color hoveredForeground;
     private Color pressedBackground;
-    private Color pressedForeground;
     private Color border;
     private Color hoveredBorder;
     private Color pressedBorder;
@@ -51,21 +23,18 @@ public class EnigmaPanelUI extends BasicPanelUI {
     private boolean[] pressedShowedBorders;
 
     public EnigmaPanelUI(){
-        this.background = ENIGMA_PANEL_BACKGROUND;
-        this.hoveredBackground = ENIGMA_PANEL_HOVERED_BACKGROUND;
-        this.pressedBackground = ENIGMA_PANEL_PRESSED_BACKGROUND;
-        this.foreground = ENIGMA_PANEL_FOREGROUND;
-        this.hoveredForeground = ENIGMA_PANEL_HOVERED_FOREGROUND;
-        this.pressedForeground = ENIGMA_PANEL_PRESSED_FOREGROUND;
-        this.border = ENIGMA_PANEL_BORDER;
-        this.hoveredBorder = ENIGMA_PANEL_HOVERED_BORDER;
-        this.pressedBorder = ENIGMA_PANEL_PRESSED_BORDER;
-        this.borderSize = ENIGMA_PANEL_BORDER_SIZE;
-        this.hoveredBorderSize = ENIGMA_PANEL_HOVERED_BORDER_SIZE;
-        this.pressedBorderSize = ENIGMA_PANEL_PRESSED_BORDER_SIZE;
-        this.showedBorders = ENIGMA_PANEL_SHOWED_BORDERS;
-        this.hoveredShowedBorders = ENIGMA_PANEL_HOVERED_SHOWED_BORDERS;
-        this.pressedShowedBorders = ENIGMA_PANEL_PRESSED_SHOWED_BORDERS;
+        this.background = EnigmaUIValues.ENIGMA_PANEL_BACKGROUND;
+        this.hoveredBackground = EnigmaUIValues.ENIGMA_PANEL_HOVERED_BACKGROUND;
+        this.pressedBackground = EnigmaUIValues.ENIGMA_PANEL_PRESSED_BACKGROUND;
+        this.border = EnigmaUIValues.ENIGMA_PANEL_BORDER;
+        this.hoveredBorder = EnigmaUIValues.ENIGMA_PANEL_HOVERED_BORDER;
+        this.pressedBorder = EnigmaUIValues.ENIGMA_PANEL_PRESSED_BORDER;
+        this.borderSize = EnigmaUIValues.ENIGMA_PANEL_BORDER_SIZE;
+        this.hoveredBorderSize = EnigmaUIValues.ENIGMA_PANEL_HOVERED_BORDER_SIZE;
+        this.pressedBorderSize = EnigmaUIValues.ENIGMA_PANEL_PRESSED_BORDER_SIZE;
+        this.showedBorders = EnigmaUIValues.ENIGMA_PANEL_SHOWED_BORDERS;
+        this.hoveredShowedBorders = EnigmaUIValues.ENIGMA_PANEL_HOVERED_SHOWED_BORDERS;
+        this.pressedShowedBorders = EnigmaUIValues.ENIGMA_PANEL_PRESSED_SHOWED_BORDERS;
         this.hovered = false;
         this.pressed = false;
         this.cursor = new Cursor(Cursor.HAND_CURSOR);
@@ -76,39 +45,39 @@ public class EnigmaPanelUI extends BasicPanelUI {
         Graphics brush = g.create();
         JPanel p = (JPanel)c;
         if(this.pressed){
-            p.setBackground(this.pressedBackground);
-            p.setForeground(this.pressedForeground);
+            brush.setColor(this.pressedBackground);
+            brush.fillRect(0,0,p.getWidth(),p.getHeight());
             if(this.pressedBorder != null){
                 brush.setColor(this.pressedBorder);
                 for (int i = 0; i < 4; i++) {
-                    if(i == TOP_BORDER && this.pressedShowedBorders[i]) brush.fillRect(0,0,p.getWidth(),this.pressedBorderSize);
-                    if(i == RIGHT_BORDER && this.pressedShowedBorders[i]) brush.fillRect(p.getWidth() - this.pressedBorderSize,0,p.getWidth(),p.getHeight());
-                    if(i == BOTTOM_BORDER && this.pressedShowedBorders[i]) brush.fillRect(0,p.getHeight() - this.pressedBorderSize,p.getWidth(),p.getHeight());
-                    if(i == LEFT_BORDER && this.pressedShowedBorders[i]) brush.fillRect(0,0,this.pressedBorderSize,p.getHeight());
+                    if(i == EnigmaUIValues.TOP_BORDER && this.pressedShowedBorders[i]) brush.fillRect(0,0,p.getWidth(),this.pressedBorderSize);
+                    if(i == EnigmaUIValues.RIGHT_BORDER && this.pressedShowedBorders[i]) brush.fillRect(p.getWidth() - this.pressedBorderSize,0,p.getWidth(),p.getHeight());
+                    if(i == EnigmaUIValues.BOTTOM_BORDER && this.pressedShowedBorders[i]) brush.fillRect(0,p.getHeight() - this.pressedBorderSize,p.getWidth(),p.getHeight());
+                    if(i == EnigmaUIValues.LEFT_BORDER && this.pressedShowedBorders[i]) brush.fillRect(0,0,this.pressedBorderSize,p.getHeight());
                 }
             }
         } else if(this.hovered){
-            p.setBackground(this.hoveredBackground);
-            p.setForeground(this.hoveredForeground);
+            brush.setColor(this.hoveredBackground);
+            brush.fillRect(0,0,p.getWidth(),p.getHeight());
             if(this.hoveredBorder != null){
                 brush.setColor(this.hoveredBorder);
                 for (int i = 0; i < 4; i++) {
-                    if(i == TOP_BORDER && this.hoveredShowedBorders[i]) brush.fillRect(0,0,p.getWidth(),this.hoveredBorderSize);
-                    if(i == RIGHT_BORDER && this.hoveredShowedBorders[i]) brush.fillRect(p.getWidth() - this.hoveredBorderSize,0,p.getWidth(),p.getHeight());
-                    if(i == BOTTOM_BORDER && this.hoveredShowedBorders[i]) brush.fillRect(0,p.getHeight() - this.hoveredBorderSize,p.getWidth(),p.getHeight());
-                    if(i == LEFT_BORDER && this.hoveredShowedBorders[i]) brush.fillRect(0,0,this.hoveredBorderSize,p.getHeight());
+                    if(i == EnigmaUIValues.TOP_BORDER && this.hoveredShowedBorders[i]) brush.fillRect(0,0,p.getWidth(),this.hoveredBorderSize);
+                    if(i == EnigmaUIValues.RIGHT_BORDER && this.hoveredShowedBorders[i]) brush.fillRect(p.getWidth() - this.hoveredBorderSize,0,p.getWidth(),p.getHeight());
+                    if(i == EnigmaUIValues.BOTTOM_BORDER && this.hoveredShowedBorders[i]) brush.fillRect(0,p.getHeight() - this.hoveredBorderSize,p.getWidth(),p.getHeight());
+                    if(i == EnigmaUIValues.LEFT_BORDER && this.hoveredShowedBorders[i]) brush.fillRect(0,0,this.hoveredBorderSize,p.getHeight());
                 }
             }
         } else {
-            p.setBackground(this.background);
-            p.setForeground(this.foreground);
+            brush.setColor(this.background);
+            brush.fillRect(0,0,p.getWidth(),p.getHeight());
             if(this.border != null){
                 brush.setColor(this.border);
                 for (int i = 0; i < 4; i++) {
-                    if(i == TOP_BORDER && this.showedBorders[i]) brush.fillRect(0,0,p.getWidth(),this.borderSize);
-                    if(i == RIGHT_BORDER && this.showedBorders[i]) brush.fillRect(p.getWidth() - this.borderSize,0,p.getWidth(),p.getHeight());
-                    if(i == BOTTOM_BORDER && this.showedBorders[i]) brush.fillRect(0,p.getHeight() - this.borderSize,p.getWidth(),p.getHeight());
-                    if(i == LEFT_BORDER && this.showedBorders[i]) brush.fillRect(0,0,this.borderSize,p.getHeight());
+                    if(i == EnigmaUIValues.TOP_BORDER && this.showedBorders[i]) brush.fillRect(0,0,p.getWidth(),this.borderSize);
+                    if(i == EnigmaUIValues.RIGHT_BORDER && this.showedBorders[i]) brush.fillRect(p.getWidth() - this.borderSize,0,p.getWidth(),p.getHeight());
+                    if(i == EnigmaUIValues.BOTTOM_BORDER && this.showedBorders[i]) brush.fillRect(0,p.getHeight() - this.borderSize,p.getWidth(),p.getHeight());
+                    if(i == EnigmaUIValues.LEFT_BORDER && this.showedBorders[i]) brush.fillRect(0,0,this.borderSize,p.getHeight());
                 }
             }
         }
@@ -211,26 +180,13 @@ public class EnigmaPanelUI extends BasicPanelUI {
         return background;
     }
 
-    public Color getForeground() {
-        return foreground;
-    }
-
     public Color getHoveredBackground() {
         return hoveredBackground;
-    }
-
-    public Color getHoveredForeground() {
-        return hoveredForeground;
     }
 
     public Color getPressedBackground() {
         return pressedBackground;
     }
-
-    public Color getPressedForeground() {
-        return pressedForeground;
-    }
-
     public Color getBorder() {
         return border;
     }
@@ -250,13 +206,6 @@ public class EnigmaPanelUI extends BasicPanelUI {
         this.pressedBackground = pressedBackground;
     }
 
-    public void setAllForegrounds(Color foreground, Color hoveredForeground, Color pressedForeground){
-        if(foreground == null || hoveredForeground == null || pressedForeground == null) throw  new NullPointerException("Les arguments ne peuvent pas être null");
-        this.foreground = foreground;
-        this.hoveredForeground = hoveredForeground;
-        this.pressedForeground = pressedForeground;
-    }
-
     public void setAllBorders(Color border, Color hoveredBorder, Color pressedBorder){
         this.border = border;
         this.hoveredBorder = hoveredBorder;
@@ -268,29 +217,14 @@ public class EnigmaPanelUI extends BasicPanelUI {
         this.background = background;
     }
 
-    public void setForeground(Color foreground) {
-        if(foreground == null) throw  new NullPointerException("L'argument ne peut pas être null");
-        this.foreground = foreground;
-    }
-
     public void setHoveredBackground(Color hoveredBackground) {
         if(hoveredBackground == null) throw  new NullPointerException("L'argument ne peut pas être null");
         this.hoveredBackground = hoveredBackground;
     }
 
-    public void setHoveredForeground(Color hoveredForeground) {
-        if(hoveredForeground == null) throw  new NullPointerException("L'argument ne peut pas être null");
-        this.hoveredForeground = hoveredForeground;
-    }
-
     public void setPressedBackground(Color pressedBackground) {
         if(pressedBackground == null) throw  new NullPointerException("L'argument ne peut pas être null");
         this.pressedBackground = pressedBackground;
-    }
-
-    public void setPressedForeground(Color pressedForeground) {
-        if(pressedForeground == null) throw  new NullPointerException("L'argument ne peut pas être null");
-        this.pressedForeground = pressedForeground;
     }
 
     public void setBorder(Color border) {
@@ -312,7 +246,6 @@ public class EnigmaPanelUI extends BasicPanelUI {
 
         clone.setCursor(this.getCursor());
         clone.setAllBackgrounds(this.getBackground(), this.getHoveredBackground(), this.getPressedBackground());
-        clone.setAllForegrounds(this.getForeground(), this.getHoveredForeground(), this.getPressedForeground());
         clone.setAllBorders(this.getBorder(), this.getHoveredBorder(), this.getPressedBorder());
         clone.setIsHovered(this.isHovered());
         clone.setAllBordersSize(this.getBorderSize(), this.getHoveredBorderSize(), this.getPressedBorderSize());

@@ -16,24 +16,14 @@ public class Drag extends MouseAdapter {
 		this.window = window;
 	}
 
-	public void mouseReleased(MouseEvent e) {
-		if(this.window.getLocationOnScreen().y <= 0) {
-			this.window.setSize(Window.FULL_SCREEN_SIZE);
-			this.window.setPreviousY(0);
-			this.window.wontBeResizedFullScreen();
-		}
-	}
+	public void mouseReleased(MouseEvent e) {}
 
 	public void mousePressed(MouseEvent e) {
 		this.pressedCords = e.getPoint();
-		if(this.window.isFullScreen()) this.window.setPreviousValues();
 	}
 
 	public void mouseDragged(MouseEvent e) {
 		Point currentCords = e.getLocationOnScreen();
-		System.out.println(currentCords+" "+pressedCords);
 		this.window.setLocation(currentCords.x - this.pressedCords.x, currentCords.y - this.pressedCords.y);
-		this.window.wontBeResizedFullScreen();
-		if(this.window.getLocationOnScreen().y <= 0) this.window.willBeResizedFullScreen();
 	}
 }

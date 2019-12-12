@@ -1,13 +1,12 @@
 package editor.utils;
 
 import editor.utils.managers.*;
-import editor.utils.ui.EnigmaButtonUI;
-import editor.utils.ui.EnigmaMenuBarUI;
-import editor.utils.ui.EnigmaMenuItemUI;
-import editor.utils.ui.EnigmaMenuUI;
+import editor.utils.ui.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 //TODO: permettre le plein écran (avec une méthode)
 //TODO: permettre l'ajout d'un fond d'écran
@@ -29,20 +28,18 @@ public class Window extends JFrame {
 	public final static int CENTER = 9;
 	public final static int LAST_LOCATION = 10;
 
-	private final static int CONTENT = 0;
-	private final static int RIGHT_RESIZER = 1;
-	private final static int LEFT_RESIZER = 2;
-	private final static int BOTTOM_RESIZER = 3;
-	private final static int TOP_RESIZER = 4;
-	private final static int TOP_LEFT_RESIZER = 5;
-	private final static int TOP_RIGHT_RESIZER = 6;
-	private final static int BOTTOM_LEFT_RESIZER = 7;
-	private final static int BOTTOM_RIGHT_RESIZER = 8;
+	private final static int RIGHT_RESIZER = 0;
+	private final static int LEFT_RESIZER = 1;
+	private final static int BOTTOM_RESIZER = 2;
+	private final static int TOP_RESIZER = 3;
+	private final static int TOP_LEFT_RESIZER = 4;
+	private final static int TOP_RIGHT_RESIZER = 5;
+	private final static int BOTTOM_LEFT_RESIZER = 6;
+	private final static int BOTTOM_RIGHT_RESIZER = 7;
 
-	private Dimension lastDimension;
-	private Point lastLocation;
-	private JPanel[] composites = new JPanel[9];
-	private Color alertResized;
+	private ResizeComponent[] resizers = new ResizeComponent[8];
+	private EnigmaPanel content;
+	private boolean resizable;
 
 	/**
 	 * Initialise une fenêtre de la taille de l'écran
@@ -50,136 +47,201 @@ public class Window extends JFrame {
 	 */
 	public Window(String title) {
 		super(title);
-		Dimension screen = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-		this.setSize(screen);
+		Rectangle screenSize = this.getGraphicsConfiguration().getBounds();
+		this.resizable = true;
+		this.setSize(screenSize.getSize());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(FULL_SCREEN_SIZE);
-		this.lastDimension = this.getSize();
-		this.lastLocation = this.getLocation();
-		this.alertResized = Color.WHITE;
+		this.setMinimumSize(new Dimension((int) screenSize.getWidth() / 4, (int) screenSize.getHeight() / 3));
 		this.setLocation(0,0);
-		this.setMinimumSize(new Dimension((int) screen.getWidth() / 4, (int) screen.getHeight() / 3));
-		for(int i = 0; i < this.composites.length; i++){
-			this.composites[i] = new JPanel();
-			this.composites[i].setOpaque(true);
-		}
-
-		Resize resize = new ResizeRight(this,this.composites[RIGHT_RESIZER],new Cursor(Cursor.E_RESIZE_CURSOR));
-
-		resize = new ResizeLeft(this,this.composites[LEFT_RESIZER],new Cursor(Cursor.W_RESIZE_CURSOR));
-
-		resize = new ResizeBottom(this,this.composites[BOTTOM_RESIZER],new Cursor(Cursor.S_RESIZE_CURSOR));
-		this.composites[BOTTOM_RESIZER].setLayout(new BorderLayout());
-
-		resize = new ResizeBottom(this,this.composites[BOTTOM_LEFT_RESIZER],new Cursor(Cursor.SW_RESIZE_CURSOR));
-		resize = new ResizeLeft(this,this.composites[BOTTOM_LEFT_RESIZER],new Cursor(Cursor.SW_RESIZE_CURSOR));
-		resize = new ResizeBottom(this,this.composites[BOTTOM_RIGHT_RESIZER],new Cursor(Cursor.SE_RESIZE_CURSOR));
-		resize = new ResizeRight(this,this.composites[BOTTOM_RIGHT_RESIZER],new Cursor(Cursor.SE_RESIZE_CURSOR));
-
-		this.composites[BOTTOM_RESIZER].add(this.composites[BOTTOM_LEFT_RESIZER],BorderLayout.WEST);
-		this.composites[BOTTOM_RESIZER].add(this.composites[BOTTOM_RIGHT_RESIZER],BorderLayout.EAST);
-
-		resize = new ResizeTop(this,this.composites[TOP_RESIZER],new Cursor(Cursor.N_RESIZE_CURSOR));
-		this.composites[TOP_RESIZER].setLayout(new BorderLayout());
-
-		resize = new ResizeTop(this,this.composites[TOP_LEFT_RESIZER],new Cursor(Cursor.NW_RESIZE_CURSOR));
-		resize = new ResizeLeft(this,this.composites[TOP_LEFT_RESIZER],new Cursor(Cursor.NW_RESIZE_CURSOR));
-		resize = new ResizeTop(this,this.composites[TOP_RIGHT_RESIZER],new Cursor(Cursor.NE_RESIZE_CURSOR));
-		resize = new ResizeRight(this,this.composites[TOP_RIGHT_RESIZER],new Cursor(Cursor.NE_RESIZE_CURSOR));
-
-		this.composites[TOP_RESIZER].add(this.composites[TOP_LEFT_RESIZER],BorderLayout.WEST);
-		this.composites[TOP_RESIZER].add(this.composites[TOP_RIGHT_RESIZER],BorderLayout.EAST);
-
-		this.add(this.composites[RIGHT_RESIZER],BorderLayout.EAST);
-		this.add(this.composites[LEFT_RESIZER],BorderLayout.WEST);
-		this.add(this.composites[BOTTOM_RESIZER],BorderLayout.SOUTH);
-		this.add(this.composites[TOP_RESIZER],BorderLayout.NORTH);
-		this.add(this.composites[CONTENT], BorderLayout.CENTER);
-
 		this.setUndecorated(true);
 
-		EnigmaMenuBar bar = new EnigmaMenuBar();
+		EnigmaMenuBar windowActionBar = new EnigmaMenuBar();
+		EnigmaMenuBarUI barUI = new EnigmaMenuBarUI();
+		boolean[] borderShowed = new boolean[4];
+		borderShowed[EnigmaUIValues.BOTTOM_BORDER] = EnigmaUIValues.SHOWED_BORDER;
+		barUI.setShowedBorders(borderShowed);
+		barUI.setBorderSize(2);
+		barUI.setBorder(Color.RED);
+		windowActionBar.setMenuBarUI(barUI);
+
 		Drag drag = new Drag(this);
-		bar.addMouseListener(drag);
-		bar.addMouseMotionListener(drag);
-		EnigmaMenuBarUI ui = new EnigmaMenuBarUI();
-		boolean[] r = new boolean[4];
-		r[EnigmaMenuBarUI.BOTTOM_BORDER] = EnigmaMenuBarUI.SHOWED_BORDER;
-		ui.setShowedBorders(r);
-		ui.setBorderSize(2);
-		ui.setBorder(Color.RED);
-		bar.setMenuBarUI(ui);
+		windowActionBar.addMouseListener(drag);
+		windowActionBar.addMouseMotionListener(drag);
 
 		EnigmaButton quit = new EnigmaButton("X");
-		EnigmaButtonUI bui = new EnigmaButtonUI();
-		bui.setAllBorders(null,null,null);
-		bui.setAllBackgrounds(EnigmaButtonUI.ENIGMA_BUTTON_BACKGROUND,Color.RED,Color.RED);
-		bui.setAllForegrounds(EnigmaButtonUI.ENIGMA_BUTTON_FOREGROUND, EnigmaButtonUI.ENIGMA_BUTTON_FOREGROUND, EnigmaButtonUI.ENIGMA_BUTTON_FOREGROUND);
-		bui.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-		quit.setButtonUI(bui);
+		EnigmaButtonUI buttonUI = new EnigmaButtonUI();
+		buttonUI.setAllBorders(null,null,null);
+		buttonUI.setAllBackgrounds(barUI.getBackground(),Color.RED,Color.RED);
+		buttonUI.setAllForegrounds(Color.WHITE, Color.WHITE, Color.WHITE);
+		buttonUI.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+		quit.setButtonUI(buttonUI);
 		quit.addActionListener(new Exit(this));
 
 		EnigmaButton minimize = new EnigmaButton("-");
-		bui.setAllBackgrounds(EnigmaButtonUI.ENIGMA_BUTTON_BACKGROUND, EnigmaButtonUI.ENIGMA_BUTTON_PRESSED_BACKGROUND, EnigmaButtonUI.ENIGMA_BUTTON_PRESSED_BACKGROUND);
-		minimize.setButtonUI(bui);
+		buttonUI.setAllBackgrounds(barUI.getBackground(), EnigmaUIValues.ENIGMA_BUTTON_PRESSED_BACKGROUND, EnigmaUIValues.ENIGMA_BUTTON_PRESSED_BACKGROUND);
+		minimize.setButtonUI(buttonUI);
 		minimize.addActionListener(new Minimize(this));
 
 		EnigmaButton smaller = new EnigmaButton("[]");
-		smaller.setButtonUI(bui);
+		smaller.setButtonUI(buttonUI);
 		smaller.addActionListener(new Smaller(this));
 
-		EnigmaMenu m = new EnigmaMenu("Fichier");
-		EnigmaMenu m2 = new EnigmaMenu("Ouvrir récent");
-		EnigmaMenuUI mui = new EnigmaMenuUI();
-		mui.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-		m.setMenuUI(mui);
-		m2.setMenuUI(mui);
+		windowActionBar.add(Box.createHorizontalGlue());
+		windowActionBar.add(minimize);
+		windowActionBar.add(smaller);
+		windowActionBar.add(quit);
+		this.setJMenuBar(windowActionBar);
 
-		EnigmaMenuItem mi = new EnigmaMenuItem("Ouvrir");
-		EnigmaMenuItem mi2 = new EnigmaMenuItem("dickpick.png");
-		EnigmaMenuItemUI miui = new EnigmaMenuItemUI();
-		miui.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-		mi.setMenuItemUI(miui);
-		mi2.setMenuItemUI(miui);
+		this.content = new EnigmaPanel();
+		this.resizers[RIGHT_RESIZER] = new ResizeComponent(new Cursor(Cursor.E_RESIZE_CURSOR));
+		this.resizers[LEFT_RESIZER] = new ResizeComponent(new Cursor(Cursor.W_RESIZE_CURSOR));
+		this.resizers[BOTTOM_RESIZER] = new ResizeComponent(new Cursor(Cursor.S_RESIZE_CURSOR));
+		this.resizers[BOTTOM_LEFT_RESIZER] = new ResizeComponent(new Cursor(Cursor.SW_RESIZE_CURSOR));
+		this.resizers[BOTTOM_RIGHT_RESIZER] = new ResizeComponent(new Cursor(Cursor.SE_RESIZE_CURSOR));
+		this.resizers[TOP_RESIZER] = new ResizeComponent(new Cursor(Cursor.N_RESIZE_CURSOR));
+		this.resizers[TOP_LEFT_RESIZER] = new ResizeComponent(new Cursor(Cursor.NW_RESIZE_CURSOR));
+		this.resizers[TOP_RIGHT_RESIZER] = new ResizeComponent(new Cursor(Cursor.NE_RESIZE_CURSOR));
 
-		m2.add(mi2);
-		m.add(mi);
-		m.add(m2);
+		this.resizers[BOTTOM_RESIZER].setLayout(new BorderLayout());
+		this.resizers[TOP_RESIZER].setLayout(new BorderLayout());
 
-		bar.add(m);
-		bar.add(Box.createHorizontalGlue());
-		bar.add(minimize);
-		bar.add(smaller);
-		bar.add(quit);
-		this.setJMenuBar(bar);
+		this.resizers[RIGHT_RESIZER].addResizer(new ResizeRight(this,this.resizers[RIGHT_RESIZER]));
+		this.resizers[LEFT_RESIZER].addResizer(new ResizeLeft(this,this.resizers[LEFT_RESIZER]));
+		this.resizers[BOTTOM_RESIZER].addResizer(new ResizeBottom(this,this.resizers[BOTTOM_RESIZER]));
+		this.resizers[BOTTOM_LEFT_RESIZER].addResizer(new ResizeBottom(this,this.resizers[BOTTOM_LEFT_RESIZER]));
+		this.resizers[BOTTOM_RIGHT_RESIZER].addResizer(new ResizeBottom(this,this.resizers[BOTTOM_RIGHT_RESIZER]));
+		this.resizers[BOTTOM_LEFT_RESIZER].addResizer(new ResizeLeft(this,this.resizers[BOTTOM_LEFT_RESIZER]));
+		this.resizers[BOTTOM_RIGHT_RESIZER].addResizer(new ResizeRight(this,this.resizers[BOTTOM_RIGHT_RESIZER]));
+		this.resizers[TOP_RESIZER].addResizer(new ResizeTop(this,this.resizers[TOP_RESIZER]));
+		this.resizers[TOP_LEFT_RESIZER].addResizer(new ResizeTop(this,this.resizers[TOP_LEFT_RESIZER]));
+		this.resizers[TOP_RIGHT_RESIZER].addResizer(new ResizeTop(this,this.resizers[TOP_RIGHT_RESIZER]));
+		this.resizers[TOP_LEFT_RESIZER].addResizer(new ResizeLeft(this,this.resizers[TOP_LEFT_RESIZER]));
+		this.resizers[TOP_RIGHT_RESIZER].addResizer(new ResizeRight(this,this.resizers[TOP_RIGHT_RESIZER]));
+
+		this.resizers[BOTTOM_RESIZER].add(this.resizers[BOTTOM_LEFT_RESIZER],BorderLayout.WEST);
+		this.resizers[BOTTOM_RESIZER].add(this.resizers[BOTTOM_RIGHT_RESIZER],BorderLayout.EAST);
+		this.resizers[TOP_RESIZER].add(this.resizers[TOP_LEFT_RESIZER],BorderLayout.WEST);
+		this.resizers[TOP_RESIZER].add(this.resizers[TOP_RIGHT_RESIZER],BorderLayout.EAST);
+
+
+		this.add(this.resizers[RIGHT_RESIZER],BorderLayout.EAST);
+		this.add(this.resizers[LEFT_RESIZER],BorderLayout.WEST);
+		this.add(this.resizers[BOTTOM_RESIZER],BorderLayout.SOUTH);
+		this.add(this.resizers[TOP_RESIZER],BorderLayout.NORTH);
+		this.add(this.content, BorderLayout.CENTER);
 	}
 
 	public Window(String title, int width, int height) {
 		super(title);
-		this.setSize(width,height);
-		this.lastDimension = this.getSize();
-		this.lastLocation = this.getLocation();
+		Rectangle screenSize = this.getGraphicsConfiguration().getBounds();
+		this.resizable = true;
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setLocation(0,0);
-		Dimension screen = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-		this.setMinimumSize(new Dimension((int) screen.getWidth() / 4, (int) screen.getHeight() / 3));
+		this.setSize(width,height);
+		this.setLocation(CENTER);
+		this.setMinimumSize(new Dimension((int) screenSize.getWidth() / 4, (int) screenSize.getHeight() / 3));
+		this.setUndecorated(true);
+
+		EnigmaMenuBar windowActionBar = new EnigmaMenuBar();
+		EnigmaMenuBarUI barUI = new EnigmaMenuBarUI();
+		boolean[] borderShowed = new boolean[4];
+		borderShowed[EnigmaUIValues.BOTTOM_BORDER] = EnigmaUIValues.SHOWED_BORDER;
+		barUI.setShowedBorders(borderShowed);
+		barUI.setBorderSize(2);
+		barUI.setBorder(Color.RED);
+		windowActionBar.setMenuBarUI(barUI);
+
+		Drag drag = new Drag(this);
+		windowActionBar.addMouseListener(drag);
+		windowActionBar.addMouseMotionListener(drag);
+
+		EnigmaButton quit = new EnigmaButton("X");
+		EnigmaButtonUI buttonUI = new EnigmaButtonUI();
+		buttonUI.setAllBorders(null,null,null);
+		buttonUI.setAllBackgrounds(barUI.getBackground(),Color.RED,Color.RED);
+		buttonUI.setAllForegrounds(Color.WHITE, Color.WHITE, Color.WHITE);
+		buttonUI.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+		quit.setButtonUI(buttonUI);
+		quit.addActionListener(new Exit(this));
+
+		EnigmaButton minimize = new EnigmaButton("-");
+		buttonUI.setAllBackgrounds(barUI.getBackground(), EnigmaUIValues.ENIGMA_BUTTON_PRESSED_BACKGROUND, EnigmaUIValues.ENIGMA_BUTTON_PRESSED_BACKGROUND);
+		minimize.setButtonUI(buttonUI);
+		minimize.addActionListener(new Minimize(this));
+
+		EnigmaButton smaller = new EnigmaButton("[]");
+		smaller.setButtonUI(buttonUI);
+		smaller.addActionListener(new Smaller(this));
+
+		windowActionBar.add(Box.createHorizontalGlue());
+		windowActionBar.add(minimize);
+		windowActionBar.add(smaller);
+		windowActionBar.add(quit);
+		this.setJMenuBar(windowActionBar);
+
+		this.content = new EnigmaPanel();
+		this.resizers[RIGHT_RESIZER] = new ResizeComponent(new Cursor(Cursor.E_RESIZE_CURSOR));
+		this.resizers[LEFT_RESIZER] = new ResizeComponent(new Cursor(Cursor.W_RESIZE_CURSOR));
+		this.resizers[BOTTOM_RESIZER] = new ResizeComponent(new Cursor(Cursor.S_RESIZE_CURSOR));
+		this.resizers[BOTTOM_LEFT_RESIZER] = new ResizeComponent(new Cursor(Cursor.SW_RESIZE_CURSOR));
+		this.resizers[BOTTOM_RIGHT_RESIZER] = new ResizeComponent(new Cursor(Cursor.SE_RESIZE_CURSOR));
+		this.resizers[TOP_RESIZER] = new ResizeComponent(new Cursor(Cursor.N_RESIZE_CURSOR));
+		this.resizers[TOP_LEFT_RESIZER] = new ResizeComponent(new Cursor(Cursor.NW_RESIZE_CURSOR));
+		this.resizers[TOP_RIGHT_RESIZER] = new ResizeComponent(new Cursor(Cursor.NE_RESIZE_CURSOR));
+
+		this.resizers[BOTTOM_RESIZER].setLayout(new BorderLayout());
+		this.resizers[TOP_RESIZER].setLayout(new BorderLayout());
+
+		this.resizers[RIGHT_RESIZER].addResizer(new ResizeRight(this,this.resizers[RIGHT_RESIZER]));
+		this.resizers[LEFT_RESIZER].addResizer(new ResizeLeft(this,this.resizers[LEFT_RESIZER]));
+		this.resizers[BOTTOM_RESIZER].addResizer(new ResizeBottom(this,this.resizers[BOTTOM_RESIZER]));
+		this.resizers[BOTTOM_LEFT_RESIZER].addResizer(new ResizeBottom(this,this.resizers[BOTTOM_LEFT_RESIZER]));
+		this.resizers[BOTTOM_RIGHT_RESIZER].addResizer(new ResizeBottom(this,this.resizers[BOTTOM_RIGHT_RESIZER]));
+		this.resizers[BOTTOM_LEFT_RESIZER].addResizer(new ResizeLeft(this,this.resizers[BOTTOM_LEFT_RESIZER]));
+		this.resizers[BOTTOM_RIGHT_RESIZER].addResizer(new ResizeRight(this,this.resizers[BOTTOM_RIGHT_RESIZER]));
+		this.resizers[TOP_RESIZER].addResizer(new ResizeTop(this,this.resizers[TOP_RESIZER]));
+		this.resizers[TOP_LEFT_RESIZER].addResizer(new ResizeTop(this,this.resizers[TOP_LEFT_RESIZER]));
+		this.resizers[TOP_RIGHT_RESIZER].addResizer(new ResizeTop(this,this.resizers[TOP_RIGHT_RESIZER]));
+		this.resizers[TOP_LEFT_RESIZER].addResizer(new ResizeLeft(this,this.resizers[TOP_LEFT_RESIZER]));
+		this.resizers[TOP_RIGHT_RESIZER].addResizer(new ResizeRight(this,this.resizers[TOP_RIGHT_RESIZER]));
+
+		this.resizers[BOTTOM_RESIZER].add(this.resizers[BOTTOM_LEFT_RESIZER],BorderLayout.WEST);
+		this.resizers[BOTTOM_RESIZER].add(this.resizers[BOTTOM_RIGHT_RESIZER],BorderLayout.EAST);
+		this.resizers[TOP_RESIZER].add(this.resizers[TOP_LEFT_RESIZER],BorderLayout.WEST);
+		this.resizers[TOP_RESIZER].add(this.resizers[TOP_RIGHT_RESIZER],BorderLayout.EAST);
+
+
+		this.add(this.resizers[RIGHT_RESIZER],BorderLayout.EAST);
+		this.add(this.resizers[LEFT_RESIZER],BorderLayout.WEST);
+		this.add(this.resizers[BOTTOM_RESIZER],BorderLayout.SOUTH);
+		this.add(this.resizers[TOP_RESIZER],BorderLayout.NORTH);
+		this.add(this.content, BorderLayout.CENTER);
 	}
 
-	public void setAlertWillBeResizedFullScreenColor(Color alertColor){
-		if(alertColor == null) throw new IllegalArgumentException("La couleur ne peut pas être null");
-		this.alertResized = alertColor;
-	}
-
-	public JPanel getContentSpace(){
-		return this.composites[CONTENT];
+	public EnigmaPanel getContentSpace(){
+		return this.content;
 	}
 
 	public void setWindowBackground(Color bgColor){
-		for(JPanel p: this.composites) p.setBackground(bgColor);
+		for(ResizeComponent r: this.resizers) r.setBackground(bgColor);
+		this.content.setBackground(bgColor);
 	}
 
 	public boolean isFullScreen(){
 		return (this.getExtendedState() == JFrame.MAXIMIZED_BOTH);
+	}
+
+	public boolean isResizable(){
+		return this.resizable;
+	}
+
+	@Override
+	public void setResizable(boolean resizable) {
+		if(resizable){
+			for(ResizeComponent r: this.resizers) r.enableResize();
+		}
+		else for(ResizeComponent r: this.resizers) r.disableResize();
+		this.resizable = resizable;
 	}
 
 	public void setPreviousValues(){
@@ -187,27 +249,32 @@ public class Window extends JFrame {
 		this.setLocation(LAST_LOCATION);
 	}
 
+	@Override
+	public void setSize(int width, int height){
+		if(this.resizable) super.setSize(width,height);
+	}
+
+	@Override
+	public void setSize(Dimension dimension){
+		if(this.resizable) super.setSize(dimension);
+	}
+
 	public void setSize(int size){
-		Rectangle screenSize = this.getGraphicsConfiguration().getBounds();
-		this.setExtendedState(JFrame.NORMAL);
-		switch (size){
-			default:
-				return;
-			case FULL_SCREEN_SIZE:
-				this.lastDimension = this.getSize();
-				this.lastLocation = this.getLocation();
-				this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-				break;
-			case HALF_SCREEN_SIZE:
-				this.lastDimension = this.getSize();
-				this.lastLocation = this.getLocation();
-				this.setSize(screenSize.width / 2, screenSize.height / 2);
-				break;
-			case LAST_SCREEN_SIZE:
-				this.setSize(this.lastDimension);
-				break;
+		if(this.resizable) {
+			Rectangle screenSize = this.getGraphicsConfiguration().getBounds();
+			this.setExtendedState(JFrame.NORMAL);
+			switch (size) {
+				default:
+					return;
+				case FULL_SCREEN_SIZE:
+					this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+					break;
+				case HALF_SCREEN_SIZE:
+					this.setSize(screenSize.width / 2, screenSize.height / 2);
+					break;
+			}
+			this.setLocation(CENTER);
 		}
-		this.setLocation(CENTER);
 	}
 
 	public boolean compareWindowSizeWith(int size){
@@ -219,8 +286,6 @@ public class Window extends JFrame {
 			case HALF_SCREEN_SIZE:
 				Dimension half = new Dimension(screenSize.width / 2, screenSize.height / 2);
 				return (half.equals(this.getSize()));
-			case LAST_SCREEN_SIZE:
-				return (this.lastDimension.equals(this.getSize()));
 		}
 	}
 
@@ -229,46 +294,8 @@ public class Window extends JFrame {
 		return (dim.equals(this.getSize()));
 	}
 
-	public void setPreviousX(int x){
-		this.lastLocation = new Point(x, this.lastLocation.y);
-	}
-
-	public void setPreviousY(int y){
-		this.lastLocation = new Point(this.lastLocation.x, y);
-	}
-
-	public void setPreviousLocation(int x, int y){
-		this.lastLocation = new Point(x, y);
-	}
-
-	public void setPreviousLocation(Point location){
-		this.lastLocation = location;
-	}
-
-	public void setPreviousWidth(int width){
-		this.lastDimension = new Dimension(width, this.lastDimension.height);
-	}
-
-	public void setPreviousHeight(int height){
-		this.lastDimension = new Dimension(this.lastDimension.width, height);
-	}
-
-	public void setPreviousSize(int width, int height){
-		this.lastDimension = new Dimension(width, height);
-	}
-
-	public void setPreviousSize(Dimension size){
-		this.lastDimension = size;
-	}
-
-	public void willBeResizedFullScreen(){
-		this.composites[BOTTOM_LEFT_RESIZER].setBorder(BorderFactory.createMatteBorder(0, 3, 3, 0, this.alertResized));
-		this.composites[BOTTOM_RIGHT_RESIZER].setBorder(BorderFactory.createMatteBorder(0, 0, 3, 3, this.alertResized));
-	}
-
-	public void wontBeResizedFullScreen(){
-		this.composites[BOTTOM_LEFT_RESIZER].setBorder(BorderFactory.createEmptyBorder());
-		this.composites[BOTTOM_RIGHT_RESIZER].setBorder(BorderFactory.createEmptyBorder());
+	public boolean compareWindowSizes(Dimension dim1, Dimension dim2){
+		return (dim1.equals(dim2));
 	}
 
 	public void setLocation(int location){
@@ -279,22 +306,8 @@ public class Window extends JFrame {
 		int windowPosX;
 		int windowPosY;
 
-		/*GraphicsDevice[] allScreens = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices();
-		int myScreenIndex = -1;
-		for (int i = 0; i < allScreens.length; i++) {
-			if (allScreens[i].equals(this.getGraphicsConfiguration().getDevice()))
-			{
-				myScreenIndex = i;
-				break;
-			}
-		}
-		System.out.println("window is on screen" + myScreenIndex);*/
 		switch (location){
 			default: return;
-			case LAST_LOCATION:
-				windowPosX = this.lastLocation.x;
-				windowPosY = this.lastLocation.y;
-				break;
 			case CENTER:
 				windowPosX = (sizeW - this.getWidth()) / 2;
 				windowPosY = (sizeH - this.getHeight()) / 2;

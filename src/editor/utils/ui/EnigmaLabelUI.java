@@ -6,31 +6,6 @@ import java.awt.*;
 
 public class EnigmaLabelUI extends BasicLabelUI {
 
-    public final static Color ENIGMA_LABEL_BACKGROUND = Color.DARK_GRAY;
-    public final static Color ENIGMA_LABEL_HOVERED_BACKGROUND = new Color(100,100,100);;
-    public final static Color ENIGMA_LABEL_PRESSED_BACKGROUND = new Color(100,100,100);
-    public final static Color ENIGMA_LABEL_FOREGROUND = Color.WHITE;
-    public final static Color ENIGMA_LABEL_HOVERED_FOREGROUND = Color.WHITE;
-    public final static Color ENIGMA_LABEL_PRESSED_FOREGROUND = Color.WHITE;
-    public final static Color ENIGMA_LABEL_BORDER = null;
-    public final static Color ENIGMA_LABEL_HOVERED_BORDER = null;
-    public final static Color ENIGMA_LABEL_PRESSED_BORDER = null;
-    public final static int ENIGMA_LABEL_BORDER_SIZE = 1;
-    public final static int ENIGMA_LABEL_HOVERED_BORDER_SIZE = 1;
-    public final static int ENIGMA_LABEL_PRESSED_BORDER_SIZE = 1;
-    public final static boolean[] ENIGMA_LABEL_SHOWED_BORDERS = {true,true,true,true};
-    public final static boolean[] ENIGMA_LABEL_HOVERED_SHOWED_BORDERS = {true,true,true,true};
-    public final static boolean[] ENIGMA_LABEL_PRESSED_SHOWED_BORDERS = {true,true,true,true};
-
-    public final static boolean[] ALL_BORDERS_SHOWED = {true,true,true,true};
-    public final static boolean[] ALL_BORDER_HIDDEN = {false,false,false,false};
-    public final static boolean SHOWED_BORDER = true;
-    public final static boolean HIDDEN_BORDER = false;
-    public final static int TOP_BORDER = 0;
-    public final static int RIGHT_BORDER = 1;
-    public final static int BOTTOM_BORDER = 2;
-    public final static int LEFT_BORDER = 3;
-
     private Color background;
     private Color foreground;
     private Color hoveredBackground;
@@ -51,21 +26,21 @@ public class EnigmaLabelUI extends BasicLabelUI {
     private boolean[] pressedShowedBorders;
 
     public EnigmaLabelUI(){
-        this.background = ENIGMA_LABEL_BACKGROUND;
-        this.hoveredBackground = ENIGMA_LABEL_HOVERED_BACKGROUND;
-        this.pressedBackground = ENIGMA_LABEL_PRESSED_BACKGROUND;
-        this.foreground = ENIGMA_LABEL_FOREGROUND;
-        this.hoveredForeground = ENIGMA_LABEL_HOVERED_FOREGROUND;
-        this.pressedForeground = ENIGMA_LABEL_PRESSED_FOREGROUND;
-        this.border = ENIGMA_LABEL_BORDER;
-        this.hoveredBorder = ENIGMA_LABEL_HOVERED_BORDER;
-        this.pressedBorder = ENIGMA_LABEL_PRESSED_BORDER;
-        this.borderSize = ENIGMA_LABEL_BORDER_SIZE;
-        this.hoveredBorderSize = ENIGMA_LABEL_HOVERED_BORDER_SIZE;
-        this.pressedBorderSize = ENIGMA_LABEL_PRESSED_BORDER_SIZE;
-        this.showedBorders = ENIGMA_LABEL_SHOWED_BORDERS;
-        this.hoveredShowedBorders = ENIGMA_LABEL_HOVERED_SHOWED_BORDERS;
-        this.pressedShowedBorders = ENIGMA_LABEL_PRESSED_SHOWED_BORDERS;
+        this.background = EnigmaUIValues.ENIGMA_LABEL_BACKGROUND;
+        this.hoveredBackground = EnigmaUIValues.ENIGMA_LABEL_HOVERED_BACKGROUND;
+        this.pressedBackground = EnigmaUIValues.ENIGMA_LABEL_PRESSED_BACKGROUND;
+        this.foreground = EnigmaUIValues.ENIGMA_LABEL_FOREGROUND;
+        this.hoveredForeground = EnigmaUIValues.ENIGMA_LABEL_HOVERED_FOREGROUND;
+        this.pressedForeground = EnigmaUIValues.ENIGMA_LABEL_PRESSED_FOREGROUND;
+        this.border = EnigmaUIValues.ENIGMA_LABEL_BORDER;
+        this.hoveredBorder = EnigmaUIValues.ENIGMA_LABEL_HOVERED_BORDER;
+        this.pressedBorder = EnigmaUIValues.ENIGMA_LABEL_PRESSED_BORDER;
+        this.borderSize = EnigmaUIValues.ENIGMA_LABEL_BORDER_SIZE;
+        this.hoveredBorderSize = EnigmaUIValues.ENIGMA_LABEL_HOVERED_BORDER_SIZE;
+        this.pressedBorderSize = EnigmaUIValues.ENIGMA_LABEL_PRESSED_BORDER_SIZE;
+        this.showedBorders = EnigmaUIValues.ENIGMA_LABEL_SHOWED_BORDERS;
+        this.hoveredShowedBorders = EnigmaUIValues.ENIGMA_LABEL_HOVERED_SHOWED_BORDERS;
+        this.pressedShowedBorders = EnigmaUIValues.ENIGMA_LABEL_PRESSED_SHOWED_BORDERS;
         this.hovered = false;
         this.pressed = false;
         this.cursor = new Cursor(Cursor.HAND_CURSOR);
@@ -76,42 +51,42 @@ public class EnigmaLabelUI extends BasicLabelUI {
         Graphics brush = g.create();
         JLabel l = (JLabel) c;
         if(this.pressed){
-            l.setBackground(this.pressedBackground);
-            l.setForeground(this.pressedForeground);
-            System.out.println("bzjvbrjlz");
-            brush.setColor(Color.RED);
+            brush.setColor(this.pressedBackground);
             brush.fillRect(0,0,l.getWidth(),l.getHeight());
+            l.setForeground(this.pressedForeground);
             if(this.pressedBorder != null){
                 brush.setColor(this.pressedBorder);
                 for (int i = 0; i < 4; i++) {
-                    if(i == TOP_BORDER && this.pressedShowedBorders[i]) brush.fillRect(0,0,l.getWidth(),this.pressedBorderSize);
-                    if(i == RIGHT_BORDER && this.pressedShowedBorders[i]) brush.fillRect(l.getWidth() - this.pressedBorderSize,0,l.getWidth(),l.getHeight());
-                    if(i == BOTTOM_BORDER && this.pressedShowedBorders[i]) brush.fillRect(0,l.getHeight() - this.pressedBorderSize,l.getWidth(),l.getHeight());
-                    if(i == LEFT_BORDER && this.pressedShowedBorders[i]) brush.fillRect(0,0,this.pressedBorderSize,l.getHeight());
+                    if(i == EnigmaUIValues.TOP_BORDER && this.pressedShowedBorders[i]) brush.fillRect(0,0,l.getWidth(),this.pressedBorderSize);
+                    if(i == EnigmaUIValues.RIGHT_BORDER && this.pressedShowedBorders[i]) brush.fillRect(l.getWidth() - this.pressedBorderSize,0,l.getWidth(),l.getHeight());
+                    if(i == EnigmaUIValues.BOTTOM_BORDER && this.pressedShowedBorders[i]) brush.fillRect(0,l.getHeight() - this.pressedBorderSize,l.getWidth(),l.getHeight());
+                    if(i == EnigmaUIValues.LEFT_BORDER && this.pressedShowedBorders[i]) brush.fillRect(0,0,this.pressedBorderSize,l.getHeight());
                 }
             }
         } else if(this.hovered){
-            l.setBackground(this.hoveredBackground);
+            brush.setColor(this.hoveredBackground);
+            brush.fillRect(0,0,l.getWidth(),l.getHeight());
             l.setForeground(this.hoveredForeground);
             if(this.hoveredBorder != null){
                 brush.setColor(this.hoveredBorder);
                 for (int i = 0; i < 4; i++) {
-                    if(i == TOP_BORDER && this.hoveredShowedBorders[i]) brush.fillRect(0,0,l.getWidth(),this.hoveredBorderSize);
-                    if(i == RIGHT_BORDER && this.hoveredShowedBorders[i]) brush.fillRect(l.getWidth() - this.hoveredBorderSize,0,l.getWidth(),l.getHeight());
-                    if(i == BOTTOM_BORDER && this.hoveredShowedBorders[i]) brush.fillRect(0,l.getHeight() - this.hoveredBorderSize,l.getWidth(),l.getHeight());
-                    if(i == LEFT_BORDER && this.hoveredShowedBorders[i]) brush.fillRect(0,0,this.hoveredBorderSize,l.getHeight());
+                    if(i == EnigmaUIValues.TOP_BORDER && this.hoveredShowedBorders[i]) brush.fillRect(0,0,l.getWidth(),this.hoveredBorderSize);
+                    if(i == EnigmaUIValues.RIGHT_BORDER && this.hoveredShowedBorders[i]) brush.fillRect(l.getWidth() - this.hoveredBorderSize,0,l.getWidth(),l.getHeight());
+                    if(i == EnigmaUIValues.BOTTOM_BORDER && this.hoveredShowedBorders[i]) brush.fillRect(0,l.getHeight() - this.hoveredBorderSize,l.getWidth(),l.getHeight());
+                    if(i == EnigmaUIValues.LEFT_BORDER && this.hoveredShowedBorders[i]) brush.fillRect(0,0,this.hoveredBorderSize,l.getHeight());
                 }
             }
         } else {
-            l.setBackground(this.background);
+            brush.setColor(this.background);
+            brush.fillRect(0,0,l.getWidth(),l.getHeight());
             l.setForeground(this.foreground);
             if(this.border != null){
                 brush.setColor(this.border);
                 for (int i = 0; i < 4; i++) {
-                    if(i == TOP_BORDER && this.showedBorders[i]) brush.fillRect(0,0,l.getWidth(),this.borderSize);
-                    if(i == RIGHT_BORDER && this.showedBorders[i]) brush.fillRect(l.getWidth() - this.borderSize,0,l.getWidth(),l.getHeight());
-                    if(i == BOTTOM_BORDER && this.showedBorders[i]) brush.fillRect(0,l.getHeight() - this.borderSize,l.getWidth(),l.getHeight());
-                    if(i == LEFT_BORDER && this.showedBorders[i]) brush.fillRect(0,0,this.borderSize,l.getHeight());
+                    if(i == EnigmaUIValues.TOP_BORDER && this.showedBorders[i]) brush.fillRect(0,0,l.getWidth(),this.borderSize);
+                    if(i == EnigmaUIValues.RIGHT_BORDER && this.showedBorders[i]) brush.fillRect(l.getWidth() - this.borderSize,0,l.getWidth(),l.getHeight());
+                    if(i == EnigmaUIValues.BOTTOM_BORDER && this.showedBorders[i]) brush.fillRect(0,l.getHeight() - this.borderSize,l.getWidth(),l.getHeight());
+                    if(i == EnigmaUIValues.LEFT_BORDER && this.showedBorders[i]) brush.fillRect(0,0,this.borderSize,l.getHeight());
                 }
             }
         }
