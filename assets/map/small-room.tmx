@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="2019.11.12" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="10" height="10" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="1">
+ <tileset firstgid="1" name="dungeon1" tilewidth="16" tileheight="16" tilecount="48" columns="8">
+  <image source="tiles/ground/dungeon1.png" width="128" height="96"/>
+ </tileset>
+ <tileset firstgid="49" name="pipo" tilewidth="16" tileheight="16" tilecount="1992" columns="8">
+  <image source="tiles/pipo.png" width="128" height="3984"/>
+ </tileset>
+ <tileset firstgid="2041" name="collision" tilewidth="16" tileheight="16" tilecount="64" columns="8">
+  <image source="collision.png" width="128" height="128"/>
+ </tileset>
+ <layer id="1" name="FLOOR1" width="10" height="10">
+  <data encoding="csv">
+9,3,3,3,3,3,3,3,3,10,
+13,465,466,466,466,466,466,466,466,13,
+13,473,474,474,474,474,474,474,474,13,
+13,374,374,374,374,374,374,374,374,13,
+13,374,374,374,374,374,374,374,374,13,
+13,374,374,374,374,374,374,374,374,13,
+13,374,374,374,374,374,374,374,374,13,
+13,374,374,374,374,374,374,374,374,13,
+13,374,374,374,374,374,374,374,374,13,
+17,3,3,4,374,374,2,3,3,18
+</data>
+ </layer>
+ <layer id="2" name="COLLISION" width="10" height="10" opacity="0.34">
+  <data encoding="csv">
+2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,
+2041,0,0,0,0,0,0,0,0,2041,
+2041,0,0,0,0,0,0,0,0,2041,
+2041,0,0,0,0,0,0,0,0,2041,
+2041,0,0,0,0,0,0,0,0,2041,
+2041,0,0,0,0,0,0,0,0,2041,
+2041,0,0,0,0,0,0,0,0,2041,
+2041,0,0,0,0,0,0,0,0,2041,
+2041,0,0,0,0,0,0,0,0,2041,
+2041,2041,2041,2041,0,0,2041,2041,2041,2041
+</data>
+ </layer>
+</map>

@@ -126,7 +126,7 @@ public class DropTargetExample implements DragGestureListener, DragSourceListene
         map.setLayout(new BorderLayout());
 
         //Récupère le jeu
-        LwjglAWTCanvas canvas = new LwjglAWTCanvas(new EnigmaGame());
+        LwjglAWTCanvas canvas = new LwjglAWTCanvas(EnigmaGame.getInstance());
         map.add(canvas.getCanvas(), BorderLayout.CENTER);//ajoute le jeu
 
         a.add(map);

@@ -1,18 +1,27 @@
 package game.screen;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.badlogic.gdx.utils.viewport.FillViewport;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import editor.enigma.Enigma;
+import game.EnigmaGame;
 import game.api.LibgdxScreen;
 import game.entity.MapLibgdx;
 
 public class TestScreen extends LibgdxScreen {
 
 	private Stage main;
+	private MapLibgdx map;
 
 	@Override
 	public void init() {
 		this.main = new Stage();
 
-		MapLibgdx map = new MapLibgdx("assets/map/Empty.tmx");
+		this.main.setViewport(new ExtendViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
+
+		map = new MapLibgdx("assets/map/Empty.tmx");
 
 		this.main.addActor(map);
 
@@ -34,7 +43,13 @@ public class TestScreen extends LibgdxScreen {
 	}
 
 	@Override
-	public void resize(int width, int height) {}
+	public void resize(int width, int height) {
+		this.main.getViewport().setScreenSize(width, height);
+		this.main.getViewport().update(width, height);
+		EnigmaGame.setScreenSize(width, height);
+	}
+
+	public MapLibgdx getMap() { return map;	}
 
 	@Override
 	public void display(boolean display) {}

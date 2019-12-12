@@ -1,5 +1,12 @@
 package editor.bibliotheque;
 
+import com.badlogic.gdx.backends.lwjgl.LwjglAWTCanvas;
+import com.badlogic.gdx.backends.lwjgl.LwjglCanvas;
+import editor.entity.EntityFactory;
+import game.EnigmaGame;
+import game.entity.MapLibgdx;
+import game.screen.TestScreen;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
@@ -43,25 +50,17 @@ public class DragAndDropDND implements DragGestureListener, DragSourceListener, 
 	}
 
 	// DragSourceListener methods.
-	public void dragDropEnd(DragSourceDropEvent dsde) {
-		System.out.println("DragSourceDropEvent Fired");
-	}
+	public void dragDropEnd(DragSourceDropEvent dsde){}
 
-	public void dragEnter(DragSourceDragEvent dsde) {
-		System.out.println("DragSourceDragEvent Fired");
-	}
+	public void dragEnter(DragSourceDragEvent dsde) {}
 
-	public void dragExit(DragSourceEvent dse) {
-		System.out.println("DragSourceEvent Fired");
-	}
+	public void dragExit(DragSourceEvent dse) {}
 
 	public void dragOver(DragSourceDragEvent dsde) {
 		object = dsde.getSource();
 	}
 
-	public void dropActionChanged(DragSourceDragEvent dsde) {
-		System.out.println("DragSourceDragEvent Fired");
-	}
+	public void dropActionChanged(DragSourceDragEvent dsde) {}
 
 	// DropTargetListener methods.
 	public void dragEnter(DropTargetDragEvent dtde) {
@@ -86,26 +85,30 @@ public class DragAndDropDND implements DragGestureListener, DragSourceListener, 
 	//PB ICI POUR LA COPIE --> VOIR SI AVOIR A PASSER PAR UN TRANSFER HANDLER OBLIGATOIRE
 	public void drop(DropTargetDropEvent dtde) {
 		dtde.acceptDrop(dtde.getDropAction());
+
 		try {
 			//get source and target
 			Object source = dtde.getTransferable().getTransferData(dataflavor[0]);
 			Object target = dtde.getSource();
 
 			//get transfer object (label)
-			JLabel component = (JLabel) ((DragSourceContext) source).getComponent();
+			MenuScreen.CustomLabel component = (MenuScreen.CustomLabel) ((DragSourceContext) source).getComponent();
 
 			Container oldContainer = component.getParent();
-			Container newContainer = (Container) ((DropTarget) target).getComponent();
+			//Container newContainer = (Container) ((DropTarget) target).getComponent();
 
-			JLabel copy = new JLabel();
-			copy.setIcon(component.getIcon());
+			if(EnigmaGame.getCurrentScreen() instanceof TestScreen){
+				MapLibgdx m = ((TestScreen) EnigmaGame.getCurrentScreen()).getMap();
+				m.load(component.getContent(), dtde.getLocation());
+			}
 
-			newContainer.add(copy);
+			/*MenuScreen.CustomLabel copy = new MenuScreen.CustomLabel(component.getContent());
+			newContainer.add(copy);*/
 
 			oldContainer.validate();
 			oldContainer.repaint();
-			newContainer.validate();
-			newContainer.repaint();
+			//newContainer.validate();
+			//newContainer.repaint();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

@@ -16,20 +16,50 @@ public class EntityFactory {
 
 	private HashMap<String, EntitySerializable> content = new HashMap<>();
 
-	public static final class EntitySerializable extends ImageIcon {
+	public static final class EntitySerializable extends JComponent {
+		private ImageIcon icon;
 		private String path;
 		private int width, height;
-		private HashMap<Layer, Array<Integer>> tiles;
+		private HashMap<String, Array<Float>> tiles = new HashMap<>();
 		private MenuCategories category;
 
 		public EntitySerializable(){}
 
 		public EntitySerializable(EntitySerializable entitySerializable){
-			super(entitySerializable.path);
+			super();
+			this.icon = new ImageIcon(entitySerializable.path);
 			width = entitySerializable.width;
 			height = entitySerializable.height;
 			tiles = entitySerializable.tiles;
 			category = entitySerializable.category;
+		}
+
+		/*public Array<Integer> getTiles(Layer layer) {
+			Array<Integer> a = new Array<>();
+			if(tiles.containsKey(layer)){
+				a.addAll(tiles.get(layer));
+			}
+			return a;
+		}*/
+
+		public String getPath() {
+			return path;
+		}
+
+		public int getWidth() {
+			return width;
+		}
+
+		public int getHeight() {
+			return height;
+		}
+
+		public Array<Float> getTiles(Layer layer) {
+			return this.tiles.get(layer.name());
+		}
+
+		public Icon getIcon() {
+			return icon;
 		}
 	}
 
@@ -48,7 +78,7 @@ public class EntityFactory {
 			}
 		}
 
-		Utility.printHashMap(loaded);
+		//Utility.printHashMap(loaded);
 	}
 
 	public static Array<EntitySerializable> getEntitiesByCategory(MenuCategories categories){

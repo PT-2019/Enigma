@@ -1,16 +1,21 @@
 package editor.bibliotheque;
 
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 import editor.entity.EntityFactory;
+import editor.utils.LoadGameLibgdxApplication;
 import editor.window.Window;
 import org.intellij.lang.annotations.MagicConstant;
+import org.lwjgl.input.Mouse;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DragSource;
 import java.awt.dnd.DropTarget;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED;
 import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER;
@@ -50,7 +55,7 @@ public class MenuScreen extends JPanel {
 
 		//création de la zone d'affichage de la map (partie droite)
 		JPanel map = new JPanel();
-		//LoadGameLibgdxApplication.load(map, parent);
+		LoadGameLibgdxApplication.load(map, parent);
 		map.setDropTarget(new DropTarget(map,	DnDConstants.ACTION_COPY, dragAndDrop));
 
 		//ajout des observateurs
@@ -115,13 +120,31 @@ public class MenuScreen extends JPanel {
 
 		for (int i = 0; i < 12 || i < entities.size; i++) {@MagicConstant
 			JPanel pan = new JPanel();
-			JLabel lab = new JLabel();
+			CustomLabel lab = new CustomLabel();
 			if(i < entities.size) {
-				lab.setIcon(entities.get(i));
+				lab = new CustomLabel(entities.get(i));
+				//lab.setIcon(entities.get(i));
 				new DragSource().createDefaultDragGestureRecognizer(lab, DnDConstants.ACTION_COPY, this.dragAndDrop);
 			}
 			pan.add(lab);
 			pane.add(pan);
+		}
+	}
+
+	public static final class CustomLabel extends JLabel{
+
+		private EntityFactory.EntitySerializable e;
+
+		public CustomLabel(){}
+
+		public CustomLabel(EntityFactory.EntitySerializable e){
+			super();
+			this.e = e;
+			this.setIcon(e.getIcon());
+		}
+
+		public EntityFactory.EntitySerializable getContent() {
+			return e;
 		}
 	}
 }
