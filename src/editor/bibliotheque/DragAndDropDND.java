@@ -1,119 +1,136 @@
 package editor.bibliotheque;
 
-import com.badlogic.gdx.backends.lwjgl.LwjglAWTCanvas;
-import com.badlogic.gdx.backends.lwjgl.LwjglCanvas;
-import editor.entity.EntityFactory;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.utils.UIUtils;
+import editor.window.Window;
 import game.EnigmaGame;
 import game.entity.MapLibgdx;
 import game.screen.TestScreen;
+import org.jetbrains.annotations.NotNull;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.dnd.*;
+import java.io.IOException;
+import java.lang.invoke.VarHandle;
 
 public class DragAndDropDND implements DragGestureListener, DragSourceListener, DropTargetListener, Transferable {
 
-	private static final DataFlavor[] dataflavor = {null};
-	private Object object;
+	private final DataFlavor[] dataFlavor;
+	private final Window window;
+	private Object dataTransferObject;
 
-	static {
+	public DragAndDropDND(Window window){
 		try {
-			dataflavor[0] = new DataFlavor(
-					DataFlavor.javaJVMLocalObjectMimeType);
-		} catch (Exception e) {
-			e.printStackTrace();
+			dataFlavor = new DataFlavor[]{new DataFlavor(DataFlavor.javaJVMLocalObjectMimeType)};
+		} catch (ClassNotFoundException e) {
+			throw new IllegalStateException("could not create data flavor");
 		}
-	}
 
-	// Transferable methods.
-	public Object getTransferData(DataFlavor flavor) {
-		if (flavor.isMimeTypeEqual(DataFlavor.javaJVMLocalObjectMimeType)) {
-			return object;
+		//if os is windows then we do something about' cursor
+		if(UIUtils.isWindows) {
+			this.window = window;
 		} else {
-			return null;
+			this.window = null;
 		}
 	}
 
-	public DataFlavor[] getTransferDataFlavors() {
-		return dataflavor;
-	}
+	//dépôt de l'élément déplacé sur target
 
-	public boolean isDataFlavorSupported(DataFlavor flavor) {
-		return flavor.isMimeTypeEqual(DataFlavor.javaJVMLocalObjectMimeType);
-	}
-
-	// DragGestureListener method.
-	public void dragGestureRecognized(DragGestureEvent dge) {
-		dge.startDrag(null, this, this);
-	}
-
-	// DragSourceListener methods.
-	public void dragDropEnd(DragSourceDropEvent dsde){}
-
-	public void dragEnter(DragSourceDragEvent dsde) {}
-
-	public void dragExit(DragSourceEvent dse) {}
-
-	public void dragOver(DragSourceDragEvent dsde) {
-		object = dsde.getSource();
-	}
-
-	public void dropActionChanged(DragSourceDragEvent dsde) {}
-
-	// DropTargetListener methods.
-	public void dragEnter(DropTargetDragEvent dtde) {
-	}
-
-	public void dragExit(DropTargetEvent dte) {
-	}
-
-	public void dragOver(DropTargetDragEvent dtde) {
-		dropTargetDrag(dtde);
-	}
-
-	public void dropActionChanged(DropTargetDragEvent dtde) {
-		dropTargetDrag(dtde);
-	}
-
-	private void dropTargetDrag(DropTargetDragEvent dtde) {
-		dtde.acceptDrag(dtde.getDropAction());
-	}
-
-
-	//PB ICI POUR LA COPIE --> VOIR SI AVOIR A PASSER PAR UN TRANSFER HANDLER OBLIGATOIRE
+	@Override
 	public void drop(DropTargetDropEvent dtde) {
 		dtde.acceptDrop(dtde.getDropAction());
 
 		try {
-			//get source and target
-			Object source = dtde.getTransferable().getTransferData(dataflavor[0]);
-			Object target = dtde.getSource();
+			//récupère l'object déplacé
+			Object source = dtde.getTransferable().getTransferData(dataFlavor[0]);
 
-			//get transfer object (label)
+			//on le transforme en label
 			MenuScreen.CustomLabel component = (MenuScreen.CustomLabel) ((DragSourceContext) source).getComponent();
 
-			Container oldContainer = component.getParent();
-			//Container newContainer = (Container) ((DropTarget) target).getComponent();
-
-			if(EnigmaGame.getCurrentScreen() instanceof TestScreen){
+			if(EnigmaGame.getInstance() != null){
+				//récupère la map
 				MapLibgdx m = ((TestScreen) EnigmaGame.getCurrentScreen()).getMap();
+				//lui transmet le 'label' déplacé
 				m.load(component.getContent(), dtde.getLocation());
+			} else {
+				throw new IllegalStateException("Game isn't loaded !");
 			}
-
-			/*MenuScreen.CustomLabel copy = new MenuScreen.CustomLabel(component.getContent());
-			newContainer.add(copy);*/
-
-			oldContainer.validate();
-			oldContainer.repaint();
-			//newContainer.validate();
-			//newContainer.repaint();
-		} catch (Exception ex) {
-			ex.printStackTrace();
+		} catch (UnsupportedFlavorException| IOException ex) {
+			Gdx.app.error(this.getClass().toString(),"failed dnd drop");
 		}
+
 		dtde.dropComplete(true);
 	}
 
+	//fin drag et drop
 
+	@Override
+	public void dragDropEnd(DragSourceDropEvent dsde){
+		if(window != null) //reset cursor
+			this.window.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+	}
+
+	//Ici les méthodes sur l'object déplacé
+
+
+	@Override
+	public void dragEnter(DragSourceDragEvent dsde) {}
+
+	@Override
+	public void dragExit(DragSourceEvent dse) {}
+
+	@Override
+	public void dragOver(DragSourceDragEvent dsde) {
+		dataTransferObject = dsde.getSource();
+	}
+
+	@Override
+	public void dropActionChanged(DragSourceDragEvent dsde) {}
+
+	//Ici les méthodes du drag and drop sur l'object target (cible dans laquelle on dépose)
+
+	@Override
+	public void dragEnter(DropTargetDragEvent dtde) {}
+
+	@Override
+	public void dragExit(DropTargetEvent dte) {}
+
+	@Override
+	public void dragOver(DropTargetDragEvent dtde) {
+		dtde.acceptDrag(dtde.getDropAction());
+	}
+
+	@Override
+	public void dropActionChanged(DropTargetDragEvent dtde) {
+		dtde.acceptDrag(dtde.getDropAction());
+	}
+
+	// Utils
+
+	@Override@NotNull
+	public Object getTransferData(DataFlavor flavor) {
+		if (isDataFlavorSupported(flavor)) {
+			return dataTransferObject;
+		}
+		throw new IllegalStateException("not valid data flavor");
+	}
+
+	@Override
+	public DataFlavor[] getTransferDataFlavors() { return dataFlavor; }
+
+	@Override
+	public boolean isDataFlavorSupported(DataFlavor flavor) {
+		return flavor.isMimeTypeEqual(DataFlavor.javaJVMLocalObjectMimeType);
+	}
+
+	@Override
+	public void dragGestureRecognized(DragGestureEvent dge) {
+		if(window != null) {
+			this.window.setCursor(new Cursor(Cursor.HAND_CURSOR));
+		}
+		dge.startDrag(null, this, this);
+	}
 }

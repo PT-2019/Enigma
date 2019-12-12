@@ -15,12 +15,15 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
+import editor.datas.Direction;
 import editor.datas.Layer;
 import editor.entity.EntityFactory;
+import editor.entity.interfaces.Entity;
 import editor.utils.Utility;
 import game.ui.Border;
 import game.utils.InputListener;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.awt.*;
 import java.util.Set;
@@ -136,6 +139,7 @@ public class MapLibgdx extends Actor implements InputListener {
 		return width * tileWidth;
 	}
 
+	//TODO: refaire, illisible et deg
 	public void load(EntityFactory.EntitySerializable entity, Point location) {
 		for (MapLayer mapLayer: this.map.getMap().getLayers()) {
 			if(!(mapLayer instanceof TiledMapTileLayer)) continue;
@@ -145,12 +149,11 @@ public class MapLibgdx extends Actor implements InputListener {
 
 			if(entities == null) continue;
 
-			//System.out.println(location+" "+this.camera.position+" case???"+posToIndex(location.x, location.y, this));
-
-			//System.out.println(posToIndex(this.camera.position.x, this.camera.position.y, this));
-
-			float dCamD = this.getStage().getWidth()/2 - this.getMapWidth() /2;
+			//...
+			float dCamD = this.getStage().getWidth()/2 - this.getMapWidth()  /2;
 			float dCamE = this.getStage().getWidth()/2 + this.getMapWidth()/2 - entity.getWidth()*tileWidth;
+
+			System.out.println(location+" "+dCamD);
 
 			float dCamT = this.getStage().getHeight()/2 - this.getMapHeight() / 2;
 			float dCamB = this.getStage().getHeight()/2 + this.getMapHeight() / 2 - entity.getHeight()*tileHeight;
@@ -158,17 +161,13 @@ public class MapLibgdx extends Actor implements InputListener {
 			Vector2 deb;
 			if(location.x >= dCamD && location.x <= dCamE){
 				if(location.y >= dCamT && location.y <= dCamB){
-					System.out.println("dedans");
 					deb = posToIndex(location.x, location.y, this);
-					System.out.println("de "+ (deb.y+entity.getHeight()-1)+" a "+deb.y+" t:"+(entity.getHeight()-1));
 				} else {
 					return;
 				}
 			} else {
 				return;
 			}
-
-			System.out.println(deb.x);
 
 			for (int i = (int) deb.y -1 , index = 0; i >= (deb.y - entity.getHeight()) ; i--) {
 				for (int j = (int) deb.x; j < deb.x + entity.getWidth() && index < entities.size ; j++, index++) {

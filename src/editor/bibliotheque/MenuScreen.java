@@ -39,7 +39,7 @@ public class MenuScreen extends JPanel {
 	public MenuScreen(Window parent){
 		this.setBackground(Color.RED);
 		this.setLayout(new BorderLayout());
-		this.dragAndDrop =  new DragAndDropDND();
+		this.dragAndDrop = new DragAndDropDND(parent);
 
 		//load entities
 		EntityFactory.loadEntities("assets/rooms.json");
