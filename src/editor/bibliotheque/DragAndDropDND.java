@@ -8,15 +8,15 @@ import game.entity.MapLibgdx;
 import game.screen.TestScreen;
 import org.jetbrains.annotations.NotNull;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.dnd.*;
 import java.io.IOException;
-import java.lang.invoke.VarHandle;
 
-public class DragAndDropDND implements DragGestureListener, DragSourceListener, DropTargetListener, Transferable {
+public class DragAndDropDND extends TransferHandler implements DragGestureListener, DragSourceListener, DropTargetListener, Transferable {
 
 	private final DataFlavor[] dataFlavor;
 	private final Window window;
@@ -132,5 +132,76 @@ public class DragAndDropDND implements DragGestureListener, DragSourceListener, 
 			this.window.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		}
 		dge.startDrag(null, this, this);
+	}
+
+	//handler
+
+	private Image image;
+
+	@Override
+	public boolean canImport(JComponent comp, DataFlavor[] flavor) {
+		if (!(comp instanceof JLabel) && !(comp instanceof AbstractButton)) {
+			return false;
+		}
+		for (DataFlavor item : flavor) {
+			for (DataFlavor value : dataFlavor) {
+				if (item.equals(value)) {
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+
+	@Override
+	public boolean importData(JComponent comp, Transferable t) {
+		if (comp instanceof JLabel) {
+			JLabel label = (JLabel) comp;
+			if (t.isDataFlavorSupported(dataFlavor[0])) {
+				try {
+					image = (Image) t.getTransferData(dataFlavor[0]);
+					ImageIcon icon = new ImageIcon(image);
+					label.setIcon(icon);
+					return true;
+				} catch (UnsupportedFlavorException | IOException ignored) {
+				}
+			}
+		} else if (comp instanceof AbstractButton) {
+			AbstractButton button = (AbstractButton) comp;
+			if (t.isDataFlavorSupported(dataFlavor[0])) {
+				try {
+					image = (Image) t.getTransferData(dataFlavor[0]);
+					ImageIcon icon = new ImageIcon(image);
+					button.setIcon(icon);
+					return true;
+				} catch (UnsupportedFlavorException | IOException ignored) {
+				}
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public Transferable createTransferable(JComponent comp) {
+		// Clear
+		image = null;
+
+		if (comp instanceof JLabel) {
+			JLabel label = (JLabel) comp;
+			Icon icon = label.getIcon();
+			if (icon instanceof ImageIcon) {
+				image = ((ImageIcon) icon).getImage();
+				return this;
+			}
+		} else if (comp instanceof AbstractButton) {
+			AbstractButton button = (AbstractButton) comp;
+			Icon icon = button.getIcon();
+			if (icon instanceof ImageIcon) {
+				image = ((ImageIcon) icon).getImage();
+				return this;
+			}
+		}
+		return null;
 	}
 }

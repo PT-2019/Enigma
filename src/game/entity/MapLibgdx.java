@@ -56,7 +56,7 @@ public class MapLibgdx extends Actor implements InputListener {
 	public MapLibgdx(@NotNull String path) {
 		//load the map
 		TiledMap tiledMap = new TmxMapLoader().load(path);
-		this.map = new OrthogonalTiledMapRenderer(tiledMap);//TODO: scale ?
+		this.map = new OrthogonalTiledMapRenderer(tiledMap);
 
 		//save needed properties
 		MapProperties properties = tiledMap.getProperties();
@@ -122,12 +122,16 @@ public class MapLibgdx extends Actor implements InputListener {
 		return false;
 	}
 
+	int scale = 0;
+
 	@Override
 	public boolean scrolled(int amount) {
 		if (Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT)){
 			if (amount==1){
+				scale++;
 				camera.zoom += 0.05;
 			}else{
+				scale--;
 				camera.zoom -= 0.05;
 			}
 			return true;
@@ -149,11 +153,33 @@ public class MapLibgdx extends Actor implements InputListener {
 
 			if(entities == null) continue;
 
-			//...
-			float dCamD = this.getStage().getWidth()/2 - this.getMapWidth()  /2;
-			float dCamE = this.getStage().getWidth()/2 + this.getMapWidth()/2 - entity.getWidth()*tileWidth;
+			float width = this.getMapWidth(), height = this.getMapWidth();
 
-			System.out.println(location+" "+dCamD);
+			for (int i = 0; i < scale; i++) {
+				width += 24;
+			}
+
+			if(scale < 0)
+			for (int i = scale; i < 0 ; i++) {
+				width-=12;
+			}
+
+			//...
+			float dCamD = this.getStage().getWidth()/2 - width  /2;
+			float dCamE = this.getStage().getWidth()/2 + width /2 - entity.getWidth()*tileWidth;
+
+			/*
+			java.awt.Point[x=185,y=183] 1.0
+			java.awt.Point[x=665,y=182] 1.0
+			java.awt.Point[x=173,y=174] 0.95
+			java.awt.Point[x=678,y=175] 0.95
+			-12 +12
+			-12 +12
+			java.awt.Point[x=159,y=166] 0.9
+			java.awt.Point[x=692,y=165] 0.9
+			 */
+
+			System.out.println(location+" "+dCamD+" "+this.camera.zoom);
 
 			float dCamT = this.getStage().getHeight()/2 - this.getMapHeight() / 2;
 			float dCamB = this.getStage().getHeight()/2 + this.getMapHeight() / 2 - entity.getHeight()*tileHeight;
