@@ -20,7 +20,6 @@ public class ResizeComponent extends JPanel {
     public void addResizer(Resize r) {
         this.resizeManagers.add(r);
         super.addMouseMotionListener(r);
-        super.addMouseListener(r);
     }
 
     public void disableResize(){
