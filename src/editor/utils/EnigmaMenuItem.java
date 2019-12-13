@@ -1,6 +1,5 @@
 package editor.utils;
 
-import editor.utils.managers.EnigmaMenuItemManager;
 import editor.utils.ui.EnigmaMenuItemUI;
 
 import javax.swing.*;
@@ -12,7 +11,11 @@ public class EnigmaMenuItem extends JMenuItem {
 
     public EnigmaMenuItem(String title){
         super(title);
-        this.addMouseListener(new EnigmaMenuItemManager(this));
+        this.setOpaque(true);
+    }
+
+    public EnigmaMenuItem(String title, Icon icon){
+        super(title, icon);
         this.setOpaque(true);
     }
 

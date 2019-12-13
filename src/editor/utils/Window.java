@@ -5,8 +5,6 @@ import editor.utils.ui.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 //TODO: permettre le plein écran (avec une méthode)
 //TODO: permettre l'ajout d'un fond d'écran
@@ -54,82 +52,7 @@ public class Window extends JFrame {
 		this.setSize(FULL_SCREEN_SIZE);
 		this.setMinimumSize(new Dimension((int) screenSize.getWidth() / 4, (int) screenSize.getHeight() / 3));
 		this.setLocation(0,0);
-		this.setUndecorated(true);
-
-		EnigmaMenuBar windowActionBar = new EnigmaMenuBar();
-		EnigmaMenuBarUI barUI = new EnigmaMenuBarUI();
-		boolean[] borderShowed = new boolean[4];
-		borderShowed[EnigmaUIValues.BOTTOM_BORDER] = EnigmaUIValues.SHOWED_BORDER;
-		barUI.setShowedBorders(borderShowed);
-		barUI.setBorderSize(2);
-		barUI.setBorder(Color.RED);
-		windowActionBar.setMenuBarUI(barUI);
-
-		Drag drag = new Drag(this);
-		windowActionBar.addMouseListener(drag);
-		windowActionBar.addMouseMotionListener(drag);
-
-		EnigmaButton quit = new EnigmaButton("X");
-		EnigmaButtonUI buttonUI = new EnigmaButtonUI();
-		buttonUI.setAllBorders(null,null,null);
-		buttonUI.setAllBackgrounds(barUI.getBackground(),Color.RED,Color.RED);
-		buttonUI.setAllForegrounds(Color.WHITE, Color.WHITE, Color.WHITE);
-		buttonUI.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-		quit.setButtonUI(buttonUI);
-		quit.addActionListener(new Exit(this));
-
-		EnigmaButton minimize = new EnigmaButton("-");
-		buttonUI.setAllBackgrounds(barUI.getBackground(), EnigmaUIValues.ENIGMA_BUTTON_PRESSED_BACKGROUND, EnigmaUIValues.ENIGMA_BUTTON_PRESSED_BACKGROUND);
-		minimize.setButtonUI(buttonUI);
-		minimize.addActionListener(new Minimize(this));
-
-		EnigmaButton smaller = new EnigmaButton("[]");
-		smaller.setButtonUI(buttonUI);
-		smaller.addActionListener(new Smaller(this));
-
-		windowActionBar.add(Box.createHorizontalGlue());
-		windowActionBar.add(minimize);
-		windowActionBar.add(smaller);
-		windowActionBar.add(quit);
-		this.setJMenuBar(windowActionBar);
-
-		this.content = new EnigmaPanel();
-		this.resizers[RIGHT_RESIZER] = new ResizeComponent(new Cursor(Cursor.E_RESIZE_CURSOR));
-		this.resizers[LEFT_RESIZER] = new ResizeComponent(new Cursor(Cursor.W_RESIZE_CURSOR));
-		this.resizers[BOTTOM_RESIZER] = new ResizeComponent(new Cursor(Cursor.S_RESIZE_CURSOR));
-		this.resizers[BOTTOM_LEFT_RESIZER] = new ResizeComponent(new Cursor(Cursor.SW_RESIZE_CURSOR));
-		this.resizers[BOTTOM_RIGHT_RESIZER] = new ResizeComponent(new Cursor(Cursor.SE_RESIZE_CURSOR));
-		this.resizers[TOP_RESIZER] = new ResizeComponent(new Cursor(Cursor.N_RESIZE_CURSOR));
-		this.resizers[TOP_LEFT_RESIZER] = new ResizeComponent(new Cursor(Cursor.NW_RESIZE_CURSOR));
-		this.resizers[TOP_RIGHT_RESIZER] = new ResizeComponent(new Cursor(Cursor.NE_RESIZE_CURSOR));
-
-		this.resizers[BOTTOM_RESIZER].setLayout(new BorderLayout());
-		this.resizers[TOP_RESIZER].setLayout(new BorderLayout());
-
-		this.resizers[RIGHT_RESIZER].addResizer(new ResizeRight(this,this.resizers[RIGHT_RESIZER]));
-		this.resizers[LEFT_RESIZER].addResizer(new ResizeLeft(this,this.resizers[LEFT_RESIZER]));
-		this.resizers[BOTTOM_RESIZER].addResizer(new ResizeBottom(this,this.resizers[BOTTOM_RESIZER]));
-		this.resizers[BOTTOM_LEFT_RESIZER].addResizer(new ResizeBottom(this,this.resizers[BOTTOM_LEFT_RESIZER]));
-		this.resizers[BOTTOM_RIGHT_RESIZER].addResizer(new ResizeBottom(this,this.resizers[BOTTOM_RIGHT_RESIZER]));
-		this.resizers[BOTTOM_LEFT_RESIZER].addResizer(new ResizeLeft(this,this.resizers[BOTTOM_LEFT_RESIZER]));
-		this.resizers[BOTTOM_RIGHT_RESIZER].addResizer(new ResizeRight(this,this.resizers[BOTTOM_RIGHT_RESIZER]));
-		this.resizers[TOP_RESIZER].addResizer(new ResizeTop(this,this.resizers[TOP_RESIZER]));
-		this.resizers[TOP_LEFT_RESIZER].addResizer(new ResizeTop(this,this.resizers[TOP_LEFT_RESIZER]));
-		this.resizers[TOP_RIGHT_RESIZER].addResizer(new ResizeTop(this,this.resizers[TOP_RIGHT_RESIZER]));
-		this.resizers[TOP_LEFT_RESIZER].addResizer(new ResizeLeft(this,this.resizers[TOP_LEFT_RESIZER]));
-		this.resizers[TOP_RIGHT_RESIZER].addResizer(new ResizeRight(this,this.resizers[TOP_RIGHT_RESIZER]));
-
-		this.resizers[BOTTOM_RESIZER].add(this.resizers[BOTTOM_LEFT_RESIZER],BorderLayout.WEST);
-		this.resizers[BOTTOM_RESIZER].add(this.resizers[BOTTOM_RIGHT_RESIZER],BorderLayout.EAST);
-		this.resizers[TOP_RESIZER].add(this.resizers[TOP_LEFT_RESIZER],BorderLayout.WEST);
-		this.resizers[TOP_RESIZER].add(this.resizers[TOP_RIGHT_RESIZER],BorderLayout.EAST);
-
-
-		this.add(this.resizers[RIGHT_RESIZER],BorderLayout.EAST);
-		this.add(this.resizers[LEFT_RESIZER],BorderLayout.WEST);
-		this.add(this.resizers[BOTTOM_RESIZER],BorderLayout.SOUTH);
-		this.add(this.resizers[TOP_RESIZER],BorderLayout.NORTH);
-		this.add(this.content, BorderLayout.CENTER);
+		this.init();
 	}
 
 	public Window(String title, int width, int height) {
@@ -140,8 +63,11 @@ public class Window extends JFrame {
 		this.setSize(width,height);
 		this.setLocation(CENTER);
 		this.setMinimumSize(new Dimension((int) screenSize.getWidth() / 4, (int) screenSize.getHeight() / 3));
-		this.setUndecorated(true);
+		this.init();
+	}
 
+	private void init(){
+		this.setUndecorated(true);
 		EnigmaMenuBar windowActionBar = new EnigmaMenuBar();
 		EnigmaMenuBarUI barUI = new EnigmaMenuBarUI();
 		boolean[] borderShowed = new boolean[4];
@@ -178,6 +104,13 @@ public class Window extends JFrame {
 		windowActionBar.add(smaller);
 		windowActionBar.add(quit);
 		this.setJMenuBar(windowActionBar);
+		EnigmaMenu m = new EnigmaMenu("bite");
+		m.setMenuUI(new EnigmaMenuUI());
+		EnigmaMenuItem mi = new EnigmaMenuItem("bite");
+		EnigmaMenuItemUI ui = new EnigmaMenuItemUI();
+		mi.setMenuItemUI(ui);
+		m.add(mi);
+		windowActionBar.add(m);
 
 		this.content = new EnigmaPanel();
 		this.resizers[RIGHT_RESIZER] = new ResizeComponent(new Cursor(Cursor.E_RESIZE_CURSOR));
@@ -348,6 +281,11 @@ public class Window extends JFrame {
 		this.setLocation(windowPosX + screenSize.x, windowPosY + screenSize.y);
 	}
 
-	public void setBackground(ImageIcon image){}
+	public void setBackground(ImageIcon image){
+		this.content.setOpaque(false);
+		for(ResizeComponent r: this.resizers) r.setOpaque(false);
+		ImageIcon i = new ImageIcon("o.png");
+		this.setIconImage(i.getImage().getScaledInstance(this.getWidth(),this.getHeight(),Image.SCALE_DEFAULT));
+	}
 }
 
