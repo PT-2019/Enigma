@@ -11,11 +11,11 @@ public interface Passage {
      * @return La pièce, null sinon
      */
 
-    public Room getRoom1();
+    Room getRoom1();
 
     /**
      * Obtenir la seconde pièce
      * @return La pièce, null sinon
      */
-    public Room getRoom2();
+    Room getRoom2();
 }

@@ -6,15 +6,15 @@ package editor.entity.interfaces;
  */
 public interface IDInterface {
 
-    /**
-     * Obtenir l'ID
-     * @return L'ID, -1 si pas initialisé
-     */
-    public int getID();
+	/**
+	 * Obtenir l'ID
+	 * @return L'ID, -1 si pas initialisé
+	 */
+	int getID();
 
-    /**
-     * Définir l'ID
-     * @param id ID
-     */
-    public void setID(int id);
+	/**
+	 * Définir l'ID
+	 * @param id ID
+	 */
+	void setID(int id);
 }

@@ -1,9 +1,12 @@
 package editor.map;
 
+import editor.datas.Direction;
+import editor.datas.Layer;
+import editor.entity.Player;
+import editor.entity.interfaces.Entity;
 import editor.entity.interfaces.IDInterface;
-import editor.enums.Direction;
-import editor.enums.Layer;
-import editor.texture.Texture;
+import editor.io.JsonTextureLoader;
+import editor.textures.Texture;
 
 import javax.swing.*;
 import java.util.HashMap;
@@ -29,7 +32,7 @@ public class Room implements IDInterface {
 	private int id;
 
 	/**
-	 * Crée une pièce
+	 * Crée un pièce
 	 */
 	public Room(){//TODO: include a way to render walls
 		this.col = 8;
@@ -37,44 +40,44 @@ public class Room implements IDInterface {
 
 		this.cases = new Case[this.row*this.col];
 
+		for (int i = 0; i < this.cases.length ; i++) {
+			this.cases[i] = new Case();
+		}
+
+		//fill
 		//pour les tests
 		ImageIcon img = new ImageIcon("assets/monsters/019.png");
 
 		for (int i = 0; i < this.cases.length ; i++) {
 			this.cases[i] = new Case();
 			this.cases[i].setWalkable(true);
-			this.cases[i].setTexture(Layer.DECORATIONS1,new Texture(5,img.getImage()));
-			this.cases[i].setTexture(Layer.DECORATIONS2,new Texture(5,img.getImage()));
-			this.cases[i].setTexture(Layer.FLOOR1,new Texture(5,img.getImage()));
-			this.cases[i].setTexture(Layer.FLOOR2,new Texture(5,img.getImage()));
+			this.cases[i].setEntity(Layer.DECORATIONS1,new Texture(5,img.getImage()));
+			this.cases[i].setEntity(Layer.DECORATIONS2,new Texture(5,img.getImage()));
+			this.cases[i].setEntity(Layer.FLOOR1,new Texture(5,img.getImage()));
+			this.cases[i].setEntity(Layer.FLOOR2,new Texture(5,img.getImage()));
 		}
+
+		//end
 
 		this.walls = new HashMap<>();
 	}
 
-	public Room(int col,int row,Case[] cases){
+	public Room(int id){
+		this();
+		this.id = id;
+	}
+
+	public Room(int col, int row, Case[] roomcase) {
 		this.col = col;
 		this.row = row;
-		this.walls = new HashMap<>();
-		this.cases = cases;
-	}
-
-
-	/**
-	 * Crée une pièce
-	 */
-	public Room(int id){//TODO: include a way to render walls
-		this.col = 8;
-		this.row = 11;
-
-		this.cases = new Case[this.row*this.col];
+		this.cases = roomcase;
 
 		for (int i = 0; i < this.cases.length ; i++) {
-			this.cases[i] = new Case();
-			this.cases[i].setWalkable(true);
+			if(this.cases[i] == null)
+				this.cases[i] = new Case();
 		}
+
 		this.walls = new HashMap<>();
-		this.id = id;
 	}
 
 	/**

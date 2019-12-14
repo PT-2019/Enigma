@@ -1,9 +1,9 @@
 package editor.enigma;
 
-import editor.attributes.Attributes;
+import editor.datas.Attributes;
 import editor.enigma.condition.Condition;
 import editor.enigma.operation.Operation;
-import editor.entity.player.Player;
+import editor.entity.Player;
 
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;
@@ -339,7 +339,7 @@ public class Enigma implements ActionListener {
     /**
      * Obtenir un EnumMap de l'objet avec ses attributs et leur état
      * @return EnumMap de l'objet
-     * @see editor.attributes.Attributes
+     * @see editor.datas.Attributes
      */
     public HashMap<String,Object> objectToMap(){
         HashMap<String,Object> object = new HashMap<>();

@@ -1,7 +1,7 @@
 package editor.enigma.condition;
 
+import editor.entity.Player;
 import editor.entity.item.Activatable;
-import editor.entity.player.Player;
 
 import java.util.Map;
 

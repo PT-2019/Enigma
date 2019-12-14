@@ -16,17 +16,17 @@ public interface EnigmaContainer {
      * @param e Enigme à ajouter
      * @throws IllegalArgumentException si l'énigme existe déjà
      */
-    public void addEnigma(Enigma e);
+    void addEnigma(Enigma e);
 
     /**
      * Permet de supprimer une énigme
      * @param e Enigme à supprimer
      */
-    public void removeEnigma(Enigma e);
+    void removeEnigma(Enigma e);
 
     /**
      * Obtenir toutes les énigmes
      * @return Iterator des énigmes
      */
-    public Iterator<Enigma> getAllEnigmas();
+    Iterator<Enigma> getAllEnigmas();
 }

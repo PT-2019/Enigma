@@ -1,6 +1,6 @@
 package editor.map;
 
-import editor.texture.TextureProxy;
+import editor.textures.TextureProxy;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -13,48 +13,44 @@ import java.io.IOException;
  * Utilisation de la méthode Sax.
  */
 public class MapLoader{
-    /**
-     * map chargé
-     */
-    private Map map;
+	/**
+	 * map chargé
+	 */
+	private Map map;
 
-    /**
-     * proxy qui va contenir toutes les textures nécessaire
-     */
-    private TextureProxy textureproxy;
+	/**
+	 * proxy qui va contenir toutes les textures nécessaire
+	 */
+	private TextureProxy textureproxy;
 
-    /**
-     * Chargement du fichier map
-     * @param fichier
-     */
-    public void load(String fichier){
-        try {
-            SAXParserFactory factory = SAXParserFactory.newInstance();
-            LoadHandler handler = new LoadHandler();
-            factory.setValidating(true);
+	/**
+	 * Chargement du fichier map
+	 * @param fichier
+	 */
+	public void load(String fichier){
+		try {
+			SAXParserFactory factory = SAXParserFactory.newInstance();
+			LoadHandler handler = new LoadHandler();
+			factory.setValidating(true);
 
-            SAXParser parser = factory.newSAXParser();
+			SAXParser parser = factory.newSAXParser();
 
-            parser.parse(fichier, handler);
+			parser.parse(fichier, handler);
 
-            map = handler.getMap();
+			map = handler.getMap();
 
-            textureproxy = handler.getProxyTexture();
+			textureproxy = handler.getProxyTexture();
 
-        }catch (IOException e){
-            System.err.println(e.getMessage());
-        } catch (SAXException e){
-            System.err.println(e.getMessage());
-        }catch (ParserConfigurationException e){
-            System.err.println(e.getMessage());
-        }
-    }
+		}catch (IOException | SAXException | ParserConfigurationException e){
+			System.err.println(e.getMessage());
+		}
+	}
 
-    public Map getMap() {
-        return map;
-    }
+	public Map getMap() {
+		return map;
+	}
 
-    public TextureProxy getTextureproxy() {
-        return textureproxy;
-    }
+	public TextureProxy getTextureproxy() {
+		return textureproxy;
+	}
 }

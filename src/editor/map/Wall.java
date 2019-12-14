@@ -36,8 +36,7 @@ public class Wall implements IDInterface {
 	 * @param id ID
 	 */
 	public Wall(Room printer, Case[] wall, int id){
-		this.printer = printer;
-		this.cases = wall;
+		this(printer, wall);
 		this.id = id;
 	}
 
@@ -56,4 +55,5 @@ public class Wall implements IDInterface {
 	public void setID(int id) {
 		this.id = id;
 	}
+
 }

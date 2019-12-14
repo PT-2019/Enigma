@@ -1,9 +1,9 @@
 package editor.enigma.condition;
 
-import editor.attributes.Attributes;
+import editor.datas.Attributes;
+import editor.entity.IDFactory;
+import editor.entity.Player;
 import editor.entity.interfaces.Entity;
-import editor.entity.player.Player;
-import editor.io.IDFactory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -64,7 +64,7 @@ public abstract class Condition {
     /**
      * Obtenir un EnumMap de l'objet avec ses attributs et leur état
      * @return EnumMap de l'objet
-     * @see editor.attributes.Attributes
+     * @see editor.datas.Attributes
      */
     public HashMap<String,Object> objectToMap(){
         HashMap<String,Object> object = new HashMap<>();

@@ -1,10 +1,14 @@
 package editor;
 
 import editor.api.Application;
-import editor.utils.Window;
+import editor.bibliotheque.MenuScreen;
+import editor.window.Window;
+
+import java.awt.*;
 
 /**
  * Lanceur de l'éditeur d'escape game
+ * @version 1.0
  */
 public class EditorLuncher implements Application {
 
@@ -19,13 +23,20 @@ public class EditorLuncher implements Application {
 	 */
 	public EditorLuncher(int width, int height) {
 		//préparer ici l'application pour son démarrage
-		this.window = new Window(width,height);//TODO: coder la classe fenêtre
+		this.window = new Window(width,height);
+
+		//ici on configure la fenêtre
 
 		//titre de la fenêtre
-		//this.window.setTitle("Enigma");
+		this.window.setTitle("Enigma");
 
 		// Icône de l'application
 		// this.window.setIconImage();
+
+		this.window.setLayout(new BorderLayout());
+		this.window.setLocationRelativeTo(null);
+		this.window.setDefaultCloseOperation(Window.EXIT_ON_CLOSE);
+		this.window.add(new MenuScreen(this.window), BorderLayout.CENTER);
 	}
 
 	@Override
