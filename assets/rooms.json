@@ -1,7 +1,7 @@
 {
   //TODO: implements textures
-  content: {
-    editor.map.Room: {
+  content: [
+    {
       className: editor.map.Room
       path: assets/map/datas/small-room.png
       category: ROOMS
@@ -34,16 +34,5 @@
         ]
       }
     }
-    editor.entity.item.Chest: {
-      className:  editor.entity.item.Chest
-      path: assets/map/datas/coffre.png
-      category: DECORS
-      width: 1
-      height: 1
-      tiles: {
-        FLOOR1: [910]
-        COLLISION: [1993]
-      }
-    }
-  }
+  ]
 }

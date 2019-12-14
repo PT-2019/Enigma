@@ -26,7 +26,7 @@ public class EntityFactory {
 	private static HashMap<String, Array<EntitySerializable>> loaded = new HashMap<>();
 
 	/** hashmap locale des entités chargés pour {@link Json#fromJson(Class, String)} **/
-	private HashMap<String, EntitySerializable> content = new HashMap<>();
+	private Array<EntitySerializable> content = new Array<>();
 
 	/** constructeur par défault pour new Instance de {@link Json#fromJson(Class, String)} **/
 	EntityFactory(){}
@@ -43,14 +43,13 @@ public class EntityFactory {
 		EntityFactory entityFactory = j.fromJson(EntityFactory.class, Utility.loadFile(path));
 
 		//ajout a la factory des entités chargés
-		for (Map.Entry<String, EntitySerializable> entity : entityFactory.content.entrySet()) {
-			String key = entity.getKey();
-			EntitySerializable value = entity.getValue();
+		for (EntitySerializable entity : new Array.ArrayIterator<>(entityFactory.content)) {
+			String key = entity.getClassName();//className
 			if(loaded.containsKey(key))
-				loaded.get(key).addAll(value);
+				loaded.get(key).addAll(entity);
 			else {
 				Array<EntitySerializable> array = new Array<>();
-				array.addAll(value);
+				array.addAll(entity);
 				loaded.put(key, array);
 			}
 		}

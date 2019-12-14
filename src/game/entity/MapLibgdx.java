@@ -14,6 +14,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Array;
 import editor.datas.Direction;
 import editor.datas.Layer;
@@ -27,32 +28,43 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.awt.*;
+import java.util.Iterator;
 import java.util.Set;
 
 import static game.api.MapsNameUtils.*;
 
-public class MapLibgdx extends Actor implements InputListener {
+/**
+ * Map de la libgdx
+ *
+ * @since 2.0 5 décembre 2019
+ * @version 3.0 14 décembre 2019
+ */
+public class MapLibgdx extends Group implements InputListener {
 
 	/**
-	 * The .tmx map
+	 * Dessinateur de la map
 	 */
 	private OrthogonalTiledMapRenderer map;
+
 	/**
-	 * Map's camera
+	 * Caméra de la map
 	 */
 	private OrthographicCamera camera;
 
+	/**
+	 * Bordure des cases de la map
+	 */
 	private Border border;
 
 	/**
-	 * Main map infos
+	 * info principales
 	 */
 	private final int tileWidth, tileHeight, width, height;
 
 	/**
-	 * Create a map from a .tmx file.
+	 * Crée une map depuis un fichier tmx
 	 *
-	 * @param path the .tmx file
+	 * @param path fichier .tmx
 	 */
 	public MapLibgdx(@NotNull String path) {
 		//load the map
@@ -66,25 +78,23 @@ public class MapLibgdx extends Actor implements InputListener {
 		this.width = properties.get(WIDTH_P.value, Integer.class);
 		this.height = properties.get(HEIGHT_P.value, Integer.class);
 
-		border = new Border(width, height, tileHeight);
+		this.border = new Border(this.width, this.height, this.tileHeight);
+
+		this.map.getMap().getLayers().get(COLLISION.toString().toUpperCase()).setVisible(false);
 
 		//setup camera
 		this.camera = new OrthographicCamera();
 		this.camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		this.camera.update();
-
 		this.camera.position.set(getMapWidth()/2,getMapHeight()/2,0);
-	}
-
-	private float getMapHeight() {
-		return height * tileHeight;
+		this.camera.update();
 	}
 
 	@Override
 	public void act(float delta) {
 		super.act(delta);
-
+		//update caméra
 		camera.update();
+		//update borders
 		border.setProjectionMatrix(camera.combined);
 	}
 
@@ -95,8 +105,10 @@ public class MapLibgdx extends Actor implements InputListener {
 		//Setup camera
 		this.map.setView(this.camera);
 
+		//render map
 		this.map.render();
 
+		//render borders
 		this.border.draw();
 	}
 
@@ -134,10 +146,6 @@ public class MapLibgdx extends Actor implements InputListener {
 			return true;
 		}
 		return false;
-	}
-
-	public float getMapWidth() {
-		return width * tileWidth;
 	}
 
 	/**
@@ -221,6 +229,10 @@ public class MapLibgdx extends Actor implements InputListener {
 
 		return index;
 	}
+
+	private float getMapHeight() { return height * tileHeight; }
+
+	public float getMapWidth() { return width * tileWidth; }
 
 	public float getUnitScale(){ return this.map.getUnitScale(); }
 

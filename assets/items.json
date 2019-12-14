@@ -1,0 +1,15 @@
+{
+  content: [
+    {
+      className: editor.entity.item.Book
+      path: assets/map/datas/book.png
+      category: ITEMS
+      width: 1
+      height: 1
+      tiles: {
+        FLOOR2: [1006]
+        COLLISION: [2041]
+      }
+    }
+  ]
+}

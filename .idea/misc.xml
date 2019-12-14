@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="LibGDXGdxJsonFiles">
+    <file url="file://$PROJECT_DIR$/assets/decors.json" />
+    <file url="file://$PROJECT_DIR$/assets/entities.json" />
+    <file url="file://$PROJECT_DIR$/assets/items.json" />
     <file url="file://$PROJECT_DIR$/assets/rooms.json" />
   </component>
   <component name="LibGDXNonSkins">

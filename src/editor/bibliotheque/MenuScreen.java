@@ -43,6 +43,9 @@ public class MenuScreen extends JPanel {
 
 		//load entities
 		EntityFactory.loadEntities("assets/rooms.json");
+		EntityFactory.loadEntities("assets/items.json");
+		EntityFactory.loadEntities("assets/decors.json");
+		EntityFactory.loadEntities("assets/entities.json");
 
 		CardLayout pageObjet = new CardLayout();
 
