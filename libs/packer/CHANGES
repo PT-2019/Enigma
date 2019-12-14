@@ -15,7 +15,7 @@
 - Fixed programmatic 9-patch pad values are omitted if they are all zero.
 - Fixed 9-patch editor crashes when all patch/content points at the same corner.
 - Fixed 9-patch editor writes file based images ("*.9.png" extension) with black stroke visual artifacts.
-- Fixed global settings section values get reset upon UI reload (e.g. language change).
+- Fixed global settings section values get reset upon UI reload (entity.g. language change).
 - Fixed global keyboard shortcuts no longer works when there is a modal dialog shown.
 - Fixed exclude files do not work when are under input dir with "recursive" option enabled.
 

@@ -1,6 +1,6 @@
-package editor.bibliotheque;
+package editor.datas;
 
-public enum MenuCategories {
+public enum EntitiesCategories {
 	ROOMS("Salles"),
 	DECORS("Décors"),
 	ITEMS("Objects"),
@@ -9,7 +9,7 @@ public enum MenuCategories {
 
 	public final String name;
 
-	MenuCategories(String name){
+	EntitiesCategories(String name){
 		this.name = name;
 	}
 

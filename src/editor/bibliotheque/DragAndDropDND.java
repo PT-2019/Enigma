@@ -48,7 +48,7 @@ public class DragAndDropDND extends TransferHandler implements DragGestureListen
 			Object source = dtde.getTransferable().getTransferData(dataFlavor[0]);
 
 			//on le transforme en label
-			MenuScreen.CustomLabel component = (MenuScreen.CustomLabel) ((DragSourceContext) source).getComponent();
+			EntityContainer component = (EntityContainer) ((DragSourceContext) source).getComponent();
 
 			if(EnigmaGame.getInstance() != null){
 				//récupère la map
@@ -56,6 +56,7 @@ public class DragAndDropDND extends TransferHandler implements DragGestureListen
 				//lui transmet le 'label' déplacé
 				m.load(component.getContent(), dtde.getLocation());
 			} else {
+				Gdx.app.error(this.getClass().toString(),"Game isn't loaded !");
 				throw new IllegalStateException("Game isn't loaded !");
 			}
 		} catch (UnsupportedFlavorException| IOException ex) {
@@ -74,7 +75,6 @@ public class DragAndDropDND extends TransferHandler implements DragGestureListen
 	}
 
 	//Ici les méthodes sur l'object déplacé
-
 
 	@Override
 	public void dragEnter(DragSourceDragEvent dsde) {}

@@ -2,12 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4b6e0b2a-a6ad-4eff-b2cc-63f9693ec5fe" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Enigma.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Enigma.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/enigma.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/rooms.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/rooms.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/packer/CHANGES" beforeDir="false" afterPath="$PROJECT_DIR$/libs/packer/CHANGES" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/bibliotheque/ChoixObjet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bibliotheque/ChoixObjet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/editor/bibliotheque/DragAndDropDND.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bibliotheque/DragAndDropDND.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/bibliotheque/DragGesture.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/bibliotheque/MenuCategories.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/datas/EntitiesCategories.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/bibliotheque/MenuScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bibliotheque/MenuScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/datas/Attributes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/datas/Attributes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/EntityFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/EntityFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/interfaces/Content.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/interfaces/Content.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/interfaces/EnigmaContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/interfaces/EnigmaContainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/interfaces/IDInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/interfaces/IDInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/interfaces/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/interfaces/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/interfaces/Lockable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/interfaces/Lockable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/interfaces/Passage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/interfaces/Passage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/utils/CalculHeader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/utils/CalculHeader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game/entity/MapLibgdx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/entity/MapLibgdx.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,11 +29,15 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
+  <component name="FileEditorManager">
+    <leaf />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
         <option value="Enum" />
+        <option value="AnnotationType" />
         <option value="Class" />
       </list>
     </option>
@@ -36,7 +50,72 @@
       </map>
     </option>
   </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/editor/bibliotheque/DragAndDropDND.java" />
+        <option value="$PROJECT_DIR$/src/editor/utils/ConvenienceMethod.java" />
+        <option value="$PROJECT_DIR$/src/editor/bibliotheque/EntityContainer.java" />
+        <option value="$PROJECT_DIR$/src/editor/bibliotheque/MenuScreen.java" />
+        <option value="$PROJECT_DIR$/src/editor/entity/EntityFactory.java" />
+        <option value="$PROJECT_DIR$/assets/rooms.json" />
+        <option value="$PROJECT_DIR$/src/editor/entity/EntitySerializable.java" />
+        <option value="$PROJECT_DIR$/src/game/entity/MapLibgdx.java" />
+        <option value="$PROJECT_DIR$/src/game/entity/MapLibgdxCell.java" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1300" />
+    <option name="height" value="876" />
+  </component>
   <component name="ProjectId" id="1T4PWZYsjf2nuTU9Vgk0aB5pF47" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="editor" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="game" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="game" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+    </panes>
+  </component>
   <component name="PropertiesComponent">
     <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -46,9 +125,17 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.spelling" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/assets/files/atlas" />
+      <recent name="$PROJECT_DIR$/assets/files" />
+      <recent name="$PROJECT_DIR$/assets/Map" />
+      <recent name="$PROJECT_DIR$/assets/entities" />
+      <recent name="$PROJECT_DIR$/assets/ui" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="editor.entity" />
       <recent name="editor.bibliotheque" />
@@ -61,13 +148,6 @@
       <recent name="editor.entity.view" />
       <recent name="game.screen" />
       <recent name="com.enigma.game" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/assets/files/atlas" />
-      <recent name="$PROJECT_DIR$/assets/files" />
-      <recent name="$PROJECT_DIR$/assets/Map" />
-      <recent name="$PROJECT_DIR$/assets/entities" />
-      <recent name="$PROJECT_DIR$/assets/ui" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -95,7 +175,7 @@
       <module name="Enigma" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="editor.bibliotheque.*" />
+          <option name="PATTERN" value="editor.datas.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -109,7 +189,7 @@
       <module name="Enigma" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="editor.bibliotheque.*" />
+          <option name="PATTERN" value="editor.datas.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -117,6 +197,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.DesktopLuncher" />
+      <item itemvalue="Application.DragGesture" />
+      <item itemvalue="Application.DragImage" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.DesktopLuncher" />
@@ -171,13 +256,59 @@
       <configuration name="MapTestMain.testMapStructureWork" configurationId="JUnit" />
     </history-entry>
   </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27022654" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Learn" order="6" />
+      <window_info id="Favorites" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32949308" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.17396313" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32949308" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32949308" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Maven" order="6" />
+      <window_info anchor="right" id="make" order="7" />
+      <window_info anchor="right" id="Palette&#9;" order="8" />
+    </layout>
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
             <State>
-              <option name="COLUMN_ORDER" />
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
             </State>
           </value>
         </entry>
@@ -197,5 +328,119 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/DesktopLuncher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/EnigmaGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/utils/ConvenienceMethod.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="38" lean-forward="true" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/datas/EntitiesCategories.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/bibliotheque/ChoixObjet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/bibliotheque/DragAndDropDND.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="809">
+          <caret line="136" column="13" lean-forward="true" selection-start-line="136" selection-start-column="13" selection-end-line="136" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/bibliotheque/MenuScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="76" lean-forward="true" selection-start-line="76" selection-end-line="76" />
+          <folding>
+            <element signature="method#MenuScreen#0;class#MenuScreen#0" />
+            <element signature="method#loadChoicesMenu#0;class#MenuScreen#0" />
+            <element signature="method#loadSideBar#0;class#MenuScreen#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/bibliotheque/EntityContainer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="43" column="58" selection-start-line="43" selection-start-column="58" selection-end-line="43" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/entity/EntityFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-404">
+          <caret line="13" column="32" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/rooms.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="35" column="5" lean-forward="true" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/entity/item/Chest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-153">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/entity/EntitySerializable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="38" column="36" lean-forward="true" selection-start-line="38" selection-start-column="36" selection-end-line="38" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/entity/MapLibgdx.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="179" column="32" selection-start-line="179" selection-start-column="32" selection-end-line="179" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/entity/MapLibgdxCell.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="22" column="5" lean-forward="true" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>

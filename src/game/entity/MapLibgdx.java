@@ -18,6 +18,7 @@ import com.badlogic.gdx.utils.Array;
 import editor.datas.Direction;
 import editor.datas.Layer;
 import editor.entity.EntityFactory;
+import editor.entity.EntitySerializable;
 import editor.entity.interfaces.Entity;
 import editor.utils.Utility;
 import game.ui.Border;
@@ -122,16 +123,12 @@ public class MapLibgdx extends Actor implements InputListener {
 		return false;
 	}
 
-	int scale = 0;
-
 	@Override
 	public boolean scrolled(int amount) {
 		if (Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT)){
 			if (amount==1){
-				scale++;
 				camera.zoom += 0.05;
 			}else{
-				scale--;
 				camera.zoom -= 0.05;
 			}
 			return true;
@@ -143,73 +140,79 @@ public class MapLibgdx extends Actor implements InputListener {
 		return width * tileWidth;
 	}
 
-	//TODO: refaire, illisible et deg
-	public void load(EntityFactory.EntitySerializable entity, Point location) {
+	/**
+	 *
+	 * Charge une entité dans la map depuis un point
+	 *
+	 * @param entity entité a placer
+	 * @param location coordonnés x,y ou placer l'entité
+	 *
+	 * @since 3.0 14 décembre 2019
+	 */
+	public void load(EntitySerializable entity, Point location) {
+		//on parcours toutes les niveaux de la map et on y ajoute les tiles de l'entité
 		for (MapLayer mapLayer: this.map.getMap().getLayers()) {
+			//c'est un layer de tiles ?
 			if(!(mapLayer instanceof TiledMapTileLayer)) continue;
+
 			TiledMapTileLayer tileLayer = (TiledMapTileLayer) mapLayer;
 
+			//récupère les tiles de l'entités pour ce niveau
 			Array<Float> entities = entity.getTiles(Utility.stringToEnum(tileLayer.getName(), Layer.values()));
 
+			//si pas de tiles a mettre sur ce layer, on passe au suivant
 			if(entities == null) continue;
 
-			float width = this.getMapWidth(), height = this.getMapWidth();
-
-			for (int i = 0; i < scale; i++) {
-				width += 24;
-			}
-
-			if(scale < 0)
-			for (int i = scale; i < 0 ; i++) {
-				width-=12;
-			}
-
-			//...
-			float dCamD = this.getStage().getWidth()/2 - width  /2;
-			float dCamE = this.getStage().getWidth()/2 + width /2 - entity.getWidth()*tileWidth;
-
-			/*
-			java.awt.Point[x=185,y=183] 1.0
-			java.awt.Point[x=665,y=182] 1.0
-			java.awt.Point[x=173,y=174] 0.95
-			java.awt.Point[x=678,y=175] 0.95
-			-12 +12
-			-12 +12
-			java.awt.Point[x=159,y=166] 0.9
-			java.awt.Point[x=692,y=165] 0.9
-			 */
-
-			System.out.println(location+" "+dCamD+" "+this.camera.zoom);
-
+			//TODO: supprimer ses trucs dégeu pour obtenir la taille de la map dans l'espace
+			float dCamD = this.getStage().getWidth()/2 - this.getMapWidth() /2;
+			float dCamE = this.getStage().getWidth()/2 + this.getMapWidth() /2 - entity.getWidth()*tileWidth;
 			float dCamT = this.getStage().getHeight()/2 - this.getMapHeight() / 2;
 			float dCamB = this.getStage().getHeight()/2 + this.getMapHeight() / 2 - entity.getHeight()*tileHeight;
 
-			Vector2 deb;
-			if(location.x >= dCamD && location.x <= dCamE){
-				if(location.y >= dCamT && location.y <= dCamB){
-					deb = posToIndex(location.x, location.y, this);
-				} else {
-					return;
+			//on regarde si l'entités est dans la map
+			Vector2 start = null; //start contient le x, y ou on commence a placer les tiles
+			if(location.x >= dCamD && location.x <= dCamE){//Axe x
+				if(location.y >= dCamT && location.y <= dCamB){//Axe y
+					start = posToIndex(location.x, location.y, this);
 				}
-			} else {
-				return;
 			}
 
-			for (int i = (int) deb.y -1 , index = 0; i >= (deb.y - entity.getHeight()) ; i--) {
-				for (int j = (int) deb.x; j < deb.x + entity.getWidth() && index < entities.size ; j++, index++) {
-					TiledMapTileLayer.Cell c = new TiledMapTileLayer.Cell();
+			//si pas dans la map
+			if(start == null) return;
+
+			//calcul pour placer les tiles depuis x et y
+			//sachant que y est inversé, on part de la dernière tile et on remonte
+			//pas de problème pour x
+			for (int i = (int) start.y -1 , index = 0; i >= (start.y - entity.getHeight()) ; i--) {
+				for (int j = (int) start.x; j < start.x + entity.getWidth() && index < entities.size ; j++, index++) {
+					MapLibgdxCell c = new MapLibgdxCell();
 					c.setTile(this.map.getMap().getTileSets().getTile(MathUtils.ceil(entities.get(index))));
+					c.setEntity(entity);
 					tileLayer.setCell(j, i, c);
 				}
 			}
 		}
 	}
 
+	/**
+	 * Retourne la case (indices) dans la map depuis une positon x,y dans l'espace.
+	 *
+	 * Attention! La position  x,y est considérée comme étant toujours dans la map.
+	 *
+	 * @param posX position x
+	 * @param posY position y
+	 * @param map la map
+	 *
+	 * @return la case (indices) dans la map depuis une positon x,y dans l'espace.
+	 *
+	 * @since 3.0 14 décembre 2019
+	 */
 	private static Vector2 posToIndex(float posX, float posY, MapLibgdx map) {
 		Vector2 index = new Vector2();
 
 		//convert coordinates to row and column
 		//and clamp to the map
+		//TODO: supprimer ici aussi mais même calcul que dans load
 		float dCamD = map.getStage().getWidth()/2 - map.getMapWidth() /2;
 		float dCamT = map.getStage().getHeight()/2 - map.getMapHeight() / 2;
 
@@ -221,12 +224,8 @@ public class MapLibgdx extends Actor implements InputListener {
 
 	public float getUnitScale(){ return this.map.getUnitScale(); }
 
-	public int getTileWidth() {
-		return tileWidth;
-	}
+	public int getTileWidth() { return tileWidth; }
 
-	public int getTileHeight() {
-		return tileHeight;
-	}
+	public int getTileHeight() { return tileHeight; }
 }
 

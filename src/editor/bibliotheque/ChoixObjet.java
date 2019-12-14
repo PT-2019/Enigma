@@ -1,6 +1,6 @@
 package editor.bibliotheque;
 
-import editor.utils.Utility;
+import editor.datas.EntitiesCategories;
 
 import javax.swing.*;
 import java.awt.*;
@@ -41,7 +41,7 @@ public class ChoixObjet implements ActionListener {
     public void actionPerformed(ActionEvent actionEvent) {
         String msg =  actionEvent.getActionCommand();
 
-        for (MenuCategories category : MenuCategories.values()) {
+        for (EntitiesCategories category : EntitiesCategories.values()) {
             if(msg.equals(category.name)){
                 this.card.show(this.panneau, category.name());
                 this.panneau.revalidate();

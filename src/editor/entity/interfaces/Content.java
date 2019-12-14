@@ -10,11 +10,11 @@ public interface Content {
      * Ajoute un contenu à l'objet
      * @param content Contenu à ajouter
      */
-    public void addContent(String content);
+    void addContent(String content);
 
     /**
      * Obtenir le contenu
      * @return le contenu, le contenu peut être vide
      */
-    public String getContent();
+    String getContent();
 }

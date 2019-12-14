@@ -2,6 +2,7 @@
   //TODO: implements textures
   content: {
     editor.map.Room: {
+      className: editor.map.Room
       path: assets/map/datas/small-room.png
       category: ROOMS
       width: 10
@@ -33,7 +34,8 @@
         ]
       }
     }
-    editor.entity.item.check: {
+    editor.entity.item.Chest: {
+      className:  editor.entity.item.Chest
       path: assets/map/datas/coffre.png
       category: DECORS
       width: 1
