@@ -35,8 +35,6 @@ public class PopMenuListener implements ItemListener, ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Zoom du jeu")){
             ((OrthographicCamera) camera).zoom = zoom;
-        }else{
-            ((OrthographicCamera) camera).viewportHeight = 1500;
         }
     }
 }

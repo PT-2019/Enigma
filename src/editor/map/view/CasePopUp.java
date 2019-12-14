@@ -14,13 +14,11 @@ public class CasePopUp extends JDialog {
     private Entity currentEntity;
 
     public CasePopUp(JComponent component){
-        super((JFrame)component.getRootPane().getParent(),"Case Information",false);
+        super((JFrame)component.getRootPane().getParent(),"Case Information",true);
         this.setSize(300,300);
         this.setLocation(Gdx.graphics.getWidth()/2,Gdx.graphics.getHeight()/2);
         this.setResizable(false);
-    }
 
-    public void display(){
         this.setLayout(new GridLayout(3,2));
 
         this.add(new JButton("Suivant"));
@@ -28,6 +26,9 @@ public class CasePopUp extends JDialog {
         this.add(new JButton("Précédent"));
         this.add(new JLabel("Gérer les énigmes"));
         this.add(new JButton("Supprimer"));
+    }
+
+    public void display(){
 
         this.setVisible(true);
     }
