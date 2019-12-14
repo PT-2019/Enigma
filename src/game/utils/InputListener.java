@@ -1,11 +1,13 @@
 package game.utils;
 
 import com.badlogic.gdx.InputProcessor;
+import editor.utils.ConvenienceClass;
 
 /**
  * Convenience interface for input (to implements InputProcessor)
  * Contains methods to process keyboard, mouse, and scroll input.
  */
+@ConvenienceClass
 public interface InputListener extends InputProcessor {
 
 	/**

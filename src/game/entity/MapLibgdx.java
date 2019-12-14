@@ -18,6 +18,7 @@ import editor.datas.Layer;
 import editor.entity.EntitySerializable;
 import editor.utils.Utility;
 import game.ui.Border;
+import game.utils.Bounds;
 import game.utils.InputListener;
 import org.jetbrains.annotations.NotNull;
 
@@ -53,6 +54,8 @@ public class MapLibgdx extends Group implements InputListener {
 	 */
 	private Border border;
 
+	private Bounds mapBounds;
+
 	/**
 	 * Crée une map depuis un fichier tmx
 	 *
@@ -85,6 +88,11 @@ public class MapLibgdx extends Group implements InputListener {
 		this.camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		this.camera.position.set(getMapWidth() / 2, getMapHeight() / 2, 0);
 		this.camera.update();
+
+		//bounds
+		this.setMapBounds();
+
+		System.out.println(mapBounds);
 	}
 
 	/**
@@ -102,13 +110,18 @@ public class MapLibgdx extends Group implements InputListener {
 		Vector2 index = new Vector2();
 
 		//convert coordinates to row and column
-		//and clamp to the map
-		//TODO: supprimer ici aussi mais même calcul que dans load
-		float dCamD = map.getStage().getWidth() / 2 - map.getMapWidth() / 2;
-		float dCamT = map.getStage().getHeight() / 2 - map.getMapHeight() / 2;
+		posX = (posX / map.getUnitScale()) - map.mapBounds.left;
+		posY = (posY / map.getUnitScale()) - map.mapBounds.top;
 
-		index.x = MathUtils.round((posX - dCamD) / map.tileWidth);
-		index.y = map.height - Math.round((posY - dCamT) / map.tileHeight);
+		float mapW = (map.mapBounds.right - map.mapBounds.left) / map.tileWidth;
+		float mapH = (map.mapBounds.bot - map.mapBounds.top) / map.tileHeight;
+
+		//and clamp to the map
+		float column = MathUtils.clamp(Math.round(posX / map.getTileWidth()), 0, mapW);
+		float row = MathUtils.clamp(Math.round(posY / map.getTileHeight()), 0, mapH);
+
+		index.x = column;
+		index.y = mapH - row;
 
 		return index;
 	}
@@ -163,13 +176,37 @@ public class MapLibgdx extends Group implements InputListener {
 	public boolean scrolled(int amount) {
 		if (Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT)) {
 			if (amount == 1) {
-				camera.zoom += 0.05;
+				camera.zoom += 0.1;
+				updateMapBounds(-1);
 			} else {
-				camera.zoom -= 0.05;
+				camera.zoom -= 0.1;
+				updateMapBounds(1);
 			}
 			return true;
 		}
 		return false;
+	}
+
+	private void updateMapBounds(float zoom){
+		float left = this.mapBounds.left, right = this.mapBounds.right;
+		float top =  this.mapBounds.top, bot =  this.mapBounds.bot;
+
+		left -= zoom * 27;
+		right += zoom * 27;
+		top -= zoom * 18;
+		bot += zoom * 18;
+
+		this.mapBounds = new Bounds(left, right, top, bot);
+
+		System.out.println(this.mapBounds);
+	}
+
+	private void setMapBounds() {
+		float left = Gdx.graphics.getWidth() / 2f - this.getMapWidth() / 2;
+		float right = Gdx.graphics.getWidth() / 2f + this.getMapWidth() / 2;
+		float top = Gdx.graphics.getHeight() / 2f - this.getMapHeight() / 2;
+		float bot = Gdx.graphics.getHeight() / 2f + this.getMapHeight() / 2;
+		this.mapBounds = new Bounds(left, right, top, bot);
 	}
 
 	/**
@@ -193,16 +230,15 @@ public class MapLibgdx extends Group implements InputListener {
 			//si pas de tiles a mettre sur ce layer, on passe au suivant
 			if (entities == null) continue;
 
-			//TODO: supprimer ces trucs moches pour obtenir la taille de la map dans l'espace
-			float dCamD = this.getStage().getWidth() / 2 - this.getMapWidth() / 2;
-			float dCamE = this.getStage().getWidth() / 2 + this.getMapWidth() / 2 - entity.getWidth() * tileWidth;
-			float dCamT = this.getStage().getHeight() / 2 - this.getMapHeight() / 2;
-			float dCamB = this.getStage().getHeight() / 2 + this.getMapHeight() / 2 - entity.getHeight() * tileHeight;
+			System.out.println(location+" "+camera.zoom);
+
+			float maxW = this.mapBounds.right ;//- entity.getWidth() * tileWidth;
+			float maxH = this.mapBounds.bot ;//- entity.getHeight() * tileHeight;
 
 			//on regarde si l'entités est dans la map
 			Vector2 start = null; //start contient le x, y ou on commence a placer les tiles
-			if (location.x >= dCamD && location.x <= dCamE) {//Axe x
-				if (location.y >= dCamT && location.y <= dCamB) {//Axe y
+			if (location.x >= this.mapBounds.left && location.x <= maxW) {//Axe x
+				if (location.y >= this.mapBounds.top && location.y <= maxH) {//Axe y
 					start = posToIndex(location.x, location.y, this);
 				}
 			}

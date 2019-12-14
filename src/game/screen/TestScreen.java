@@ -15,18 +15,22 @@ public class TestScreen extends LibgdxScreen {
 
 	@Override
 	public void init() {
-		Gdx.gl.glClearColor(255, 255, 255, 255);
+		try {
+			Gdx.gl.glClearColor(255, 255, 255, 255);
 
-		this.main = new Stage();
+			this.main = new Stage();
 
-		this.main.setViewport(new ExtendViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
+			this.main.setViewport(new ExtendViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
 
-		this.map = new MapLibgdx("assets/map/Empty.tmx");
+			this.map = new MapLibgdx("assets/map/Empty.tmx");
 
-		this.main.addActor(map);
+			this.main.addActor(map);
 
-		this.listen(map);
-		this.listen(this.main);
+			this.listen(map);
+			this.listen(this.main);
+		} catch (Exception e) {
+			Gdx.app.error(this.getClass().toString(), e.toString());
+		}
 	}
 
 	@Override
