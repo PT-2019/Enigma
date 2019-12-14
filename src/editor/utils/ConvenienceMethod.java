@@ -1,3 +1,4 @@
 package editor.utils;
 
-public @interface ConvenienceMethod {}
+public @interface ConvenienceMethod {
+}

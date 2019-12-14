@@ -2,7 +2,11 @@ package editor.utils;
 
 import com.badlogic.gdx.utils.Array;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Reader;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,35 +26,32 @@ public class Utility {
 	 * Les saut de lignes sont conservés.
 	 *
 	 * @param path le chemin du fichier
-	 *
 	 * @return le fichier sous la forme d'une String
-	 *
 	 * @throws IllegalStateException si la lecture échoue
-	 *
 	 * @since 2.0
 	 */
-	public static String readFile(String path){
+	public static String readFile(String path) {
 		StringBuilder string = new StringBuilder();//pour notre fichier
 		BufferedReader bufferReader;
 
-		try{
+		try {
 			//ouverture du flux
 			bufferReader = new BufferedReader(new FileReader(new File(path)));
 			String line; // stocke la ligne courante
 
-			while((line = bufferReader.readLine()) != null){
+			while ((line = bufferReader.readLine()) != null) {
 				string.append(line);//ajoute la ligne
 				string.append("\n");//et son saut de ligne //System.lineSeparator()
 			}
 			bufferReader.close(); //fermeture du flux
-		}catch(IOException e){//+file not found exception
+		} catch (IOException e) {//+file not found exception
 			throw new IllegalStateException("lecture de fichier raté");
 		}
 
 		return string.toString();
 	}
 
-	public static String normalize(String string){
+	public static String normalize(String string) {
 		string = string.toLowerCase();//lower case
 		//escape non ascii chars
 		string = Normalizer.normalize(string, Normalizer.Form.NFD);
@@ -58,35 +59,35 @@ public class Utility {
 		return string;
 	}
 
-	public static <T extends java.lang.Enum> T stringToEnum(String name, T[] enumValues){
+	public static <T extends java.lang.Enum> T stringToEnum(String name, T[] enumValues) {
 		name = name.toLowerCase();//lower case
 		//escape non ascii chars
 		name = Normalizer.normalize(name, Normalizer.Form.NFD);
 		name = name.replaceAll("[^\\x00-\\x7F]", "");
 
-		for (T screen: enumValues) {
-			if(screen.name().toLowerCase().equals(name))
+		for (T screen : enumValues) {
+			if (screen.name().toLowerCase().equals(name))
 				return screen;
 		}
 
-		throw new IllegalArgumentException("name not found "+name);
+		throw new IllegalArgumentException("name not found " + name);
 	}
 
 	public static Reader loadFile(String path) {
-		try{
+		try {
 			return new BufferedReader(new FileReader(path));
-		} catch (IOException e){
+		} catch (IOException e) {
 			throw new IllegalStateException("error loading file");
 		}
 	}
 
-	public static void printHashMap(HashMap<?, ?> hashMap){
+	public static void printHashMap(HashMap<?, ?> hashMap) {
 		for (Map.Entry<?, ?> entry : hashMap.entrySet()) {
-			System.out.println(entry.getKey()+"->");
+			System.out.println(entry.getKey() + "->");
 			Object value = entry.getValue();
-			if(value instanceof ArrayList){
+			if (value instanceof ArrayList) {
 				System.out.println(Arrays.toString(((ArrayList) value).toArray()));
-			} else if( value instanceof Array){
+			} else if (value instanceof Array) {
 				System.out.println(Arrays.toString(((Array) value).toArray()));
 			} else {
 				System.out.println(value);

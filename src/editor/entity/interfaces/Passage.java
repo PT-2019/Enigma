@@ -6,16 +6,18 @@ import editor.map.Room;
  * Définie une entité comme traversable pour faire le lien entre deux pièces
  */
 public interface Passage {
-    /**
-     * Obtenir la première pièce
-     * @return La pièce, null sinon
-     */
+	/**
+	 * Obtenir la première pièce
+	 *
+	 * @return La pièce, null sinon
+	 */
 
-    Room getRoom1();
+	Room getRoom1();
 
-    /**
-     * Obtenir la seconde pièce
-     * @return La pièce, null sinon
-     */
-    Room getRoom2();
+	/**
+	 * Obtenir la seconde pièce
+	 *
+	 * @return La pièce, null sinon
+	 */
+	Room getRoom2();
 }

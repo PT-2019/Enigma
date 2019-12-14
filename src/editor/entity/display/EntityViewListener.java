@@ -8,7 +8,7 @@ public class EntityViewListener implements MouseListener {
 
 	private JPopupMenu menu;
 
-	public EntityViewListener(JPopupMenu menu){
+	public EntityViewListener(JPopupMenu menu) {
 		this.menu = menu;
 	}
 
@@ -26,8 +26,8 @@ public class EntityViewListener implements MouseListener {
 	public void mouseReleased(MouseEvent mouseEvent) {
 		JComponent composant = (JComponent) mouseEvent.getSource();
 		composant = (JComponent) composant.getParent();
-		if (mouseEvent.getButton() == MouseEvent.BUTTON3){
-			menu.show(composant,mouseEvent.getX(),mouseEvent.getY());
+		if (mouseEvent.getButton() == MouseEvent.BUTTON3) {
+			menu.show(composant, mouseEvent.getX(), mouseEvent.getY());
 		}
 	}
 

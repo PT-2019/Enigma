@@ -2,6 +2,7 @@ package editor.datas;
 
 /**
  * Nom des couches pour l'affichage de la map
+ *
  * @version 1.0
  */
 public enum Layer {

@@ -13,7 +13,17 @@ import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
-import java.awt.dnd.*;
+import java.awt.dnd.DragGestureEvent;
+import java.awt.dnd.DragGestureListener;
+import java.awt.dnd.DragSourceContext;
+import java.awt.dnd.DragSourceDragEvent;
+import java.awt.dnd.DragSourceDropEvent;
+import java.awt.dnd.DragSourceEvent;
+import java.awt.dnd.DragSourceListener;
+import java.awt.dnd.DropTargetDragEvent;
+import java.awt.dnd.DropTargetDropEvent;
+import java.awt.dnd.DropTargetEvent;
+import java.awt.dnd.DropTargetListener;
 import java.io.IOException;
 
 public class DragAndDropDND extends TransferHandler implements DragGestureListener, DragSourceListener, DropTargetListener, Transferable {
@@ -21,8 +31,11 @@ public class DragAndDropDND extends TransferHandler implements DragGestureListen
 	private final DataFlavor[] dataFlavor;
 	private final Window window;
 	private Object dataTransferObject;
+	private Image image;
 
-	public DragAndDropDND(Window window){
+	//dépôt de l'élément déplacé sur target
+
+	public DragAndDropDND(Window window) {
 		try {
 			dataFlavor = new DataFlavor[]{new DataFlavor(DataFlavor.javaJVMLocalObjectMimeType)};
 		} catch (ClassNotFoundException e) {
@@ -30,14 +43,14 @@ public class DragAndDropDND extends TransferHandler implements DragGestureListen
 		}
 
 		//if os is windows then we do something about' cursor
-		if(UIUtils.isWindows) {
+		if (UIUtils.isWindows) {
 			this.window = window;
 		} else {
 			this.window = null;
 		}
 	}
 
-	//dépôt de l'élément déplacé sur target
+	//fin drag et drop
 
 	@Override
 	public void drop(DropTargetDropEvent dtde) {
@@ -50,67 +63,71 @@ public class DragAndDropDND extends TransferHandler implements DragGestureListen
 			//on le transforme en label
 			EntityContainer component = (EntityContainer) ((DragSourceContext) source).getComponent();
 
-			if(EnigmaGame.getInstance() != null){
+			if (EnigmaGame.getInstance() != null) {
 				//récupère la map
 				MapLibgdx m = ((TestScreen) EnigmaGame.getCurrentScreen()).getMap();
 				//lui transmet le 'label' déplacé
 				m.load(component.getContent(), dtde.getLocation());
 			} else {
-				Gdx.app.error(this.getClass().toString(),"Game isn't loaded !");
+				Gdx.app.error(this.getClass().toString(), "Game isn't loaded !");
 				throw new IllegalStateException("Game isn't loaded !");
 			}
-		} catch (UnsupportedFlavorException| IOException ex) {
-			Gdx.app.error(this.getClass().toString(),"failed dnd drop");
+		} catch (UnsupportedFlavorException | IOException ex) {
+			Gdx.app.error(this.getClass().toString(), "failed dnd drop");
 		}
 
 		dtde.dropComplete(true);
 	}
 
-	//fin drag et drop
-
-	@Override
-	public void dragDropEnd(DragSourceDropEvent dsde){
-		if(window != null) //reset cursor
-			this.window.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-	}
-
 	//Ici les méthodes sur l'object déplacé
 
 	@Override
-	public void dragEnter(DragSourceDragEvent dsde) {}
+	public void dragDropEnd(DragSourceDropEvent dsde) {
+		if (window != null) //reset cursor
+			this.window.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+	}
 
 	@Override
-	public void dragExit(DragSourceEvent dse) {}
+	public void dragEnter(DragSourceDragEvent dsde) {
+	}
+
+	@Override
+	public void dragExit(DragSourceEvent dse) {
+	}
 
 	@Override
 	public void dragOver(DragSourceDragEvent dsde) {
 		dataTransferObject = dsde.getSource();
 	}
 
-	@Override
-	public void dropActionChanged(DragSourceDragEvent dsde) {}
-
 	//Ici les méthodes du drag and drop sur l'object target (cible dans laquelle on dépose)
 
 	@Override
-	public void dragEnter(DropTargetDragEvent dtde) {}
+	public void dropActionChanged(DragSourceDragEvent dsde) {
+	}
 
 	@Override
-	public void dragExit(DropTargetEvent dte) {}
+	public void dragEnter(DropTargetDragEvent dtde) {
+	}
+
+	@Override
+	public void dragExit(DropTargetEvent dte) {
+	}
 
 	@Override
 	public void dragOver(DropTargetDragEvent dtde) {
 		dtde.acceptDrag(dtde.getDropAction());
 	}
 
+	// Utils
+
 	@Override
 	public void dropActionChanged(DropTargetDragEvent dtde) {
 		dtde.acceptDrag(dtde.getDropAction());
 	}
 
-	// Utils
-
-	@Override@NotNull
+	@Override
+	@NotNull
 	public Object getTransferData(DataFlavor flavor) {
 		if (isDataFlavorSupported(flavor)) {
 			return dataTransferObject;
@@ -119,24 +136,24 @@ public class DragAndDropDND extends TransferHandler implements DragGestureListen
 	}
 
 	@Override
-	public DataFlavor[] getTransferDataFlavors() { return dataFlavor; }
+	public DataFlavor[] getTransferDataFlavors() {
+		return dataFlavor;
+	}
 
 	@Override
 	public boolean isDataFlavorSupported(DataFlavor flavor) {
 		return flavor.isMimeTypeEqual(DataFlavor.javaJVMLocalObjectMimeType);
 	}
 
+	//handler
+
 	@Override
 	public void dragGestureRecognized(DragGestureEvent dge) {
-		if(window != null) {
+		if (window != null) {
 			this.window.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		}
 		dge.startDrag(null, this, this);
 	}
-
-	//handler
-
-	private Image image;
 
 	@Override
 	public boolean canImport(JComponent comp, DataFlavor[] flavor) {

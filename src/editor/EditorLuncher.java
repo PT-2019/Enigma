@@ -8,22 +8,25 @@ import java.awt.*;
 
 /**
  * Lanceur de l'éditeur d'escape game
+ *
  * @version 1.0
  */
 public class EditorLuncher implements Application {
 
-	/** la fenêtre dans laquelle il est lancé **/
+	/**
+	 * la fenêtre dans laquelle il est lancé
+	 **/
 	private Window window;
 
 	/**
 	 * Construit l'éditeur d'escape game
 	 *
-	 * @param width largeur de la fenêtre
+	 * @param width  largeur de la fenêtre
 	 * @param height hauteur de la fenêtre
 	 */
 	public EditorLuncher(int width, int height) {
 		//préparer ici l'application pour son démarrage
-		this.window = new Window(width,height);
+		this.window = new Window(width, height);
 
 		//ici on configure la fenêtre
 

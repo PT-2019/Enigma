@@ -2,34 +2,50 @@ package game;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
-import editor.enigma.Enigma;
 import game.api.LibgdxGame;
+import game.screen.EnigmaScreens;
 import game.screen.TestScreen;
 
+/**
+ * Lanceur du jeu
+ *
+ * @version 3.0 14 décembre 2019
+ * @since 2.0
+ */
 public class EnigmaGame extends LibgdxGame {
 
-	//here player and such should be loaded as they live in every screens
+	//on charge ici le joueur et tout ce qui vit indépendamment des écrans
 
+	//instance unique
 	private static EnigmaGame enigmaGame;
 
-	private EnigmaGame(){}
+	private EnigmaGame() {
+	}
+
+	/**
+	 * Il s'agit d'une singleton.
+	 *
+	 * @return l'instance unique du jeu
+	 */
+	public static EnigmaGame getInstance() {
+		if (enigmaGame == null) {
+			enigmaGame = new EnigmaGame();
+		}
+		return enigmaGame;
+	}
 
 	@Override
 	public void start() {
 		enigmaGame = this;
-		Gdx.gl.glClearColor(255, 255, 255, 255);
-		Gdx.app.setLogLevel(Application.LOG_ERROR|Application.LOG_DEBUG);
+		Gdx.app.setLogLevel(Application.LOG_ERROR | Application.LOG_DEBUG);
 
-		EnigmaGame.addScreen("Test", TestScreen.class);
-		//EnigmaGame.load("Test"); //we could do this to load screen as the program starts
+		//ajout des screens disponibles
+		EnigmaGame.addScreen(EnigmaScreens.TEST.name(), TestScreen.class);
 
-		EnigmaGame.setScreen("Test");
-	}
+		//chargement des screens au début pour éviter les chargement pendant le jeu
+		EnigmaGame.load(EnigmaScreens.TEST.name());
 
-	public static EnigmaGame getInstance() {
-		if(enigmaGame == null){
-			enigmaGame = new EnigmaGame();
-		}
-		return enigmaGame;
+		//définit l'écran actuel de l'application
+		EnigmaGame.setScreen(EnigmaScreens.TEST.name());
 	}
 }

@@ -5,18 +5,21 @@ import editor.textures.Texture;
 
 /**
  * Définie une entité
+ *
  * @version 2.0
  */
 public interface Entity extends IDInterface {
 
 	/**
 	 * Est appelé quand un joueur intéragit avec l'objet
+	 *
 	 * @param p Joueur ayant intéragit avec l'objet
 	 */
 	void interactsWith(Player p);
 
 	/**
 	 * Obtenir la texture de l'objet
+	 *
 	 * @return Texture de l'objet, null sinon
 	 */
 	Texture getTexture();
@@ -30,12 +33,14 @@ public interface Entity extends IDInterface {
 
 	/**
 	 * Obtenir l'ID
+	 *
 	 * @return L'ID, -1 si pas initialisé
 	 */
 	int getID();
 
 	/**
 	 * Définir l'ID
+	 *
 	 * @param id ID
 	 */
 	void setID(int id);

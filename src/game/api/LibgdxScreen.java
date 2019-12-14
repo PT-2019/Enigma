@@ -13,12 +13,15 @@ import java.util.Iterator;
 /**
  * A typical game should have a init, game loop and dispose.
  * Game Loop means input, update, render.
- *
+ * <p>
  * Most Libgdx methods are hidden.
- *
+ * <p>
  * A screen could listener it's actors (don't forget {@link #listen(com.badlogic.gdx.InputProcessor)}
- *
+ * <p>
  * It could handle event {@link InputListener}
+ *
+ * @version 3.0 03 december 2019
+ * @since 03 december 2019
  */
 public abstract class LibgdxScreen implements Screen, InputListener, IGameLogic {
 
@@ -62,7 +65,7 @@ public abstract class LibgdxScreen implements Screen, InputListener, IGameLogic 
 
 	/**
 	 * Should hide or display the screen but event keep running
-	 *
+	 * <p>
 	 * a setVisible or addAction(Actions.hide()) and addAction(Actions.show())
 	 * should be enough.
 	 *

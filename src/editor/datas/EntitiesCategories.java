@@ -9,7 +9,7 @@ public enum EntitiesCategories {
 
 	public final String name;
 
-	EntitiesCategories(String name){
+	EntitiesCategories(String name) {
 		this.name = name;
 	}
 

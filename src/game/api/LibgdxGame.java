@@ -3,15 +3,12 @@ package game.api;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.math.Rectangle;
-import org.jetbrains.annotations.NotNull;
+import editor.api.Application;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Objects;
 
 /**
  * Video games luncher.
@@ -19,7 +16,7 @@ import java.util.Objects;
  * @version 3.0 03 december 2019
  * @see Game
  */
-public abstract class LibgdxGame extends Game {
+public abstract class LibgdxGame extends Game implements Application {
 
 	/**
 	 * Static and singleton instance of the game
@@ -53,20 +50,20 @@ public abstract class LibgdxGame extends Game {
 	/**
 	 * Load a screen a return it.
 	 *
-	 * @param key   id (name) of the screen {@link #setScreen(String)}
+	 * @param key id (name) of the screen {@link #setScreen(String)}
 	 * @return the screen
-	 *
+	 * <p>
 	 * WARNING !!!
-	 *
+	 * <p>
 	 * if there is an exception here, then you should check if there isn't an exception in your
 	 * constructor (you won't see if there is one here)
 	 */
-	public static LibgdxScreen load(String key){
-		if(!screens.containsKey(key)){
-			if(!added.containsKey(key)){
+	public static LibgdxScreen load(String key) {
+		if (!screens.containsKey(key)) {
+			if (!added.containsKey(key)) {
 				throw new IllegalStateException("add screen first before load it");
 			} else {
-				try{
+				try {
 					Constructor declaredConstructor = added.get(key).getDeclaredConstructor();
 					screens.put(key, (LibgdxScreen) declaredConstructor.newInstance());
 				} catch (IllegalAccessException | InstantiationException | NoSuchMethodException | InvocationTargetException e) {
@@ -77,6 +74,11 @@ public abstract class LibgdxGame extends Game {
 		}
 
 		return screens.get(key);
+	}
+
+	public static <T extends LibgdxScreen> LibgdxScreen loadScreen(String key, Class<T> screen) {
+		addScreen(key, screen);
+		return load(key);
 	}
 
 	public static <T extends LibgdxScreen> void addScreen(String key, Class<T> screen) {
@@ -100,7 +102,7 @@ public abstract class LibgdxGame extends Game {
 	 * @throws IllegalArgumentException if key is invalid
 	 */
 	public static void setScreen(String key) {
-		if (!screens.containsKey(key)){
+		if (!screens.containsKey(key)) {
 			load(key);
 		}
 		game.setScreen(screens.get(key));
@@ -108,9 +110,10 @@ public abstract class LibgdxGame extends Game {
 
 	/**
 	 * Return the current screen
+	 *
 	 * @return the current screen
 	 */
-	public static LibgdxScreen getCurrentScreen(){
+	public static LibgdxScreen getCurrentScreen() {
 		return (LibgdxScreen) game.getScreen();
 	}
 
@@ -137,7 +140,7 @@ public abstract class LibgdxGame extends Game {
 
 	/**
 	 * Method fired when game start. Hidden by using {@link #start()}
-	 * Load a invent processor en fire start.
+	 * Load a invent processor and fire start.
 	 */
 	@Override
 	public void create() {
@@ -154,7 +157,7 @@ public abstract class LibgdxGame extends Game {
 	 * Method fired when game start. Should contains initialisation code
 	 * such as Initialisations of screens and setting current screen
 	 */
-	protected abstract void start();
+	public abstract void start();
 
 	/**
 	 * Liberates all the screens

@@ -2,13 +2,85 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4b6e0b2a-a6ad-4eff-b2cc-63f9693ec5fe" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/map/Empty.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/map/Empty.tmx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/rooms.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/rooms.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/map/old/Licht.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/map/Licht.tmx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DesktopLuncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DesktopLuncher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/EditorLuncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/EditorLuncher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/Readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/Readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/api/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/api/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/bibliotheque/ChoixObjet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bibliotheque/ChoixObjet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/bibliotheque/DragAndDropDND.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bibliotheque/DragAndDropDND.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/bibliotheque/EntityContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bibliotheque/EntityContainer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/editor/bibliotheque/MenuScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bibliotheque/MenuScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/datas/Attributes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/datas/Attributes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/datas/Direction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/datas/Direction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/datas/EntitiesCategories.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/datas/EntitiesCategories.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/datas/Layer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/datas/Layer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/enigma/Advice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/enigma/Advice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/enigma/Enigma.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/enigma/Enigma.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/enigma/condition/Activated.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/enigma/condition/Activated.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/enigma/condition/Answer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/enigma/condition/Answer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/enigma/condition/Condition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/enigma/condition/Condition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/enigma/condition/HaveInHands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/enigma/condition/HaveInHands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/enigma/condition/HaveInInventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/enigma/condition/HaveInInventory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/enigma/operation/Give.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/enigma/operation/Give.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/enigma/operation/Operation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/enigma/operation/Operation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/enigma/operation/Summon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/enigma/operation/Summon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/enigma/operation/Unlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/enigma/operation/Unlock.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/editor/entity/EntityFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/EntityFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/EntitySerializable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/EntitySerializable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/IDFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/IDFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/display/EntityPopMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/display/EntityPopMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/display/EntityView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/display/EntityView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/display/EntityViewListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/display/EntityViewListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/interfaces/Content.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/interfaces/Content.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/interfaces/EnigmaContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/interfaces/EnigmaContainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/interfaces/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/interfaces/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/interfaces/IDInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/interfaces/IDInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/interfaces/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/interfaces/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/interfaces/Living.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/interfaces/Living.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/interfaces/Lockable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/interfaces/Lockable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/interfaces/Passage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/interfaces/Passage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/item/Activatable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/item/Activatable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/item/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/item/Book.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/item/Button.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/item/Button.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/item/Chest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/item/Chest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/item/Door.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/item/Door.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/item/Floor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/item/Floor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/item/Pane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/item/Pane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/item/PressurePlate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/item/PressurePlate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/item/Switch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/item/Switch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/io/AtlasFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/io/AtlasFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/io/AtlasReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/io/AtlasReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/io/EnigmaJsonReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/io/EnigmaJsonReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/io/EnigmaJsonWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/io/EnigmaJsonWriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/io/JsonTextureLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/io/JsonTextureLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/map/Case.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/map/Case.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/map/LoadHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/map/LoadHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/map/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/map/Map.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/map/MapLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/map/MapLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/map/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/map/Room.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/map/SaveMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/map/SaveMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/map/Wall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/map/Wall.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/textures/Texture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/textures/Texture.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/textures/TextureArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/textures/TextureArea.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/textures/TextureProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/textures/TextureProxy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/utils/CalculHeader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/utils/CalculHeader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/utils/ConvenienceMethod.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/utils/ConvenienceMethod.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/utils/LoadGameLibgdxApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/utils/LoadGameLibgdxApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/utils/Utility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/utils/Utility.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/window/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/window/Window.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/EnigmaGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/EnigmaGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/api/IGameLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/api/IGameLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/api/LibgdxGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/api/LibgdxGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/api/LibgdxScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/api/LibgdxScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/api/MapsNameUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/api/MapsNameUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game/entity/MapLibgdx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/entity/MapLibgdx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/entity/MapLibgdxCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/entity/MapLibgdxCell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/screen/TestScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/screen/TestScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/ui/Border.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/ui/Border.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/utils/InputListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/utils/InputListener.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,9 +98,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Enum" />
         <option value="AnnotationType" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -50,12 +122,30 @@
         <option value="$PROJECT_DIR$/src/game/entity/MapLibgdxCell.java" />
         <option value="$PROJECT_DIR$/src/editor/entity/EntityFactory.java" />
         <option value="$PROJECT_DIR$/assets/map/Empty.tmx" />
-        <option value="$PROJECT_DIR$/src/game/entity/MapLibgdx.java" />
         <option value="$PROJECT_DIR$/assets/rooms.json" />
         <option value="$PROJECT_DIR$/assets/items.json" />
         <option value="$PROJECT_DIR$/assets/decors.json" />
-        <option value="$PROJECT_DIR$/src/editor/bibliotheque/MenuScreen.java" />
         <option value="$PROJECT_DIR$/assets/entities.json" />
+        <option value="$PROJECT_DIR$/assets/map/Licht.tmx" />
+        <option value="$PROJECT_DIR$/src/game/entity/MapLibgdx.java" />
+        <option value="$PROJECT_DIR$/src/editor/Readme.md" />
+        <option value="$PROJECT_DIR$/src/editor/api/Readme.md" />
+        <option value="$PROJECT_DIR$/src/editor/bibliotheque/Readme.md" />
+        <option value="$PROJECT_DIR$/src/game/api/Readme.md" />
+        <option value="$PROJECT_DIR$/src/game/api/MapsNameUtils.java" />
+        <option value="$PROJECT_DIR$/src/game/api/LibgdxScreen.java" />
+        <option value="$PROJECT_DIR$/src/game/screen/TestScreen.java" />
+        <option value="$PROJECT_DIR$/src/game/screen/EnigmaScreens.java" />
+        <option value="$PROJECT_DIR$/src/editor/utils/LoadGameLibgdxApplication.java" />
+        <option value="$PROJECT_DIR$/src/editor/bibliotheque/MenuScreen.java" />
+        <option value="$PROJECT_DIR$/src/game/api/LibgdxGame.java" />
+        <option value="$PROJECT_DIR$/src/game/EnigmaGame.java" />
+        <option value="$PROJECT_DIR$/src/editor/map/Case.java" />
+        <option value="$PROJECT_DIR$/src/editor/utils/Utility.java" />
+        <option value="$PROJECT_DIR$/src/editor/api/Application.java" />
+        <option value="$PROJECT_DIR$/src/editor/bibliotheque/ChoixObjet.java" />
+        <option value="$PROJECT_DIR$/src/DesktopLuncher.java" />
+        <option value="$PROJECT_DIR$/src/editor/entity/item/Activatable.java" />
       </list>
     </option>
   </component>
@@ -71,7 +161,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -79,40 +168,11 @@
               <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
               <item name="Enigma" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="editor" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="editor" type="462c0819:PsiDirectoryNode" />
-              <item name="bibliotheque" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="editor" type="462c0819:PsiDirectoryNode" />
-              <item name="datas" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -126,16 +186,9 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.spelling" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/assets/files/atlas" />
-      <recent name="$PROJECT_DIR$/assets/files" />
-      <recent name="$PROJECT_DIR$/assets/Map" />
-      <recent name="$PROJECT_DIR$/assets/entities" />
-      <recent name="$PROJECT_DIR$/assets/ui" />
-    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="editor.entity" />
       <recent name="editor.bibliotheque" />
@@ -148,6 +201,13 @@
       <recent name="editor.entity.view" />
       <recent name="game.screen" />
       <recent name="com.enigma.game" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Quentin Ra\Desktop\Enigma\assets\map" />
+      <recent name="$PROJECT_DIR$/assets/files/atlas" />
+      <recent name="$PROJECT_DIR$/assets/files" />
+      <recent name="$PROJECT_DIR$/assets/Map" />
+      <recent name="$PROJECT_DIR$/assets/entities" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -268,7 +328,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.27912623" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28883496" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -297,6 +357,36 @@
       <window_info anchor="right" id="make" order="7" />
       <window_info anchor="right" id="Palette&#9;" order="8" />
     </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28398058" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Learn" order="6" />
+      <window_info id="Favorites" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32949308" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2062212" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32949308" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32949308" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32949308" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Maven" order="6" />
+      <window_info anchor="right" id="make" order="7" />
+      <window_info anchor="right" id="Palette&#9;" order="8" />
+    </layout-to-restore>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -339,31 +429,10 @@
     </option>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/DesktopLuncher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/game/EnigmaGame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/editor/utils/ConvenienceMethod.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="38" lean-forward="true" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/bibliotheque/ChoixObjet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -425,13 +494,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/game/screen/TestScreen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/map/Empty.tmx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1109">
@@ -439,20 +501,6 @@
         </state>
       </provider>
       <provider editor-type-id="com.soywiz.korge.intellij.editor.KorgeBothFileEditorProvider" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/game/entity/MapLibgdx.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="219" lean-forward="true" selection-start-line="219" selection-end-line="219" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/datas/Layer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/rooms.json">
       <provider selected="true" editor-type-id="text-editor">
@@ -465,14 +513,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/map/test.tmx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" selection-start-line="13" selection-end-line="13" selection-end-column="3" />
-        </state>
-      </provider>
-      <provider editor-type-id="com.soywiz.korge.intellij.editor.KorgeBothFileEditorProvider" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/map/test.tmx" />
     <entry file="file://$PROJECT_DIR$/assets/items.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -501,10 +542,108 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/datas/Layer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/map/Licht.tmx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="375" column="30" selection-start-line="375" selection-start-column="30" selection-end-line="375" selection-end-column="30" />
+        </state>
+      </provider>
+      <provider editor-type-id="com.soywiz.korge.intellij.editor.KorgeBothFileEditorProvider" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/entity/MapLibgdx.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3446">
+          <caret line="246" column="53" lean-forward="true" selection-start-line="246" selection-start-column="53" selection-end-line="246" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/Readme.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="119">
+            <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/api/Readme.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="51">
+            <caret line="3" column="69" selection-start-line="3" selection-start-column="69" selection-end-line="3" selection-end-column="69" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/io/Readme.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/bibliotheque/Readme.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="170">
+            <caret line="10" column="50" selection-start-line="10" selection-start-column="50" selection-end-line="10" selection-end-column="50" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/api/Readme.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="153">
+            <caret line="9" column="37" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/api/LibgdxScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1322">
+          <caret line="23" column="32" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/api/MapsNameUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="14" lean-forward="true" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/api/IGameLogic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="3" lean-forward="true" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/screen/EnigmaScreens.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/editor/bibliotheque/MenuScreen.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="47" column="59" lean-forward="true" selection-start-line="47" selection-start-column="59" selection-end-line="47" selection-end-column="59" />
+        <state relative-caret-position="-1413">
+          <caret line="12" column="33" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
           <folding>
             <element signature="method#loadChoicesMenu#0;class#MenuScreen#0" />
             <element signature="method#loadSideBar#0;class#MenuScreen#0" />
@@ -512,5 +651,156 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/utils/LoadGameLibgdxApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-238">
+          <caret line="4" column="41" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/EnigmaGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/api/LibgdxGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="604">
+          <caret line="85" column="25" lean-forward="true" selection-start-line="85" selection-start-column="25" selection-end-line="85" selection-end-column="25" />
+          <folding>
+            <element signature="e#2320#2321#0" expanded="true" />
+            <element signature="e#2349#2350#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/utils/Utility.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/map/Case.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="44" selection-start-line="3" selection-start-column="44" selection-end-line="3" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/screen/TestScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="23" lean-forward="true" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/api/Application.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="15" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/bibliotheque/ChoixObjet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DesktopLuncher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/entity/item/Activatable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>

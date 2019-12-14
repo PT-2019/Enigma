@@ -15,10 +15,12 @@ public class EntityContainer extends JLabel {
 
 	private EntitySerializable entity;
 
-	public EntityContainer(){}
+	public EntityContainer() {
+	}
 
 	/**
 	 * Met une entité dans la case
+	 *
 	 * @param entity entité a placer
 	 */
 	public void setEntity(EntitySerializable entity) {
@@ -28,10 +30,11 @@ public class EntityContainer extends JLabel {
 
 	/**
 	 * Retourne le contenu de la case
+	 *
 	 * @return l'entité contenue dans la case
 	 */
 	public EntitySerializable getContent() {
-		if(entity == null)
+		if (entity == null)
 			throw new IllegalStateException("there isn't an entity!");
 
 		return entity;
@@ -40,7 +43,7 @@ public class EntityContainer extends JLabel {
 	/**
 	 * Convenience method pour définir cette entité comme déplaçable par le drag and drop
 	 *
-	 * @param actionCopy le type d'action
+	 * @param actionCopy  le type d'action
 	 * @param dragAndDrop le gestionnaire de drag and drop
 	 */
 	@ConvenienceMethod

@@ -3,9 +3,6 @@ package game.screen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
-import com.badlogic.gdx.utils.viewport.FillViewport;
-import com.badlogic.gdx.utils.viewport.FitViewport;
-import editor.enigma.Enigma;
 import game.EnigmaGame;
 import game.api.LibgdxScreen;
 import game.entity.MapLibgdx;
@@ -13,15 +10,18 @@ import game.entity.MapLibgdx;
 public class TestScreen extends LibgdxScreen {
 
 	private Stage main;
+
 	private MapLibgdx map;
 
 	@Override
 	public void init() {
+		Gdx.gl.glClearColor(255, 255, 255, 255);
+
 		this.main = new Stage();
 
 		this.main.setViewport(new ExtendViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
 
-		map = new MapLibgdx("assets/map/Empty.tmx");
+		this.map = new MapLibgdx("assets/map/Empty.tmx");
 
 		this.main.addActor(map);
 
@@ -30,7 +30,8 @@ public class TestScreen extends LibgdxScreen {
 	}
 
 	@Override
-	public void input() {}
+	public void input() {
+	}
 
 	@Override
 	public void update(float dt) {
@@ -49,10 +50,13 @@ public class TestScreen extends LibgdxScreen {
 		EnigmaGame.setScreenSize(width, height);
 	}
 
-	public MapLibgdx getMap() { return map;	}
+	public MapLibgdx getMap() {
+		return map;
+	}
 
 	@Override
-	public void display(boolean display) {}
+	public void display(boolean display) {
+	}
 
 	@Override
 	public void dispose() {

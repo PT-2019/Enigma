@@ -4,7 +4,6 @@ import com.badlogic.gdx.utils.Array;
 import editor.datas.EntitiesCategories;
 import editor.entity.EntityFactory;
 import editor.entity.EntitySerializable;
-import editor.utils.ConvenienceMethod;
 import editor.utils.LoadGameLibgdxApplication;
 import editor.window.Window;
 import org.intellij.lang.annotations.MagicConstant;
@@ -12,20 +11,19 @@ import org.intellij.lang.annotations.MagicConstant;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.dnd.DnDConstants;
-import java.awt.dnd.DragSource;
 import java.awt.dnd.DropTarget;
 
-import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED;
 import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER;
+import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED;
 
 /**
- *  classe Menu
- *  @author Jorys-Micke ALAÏS
- *  @author Louka DOZ
- *  @author Loic SENECAT
- *  @author Quentin RAMSAMY-AGEORGES
+ * classe Menu
  *
- *  @version 2.0 05 décembre 2019
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 2.0 05 décembre 2019
  */
 public class MenuScreen extends JPanel {
 
@@ -36,7 +34,7 @@ public class MenuScreen extends JPanel {
 	 *
 	 * @since 1.0 10 novembre 2019
 	 */
-	public MenuScreen(Window parent){
+	public MenuScreen(Window parent) {
 		this.setBackground(Color.RED);
 		this.setLayout(new BorderLayout());
 		this.dragAndDrop = new DragAndDropDND(parent);
@@ -59,12 +57,12 @@ public class MenuScreen extends JPanel {
 		//création de la zone d'affichage de la map (partie droite)
 		JPanel map = new JPanel();
 		LoadGameLibgdxApplication.load(map, parent);
-		map.setDropTarget(new DropTarget(map,	DnDConstants.ACTION_COPY, dragAndDrop));
+		map.setDropTarget(new DropTarget(map, DnDConstants.ACTION_COPY, dragAndDrop));
 
 		//ajout des observateurs
-		ChoixObjet choix = new ChoixObjet(menuChoix,pageObjet);
+		ChoixObjet choix = new ChoixObjet(menuChoix, pageObjet);
 		for (Component c : sideBar.getComponents()) {
-			if(c instanceof JButton){
+			if (c instanceof JButton) {
 				((JButton) c).addActionListener(choix);
 			}
 		}
@@ -82,9 +80,7 @@ public class MenuScreen extends JPanel {
 	 * Charge le menu des choix de catégories dans un JPanel
 	 *
 	 * @param layout layout du menu
-	 *
 	 * @return JPanel contenant le menu
-	 *
 	 * @since 3.0 14 décembre 2019
 	 */
 	private JPanel loadChoicesMenu(CardLayout layout) {
@@ -108,13 +104,12 @@ public class MenuScreen extends JPanel {
 	 * Charge la barre qui contient les éléments de la catégorie
 	 *
 	 * @return JPanel contenant la barre des éléments de la catégorie
-	 *
 	 * @since 3.0 14 décembre 2019
 	 */
 	private JPanel loadSideBar() {
 		//création de la zone de choix du menu d'objets
 		JPanel sidebar = new JPanel();
-		sidebar.setLayout(new GridLayout(1,4,0,0));
+		sidebar.setLayout(new GridLayout(1, 4, 0, 0));
 
 		for (EntitiesCategories category : EntitiesCategories.values()) {
 			sidebar.add(new JButton(category.name));
@@ -128,20 +123,20 @@ public class MenuScreen extends JPanel {
 	 *
 	 * @param pane page qui sera remplit
 	 * @param name nom de la catégorie
-	 *
 	 * @since 2.0 05 décembre 2019
 	 */
-	private void fill(JPanel pane, EntitiesCategories name){
+	private void fill(JPanel pane, EntitiesCategories name) {
 		Array<EntitySerializable> entities = EntityFactory.getEntitiesByCategory(name);
 
 		//affichage des entités
-		pane.setLayout(new GridLayout(6,2,5,5));
+		pane.setLayout(new GridLayout(6, 2, 5, 5));
 
 		//on ajoute au minimum 12 cases, on met des entités dedans si on en a
-		for (int i = 0; i < 12 || i < entities.size; i++) {@MagicConstant
+		for (int i = 0; i < 12 || i < entities.size; i++) {
+			@MagicConstant
 			JPanel pan = new JPanel();
 			EntityContainer lab = new EntityContainer();
-			if(i < entities.size) {
+			if (i < entities.size) {
 				lab.setEntity(entities.get(i));
 				//ajoute au dnd, @convenienceMethod
 				lab.setDragSource(DnDConstants.ACTION_COPY, this.dragAndDrop);

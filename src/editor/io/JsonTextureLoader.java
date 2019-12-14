@@ -26,8 +26,8 @@ public class JsonTextureLoader {
 	 * @return la sous-image voulue
 	 * @since 2.0
 	 */
-	public static Texture getTexture(String name, String file){
-		if(!JsonTextureLoader.loadedTextures.containsKey(file)){
+	public static Texture getTexture(String name, String file) {
+		if (!JsonTextureLoader.loadedTextures.containsKey(file)) {
 			AtlasFile json = AtlasReader.importJson(file);
 			JsonTextureLoader.loadedTextures.put(file, json);
 		}

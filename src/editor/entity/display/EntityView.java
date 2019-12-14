@@ -9,7 +9,7 @@ public class EntityView extends JComponent {
 
 	private Entity entity;
 
-	public EntityView(Entity ent){
+	public EntityView(Entity ent) {
 		this.setOpaque(true);
 		entity = ent;
 	}
@@ -25,6 +25,6 @@ public class EntityView extends JComponent {
 
 		Image img = entity.getTexture().getImage();
 
-		graphics.drawImage(img,0,0,this);
+		graphics.drawImage(img, 0, 0, this);
 	}
 }

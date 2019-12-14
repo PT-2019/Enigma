@@ -1,13 +1,14 @@
 package game.api;
 
 /**
- * All maps constant that are used in this game
+ * Toutes les constantes pouvant être utilisés par la map de l'éditeur
+ * et reconnues par la map libgdx.
+ *
+ * @version 1.0 03 december 2019
+ * @see game.entity.MapLibgdx
+ * @since 03 december 2019
  */
 public enum MapsNameUtils {
-	//layers
-	TILE_COLLISION_LAYER("Collision"),
-	NPC_LAYER("Npc"),
-
 	//specials
 	BOTTOM("bot"),
 	AREA("area"),

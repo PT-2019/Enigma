@@ -13,14 +13,16 @@ public class MapLibgdxCell extends TiledMapTileLayer.Cell {
 
 	private EntitySerializable entity;
 
-	public MapLibgdxCell(){
+	public MapLibgdxCell() {
 		this.entity = null;
+	}
+
+	public EntitySerializable getEntity() {
+		return entity;
 	}
 
 	public void setEntity(EntitySerializable entity) {
 		this.entity = entity;
 		//this.entity.getClassName renvoi par exemple editor.entity.item.Chest
 	}
-
-	public EntitySerializable getEntity() { return entity; }
 }

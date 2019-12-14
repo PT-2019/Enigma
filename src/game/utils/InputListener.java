@@ -10,6 +10,7 @@ public interface InputListener extends InputProcessor {
 
 	/**
 	 * Key pressed
+	 *
 	 * @param keycode {@link com.badlogic.gdx.Input.Keys}
 	 * @return true if the event has been handled else false
 	 */
@@ -20,6 +21,7 @@ public interface InputListener extends InputProcessor {
 
 	/**
 	 * Key released
+	 *
 	 * @param keycode {@link com.badlogic.gdx.Input.Keys}
 	 * @return true if the event has been handled else false
 	 */
@@ -30,6 +32,7 @@ public interface InputListener extends InputProcessor {
 
 	/**
 	 * Key typed
+	 *
 	 * @param character typed character
 	 * @return true if the event has been handled else false
 	 */

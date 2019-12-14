@@ -13,25 +13,36 @@ import java.util.HashMap;
  */
 public class EntitySerializable {
 
-	/** chemin de la texture */
+	/**
+	 * chemin de la texture
+	 */
 	private String path;
-	/** dimension */
+	/**
+	 * dimension
+	 */
 	private int width, height;
-	/** les tiles (a convertir en int) */
+	/**
+	 * les tiles (a convertir en int)
+	 */
 	private HashMap<String, Array<Float>> tiles = new HashMap<>();
-	/** catégorie de l'entité */
+	/**
+	 * catégorie de l'entité
+	 */
 	private EntitiesCategories category;
-	/** sa classe */
+	/**
+	 * sa classe
+	 */
 	private String className;
 
-	public EntitySerializable(){}
+	public EntitySerializable() {
+	}
 
 	/**
 	 * Crée une copie d'une entité sérializable
 	 *
 	 * @param entity l'entité a copier
 	 */
-	public EntitySerializable(EntitySerializable entity){
+	public EntitySerializable(EntitySerializable entity) {
 		super();
 		this.className = entity.className;
 		this.path = entity.path;
@@ -41,15 +52,27 @@ public class EntitySerializable {
 		this.category = entity.category;
 	}
 
-	public EntitiesCategories getCategory() { return this.category; }
+	public EntitiesCategories getCategory() {
+		return this.category;
+	}
 
-	public String getPath() { return this.path; }
+	public String getPath() {
+		return this.path;
+	}
 
-	public int getWidth() { return this.width; }
+	public int getWidth() {
+		return this.width;
+	}
 
-	public int getHeight() { return this.height; }
+	public int getHeight() {
+		return this.height;
+	}
 
-	public Array<Float> getTiles(Layer layer) { return this.tiles.get(layer.name()); }
+	public Array<Float> getTiles(Layer layer) {
+		return this.tiles.get(layer.name());
+	}
 
-	public String getClassName() { return this.className; }
+	public String getClassName() {
+		return this.className;
+	}
 }
