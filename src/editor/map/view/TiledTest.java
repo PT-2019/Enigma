@@ -13,13 +13,18 @@ import editor.map.MapLoader;
 
 import javax.swing.*;
 
-public class TiledTest extends Game implements InputProcessor {
-	TiledMap tiledMap;
+public class TiledTest extends Game {
+
 	OrthographicCamera camera;
+
 	TiledMapRenderer tiledMapRenderer;
+
 	JComponent component;
+
 	int[] layers;
+
 	Border border;
+
 	RoomView room;
 
 	public TiledTest(JComponent c){
@@ -29,31 +34,35 @@ public class TiledTest extends Game implements InputProcessor {
 
 	@Override
 	public void create () {
+		int midx,midy;
 		float w = Gdx.graphics.getWidth();
 		float h = Gdx.graphics.getHeight();
-
-		tiledMap = new TmxMapLoader().load("assets/map/Loadtest.tmx");
+		TiledMap tiledMap = new TmxMapLoader().load("assets/map/Loadtest.tmx");
+		Map tmpMap;
+		camera = new OrthographicCamera();
 		MapLoader gameMap = new MapLoader();
-		gameMap.load("assets/map/Loadtest.tmx");
-		Map tmpMap = gameMap.getMap();
+		InputMultiplexer multi = new InputMultiplexer();
+		MapControlleur control = new MapControlleur(camera,tiledMap);
+
 		tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
 		MapProperties prop = tiledMap.getProperties();
 
-		camera = new OrthographicCamera();
 		camera.setToOrtho(false,w,h);
 		camera.update();
-		int midx = tmpMap.getCol()*(int)prop.get("tileheight")/2;
-		int midy = tmpMap.getRow()*(int)prop.get("tileheight")/2;
-		camera.position.set(midx,midy,0);
 
+		gameMap.load("assets/map/Loadtest.tmx");
+		tmpMap = gameMap.getMap();
+
+		midx = tmpMap.getCol()*(int)prop.get("tileheight")/2;
+		midy = tmpMap.getRow()*(int)prop.get("tileheight")/2;
+		camera.position.set(midx,midy,0);
 
 		border = new Border((int)prop.get("width"),(int)prop.get("height"),(int)prop.get("tileheight"));
 		room = new RoomView(tmpMap.getRooms(),(int)prop.get("tileheight"),tmpMap.getRow());
 
 		TileMap map = new TileMap(tiledMap,component,tmpMap,room,camera);
 
-		InputMultiplexer multi = new InputMultiplexer();
-		multi.addProcessor(this);
+		multi.addProcessor(control);
 		multi.addProcessor(map);
 		Gdx.input.setInputProcessor(multi);
 	}
@@ -73,65 +82,5 @@ public class TiledTest extends Game implements InputProcessor {
 
 		tiledMapRenderer.setView(camera);
 		tiledMapRenderer.render(layers);
-	}
-
-	@Override
-	public boolean keyDown(int keycode) {
-		return false;
-	}
-
-	@Override
-	public boolean keyUp(int keycode) {
-		if(keycode == Input.Keys.LEFT)
-			camera.translate(-32,0);
-		if(keycode == Input.Keys.RIGHT)
-			camera.translate(32,0);
-		if(keycode == Input.Keys.UP)
-			camera.translate(0,32);
-		if(keycode == Input.Keys.DOWN)
-			camera.translate(0,-32);
-		if(keycode == Input.Keys.NUM_1)
-			tiledMap.getLayers().get(0).setVisible(!tiledMap.getLayers().get(0).isVisible());
-		if(keycode == Input.Keys.NUM_2)
-			tiledMap.getLayers().get(1).setVisible(!tiledMap.getLayers().get(1).isVisible());
-		return false;
-	}
-
-	@Override
-	public boolean keyTyped(char character) {
-
-		return false;
-	}
-
-	@Override
-	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-		return false;
-	}
-
-	@Override
-	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-		return false;
-	}
-
-	@Override
-	public boolean touchDragged(int screenX, int screenY, int pointer) {
-		return false;
-	}
-
-	@Override
-	public boolean mouseMoved(int screenX, int screenY) {
-		return false;
-	}
-
-	@Override
-	public boolean scrolled(int amount) {
-		if (Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT)){
-			if (amount==1){
-				camera.zoom += 0.05;
-			}else{
-				camera.zoom -= 0.05;
-			}
-		}
-		return false;
 	}
 }

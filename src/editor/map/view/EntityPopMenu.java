@@ -1,4 +1,4 @@
-package editor.entity.dispose;
+package editor.map.view;
 
 import com.badlogic.gdx.graphics.Camera;
 import editor.map.view.PopMenuListener;
