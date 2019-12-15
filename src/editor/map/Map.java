@@ -1,6 +1,8 @@
 package editor.map;
 
+import editor.datas.Layer;
 import editor.entity.interfaces.IDInterface;
+import editor.textures.Texture;
 
 import java.awt.*;
 import java.util.HashMap;
@@ -89,6 +91,10 @@ public class Map implements IDInterface {
 			for (int i = room.getKey().y, ir = 0; ir < h ; i++, ir++) {
 				for (int j = room.getKey().x, jr = 0; jr < w ; j++, jr++) {
 					this.cases[i*this.col+j] = room.getValue().getCase(jr,ir);
+
+					HashMap<Layer, Texture> hash = this.cases[i*this.col+j].getEntities();
+					Texture texture = hash.get(Layer.DECORATIONS1);
+					System.out.println(texture.getPosition());
 				}
 			}
 		}

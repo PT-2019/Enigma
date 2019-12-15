@@ -7,18 +7,27 @@ import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 
+import javax.swing.*;
+
 public class MapControlleur implements InputProcessor {
 
     private boolean ispush;
+
+    private EntityPopMenu menu;
+
+    private JComponent component;
 
     private OrthographicCamera camera;
 
     private TiledMap tiledMap;
 
-    public MapControlleur (Camera cam,TiledMap map){
+
+    public MapControlleur (Camera cam,TiledMap map, JComponent component,RoomView r,CollisionView col){
         camera =(OrthographicCamera) cam;
         tiledMap = map;
         ispush = false;
+        this.component = component;
+        this.menu = new EntityPopMenu(r,col,cam);
     }
 
     @Override
@@ -63,6 +72,9 @@ public class MapControlleur implements InputProcessor {
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+        if (button == Input.Buttons.RIGHT){
+            menu.show(component, Gdx.input.getX(),Gdx.input.getY());
+        }
         return false;
     }
 

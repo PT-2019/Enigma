@@ -27,6 +27,8 @@ public class TiledTest extends Game {
 
 	RoomView room;
 
+	CollisionView collisionView;
+
 	public TiledTest(JComponent c){
 		component = c;
 		layers = new int[]{0,1,2,3};
@@ -37,12 +39,11 @@ public class TiledTest extends Game {
 		int midx,midy;
 		float w = Gdx.graphics.getWidth();
 		float h = Gdx.graphics.getHeight();
-		TiledMap tiledMap = new TmxMapLoader().load("assets/map/Loadtest.tmx");
+		TiledMap tiledMap = new TmxMapLoader().load("assets/map/old/Loadtest.tmx");
 		Map tmpMap;
 		camera = new OrthographicCamera();
 		MapLoader gameMap = new MapLoader();
 		InputMultiplexer multi = new InputMultiplexer();
-		MapControlleur control = new MapControlleur(camera,tiledMap);
 
 		tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
 		MapProperties prop = tiledMap.getProperties();
@@ -50,7 +51,7 @@ public class TiledTest extends Game {
 		camera.setToOrtho(false,w,h);
 		camera.update();
 
-		gameMap.load("assets/map/Loadtest.tmx");
+		gameMap.load("assets/map/old/Loadtest.tmx");
 		tmpMap = gameMap.getMap();
 
 		midx = tmpMap.getCol()*(int)prop.get("tileheight")/2;
@@ -59,8 +60,9 @@ public class TiledTest extends Game {
 
 		border = new Border((int)prop.get("width"),(int)prop.get("height"),(int)prop.get("tileheight"));
 		room = new RoomView(tmpMap.getRooms(),(int)prop.get("tileheight"),tmpMap.getRow());
-
-		TileMap map = new TileMap(tiledMap,component,tmpMap,room,camera);
+		collisionView = new CollisionView(tmpMap.getCases(),(int)prop.get("tileheight"),(int)prop.get("width"),(int)prop.get("height"));
+		MapControlleur control = new MapControlleur(camera,tiledMap,component,room,collisionView);
+		TileMap map = new TileMap(tiledMap,component,tmpMap);
 
 		multi.addProcessor(control);
 		multi.addProcessor(map);
@@ -75,9 +77,14 @@ public class TiledTest extends Game {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		camera.update();
 
+
 		border.setProjectionMatrix(camera.combined);
 		room.setProjectionMatrix(camera.combined);
+		collisionView.setProjectionMatrix(camera.combined);
 		room.draw();
+		Gdx.gl.glEnable(GL20.GL_BLEND);
+		collisionView.draw();
+		Gdx.gl.glDisable(GL20.GL_BLEND);
 		border.draw();
 
 		tiledMapRenderer.setView(camera);

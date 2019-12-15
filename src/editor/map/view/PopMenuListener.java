@@ -3,6 +3,7 @@ package editor.map.view;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -16,18 +17,30 @@ public class PopMenuListener implements ItemListener, ActionListener {
 
     private float zoom;
 
-    public PopMenuListener(RoomView v,Camera cam){
+    private CollisionView collision;
+
+    public PopMenuListener(RoomView v,Camera cam,CollisionView col){
         view = v;
         camera = cam;
         zoom = ((OrthographicCamera) camera).zoom;
+        collision = col;
     }
 
     @Override
     public void itemStateChanged(ItemEvent e) {
-        if (e.getStateChange() == ItemEvent.SELECTED) {
-            view.setVisible(true);
+        JCheckBoxMenuItem tmp = (JCheckBoxMenuItem) e.getItem();
+        if(tmp.getActionCommand().equals("Afficher")){
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                view.setVisible(true);
+            }else{
+                view.setVisible(false);
+            }
         }else{
-            view.setVisible(false);
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                collision.setVisible(true);
+            }else{
+                collision.setVisible(false);
+            }
         }
     }
 
