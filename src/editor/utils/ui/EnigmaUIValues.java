@@ -28,6 +28,21 @@ public class EnigmaUIValues {
     public final static boolean[] ENIGMA_BUTTON_SHOWED_BORDERS = {true,true,true,true};
     public final static boolean[] ENIGMA_BUTTON_HOVERED_SHOWED_BORDERS = {true,true,true,true};
     public final static boolean[] ENIGMA_BUTTON_PRESSED_SHOWED_BORDERS = {true,true,true,true};
+    public final static Color ENIGMA_BUTTON_SELECTED_BACKGROUND = Color.RED;
+    public final static Color ENIGMA_BUTTON_SELECTED_HOVERED_BACKGROUND = Color.RED;
+    public final static Color ENIGMA_BUTTON_SELECTED_PRESSED_BACKGROUND = new Color(255,50,50);
+    public final static Color ENIGMA_BUTTON_SELECTED_FOREGROUND = Color.WHITE;
+    public final static Color ENIGMA_BUTTON_SELECTED_HOVERED_FOREGROUND = Color.WHITE;
+    public final static Color ENIGMA_BUTTON_SELECTED_PRESSED_FOREGROUND = Color.WHITE;
+    public final static Color ENIGMA_BUTTON_SELECTED_BORDER = Color.WHITE;
+    public final static Color ENIGMA_BUTTON_SELECTED_HOVERED_BORDER = Color.WHITE;
+    public final static Color ENIGMA_BUTTON_SELECTED_PRESSED_BORDER = Color.WHITE;
+    public final static int ENIGMA_BUTTON_SELECTED_BORDER_SIZE = 1;
+    public final static int ENIGMA_BUTTON_SELECTED_HOVERED_BORDER_SIZE = 1;
+    public final static int ENIGMA_BUTTON_SELECTED_PRESSED_BORDER_SIZE = 1;
+    public final static boolean[] ENIGMA_BUTTON_SELECTED_SHOWED_BORDERS = {true,true,true,true};
+    public final static boolean[] ENIGMA_BUTTON_SELECTED_HOVERED_SHOWED_BORDERS = {true,true,true,true};
+    public final static boolean[] ENIGMA_BUTTON_SELECTED_PRESSED_SHOWED_BORDERS = {true,true,true,true};
 
     public final static Color ENIGMA_LABEL_BACKGROUND = Color.DARK_GRAY;
     public final static Color ENIGMA_LABEL_HOVERED_BACKGROUND = Color.DARK_GRAY;
