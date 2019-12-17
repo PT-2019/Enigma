@@ -1,22 +1,21 @@
 package editor.utils.managers;
 
-import editor.utils.EnigmaSelectedButtonManager;
+import editor.utils.EnigmaButton;
 
-import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class SelectedManager implements MouseListener {
 
-    private EnigmaSelectedButtonManager manager;
+    private SelectedButtonManager manager;
 
-    public SelectedManager(EnigmaSelectedButtonManager manager){
+    public SelectedManager(SelectedButtonManager manager){
         this.manager = manager;
     }
 
     @Override
     public void mouseClicked(MouseEvent mouseEvent) {
-        this.manager.setSelected((JButton)mouseEvent.getSource());
+        this.manager.setSelected((EnigmaButton) mouseEvent.getSource());
     }
 
     @Override

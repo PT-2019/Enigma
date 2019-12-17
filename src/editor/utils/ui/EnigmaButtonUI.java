@@ -35,6 +35,7 @@ public class EnigmaButtonUI extends BasicButtonUI {
     private Color selectedHoveredBorder;
     private Color selectedPressedBorder;
     private boolean selected;
+    private Cursor selectedCursor;
     private int selectedBorderSize;
     private int selectedHoveredBorderSize;
     private int selectedPressedBorderSize;
@@ -79,12 +80,16 @@ public class EnigmaButtonUI extends BasicButtonUI {
         this.selectedHoveredShowedBorders = EnigmaUIValues.ENIGMA_BUTTON_SELECTED_HOVERED_SHOWED_BORDERS;
         this.selectedPressedShowedBorders = EnigmaUIValues.ENIGMA_BUTTON_SELECTED_PRESSED_SHOWED_BORDERS;
         this.selected = false;
+        this.selectedCursor = new Cursor(Cursor.DEFAULT_CURSOR);
     }
 
     @Override
     public void paint(Graphics g, JComponent c) {
         Graphics brush = g.create();
         JButton b = (JButton)c;
+        if(this.selected) b.setCursor(this.selectedCursor);
+        else b.setCursor(this.cursor);
+
         if(this.hovered){
             if(this.selected){
                 b.setBackground(this.selectedHoveredBackground);
@@ -124,14 +129,13 @@ public class EnigmaButtonUI extends BasicButtonUI {
             b.setForeground(this.selectedPressedForeground);
             if(this.selectedPressedBorder != null)
                 this.paintBorder(brush,b,this.selectedPressedBorder,this.selectedPressedBorderSize,this.selectedPressedShowedBorders);
-            super.paintButtonPressed(brush, b);
         }else{
             b.setBackground(this.pressedBackground);
             b.setForeground(this.pressedForeground);
             if(this.pressedBorder != null)
                 this.paintBorder(brush,b,this.pressedBorder,this.pressedBorderSize,this.pressedShowedBorders);
-            super.paintButtonPressed(brush, b);
         }
+        super.paintButtonPressed(brush, b);
     }
 
     private void paintBorder(Graphics g, AbstractButton b, Color borderColor, int borderSize, boolean[] showedBorders){
@@ -216,8 +220,16 @@ public class EnigmaButtonUI extends BasicButtonUI {
         this.cursor = cursor;
     }
 
+    public void setSelectedCursor(Cursor selectedCursor){
+        this.selectedCursor = selectedCursor;
+    }
+
     public Cursor getCursor(){
         return this.cursor;
+    }
+
+    public Cursor getSelectedCursor(){
+        return this.selectedCursor;
     }
 
     public void setIsHovered(boolean isHovered){
@@ -510,11 +522,12 @@ public class EnigmaButtonUI extends BasicButtonUI {
         clone.setAllBordersSize(this.getBorderSize(), this.getHoveredBorderSize(), this.getPressedBorderSize());
         clone.setAllShowedBorders(this.getShowedBorders(), this.getHoveredShowedBorders(), this.getPressedShowedBorders());
 
-        clone.setAllSelectedBackgrounds(this.getBackground(), this.getHoveredBackground(), this.getPressedBackground());
-        clone.setAllSelectedForegrounds(this.getForeground(), this.getHoveredForeground(), this.getPressedForeground());
-        clone.setAllSelectedBorders(this.getBorder(), this.getHoveredBorder(), this.getPressedBorder());
-        clone.setAllSelectedBordersSize(this.getBorderSize(), this.getHoveredBorderSize(), this.getPressedBorderSize());
-        clone.setAllSelectedShowedBorders(this.getShowedBorders(), this.getHoveredShowedBorders(), this.getPressedShowedBorders());
+        clone.setSelectedCursor(this.getSelectedCursor());
+        clone.setAllSelectedBackgrounds(this.getSelectedBackground(), this.getSelectedHoveredBackground(), this.getSelectedPressedBackground());
+        clone.setAllSelectedForegrounds(this.getSelectedForeground(), this.getSelectedHoveredForeground(), this.getSelectedPressedForeground());
+        clone.setAllSelectedBorders(this.getSelectedBorder(), this.getSelectedHoveredBorder(), this.getSelectedPressedBorder());
+        clone.setAllSelectedBordersSize(this.getSelectedBorderSize(), this.getSelectedHoveredBorderSize(), this.getSelectedPressedBorderSize());
+        clone.setAllSelectedShowedBorders(this.getSelectedShowedBorders(), this.getSelectedHoveredShowedBorders(), this.getSelectedPressedShowedBorders());
 
         return clone;
     }

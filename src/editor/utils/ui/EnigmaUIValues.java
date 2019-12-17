@@ -30,7 +30,7 @@ public class EnigmaUIValues {
     public final static boolean[] ENIGMA_BUTTON_PRESSED_SHOWED_BORDERS = {true,true,true,true};
     public final static Color ENIGMA_BUTTON_SELECTED_BACKGROUND = Color.RED;
     public final static Color ENIGMA_BUTTON_SELECTED_HOVERED_BACKGROUND = Color.RED;
-    public final static Color ENIGMA_BUTTON_SELECTED_PRESSED_BACKGROUND = new Color(255,50,50);
+    public final static Color ENIGMA_BUTTON_SELECTED_PRESSED_BACKGROUND = Color.RED;
     public final static Color ENIGMA_BUTTON_SELECTED_FOREGROUND = Color.WHITE;
     public final static Color ENIGMA_BUTTON_SELECTED_HOVERED_FOREGROUND = Color.WHITE;
     public final static Color ENIGMA_BUTTON_SELECTED_PRESSED_FOREGROUND = Color.WHITE;

@@ -1,14 +1,11 @@
 package desktopLauncher;
 
 import editor.EditorLauncher;
-import editor.enigma.Enigma;
 import editor.utils.EnigmaLabel;
-import editor.utils.EnigmaPanel;
 import editor.utils.Window;
 import editor.utils.ui.EnigmaButtonUI;
 import editor.utils.EnigmaButton;
 import editor.utils.ui.EnigmaLabelUI;
-import editor.utils.ui.EnigmaPanelUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -67,7 +64,14 @@ public class DesktopLauncher implements Runnable {
         button = new EnigmaButton("Editer une map");
         button.addActionListener(new LauncherManagement(new EditorLauncher()));
         button.setButtonUI(new EnigmaButtonUI());
+        gbc.gridx = 1;
         gbc.gridy = 2;
+        gbc.gridwidth = 1;
+        gbc.gridheight = 1;
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.weightx = 1;
+        gbc.weighty = 1;
+        gbc.insets = new Insets(inset, inset, inset, inset / 4);
         background.add(button, gbc);
 
         window.setVisible(true);

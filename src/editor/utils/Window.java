@@ -104,13 +104,6 @@ public class Window extends JFrame {
 		windowActionBar.add(smaller);
 		windowActionBar.add(quit);
 		this.setJMenuBar(windowActionBar);
-		EnigmaMenu m = new EnigmaMenu("bite");
-		m.setMenuUI(new EnigmaMenuUI());
-		EnigmaMenuItem mi = new EnigmaMenuItem("bite");
-		EnigmaMenuItemUI ui = new EnigmaMenuItemUI();
-		mi.setMenuItemUI(ui);
-		m.add(mi);
-		windowActionBar.add(m);
 
 		this.content = new EnigmaPanel();
 		this.resizers[RIGHT_RESIZER] = new ResizeComponent(new Cursor(Cursor.E_RESIZE_CURSOR));
