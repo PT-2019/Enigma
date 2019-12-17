@@ -40,4 +40,12 @@ public class RoomView extends ShapeRenderer {
     public void setVisible(boolean b){
         visible = b;
     }
+
+    public int getTile(){
+        return tile;
+    }
+
+    public int getHeightSize() {
+        return mapSize;
+    }
 }

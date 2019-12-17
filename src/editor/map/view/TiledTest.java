@@ -1,6 +1,7 @@
 package editor.map.view;
 
 import com.badlogic.gdx.*;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.MapProperties;
@@ -37,8 +38,8 @@ public class TiledTest extends Game {
 	@Override
 	public void create () {
 		int midx,midy;
-		float w = Gdx.graphics.getWidth();
-		float h = Gdx.graphics.getHeight();
+		int width,heigth,tile;
+
 		TiledMap tiledMap = new TmxMapLoader().load("assets/map/old/Loadtest.tmx");
 		Map tmpMap;
 		camera = new OrthographicCamera();
@@ -47,9 +48,9 @@ public class TiledTest extends Game {
 
 		tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
 		MapProperties prop = tiledMap.getProperties();
-
-		camera.setToOrtho(false,w,h);
-		camera.update();
+		width = (int)prop.get("width");
+		heigth = (int)prop.get("height");
+		tile = (int)prop.get("tileheight");
 
 		gameMap.load("assets/map/old/Loadtest.tmx");
 		tmpMap = gameMap.getMap();
@@ -58,11 +59,19 @@ public class TiledTest extends Game {
 		midy = tmpMap.getRow()*(int)prop.get("tileheight")/2;
 		camera.position.set(midx,midy,0);
 
-		border = new Border((int)prop.get("width"),(int)prop.get("height"),(int)prop.get("tileheight"));
-		room = new RoomView(tmpMap.getRooms(),(int)prop.get("tileheight"),tmpMap.getRow());
-		collisionView = new CollisionView(tmpMap.getCases(),(int)prop.get("tileheight"),(int)prop.get("width"),(int)prop.get("height"));
+		border = new Border(width,heigth,tile);
+		room = new RoomView(tmpMap.getRooms(),tile,tmpMap.getRow());
+		collisionView = new CollisionView(tmpMap.getCases(),tile,width,heigth);
+
 		MapControlleur control = new MapControlleur(camera,tiledMap,component,room,collisionView);
 		TileMap map = new TileMap(tiledMap,component,tmpMap);
+
+		System.out.println(width*tile);
+
+		System.out.println(heigth*tile);
+
+		camera.setToOrtho(false,width*tile,heigth*tile);
+		camera.update();
 
 		multi.addProcessor(control);
 		multi.addProcessor(map);

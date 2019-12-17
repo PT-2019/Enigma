@@ -1,5 +1,6 @@
 package editor.map.view;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 
@@ -13,17 +14,31 @@ public class PopMenuListener implements ItemListener, ActionListener {
 
     private RoomView view;
 
+    /**
+       Camera qui se base sur la taille de la map, permet d'avoir le point
+       de vue de toute la map
+     */
     private Camera camera;
 
-    private float zoom;
+    /**
+     * Largeur de la caméra sans le zoom du jeu
+     */
+    private float viewportWidth;
+
+    /**
+     * Longeur camera sans zoom du jeu
+     */
+    private float viewportHeight;
 
     private CollisionView collision;
 
     public PopMenuListener(RoomView v,Camera cam,CollisionView col){
         view = v;
         camera = cam;
-        zoom = ((OrthographicCamera) camera).zoom;
         collision = col;
+
+        viewportWidth = v.getTile();
+        viewportHeight =  v.getHeightSize();
     }
 
     @Override
@@ -47,7 +62,13 @@ public class PopMenuListener implements ItemListener, ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Zoom du jeu")){
-            ((OrthographicCamera) camera).zoom = zoom;
+            ((OrthographicCamera) camera).setToOrtho(false, Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
+            ((OrthographicCamera) camera).zoom = 1;
+        }else{
+            System.out.println(viewportWidth);
+            System.out.println(viewportHeight);
+            ((OrthographicCamera) camera).setToOrtho(false, viewportWidth,viewportHeight);
+            ((OrthographicCamera) camera).zoom = 1;
         }
     }
 }

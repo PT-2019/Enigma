@@ -26,13 +26,11 @@ public class CasePopUp extends JDialog implements WindowListener {
     JButton b3 = new JButton("Supprimer");
 
     public CasePopUp(JComponent component){
-        super((JFrame)component.getRootPane().getParent(),"Case Information",true);
+        super((JFrame)component.getRootPane().getParent(),"Case Information",false);
         this.setSize(300,300);
         this.setLocation(Gdx.graphics.getWidth()/2,Gdx.graphics.getHeight()/2);
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        this.addWindowListener(this);
-
         this.addWindowListener(this);
     }
 

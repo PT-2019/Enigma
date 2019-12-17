@@ -19,12 +19,8 @@ public class MapControlleur implements InputProcessor {
 
     private OrthographicCamera camera;
 
-    private TiledMap tiledMap;
-
-
-    public MapControlleur (Camera cam,TiledMap map, JComponent component,RoomView r,CollisionView col){
+    public MapControlleur (Camera cam, JComponent component,RoomView r,CollisionView col){
         camera =(OrthographicCamera) cam;
-        tiledMap = map;
         ispush = false;
         this.component = component;
         this.menu = new EntityPopMenu(r,col,cam);
@@ -53,10 +49,6 @@ public class MapControlleur implements InputProcessor {
             camera.translate(0,32);
         if(keycode == Input.Keys.DOWN)
             camera.translate(0,-32);
-        if(keycode == Input.Keys.NUM_1)
-            tiledMap.getLayers().get(0).setVisible(!tiledMap.getLayers().get(0).isVisible());
-        if(keycode == Input.Keys.NUM_2)
-            tiledMap.getLayers().get(1).setVisible(!tiledMap.getLayers().get(1).isVisible());
         if (keycode == Input.Keys.CONTROL_LEFT)
             ispush = false;
         return false;
