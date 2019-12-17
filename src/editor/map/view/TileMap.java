@@ -7,6 +7,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import editor.map.Case;
 import editor.map.Map;
+import game.entity.MapLibgdxCell;
 
 import javax.swing.*;
 
@@ -29,6 +30,8 @@ public class TileMap extends Stage {
         for (int x = 0; x < layer.getWidth(); x++) {
             for (int y = 0; y < layer.getHeight(); y++) {
                 cell = layer.getCell(x, y);
+                //MapLibgdxCell cell = (MapLibgdxCell)layer.getCell(x, y);
+
                 currentCase = gameMap.getCase(y*layer.getWidth()+x);
                 CaseView actor = new CaseView(cell,currentCase);
 

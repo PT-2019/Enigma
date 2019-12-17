@@ -42,6 +42,8 @@ public class CasePopUp extends JDialog implements WindowListener {
         this.add(l);
         this.add(b3);
 
+        //cell.get
+
         this.setVisible(true);
     }
 

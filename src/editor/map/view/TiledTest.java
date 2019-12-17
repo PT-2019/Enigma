@@ -60,15 +60,11 @@ public class TiledTest extends Game {
 		camera.position.set(midx,midy,0);
 
 		border = new Border(width,heigth,tile);
-		room = new RoomView(tmpMap.getRooms(),tile,tmpMap.getRow());
+		room = new RoomView(tmpMap.getRooms(),tile,heigth,width);
 		collisionView = new CollisionView(tmpMap.getCases(),tile,width,heigth);
 
-		MapControlleur control = new MapControlleur(camera,tiledMap,component,room,collisionView);
+		MapControlleur control = new MapControlleur(camera,component,room,collisionView);
 		TileMap map = new TileMap(tiledMap,component,tmpMap);
-
-		System.out.println(width*tile);
-
-		System.out.println(heigth*tile);
 
 		camera.setToOrtho(false,width*tile,heigth*tile);
 		camera.update();

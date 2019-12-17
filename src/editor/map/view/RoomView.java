@@ -14,13 +14,17 @@ public class RoomView extends ShapeRenderer {
 
     private int tile;
 
-    private int mapSize;
+    private int mapHeight;
 
-    public RoomView(Map<Point,Room> r,int t,int size){
+    private int mapWidth;
+
+
+    public RoomView(Map<Point,Room> r,int t,int mapHeight,int mapWidth){
         visible = false;
         room = r;
         tile = t;
-        mapSize = size*tile;
+        this.mapHeight = mapHeight*tile;
+        this.mapWidth = mapWidth;
     }
 
     public void draw(){
@@ -29,7 +33,7 @@ public class RoomView extends ShapeRenderer {
             this.setColor(0,50,246,0);
             for (Map.Entry<Point, Room> r: room.entrySet()) {
                 Room tmp = r.getValue();
-                int y = (mapSize-tmp.getRow()*tile)-(int)r.getKey().getY()*tile;
+                int y = (mapHeight-tmp.getRow()*tile)-(int)r.getKey().getY()*tile;
 
                 this.rect((int)r.getKey().getX()*tile,y,tmp.getCol()*tile,tmp.getRow()*tile);
             }
@@ -46,6 +50,10 @@ public class RoomView extends ShapeRenderer {
     }
 
     public int getHeightSize() {
-        return mapSize;
+        return mapHeight;
+    }
+
+    public int getMapWidth() {
+        return mapWidth;
     }
 }

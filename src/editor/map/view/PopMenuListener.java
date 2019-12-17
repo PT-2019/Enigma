@@ -37,7 +37,7 @@ public class PopMenuListener implements ItemListener, ActionListener {
         camera = cam;
         collision = col;
 
-        viewportWidth = v.getTile();
+        viewportWidth = v.getTile() * v.getMapWidth();
         viewportHeight =  v.getHeightSize();
     }
 
@@ -62,13 +62,22 @@ public class PopMenuListener implements ItemListener, ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Zoom du jeu")){
+            float x = camera.position.x;
+            float y = camera.position.y;
             ((OrthographicCamera) camera).setToOrtho(false, Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
             ((OrthographicCamera) camera).zoom = 1;
+            //pour garder la caméra a la même position
+            camera.position.x = x;
+            camera.position.y = y;
         }else{
-            System.out.println(viewportWidth);
-            System.out.println(viewportHeight);
+            float x = camera.position.x;
+            float y = camera.position.y;
+
             ((OrthographicCamera) camera).setToOrtho(false, viewportWidth,viewportHeight);
             ((OrthographicCamera) camera).zoom = 1;
+            //pour garder la caméra a la même position
+            camera.position.x = x;
+            camera.position.y = y;
         }
     }
 }
