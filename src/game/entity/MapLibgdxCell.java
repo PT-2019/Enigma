@@ -11,9 +11,11 @@ import editor.entity.EntitySerializable;
  */
 public class MapLibgdxCell extends TiledMapTileLayer.Cell {
 
+	private final TiledMapTileLayer layer;
 	private EntitySerializable entity;
 
-	public MapLibgdxCell() {
+	public MapLibgdxCell(TiledMapTileLayer layer, int i, int j) {
+		this.layer = layer;
 		this.entity = null;
 	}
 

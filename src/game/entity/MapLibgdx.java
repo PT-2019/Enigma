@@ -251,7 +251,7 @@ public class MapLibgdx extends Group implements InputListener {
 			//pas de problème pour x
 			for (int i = (int) start.y - 1, index = 0; i >= (start.y - entity.getHeight()); i--) {
 				for (int j = (int) start.x; j < start.x + entity.getWidth() && index < entities.size; j++, index++) {
-					MapLibgdxCell c = new MapLibgdxCell();
+					MapLibgdxCell c = new MapLibgdxCell(tileLayer, i, j);
 					c.setTile(this.map.getMap().getTileSets().getTile(MathUtils.ceil(entities.get(index))));
 					c.setEntity(entity);
 					tileLayer.setCell(j, i, c);
