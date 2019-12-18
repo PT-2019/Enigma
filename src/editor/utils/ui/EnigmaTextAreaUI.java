@@ -11,86 +11,71 @@ public class EnigmaTextAreaUI extends BasicTextAreaUI {
     private Color foreground;
     private Color hoveredBackground;
     private Color hoveredForeground;
-    private Color pressedBackground;
-    private Color pressedForeground;
+    private Color focusedBackground;
+    private Color focusedForeground;
     private Color border;
     private Color hoveredBorder;
-    private Color pressedBorder;
+    private Color focusedBorder;
     private boolean hovered;
-    private boolean pressed;
     private Cursor cursor;
     private int borderSize;
     private int hoveredBorderSize;
-    private int pressedBorderSize;
+    private int focusedBorderSize;
     private boolean[] showedBorders;
     private boolean[] hoveredShowedBorders;
-    private boolean[] pressedShowedBorders;
+    private boolean[] focusedShowedBorders;
 
     public EnigmaTextAreaUI(){
-        this.background = EnigmaUIValues.ENIGMA_LABEL_BACKGROUND;
-        this.hoveredBackground = EnigmaUIValues.ENIGMA_LABEL_HOVERED_BACKGROUND;
-        this.pressedBackground = EnigmaUIValues.ENIGMA_LABEL_PRESSED_BACKGROUND;
-        this.foreground = EnigmaUIValues.ENIGMA_LABEL_FOREGROUND;
-        this.hoveredForeground = EnigmaUIValues.ENIGMA_LABEL_HOVERED_FOREGROUND;
-        this.pressedForeground = EnigmaUIValues.ENIGMA_LABEL_PRESSED_FOREGROUND;
-        this.border = EnigmaUIValues.ENIGMA_LABEL_BORDER;
-        this.hoveredBorder = EnigmaUIValues.ENIGMA_LABEL_HOVERED_BORDER;
-        this.pressedBorder = EnigmaUIValues.ENIGMA_LABEL_PRESSED_BORDER;
-        this.borderSize = EnigmaUIValues.ENIGMA_LABEL_BORDER_SIZE;
-        this.hoveredBorderSize = EnigmaUIValues.ENIGMA_LABEL_HOVERED_BORDER_SIZE;
-        this.pressedBorderSize = EnigmaUIValues.ENIGMA_LABEL_PRESSED_BORDER_SIZE;
-        this.showedBorders = EnigmaUIValues.ENIGMA_LABEL_SHOWED_BORDERS;
-        this.hoveredShowedBorders = EnigmaUIValues.ENIGMA_LABEL_HOVERED_SHOWED_BORDERS;
-        this.pressedShowedBorders = EnigmaUIValues.ENIGMA_LABEL_PRESSED_SHOWED_BORDERS;
+        this.background = EnigmaUIValues.ENIGMA_TEXTAREA_BACKGROUND;
+        this.hoveredBackground = EnigmaUIValues.ENIGMA_TEXTAREA_HOVERED_BACKGROUND;
+        this.focusedBackground = EnigmaUIValues.ENIGMA_TEXTAREA_FOCUSED_BACKGROUND;
+        this.foreground = EnigmaUIValues.ENIGMA_TEXTAREA_FOREGROUND;
+        this.hoveredForeground = EnigmaUIValues.ENIGMA_TEXTAREA_HOVERED_FOREGROUND;
+        this.focusedForeground = EnigmaUIValues.ENIGMA_TEXTAREA_FOCUSED_FOREGROUND;
+        this.border = EnigmaUIValues.ENIGMA_TEXTAREA_BORDER;
+        this.hoveredBorder = EnigmaUIValues.ENIGMA_TEXTAREA_HOVERED_BORDER;
+        this.focusedBorder = EnigmaUIValues.ENIGMA_TEXTAREA_FOCUSED_BORDER;
+        this.borderSize = EnigmaUIValues.ENIGMA_TEXTAREA_BORDER_SIZE;
+        this.hoveredBorderSize = EnigmaUIValues.ENIGMA_TEXTAREA_HOVERED_BORDER_SIZE;
+        this.focusedBorderSize = EnigmaUIValues.ENIGMA_TEXTAREA_FOCUSED_BORDER_SIZE;
+        this.showedBorders = EnigmaUIValues.ENIGMA_TEXTAREA_SHOWED_BORDERS;
+        this.hoveredShowedBorders = EnigmaUIValues.ENIGMA_TEXTAREA_HOVERED_SHOWED_BORDERS;
+        this.focusedShowedBorders = EnigmaUIValues.ENIGMA_TEXTAREA_FOCUSED_SHOWED_BORDERS;
         this.hovered = false;
-        this.pressed = false;
         this.cursor = new Cursor(Cursor.HAND_CURSOR);
     }
 
     public void paintTextArea(Graphics g, JComponent c) {
         Graphics brush = g.create();
         JTextArea ta = (JTextArea) c;
-        if(this.pressed){
-            brush.setColor(this.pressedBackground);
-            brush.fillRect(0,0,ta.getWidth(),ta.getHeight());
-            ta.setForeground(this.pressedForeground);
-            if(this.pressedBorder != null){
-                brush.setColor(this.pressedBorder);
-                for (int i = 0; i < 4; i++) {
-                    if(i == EnigmaUIValues.TOP_BORDER && this.pressedShowedBorders[i]) brush.fillRect(0,0,ta.getWidth(),this.pressedBorderSize);
-                    if(i == EnigmaUIValues.RIGHT_BORDER && this.pressedShowedBorders[i]) brush.fillRect(ta.getWidth() - this.pressedBorderSize,0,ta.getWidth(),ta.getHeight());
-                    if(i == EnigmaUIValues.BOTTOM_BORDER && this.pressedShowedBorders[i]) brush.fillRect(0,ta.getHeight() - this.pressedBorderSize,ta.getWidth(),ta.getHeight());
-                    if(i == EnigmaUIValues.LEFT_BORDER && this.pressedShowedBorders[i]) brush.fillRect(0,0,this.pressedBorderSize,ta.getHeight());
-                }
+        if(ta.hasFocus()){
+            ta.setBackground(this.focusedBackground);
+            ta.setForeground(this.focusedForeground);
+            if(this.focusedBorder != null){
+                this.paintBorder(ta,this.focusedBorder,this.focusedBorderSize,this.focusedShowedBorders);
             }
         } else if(this.hovered){
-            brush.setColor(this.hoveredBackground);
-            brush.fillRect(0,0,ta.getWidth(),ta.getHeight());
+            ta.setBackground(this.hoveredBackground);
             ta.setForeground(this.hoveredForeground);
             if(this.hoveredBorder != null){
-                brush.setColor(this.hoveredBorder);
-                for (int i = 0; i < 4; i++) {
-                    if(i == EnigmaUIValues.TOP_BORDER && this.hoveredShowedBorders[i]) brush.fillRect(0,0,ta.getWidth(),this.hoveredBorderSize);
-                    if(i == EnigmaUIValues.RIGHT_BORDER && this.hoveredShowedBorders[i]) brush.fillRect(ta.getWidth() - this.hoveredBorderSize,0,ta.getWidth(),ta.getHeight());
-                    if(i == EnigmaUIValues.BOTTOM_BORDER && this.hoveredShowedBorders[i]) brush.fillRect(0,ta.getHeight() - this.hoveredBorderSize,ta.getWidth(),ta.getHeight());
-                    if(i == EnigmaUIValues.LEFT_BORDER && this.hoveredShowedBorders[i]) brush.fillRect(0,0,this.hoveredBorderSize,ta.getHeight());
-                }
+                this.paintBorder(ta,this.hoveredBorder,this.hoveredBorderSize,this.hoveredShowedBorders);
             }
         } else {
-            brush.setColor(this.background);
-            brush.fillRect(0,0,ta.getWidth(),ta.getHeight());
+            ta.setBackground(this.background);
             ta.setForeground(this.foreground);
             if(this.border != null){
-                brush.setColor(this.border);
-                for (int i = 0; i < 4; i++) {
-                    if(i == EnigmaUIValues.TOP_BORDER && this.showedBorders[i]) brush.fillRect(0,0,ta.getWidth(),this.borderSize);
-                    if(i == EnigmaUIValues.RIGHT_BORDER && this.showedBorders[i]) brush.fillRect(ta.getWidth() - this.borderSize,0,ta.getWidth(),ta.getHeight());
-                    if(i == EnigmaUIValues.BOTTOM_BORDER && this.showedBorders[i]) brush.fillRect(0,ta.getHeight() - this.borderSize,ta.getWidth(),ta.getHeight());
-                    if(i == EnigmaUIValues.LEFT_BORDER && this.showedBorders[i]) brush.fillRect(0,0,this.borderSize,ta.getHeight());
-                }
+                this.paintBorder(ta,this.border,this.borderSize,this.showedBorders);
             }
         }
         super.paint(brush,c);
+    }
+
+    private void paintBorder(JComponent c, Color borderColor, int borderSize, boolean[] showedBorders){
+        int[] borders = new int[showedBorders.length];
+        for (int i = 0; i < 4; i++) {
+            if(showedBorders[i]) borders[i] = borderSize;
+        }
+        c.setBorder(BorderFactory.createMatteBorder(borders[0],borders[3],borders[2],borders[2],borderColor));
     }
 
     public boolean[] getShowedBorders(){
@@ -101,8 +86,8 @@ public class EnigmaTextAreaUI extends BasicTextAreaUI {
         return this.hoveredShowedBorders;
     }
 
-    public boolean[] getPressedShowedBorders(){
-        return this.pressedShowedBorders;
+    public boolean[] getFocusedShowedBorders(){
+        return this.focusedShowedBorders;
     }
 
     public int getBorderSize() {
@@ -113,15 +98,15 @@ public class EnigmaTextAreaUI extends BasicTextAreaUI {
         return hoveredBorderSize;
     }
 
-    public int getPressedBorderSize() {
-        return pressedBorderSize;
+    public int getFocusedBorderSize() {
+        return focusedBorderSize;
     }
 
-    public void setAllBordersSize(int borderSize, int hoveredBorderSize, int pressedBorderSize){
-        if(borderSize < 0 || hoveredBorderSize < 0 || pressedBorderSize < 0) throw new IllegalArgumentException("La taille des bordures ne peuvent être négatives");
+    public void setAllBordersSize(int borderSize, int hoveredBorderSize, int focusedBorderSize){
+        if(borderSize < 0 || hoveredBorderSize < 0 || focusedBorderSize < 0) throw new IllegalArgumentException("La taille des bordures ne peuvent être négatives");
         this.borderSize = borderSize;
         this.hoveredBorderSize = hoveredBorderSize;
-        this.pressedBorderSize = pressedBorderSize;
+        this.focusedBorderSize = focusedBorderSize;
     }
 
     public void setBorderSize(int borderSize) {
@@ -134,9 +119,9 @@ public class EnigmaTextAreaUI extends BasicTextAreaUI {
         this.hoveredBorderSize = hoveredBorderSize;
     }
 
-    public void setPressedBorderSize(int pressedBorderSize) {
-        if(pressedBorderSize < 0) throw new IllegalArgumentException("La taille de la bordure ne peut être négative");
-        this.pressedBorderSize = pressedBorderSize;
+    public void setFocusedBorderSize(int focusedBorderSize) {
+        if(focusedBorderSize < 0) throw new IllegalArgumentException("La taille de la bordure ne peut être négative");
+        this.focusedBorderSize = focusedBorderSize;
     }
 
     public void setShowedBorders(boolean[] showedBorders) {
@@ -149,16 +134,16 @@ public class EnigmaTextAreaUI extends BasicTextAreaUI {
         this.hoveredShowedBorders = hoveredShowedBorders;
     }
 
-    public void setPressedShowedBorders(boolean[] pressedShowedBorders) {
+    public void setFocusedShowedBorders(boolean[] focusedShowedBorders) {
         if(showedBorders.length != 4) throw new IllegalArgumentException("Le tableau doit être de 4 éléments");
-        this.pressedShowedBorders = pressedShowedBorders;
+        this.focusedShowedBorders = focusedShowedBorders;
     }
 
-    public void setAllShowedBorders(boolean[] showedBorders, boolean[] hoveredShowedBorders, boolean[] pressedShowedBorders){
-        if(showedBorders.length != 4 || hoveredShowedBorders.length != 4 || pressedShowedBorders.length != 4) throw new IllegalArgumentException("Les tableaux doivent être de 4 éléments");
+    public void setAllShowedBorders(boolean[] showedBorders, boolean[] hoveredShowedBorders, boolean[] focusedShowedBorders){
+        if(showedBorders.length != 4 || hoveredShowedBorders.length != 4 || focusedShowedBorders.length != 4) throw new IllegalArgumentException("Les tableaux doivent être de 4 éléments");
         this.showedBorders = showedBorders;
         this.hoveredShowedBorders = hoveredShowedBorders;
-        this.pressedShowedBorders = pressedShowedBorders;
+        this.focusedShowedBorders = focusedShowedBorders;
     }
 
     public void setCursor(Cursor cursor){
@@ -177,14 +162,6 @@ public class EnigmaTextAreaUI extends BasicTextAreaUI {
         return hovered;
     }
 
-    public void setIsPressed(boolean isPressed){
-        this.pressed = isPressed;
-    }
-
-    public boolean isPressed() {
-        return pressed;
-    }
-
     public Color getBackground() {
         return background;
     }
@@ -201,12 +178,12 @@ public class EnigmaTextAreaUI extends BasicTextAreaUI {
         return hoveredForeground;
     }
 
-    public Color getPressedBackground() {
-        return pressedBackground;
+    public Color getFocusedBackground() {
+        return focusedBackground;
     }
 
-    public Color getPressedForeground() {
-        return pressedForeground;
+    public Color getFocusedForeground() {
+        return focusedForeground;
     }
 
     public Color getBorder() {
@@ -217,28 +194,28 @@ public class EnigmaTextAreaUI extends BasicTextAreaUI {
         return hoveredBorder;
     }
 
-    public Color getPressedBorder() {
-        return pressedBorder;
+    public Color getFocusedBorder() {
+        return focusedBorder;
     }
 
-    public void setAllBackgrounds(Color background, Color hoveredBackground, Color pressedBackground){
-        if(background == null || hoveredBackground == null || pressedBackground == null) throw  new NullPointerException("Les arguments ne peuvent pas être null");
+    public void setAllBackgrounds(Color background, Color hoveredBackground, Color focusedBackground){
+        if(background == null || hoveredBackground == null || focusedBackground == null) throw  new NullPointerException("Les arguments ne peuvent pas être null");
         this.background = background;
         this.hoveredBackground = hoveredBackground;
-        this.pressedBackground = pressedBackground;
+        this.focusedBackground = focusedBackground;
     }
 
-    public void setAllForegrounds(Color foreground, Color hoveredForeground, Color pressedForeground){
-        if(foreground == null || hoveredForeground == null || pressedForeground == null) throw  new NullPointerException("Les arguments ne peuvent pas être null");
+    public void setAllForegrounds(Color foreground, Color hoveredForeground, Color focusedForeground){
+        if(foreground == null || hoveredForeground == null || focusedForeground == null) throw  new NullPointerException("Les arguments ne peuvent pas être null");
         this.foreground = foreground;
         this.hoveredForeground = hoveredForeground;
-        this.pressedForeground = pressedForeground;
+        this.focusedForeground = focusedForeground;
     }
 
-    public void setAllBorders(Color border, Color hoveredBorder, Color pressedBorder){
+    public void setAllBorders(Color border, Color hoveredBorder, Color focusedBorder){
         this.border = border;
         this.hoveredBorder = hoveredBorder;
-        this.pressedBorder = pressedBorder;
+        this.focusedBorder = focusedBorder;
     }
 
     public void setBackground(Color background) {
@@ -261,14 +238,14 @@ public class EnigmaTextAreaUI extends BasicTextAreaUI {
         this.hoveredForeground = hoveredForeground;
     }
 
-    public void setPressedBackground(Color pressedBackground) {
-        if(pressedBackground == null) throw  new NullPointerException("L'argument ne peut pas être null");
-        this.pressedBackground = pressedBackground;
+    public void setFocusedBackground(Color focusedBackground) {
+        if(focusedBackground == null) throw  new NullPointerException("L'argument ne peut pas être null");
+        this.focusedBackground = focusedBackground;
     }
 
-    public void setPressedForeground(Color pressedForeground) {
-        if(pressedForeground == null) throw  new NullPointerException("L'argument ne peut pas être null");
-        this.pressedForeground = pressedForeground;
+    public void setFocusedForeground(Color focusedForeground) {
+        if(focusedForeground == null) throw  new NullPointerException("L'argument ne peut pas être null");
+        this.focusedForeground = focusedForeground;
     }
 
     public void setBorder(Color border) {
@@ -279,8 +256,8 @@ public class EnigmaTextAreaUI extends BasicTextAreaUI {
         this.hoveredBorder = hoveredBorder;
     }
 
-    public void setPressedBorder(Color pressedBorder) {
-        this.pressedBorder = pressedBorder;
+    public void setFocusedBorder(Color focusedBorder) {
+        this.focusedBorder = focusedBorder;
     }
 
 
@@ -289,12 +266,12 @@ public class EnigmaTextAreaUI extends BasicTextAreaUI {
         EnigmaTextAreaUI clone = new EnigmaTextAreaUI();
 
         clone.setCursor(this.getCursor());
-        clone.setAllBackgrounds(this.getBackground(), this.getHoveredBackground(), this.getPressedBackground());
-        clone.setAllForegrounds(this.getForeground(), this.getHoveredForeground(), this.getPressedForeground());
-        clone.setAllBorders(this.getBorder(), this.getHoveredBorder(), this.getPressedBorder());
+        clone.setAllBackgrounds(this.getBackground(), this.getHoveredBackground(), this.getFocusedBackground());
+        clone.setAllForegrounds(this.getForeground(), this.getHoveredForeground(), this.getFocusedForeground());
+        clone.setAllBorders(this.getBorder(), this.getHoveredBorder(), this.getFocusedBorder());
         clone.setIsHovered(this.isHovered());
-        clone.setAllBordersSize(this.getBorderSize(), this.getHoveredBorderSize(), this.getPressedBorderSize());
-        clone.setAllShowedBorders(this.getShowedBorders(), this.getHoveredShowedBorders(), this.getPressedShowedBorders());
+        clone.setAllBordersSize(this.getBorderSize(), this.getHoveredBorderSize(), this.getFocusedBorderSize());
+        clone.setAllShowedBorders(this.getShowedBorders(), this.getHoveredShowedBorders(), this.getFocusedShowedBorders());
 
         return clone;
     }

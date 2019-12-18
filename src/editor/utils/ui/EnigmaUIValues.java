@@ -60,26 +60,29 @@ public class EnigmaUIValues {
     public final static boolean[] ENIGMA_LABEL_HOVERED_SHOWED_BORDERS = {true,true,true,true};
     public final static boolean[] ENIGMA_LABEL_PRESSED_SHOWED_BORDERS = {true,true,true,true};
 
+    public final static Color ENIGMA_TEXTAREA_BACKGROUND = Color.DARK_GRAY;
+    public final static Color ENIGMA_TEXTAREA_HOVERED_BACKGROUND = Color.DARK_GRAY;
+    public final static Color ENIGMA_TEXTAREA_FOCUSED_BACKGROUND = Color.DARK_GRAY;
+    public final static Color ENIGMA_TEXTAREA_FOREGROUND = Color.WHITE;
+    public final static Color ENIGMA_TEXTAREA_HOVERED_FOREGROUND = Color.WHITE;
+    public final static Color ENIGMA_TEXTAREA_FOCUSED_FOREGROUND = Color.WHITE;
+    public final static Color ENIGMA_TEXTAREA_BORDER = null;
+    public final static Color ENIGMA_TEXTAREA_HOVERED_BORDER = null;
+    public final static Color ENIGMA_TEXTAREA_FOCUSED_BORDER = null;
+    public final static int ENIGMA_TEXTAREA_BORDER_SIZE = 1;
+    public final static int ENIGMA_TEXTAREA_HOVERED_BORDER_SIZE = 1;
+    public final static int ENIGMA_TEXTAREA_FOCUSED_BORDER_SIZE = 1;
+    public final static boolean[] ENIGMA_TEXTAREA_SHOWED_BORDERS = {true,true,true,true};
+    public final static boolean[] ENIGMA_TEXTAREA_HOVERED_SHOWED_BORDERS = {true,true,true,true};
+    public final static boolean[] ENIGMA_TEXTAREA_FOCUSED_SHOWED_BORDERS = {true,true,true,true};
+
     public final static Color ENIGMA_MENU_BAR_BACKGROUND = Color.DARK_GRAY;
     public final static Color ENIGMA_MENU_BAR_BORDER = null;
     public final static int ENIGMA_MENU_BAR_BORDER_SIZE = 1;
     public final static boolean[] ENIGMA_MENU_BAR_SHOWED_BORDERS = {false,false,false,false};
 
     public final static Color ENIGMA_MENU_ITEM_BACKGROUND = Color.DARK_GRAY;
-    public final static Color ENIGMA_MENU_ITEM_HOVERED_BACKGROUND = Color.DARK_GRAY;
-    public final static Color ENIGMA_MENU_ITEM_PRESSED_BACKGROUND = new Color(100,100,100);
     public final static Color ENIGMA_MENU_ITEM_FOREGROUND = Color.WHITE;
-    public final static Color ENIGMA_MENU_ITEM_HOVERED_FOREGROUND = Color.GREEN;
-    public final static Color ENIGMA_MENU_ITEM_PRESSED_FOREGROUND = Color.ORANGE;
-    public final static Color ENIGMA_MENU_ITEM_BORDER = null;
-    public final static Color ENIGMA_MENU_ITEM_HOVERED_BORDER = null;
-    public final static Color ENIGMA_MENU_ITEM_PRESSED_BORDER = null;
-    public final static int ENIGMA_MENU_ITEM_BORDER_SIZE = 1;
-    public final static int ENIGMA_MENU_ITEM_HOVERED_BORDER_SIZE = 1;
-    public final static int ENIGMA_MENU_ITEM_PRESSED_BORDER_SIZE = 1;
-    public final static boolean[] ENIGMA_MENU_ITEM_SHOWED_BORDERS = {true,true,true,true};
-    public final static boolean[] ENIGMA_MENU_ITEM_HOVERED_SHOWED_BORDERS = {true,true,true,true};
-    public final static boolean[] ENIGMA_MENU_ITEM_PRESSED_SHOWED_BORDERS = {true,true,true,true};
 
     public final static Color ENIGMA_MENU_BACKGROUND = Color.DARK_GRAY;
     public final static Color ENIGMA_MENU_HOVERED_BACKGROUND = new Color(100,100,100);

@@ -19,7 +19,6 @@ public class EnigmaTextAreaManager implements MouseListener {
     @Override
     public void mousePressed(MouseEvent mouseEvent){
         if(this.textArea.getTextAreaUI() != null){
-            this.textArea.getTextAreaUI().setIsPressed(true);
             this.textArea.repaint();
         }
     }
@@ -27,7 +26,6 @@ public class EnigmaTextAreaManager implements MouseListener {
     @Override
     public void mouseReleased(MouseEvent mouseEvent){
         if(this.textArea.getTextAreaUI() != null){
-            this.textArea.getTextAreaUI().setIsPressed(false);
             this.textArea.repaint();
         }
     }
