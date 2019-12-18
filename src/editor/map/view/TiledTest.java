@@ -9,6 +9,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
 import editor.map.Map;
 import editor.map.MapLoader;
 
@@ -29,6 +30,8 @@ public class TiledTest extends Game {
 	RoomView room;
 
 	CollisionView collisionView;
+
+	TileMap tilemap;
 
 	public TiledTest(JComponent c){
 		component = c;
@@ -64,24 +67,25 @@ public class TiledTest extends Game {
 		collisionView = new CollisionView(tmpMap.getCases(),tile,width,heigth);
 
 		MapControlleur control = new MapControlleur(camera,component,room,collisionView);
-		TileMap map = new TileMap(tiledMap,component,tmpMap);
+		tilemap = new TileMap(tiledMap,component,tmpMap);
 
 		camera.setToOrtho(false,width*tile,heigth*tile);
 		camera.update();
 
+		tilemap.getViewport().setCamera(camera);
+
 		multi.addProcessor(control);
-		multi.addProcessor(map);
+		multi.addProcessor(tilemap);
 		Gdx.input.setInputProcessor(multi);
 	}
 
 	@Override
 	public void render () {
-
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		camera.update();
-
+		tilemap.act();
 
 		border.setProjectionMatrix(camera.combined);
 		room.setProjectionMatrix(camera.combined);

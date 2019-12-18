@@ -16,7 +16,7 @@ public class CaseListener extends ClickListener {
     @Override
     public void clicked(InputEvent event, float x, float y) {
         CaseView actor =(CaseView) event.getTarget();
-        popUp.setCell(actor.getCase());
+        popUp.setCell(actor.getCell());
         popUp.display();
     }
 }

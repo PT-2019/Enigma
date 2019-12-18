@@ -11,10 +11,22 @@ import editor.entity.EntitySerializable;
  */
 public class MapLibgdxCell extends TiledMapTileLayer.Cell {
 
+	private TiledMapTileLayer layer;
 	private EntitySerializable entity;
 
-	public MapLibgdxCell(){
+	private int i;
+
+	private int j;
+
+	public MapLibgdxCell(TiledMapTileLayer layer, int i, int j) {
+		this.layer = layer;
 		this.entity = null;
+		this.i = i;
+		this.j = j;
+	}
+
+	public EntitySerializable getEntity() {
+		return entity;
 	}
 
 	public void setEntity(EntitySerializable entity) {
@@ -22,5 +34,15 @@ public class MapLibgdxCell extends TiledMapTileLayer.Cell {
 		//this.entity.getClassName renvoi par exemple editor.entity.item.Chest
 	}
 
-	public EntitySerializable getEntity() { return entity; }
+	public TiledMapTileLayer getLayer(){
+		return this.layer;
+	}
+
+	public int getX(){
+		return this.i;
+	}
+
+	public int getY(){
+		return this.j;
+	}
 }

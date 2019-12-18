@@ -9,12 +9,16 @@ public class CaseView extends Actor {
 
     private TiledMapTileLayer.Cell cell;
 
-    public CaseView(TiledMapTileLayer.Cell cell,Case c){
+    public CaseView(TiledMapTileLayer.Cell cell, Case c){
         this.c = c;
         this.cell = cell;
     }
 
     public Case getCase() {
         return c;
+    }
+
+    public TiledMapTileLayer.Cell getCell(){
+        return this.cell;
     }
 }

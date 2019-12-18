@@ -11,7 +11,7 @@ import game.entity.MapLibgdxCell;
 
 import javax.swing.*;
 
-public class TileMap extends Stage {
+public class TileMap extends Stage{
 
     private TiledMap map;
 
@@ -20,23 +20,26 @@ public class TileMap extends Stage {
     public TileMap(TiledMap m, JComponent component, Map map){
         this.map = m;
         gameMap = map;
-        TiledMapTileLayer.Cell cell;
-        CasePopUp popUp = new CasePopUp(component);
+
+        CasePopUp popUp = new CasePopUp(component,this.map);
         CaseListener listenerCase = new CaseListener(popUp);
         MapLayers layers = m.getLayers();
         Case currentCase;
 
         TiledMapTileLayer layer = (TiledMapTileLayer) layers.get(0);
-        for (int x = 0; x < layer.getWidth(); x++) {
-            for (int y = 0; y < layer.getHeight(); y++) {
-                cell = layer.getCell(x, y);
-                //MapLibgdxCell cell = (MapLibgdxCell)layer.getCell(x, y);
+
+        for (int y = 0; y < layer.getHeight(); y++) {
+            for (int x = 0; x < layer.getWidth(); x++) {
+                MapLibgdxCell cell = new MapLibgdxCell(layer,x,y);
+                layer.setCell(x,y,cell);
 
                 currentCase = gameMap.getCase(y*layer.getWidth()+x);
+
                 CaseView actor = new CaseView(cell,currentCase);
 
                 actor.setBounds(x * layer.getTileWidth(), y * layer.getTileHeight(), layer.getTileWidth(),
                         layer.getTileHeight());
+
                 addActor(actor);
 
                 actor.addListener(listenerCase);

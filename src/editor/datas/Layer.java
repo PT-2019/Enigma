@@ -11,7 +11,7 @@ public enum Layer {
 	/**
 	 * Couche de collision
 	 */
-	//COLLISION,
+	COLLISION,
 	/**
 	 * Seconde couche de décoration
 	 */
