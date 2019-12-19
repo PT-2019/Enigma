@@ -14,8 +14,6 @@ public class EnigmaGame extends LibgdxGame {
 
 	private static EnigmaGame enigmaGame;
 
-	private Container container;
-
 	private EnigmaGame(){}
 
 	private EnigmaGame(Container container){
@@ -27,6 +25,8 @@ public class EnigmaGame extends LibgdxGame {
 		enigmaGame = this;
 		Gdx.gl.glClearColor(255, 255, 255, 255);
 		Gdx.app.setLogLevel(Application.LOG_ERROR|Application.LOG_DEBUG);
+
+		TestScreen screen = new TestScreen(container);
 
 		EnigmaGame.addScreen("Test", TestScreen.class);
 		//EnigmaGame.load("Test"); //we could do this to load screen as the program starts

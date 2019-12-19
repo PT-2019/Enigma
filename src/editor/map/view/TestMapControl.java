@@ -9,6 +9,7 @@ import game.entity.MapLibgdx;
 import game.utils.Bounds;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class TestMapControl implements InputProcessor {
 
@@ -26,7 +27,7 @@ public class TestMapControl implements InputProcessor {
         camera = map.getCamera();
         ispush = false;
         this.map = map;
-        //this.component = component;
+        this.component = (JComponent) map.getContainer();
         //this.menu = new EntityPopMenu(r,col,cam);
     }
 

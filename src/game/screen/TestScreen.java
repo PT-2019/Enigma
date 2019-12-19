@@ -11,10 +11,17 @@ import game.EnigmaGame;
 import game.api.LibgdxScreen;
 import game.entity.MapLibgdx;
 
+import java.awt.*;
+
 public class TestScreen extends LibgdxScreen {
 
 	private Stage main;
 	private MapLibgdx map;
+	private Container container;
+
+	public TestScreen(Container container){
+		this.container= container;
+	}
 
 	@Override
 	public void init() {
@@ -22,7 +29,7 @@ public class TestScreen extends LibgdxScreen {
 
 		this.main.setViewport(new ExtendViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
 
-		map = new MapLibgdx("assets/map/Empty.tmx");
+		map = new MapLibgdx("assets/map/Empty.tmx",container);
 
 		this.main.addActor(map);
 

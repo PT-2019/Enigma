@@ -7,6 +7,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.math.Rectangle;
 import org.jetbrains.annotations.NotNull;
 
+import java.awt.*;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -25,6 +26,8 @@ public abstract class LibgdxGame extends Game {
 	 * Static and singleton instance of the game
 	 **/
 	private static LibgdxGame game;
+
+	protected static Container container;
 
 	/**
 	 * All game screens
@@ -67,8 +70,10 @@ public abstract class LibgdxGame extends Game {
 				throw new IllegalStateException("add screen first before load it");
 			} else {
 				try{
-					Constructor declaredConstructor = added.get(key).getDeclaredConstructor();
-					screens.put(key, (LibgdxScreen) declaredConstructor.newInstance());
+					Class arg = Container.class;
+
+					Constructor declaredConstructor = added.get(key).getDeclaredConstructor(arg);
+					screens.put(key, (LibgdxScreen) declaredConstructor.newInstance(container));
 				} catch (IllegalAccessException | InstantiationException | NoSuchMethodException | InvocationTargetException e) {
 					Gdx.app.error("FilesManager", "create instance failed");
 					throw new IllegalStateException("create instance failed");

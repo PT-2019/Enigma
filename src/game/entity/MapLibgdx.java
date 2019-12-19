@@ -24,6 +24,7 @@ import game.utils.Bounds;
 import game.utils.InputListener;
 import org.jetbrains.annotations.NotNull;
 
+import javax.swing.*;
 import java.awt.*;
 
 import static game.api.MapsNameUtils.HEIGHT_P;
@@ -58,13 +59,14 @@ public class MapLibgdx extends Group{
 
 	private Bounds mapBounds;
 
+	private Container container;
 
 	/**
 	 * Crée une map depuis un fichier tmx
 	 *
 	 * @param path fichier .tmx
 	 */
-	public MapLibgdx(@NotNull String path) {
+	public MapLibgdx(@NotNull String path, Container container) {
 		//load the map
 		TiledMap tiledMap = new TmxMapLoader().load(path);
 		this.map = new OrthogonalTiledMapRenderer(tiledMap, 1f);
@@ -241,5 +243,9 @@ public class MapLibgdx extends Group{
 
 	public OrthographicCamera getCamera() {
 		return camera;
+	}
+
+	public Container getContainer() {
+		return container;
 	}
 }
