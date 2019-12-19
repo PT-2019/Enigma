@@ -1,8 +1,8 @@
 package game.utils;
 
-import jdk.nashorn.internal.ir.annotations.Immutable;
+//import jdk.nashorn.internal.ir.annotations.Immutable;
 
-@Immutable
+//@Immutable
 public final class Bounds {
 
 	public final float left, right, top, bot;

@@ -13,6 +13,8 @@ public class TestScreen extends LibgdxScreen {
 
 	private MapLibgdx map;
 
+	public static String str = "assets/map/Empty.tmx";
+
 	@Override
 	public void init() {
 		try {
@@ -22,7 +24,7 @@ public class TestScreen extends LibgdxScreen {
 
 			this.main.setViewport(new ExtendViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
 
-			this.map = new MapLibgdx("assets/map/Empty.tmx");
+			this.map = new MapLibgdx(str);
 
 			this.main.addActor(map);
 
@@ -64,6 +66,7 @@ public class TestScreen extends LibgdxScreen {
 
 	@Override
 	public void dispose() {
-		this.main.dispose();
+		if(main != null)
+			this.main.dispose();
 	}
 }

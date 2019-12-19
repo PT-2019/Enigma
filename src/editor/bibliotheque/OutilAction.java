@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import editor.datas.Outil;
 import game.EnigmaGame;
 import game.screen.EnigmaScreens;
+import game.screen.TestScreen;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.stage.FileChooser;
@@ -45,11 +46,14 @@ public class OutilAction implements ActionListener {
                     {
                         FileChooser fileChooser = new FileChooser();
                         File file;
+
                         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter(".tmx", "*.tmx"));
 
                         file = fileChooser.showOpenDialog(null);
 
                         finished = true;
+
+                        TestScreen.str=file.getAbsolutePath();
                     }
             );
 
@@ -57,6 +61,8 @@ public class OutilAction implements ActionListener {
             {
                 // waits for FileChooser window to close
             }
+
+
 
             Gdx.app.postRunnable(new Runnable() {
                 @Override
