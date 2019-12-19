@@ -2,10 +2,13 @@ package editor.bibliotheque;
 
 import com.badlogic.gdx.utils.Array;
 import editor.datas.EntitiesCategories;
+import editor.datas.Outil;
 import editor.entity.EntityFactory;
 import editor.entity.EntitySerializable;
 import editor.utils.LoadGameLibgdxApplication;
 import editor.window.Window;
+import game.ui.Border;
+import javafx.embed.swing.JFXPanel;
 import org.intellij.lang.annotations.MagicConstant;
 
 import javax.swing.*;
@@ -47,6 +50,9 @@ public class MenuScreen extends JPanel {
 
 		CardLayout pageObjet = new CardLayout();
 
+		//création de la barre d'outils
+		JPanel outilBar = this.loadOutilBar();
+
 		//création de la zone de choix du menu d'objets
 		JPanel sideBar = this.loadSideBar();
 
@@ -72,7 +78,13 @@ public class MenuScreen extends JPanel {
 		content.add(scroll, BorderLayout.WEST);
 		content.add(map, BorderLayout.CENTER);
 
-		this.add(sideBar, BorderLayout.NORTH);
+		JPanel c2 = new JPanel(new BorderLayout());
+		c2.add(outilBar, BorderLayout.NORTH);
+		c2.add(sideBar, BorderLayout.SOUTH);
+
+		parent.setJMenuBar(new BarMenu());
+		//this.add(sideBar, BorderLayout.NORTH);
+		this.add(c2, BorderLayout.NORTH);
 		this.add(content, BorderLayout.CENTER);
 	}
 
@@ -98,6 +110,37 @@ public class MenuScreen extends JPanel {
 		}
 
 		return menuChoix;
+	}
+
+	/**
+	 * Charge la barre d'outils
+	 *
+	 * @return JPanel contenant la barre d'outils
+	 * @since 3.1 19 décembre 2019
+	 */
+	private JPanel loadOutilBar() {
+		OutilAction listener = new OutilAction();
+
+		//création de la zone de la barre d'outils
+		JPanel outilBar = new JPanel();
+
+		String[] elements = new String[]{"25%","50%","100%","125%","150%","175%","200%"};
+		JComboBox<String> zoom = new JComboBox<>(elements);
+
+		JCheckBox fit = new JCheckBox("fit");
+		JCheckBox inGame = new JCheckBox("in game");
+
+		for (Outil o : Outil.values()) {
+			JButton a = new JButton(o.name);
+			a.addActionListener(listener);
+			outilBar.add(a);
+		}
+
+		outilBar.add(zoom);
+		outilBar.add(fit);
+		outilBar.add(inGame);
+
+		return outilBar;
 	}
 
 	/**
