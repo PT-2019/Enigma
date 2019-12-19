@@ -9,6 +9,7 @@ import editor.datas.Layer;
 import editor.entity.interfaces.Entity;
 import editor.map.Case;
 import game.entity.MapLibgdxCell;
+import org.lwjgl.Sys;
 
 import javax.swing.*;
 import java.awt.*;
@@ -44,23 +45,28 @@ public class CasePopUp extends JDialog implements WindowListener {
     public void display(){
         TiledMapTileLayer l = ((MapLibgdxCell)cell).getLayer();
         MapLayers layers = tileMap.getLayers();
-
+        TiledMapTileLayer layer;
+        MapLibgdxCell cellTmp;
         int index = layers.getIndex(l.getName());
+        int x,y;
 
         this.setLayout(new GridLayout(2,3));
         if (index < 3){
             next.setText(layers.get(index+1).getName());
             this.add(next);
 
-            TiledMapTileLayer tmp = (TiledMapTileLayer) layers.get(index+1);
+            layer = (TiledMapTileLayer) layers.get(index+1);
 
-            MapLibgdxCell cellTmp = (MapLibgdxCell) cell;
+            cellTmp = (MapLibgdxCell) cell;
+            y = cellTmp.getIndex()/layer.getWidth();
+            x = cellTmp.getIndex()%layer.getWidth();
 
-            System.out.println("X :"+cellTmp.getX());
+            System.out.println(x);
+            System.out.println(y);
 
-            System.out.println("Y :"+cellTmp.getY());
+            System.out.println(layer.getCell(x,y));
 
-            next.addActionListener(new CasePopListener(tmp.getCell(cellTmp.getX(),cellTmp.getY()),this));
+            next.addActionListener(new CasePopListener(layer.getCell(x,y),this));
         }
 
         label.setText(l.getName());
@@ -69,6 +75,14 @@ public class CasePopUp extends JDialog implements WindowListener {
         if (index > 0 ){
             preview.setText(layers.get(index-1).getName());
             this.add(preview);
+
+            layer = (TiledMapTileLayer) layers.get(index+1);
+
+            cellTmp = (MapLibgdxCell) cell;
+            y = cellTmp.getIndex()/layer.getWidth();
+            x = cellTmp.getIndex()%layer.getWidth();
+
+            preview.addActionListener(new CasePopListener(layer.getCell(x,y),this));
         }
         this.add(eng);
         this.add(b3);

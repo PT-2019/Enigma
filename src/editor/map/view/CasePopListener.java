@@ -6,9 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class CasePopListener implements ActionListener {
-    TiledMapTileLayer.Cell after;
+    private TiledMapTileLayer.Cell after;
 
-    CasePopUp popUp;
+    private CasePopUp popUp;
 
     public CasePopListener(TiledMapTileLayer.Cell after,CasePopUp popup){
         this.after = after;
@@ -17,6 +17,7 @@ public class CasePopListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        System.out.println(after);
         popUp.setCell(after);
         popUp.display();
     }

@@ -16,6 +16,8 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Array;
 import editor.datas.Layer;
 import editor.entity.EntitySerializable;
+import editor.map.view.MapControl;
+import editor.map.view.TestMapControl;
 import editor.utils.Utility;
 import game.ui.Border;
 import game.utils.Bounds;
@@ -35,7 +37,7 @@ import static game.api.MapsNameUtils.WIDTH_P;
  * @version 3.0 14 décembre 2019
  * @since 2.0 5 décembre 2019
  */
-public class MapLibgdx extends Group implements InputListener {
+public class MapLibgdx extends Group{
 
 	/**
 	 * info principales
@@ -55,6 +57,7 @@ public class MapLibgdx extends Group implements InputListener {
 	private Border border;
 
 	private Bounds mapBounds;
+
 
 	/**
 	 * Crée une map depuis un fichier tmx
@@ -149,58 +152,6 @@ public class MapLibgdx extends Group implements InputListener {
 		this.border.draw();
 	}
 
-	@Override
-	public boolean keyDown(int keycode) {
-
-		if (keycode == Input.Keys.LEFT) {
-			camera.translate(-32, 0);
-			return true;
-		}
-		if (keycode == Input.Keys.RIGHT) {
-			camera.translate(32, 0);
-			return true;
-		}
-		if (keycode == Input.Keys.UP) {
-			camera.translate(0, 32);
-			return true;
-		}
-		if (keycode == Input.Keys.DOWN) {
-			camera.translate(0, -32);
-			return true;
-		}
-
-		return false;
-	}
-
-	@Override
-	public boolean scrolled(int amount) {
-		if (Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT)) {
-			if (amount == 1) {
-				camera.zoom += 0.1;
-				updateMapBounds(-1);
-			} else {
-				camera.zoom -= 0.1;
-				updateMapBounds(1);
-			}
-			return true;
-		}
-		return false;
-	}
-
-	private void updateMapBounds(float zoom){
-		float left = this.mapBounds.left, right = this.mapBounds.right;
-		float top =  this.mapBounds.top, bot =  this.mapBounds.bot;
-
-		left -= zoom * 27;
-		right += zoom * 27;
-		top -= zoom * 18;
-		bot += zoom * 18;
-
-		this.mapBounds = new Bounds(left, right, top, bot);
-
-		System.out.println(this.mapBounds);
-	}
-
 	private void setMapBounds() {
 		float left = Gdx.graphics.getWidth() / 2f - this.getMapWidth() / 2;
 		float right = Gdx.graphics.getWidth() / 2f + this.getMapWidth() / 2;
@@ -251,7 +202,7 @@ public class MapLibgdx extends Group implements InputListener {
 			//pas de problème pour x
 			for (int i = (int) start.y - 1, index = 0; i >= (start.y - entity.getHeight()); i--) {
 				for (int j = (int) start.x; j < start.x + entity.getWidth() && index < entities.size; j++, index++) {
-					MapLibgdxCell c = new MapLibgdxCell(tileLayer, i, j);
+					MapLibgdxCell c = new MapLibgdxCell(tileLayer, index);
 					c.setTile(this.map.getMap().getTileSets().getTile(MathUtils.ceil(entities.get(index))));
 					c.setEntity(entity);
 					tileLayer.setCell(j, i, c);
@@ -278,5 +229,17 @@ public class MapLibgdx extends Group implements InputListener {
 
 	public int getTileHeight() {
 		return tileHeight;
+	}
+
+	public Bounds getMapBounds() {
+		return mapBounds;
+	}
+
+	public void setMapBounds(Bounds mapBounds) {
+		this.mapBounds = mapBounds;
+	}
+
+	public OrthographicCamera getCamera() {
+		return camera;
 	}
 }

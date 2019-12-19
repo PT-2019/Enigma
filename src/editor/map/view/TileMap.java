@@ -1,6 +1,7 @@
 package editor.map.view;
 
 import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -20,29 +21,43 @@ public class TileMap extends Stage{
     public TileMap(TiledMap m, JComponent component, Map map){
         this.map = m;
         gameMap = map;
+        createCell(component);
+    }
 
+    private void createCell(JComponent component){
         CasePopUp popUp = new CasePopUp(component,this.map);
         CaseListener listenerCase = new CaseListener(popUp);
-        MapLayers layers = m.getLayers();
+        MapLayers layers = map.getLayers();
         Case currentCase;
+        boolean isfloor = false;
 
-        TiledMapTileLayer layer = (TiledMapTileLayer) layers.get(0);
+        for (int i =0; i < 4; i++){
+            TiledMapTileLayer layer = (TiledMapTileLayer) layers.get(i);
 
-        for (int y = 0; y < layer.getHeight(); y++) {
-            for (int x = 0; x < layer.getWidth(); x++) {
-                MapLibgdxCell cell = new MapLibgdxCell(layer,x,y);
-                layer.setCell(x,y,cell);
+            //on veut mettre le listener que sur 1 seule couche de cellule
+            if (layer.getName().equals("FLOOR1")){
+                isfloor = true;
+            }
+            //TiledMapTileLayer layer = (TiledMapTileLayer) layers.get(0);
 
-                currentCase = gameMap.getCase(y*layer.getWidth()+x);
+            for (int y = 0; y < layer.getHeight(); y++) {
+                for (int x = 0; x < layer.getWidth(); x++) {
 
-                CaseView actor = new CaseView(cell,currentCase);
+                    MapLibgdxCell cell = new MapLibgdxCell(layer, y * layer.getWidth() + x);
 
-                actor.setBounds(x * layer.getTileWidth(), y * layer.getTileHeight(), layer.getTileWidth(),
-                        layer.getTileHeight());
+                    currentCase = gameMap.getCase(y * layer.getWidth() + x);
 
-                addActor(actor);
+                    CaseView actor = new CaseView(cell, currentCase);
 
-                actor.addListener(listenerCase);
+                    actor.setBounds(x * layer.getTileWidth(), y * layer.getTileHeight(),
+                            layer.getTileWidth(), layer.getTileHeight());
+
+                    addActor(actor);
+
+                    if (isfloor){
+                        actor.addListener(listenerCase);
+                    }
+                }
             }
         }
     }

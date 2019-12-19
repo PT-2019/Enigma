@@ -5,11 +5,12 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.maps.tiled.TiledMap;
+import game.entity.MapLibgdx;
+import game.utils.Bounds;
 
 import javax.swing.*;
 
-public class MapControlleur implements InputProcessor {
+public class TestMapControl implements InputProcessor {
 
     private boolean ispush;
 
@@ -19,17 +20,20 @@ public class MapControlleur implements InputProcessor {
 
     private OrthographicCamera camera;
 
-    public MapControlleur (Camera cam, JComponent component,RoomView r,CollisionView col){
-        camera =(OrthographicCamera) cam;
+    private MapLibgdx map;
+
+    public TestMapControl(MapLibgdx map) {
+        camera = map.getCamera();
         ispush = false;
-        this.component = component;
-        this.menu = new EntityPopMenu(r,col,cam);
+        this.map = map;
+        //this.component = component;
+        //this.menu = new EntityPopMenu(r,col,cam);
     }
 
     @Override
     public boolean keyDown(int keycode) {
 
-        if(keycode == Input.Keys.CONTROL_LEFT)
+        if (keycode == Input.Keys.CONTROL_LEFT)
             ispush = true;
         if (keycode == Input.Keys.PLUS && ispush)
             this.plusCamera();
@@ -41,16 +45,26 @@ public class MapControlleur implements InputProcessor {
 
     @Override
     public boolean keyUp(int keycode) {
-        if(keycode == Input.Keys.LEFT)
-            camera.translate(-32,0);
-        if(keycode == Input.Keys.RIGHT)
-            camera.translate(32,0);
-        if(keycode == Input.Keys.UP)
+        if (keycode == Input.Keys.LEFT) {
+            camera.translate(-32, 0);
+            return true;
+        }
+        if (keycode == Input.Keys.RIGHT){
+            camera.translate(32, 0);
+            return true;
+        }
+        if(keycode ==Input.Keys.UP){
             camera.translate(0,32);
-        if(keycode == Input.Keys.DOWN)
-            camera.translate(0,-32);
-        if (keycode == Input.Keys.CONTROL_LEFT)
+            return true;
+        }
+        if(keycode == Input.Keys.DOWN) {
+            camera.translate(0, -32);
+            return true;
+        }
+        if (keycode == Input.Keys.CONTROL_LEFT) {
             ispush = false;
+            return true;
+        }
         return false;
     }
 
@@ -66,6 +80,7 @@ public class MapControlleur implements InputProcessor {
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
         if (button == Input.Buttons.RIGHT){
             menu.show(component, Gdx.input.getX(),Gdx.input.getY());
+            return true;
         }
         return false;
     }
@@ -82,15 +97,33 @@ public class MapControlleur implements InputProcessor {
 
     @Override
     public boolean scrolled(int amount) {
-        if (Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT)){
-            if (amount==1){
-                this.minCamera();
-            }else{
-                this.plusCamera();
+        if (Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT)) {
+            if (amount == 1) {
+                camera.zoom += 0.1;
+                updateMapBounds(-1);
+            } else {
+                camera.zoom -= 0.1;
+                updateMapBounds(1);
             }
+            return true;
         }
         return false;
     }
+
+    private void updateMapBounds(float zoom){
+        float left = map.getMapBounds().left, right = map.getMapBounds().right;
+        float top =  map.getMapBounds().top, bot =  map.getMapBounds().bot;
+
+        left -= zoom * 27;
+        right += zoom * 27;
+        top -= zoom * 18;
+        bot += zoom * 18;
+
+        map.setMapBounds(new Bounds(left, right, top, bot));
+
+        System.out.println(map.getMapBounds());
+    }
+
 
     private void plusCamera(){
         camera.zoom -= 0.05;

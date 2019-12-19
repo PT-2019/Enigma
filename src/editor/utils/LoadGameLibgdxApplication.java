@@ -28,7 +28,7 @@ public class LoadGameLibgdxApplication {
 		container.setLayout(new BorderLayout());
 
 		//Récupère le jeu
-		LwjglAWTCanvas canvas = new LwjglAWTCanvas(EnigmaGame.getInstance());
+		LwjglAWTCanvas canvas = new LwjglAWTCanvas(EnigmaGame.getInstance(container));
 		container.add(canvas.getCanvas(), BorderLayout.CENTER);//ajoute le jeu
 
 		//vire tous les listeners de la classe CloseWindowLibgdxApplication

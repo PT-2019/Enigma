@@ -6,6 +6,7 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import editor.enigma.Enigma;
+import editor.map.view.TestMapControl;
 import game.EnigmaGame;
 import game.api.LibgdxScreen;
 import game.entity.MapLibgdx;
@@ -25,7 +26,7 @@ public class TestScreen extends LibgdxScreen {
 
 		this.main.addActor(map);
 
-		this.listen(map);
+		this.listen(new TestMapControl(map));
 		this.listen(this.main);
 	}
 

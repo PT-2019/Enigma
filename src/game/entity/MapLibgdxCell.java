@@ -12,17 +12,16 @@ import editor.entity.EntitySerializable;
 public class MapLibgdxCell extends TiledMapTileLayer.Cell {
 
 	private TiledMapTileLayer layer;
+
 	private EntitySerializable entity;
 
-	private int i;
+	private int index;
 
-	private int j;
 
-	public MapLibgdxCell(TiledMapTileLayer layer, int i, int j) {
+	public MapLibgdxCell(TiledMapTileLayer layer, int index) {
 		this.layer = layer;
 		this.entity = null;
-		this.i = i;
-		this.j = j;
+		this.index = index;
 	}
 
 	public EntitySerializable getEntity() {
@@ -38,11 +37,7 @@ public class MapLibgdxCell extends TiledMapTileLayer.Cell {
 		return this.layer;
 	}
 
-	public int getX(){
-		return this.i;
-	}
-
-	public int getY(){
-		return this.j;
+	public int getIndex() {
+		return index;
 	}
 }

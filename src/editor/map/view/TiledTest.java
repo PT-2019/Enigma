@@ -66,7 +66,7 @@ public class TiledTest extends Game {
 		room = new RoomView(tmpMap.getRooms(),tile,heigth,width);
 		collisionView = new CollisionView(tmpMap.getCases(),tile,width,heigth);
 
-		MapControlleur control = new MapControlleur(camera,component,room,collisionView);
+		MapControl control = new MapControl(camera,component,room,collisionView);
 		tilemap = new TileMap(tiledMap,component,tmpMap);
 
 		camera.setToOrtho(false,width*tile,heigth*tile);
@@ -85,7 +85,6 @@ public class TiledTest extends Game {
 		Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		camera.update();
-		tilemap.act();
 
 		border.setProjectionMatrix(camera.combined);
 		room.setProjectionMatrix(camera.combined);
