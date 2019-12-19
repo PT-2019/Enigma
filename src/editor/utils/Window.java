@@ -13,7 +13,6 @@ public class Window extends JFrame {
 
 	public final static int FULL_SCREEN_SIZE = 0;
 	public final static int HALF_SCREEN_SIZE = 1;
-	public final static int LAST_SCREEN_SIZE = 2;
 
 	public final static int NORTH = 0;
 	public final static int EAST = 1;
@@ -24,7 +23,6 @@ public class Window extends JFrame {
 	public final static int SOUTH_WEST = 7;
 	public final static int NORTH_WEST = 8;
 	public final static int CENTER = 9;
-	public final static int LAST_LOCATION = 10;
 
 	private final static int RIGHT_RESIZER = 0;
 	private final static int LEFT_RESIZER = 1;
@@ -168,11 +166,6 @@ public class Window extends JFrame {
 		}
 		else for(ResizeComponent r: this.resizers) r.disableResize();
 		this.resizable = resizable;
-	}
-
-	public void setPreviousValues(){
-		this.setSize(LAST_SCREEN_SIZE);
-		this.setLocation(LAST_LOCATION);
 	}
 
 	@Override

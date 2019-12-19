@@ -76,6 +76,22 @@ public class EnigmaUIValues {
     public final static boolean[] ENIGMA_TEXTAREA_HOVERED_SHOWED_BORDERS = {true,true,true,true};
     public final static boolean[] ENIGMA_TEXTAREA_FOCUSED_SHOWED_BORDERS = {true,true,true,true};
 
+    public final static Color ENIGMA_COMBOBOX_BACKGROUND = Color.DARK_GRAY;
+    public final static Color ENIGMA_COMBOBOX_HOVERED_BACKGROUND = Color.DARK_GRAY;
+    public final static Color ENIGMA_COMBOBOX_FOCUSED_BACKGROUND = Color.DARK_GRAY;
+    public final static Color ENIGMA_COMBOBOX_FOREGROUND = Color.WHITE;
+    public final static Color ENIGMA_COMBOBOX_HOVERED_FOREGROUND = Color.WHITE;
+    public final static Color ENIGMA_COMBOBOX_FOCUSED_FOREGROUND = Color.WHITE;
+    public final static Color ENIGMA_COMBOBOX_BORDER = null;
+    public final static Color ENIGMA_COMBOBOX_HOVERED_BORDER = null;
+    public final static Color ENIGMA_COMBOBOX_FOCUSED_BORDER = null;
+    public final static int ENIGMA_COMBOBOX_BORDER_SIZE = 1;
+    public final static int ENIGMA_COMBOBOX_HOVERED_BORDER_SIZE = 1;
+    public final static int ENIGMA_COMBOBOX_FOCUSED_BORDER_SIZE = 1;
+    public final static boolean[] ENIGMA_COMBOBOX_SHOWED_BORDERS = {true,true,true,true};
+    public final static boolean[] ENIGMA_COMBOBOX_HOVERED_SHOWED_BORDERS = {true,true,true,true};
+    public final static boolean[] ENIGMA_COMBOBOX_FOCUSED_SHOWED_BORDERS = {true,true,true,true};
+
     public final static Color ENIGMA_MENU_BAR_BACKGROUND = Color.DARK_GRAY;
     public final static Color ENIGMA_MENU_BAR_BORDER = null;
     public final static int ENIGMA_MENU_BAR_BORDER_SIZE = 1;

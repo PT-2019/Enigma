@@ -32,4 +32,9 @@ public class EnigmaButton extends JButton {
     public EnigmaButtonUI getButtonUI(){
         return this.ui;
     }
+
+    public boolean isSelected(){
+        if(this.ui == null) return false;
+        return this.ui.isSelected();
+    }
 }

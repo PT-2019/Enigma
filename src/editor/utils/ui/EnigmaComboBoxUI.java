@@ -1,11 +1,10 @@
 package editor.utils.ui;
 
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicLabelUI;
-import javax.swing.plaf.basic.BasicTextAreaUI;
+import javax.swing.plaf.basic.BasicComboBoxUI;
 import java.awt.*;
 
-public class EnigmaTextAreaUI extends BasicTextAreaUI {
+public class EnigmaComboBoxUI extends BasicComboBoxUI {
 
     private Color background;
     private Color foreground;
@@ -25,49 +24,51 @@ public class EnigmaTextAreaUI extends BasicTextAreaUI {
     private boolean[] hoveredShowedBorders;
     private boolean[] focusedShowedBorders;
 
-    public EnigmaTextAreaUI(){
-        this.background = EnigmaUIValues.ENIGMA_TEXTAREA_BACKGROUND;
-        this.hoveredBackground = EnigmaUIValues.ENIGMA_TEXTAREA_HOVERED_BACKGROUND;
-        this.focusedBackground = EnigmaUIValues.ENIGMA_TEXTAREA_FOCUSED_BACKGROUND;
-        this.foreground = EnigmaUIValues.ENIGMA_TEXTAREA_FOREGROUND;
-        this.hoveredForeground = EnigmaUIValues.ENIGMA_TEXTAREA_HOVERED_FOREGROUND;
-        this.focusedForeground = EnigmaUIValues.ENIGMA_TEXTAREA_FOCUSED_FOREGROUND;
-        this.border = EnigmaUIValues.ENIGMA_TEXTAREA_BORDER;
-        this.hoveredBorder = EnigmaUIValues.ENIGMA_TEXTAREA_HOVERED_BORDER;
-        this.focusedBorder = EnigmaUIValues.ENIGMA_TEXTAREA_FOCUSED_BORDER;
-        this.borderSize = EnigmaUIValues.ENIGMA_TEXTAREA_BORDER_SIZE;
-        this.hoveredBorderSize = EnigmaUIValues.ENIGMA_TEXTAREA_HOVERED_BORDER_SIZE;
-        this.focusedBorderSize = EnigmaUIValues.ENIGMA_TEXTAREA_FOCUSED_BORDER_SIZE;
-        this.showedBorders = EnigmaUIValues.ENIGMA_TEXTAREA_SHOWED_BORDERS;
-        this.hoveredShowedBorders = EnigmaUIValues.ENIGMA_TEXTAREA_HOVERED_SHOWED_BORDERS;
-        this.focusedShowedBorders = EnigmaUIValues.ENIGMA_TEXTAREA_FOCUSED_SHOWED_BORDERS;
+    public EnigmaComboBoxUI(){
+        this.background = EnigmaUIValues.ENIGMA_COMBOBOX_BACKGROUND;
+        this.hoveredBackground = EnigmaUIValues.ENIGMA_COMBOBOX_HOVERED_BACKGROUND;
+        this.focusedBackground = EnigmaUIValues.ENIGMA_COMBOBOX_FOCUSED_BACKGROUND;
+        this.foreground = EnigmaUIValues.ENIGMA_COMBOBOX_FOREGROUND;
+        this.hoveredForeground = EnigmaUIValues.ENIGMA_COMBOBOX_HOVERED_FOREGROUND;
+        this.focusedForeground = EnigmaUIValues.ENIGMA_COMBOBOX_FOCUSED_FOREGROUND;
+        this.border = EnigmaUIValues.ENIGMA_COMBOBOX_BORDER;
+        this.hoveredBorder = EnigmaUIValues.ENIGMA_COMBOBOX_HOVERED_BORDER;
+        this.focusedBorder = EnigmaUIValues.ENIGMA_COMBOBOX_FOCUSED_BORDER;
+        this.borderSize = EnigmaUIValues.ENIGMA_COMBOBOX_BORDER_SIZE;
+        this.hoveredBorderSize = EnigmaUIValues.ENIGMA_COMBOBOX_HOVERED_BORDER_SIZE;
+        this.focusedBorderSize = EnigmaUIValues.ENIGMA_COMBOBOX_FOCUSED_BORDER_SIZE;
+        this.showedBorders = EnigmaUIValues.ENIGMA_COMBOBOX_SHOWED_BORDERS;
+        this.hoveredShowedBorders = EnigmaUIValues.ENIGMA_COMBOBOX_HOVERED_SHOWED_BORDERS;
+        this.focusedShowedBorders = EnigmaUIValues.ENIGMA_COMBOBOX_FOCUSED_SHOWED_BORDERS;
         this.hovered = false;
         this.cursor = new Cursor(Cursor.TEXT_CURSOR);
     }
 
-    public void paintTextArea(Graphics g, JComponent c) {
+
+
+    public void paintComboBox(Graphics g, JComponent c) {
         Graphics brush = g.create();
-        JTextArea ta = (JTextArea) c;
-        if(ta.hasFocus()){
-            ta.setBackground(this.focusedBackground);
-            ta.setForeground(this.focusedForeground);
+        JComboBox cb = (JComboBox) c;
+        if(cb.hasFocus()){
+            cb.setBackground(this.focusedBackground);
+            cb.setForeground(this.focusedForeground);
             if(this.focusedBorder != null){
-                this.paintBorder(ta,this.focusedBorder,this.focusedBorderSize,this.focusedShowedBorders);
+                this.paintBorder(cb,this.focusedBorder,this.focusedBorderSize,this.focusedShowedBorders);
             }
         } else if(this.hovered){
-            ta.setBackground(this.hoveredBackground);
-            ta.setForeground(this.hoveredForeground);
+            cb.setBackground(this.hoveredBackground);
+            cb.setForeground(this.hoveredForeground);
             if(this.hoveredBorder != null){
-                this.paintBorder(ta,this.hoveredBorder,this.hoveredBorderSize,this.hoveredShowedBorders);
+                this.paintBorder(cb,this.hoveredBorder,this.hoveredBorderSize,this.hoveredShowedBorders);
             }
         } else {
-            ta.setBackground(this.background);
-            ta.setForeground(this.foreground);
+            cb.setBackground(this.background);
+            cb.setForeground(this.foreground);
             if(this.border != null){
-                this.paintBorder(ta,this.border,this.borderSize,this.showedBorders);
+                this.paintBorder(cb,this.border,this.borderSize,this.showedBorders);
             }
         }
-        super.paint(brush,c);
+        super.paint(brush,cb);
     }
 
     private void paintBorder(JComponent c, Color borderColor, int borderSize, boolean[] showedBorders){
@@ -262,8 +263,8 @@ public class EnigmaTextAreaUI extends BasicTextAreaUI {
 
 
 
-    public EnigmaTextAreaUI duplicate() {
-        EnigmaTextAreaUI clone = new EnigmaTextAreaUI();
+    public EnigmaComboBoxUI duplicate() {
+        EnigmaComboBoxUI clone = new EnigmaComboBoxUI();
 
         clone.setCursor(this.getCursor());
         clone.setAllBackgrounds(this.getBackground(), this.getHoveredBackground(), this.getFocusedBackground());

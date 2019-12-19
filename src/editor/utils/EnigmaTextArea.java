@@ -19,7 +19,6 @@ public class EnigmaTextArea extends JTextArea {
     public void setTextAreaUI(EnigmaTextAreaUI ui){
         this.ui = ui.duplicate();
         this.setCursor(this.ui.getCursor());
-        this.ui.setAllBackgrounds(Color.RED,Color.GREEN, Color.ORANGE);
         super.setUI(this.ui);
     }
 
