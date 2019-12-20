@@ -2,8 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4b6e0b2a-a6ad-4eff-b2cc-63f9693ec5fe" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/game/api/GameActorTextured.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/Quentin_Ra.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/Quentin_Ra.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/entity/GlisserDeposer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/entity/GlisserDeposer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DesktopLuncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DesktopLuncher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/EditorLuncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/EditorLuncher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/bibliotheque/DragAndDropDND.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bibliotheque/DragAndDropDND.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/bibliotheque/EntityContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bibliotheque/EntityContainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/bibliotheque/MenuScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bibliotheque/MenuScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/entity/ActeurTextureAnimation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/entity/ActeurTextureGlisserDeposer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/api/GameActorDragAndDrop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/entity/CategoriesMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/entity/CategoriesMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/entity/EntityContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/entity/EntityContainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/entity/GlisserDeposer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/entity/DragAndDrop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/entity/MapLibgdx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/entity/MapLibgdx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/entity/MapLibgdxCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/entity/MapLibgdxCell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/screen/TestScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/screen/TestScreen.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -13,6 +27,9 @@
   </component>
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -25,14 +42,76 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="alais/Barre_outil" />
       </map>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/game/entity/ActeurTextureAnimation.java" />
+        <option value="$PROJECT_DIR$/src/game/entity/TexturedActor.java" />
+        <option value="$PROJECT_DIR$/src/game/entity/ActorTextured.java" />
+        <option value="$PROJECT_DIR$/src/game/entity/GameActor.java" />
+        <option value="$PROJECT_DIR$/src/game/entity/GameActorTextured.java" />
+        <option value="$PROJECT_DIR$/src/game/entity/ActeurTextureGlisserDeposer.java" />
+        <option value="$PROJECT_DIR$/src/game/entity/GameActorDragAndDrop.java" />
+        <option value="$PROJECT_DIR$/src/game/screen/TestScreen.java" />
+        <option value="$PROJECT_DIR$/src/game/api/GameActorDragAndDrop.java" />
+        <option value="$PROJECT_DIR$/src/game/entity/EntityContainer.java" />
+        <option value="$PROJECT_DIR$/src/game/entity/GlisserDeposer.java" />
+        <option value="$PROJECT_DIR$/src/game/api/GameActorTextured.java" />
+        <option value="$PROJECT_DIR$/src/game/entity/CategoriesMenu.java" />
+        <option value="$PROJECT_DIR$/src/editor/bibliotheque/DragAndDropDND.java" />
+        <option value="$PROJECT_DIR$/src/editor/bibliotheque/MenuScreen.java" />
+        <option value="$PROJECT_DIR$/src/game/entity/MapLibgdxCell.java" />
+        <option value="$PROJECT_DIR$/src/game/entity/MapLibgdx.java" />
+        <option value="$PROJECT_DIR$/src/game/entity/DraggedEntity.java" />
+        <option value="$PROJECT_DIR$/src/game/api/GameActor.java" />
+        <option value="$PROJECT_DIR$/src/game/api/GameActorUtilities.java" />
+        <option value="$PROJECT_DIR$/src/game/entity/DragAndDropBuilder.java" />
+        <option value="$PROJECT_DIR$/src/DesktopLuncher.java" />
+        <option value="$PROJECT_DIR$/src/editor/EditorLuncher.java" />
+        <option value="$PROJECT_DIR$/src/editor/bibliotheque/EntityContainer.java" />
+        <option value="$PROJECT_DIR$/src/game/entity/DragAndDrop.java" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1300" />
+    <option name="height" value="876" />
   </component>
   <component name="ProjectId" id="1T4PWZYsjf2nuTU9Vgk0aB5pF47" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+    </panes>
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -194,6 +273,39 @@
       <is-autoscroll-to-source value="true" />
     </todo-panel>
   </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
+    <layout>
+      <window_info id="Favorites" side_tool="true" />
+      <window_info id="Image Layers" />
+      <window_info id="Designer" />
+      <window_info id="UI Designer" />
+      <window_info id="Capture Tool" />
+      <window_info id="Learn" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" weight="0.32949308" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" weight="0.32949308" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32949308" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32949308" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32949308" />
+      <window_info anchor="right" id="Palette" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="right" id="Maven" />
+      <window_info anchor="right" id="make" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
@@ -203,6 +315,12 @@
         <entry key="MAIN">
           <value>
             <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
               <option name="COLUMN_ORDER" />
             </State>
           </value>
@@ -239,5 +357,180 @@
     <state x="626" y="358" key="com.intellij.ide.util.TipDialog/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" />
     <state x="2530" y="232" width="455" height="591" key="com.intellij.testIntegration.createTest.CreateTestDialog" />
     <state x="2530" y="232" width="455" height="591" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/game/screen/TestScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="41" column="25" selection-start-line="41" selection-start-column="25" selection-end-line="41" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/api/GameActorDragAndDrop.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/api/GameActorTextured.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="13" column="48" selection-start-line="13" selection-start-column="48" selection-end-line="13" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/entity/EntityContainer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="13" column="5" lean-forward="true" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/io/AtlasFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="61" column="88" selection-start-line="61" selection-start-column="88" selection-end-line="61" selection-end-column="88" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/entity/CategoriesMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/api/IGameLogic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="39" column="7" lean-forward="true" selection-start-line="39" selection-start-column="7" selection-end-line="39" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/bibliotheque/MenuScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="82" column="17" lean-forward="true" selection-start-line="82" selection-start-column="17" selection-end-line="82" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/entity/MapLibgdxCell.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="33" column="5" selection-start-line="33" selection-start-column="5" selection-end-line="33" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/libs/gdx.jar!/com/badlogic/gdx/scenes/scene2d/InputListener.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/entity/DraggedEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="56" selection-start-line="15" selection-start-column="56" selection-end-line="15" selection-end-column="56" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/api/GameActor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="806">
+          <caret line="54" column="10" selection-start-line="54" selection-start-column="10" selection-end-line="54" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#939#940#0" expanded="true" />
+            <element signature="e#997#998#0" expanded="true" />
+            <element signature="method#getRecouvrement#0;class#GameActor#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/api/GameActorUtilities.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="49" column="45" lean-forward="true" selection-start-line="49" selection-start-column="45" selection-end-line="49" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/entity/MapLibgdx.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-68">
+          <caret line="95" column="28" selection-start-line="95" selection-start-column="28" selection-end-line="95" selection-end-column="28" />
+          <folding>
+            <element signature="e#7837#7838#0" expanded="true" />
+            <element signature="e#7899#7900#0" expanded="true" />
+            <element signature="e#7968#7969#0" expanded="true" />
+            <element signature="e#8021#8022#0" expanded="true" />
+            <element signature="e#8076#8077#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/EnigmaGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/entity/DragAndDropBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DesktopLuncher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="21" column="73" lean-forward="true" selection-start-line="21" selection-start-column="73" selection-end-line="21" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/EditorLuncher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="449">
+          <caret line="68" column="8" selection-start-line="68" selection-start-column="8" selection-end-line="68" selection-end-column="22" />
+          <folding>
+            <element signature="e#1440#1441#0" expanded="true" />
+            <element signature="e#1460#1461#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/bibliotheque/DragAndDropDND.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="29" column="22" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/bibliotheque/EntityContainer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/entity/DragAndDrop.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="60" lean-forward="true" selection-start-line="60" selection-end-line="60" />
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>

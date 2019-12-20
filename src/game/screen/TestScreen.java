@@ -14,30 +14,28 @@ public class TestScreen extends LibgdxScreen {
 
 	private Stage main;
 	private Stage hud;
+	private Stage dnd;
 
 	private MapLibgdx map;
 
 	@Override
 	public void init() {
-		try {
-			Gdx.gl.glClearColor(255, 255, 255, 255);
+		Gdx.gl.glClearColor(255, 255, 255, 255);
 
-			this.hud = new Stage();
+		this.main = new Stage();
+		this.main.setViewport(new ExtendViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
+		this.map = new MapLibgdx("assets/map/Empty.tmx");
+		this.main.addActor(this.map);
 
-			this.main = new Stage();
-			this.main.setViewport(new ExtendViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
+		this.dnd = new Stage();
 
-			this.map = new MapLibgdx("assets/map/Empty.tmx");
+		this.hud = new Stage();
+		this.hud.addActor(new CategoriesMenu(dnd));
 
-			this.main.addActor(this.map);
-			this.hud.addActor(new CategoriesMenu());
-
-			this.listen(this.hud);
-			this.listen(this.main);
-			this.listen(this.map);
-		} catch (Exception e) {
-			Gdx.app.error(this.getClass().toString(), e.toString());
-		}
+		this.listen(this.dnd);
+		this.listen(this.hud);
+		this.listen(this.main);
+		this.listen(this.map);
 	}
 
 	@Override
@@ -46,6 +44,7 @@ public class TestScreen extends LibgdxScreen {
 
 	@Override
 	public void update(float dt) {
+		this.dnd.act(dt);
 		this.hud.act(dt);
 		this.main.act(dt);
 	}
@@ -54,19 +53,19 @@ public class TestScreen extends LibgdxScreen {
 	public void render() {
 		this.main.draw();
 		this.hud.draw();
+		this.dnd.draw();
 	}
 
 	@Override
 	public void resize(int width, int height) {
+		this.dnd.getViewport().setScreenSize(width, height);
 		this.hud.getViewport().setScreenSize(width, height);
 		this.main.getViewport().setScreenSize(width, height);
 		this.main.getViewport().update(width, height);
 		EnigmaGame.setScreenSize(width, height);
 	}
 
-	public MapLibgdx getMap() {
-		return map;
-	}
+	public MapLibgdx getMap() { return map; }
 
 	@Override
 	public void display(boolean display) {
@@ -75,5 +74,7 @@ public class TestScreen extends LibgdxScreen {
 	@Override
 	public void dispose() {
 		this.main.dispose();
+		this.dnd.dispose();
+		this.hud.dispose();
 	}
 }

@@ -26,6 +26,7 @@ import java.awt.dnd.DropTargetEvent;
 import java.awt.dnd.DropTargetListener;
 import java.io.IOException;
 
+@Deprecated
 public class DragAndDropDND extends TransferHandler implements DragGestureListener, DragSourceListener, DropTargetListener, Transferable {
 
 	private final DataFlavor[] dataFlavor;

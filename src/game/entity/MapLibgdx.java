@@ -12,7 +12,10 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.utils.Array;
 import editor.datas.Layer;
 import editor.entity.EntitySerializable;
@@ -91,8 +94,6 @@ public class MapLibgdx extends Group implements InputListener {
 
 		//bounds
 		this.setMapBounds();
-
-		System.out.println(mapBounds);
 	}
 
 	/**
@@ -177,10 +178,10 @@ public class MapLibgdx extends Group implements InputListener {
 		if (Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT)) {
 			if (amount == 1) {
 				camera.zoom += 0.1;
-				updateMapBounds(-1);
+				this.updateMapBounds(-1);
 			} else {
 				camera.zoom -= 0.1;
-				updateMapBounds(1);
+				this.updateMapBounds(1);
 			}
 			return true;
 		}
@@ -216,6 +217,7 @@ public class MapLibgdx extends Group implements InputListener {
 	 * @param location coordonnés x,y ou placer l'entité
 	 * @since 3.0 14 décembre 2019
 	 */
+	@Deprecated
 	public void load(EntitySerializable entity, Point location) {
 		//on parcours toutes les niveaux de la map et on y ajoute les tiles de l'entité
 		for (MapLayer mapLayer : this.map.getMap().getLayers()) {

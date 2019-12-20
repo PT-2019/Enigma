@@ -5,12 +5,14 @@ import editor.utils.ConvenienceMethod;
 import org.intellij.lang.annotations.MagicConstant;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.dnd.DragSource;
 
 /**
  * Il s'agit d'une case des menu o&#249; on sélectionne des entités pour les placer
  * sur la map.
  */
+@Deprecated
 public class EntityContainer extends JLabel {
 
 	private EntitySerializable entity;

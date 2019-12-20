@@ -21,18 +21,18 @@ import java.awt.dnd.DnDConstants;
 public class CategoriesMenu extends Window implements InputListener, Disposable {
 
 	private static final int PADDING = 10, WIDTH = 300;
+	private final Stage dnd;
 	public Table t;
 
+	//TODO: tmp
 	public static CategoriesMenu c;
 
-	public CategoriesMenu() {
+	public CategoriesMenu(Stage dnd) {
 		super("",getBasicStyle(Gdx.files.internal("assets/files/atlas/uiskin.json"),
 				new TextureAtlas("assets/files/atlas/uiskin.atlas")));
-		c = this;
+		this.dnd = dnd;
 
-		//this.setMovable(false);
-		//this.setResizable(true);
-		//this.setVisible(false);
+		c = this;
 
 		t = new Table();
 		this.add(t);
@@ -47,16 +47,10 @@ public class CategoriesMenu extends Window implements InputListener, Disposable 
 		t.clear();
 		Array<EntitySerializable> entities = EntityFactory.getEntitiesByCategory(c);
 
-		/*for (int i = 0; i < entities.size ; i++) {
-			if(i%2 == 0)
-				t.row();
-			t.add(new EntityContainer(entities.get(i)));
-		}*/
-
 		//on ajoute au minimum 12 cases, on met des entités dedans si on en a
 		for (int i = 0; i < 12 || i < entities.size; i++) {
 			if (i < entities.size)
-				t.add(new EntityContainer(entities.get(i)));
+				t.add(new EntityContainer(entities.get(i), dnd));
 
 			if(i%2 == 0) t.row();
 		}
@@ -64,7 +58,6 @@ public class CategoriesMenu extends Window implements InputListener, Disposable 
 
 	@Override
 	public void dispose() {
-
 	}
 
 	private static Skin getBasicStyle(FileHandle json, TextureAtlas atlas) {

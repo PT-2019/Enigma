@@ -27,8 +27,6 @@ import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED;
  */
 public class MenuScreen extends JPanel {
 
-	private DragAndDropDND dragAndDrop;
-
 	/**
 	 * Crée l'écran de création de l'escape game
 	 *
@@ -37,7 +35,6 @@ public class MenuScreen extends JPanel {
 	public MenuScreen(Window parent) {
 		this.setBackground(Color.RED);
 		this.setLayout(new BorderLayout());
-		this.dragAndDrop = new DragAndDropDND(parent);
 
 		//load entities
 		EntityFactory.loadEntities("assets/rooms.json");
@@ -57,7 +54,7 @@ public class MenuScreen extends JPanel {
 		//création de la zone d'affichage de la map (partie droite)
 		JPanel map = new JPanel();
 		LoadGameLibgdxApplication.load(map, parent);
-		map.setDropTarget(new DropTarget(map, DnDConstants.ACTION_COPY, dragAndDrop));
+		//map.setDropTarget(new DropTarget(map, DnDConstants.ACTION_COPY, dragAndDrop));
 
 		//ajout des observateurs
 		ChoixObjet choix = new ChoixObjet();
@@ -83,7 +80,8 @@ public class MenuScreen extends JPanel {
 	 * @return JPanel contenant le menu
 	 * @since 3.0 14 décembre 2019
 	 */
-	private JPanel loadChoicesMenu(CardLayout layout) {
+	@Deprecated()
+	private JPanel loadChoicesMenu(CardLayout layout, DragAndDropDND dnd) {
 		//création des zone du menu des choix d'objets (partie gauche)
 		JPanel menuChoix = new JPanel();
 		menuChoix.setLayout(layout);
@@ -91,7 +89,7 @@ public class MenuScreen extends JPanel {
 		for (EntitiesCategories category : EntitiesCategories.values()) {
 			JPanel menuCategory = new JPanel();
 			//Appel de la fonction de remplissage des entités de construction
-			fill(menuCategory, category);
+			fill(menuCategory, category, dnd);
 			menuChoix.add(menuCategory);
 			//ajout au card Layout
 			layout.addLayoutComponent(menuCategory, category.name());
@@ -125,7 +123,8 @@ public class MenuScreen extends JPanel {
 	 * @param name nom de la catégorie
 	 * @since 2.0 05 décembre 2019
 	 */
-	private void fill(JPanel pane, EntitiesCategories name) {
+	@Deprecated
+	private void fill(JPanel pane, EntitiesCategories name, DragAndDropDND dnd) {
 		Array<EntitySerializable> entities = EntityFactory.getEntitiesByCategory(name);
 
 		//affichage des entités
@@ -139,7 +138,7 @@ public class MenuScreen extends JPanel {
 			if (i < entities.size) {
 				lab.setEntity(entities.get(i));
 				//ajoute au dnd, @convenienceMethod
-				lab.setDragSource(DnDConstants.ACTION_COPY, this.dragAndDrop);
+				lab.setDragSource(DnDConstants.ACTION_COPY, dnd);
 			}
 			pan.add(lab);
 			pane.add(pan);

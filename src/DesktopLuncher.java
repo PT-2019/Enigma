@@ -19,7 +19,7 @@ public class DesktopLuncher implements Runnable {
 	//après chargement de la libgdx par SwingUtilities.invokeLater(Runnable)
 	@Override
 	public void run() {
-		EditorLuncher editorLuncher = new EditorLuncher(1200, 800);
+		EditorLuncher editorLuncher = EditorLuncher.setEditor(1200, 800);
 		editorLuncher.start();
 	}
 }

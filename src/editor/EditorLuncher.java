@@ -18,13 +18,30 @@ public class EditorLuncher implements Application {
 	 **/
 	private Window window;
 
+	private static EditorLuncher editor;
+
+	public static EditorLuncher setEditor(int width, int height) {
+		if(editor == null){
+			editor = new EditorLuncher(width, height);
+		}
+		return editor;
+	}
+
+	public static EditorLuncher getInstance(){
+		if(editor == null){
+			editor = new EditorLuncher(1080, 720);
+		}
+		return editor;
+	}
+
+
 	/**
 	 * Construit l'éditeur d'escape game
 	 *
 	 * @param width  largeur de la fenêtre
 	 * @param height hauteur de la fenêtre
 	 */
-	public EditorLuncher(int width, int height) {
+	private EditorLuncher(int width, int height) {
 		//préparer ici l'application pour son démarrage
 		this.window = new Window(width, height);
 
@@ -46,5 +63,9 @@ public class EditorLuncher implements Application {
 	public void start() {
 		//on démarre l'application
 		this.window.setVisible(true);
+	}
+
+	public Window getWindow() {
+		return window;
 	}
 }
