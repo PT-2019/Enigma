@@ -7,9 +7,9 @@ import java.awt.event.MouseListener;
 
 public class SelectedManager implements MouseListener {
 
-    private SelectedButtonManager manager;
+    private MultipleButtonManager manager;
 
-    public SelectedManager(SelectedButtonManager manager){
+    public SelectedManager(MultipleButtonManager manager){
         this.manager = manager;
     }
 

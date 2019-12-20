@@ -12,7 +12,9 @@ public class EnigmaTextArea extends JTextArea {
 
     public EnigmaTextArea(){
         super();
-        this.addMouseListener(new EnigmaTextAreaManager(this));
+        EnigmaTextAreaManager manager = new EnigmaTextAreaManager(this);
+        this.addMouseListener(manager);
+        this.addFocusListener(manager);
         this.setOpaque(true);
     }
 

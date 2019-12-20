@@ -3,29 +3,18 @@ package editor.utils.managers;
 import editor.utils.EnigmaTextArea;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 
-public class EnigmaTextAreaManager implements MouseListener, ActionListener {
+public class EnigmaTextAreaManager implements MouseListener, FocusListener {
 
     private EnigmaTextArea textArea;
-    private Timer focusTimer;
 
     public EnigmaTextAreaManager(EnigmaTextArea textArea){
         this.textArea = textArea;
     }
 
     @Override
-    public void mouseClicked(MouseEvent mouseEvent){
-        if(this.textArea.getTextAreaUI() != null){
-            this.textArea.repaint();
-            this.focusTimer = new Timer(100,this);
-            this.focusTimer.setRepeats(true);
-            this.focusTimer.start();
-        }
-    }
+    public void mouseClicked(MouseEvent mouseEvent){}
 
     @Override
     public void mousePressed(MouseEvent mouseEvent){}
@@ -50,8 +39,12 @@ public class EnigmaTextAreaManager implements MouseListener, ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent actionEvent) {
-        if(!this.textArea.hasFocus()) this.focusTimer.stop();
+    public void focusGained(FocusEvent focusEvent) {
+        this.textArea.repaint();
+    }
+
+    @Override
+    public void focusLost(FocusEvent focusEvent) {
         this.textArea.repaint();
     }
 }
