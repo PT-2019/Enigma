@@ -1,6 +1,8 @@
 package editor.bibliotheque;
 
+import com.badlogic.gdx.Gdx;
 import editor.datas.EntitiesCategories;
+import game.entity.CategoriesMenu;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,14 +22,6 @@ import java.awt.event.ActionListener;
  */
 public class ChoixObjet implements ActionListener {
 
-	private JPanel panneau;
-	private CardLayout card;
-
-	public ChoixObjet(JPanel pane, CardLayout pages) {
-		this.panneau = pane;
-		this.card = pages;
-	}
-
 	/**
 	 * Cet méthode permet de gerer l'affichage de la partie gauche du menu via
 	 * les boutons grace au card layout
@@ -42,8 +36,7 @@ public class ChoixObjet implements ActionListener {
 
 		for (EntitiesCategories category : EntitiesCategories.values()) {
 			if (msg.equals(category.name)) {
-				this.card.show(this.panneau, category.name());
-				this.panneau.revalidate();
+				Gdx.app.postRunnable(()-> CategoriesMenu.c.loadCategory(category));
 				return;
 			}
 		}

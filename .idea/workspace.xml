@@ -2,10 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4b6e0b2a-a6ad-4eff-b2cc-63f9693ec5fe" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/game/entity/ActeurTextureAnimation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/game/entity/ActeurTextureGlisserDeposer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/game/entity/CategoriesMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/game/entity/EntityContainer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/game/entity/GlisserDeposer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/game/utils/Immutable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/entity/MapLibgdx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/entity/MapLibgdx.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/entity/MapLibgdxCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/entity/MapLibgdxCell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/bibliotheque/ChoixObjet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bibliotheque/ChoixObjet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/bibliotheque/MenuScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bibliotheque/MenuScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/screen/TestScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/screen/TestScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/utils/Bounds.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/utils/Bounds.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/editor/bibliotheque/DropTargetExample.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/editor/bibliotheque/Menu.java" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,8 +31,8 @@
       <list>
         <option value="Interface" />
         <option value="Enum" />
-        <option value="Class" />
         <option value="AnnotationType" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -34,16 +44,18 @@
       </map>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1300" />
-    <option name="height" value="876" />
-  </component>
   <component name="ProjectId" id="1T4PWZYsjf2nuTU9Vgk0aB5pF47" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
     <property name="jdk.selected.JAVA_MODULE" value="11" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/editor/entity" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/libs/fr.dic" />
@@ -54,6 +66,13 @@
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Quentin Ra\Desktop\Enigma\assets\map" />
+      <recent name="$PROJECT_DIR$/assets/files/atlas" />
+      <recent name="$PROJECT_DIR$/assets/files" />
+      <recent name="$PROJECT_DIR$/assets/Map" />
+      <recent name="$PROJECT_DIR$/assets/entities" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="editor.entity" />
       <recent name="editor.bibliotheque" />
@@ -62,17 +81,11 @@
       <recent name="" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="game.utils" />
       <recent name="editor.entity" />
       <recent name="editor.entity.view" />
       <recent name="game.screen" />
       <recent name="com.enigma.game" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Quentin Ra\Desktop\Enigma\assets\map" />
-      <recent name="$PROJECT_DIR$/assets/files/atlas" />
-      <recent name="$PROJECT_DIR$/assets/files" />
-      <recent name="$PROJECT_DIR$/assets/Map" />
-      <recent name="$PROJECT_DIR$/assets/entities" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -146,6 +159,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1572716426843</updated>
+      <workItem from="1576840016171" duration="987000" />
     </task>
     <servers />
   </component>
@@ -190,6 +204,9 @@
       <is-autoscroll-to-source value="true" />
     </todo-panel>
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -216,5 +233,21 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1638" height="278" key="GridCell.Tab.0.bottom" />
+    <state width="1638" height="278" key="GridCell.Tab.0.bottom/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
+    <state width="1638" height="278" key="GridCell.Tab.0.center" />
+    <state width="1638" height="278" key="GridCell.Tab.0.center/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
+    <state width="1638" height="278" key="GridCell.Tab.0.left" />
+    <state width="1638" height="278" key="GridCell.Tab.0.left/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
+    <state width="1638" height="278" key="GridCell.Tab.0.right" />
+    <state width="1638" height="278" key="GridCell.Tab.0.right/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
+    <state x="2243" y="104" width="1030" height="847" key="SettingsEditor" />
+    <state x="2243" y="104" width="1030" height="847" key="SettingsEditor/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
+    <state x="626" y="358" key="com.intellij.ide.util.TipDialog" />
+    <state x="626" y="358" key="com.intellij.ide.util.TipDialog/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" />
+    <state x="2530" y="232" width="455" height="591" key="com.intellij.testIntegration.createTest.CreateTestDialog" />
+    <state x="2530" y="232" width="455" height="591" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
   </component>
 </project>

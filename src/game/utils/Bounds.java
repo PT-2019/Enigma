@@ -1,7 +1,5 @@
 package game.utils;
 
-import jdk.nashorn.internal.ir.annotations.Immutable;
-
 @Immutable
 public final class Bounds {
 

@@ -51,8 +51,8 @@ public class MenuScreen extends JPanel {
 		JPanel sideBar = this.loadSideBar();
 
 		//création d'une scrollbar pour la partie gauche
-		JPanel menuChoix = loadChoicesMenu(pageObjet);
-		JScrollPane scroll = new JScrollPane(menuChoix, VERTICAL_SCROLLBAR_AS_NEEDED, HORIZONTAL_SCROLLBAR_NEVER);
+		//JPanel menuChoix = loadChoicesMenu(pageObjet);
+		//JScrollPane scroll = new JScrollPane(menuChoix, VERTICAL_SCROLLBAR_AS_NEEDED, HORIZONTAL_SCROLLBAR_NEVER);
 
 		//création de la zone d'affichage de la map (partie droite)
 		JPanel map = new JPanel();
@@ -60,7 +60,7 @@ public class MenuScreen extends JPanel {
 		map.setDropTarget(new DropTarget(map, DnDConstants.ACTION_COPY, dragAndDrop));
 
 		//ajout des observateurs
-		ChoixObjet choix = new ChoixObjet(menuChoix, pageObjet);
+		ChoixObjet choix = new ChoixObjet();
 		for (Component c : sideBar.getComponents()) {
 			if (c instanceof JButton) {
 				((JButton) c).addActionListener(choix);
@@ -68,12 +68,12 @@ public class MenuScreen extends JPanel {
 		}
 
 		//ajout aux conteneurs
-		JPanel content = new JPanel(new BorderLayout());
-		content.add(scroll, BorderLayout.WEST);
-		content.add(map, BorderLayout.CENTER);
+		//JPanel content = new JPanel(new BorderLayout());
+		//content.add(scroll, BorderLayout.WEST);
+		//content.add(map, BorderLayout.CENTER);
 
 		this.add(sideBar, BorderLayout.NORTH);
-		this.add(content, BorderLayout.CENTER);
+		this.add(map, BorderLayout.CENTER);
 	}
 
 	/**
