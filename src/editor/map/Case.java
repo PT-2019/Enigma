@@ -1,6 +1,5 @@
 package editor.map;
 
-import editor.entity.interfaces.Entity;
 import editor.datas.Layer;
 import editor.entity.interfaces.IDInterface;
 import editor.textures.Texture;
@@ -12,16 +11,24 @@ import java.util.HashMap;
  */
 public class Case implements IDInterface {
 
-	/** Taille basique d'une case **/
+	/**
+	 * Taille basique d'une case
+	 **/
 	private static final int WIDTH = 16, HEIGHT = 16;
 
-	/** détermine s'il est possible de se rendre sur la case */
+	/**
+	 * détermine s'il est possible de se rendre sur la case
+	 */
 	private boolean walkable;
 
-	/** Map, pour chaque niveau, on a possiblement une texture **/
+	/**
+	 * Map, pour chaque niveau, on a possiblement une texture
+	 **/
 	private HashMap<Layer, Texture> entities;
 
-	/** taille de la case **/
+	/**
+	 * taille de la case
+	 **/
 	private int width, height;
 
 	/**
@@ -32,7 +39,7 @@ public class Case implements IDInterface {
 	/**
 	 * Crée une case
 	 */
-	public Case(){
+	public Case() {
 		this.width = Case.WIDTH;
 		this.height = Case.HEIGHT;
 		this.walkable = false;
@@ -41,9 +48,10 @@ public class Case implements IDInterface {
 
 	/**
 	 * Crée une case
+	 *
 	 * @param id ID
 	 */
-	public Case(int id){
+	public Case(int id) {
 		this.width = Case.WIDTH;
 		this.height = Case.HEIGHT;
 		this.walkable = false;
@@ -58,36 +66,49 @@ public class Case implements IDInterface {
 
 	/**
 	 * Définit la texture associé au niveau
-	 * @param layer le niveau
+	 *
+	 * @param layer   le niveau
 	 * @param texture la texture
 	 */
 	public void setEntity(Layer layer, Texture texture) {
-		this.entities.put(layer,texture);
+		this.entities.put(layer, texture);
 	}
 
 	/**
 	 * Return s'il est possible de se rendre sur la case
+	 *
 	 * @return true s'il est possible de se rendre sur la case sinon false
 	 */
-	public boolean isWalkable() { return this.walkable; }
+	public boolean isWalkable() {
+		return this.walkable;
+	}
 
 	/**
 	 * Définit s'il est possible de se rendre sur la case
+	 *
 	 * @param walkable true s'il est possible de se rendre sur la case sinon false
 	 */
-	public void setWalkable(boolean walkable) { this.walkable = walkable; }
+	public void setWalkable(boolean walkable) {
+		this.walkable = walkable;
+	}
 
 	/**
 	 * Retourne la largeur de la case
+	 *
 	 * @return la largeur de la case
 	 */
-	public int getWidth() {	return this.width; }
+	public int getWidth() {
+		return this.width;
+	}
 
 	/**
 	 * Retourne la hauteur de la case
+	 *
 	 * @return la hauteur de la case
 	 */
-	public int getHeight() { return this.height; }
+	public int getHeight() {
+		return this.height;
+	}
 
 	public HashMap<Layer, Texture> getEntities() {
 		return this.entities;
@@ -99,6 +120,7 @@ public class Case implements IDInterface {
 
 	/**
 	 * Obtenir l'ID
+	 *
 	 * @return L'ID, -1 si pas initialisé
 	 */
 	public int getID() {
@@ -107,6 +129,7 @@ public class Case implements IDInterface {
 
 	/**
 	 * Définir l'ID
+	 *
 	 * @param id ID
 	 */
 	public void setID(int id) {

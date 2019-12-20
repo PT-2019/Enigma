@@ -2,6 +2,7 @@ package editor.datas;
 
 /**
  * Déplacements possibles
+ *
  * @version 1.0
  */
 public enum Direction {

@@ -1,8 +1,6 @@
 package editor.map;
 
 import editor.datas.Layer;
-import editor.entity.Player;
-import editor.entity.interfaces.Entity;
 import editor.textures.Texture;
 import editor.textures.TextureProxy;
 import org.xml.sax.Attributes;
@@ -13,6 +11,7 @@ import org.xml.sax.helpers.DefaultHandler;
 /**
  * Cette classe va activé certaine de ses méthodes lors du parcours d'un
  * fichier xml représentant une map.
+ *
  * @see DefaultHandler
  */
 public class LoadHandler extends DefaultHandler {
@@ -29,7 +28,7 @@ public class LoadHandler extends DefaultHandler {
 
 	private int indice;
 
-	public LoadHandler(){
+	public LoadHandler() {
 		proxyTexture = new TextureProxy();
 		indice = 0;
 	}
@@ -37,6 +36,7 @@ public class LoadHandler extends DefaultHandler {
 	/**
 	 * Cette méthode est activé lorsqu'une balise xml est détecté dans le fichier. Elle permet
 	 * de récupérer les différents attributs des balises et donc créer les objets de la map.
+	 *
 	 * @param uri
 	 * @param localName
 	 * @param qName
@@ -47,44 +47,44 @@ public class LoadHandler extends DefaultHandler {
 	public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
 		currentName = qName;
 
-		if (qName.equals("map")){
+		if (qName.equals("map")) {
 			int col = Integer.parseInt(attributes.getValue("width"));
 			int row = Integer.parseInt(attributes.getValue("height"));
 
-			loadMap = new Map(col,row);
-		} else if (qName.equals("tileset")){
+			loadMap = new Map(col, row);
+		} else if (qName.equals("tileset")) {
 			dataTexture[0] = Integer.parseInt(attributes.getValue("tileheight"));
 			dataTexture[1] = Integer.parseInt(attributes.getValue("columns"));
 			dataTexture[2] = Integer.parseInt(attributes.getValue("firstgid"));
 			dataTexture[3] = dataTexture[2] + Integer.parseInt(attributes.getValue("tilecount"));
 
-		}else if(qName.equals("image")){
+		} else if (qName.equals("image")) {
 			String source = attributes.getValue("source");
 			source = source.substring(6);
 
-			proxyTexture.addTexture(dataTexture[0],source, dataTexture[1], dataTexture[2], dataTexture[3]);
-		} else if(qName.equals("layer")){
+			proxyTexture.addTexture(dataTexture[0], source, dataTexture[1], dataTexture[2], dataTexture[3]);
+		} else if (qName.equals("layer")) {
 			indice = 0;
 			currentLayer = attributes.getValue("name");
 
-		} else if(qName.equals("room")){
+		} else if (qName.equals("room")) {
 			int row = Integer.parseInt(attributes.getValue("heigth"));
 			int col = Integer.parseInt(attributes.getValue("width"));
 			int pointrow = Integer.parseInt(attributes.getValue("heigthpos"));
 			int pointcol = Integer.parseInt(attributes.getValue("widthpos"));
 			Case[] mapcase = loadMap.getCases();
-			Case[] roomcase = new Case[row*col];
+			Case[] roomcase = new Case[row * col];
 
-			for (int i = 0,k = pointrow; k < row+pointrow; i++,k++) {
-				for (int j = 0,n = pointcol; n < col+pointcol; j++,n++) {
+			for (int i = 0, k = pointrow; k < row + pointrow; i++, k++) {
+				for (int j = 0, n = pointcol; n < col + pointcol; j++, n++) {
 
-					roomcase[i*col+j] = mapcase[k*loadMap.getCol()+n];
+					roomcase[i * col + j] = mapcase[k * loadMap.getCol() + n];
 				}
 			}
 
-			Room r = new Room(col,row,roomcase);
+			Room r = new Room(col, row, roomcase);
 
-			loadMap.addRoom(pointcol,pointrow,r);
+			loadMap.addRoom(pointcol, pointrow, r);
 
 		}
 	}
@@ -92,6 +92,7 @@ public class LoadHandler extends DefaultHandler {
 	/**
 	 * Cette méthode permet de récupérer le contenu qu'il y a dans un noeud xml.
 	 * Elle est invoqué lorsqu'un noeud avec contenu est détecté.
+	 *
 	 * @param value
 	 * @param start
 	 * @param length
@@ -101,55 +102,55 @@ public class LoadHandler extends DefaultHandler {
 	public void characters(char[] value, int start, int length) throws SAXException {
 		StringBuilder numText = new StringBuilder();
 		String str = new String(value, start, length);
-		str = str.replaceAll("\\s","");
+		str = str.replaceAll("\\s", "");
 
-		if (currentName.equals("data")){
+		if (currentName.equals("data")) {
 
 			for (int i = 0; i < str.length(); i++) {
 				char tmp = str.charAt(i);
 
 				//Le point virgule signifie qu'on change de numéro de texture
-				if(tmp == ',' ){
+				if (tmp == ',') {
 
 					Case tmpCase = loadMap.getCase(indice);
 					int num = Integer.parseInt(numText.toString());
 
 					//si la case est null on l'instancie
-					if (tmpCase == null){
+					if (tmpCase == null) {
 						tmpCase = new Case();
-						loadMap.setCase(indice,tmpCase);
+						loadMap.setCase(indice, tmpCase);
 					}
 					//si c'est une collision on applique une méthode différente
-					if (currentLayer.equals("Colision")){
-						if (num == 1){
+					if (currentLayer.equals("Colision")) {
+						if (num == 1) {
 							tmpCase.setWalkable(true);
 						}
-					}else{
-						tmpCase.setEntity(Layer.valueOf(currentLayer), new Texture(num,proxyTexture.getImage(num)));
+					} else {
+						tmpCase.setEntity(Layer.valueOf(currentLayer), new Texture(num, proxyTexture.getImage(num)));
 					}
 					indice++;
 					numText = new StringBuilder();
-				}else{
+				} else {
 					//on ajoute le caractère
 					numText.append(tmp);
 				}
 			}
-			if (!numText.toString().equals("")){
+			if (!numText.toString().equals("")) {
 				Case tmpCase = loadMap.getCase(indice);
 				int num = Integer.parseInt(numText.toString());
 
 				//si la case est null on l'instancie
-				if (tmpCase == null){
+				if (tmpCase == null) {
 					tmpCase = new Case();
-					loadMap.setCase(indice,tmpCase);
+					loadMap.setCase(indice, tmpCase);
 				}
 				//si c'est une collision on applique une méthode différente
-				if (currentLayer.equals("Colision")){
-					if (num == 1){
+				if (currentLayer.equals("Colision")) {
+					if (num == 1) {
 						tmpCase.setWalkable(true);
 					}
-				}else{
-					tmpCase.setEntity(Layer.valueOf(currentLayer), new Texture(num,proxyTexture.getImage(num)));
+				} else {
+					tmpCase.setEntity(Layer.valueOf(currentLayer), new Texture(num, proxyTexture.getImage(num)));
 				}
 				indice++;
 			}
@@ -158,6 +159,7 @@ public class LoadHandler extends DefaultHandler {
 
 	/**
 	 * invoqué si le fichier ne respecte pas le dtd.
+	 *
 	 * @param e
 	 * @throws SAXException
 	 */
@@ -169,6 +171,7 @@ public class LoadHandler extends DefaultHandler {
 
 	/**
 	 * Invoqué lors d'une erreur avec une des règles du xml.
+	 *
 	 * @param e
 	 * @throws SAXException
 	 */
@@ -180,13 +183,15 @@ public class LoadHandler extends DefaultHandler {
 
 	/**
 	 * Warning du parseur.
+	 *
 	 * @param e
 	 * @throws SAXException
 	 */
 	@Override
-	public void warning(SAXParseException e) throws SAXException {}
+	public void warning(SAXParseException e) throws SAXException {
+	}
 
-	public  Map getMap(){
+	public Map getMap() {
 		return loadMap;
 	}
 

@@ -1,0 +1,48 @@
+{
+  content: [
+    {
+      className: editor.entity.item.Chest
+      path: assets/map/datas/coffre.png
+      category: DECORS
+      width: 1
+      height: 1
+      tiles: {
+        DECORATIONS1: [910]
+        COLLISION: [2041]
+      }
+    }
+    {
+      className: editor.entity.item.Button
+      path: assets/map/datas/button.png
+      category: DECORS
+      width: 1
+      height: 1
+      tiles: {
+        DECORATIONS1: [1305]
+        COLLISION: [2041]
+      }
+    }
+    {
+      className: editor.entity.item.Switch
+      path: assets/map/datas/switch.png
+      category: DECORS
+      width: 1
+      height: 1
+      tiles: {
+        DECORATIONS1: [1310]
+        COLLISION: [2041]
+      }
+    }
+    {
+      className: editor.entity.item.Pane
+      path: assets/map/datas/pane.png
+      category: DECORS
+      width: 1
+      height: 1
+      tiles: {
+        DECORATIONS1: [284]
+        COLLISION: [2041]
+      }
+    }
+  ]
+}

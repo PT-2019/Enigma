@@ -5,19 +5,20 @@ package editor.entity.interfaces;
  */
 public interface Lockable {
 
-    /**
-     * Verrouille l'objet
-     */
-    public void lock();
+	/**
+	 * Verrouille l'objet
+	 */
+	void lock();
 
-    /**
-     * Déverrouille l'objet
-     */
-    public void unlock();
+	/**
+	 * Déverrouille l'objet
+	 */
+	void unlock();
 
-    /**
-     * Indique si l'objet est verrouillé
-     * @return true si il est verrouillé, false sinon
-     */
-    public boolean isLocked();
+	/**
+	 * Indique si l'objet est verrouillé
+	 *
+	 * @return true si il est verrouillé, false sinon
+	 */
+	boolean isLocked();
 }

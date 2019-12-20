@@ -5,36 +5,54 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.Array;
+import game.utils.InputListener;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 
-public abstract class LibgdxScreen implements Screen, InputProcessor {
+/**
+ * A typical game should have a init, game loop and dispose.
+ * Game Loop means input, update, render.
+ * <p>
+ * Most Libgdx methods are hidden.
+ * <p>
+ * A screen could listener it's actors (don't forget {@link #listen(com.badlogic.gdx.InputProcessor)}
+ * <p>
+ * It could handle event {@link InputListener}
+ *
+ * @version 3.0 03 december 2019
+ * @since 03 december 2019
+ */
+public abstract class LibgdxScreen implements Screen, InputListener, IGameLogic {
 
-	private ArrayList<InputProcessor> listened;
+	private Array<InputProcessor> listened;
 
 	public LibgdxScreen() {
-		this.listened = new ArrayList<>();
+		this.listened = new Array<>();
 		this.init();
 	}
 
 	/**
-	 * Initialisations, allocations, cr&#233;ations
+	 * Initialisations, allocations...
 	 */
 	public abstract void init();
 
 	/**
-	 * R&#233;cup&#233;ration des interactions avec l'utilisateur
+	 * poll user input
 	 */
 	public abstract void input();
 
 	/**
-	 * Mise-&#224;-jour des donn&#233;es
+	 * Update of the game
 	 *
-	 * @param dt le temps écoulé depuis le dernier appel
+	 * @param dt elapsed time since last call
 	 */
 	public abstract void update(float dt);
+
+	/**
+	 * render (print) everything on the screen
+	 */
+	public abstract void render();
 
 	/**
 	 * Called each time the screen is resized
@@ -46,27 +64,30 @@ public abstract class LibgdxScreen implements Screen, InputProcessor {
 	public abstract void resize(int width, int height);
 
 	/**
-	 * Mise-&#224;-jour de l'affichage
+	 * Should hide or display the screen but event keep running
+	 * <p>
+	 * a setVisible or addAction(Actions.hide()) and addAction(Actions.show())
+	 * should be enough.
+	 *
+	 * @param display true for displaying else false
 	 */
-	public abstract void render();
+	public abstract void display(boolean display);
 
 	/**
-	 * Fermetures et lib&#233;rations
+	 * Close and frees
 	 */
 	@Override
 	public abstract void dispose();
 
 	/* Screen methods are hidden, to make gameLogic (or game loop) more visible */
 
-	public Iterator<Stage> getStages(){return  new ArrayList<Stage>().iterator(); }
-
 	/**
 	 * When a event happens, if no one before was concerned
 	 * by the event, all stage's observers will be called.
-	 *
+	 * <p>
 	 * Warning! The events are called in the same order listens
 	 * call were done.
-	 *
+	 * <p>
 	 * So it would be wise to call listen on hud's stage before main's stage
 	 * for instance.
 	 *
@@ -76,16 +97,21 @@ public abstract class LibgdxScreen implements Screen, InputProcessor {
 		this.listened.add(stage);
 	}
 
-	@SuppressWarnings("unchecked")
-	public Iterator<InputProcessor> getListened(){
-		return ((ArrayList<InputProcessor>) listened.clone()).iterator();
+	/**
+	 * Return all listened stages.
+	 * They could be removed.
+	 *
+	 * @return all listened stages.
+	 */
+	public Iterator<InputProcessor> getListened() {
+		return new Array.ArrayIterator<>(this.listened);
 	}
 
 	@Override
 	public void show() {
 		InputMultiplexer gestionnaireProcessus = (InputMultiplexer) Gdx.input.getInputProcessor();
 		gestionnaireProcessus.addProcessor(this);
-		for (InputProcessor processor : this.listened) {
+		for (InputProcessor processor : new Array.ArrayIterator<>(this.listened)) {
 			gestionnaireProcessus.addProcessor(processor);
 		}
 	}
@@ -93,8 +119,6 @@ public abstract class LibgdxScreen implements Screen, InputProcessor {
 	@Override
 	public void render(float delta) {
 		//screen clear
-		//Gdx.gl20.glClearColor(0.20f,0.20f,0.20f,1.0f);
-		Gdx.gl20.glClearColor(0, 0, 0, 1);
 		Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		//fake a gameLoop
@@ -107,51 +131,9 @@ public abstract class LibgdxScreen implements Screen, InputProcessor {
 	public void hide() {
 		InputMultiplexer gestionnaireProcessus = (InputMultiplexer) Gdx.input.getInputProcessor();
 		gestionnaireProcessus.removeProcessor(this);
-		for (InputProcessor processor : this.listened) {
+		for (InputProcessor processor : new Array.ArrayIterator<>(this.listened)) {
 			gestionnaireProcessus.removeProcessor(processor);
 		}
-	}
-
-	// add a way for discontinuous input
-
-	@Override
-	public boolean keyDown(int keycode) {
-		return false;
-	}
-
-	@Override
-	public boolean keyUp(int keycode) {
-		return false;
-	}
-
-	@Override
-	public boolean keyTyped(char character) {
-		return false;
-	}
-
-	@Override
-	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-		return false;
-	}
-
-	@Override
-	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
-		return false;
-	}
-
-	@Override
-	public boolean touchDragged(int screenX, int screenY, int pointer) {
-		return false;
-	}
-
-	@Override
-	public boolean mouseMoved(int screenX, int screenY) {
-		return false;
-	}
-
-	@Override
-	public boolean scrolled(int amount) {
-		return false;
 	}
 
 	//don't care

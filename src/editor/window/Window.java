@@ -1,6 +1,6 @@
 package editor.window;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 //TODO: permettre le plein écran (avec une méthode)
 //TODO: permettre l'ajout d'un fond d'écran
@@ -9,7 +9,7 @@ public class Window extends JFrame {
 
 	public Window(int width, int height) {
 		super();
-		this.setSize(width,height);
+		this.setSize(width, height);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		//TODO: définir la position de la fenêtre (centrée).

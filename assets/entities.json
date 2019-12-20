@@ -1,0 +1,9 @@
+{
+  content: [
+    {
+      className: editor.entity.Player
+      path: assets/map/datas/player1.png
+      category: ENTITIES
+    }
+  ]
+}

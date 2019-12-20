@@ -1,40 +1,69 @@
 package game.screen;
 
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import game.EnigmaGame;
 import game.api.LibgdxScreen;
+import game.entity.MapLibgdx;
 
 public class TestScreen extends LibgdxScreen {
 
-	SpriteBatch batch;
-	Texture img;
+	private Stage main;
+
+	private MapLibgdx map;
 
 	@Override
 	public void init() {
-		batch = new SpriteBatch();
-		img = new Texture("assets/badlogic.jpg");
+		try {
+			Gdx.gl.glClearColor(255, 255, 255, 255);
+
+			this.main = new Stage();
+
+			this.main.setViewport(new ExtendViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
+
+			this.map = new MapLibgdx("assets/map/Empty.tmx");
+
+			this.main.addActor(map);
+
+			this.listen(map);
+			this.listen(this.main);
+		} catch (Exception e) {
+			Gdx.app.error(this.getClass().toString(), e.toString());
+		}
 	}
 
 	@Override
-	public void input() {}
+	public void input() {
+	}
 
 	@Override
-	public void update(float dt) {}
+	public void update(float dt) {
+		this.main.act(dt);
+	}
 
 	@Override
 	public void render() {
-		batch.begin();
-		batch.draw(img, 0, 0);
-		batch.end();
+		this.main.draw();
+	}
+
+	@Override
+	public void resize(int width, int height) {
+		this.main.getViewport().setScreenSize(width, height);
+		this.main.getViewport().update(width, height);
+		EnigmaGame.setScreenSize(width, height);
+	}
+
+	public MapLibgdx getMap() {
+		return map;
+	}
+
+	@Override
+	public void display(boolean display) {
 	}
 
 	@Override
 	public void dispose() {
-		batch.dispose();
-		img.dispose();
+		this.main.dispose();
 	}
-
-	@Override
-	public void resize(int width, int height) {}
-
 }

@@ -16,7 +16,7 @@ public class JsonTextureLoader {
 	 * String = chemin du .atlas
 	 * JSonFile = fichier .atlas
 	 */
-	private static HashMap<String, JsonFile> loadedTextures = new HashMap<>();
+	private static HashMap<String, AtlasFile> loadedTextures = new HashMap<>();
 
 	/**
 	 * Renvoi l'image correspond a la sous-texture name dans file.
@@ -26,9 +26,9 @@ public class JsonTextureLoader {
 	 * @return la sous-image voulue
 	 * @since 2.0
 	 */
-	public static Texture getTexture(String name, String file){
-		if(!JsonTextureLoader.loadedTextures.containsKey(file)){
-			JsonFile json = JsonReader.importJson(file);
+	public static Texture getTexture(String name, String file) {
+		if (!JsonTextureLoader.loadedTextures.containsKey(file)) {
+			AtlasFile json = AtlasReader.importJson(file);
 			JsonTextureLoader.loadedTextures.put(file, json);
 		}
 		return JsonTextureLoader.loadedTextures.get(file).getTexture(name);

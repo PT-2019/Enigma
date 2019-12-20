@@ -12,7 +12,7 @@ import java.io.IOException;
  * Classe qui va chargé une map.
  * Utilisation de la méthode Sax.
  */
-public class MapLoader{
+public class MapLoader {
 	/**
 	 * map chargé
 	 */
@@ -25,9 +25,10 @@ public class MapLoader{
 
 	/**
 	 * Chargement du fichier map
+	 *
 	 * @param fichier
 	 */
-	public void load(String fichier){
+	public void load(String fichier) {
 		try {
 			SAXParserFactory factory = SAXParserFactory.newInstance();
 			LoadHandler handler = new LoadHandler();
@@ -41,7 +42,7 @@ public class MapLoader{
 
 			textureproxy = handler.getProxyTexture();
 
-		}catch (IOException | SAXException | ParserConfigurationException e){
+		} catch (IOException | SAXException | ParserConfigurationException e) {
 			System.err.println(e.getMessage());
 		}
 	}

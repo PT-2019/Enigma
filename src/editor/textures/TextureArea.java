@@ -11,8 +11,9 @@ import java.io.IOException;
 /**
  * La classe TextureArea permet de chargé des images contenant différentes
  * texture et de les décomposer pour ensuite instancier dse Textures.
- * @see TextureProxy
+ *
  * @version 2.1 28 novembre 2019
+ * @see TextureProxy
  */
 public class TextureArea {
 	/**
@@ -46,14 +47,14 @@ public class TextureArea {
 	private int nbcol;
 
 	/**
-	 * @param path fichier de la texture
-	 * @param tileWidth dimention d'une sous-texture
+	 * @param path       fichier de la texture
+	 * @param tileWidth  dimention d'une sous-texture
 	 * @param tileHeight dimention d'une sous-texture
-	 * @param nbcol nombre de sous-texture par ligne
-	 * @param min valeur min dans le fichier qui décrit la texture
-	 * @param max valeur max dans le fichier qui décrit la texture
+	 * @param nbcol      nombre de sous-texture par ligne
+	 * @param min        valeur min dans le fichier qui décrit la texture
+	 * @param max        valeur max dans le fichier qui décrit la texture
 	 */
-	TextureArea(int tileWidth, int tileHeight, String path, int nbcol, int min, int max){
+	TextureArea(int tileWidth, int tileHeight, String path, int nbcol, int min, int max) {
 		this.tileWidth = tileWidth;
 		this.tileHeight = tileHeight;
 		this.path = path;
@@ -62,7 +63,7 @@ public class TextureArea {
 		this.min = min;
 	}
 
-	TextureArea(int tileWidth, int tileHeight, String path){
+	TextureArea(int tileWidth, int tileHeight, String path) {
 		this.tileHeight = tileHeight;
 		this.tileWidth = tileWidth;
 		this.path = path;
@@ -71,7 +72,7 @@ public class TextureArea {
 		this.max = 0;
 	}
 
-	public Image getImage(int x, int y, int width, int height){
+	public Image getImage(int x, int y, int width, int height) {
 		if (buffer == null) {
 			this.load();
 		}
@@ -82,52 +83,51 @@ public class TextureArea {
 	 * Cette méthode va découper, une image charger en fonction du paramètre
 	 *
 	 * @param under_texture identifiant la sous-texture
-	 *
+	 * @return Sous-Image décrite par under_texture
 	 * @throws IllegalStateException Fichier de l'image impossible à charger
 	 * @throws IllegalStateException Valeur trop élevée, soit les dimensions width et
-	 *                              height, soit les attributs col et row de la TextureType
-	 * @return Sous-Image décrite par under_texture
+	 *                               height, soit les attributs col et row de la TextureType
 	 */
 	public Image getImage(int under_texture) {
 		int texture_value;
 
-		if (under_texture < min  || under_texture > max) {
+		if (under_texture < min || under_texture > max) {
 			throw new IllegalStateException("under_texture is to low or to hight");
 		}
 
-		if (buffer==null) {
+		if (buffer == null) {
 			this.load();
 		}
 
 		texture_value = under_texture - min;
 
-		return buffer.getSubimage((texture_value%nbcol)*tileWidth,(texture_value/nbcol)*tileHeight,tileWidth, tileHeight);
+		return buffer.getSubimage((texture_value % nbcol) * tileWidth, (texture_value / nbcol) * tileHeight, tileWidth, tileHeight);
 	}
 
-	public void load(){
-		try{
+	public void load() {
+		try {
 			//open file
 			FileInputStream input = new FileInputStream(new File(path));
 			//read image
 			buffer = ImageIO.read(input);
 			//close file
 			input.close();
-		} catch (FileNotFoundException e){
+		} catch (FileNotFoundException e) {
 			throw new IllegalStateException("File not found. Bad Path.");
-		} catch (IOException e){
+		} catch (IOException e) {
 			throw new IllegalStateException("Error reading image!");
 		}
 	}
 
-	public String getPath(){
+	public String getPath() {
 		return path;
 	}
 
-	public int getMax(){
+	public int getMax() {
 		return max;
 	}
 
-	public int getMin(){
+	public int getMin() {
 		return min;
 	}
 
@@ -135,11 +135,11 @@ public class TextureArea {
 		return nbcol;
 	}
 
-	public int getWidth(){
-		return  buffer.getWidth();
+	public int getWidth() {
+		return buffer.getWidth();
 	}
 
-	public int getHeight(){
+	public int getHeight() {
 		return buffer.getHeight();
 	}
 
