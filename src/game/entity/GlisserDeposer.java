@@ -1,5 +1,7 @@
 package game.entity;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Cursor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -53,6 +55,7 @@ public class GlisserDeposer extends InputListener {
 	@Override
 	public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 		if(this.acteur.estGlissable()) {
+			//Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Hand);
 			this.deplacementX = x; //sauvegarde la décalage
 			this.deplacementY = y;
 			//garde la position de départ ou cas ou on doit l'y ramener

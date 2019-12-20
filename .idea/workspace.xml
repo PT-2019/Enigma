@@ -2,20 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4b6e0b2a-a6ad-4eff-b2cc-63f9693ec5fe" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/game/entity/ActeurTextureAnimation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/game/entity/ActeurTextureGlisserDeposer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/game/entity/CategoriesMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/game/entity/EntityContainer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/game/entity/GlisserDeposer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/game/utils/Immutable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/bibliotheque/ChoixObjet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bibliotheque/ChoixObjet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/bibliotheque/MenuScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bibliotheque/MenuScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/screen/TestScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/screen/TestScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/utils/Bounds.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/utils/Bounds.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/editor/bibliotheque/DropTargetExample.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/editor/bibliotheque/Menu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/entity/GlisserDeposer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/entity/GlisserDeposer.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,12 +25,12 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="QuentinRa/MapEditor" />
+        <entry key="$PROJECT_DIR$" value="alais/Barre_outil" />
       </map>
     </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1T4PWZYsjf2nuTU9Vgk0aB5pF47" />
   <component name="ProjectViewState">
@@ -145,6 +133,8 @@
         <item itemvalue="Application.DesktopLuncher" />
         <item itemvalue="Application.DragImage" />
         <item itemvalue="Application.DragGesture" />
+        <item itemvalue="Application.DesktopLuncher" />
+        <item itemvalue="Application.DragImage" />
       </list>
     </recent_temporary>
   </component>
