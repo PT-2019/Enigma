@@ -72,8 +72,8 @@ public class SaveMap {
 			//element map in xml file
 			Element map = document.createElement("map");
 			document.appendChild(map);
-			map.setAttribute("version", "1.3.1");
-			map.setAttribute("tiledversion", "1.0");
+			map.setAttribute("version", "1");
+			map.setAttribute("tiledversion", "2019.11.12");
 			map.setAttribute("orientation", "orthogonal");
 			map.setAttribute("renderorder", "right-down");
 			map.setAttribute("width", col);
