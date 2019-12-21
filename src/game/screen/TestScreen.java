@@ -22,7 +22,7 @@ public class TestScreen extends LibgdxScreen {
 
 			this.main.setViewport(new ExtendViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
 
-			this.map = new MapLibgdx("assets/map/Empty.tmx");
+			this.map = new MapLibgdx("assets/map/test.tmx");
 
 			this.main.addActor(map);
 

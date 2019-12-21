@@ -13,8 +13,8 @@ public class MapLoaderTestMain {
 
 		m.getMap().render();
 
-		SaveMap save = new SaveMap(m.getTextureproxy().getTextures() ,m.getMap());
+		/*SaveMap save = new SaveMap(m.getTextureproxy().getTextures() ,m.getMap());
 
-		save.saveMap("assets/map/Loadtest.tmx");
+		save.saveMap("assets/map/Loadtest.tmx");*/
 	}
 }

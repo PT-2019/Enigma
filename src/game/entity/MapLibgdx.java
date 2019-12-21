@@ -16,6 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Array;
 import editor.datas.Layer;
 import editor.entity.EntitySerializable;
+import editor.map.SaveMap;
 import editor.utils.Utility;
 import game.ui.Border;
 import game.utils.Bounds;
@@ -89,6 +90,8 @@ public class MapLibgdx extends Group implements InputListener {
 		this.camera.position.set(getMapWidth() / 2, getMapHeight() / 2, 0);
 		this.camera.update();
 
+		SaveMap save = new SaveMap(tiledMap);
+		save.saveMap("assets/map/test.tmx");
 		//bounds
 		this.setMapBounds();
 

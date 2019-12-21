@@ -1,7 +1,12 @@
 package editor.map;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.glutils.FileTextureData;
+import com.badlogic.gdx.maps.MapLayer;
+import com.badlogic.gdx.maps.MapLayers;
+import com.badlogic.gdx.maps.MapProperties;
+import com.badlogic.gdx.maps.tiled.*;
 import editor.datas.Layer;
-import editor.textures.Texture;
 import editor.textures.TextureArea;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -25,19 +30,14 @@ import java.util.HashMap;
  * Permet de sauvegarder la map avec la méthode DOM.
  */
 public class SaveMap {
-	/**
-	 * Texture à sauvegarder dans le fichier
-	 */
-	private ArrayList<TextureArea> textures;
 
 	/**
 	 * Map à sauvegarder.
 	 */
-	private Map gameMap;
+	private TiledMap gameMap;
 
-	public SaveMap(ArrayList<TextureArea> textures, Map game) {
+	public SaveMap(TiledMap game) {
 		this.gameMap = game;
-		this.textures = textures;
 	}
 
 	/**
@@ -55,15 +55,19 @@ public class SaveMap {
 			//on instancie notre document
 			Document document = builder.newDocument();
 
-			Case[] tmpCase = gameMap.getCases();
-
 			StringBuilder tmpstring = new StringBuilder("\n");
 
-			String col = Integer.toString(gameMap.getCol());
+			MapLayers mapLayers = gameMap.getLayers();
+			TiledMapTileLayer l =(TiledMapTileLayer) mapLayers.get(0);
 
-			String row = Integer.toString(gameMap.getRow());
+			String col = Integer.toString(l.getWidth());
 
-			Element datas, layers, tileset, rooms;
+			String row = Integer.toString(l.getHeight());
+
+			TiledMapTileSets tileSets = gameMap.getTileSets();
+
+			Element datas, layers,tileset, rooms;
+			int tilePosition = 1;
 
 			//element map in xml file
 			Element map = document.createElement("map");
@@ -72,116 +76,83 @@ public class SaveMap {
 			map.setAttribute("tiledversion", "1.0");
 			map.setAttribute("orientation", "orthogonal");
 			map.setAttribute("renderorder", "right-down");
-			map.setAttribute("width", String.valueOf(gameMap.getCol()));
-			map.setAttribute("height", String.valueOf(gameMap.getRow()));
-			map.setAttribute("tilewidth", String.valueOf(textures.get(0).getTileWidth()));
-			map.setAttribute("tileheight", String.valueOf(textures.get(0).getTileHeight()));
+			map.setAttribute("width", col);
+			map.setAttribute("height", row);
+			map.setAttribute("tilewidth", String.valueOf((int)l.getTileWidth()));
+			map.setAttribute("tileheight", String.valueOf((int)l.getTileHeight()));
 			map.setAttribute("infinite", "0");
 			map.setAttribute("nextlayerid", "1");
 			map.setAttribute("nextobjectid", "3");
 
 			//tileset représente les textures dans le fichier xml
-			for (int i = 0; i < textures.size(); i++) {
-				textures.get(i).load();
+			for (TiledMapTileSet tileSet: tileSets) {
+				MapProperties tileProp = tileSet.getProperties();
 
 				tileset = document.createElement("tileset");
-				tileset.setAttribute("firstgid", String.valueOf(textures.get(i).getMin()));
-				tileset.setAttribute("name", String.valueOf(i));
-				tileset.setAttribute("tilewidth", String.valueOf(textures.get(i).getTileWidth()));
-				tileset.setAttribute("tileheight", String.valueOf(textures.get(i).getTileHeight()));
+				tileset.setAttribute("firstgid",String.valueOf(tilePosition));
+				tileset.setAttribute("name", tileSet.getName());
+				tileset.setAttribute("tilewidth",String.valueOf((int)l.getTileWidth()));
+				tileset.setAttribute("tileheight",String.valueOf((int)l.getTileHeight()));
 
-				int tmp = textures.get(i).getMax() - textures.get(i).getMin();
-				tileset.setAttribute("tilecount", String.valueOf(tmp));
-				tileset.setAttribute("columns", String.valueOf(textures.get(i).getNbcol()));
-
-				map.appendChild(tileset);
+				tileset.setAttribute("tilecount", String.valueOf(tileSet.size()));
 
 				Element image = document.createElement("image");
-				image.setAttribute("source", "../../" + textures.get(i).getPath());
+				TiledMapTile img = tileSet.getTile(tilePosition);
+				Texture t = img.getTextureRegion().getTexture();
 
-				image.setAttribute("width", String.valueOf(textures.get(i).getWidth()));
-				image.setAttribute("height", String.valueOf(textures.get(i).getHeight()));
+				FileTextureData data = (FileTextureData ) t.getTextureData();
 
+				image.setAttribute("source", "../../"+data.getFileHandle().path());
+				image.setAttribute("width", String.valueOf(t.getWidth()));
+				image.setAttribute("height", String.valueOf(t.getHeight()));
+
+				tileset.setAttribute("columns", String.valueOf((int)(t.getWidth()/l.getTileWidth())));
+
+				map.appendChild(tileset);
 				tileset.appendChild(image);
+
+				tilePosition += tileSet.size();
 			}
 
-			//écriture des différents layers de la map
-			int i = 0;
 
-			for (editor.datas.Layer type : editor.datas.Layer.values()) {
+			//écriture des différents layers de la map
+
+			for (MapLayer layer: mapLayers) {
+
+				if (! (layer instanceof TiledMapTileLayer))
+					continue;
+
+				TiledMapTileLayer tileLayer = (TiledMapTileLayer) layer;
+
 				layers = document.createElement("layer");
-				layers.setAttribute("id", String.valueOf(i));
-				layers.setAttribute("name", String.valueOf(type));
-				layers.setAttribute("width", col);
-				layers.setAttribute("height", row);
+				layers.setAttribute("id", "1");
+				layers.setAttribute("name", tileLayer.getName());
+				layers.setAttribute("width", String.valueOf(tileLayer.getWidth()));
+				layers.setAttribute("height", String.valueOf(tileLayer.getHeight()));
 				map.appendChild(layers);
 
 				datas = document.createElement("data");
 				datas.setAttribute("encoding", "csv");
 
-				tmpstring = new StringBuilder("\n");
-				for (int k = 0; k < gameMap.getRow(); k++) {
-					for (int j = 0; j < gameMap.getCol(); j++) {
-						if (tmpCase[k * gameMap.getCol() + j] == null) {
-
-							tmpstring.append("0,");
-						} else {
-							HashMap<Layer, Texture> hash = tmpCase[k * gameMap.getCol() + j].getEntities();
-
-							Texture texture = hash.get(type);
-							tmpstring.append(texture.getPosition());
-							tmpstring.append(",");
+				//tmpstring = new StringBuilder("\n");
+				for (int i = 0; i < tileLayer.getHeight(); i++) {
+					for (int j = 0; j < tileLayer.getWidth(); j++) {
+						TiledMapTileLayer.Cell tmp = tileLayer.getCell(j,i);
+						if (tmp == null){
+							tmpstring.append("0");
+						}else{
+							tmpstring.append(tmp.getTile().getId());
 						}
+						tmpstring.append(",");
 					}
 					tmpstring.append("\n");
 				}
+
 				tmpstring = new StringBuilder(tmpstring.substring(0, tmpstring.length() - 2));
 				tmpstring.append("\n");
 				datas.setTextContent(tmpstring.toString());
 				layers.appendChild(datas);
-				i++;
 				tmpstring = new StringBuilder("\n");
-			}
-
-			//création de la colision
-			Element colision = document.createElement("layer");
-			colision.setAttribute("id", "5");
-			colision.setAttribute("name", "Colision");
-			colision.setAttribute("width", col);
-			colision.setAttribute("height", row);
-			map.appendChild(colision);
-
-			Element data = document.createElement("data");
-			data.setAttribute("encoding", "csv");
-			for (i = 0; i < gameMap.getRow(); i++) {
-				for (int j = 0; j < gameMap.getCol(); j++) {
-					if (tmpCase[i * gameMap.getCol() + j] == null) {
-
-						tmpstring.append("0,");
-					} else {
-						if (tmpCase[i * gameMap.getCol() + j].isWalkable()) {
-							tmpstring.append("1,");
-						} else {
-							tmpstring.append("0,");
-						}
-					}
-				}
-				tmpstring.append("\n");
-			}
-			tmpstring = new StringBuilder(tmpstring.substring(0, tmpstring.length() - 2));
-			tmpstring.append("\n");
-			data.setTextContent(tmpstring.toString());
-			colision.appendChild(data);
-
-			//représentation des rooms
-			for (java.util.Map.Entry<Point, Room> room : gameMap.getRooms().entrySet()) {
-				rooms = document.createElement("room");
-				rooms.setAttribute("width", String.valueOf(room.getValue().getCol()));
-				rooms.setAttribute("heigth", String.valueOf(room.getValue().getRow()));
-				rooms.setAttribute("widthpos", String.valueOf((int) room.getKey().getX()));
-				rooms.setAttribute("heigthpos", String.valueOf((int) room.getKey().getY()));
-
-				map.appendChild(rooms);
 			}
 
 			TransformerFactory factoryTrans = TransformerFactory.newInstance();

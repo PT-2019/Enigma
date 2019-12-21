@@ -13,7 +13,7 @@ public class SaveMapTestMain {
 		p.addTexture(64,"assets/entities/monsters/019.png",4,1,16);
 		p.addTexture(16,"assets/entities/monsters/023s.png",4,17,117);
 
-		SaveMap save = new SaveMap(p.getTextures(),map);
+		//SaveMap save = new SaveMap(p.getTextures(),map);
 
 		p.getImage(5);
 		p.getImage(19);
@@ -24,6 +24,6 @@ public class SaveMapTestMain {
 
 		map.render();
 
-		save.saveMap("assets/map/result.tmx");
+		//save.saveMap("assets/map/result.tmx");
 	}
 }
