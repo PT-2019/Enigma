@@ -2,6 +2,7 @@ package game.entity;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.maps.MapLayer;
@@ -12,10 +13,7 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.Group;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.utils.Array;
 import editor.datas.Layer;
 import editor.entity.EntitySerializable;
@@ -27,10 +25,10 @@ import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 
-import static game.api.MapsNameUtils.HEIGHT_P;
-import static game.api.MapsNameUtils.TILE_HEIGHT_P;
-import static game.api.MapsNameUtils.TILE_WIDTH_P;
-import static game.api.MapsNameUtils.WIDTH_P;
+import static api.MapsNameUtils.HEIGHT_P;
+import static api.MapsNameUtils.TILE_HEIGHT_P;
+import static api.MapsNameUtils.TILE_WIDTH_P;
+import static api.MapsNameUtils.WIDTH_P;
 
 /**
  * Map de la libgdx
@@ -89,7 +87,7 @@ public class MapLibgdx extends Group implements InputListener {
 		//setup camera
 		this.camera = new OrthographicCamera();
 		this.camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		this.camera.position.set(getMapWidth() / 2, getMapHeight() / 2, 0);
+		//this.camera.position.set(getMapWidth() / 2, getMapHeight() / 2, 0);
 		this.camera.update();
 
 		//bounds
@@ -131,7 +129,11 @@ public class MapLibgdx extends Group implements InputListener {
 	public void act(float delta) {
 		super.act(delta);
 		//update caméra
-		camera.update();
+		//update map's camera from stage's camera
+		Camera c = this.getStage().getCamera();
+		this.camera.position.x = c.position.x;
+		this.camera.position.y = c.position.y;
+		this.camera.update();
 		//update borders
 		border.setProjectionMatrix(camera.combined);
 	}
@@ -151,25 +153,9 @@ public class MapLibgdx extends Group implements InputListener {
 	}
 
 	@Override
-	public boolean keyDown(int keycode) {
-
-		if (keycode == Input.Keys.LEFT) {
-			camera.translate(-32, 0);
-			return true;
-		}
-		if (keycode == Input.Keys.RIGHT) {
-			camera.translate(32, 0);
-			return true;
-		}
-		if (keycode == Input.Keys.UP) {
-			camera.translate(0, 32);
-			return true;
-		}
-		if (keycode == Input.Keys.DOWN) {
-			camera.translate(0, -32);
-			return true;
-		}
-
+	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+		System.out.println(camera.position);
+		System.out.println(screenX+" "+screenY);
 		return false;
 	}
 
@@ -262,7 +248,7 @@ public class MapLibgdx extends Group implements InputListener {
 		}
 	}
 
-	private float getMapHeight() {
+	public float getMapHeight() {
 		return height * tileHeight;
 	}
 
@@ -280,6 +266,10 @@ public class MapLibgdx extends Group implements InputListener {
 
 	public int getTileHeight() {
 		return tileHeight;
+	}
+
+	public OrthographicCamera getCamera() {
+		return camera;
 	}
 }
 

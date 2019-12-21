@@ -2,7 +2,7 @@ package game;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
-import game.api.LibgdxGame;
+import api.LibgdxGame;
 import game.screen.EnigmaScreens;
 import game.screen.TestScreen;
 

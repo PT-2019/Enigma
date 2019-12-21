@@ -1,6 +1,6 @@
 package editor;
 
-import editor.api.Application;
+import api.Application;
 import editor.bibliotheque.MenuScreen;
 import editor.window.Window;
 

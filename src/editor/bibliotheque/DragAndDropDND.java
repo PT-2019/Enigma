@@ -8,8 +8,15 @@ import game.entity.MapLibgdx;
 import game.screen.TestScreen;
 import org.jetbrains.annotations.NotNull;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.AbstractButton;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.TransferHandler;
+import java.awt.Component;
+import java.awt.Cursor;
+import java.awt.Image;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
@@ -20,18 +27,51 @@ import java.awt.dnd.DragSourceDragEvent;
 import java.awt.dnd.DragSourceDropEvent;
 import java.awt.dnd.DragSourceEvent;
 import java.awt.dnd.DragSourceListener;
+import java.awt.dnd.DropTarget;
 import java.awt.dnd.DropTargetDragEvent;
 import java.awt.dnd.DropTargetDropEvent;
 import java.awt.dnd.DropTargetEvent;
 import java.awt.dnd.DropTargetListener;
 import java.io.IOException;
 
+/**
+ * Class qui gère le drag and drop.
+ *
+ * La méthode {@link DropTarget#DropTarget(Component, DropTargetListener)} permet d'ajouter
+ * un object sur lequel on peut déposer.
+ *
+ * La méthode {@link java.awt.dnd.DragSource#createDragGestureRecognizer(Class, Component, int, DragGestureListener)}
+ * permet d'ajouter un objet déplaçable.
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 3.0 14 décembre 2019
+ * @see editor.bibliotheque.MenuScreen
+ * @since 1.0 14 novembre 2019
+ */
 @Deprecated
 public class DragAndDropDND extends TransferHandler implements DragGestureListener, DragSourceListener, DropTargetListener, Transferable {
 
+	/**
+	 * Sert au transfert handler pour le déplacement
+	 */
 	private final DataFlavor[] dataFlavor;
-	private final Window window;
+
+	/**
+	 * Sert au transfert handler pour le déplacement
+	 */
 	private Object dataTransferObject;
+
+	/**
+	 * La fenêtre, utilisée pour changer le curseur sous window
+	 */
+	private final Window window;
+
+	/**
+	 * L'image déplacée
+	 */
 	private Image image;
 
 	//dépôt de l'élément déplacé sur target

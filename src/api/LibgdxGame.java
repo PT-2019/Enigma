@@ -1,17 +1,16 @@
-package game.api;
+package api;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.math.Rectangle;
-import editor.api.Application;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 
 /**
- * Video games luncher.
+ * Lanceur de jeux vidéos
  *
  * @version 3.0 03 december 2019
  * @see Game
@@ -19,22 +18,33 @@ import java.util.HashMap;
 public abstract class LibgdxGame extends Game implements Application {
 
 	/**
-	 * Static and singleton instance of the game
+	 * Static and singleton instance du jeu
 	 **/
 	private static LibgdxGame game;
 
 	/**
-	 * All game screens
-	 * can be loaded using {@link #addScreen(String, Class)}
+	 * Conserve tous les écran qui ont étés instanciés et donc déjà chargés.
+	 *
+	 * Il seront libérés.
+	 *
+	 * On les charges avec la méthode {@link #loadScreen(String, Class)} ou
+	 * {@link #load(String)} si le screen a été ajouté.
 	 */
 	private static HashMap<String, LibgdxScreen> screens = new HashMap<>();
 
+	/**
+	 * On peut vouloir charger un écran mais pas l'instancier directement.
+	 * Cela ce fait avec la méthode add et il sont conservés ici.
+	 *
+	 * @see #addScreen(String, Class)
+	 */
 	private static HashMap<String, Class<? extends LibgdxScreen>> added = new HashMap<>();
 
 	/**
-	 * Save screen size in case we want to go back from fullScreen
-	 * to windowed
-	 * Should be updated by the user {@link #setScreenSize(int, int)}
+	 * Conserve la taille de l'écran si on veut revenir de plein écran a l'ancienne
+	 * taille.
+	 * Doit être mis a jour par l'utilisateur. {@link #setScreenSize(int, int)}
+	 * dans {@link LibgdxScreen#resize(int, int)}.
 	 *
 	 * @see #setScreenSize(int, int)
 	 * @see #getScreenSize()
@@ -42,7 +52,7 @@ public abstract class LibgdxGame extends Game implements Application {
 	private Rectangle screenSize;
 
 	/**
-	 * Just to make us able to create a singleton instance
+	 * Permet
 	 */
 	protected LibgdxGame() {
 	}

@@ -2,7 +2,7 @@ package game.entity;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import editor.entity.EntitySerializable;
-import game.api.GameActorTextured;
+import api.actors.GameActorTextured;
 
 //si on clique dessus, crée une entité sur le layer dnd
 public class EntityContainer extends GameActorTextured {

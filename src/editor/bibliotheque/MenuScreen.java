@@ -42,19 +42,12 @@ public class MenuScreen extends JPanel {
 		EntityFactory.loadEntities("assets/decors.json");
 		EntityFactory.loadEntities("assets/entities.json");
 
-		CardLayout pageObjet = new CardLayout();
-
 		//création de la zone de choix du menu d'objets
 		JPanel sideBar = this.loadSideBar();
-
-		//création d'une scrollbar pour la partie gauche
-		//JPanel menuChoix = loadChoicesMenu(pageObjet);
-		//JScrollPane scroll = new JScrollPane(menuChoix, VERTICAL_SCROLLBAR_AS_NEEDED, HORIZONTAL_SCROLLBAR_NEVER);
 
 		//création de la zone d'affichage de la map (partie droite)
 		JPanel map = new JPanel();
 		LoadGameLibgdxApplication.load(map, parent);
-		//map.setDropTarget(new DropTarget(map, DnDConstants.ACTION_COPY, dragAndDrop));
 
 		//ajout des observateurs
 		ChoixObjet choix = new ChoixObjet();
@@ -65,10 +58,6 @@ public class MenuScreen extends JPanel {
 		}
 
 		//ajout aux conteneurs
-		//JPanel content = new JPanel(new BorderLayout());
-		//content.add(scroll, BorderLayout.WEST);
-		//content.add(map, BorderLayout.CENTER);
-
 		this.add(sideBar, BorderLayout.NORTH);
 		this.add(map, BorderLayout.CENTER);
 	}
@@ -79,8 +68,9 @@ public class MenuScreen extends JPanel {
 	 * @param layout layout du menu
 	 * @return JPanel contenant le menu
 	 * @since 3.0 14 décembre 2019
+	 * @deprecated chargé via la libgdx
 	 */
-	@Deprecated()
+	@Deprecated(since = "4.0")
 	private JPanel loadChoicesMenu(CardLayout layout, DragAndDropDND dnd) {
 		//création des zone du menu des choix d'objets (partie gauche)
 		JPanel menuChoix = new JPanel();
@@ -123,7 +113,7 @@ public class MenuScreen extends JPanel {
 	 * @param name nom de la catégorie
 	 * @since 2.0 05 décembre 2019
 	 */
-	@Deprecated
+	@Deprecated(since = "4.0")
 	private void fill(JPanel pane, EntitiesCategories name, DragAndDropDND dnd) {
 		Array<EntitySerializable> entities = EntityFactory.getEntitiesByCategory(name);
 

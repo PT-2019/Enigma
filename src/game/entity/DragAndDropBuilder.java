@@ -21,7 +21,7 @@ public class DragAndDropBuilder extends InputListener {
 	@Override
 	public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 		DraggedEntity draggedEntity = new DraggedEntity(entity, container);
-		Vector2 v = this.container.getPositionAbsolue();
+		Vector2 v = this.container.getAbsolutePosition();
 		draggedEntity.setPosition(v.x, v.y);
 		this.dnd.addActor(draggedEntity);
 		//on transmet le clic a l'entité clone

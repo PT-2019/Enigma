@@ -12,6 +12,19 @@ import java.awt.dnd.DragSource;
  * Il s'agit d'une case des menu o&#249; on sélectionne des entités pour les placer
  * sur la map.
  */
+/**
+ * Desc
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ *
+ * @version x ${DATE}
+ * @since x ${DATE}
+ *
+ * @see ???
+ */
 @Deprecated
 public class EntityContainer extends JLabel {
 

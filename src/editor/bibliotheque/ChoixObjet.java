@@ -34,6 +34,12 @@ public class ChoixObjet implements ActionListener {
 	public void actionPerformed(ActionEvent actionEvent) {
 		String msg = actionEvent.getActionCommand();
 
+		/*
+			TODO: ceci est un fix temporaire qui charge une variable public static pour changer de catégorie
+				normalement, les observés et l'observateur sont en libgdx.
+				Ce listener doit être marqué deprecated et patché
+				Il faut retirer les observateurs qui sont ajoutés dans MenuScreen
+		 */
 		for (EntitiesCategories category : EntitiesCategories.values()) {
 			if (msg.equals(category.name)) {
 				Gdx.app.postRunnable(()-> CategoriesMenu.c.loadCategory(category));

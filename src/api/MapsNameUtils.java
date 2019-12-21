@@ -1,4 +1,4 @@
-package game.api;
+package api;
 
 /**
  * Toutes les constantes pouvant être utilisés par la map de l'éditeur

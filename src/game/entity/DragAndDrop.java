@@ -1,15 +1,18 @@
 package game.entity;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import editor.EditorLuncher;
-import game.api.GameActorDragAndDrop;
-import game.api.GameActorUtilities;
+import api.actors.GameActorDragAndDrop;
+import api.actors.GameActorUtilities;
+import game.screen.TestScreen;
 
-import java.awt.*;
+import java.awt.Cursor;
 
 public class DragAndDrop extends InputListener {
 
@@ -53,6 +56,16 @@ public class DragAndDrop extends InputListener {
 		//TODO: ne marche pas
 		if(!GameActorUtilities.contains(this.container.getParent(), new Vector2(x, y))){
 			//TODO: alors on regarde si on l'a mis sur la map
+
+			MapLibgdx map = TestScreen.t.getMap();
+			OrthographicCamera camera = map.getCamera();
+
+			Rectangle c = new Rectangle();
+			c.setPosition(Gdx.graphics.getWidth()/2f - camera.position.x ,
+					Gdx.graphics.getHeight()/2f - camera.position.y);
+			c.setSize(map.getMapWidth(), map.getMapHeight());
+
+			System.out.println(camera.position+" "+c);
 
 			//disparaît
 			this.actor.remove();

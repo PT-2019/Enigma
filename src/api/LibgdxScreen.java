@@ -1,4 +1,4 @@
-package game.api;
+package api;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
