@@ -16,13 +16,13 @@ import java.awt.Cursor;
 
 public class DragAndDrop extends InputListener {
 
-	private GameActorDragAndDrop actor;
+	private DraggedEntity actor;
 
 	private final EntityContainer container;
 
 	private float offsetX, offsetY;
 
-	public DragAndDrop(GameActorDragAndDrop actor, EntityContainer container) {
+	public DragAndDrop(DraggedEntity actor, EntityContainer container) {
 		this.actor = actor;
 		this.container = container;
 		this.offsetX = 0;
@@ -52,20 +52,13 @@ public class DragAndDrop extends InputListener {
 		//reset cursor
 		EditorLuncher.getInstance().getWindow().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 
+		Vector2 pos = new Vector2(event.getStageX(), event.getStageY());
+
 		//si on la pas mis sur le menu donc partie de la map non visible car cachée par celui-ci
-		//TODO: ne marche pas
-		if(!GameActorUtilities.contains(this.container.getParent(), new Vector2(x, y))){
-			//TODO: alors on regarde si on l'a mis sur la map
-
+		if(true || !GameActorUtilities.contains(this.container.getParent(), pos)){//TODO: debug
 			MapLibgdx map = TestScreen.t.getMap();
-			OrthographicCamera camera = map.getCamera();
-
-			Rectangle c = new Rectangle();
-			c.setPosition(Gdx.graphics.getWidth()/2f - camera.position.x ,
-					Gdx.graphics.getHeight()/2f - camera.position.y);
-			c.setSize(map.getMapWidth(), map.getMapHeight());
-
-			System.out.println(camera.position+" "+c);
+			//on regarde si on l'a mis sur la map
+			map.loadEntity(actor.getEntity(), GameActorUtilities.getAbsolutePosition(actor));
 
 			//disparaît
 			this.actor.remove();

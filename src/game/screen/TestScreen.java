@@ -30,9 +30,7 @@ public class TestScreen extends LibgdxScreen {
 		this.map = new MapLibgdx("assets/map/Empty.tmx");
 		this.main.addActor(this.map);
 
-		this.main.getCamera().position.set(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2,0);
-		//this.main.getCamera().position.set(map.getMapWidth() / 2, map.getMapHeight() / 2, 0);
-		//this.map.setPosition(map.getMapWidth() / 2, map.getMapHeight() / 2);
+		this.main.getCamera().position.set(map.getMapWidth() / 2, map.getMapHeight() / 2, 0);
 
 		this.dnd = new Stage();
 

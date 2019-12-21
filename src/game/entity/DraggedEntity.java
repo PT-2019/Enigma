@@ -15,4 +15,8 @@ public class DraggedEntity extends GameActorDragAndDrop {
 		this.entity = entitySerializable;
 		this.addListener(new DragAndDrop(this, container));
 	}
+
+	public EntitySerializable getEntity() {
+		return entity;
+	}
 }

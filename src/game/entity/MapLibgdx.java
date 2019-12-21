@@ -12,6 +12,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Array;
@@ -110,7 +111,7 @@ public class MapLibgdx extends Group implements InputListener {
 
 		//convert coordinates to row and column
 		posX = (posX / map.getUnitScale()) - map.mapBounds.left;
-		posY = (posY / map.getUnitScale()) - map.mapBounds.top;
+		posY = (posY / map.getUnitScale());
 
 		float mapW = (map.mapBounds.right - map.mapBounds.left) / map.tileWidth;
 		float mapH = (map.mapBounds.bot - map.mapBounds.top) / map.tileHeight;
@@ -120,7 +121,7 @@ public class MapLibgdx extends Group implements InputListener {
 		float row = MathUtils.clamp(Math.round(posY / map.getTileHeight()), 0, mapH);
 
 		index.x = column;
-		index.y = mapH - row;
+		index.y = row;
 
 		return index;
 	}
@@ -153,13 +154,6 @@ public class MapLibgdx extends Group implements InputListener {
 	}
 
 	@Override
-	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-		System.out.println(camera.position);
-		System.out.println(screenX+" "+screenY);
-		return false;
-	}
-
-	@Override
 	public boolean scrolled(int amount) {
 		if (Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT)) {
 			if (amount == 1) {
@@ -185,7 +179,7 @@ public class MapLibgdx extends Group implements InputListener {
 
 		this.mapBounds = new Bounds(left, right, top, bot);
 
-		System.out.println(this.mapBounds);
+		//System.out.println(this.mapBounds);
 	}
 
 	private void setMapBounds() {
@@ -218,7 +212,7 @@ public class MapLibgdx extends Group implements InputListener {
 			//si pas de tiles a mettre sur ce layer, on passe au suivant
 			if (entities == null) continue;
 
-			System.out.println(location+" "+camera.zoom);
+			//System.out.println(location+" "+camera.zoom);
 
 			float maxW = this.mapBounds.right ;//- entity.getWidth() * tileWidth;
 			float maxH = this.mapBounds.bot ;//- entity.getHeight() * tileHeight;
@@ -270,6 +264,52 @@ public class MapLibgdx extends Group implements InputListener {
 
 	public OrthographicCamera getCamera() {
 		return camera;
+	}
+
+	public void loadEntity(EntitySerializable entity, Vector2 pos) {
+		//map bounds
+		Rectangle bounds = new Rectangle();
+		bounds.setPosition((Gdx.graphics.getWidth()/2f - camera.position.x) * 1 ,
+				(Gdx.graphics.getHeight()/2f - camera.position.y) * 1);
+		bounds.setSize(this.getMapWidth(), this.getMapHeight());
+
+		this.mapBounds = new Bounds(bounds);
+
+		System.out.println(bounds+" "+pos+" "+entity.getPath());
+		System.out.println(bounds.contains(pos));
+
+		//si pas dans la map
+		if(!bounds.contains(pos)) return;
+
+		Vector2 start = posToIndex(pos.x, pos.y, this);
+
+		System.out.println(start);
+
+		//on parcours toutes les niveaux de la map et on y ajoute les tiles de l'entité
+		for (MapLayer mapLayer : this.map.getMap().getLayers()) {
+			//c'est un layer de tiles ?
+			if (!(mapLayer instanceof TiledMapTileLayer)) continue;
+
+			TiledMapTileLayer tileLayer = (TiledMapTileLayer) mapLayer;
+
+			//récupère les tiles de l'entités pour ce niveau
+			Array<Float> entities = entity.getTiles(Utility.stringToEnum(tileLayer.getName(), Layer.values()));
+
+			//si pas de tiles a mettre sur ce layer, on passe au suivant
+			if (entities == null) continue;
+
+			//calcul pour placer les tiles depuis x et y
+			//sachant que y est inversé, on part de la dernière tile et on remonte
+			//pas de problème pour x
+			for (int i = (int) start.y - 1, index = 0; i >= (start.y - entity.getHeight()); i--) {
+				for (int j = (int) start.x; j < start.x + entity.getWidth() && index < entities.size; j++, index++) {
+					MapLibgdxCell c = new MapLibgdxCell(tileLayer, i, j);
+					c.setTile(this.map.getMap().getTileSets().getTile(MathUtils.ceil(entities.get(index))));
+					c.setEntity(entity);
+					tileLayer.setCell(j, i, c);
+				}
+			}
+		}
 	}
 }
 

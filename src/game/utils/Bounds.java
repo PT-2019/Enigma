@@ -1,5 +1,7 @@
 package game.utils;
 
+import com.badlogic.gdx.math.Rectangle;
+
 @Immutable
 public final class Bounds {
 
@@ -10,6 +12,13 @@ public final class Bounds {
 		this.right = right;
 		this.top = top;
 		this.bot = bot;
+	}
+
+	public Bounds(Rectangle bounds){
+		this.left = bounds.x;
+		this.right = this.left + bounds.width;
+		this.top = bounds.y;
+		this.bot = bounds.y + bounds.height;
 	}
 
 	@Override

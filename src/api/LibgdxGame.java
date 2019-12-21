@@ -52,21 +52,19 @@ public abstract class LibgdxGame extends Game implements Application {
 	private Rectangle screenSize;
 
 	/**
-	 * Permet
+	 * Permet la création de singletons
 	 */
 	protected LibgdxGame() {
 	}
 
 	/**
-	 * Load a screen a return it.
+	 * Retourne un écran.
+	 * S'il n'a pas été chargé (passé via {@link #addScreen(String, Class)}), alors il est instancié.
 	 *
-	 * @param key id (name) of the screen {@link #setScreen(String)}
-	 * @return the screen
-	 * <p>
-	 * WARNING !!!
-	 * <p>
-	 * if there is an exception here, then you should check if there isn't an exception in your
-	 * constructor (you won't see if there is one here)
+	 * @param key nom du screen {@link #setScreen(String)}
+	 * @return l'instance de l'écran
+	 *
+	 * @throws IllegalStateException si une exception est levée dans le contructeur ou lors de son instanciation
 	 */
 	public static LibgdxScreen load(String key) {
 		if (!screens.containsKey(key)) {

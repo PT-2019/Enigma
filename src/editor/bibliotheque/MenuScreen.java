@@ -70,7 +70,7 @@ public class MenuScreen extends JPanel {
 	 * @since 3.0 14 décembre 2019
 	 * @deprecated chargé via la libgdx
 	 */
-	@Deprecated(since = "4.0")
+	@Deprecated//(since = "4.0")
 	private JPanel loadChoicesMenu(CardLayout layout, DragAndDropDND dnd) {
 		//création des zone du menu des choix d'objets (partie gauche)
 		JPanel menuChoix = new JPanel();
@@ -113,7 +113,7 @@ public class MenuScreen extends JPanel {
 	 * @param name nom de la catégorie
 	 * @since 2.0 05 décembre 2019
 	 */
-	@Deprecated(since = "4.0")
+	@Deprecated//(since = "4.0")
 	private void fill(JPanel pane, EntitiesCategories name, DragAndDropDND dnd) {
 		Array<EntitySerializable> entities = EntityFactory.getEntitiesByCategory(name);
 
