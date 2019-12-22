@@ -1,12 +1,7 @@
-package editor.map.view;
+package editor.utils.save.view;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import editor.map.Case;
-import editor.map.Room;
-
-import java.awt.*;
-import java.util.Map;
+import editor.entity.map.Case;
 
 public class CollisionView extends ShapeRenderer {
 

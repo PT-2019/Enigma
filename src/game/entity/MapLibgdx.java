@@ -2,10 +2,8 @@ package game.entity;
 
 import api.enums.Layer;
 import api.utils.Bounds;
-import api.utils.InputListener;
 import api.utils.Utility;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -21,11 +19,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Array;
 import editor.entity.EntitySerializable;
-import editor.utils.save.SaveMap;
-import editor.map.view.MapControl;
-import editor.map.view.TestMapControl;
-import editor.utils.Utility;
 import game.ui.Border;
+import game.ui.CategoriesMenu;
 import org.intellij.lang.annotations.MagicConstant;
 import org.jetbrains.annotations.NotNull;
 
@@ -108,21 +103,13 @@ public class MapLibgdx extends Group{
 		//setup camera
 		this.camera = new OrthographicCamera();
 		this.camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		this.camera.position.set(
+				Gdx.graphics.getWidth()/2f - this.mapWidth/2f - CategoriesMenu.WIDTH,
+				Gdx.graphics.getHeight()/2f - this.mapHeight/2f, 0);
 		this.camera.update();
 
 		//bounds
 		this.setMapBounds();
-	}
-
-	@Override
-	public boolean keyDown(int keycode) {
-		//Sauvegarde si l
-		if(keycode == Input.Keys.L){
-			SaveMap save = new SaveMap(this.map.getMap());
-			save.saveMap("assets/map/test.tmx");
-		}
-
-		return false;
 	}
 
 	/**
@@ -239,12 +226,12 @@ public class MapLibgdx extends Group{
 		super.act(delta);
 		//update caméra
 		//update map's camera from stage's camera
-		Camera c = this.getStage().getCamera();
-		this.camera.position.x = c.position.x;
-		this.camera.position.y = c.position.y;
-		this.camera.update();
+		//Camera c = this.getStage().getCamera();
+		//this.camera.position.x = c.position.x;
+		//this.camera.position.y = c.position.y;
+		//this.camera.update();
 		//update borders
-		border.setProjectionMatrix(camera.combined);
+		this.border.setProjectionMatrix(this.camera.combined);
 	}
 
 	/**
@@ -320,6 +307,10 @@ public class MapLibgdx extends Group{
 
 	public int getTileHeight() {
 		return tileHeight;
+	}
+
+	public OrthographicCamera getCamera() {
+		return camera;
 	}
 }
 

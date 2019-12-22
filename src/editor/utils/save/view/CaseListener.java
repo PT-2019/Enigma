@@ -1,4 +1,4 @@
-package editor.map.view;
+package editor.utils.save.view;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;

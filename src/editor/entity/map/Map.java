@@ -1,8 +1,8 @@
 package editor.entity.map;
 
 import api.entity.interfaces.IDInterface;
-import editor.datas.Layer;
-import editor.textures.Texture;
+import api.enums.Layer;
+import editor.utils.textures.Texture;
 
 import java.awt.Point;
 import java.util.HashMap;

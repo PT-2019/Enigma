@@ -1,14 +1,10 @@
 package game.screen;
 
 import api.LibgdxScreen;
-import api.enums.keys.CameraKeys;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
-import com.badlogic.gdx.utils.viewport.FillViewport;
-import com.badlogic.gdx.utils.viewport.FitViewport;
-import editor.enigma.Enigma;
-import editor.map.view.TestMapControl;
+import editor.utils.save.view.TestMapControl;
 import game.EnigmaGame;
 import game.entity.MapLibgdx;
 import game.ui.CategoriesMenu;
@@ -75,28 +71,6 @@ public class TestScreen extends LibgdxScreen {
 		this.listen(this.hud);
 		this.listen(this.main);
 		this.listen(new TestMapControl(map));
-	}
-
-	@Override
-	public boolean keyDown(int keycode) {
-		if (CameraKeys.CAMERA_LEFT.isKey(keycode)) {
-			main.getCamera().translate(-32, 0, 0);
-			return true;
-		}
-		if (CameraKeys.CAMERA_RIGHT.isKey(keycode)) {
-			main.getCamera().translate(32, 0, 0);
-			return true;
-		}
-		if (CameraKeys.CAMERA_UP.isKey(keycode)) {
-			main.getCamera().translate(0, 32, 0);
-			return true;
-		}
-		if (CameraKeys.CAMERA_DOWN.isKey(keycode)) {
-			main.getCamera().translate(0, -32, 0);
-			return true;
-		}
-
-		return false;
 	}
 
 	@Override//géré par input processor

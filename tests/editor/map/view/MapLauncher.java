@@ -1,7 +1,8 @@
 package editor.map.view;
 
+import api.utils.LoadGameLibgdxApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglAWTCanvas;
-import editor.utils.LoadGameLibgdxApplication;
+import editor.utils.save.view.TiledTest;
 
 import javax.swing.*;
 import java.awt.*;

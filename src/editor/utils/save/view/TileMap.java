@@ -1,13 +1,11 @@
-package editor.map.view;
+package editor.utils.save.view;
 
-import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import editor.map.Case;
-import editor.map.Map;
+import editor.entity.map.Case;
+import editor.entity.map.Map;
 import game.entity.MapLibgdxCell;
 
 import javax.swing.*;

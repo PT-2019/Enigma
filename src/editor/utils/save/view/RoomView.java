@@ -1,7 +1,7 @@
-package editor.map.view;
+package editor.utils.save.view;
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import editor.map.Room;
+import editor.entity.map.Room;
 
 import java.awt.*;
 import java.util.Map;
@@ -10,7 +10,7 @@ public class RoomView extends ShapeRenderer {
 
     private boolean visible;
 
-    private Map<Point,Room> room;
+    private Map<Point, Room> room;
 
     private int tile;
 

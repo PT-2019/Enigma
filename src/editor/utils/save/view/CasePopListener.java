@@ -1,4 +1,4 @@
-package editor.map.view;
+package editor.utils.save.view;
 
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 

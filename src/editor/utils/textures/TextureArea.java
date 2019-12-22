@@ -1,7 +1,5 @@
 package editor.utils.textures;
 
-import org.lwjgl.Sys;
-
 import javax.imageio.ImageIO;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -25,6 +23,7 @@ import java.io.IOException;
  * @see TextureProxy
  */
 public class TextureArea {
+
 	/**
 	 * L'image qui va être chargé sera stocké ici
 	 */
