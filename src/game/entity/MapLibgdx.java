@@ -43,6 +43,8 @@ public class MapLibgdx extends Group implements InputListener {
 	 * info principales
 	 */
 	private final int tileWidth, tileHeight, width, height;
+
+	private int mapWidth, mapHeight;
 	/**
 	 * Dessinateur de la map
 	 */
@@ -81,6 +83,9 @@ public class MapLibgdx extends Group implements InputListener {
 				(this.height * (int) this.map.getUnitScale()),
 				this.tileHeight);
 
+		this.mapWidth = width * tileWidth;
+		this.mapHeight = height * tileHeight;
+
 		MapLayer collision = this.map.getMap().getLayers().get(Layer.COLLISION.name());
 		if (collision != null)
 			collision.setVisible(false);
@@ -109,7 +114,7 @@ public class MapLibgdx extends Group implements InputListener {
 	private static Vector2 posToIndex(float posX, float posY, MapLibgdx map) {
 		Vector2 index = new Vector2();
 
-		//convert coordinates to row and column
+		/*//convert coordinates to row and column
 		posX = (posX / map.getUnitScale()) - map.mapBounds.left;
 		posY = (posY / map.getUnitScale());
 
@@ -118,7 +123,13 @@ public class MapLibgdx extends Group implements InputListener {
 
 		//and clamp to the map
 		float column = MathUtils.clamp(Math.round(posX / map.getTileWidth()), 0, mapW);
-		float row = MathUtils.clamp(Math.round(posY / map.getTileHeight()), 0, mapH);
+		float row = MathUtils.clamp(Math.round(posY / map.getTileHeight()), 0, mapH);*/
+
+		posX /= map.getUnitScale();
+		posY /= map.getUnitScale();
+
+		float column = MathUtils.clamp(Math.round(posX / map.getTileWidth()), 0, map.mapBounds.right);
+		float row = MathUtils.clamp(Math.round(posY / map.getTileHeight()), 0, map.mapBounds.top);
 
 		index.x = column;
 		index.y = row;
@@ -157,17 +168,16 @@ public class MapLibgdx extends Group implements InputListener {
 	public boolean scrolled(int amount) {
 		if (Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT)) {
 			if (amount == 1) {
-				camera.zoom += 0.1;
-				this.updateMapBounds(-1);
+				camera.zoom += 0.02;
 			} else {
-				camera.zoom -= 0.1;
-				this.updateMapBounds(1);
+				camera.zoom -= 0.02;
 			}
 			return true;
 		}
 		return false;
 	}
 
+	@Deprecated
 	private void updateMapBounds(float zoom){
 		float left = this.mapBounds.left, right = this.mapBounds.right;
 		float top =  this.mapBounds.top, bot =  this.mapBounds.bot;
@@ -243,11 +253,11 @@ public class MapLibgdx extends Group implements InputListener {
 	}
 
 	public float getMapHeight() {
-		return height * tileHeight;
+		return mapHeight;
 	}
 
 	public float getMapWidth() {
-		return width * tileWidth;
+		return mapWidth;
 	}
 
 	public float getUnitScale() {
@@ -266,24 +276,30 @@ public class MapLibgdx extends Group implements InputListener {
 		return camera;
 	}
 
-	public void loadEntity(EntitySerializable entity, Vector2 pos) {
+	public boolean loadEntity(EntitySerializable entity, Vector2 pos) {
+		float zoom = camera.zoom;
+		if(zoom < 1){
+			zoom = 1 + (1-camera.zoom);
+		} else if(zoom > 1) {
+			zoom = 1 + (1-camera.zoom);
+		}
+
 		//map bounds
 		Rectangle bounds = new Rectangle();
 		bounds.setPosition((Gdx.graphics.getWidth()/2f - camera.position.x) * 1 ,
 				(Gdx.graphics.getHeight()/2f - camera.position.y) * 1);
-		bounds.setSize(this.getMapWidth(), this.getMapHeight());
-
+		bounds.setSize(this.getMapWidth() * zoom , this.getMapHeight() * zoom);
 		this.mapBounds = new Bounds(bounds);
 
-		System.out.println(bounds+" "+pos+" "+entity.getPath());
-		System.out.println(bounds.contains(pos));
+		System.out.println(mapBounds+" "+pos+" "+mapBounds.contains(pos));
 
 		//si pas dans la map
-		if(!bounds.contains(pos)) return;
+		if(!mapBounds.contains(pos)) return false;
+
+		pos.x -= this.mapBounds.left;//retire l'offset de l'espace
+		pos.y -= this.mapBounds.bot;
 
 		Vector2 start = posToIndex(pos.x, pos.y, this);
-
-		System.out.println(start);
 
 		//on parcours toutes les niveaux de la map et on y ajoute les tiles de l'entité
 		for (MapLayer mapLayer : this.map.getMap().getLayers()) {
@@ -310,6 +326,8 @@ public class MapLibgdx extends Group implements InputListener {
 				}
 			}
 		}
+
+		return true;
 	}
 }
 

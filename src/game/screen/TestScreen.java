@@ -1,7 +1,7 @@
 package game.screen;
 
+import api.keys.CameraKeys;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import game.EnigmaGame;
@@ -45,19 +45,19 @@ public class TestScreen extends LibgdxScreen {
 
 	@Override
 	public boolean keyDown(int keycode) {
-		if (keycode == Input.Keys.LEFT) {
+		if (CameraKeys.CAMERA_LEFT.isKey(keycode)) {
 			main.getCamera().translate(-32, 0, 0);
 			return true;
 		}
-		if (keycode == Input.Keys.RIGHT) {
+		if (CameraKeys.CAMERA_RIGHT.isKey(keycode)) {
 			main.getCamera().translate(32, 0, 0);
 			return true;
 		}
-		if (keycode == Input.Keys.UP) {
+		if (CameraKeys.CAMERA_UP.isKey(keycode)) {
 			main.getCamera().translate(0, 32, 0);
 			return true;
 		}
-		if (keycode == Input.Keys.DOWN) {
+		if (CameraKeys.CAMERA_DOWN.isKey(keycode)) {
 			main.getCamera().translate(0, -32, 0);
 			return true;
 		}

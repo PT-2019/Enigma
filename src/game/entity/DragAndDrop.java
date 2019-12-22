@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -18,13 +19,13 @@ public class DragAndDrop extends InputListener {
 
 	private DraggedEntity actor;
 
-	private final EntityContainer container;
+	private final Group container;
 
 	private float offsetX, offsetY;
 
 	public DragAndDrop(DraggedEntity actor, EntityContainer container) {
 		this.actor = actor;
-		this.container = container;
+		this.container = container.getParent().getParent();
 		this.offsetX = 0;
 		this.offsetY = 0;
 	}
@@ -52,26 +53,32 @@ public class DragAndDrop extends InputListener {
 		//reset cursor
 		EditorLuncher.getInstance().getWindow().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 
-		Vector2 pos = new Vector2(event.getStageX(), event.getStageY());
+		Vector2 pos = GameActorUtilities.getAbsolutePosition(actor);//x,y de l'object bas gauche
+		//correction parce que je veux haut à gauche
+		pos.y += actor.getHeight();
 
 		//si on la pas mis sur le menu donc partie de la map non visible car cachée par celui-ci
-		if(true || !GameActorUtilities.contains(this.container.getParent(), pos)){//TODO: debug
+		boolean retour = !GameActorUtilities.contains(this.container, pos);
+		if(retour){//si pas caché
 			MapLibgdx map = TestScreen.t.getMap();
 			//on regarde si on l'a mis sur la map
-			map.loadEntity(actor.getEntity(), GameActorUtilities.getAbsolutePosition(actor));
+			retour = map.loadEntity(actor.getEntity(), pos);
+		} else {
+			Gdx.app.debug("DragAndDrop","dans le menu");
+		}
 
+		if(retour){//placé
 			//disparaît
 			this.actor.remove();
 		} else {
-			Gdx.app.debug("DragAndDrop","dans le menu");
-
 			//fade out
 			this.actor.addAction(
 					Actions.sequence(
 							Actions.fadeOut(0.2f),
 							Actions.hide(),
 							Actions.run(()-> this.actor.remove())
-					));
+					)
+			);
 		}
 	}
 

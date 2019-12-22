@@ -1,6 +1,7 @@
 package game.utils;
 
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 
 @Immutable
 public final class Bounds {
@@ -17,8 +18,17 @@ public final class Bounds {
 	public Bounds(Rectangle bounds){
 		this.left = bounds.x;
 		this.right = this.left + bounds.width;
-		this.top = bounds.y;
-		this.bot = bounds.y + bounds.height;
+		this.top = bounds.y + bounds.height;
+		this.bot = bounds.y;
+	}
+
+	public boolean contains(Vector2 pos){
+		if(pos.x >= this.left && pos.x <= this.right){
+			if(pos.y >= this.bot && pos.y <= this.top){
+				return true;
+			}
+		}
+		return false;
 	}
 
 	@Override

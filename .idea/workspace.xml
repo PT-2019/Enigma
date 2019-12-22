@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4b6e0b2a-a6ad-4eff-b2cc-63f9693ec5fe" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/keys/CameraKeys.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/keys/EnigmaKeys.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/LibgdxGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/LibgdxGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/bibliotheque/MenuScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bibliotheque/MenuScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game/entity/DragAndDrop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/entity/DragAndDrop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/entity/DraggedEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/entity/DraggedEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game/entity/MapLibgdx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/entity/MapLibgdx.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game/screen/TestScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/screen/TestScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game/utils/Bounds.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/utils/Bounds.java" afterDir="false" />
