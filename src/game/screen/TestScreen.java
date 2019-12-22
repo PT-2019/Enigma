@@ -6,102 +6,134 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import game.EnigmaGame;
-import game.entity.CategoriesMenu;
 import game.entity.MapLibgdx;
+import game.ui.CategoriesMenu;
 
+/**
+ * TestScreen de la libgdx dans l'éditeur
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 4.3
+ * @since 2.0
+ */
 public class TestScreen extends LibgdxScreen {
 
-    //TODO: fast but remove
-    public static TestScreen t;
-    private Stage main;
-    private Stage hud;
-    private Stage dnd;
-    private MapLibgdx map;
+	/**
+	 * Stage de la map et du jeu
+	 */
+	private Stage main;
+	/**
+	 * Stage de l'interface
+	 */
+	private Stage hud;
+	/**
+	 * Stage du drag and drop
+	 */
+	private Stage dnd;
 
-    @Override
-    public void init() {
-        Gdx.gl.glClearColor(255, 255, 255, 255);
-        t = this;
+	/**
+	 * La map libgdx
+	 */
+	private MapLibgdx map;
 
-        this.main = new Stage();
-        this.main.setViewport(new ExtendViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
-        this.map = new MapLibgdx("assets/map/Empty.tmx");
-        this.main.addActor(this.map);
+	/**
+	 * Prépare les stages, la map et la caméra
+	 */
+	@Override
+	public void init() {
+		Gdx.gl.glClearColor(255, 255, 255, 255);
 
-        this.main.getCamera().position.set(map.getMapWidth() / 2, map.getMapHeight() / 2, 0);
+		//map
+		this.main = new Stage();
+		this.map = new MapLibgdx("assets/map/Empty.tmx");
+		this.main.addActor(this.map);
 
-        this.dnd = new Stage();
+		//Drag and drop
+		this.dnd = new Stage();
 
-        this.hud = new Stage();
-        this.hud.addActor(new CategoriesMenu(dnd));
+		//hud (interface)
+		this.hud = new Stage();
+		this.hud.addActor(new CategoriesMenu(dnd));
 
-        this.listen(this.dnd);
-        this.listen(this.hud);
-        this.listen(this.main);
-        this.listen(this.map);
-    }
+		//cameras
+		this.main.setViewport(new ExtendViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
+		//centre map dans l'écran
+		this.main.getCamera().position.set(
+				map.getMapWidth() / 2 - CategoriesMenu.WIDTH / 2f,
+				map.getMapHeight() / 2, 0
+		);
 
-    @Override
-    public boolean keyDown(int keycode) {
-        if (CameraKeys.CAMERA_LEFT.isKey(keycode)) {
-            main.getCamera().translate(-32, 0, 0);
-            return true;
-        }
-        if (CameraKeys.CAMERA_RIGHT.isKey(keycode)) {
-            main.getCamera().translate(32, 0, 0);
-            return true;
-        }
-        if (CameraKeys.CAMERA_UP.isKey(keycode)) {
-            main.getCamera().translate(0, 32, 0);
-            return true;
-        }
-        if (CameraKeys.CAMERA_DOWN.isKey(keycode)) {
-            main.getCamera().translate(0, -32, 0);
-            return true;
-        }
+		//écoute inputProcessors
+		this.listen(this.dnd);
+		this.listen(this.hud);
+		this.listen(this.main);
+		this.listen(this.map);
+	}
 
-        return false;
-    }
+	@Override
+	public boolean keyDown(int keycode) {
+		if (CameraKeys.CAMERA_LEFT.isKey(keycode)) {
+			main.getCamera().translate(-32, 0, 0);
+			return true;
+		}
+		if (CameraKeys.CAMERA_RIGHT.isKey(keycode)) {
+			main.getCamera().translate(32, 0, 0);
+			return true;
+		}
+		if (CameraKeys.CAMERA_UP.isKey(keycode)) {
+			main.getCamera().translate(0, 32, 0);
+			return true;
+		}
+		if (CameraKeys.CAMERA_DOWN.isKey(keycode)) {
+			main.getCamera().translate(0, -32, 0);
+			return true;
+		}
 
-    @Override
-    public void input() {
-    }
+		return false;
+	}
 
-    @Override
-    public void update(float dt) {
-        this.dnd.act(dt);
-        this.hud.act(dt);
-        this.main.act(dt);
-    }
+	@Override//géré par input processor
+	public void input() {
+	}
 
-    @Override
-    public void render() {
-        this.main.draw();
-        this.hud.draw();
-        this.dnd.draw();
-    }
+	@Override
+	public void update(float dt) {
+		this.dnd.act(dt);
+		this.hud.act(dt);
+		this.main.act(dt);
+	}
 
-    @Override
-    public void resize(int width, int height) {
-        this.dnd.getViewport().setScreenSize(width, height);
-        this.hud.getViewport().setScreenSize(width, height);
-        this.main.getViewport().setScreenSize(width, height);
-        this.main.getViewport().update(width, height);
-        EnigmaGame.setScreenSize(width, height);
-    }
+	@Override
+	public void render() {
+		this.main.draw();
+		this.hud.draw();
+		this.dnd.draw();
+	}
 
-    public MapLibgdx getMap() {
-        return map;
-    }
+	@Override
+	public void resize(int width, int height) {
+		this.dnd.getViewport().setScreenSize(width, height);
+		this.hud.getViewport().setScreenSize(width, height);
+		this.main.getViewport().setScreenSize(width, height);
+		this.main.getViewport().update(width, height);
+		EnigmaGame.setScreenSize(width, height);
+	}
 
-    @Override
-    public void display(boolean display) {
-    }
+	public MapLibgdx getMap() {
+		return map;
+	}
 
-    @Override
-    public void dispose() {
-        this.main.dispose();
-        this.dnd.dispose();
-        this.hud.dispose();
-    }
+	@Override
+	public void display(boolean display) {
+	}
+
+	@Override
+	public void dispose() {
+		this.main.dispose();
+		this.dnd.dispose();
+		this.hud.dispose();
+	}
 }

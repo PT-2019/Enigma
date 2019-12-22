@@ -13,86 +13,86 @@ package api.enums;
  */
 public interface Attributes {
 
-    /**
-     * Chemin de la classe
-     */
-    String PATH = "path";
+	/**
+	 * Chemin de la classe
+	 */
+	String PATH = "path";
 
-    /**
-     * Entité concernée
-     *
-     * @see editor.enigma.condition.Condition
-     * @see editor.enigma.operation.Operation
-     */
-    String ENTITY = "entities";
+	/**
+	 * Entité concernée
+	 *
+	 * @see editor.enigma.condition.Condition
+	 * @see editor.enigma.operation.Operation
+	 */
+	String ENTITY = "entities";
 
-    /**
-     * Case d'apparition
-     *
-     * @see editor.enigma.operation.Summon
-     */
-    String SPAWN = "spawn";
+	/**
+	 * Case d'apparition
+	 *
+	 * @see editor.enigma.operation.Summon
+	 */
+	String SPAWN = "spawn";
 
-    /**
-     * Délai
-     *
-     * @see editor.enigma.Advice
-     */
-    String DELAY = "delay";
+	/**
+	 * Délai
+	 *
+	 * @see editor.enigma.Advice
+	 */
+	String DELAY = "delay";
 
-    /**
-     * Indice
-     *
-     * @see editor.enigma.Advice
-     */
-    String ADVICE = "advice";
+	/**
+	 * Indice
+	 *
+	 * @see editor.enigma.Advice
+	 */
+	String ADVICE = "advice";
 
-    /**
-     * Titre
-     *
-     * @see editor.enigma.Enigma
-     */
-    String TITLE = "title";
+	/**
+	 * Titre
+	 *
+	 * @see editor.enigma.Enigma
+	 */
+	String TITLE = "title";
 
-    /**
-     * Description
-     *
-     * @see editor.enigma.Enigma
-     */
-    String DESCRIPTION = "description";
+	/**
+	 * Description
+	 *
+	 * @see editor.enigma.Enigma
+	 */
+	String DESCRIPTION = "description";
 
-    /**
-     * Est connu
-     *
-     * @see editor.enigma.Enigma
-     */
-    String KNOWN = "known";
+	/**
+	 * Est connu
+	 *
+	 * @see editor.enigma.Enigma
+	 */
+	String KNOWN = "known";
 
-    /**
-     * Index pointant l'indice actuel
-     *
-     * @see editor.enigma.Enigma
-     */
-    String CURRENT_ADVICE_INDEX = "currentAdviceIndex";
+	/**
+	 * Index pointant l'indice actuel
+	 *
+	 * @see editor.enigma.Enigma
+	 */
+	String CURRENT_ADVICE_INDEX = "currentAdviceIndex";
 
-    /**
-     * Indices
-     *
-     * @see editor.enigma.Enigma
-     */
-    String ADVICES = "advices";
+	/**
+	 * Indices
+	 *
+	 * @see editor.enigma.Enigma
+	 */
+	String ADVICES = "advices";
 
-    /**
-     * Conditions
-     *
-     * @see editor.enigma.Enigma
-     */
-    String CONDITIONS = "conditions";
+	/**
+	 * Conditions
+	 *
+	 * @see editor.enigma.Enigma
+	 */
+	String CONDITIONS = "conditions";
 
-    /**
-     * Operations
-     *
-     * @see editor.enigma.Enigma
-     */
-    String OPERATIONS = "operations";
+	/**
+	 * Operations
+	 *
+	 * @see editor.enigma.Enigma
+	 */
+	String OPERATIONS = "operations";
 }

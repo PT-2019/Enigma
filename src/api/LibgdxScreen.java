@@ -1,12 +1,12 @@
 package api;
 
+import api.utils.InputListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.utils.Array;
-import game.utils.InputListener;
 
 import java.util.Iterator;
 
@@ -21,104 +21,101 @@ import java.util.Iterator;
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  * @version 03 december 2019
- * @since 03 december 2019
  * @see #listen(InputProcessor)
  * @see InputListener
+ * @since 03 december 2019
  */
 public abstract class LibgdxScreen implements Screen, InputListener, IGameLogic {
 
-    /**
-     * Liste des processus en écoute
-     */
-    private Array<InputProcessor> listened;
+	/**
+	 * Liste des processus en écoute
+	 */
+	private Array<InputProcessor> listened;
 
-    public LibgdxScreen() {
-        this.listened = new Array<>();
-        this.init();
-    }
+	public LibgdxScreen() {
+		this.listened = new Array<>();
+		this.init();
+	}
 
-    /**
-     * Cache l'écran mais les évènements doivent continuer d'être capturés
-     *
-     * setVisible ou addAction(Actions.hide()) et addAction(Actions.show())
-     * devrait suffire sur les stages
-     *
-     * @param display true pour cacher l'écran sinon false
-     *
-     * @since 3.0 03 december 2019
-     */
-    public abstract void display(boolean display);
+	/**
+	 * Cache l'écran mais les évènements doivent continuer d'être capturés
+	 *
+	 * setVisible ou addAction(Actions.hide()) et addAction(Actions.show())
+	 * devrait suffire sur les stages
+	 *
+	 * @param display true pour cacher l'écran sinon false
+	 * @since 3.0 03 december 2019
+	 */
+	public abstract void display(boolean display);
 
-    /* listen méthods */
+	/* listen méthods */
 
-    /**
-     * When a event happens, if no one before was concerned
-     * by the event, all stage's observers will be called.
-     *
-     * Warning! The events are called in the same order listens
-     * call were done.
-     *
-     * So it would be wise to call listen on hud's stage before main's stage
-     * for instance.
-     *
-     * @param stage the stage witch should be adverted of events
-     *
-     * @since 3.0 03 december 2019
-     */
-    protected void listen(InputProcessor stage) {
-        this.listened.add(stage);
-    }
+	/**
+	 * When a event happens, if no one before was concerned
+	 * by the event, all stage's observers will be called.
+	 *
+	 * Warning! The events are called in the same order listens
+	 * call were done.
+	 *
+	 * So it would be wise to call listen on hud's stage before main's stage
+	 * for instance.
+	 *
+	 * @param stage the stage witch should be adverted of events
+	 * @since 3.0 03 december 2019
+	 */
+	protected void listen(InputProcessor stage) {
+		this.listened.add(stage);
+	}
 
-    /**
-     * Return all listened stages.
-     * They could be removed.
-     *
-     * @return all listened stages.
-     *
-     * @since 3.0 03 december 2019
-     */
-    public Iterator<InputProcessor> getListened() {
-        return new Array.ArrayIterator<>(this.listened);
-    }
+	/**
+	 * Return all listened stages.
+	 * They could be removed.
+	 *
+	 * @return all listened stages.
+	 * @since 3.0 03 december 2019
+	 */
+	public Iterator<InputProcessor> getListened() {
+		return new Array.ArrayIterator<>(this.listened);
+	}
 
-    /* Screen methods are hidden, to make gameLogic (or game loop) more visible */
+	/* Screen methods are hidden, to make gameLogic (or game loop) more visible */
 
-    @Override
-    public void show() {
-        InputMultiplexer gestionnaireProcessus = (InputMultiplexer) Gdx.input.getInputProcessor();
-        gestionnaireProcessus.addProcessor(this);
-        for (InputProcessor processor : new Array.ArrayIterator<>(this.listened)) {
-            gestionnaireProcessus.addProcessor(processor);
-        }
-    }
+	@Override
+	public void show() {
+		InputMultiplexer gestionnaireProcessus = (InputMultiplexer) Gdx.input.getInputProcessor();
+		gestionnaireProcessus.addProcessor(this);
+		for (InputProcessor processor : new Array.ArrayIterator<>(this.listened)) {
+			gestionnaireProcessus.addProcessor(processor);
+		}
+	}
 
-    @Override
-    public void render(float delta) {
-        //screen clear
-        Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
+	@Override
+	public void render(float delta) {
+		//screen clear
+		Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        //fake a gameLoop
-        this.input();
-        this.update(delta);
-        this.render();
-    }
+		//fake a gameLoop
+		this.input();
+		this.update(delta);
+		this.render();
+	}
 
-    @Override
-    public void hide() {
-        InputMultiplexer gestionnaireProcessus = (InputMultiplexer) Gdx.input.getInputProcessor();
-        gestionnaireProcessus.removeProcessor(this);
-        for (InputProcessor processor : new Array.ArrayIterator<>(this.listened)) {
-            gestionnaireProcessus.removeProcessor(processor);
-        }
-    }
+	@Override
+	public void hide() {
+		InputMultiplexer gestionnaireProcessus = (InputMultiplexer) Gdx.input.getInputProcessor();
+		gestionnaireProcessus.removeProcessor(this);
+		for (InputProcessor processor : new Array.ArrayIterator<>(this.listened)) {
+			gestionnaireProcessus.removeProcessor(processor);
+		}
+	}
 
-    //don't care
+	//don't care
 
-    @Override
-    public void pause() {
-    }
+	@Override
+	public void pause() {
+	}
 
-    @Override
-    public void resume() {
-    }
+	@Override
+	public void resume() {
+	}
 }

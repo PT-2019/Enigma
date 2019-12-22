@@ -15,11 +15,11 @@ package api;
 @FunctionalInterface
 public interface Application {
 
-    /**
-     * Cette méthode lance une application
-     *
-     * @since 1.0
-     */
-    void start();
+	/**
+	 * Cette méthode lance une application
+	 *
+	 * @since 1.0
+	 */
+	void start();
 
 }

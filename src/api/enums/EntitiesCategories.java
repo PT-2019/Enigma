@@ -11,16 +11,16 @@ package api.enums;
  * @since 3.0
  */
 public enum EntitiesCategories {
-    ROOMS("Salles"),
-    DECORS("Décors"),
-    ITEMS("Objects"),
-    ENTITIES("Personnages"),
-    ACTIONS("Actions");
+	ROOMS("Salles"),
+	DECORS("Décors"),
+	ITEMS("Objects"),
+	ENTITIES("Personnages"),
+	ACTIONS("Actions");
 
-    public final String name;
+	public final String name;
 
-    EntitiesCategories(String name) {
-        this.name = name;
-    }
+	EntitiesCategories(String name) {
+		this.name = name;
+	}
 
 }
