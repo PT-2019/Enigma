@@ -9,11 +9,13 @@ public class EnigmaMenuItemUI extends BasicMenuItemUI {
     private Color background;
     private Color foreground;
     private Cursor cursor;
+    private Font font;
 
     public EnigmaMenuItemUI(){
         this.background = EnigmaUIValues.ENIGMA_MENU_ITEM_BACKGROUND;
         this.foreground = EnigmaUIValues.ENIGMA_MENU_ITEM_FOREGROUND;
         this.cursor = new Cursor(Cursor.HAND_CURSOR);
+        this.font = EnigmaUIValues.ENIGMA_FONT;
     }
 
     @Override
@@ -23,6 +25,14 @@ public class EnigmaMenuItemUI extends BasicMenuItemUI {
         mi.setBackground(this.background);
         mi.setForeground(this.foreground);
         super.paint(brush,c);
+    }
+
+    public Font getFont() {
+        return font;
+    }
+
+    public void setFont(Font font) {
+        this.font = font;
     }
 
     public void setCursor(Cursor cursor){
@@ -57,6 +67,7 @@ public class EnigmaMenuItemUI extends BasicMenuItemUI {
         clone.setCursor(this.getCursor());
         clone.setBackground(this.getBackground());
         clone.setForeground(this.getForeground());
+        clone.setFont(this.getFont());
 
         return clone;
     }

@@ -43,7 +43,7 @@ public class EnigmaButtonUI extends BasicButtonUI {
     private boolean[] selectedHoveredShowedBorders;
     private boolean[] selectedPressedShowedBorders;
 
-
+    private Font font;
 
     public EnigmaButtonUI(){
         this.background = EnigmaUIValues.ENIGMA_BUTTON_BACKGROUND;
@@ -81,6 +81,8 @@ public class EnigmaButtonUI extends BasicButtonUI {
         this.selectedPressedShowedBorders = EnigmaUIValues.ENIGMA_BUTTON_SELECTED_PRESSED_SHOWED_BORDERS;
         this.selected = false;
         this.selectedCursor = new Cursor(Cursor.DEFAULT_CURSOR);
+
+        this.font = EnigmaUIValues.ENIGMA_FONT;
     }
 
     @Override
@@ -146,6 +148,14 @@ public class EnigmaButtonUI extends BasicButtonUI {
             if(i == EnigmaUIValues.BOTTOM_BORDER && showedBorders[i]) g.fillRect(0,b.getHeight() - borderSize,b.getWidth(),b.getHeight());
             if(i == EnigmaUIValues.LEFT_BORDER && showedBorders[i]) g.fillRect(0,0,borderSize,b.getHeight());
         }
+    }
+
+    public Font getFont() {
+        return font;
+    }
+
+    public void setFont(Font font) {
+        this.font = font;
     }
 
     public boolean[] getShowedBorders(){
@@ -528,6 +538,8 @@ public class EnigmaButtonUI extends BasicButtonUI {
         clone.setAllSelectedBorders(this.getSelectedBorder(), this.getSelectedHoveredBorder(), this.getSelectedPressedBorder());
         clone.setAllSelectedBordersSize(this.getSelectedBorderSize(), this.getSelectedHoveredBorderSize(), this.getSelectedPressedBorderSize());
         clone.setAllSelectedShowedBorders(this.getSelectedShowedBorders(), this.getSelectedHoveredShowedBorders(), this.getSelectedPressedShowedBorders());
+
+        clone.setFont(this.getFont());
 
         return clone;
     }

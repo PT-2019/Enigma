@@ -14,6 +14,7 @@ public class EnigmaPanel extends JPanel {
         super();
         this.addMouseListener(new EnigmaPanelManager(this));
         this.setOpaque(true);
+        this.setPanelUI(new EnigmaPanelUI());
     }
 
     public void setPanelUI(EnigmaPanelUI ui){
@@ -28,7 +29,6 @@ public class EnigmaPanel extends JPanel {
 
     @Override
     public void paintComponent(Graphics g){
-        if(this.ui == null) super.paintComponent(g);
-        else this.ui.paint(g,this);
+        this.ui.paint(g,this);
     }
 }

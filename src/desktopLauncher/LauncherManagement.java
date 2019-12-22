@@ -15,6 +15,6 @@ public class LauncherManagement implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        this.app.start();
+        DesktopLauncher.startApp(this.app);
     }
 }

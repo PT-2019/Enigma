@@ -15,6 +15,7 @@ public class EnigmaMenuUI extends BasicMenuUI {
     private boolean[] showedPopupBorders;
     private boolean hovered;
     private Cursor cursor;
+    private Font font;
 
     public EnigmaMenuUI(){
         this.background = EnigmaUIValues.ENIGMA_MENU_BACKGROUND;
@@ -26,6 +27,7 @@ public class EnigmaMenuUI extends BasicMenuUI {
         this.showedPopupBorders = EnigmaUIValues.ENIGMA_MENU_POPUP_SHOWED_BORDER;
         this.hovered = false;
         this.cursor = new Cursor(Cursor.HAND_CURSOR);
+        this.font = EnigmaUIValues.ENIGMA_FONT;
     }
 
     @Override
@@ -47,6 +49,14 @@ public class EnigmaMenuUI extends BasicMenuUI {
 
         m.getPopupMenu().setBorder(BorderFactory.createMatteBorder(borders[0],borders[1],borders[2],borders[3],popupBackground));
         super.paint(brush,c);
+    }
+
+    public Font getFont() {
+        return font;
+    }
+
+    public void setFont(Font font) {
+        this.font = font;
     }
 
     public void setCursor(Cursor cursor){
@@ -146,6 +156,7 @@ public class EnigmaMenuUI extends BasicMenuUI {
         clone.setPopupBackground(this.getPopupBackground());
         clone.setPopupBorderSize(this.getPopupBorderSize());
         clone.setShowedPopupBorders(this.getShowedPopupBorders());
+        clone.setFont(this.getFont());
 
         return clone;
     }

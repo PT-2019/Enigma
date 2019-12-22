@@ -36,6 +36,9 @@ public class Window extends JFrame {
 	private ResizeComponent[] resizers = new ResizeComponent[8];
 	private EnigmaPanel content;
 	private boolean resizable;
+	private EnigmaButton minimize;
+	private EnigmaButton smaller;
+	private EnigmaButton close;
 
 	/**
 	 * Initialise une fenêtre de la taille de l'écran
@@ -79,31 +82,32 @@ public class Window extends JFrame {
 		windowActionBar.addMouseListener(drag);
 		windowActionBar.addMouseMotionListener(drag);
 
-		EnigmaButton quit = new EnigmaButton("X");
+		this.close = new EnigmaButton("X");
 		EnigmaButtonUI buttonUI = new EnigmaButtonUI();
 		buttonUI.setAllBorders(null,null,null);
 		buttonUI.setAllBackgrounds(barUI.getBackground(),Color.RED,Color.RED);
 		buttonUI.setAllForegrounds(Color.WHITE, Color.WHITE, Color.WHITE);
 		buttonUI.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-		quit.setButtonUI(buttonUI);
-		quit.addActionListener(new Exit(this));
+		this.close.setButtonUI(buttonUI);
+		this.close.addActionListener(new Exit(this));
 
-		EnigmaButton minimize = new EnigmaButton("-");
+		this.minimize = new EnigmaButton("-");
 		buttonUI.setAllBackgrounds(barUI.getBackground(), EnigmaUIValues.ENIGMA_BUTTON_PRESSED_BACKGROUND, EnigmaUIValues.ENIGMA_BUTTON_PRESSED_BACKGROUND);
-		minimize.setButtonUI(buttonUI);
-		minimize.addActionListener(new Minimize(this));
+		this.minimize.setButtonUI(buttonUI);
+		this.minimize.addActionListener(new Minimize(this));
 
-		EnigmaButton smaller = new EnigmaButton("[]");
-		smaller.setButtonUI(buttonUI);
-		smaller.addActionListener(new Smaller(this));
+		this.smaller = new EnigmaButton("[]");
+		this.smaller.setButtonUI(buttonUI);
+		this.smaller.addActionListener(new Smaller(this));
 
 		windowActionBar.add(Box.createHorizontalGlue());
-		windowActionBar.add(minimize);
-		windowActionBar.add(smaller);
-		windowActionBar.add(quit);
+		windowActionBar.add(this.minimize);
+		windowActionBar.add(this.smaller);
+		windowActionBar.add(this.close);
 		this.setJMenuBar(windowActionBar);
 
 		this.content = new EnigmaPanel();
+		this.content.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 		this.resizers[RIGHT_RESIZER] = new ResizeComponent(new Cursor(Cursor.E_RESIZE_CURSOR));
 		this.resizers[LEFT_RESIZER] = new ResizeComponent(new Cursor(Cursor.W_RESIZE_CURSOR));
 		this.resizers[BOTTOM_RESIZER] = new ResizeComponent(new Cursor(Cursor.S_RESIZE_CURSOR));
@@ -142,6 +146,38 @@ public class Window extends JFrame {
 		this.add(this.content, BorderLayout.CENTER);
 	}
 
+	public void showMinimizeButton(boolean show){
+		this.minimize.setVisible(show);
+	}
+
+	public void showSmallerButton(boolean show){
+		this.smaller.setVisible(show);
+	}
+
+	public void showCloseButton(boolean show){
+		this.close.setVisible(show);
+	}
+
+	public void hideAllButton(){
+		this.showMinimizeButton(false);
+		this.showSmallerButton(false);
+		this.showCloseButton(false);
+	}
+
+	public void showAllButton(){
+		this.showMinimizeButton(true);
+		this.showSmallerButton(true);
+		this.showCloseButton(true);
+	}
+
+	public void hideMenuBar(){
+		this.getJMenuBar().setVisible(false);
+	}
+
+	public void showMenuBar(){
+		this.getJMenuBar().setVisible(true);
+	}
+
 	public EnigmaPanel getContentSpace(){
 		return this.content;
 	}
@@ -163,8 +199,11 @@ public class Window extends JFrame {
 	public void setResizable(boolean resizable) {
 		if(resizable){
 			for(ResizeComponent r: this.resizers) r.enableResize();
+			this.showSmallerButton(true);
+		} else {
+			for(ResizeComponent r: this.resizers) r.disableResize();
+			this.showSmallerButton(false);
 		}
-		else for(ResizeComponent r: this.resizers) r.disableResize();
 		this.resizable = resizable;
 	}
 

@@ -24,6 +24,7 @@ public class EnigmaLabelUI extends BasicLabelUI {
     private boolean[] showedBorders;
     private boolean[] hoveredShowedBorders;
     private boolean[] pressedShowedBorders;
+    private Font font;
 
     public EnigmaLabelUI(){
         this.background = EnigmaUIValues.ENIGMA_LABEL_BACKGROUND;
@@ -44,6 +45,7 @@ public class EnigmaLabelUI extends BasicLabelUI {
         this.hovered = false;
         this.pressed = false;
         this.cursor = new Cursor(Cursor.HAND_CURSOR);
+        this.font = EnigmaUIValues.ENIGMA_FONT;
     }
 
     @Override
@@ -55,42 +57,42 @@ public class EnigmaLabelUI extends BasicLabelUI {
             brush.fillRect(0,0,l.getWidth(),l.getHeight());
             l.setForeground(this.pressedForeground);
             if(this.pressedBorder != null){
-                brush.setColor(this.pressedBorder);
-                for (int i = 0; i < 4; i++) {
-                    if(i == EnigmaUIValues.TOP_BORDER && this.pressedShowedBorders[i]) brush.fillRect(0,0,l.getWidth(),this.pressedBorderSize);
-                    if(i == EnigmaUIValues.RIGHT_BORDER && this.pressedShowedBorders[i]) brush.fillRect(l.getWidth() - this.pressedBorderSize,0,l.getWidth(),l.getHeight());
-                    if(i == EnigmaUIValues.BOTTOM_BORDER && this.pressedShowedBorders[i]) brush.fillRect(0,l.getHeight() - this.pressedBorderSize,l.getWidth(),l.getHeight());
-                    if(i == EnigmaUIValues.LEFT_BORDER && this.pressedShowedBorders[i]) brush.fillRect(0,0,this.pressedBorderSize,l.getHeight());
-                }
+                this.paintBorder(brush,l,this.pressedBorder,this.pressedBorderSize,this.pressedShowedBorders);
             }
         } else if(this.hovered){
             brush.setColor(this.hoveredBackground);
             brush.fillRect(0,0,l.getWidth(),l.getHeight());
             l.setForeground(this.hoveredForeground);
             if(this.hoveredBorder != null){
-                brush.setColor(this.hoveredBorder);
-                for (int i = 0; i < 4; i++) {
-                    if(i == EnigmaUIValues.TOP_BORDER && this.hoveredShowedBorders[i]) brush.fillRect(0,0,l.getWidth(),this.hoveredBorderSize);
-                    if(i == EnigmaUIValues.RIGHT_BORDER && this.hoveredShowedBorders[i]) brush.fillRect(l.getWidth() - this.hoveredBorderSize,0,l.getWidth(),l.getHeight());
-                    if(i == EnigmaUIValues.BOTTOM_BORDER && this.hoveredShowedBorders[i]) brush.fillRect(0,l.getHeight() - this.hoveredBorderSize,l.getWidth(),l.getHeight());
-                    if(i == EnigmaUIValues.LEFT_BORDER && this.hoveredShowedBorders[i]) brush.fillRect(0,0,this.hoveredBorderSize,l.getHeight());
-                }
+                this.paintBorder(brush,l,this.hoveredBorder,this.hoveredBorderSize,this.hoveredShowedBorders);
             }
         } else {
             brush.setColor(this.background);
             brush.fillRect(0,0,l.getWidth(),l.getHeight());
             l.setForeground(this.foreground);
             if(this.border != null){
-                brush.setColor(this.border);
-                for (int i = 0; i < 4; i++) {
-                    if(i == EnigmaUIValues.TOP_BORDER && this.showedBorders[i]) brush.fillRect(0,0,l.getWidth(),this.borderSize);
-                    if(i == EnigmaUIValues.RIGHT_BORDER && this.showedBorders[i]) brush.fillRect(l.getWidth() - this.borderSize,0,l.getWidth(),l.getHeight());
-                    if(i == EnigmaUIValues.BOTTOM_BORDER && this.showedBorders[i]) brush.fillRect(0,l.getHeight() - this.borderSize,l.getWidth(),l.getHeight());
-                    if(i == EnigmaUIValues.LEFT_BORDER && this.showedBorders[i]) brush.fillRect(0,0,this.borderSize,l.getHeight());
-                }
+                this.paintBorder(brush,l,this.border,this.borderSize,this.showedBorders);
             }
         }
         super.paint(brush,c);
+    }
+
+    private void paintBorder(Graphics g, JLabel l, Color borderColor, int borderSize, boolean[] showedBorders){
+        g.setColor(borderColor);
+        for (int i = 0; i < 4; i++) {
+            if(i == EnigmaUIValues.TOP_BORDER && showedBorders[i]) g.fillRect(0,0,l.getWidth(),borderSize);
+            if(i == EnigmaUIValues.RIGHT_BORDER && showedBorders[i]) g.fillRect(l.getWidth() - borderSize,0,l.getWidth(),l.getHeight());
+            if(i == EnigmaUIValues.BOTTOM_BORDER && showedBorders[i]) g.fillRect(0,l.getHeight() - borderSize,l.getWidth(),l.getHeight());
+            if(i == EnigmaUIValues.LEFT_BORDER && showedBorders[i]) g.fillRect(0,0,borderSize,l.getHeight());
+        }
+    }
+
+    public Font getFont() {
+        return font;
+    }
+
+    public void setFont(Font font) {
+        this.font = font;
     }
 
     public boolean[] getShowedBorders(){
@@ -295,6 +297,7 @@ public class EnigmaLabelUI extends BasicLabelUI {
         clone.setIsHovered(this.isHovered());
         clone.setAllBordersSize(this.getBorderSize(), this.getHoveredBorderSize(), this.getPressedBorderSize());
         clone.setAllShowedBorders(this.getShowedBorders(), this.getHoveredShowedBorders(), this.getPressedShowedBorders());
+        this.setFont(this.getFont());
 
         return clone;
     }

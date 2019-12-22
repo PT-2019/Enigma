@@ -24,6 +24,7 @@ public class EnigmaTextAreaUI extends BasicTextAreaUI {
     private boolean[] showedBorders;
     private boolean[] hoveredShowedBorders;
     private boolean[] focusedShowedBorders;
+    private Font font;
 
     public EnigmaTextAreaUI(){
         this.background = EnigmaUIValues.ENIGMA_TEXTAREA_BACKGROUND;
@@ -43,6 +44,7 @@ public class EnigmaTextAreaUI extends BasicTextAreaUI {
         this.focusedShowedBorders = EnigmaUIValues.ENIGMA_TEXTAREA_FOCUSED_SHOWED_BORDERS;
         this.hovered = false;
         this.cursor = new Cursor(Cursor.TEXT_CURSOR);
+        this.font = EnigmaUIValues.ENIGMA_FONT;
     }
 
     public void paintTextArea(Graphics g, JComponent c) {
@@ -76,6 +78,14 @@ public class EnigmaTextAreaUI extends BasicTextAreaUI {
             if(showedBorders[i]) borders[i] = borderSize;
         }
         c.setBorder(BorderFactory.createMatteBorder(borders[0],borders[3],borders[2],borders[2],borderColor));
+    }
+
+    public Font getFont() {
+        return font;
+    }
+
+    public void setFont(Font font) {
+        this.font = font;
     }
 
     public boolean[] getShowedBorders(){
@@ -272,6 +282,7 @@ public class EnigmaTextAreaUI extends BasicTextAreaUI {
         clone.setIsHovered(this.isHovered());
         clone.setAllBordersSize(this.getBorderSize(), this.getHoveredBorderSize(), this.getFocusedBorderSize());
         clone.setAllShowedBorders(this.getShowedBorders(), this.getHoveredShowedBorders(), this.getFocusedShowedBorders());
+        clone.setFont(this.getFont());
 
         return clone;
     }

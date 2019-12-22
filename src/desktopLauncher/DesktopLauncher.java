@@ -1,6 +1,7 @@
 package desktopLauncher;
 
 import editor.EditorLauncher;
+import editor.api.Application;
 import editor.utils.EnigmaLabel;
 import editor.utils.Window;
 import editor.utils.ui.EnigmaButtonUI;
@@ -14,6 +15,38 @@ import java.awt.*;
  * Lance la version pc de l'application
  */
 public class DesktopLauncher implements Runnable {
+
+    private static Application RUNNING_APP;
+    private static EnigmaButton PLAY_BUTTON;
+    private static EnigmaButton EDIT_BUTTON;
+
+    public DesktopLauncher(){
+        RUNNING_APP = null;
+        PLAY_BUTTON = new EnigmaButton();
+        PLAY_BUTTON = new EnigmaButton("Jouer");
+        PLAY_BUTTON.addActionListener(new LauncherManagement(new EditorLauncher()));
+        
+        EDIT_BUTTON = new EnigmaButton();
+        EDIT_BUTTON = new EnigmaButton("Editer une map");
+        EDIT_BUTTON.addActionListener(new LauncherManagement(new EditorLauncher()));
+    }
+
+    public static void startApp(Application app){
+        if(RUNNING_APP == null){
+            RUNNING_APP = app;
+            RUNNING_APP.start();
+            PLAY_BUTTON.setText("Une application est déjà en cours d'execution");
+            EDIT_BUTTON.setText("Une application est déjà en cours d'execution");
+        }
+    }
+
+    public static void closeRunningApp(){
+        if(RUNNING_APP != null){
+            RUNNING_APP = null;
+            PLAY_BUTTON.setText("Jouer");
+            EDIT_BUTTON.setText("Editer une map");
+        }
+    }
 
     //cette méthode contient le code de lancement de l'éditeur
     //après chargement de la libgdx par SwingUtilities.invokeLater(Runnable)
@@ -48,9 +81,6 @@ public class DesktopLauncher implements Runnable {
         gbc.insets = new Insets(inset / 2, inset / 2, inset / 2, inset / 2);
         background.add(info, gbc);
 
-        EnigmaButton button = new EnigmaButton("Jouer");
-        button.addActionListener(new LauncherManagement(new EditorLauncher()));
-        button.setButtonUI(new EnigmaButtonUI());
         gbc.gridx = 1;
         gbc.gridy = 1;
         gbc.gridwidth = 1;
@@ -59,11 +89,8 @@ public class DesktopLauncher implements Runnable {
         gbc.weightx = 1;
         gbc.weighty = 1;
         gbc.insets = new Insets(inset, inset, inset, inset / 4);
-        background.add(button, gbc);
+        background.add(PLAY_BUTTON, gbc);
 
-        button = new EnigmaButton("Editer une map");
-        button.addActionListener(new LauncherManagement(new EditorLauncher()));
-        button.setButtonUI(new EnigmaButtonUI());
         gbc.gridx = 1;
         gbc.gridy = 2;
         gbc.gridwidth = 1;
@@ -72,7 +99,7 @@ public class DesktopLauncher implements Runnable {
         gbc.weightx = 1;
         gbc.weighty = 1;
         gbc.insets = new Insets(inset, inset, inset, inset / 4);
-        background.add(button, gbc);
+        background.add(EDIT_BUTTON, gbc);
 
         window.setVisible(true);
     }

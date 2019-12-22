@@ -12,10 +12,11 @@ public class EnigmaPopupMenu extends JPopupMenu {
     public EnigmaPopupMenu(){
         super();
         this.setOpaque(true);
+        this.setPopupMenuUI(new EnigmaPopupMenuUI());
     }
 
     public void setPopupMenuUI(EnigmaPopupMenuUI ui){
-        this.ui = ui;
+        this.ui = ui.duplicate();
         this.repaint();
     }
 
@@ -25,7 +26,6 @@ public class EnigmaPopupMenu extends JPopupMenu {
 
     @Override
     public void paintComponent(Graphics g){
-        if(this.ui != null) this.ui.paint(g,this);
-        else super.paintComponent(g);
+        this.ui.paint(g,this);
     }
 }

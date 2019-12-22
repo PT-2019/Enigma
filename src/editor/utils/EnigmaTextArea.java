@@ -16,11 +16,13 @@ public class EnigmaTextArea extends JTextArea {
         this.addMouseListener(manager);
         this.addFocusListener(manager);
         this.setOpaque(true);
+        this.setTextAreaUI(new EnigmaTextAreaUI());
     }
 
     public void setTextAreaUI(EnigmaTextAreaUI ui){
         this.ui = ui.duplicate();
         this.setCursor(this.ui.getCursor());
+        this.setFont(this.ui.getFont());
         super.setUI(this.ui);
     }
 
@@ -30,7 +32,6 @@ public class EnigmaTextArea extends JTextArea {
 
     @Override
     public void paintComponent(Graphics g){
-        if(this.ui == null) super.paintComponent(g);
-        else this.ui.paintTextArea(g,this);
+        this.ui.paintTextArea(g,this);
     }
 }

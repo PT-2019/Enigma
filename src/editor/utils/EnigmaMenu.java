@@ -16,11 +16,13 @@ public class EnigmaMenu extends JMenu {
         this.setOpaque(true);
         this.setPopupMenuVisible(false);
         this.getPopupMenu().setBorderPainted(false);
+        this.setMenuUI(new EnigmaMenuUI());
     }
 
     public void setMenuUI(EnigmaMenuUI ui){
         this.ui = ui.duplicate();
         this.setCursor(this.ui.getCursor());
+        this.setFont(this.ui.getFont());
         this.setFocusPainted(false);
         this.setBorderPainted(false);
         super.setUI(this.ui);
@@ -32,7 +34,6 @@ public class EnigmaMenu extends JMenu {
 
     @Override
     public void paintComponent(Graphics g){
-        if(this.ui == null) super.paintComponent(g);
-        else this.ui.paint(g,this);
+        this.ui.paint(g,this);
     }
 }

@@ -13,6 +13,7 @@ public class EnigmaMenuBar extends JMenuBar {
         super();
         this.ui = null;
         this.setOpaque(true);
+        this.setMenuBarUI(new EnigmaMenuBarUI());
     }
 
     public void setMenuBarUI(EnigmaMenuBarUI ui){
@@ -27,7 +28,6 @@ public class EnigmaMenuBar extends JMenuBar {
 
     @Override
     public void paintComponent(Graphics g){
-        if(this.ui == null) super.paintComponent(g);
-        else this.ui.paint(g,this);
+        this.ui.paint(g,this);
     }
 }

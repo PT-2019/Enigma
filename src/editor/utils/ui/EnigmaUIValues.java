@@ -4,6 +4,7 @@ import java.awt.*;
 
 public class EnigmaUIValues {
 
+    public final static Font ENIGMA_FONT = new Font("Monospaced", Font.BOLD, 15);
     public final static boolean[] ALL_BORDERS_SHOWED = {true,true,true,true};
     public final static boolean[] ALL_BORDER_HIDDEN = {false,false,false,false};
     public final static boolean SHOWED_BORDER = true;
@@ -76,22 +77,6 @@ public class EnigmaUIValues {
     public final static boolean[] ENIGMA_TEXTAREA_HOVERED_SHOWED_BORDERS = {true,true,true,true};
     public final static boolean[] ENIGMA_TEXTAREA_FOCUSED_SHOWED_BORDERS = {true,true,true,true};
 
-    public final static Color ENIGMA_COMBOBOX_BACKGROUND = Color.DARK_GRAY;
-    public final static Color ENIGMA_COMBOBOX_HOVERED_BACKGROUND = Color.DARK_GRAY;
-    public final static Color ENIGMA_COMBOBOX_FOCUSED_BACKGROUND = Color.DARK_GRAY;
-    public final static Color ENIGMA_COMBOBOX_FOREGROUND = Color.WHITE;
-    public final static Color ENIGMA_COMBOBOX_HOVERED_FOREGROUND = Color.WHITE;
-    public final static Color ENIGMA_COMBOBOX_FOCUSED_FOREGROUND = Color.WHITE;
-    public final static Color ENIGMA_COMBOBOX_BORDER = null;
-    public final static Color ENIGMA_COMBOBOX_HOVERED_BORDER = null;
-    public final static Color ENIGMA_COMBOBOX_FOCUSED_BORDER = null;
-    public final static int ENIGMA_COMBOBOX_BORDER_SIZE = 1;
-    public final static int ENIGMA_COMBOBOX_HOVERED_BORDER_SIZE = 1;
-    public final static int ENIGMA_COMBOBOX_FOCUSED_BORDER_SIZE = 1;
-    public final static boolean[] ENIGMA_COMBOBOX_SHOWED_BORDERS = {true,true,true,true};
-    public final static boolean[] ENIGMA_COMBOBOX_HOVERED_SHOWED_BORDERS = {true,true,true,true};
-    public final static boolean[] ENIGMA_COMBOBOX_FOCUSED_SHOWED_BORDERS = {true,true,true,true};
-
     public final static Color ENIGMA_MENU_BAR_BACKGROUND = Color.DARK_GRAY;
     public final static Color ENIGMA_MENU_BAR_BORDER = null;
     public final static int ENIGMA_MENU_BAR_BORDER_SIZE = 1;
@@ -121,7 +106,12 @@ public class EnigmaUIValues {
     public final static boolean[] ENIGMA_PANEL_HOVERED_SHOWED_BORDERS = {true,true,true,true};
     public final static boolean[] ENIGMA_PANEL_PRESSED_SHOWED_BORDERS = {true,true,true,true};
 
-    public final static Color ENIGMA_POPUP_MENU_BACKGROUND = Color.WHITE;
+    public final static Color ENIGMA_POPUP_MENU_BACKGROUND = Color.DARK_GRAY;
+    public final static Color ENIGMA_POPUP_MENU_BORDER = null;
     public final static int ENIGMA_POPUP_MENU_BORDER_SIZE = 1;
-    public final static boolean[] ENIGMA_POPUP_MENU_SHOWED_BORDER = {false,false,false,false};
+    public final static boolean[] ENIGMA_POPUP_MENU_SHOWED_BORDER = {true,true,true,true};
+
+    public final static Color ENIGMA_COMBOBOX_BORDER = Color.DARK_GRAY;
+    public final static int ENIGMA_COMBOBOX_BORDER_SIZE = 3;
+    public final static boolean[] ENIGMA_COMBOBOX_SHOWED_BORDERS = {true,true,true,true};
 }
