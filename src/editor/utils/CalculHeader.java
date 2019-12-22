@@ -2,7 +2,16 @@ package editor.utils;
 
 import java.util.Scanner;
 
-
+/**
+ * Calcule le header d'une map .tmx
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 1.0
+ * @since 1.0
+ */
 public class CalculHeader {
 
 	/**

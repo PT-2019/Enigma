@@ -1,11 +1,11 @@
 package editor.enigma.operation;
 
 
-import editor.datas.Attributes;
+import api.entity.interfaces.Entity;
+import api.enums.Attributes;
 import editor.entity.IDFactory;
-import editor.entity.Player;
-import editor.entity.interfaces.Entity;
-import editor.map.Case;
+import editor.entity.map.Case;
+import editor.entity.player.Player;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,8 +13,13 @@ import java.util.Map;
 /**
  * Fait apparaître une entité sur une case donnée
  *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
  * @version 2.2
  * @see editor.enigma.operation.Operation
+ * @since 2.0
  */
 public class Summon extends Operation {
 
@@ -59,7 +64,7 @@ public class Summon extends Operation {
 	 * Obtenir un EnumMap de l'objet avec ses attributs et leur état
 	 *
 	 * @return EnumMap de l'objet
-	 * @see editor.datas.Attributes
+	 * @see api.enums.Attributes
 	 */
 	@Override
 	public HashMap<String, Object> objectToMap() {

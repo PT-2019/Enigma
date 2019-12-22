@@ -4,7 +4,7 @@ import editor.enigma.condition.Activated;
 import editor.enigma.operation.Unlock;
 import editor.entity.item.Door;
 import editor.entity.item.Switch;
-import editor.entity.Player;
+import editor.entity.player.Player;
 
 /**
  * Main énigmes

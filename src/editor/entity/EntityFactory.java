@@ -1,9 +1,9 @@
 package editor.entity;
 
+import api.enums.EntitiesCategories;
+import api.utils.Utility;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
-import editor.datas.EntitiesCategories;
-import editor.utils.Utility;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,8 +11,12 @@ import java.util.Map;
 /**
  * Charge les entités depuis un json
  *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
  * @version 3.0 14 décembre 2019
- * @since 14 december 2019
+ * @since 3.0 14 décembre 2019
  */
 public class EntityFactory {
 
@@ -42,6 +46,7 @@ public class EntityFactory {
 	 * On peut les récupérer avec {@link #getEntitiesByCategory(EntitiesCategories)}
 	 *
 	 * @param path chemin du json
+	 * @since 3.0
 	 */
 	public static void loadEntities(String path) {
 		Json j = new Json();
@@ -65,6 +70,7 @@ public class EntityFactory {
 	 *
 	 * @param categories la catégorie voulue
 	 * @return toutes les entités appartenant a cette catégorie
+	 * @since 3.0
 	 */
 	public static Array<EntitySerializable> getEntitiesByCategory(EntitiesCategories categories) {
 		Array<EntitySerializable> entityGraphics = new Array<>();

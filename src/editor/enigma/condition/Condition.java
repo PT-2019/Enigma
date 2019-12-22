@@ -1,9 +1,9 @@
 package editor.enigma.condition;
 
-import editor.datas.Attributes;
+import api.entity.interfaces.Entity;
+import api.enums.Attributes;
 import editor.entity.IDFactory;
-import editor.entity.Player;
-import editor.entity.interfaces.Entity;
+import editor.entity.player.Player;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,8 +12,13 @@ import java.util.Map;
  * Une condition à pour but d'être satisfaite par une action des joueurs. Elle diffère fonction du type de condition
  * Elle est utilisée dans les {@link editor.enigma.Enigma énigmes} pour déterminer si elles ont été résolues
  *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
  * @version 2.1
  * @see editor.enigma.Enigma
+ * @since 2.0
  */
 public abstract class Condition {
 
@@ -70,7 +75,7 @@ public abstract class Condition {
 	 * Obtenir un EnumMap de l'objet avec ses attributs et leur état
 	 *
 	 * @return EnumMap de l'objet
-	 * @see editor.datas.Attributes
+	 * @see api.enums.Attributes
 	 */
 	public HashMap<String, Object> objectToMap() {
 		HashMap<String, Object> object = new HashMap<>();

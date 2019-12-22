@@ -1,6 +1,6 @@
 package editor.window;
 
-import javax.swing.*;
+import javax.swing.JFrame;
 
 //TODO: permettre le plein écran (avec une méthode)
 //TODO: permettre l'ajout d'un fond d'écran

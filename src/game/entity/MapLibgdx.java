@@ -1,7 +1,12 @@
 package game.entity;
 
+import api.enums.Layer;
+import api.utils.Bounds;
+import api.utils.InputListener;
+import api.utils.Utility;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.maps.MapLayer;
@@ -11,58 +16,68 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Array;
-import editor.datas.Layer;
 import editor.entity.EntitySerializable;
 import editor.map.SaveMap;
 import editor.utils.Utility;
 import game.ui.Border;
-import game.utils.Bounds;
-import game.utils.InputListener;
+import org.intellij.lang.annotations.MagicConstant;
 import org.jetbrains.annotations.NotNull;
 
-import java.awt.*;
-
-import static game.api.MapsNameUtils.HEIGHT_P;
-import static game.api.MapsNameUtils.TILE_HEIGHT_P;
-import static game.api.MapsNameUtils.TILE_WIDTH_P;
-import static game.api.MapsNameUtils.WIDTH_P;
+import static api.MapsNameUtils.HEIGHT_P;
+import static api.MapsNameUtils.TILE_HEIGHT_P;
+import static api.MapsNameUtils.TILE_WIDTH_P;
+import static api.MapsNameUtils.WIDTH_P;
 
 /**
  * Map de la libgdx
  *
- * @version 3.0 14 décembre 2019
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 4.3 22/12/2019
  * @since 2.0 5 décembre 2019
  */
 public class MapLibgdx extends Group implements InputListener {
 
 	/**
-	 * info principales
+	 * Dimension d'un tile
 	 */
-	private final int tileWidth, tileHeight, width, height;
+	private final int tileWidth, tileHeight;
 	/**
 	 * Dessinateur de la map
 	 */
-	private OrthogonalTiledMapRenderer map;
+	private final OrthogonalTiledMapRenderer map;
 	/**
 	 * Caméra de la map
 	 */
-	private OrthographicCamera camera;
+	private final OrthographicCamera camera;
 	/**
 	 * Bordure des cases de la map
 	 */
-	private Border border;
-
+	private final Border border;
+	/**
+	 * Dimension de la map
+	 */
+	private int mapWidth, mapHeight;
+	/**
+	 * Les limites de la map dans l'espace
+	 *
+	 * @since 3.0
+	 */
 	private Bounds mapBounds;
 
 	/**
 	 * Crée une map depuis un fichier tmx
 	 *
 	 * @param path fichier .tmx
+	 * @since 2.0
 	 */
-	public MapLibgdx(@NotNull String path) {
+	public MapLibgdx(@NotNull final String path) {
 		//load the map
 		TiledMap tiledMap = new TmxMapLoader().load(path);
 		this.map = new OrthogonalTiledMapRenderer(tiledMap, 1f);
@@ -71,15 +86,19 @@ public class MapLibgdx extends Group implements InputListener {
 		MapProperties properties = tiledMap.getProperties();
 		this.tileWidth = properties.get(TILE_WIDTH_P.value, Integer.class);
 		this.tileHeight = properties.get(TILE_HEIGHT_P.value, Integer.class);
-		this.width = properties.get(WIDTH_P.value, Integer.class);
-		this.height = properties.get(HEIGHT_P.value, Integer.class);
+		int width = properties.get(WIDTH_P.value, Integer.class);
+		int height = properties.get(HEIGHT_P.value, Integer.class);
 
-		this.border = new Border(this.width, this.height, this.tileHeight);
-
-		this.border = new Border(this.width,
-				(this.height * (int) this.map.getUnitScale()),
+		//bordures
+		this.border = new Border(width,
+				(height * (int) this.map.getUnitScale()),
 				this.tileHeight);
 
+		//dimension de la map
+		this.mapWidth = width * tileWidth;
+		this.mapHeight = height * tileHeight;
+
+		//cache le niveau de collision
 		MapLayer collision = this.map.getMap().getLayers().get(Layer.COLLISION.name());
 		if (collision != null)
 			collision.setVisible(false);
@@ -87,15 +106,12 @@ public class MapLibgdx extends Group implements InputListener {
 		//setup camera
 		this.camera = new OrthographicCamera();
 		this.camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		this.camera.position.set(getMapWidth() / 2, getMapHeight() / 2, 0);
 		this.camera.update();
 
 		SaveMap save = new SaveMap(tiledMap);
 		save.saveMap("assets/map/test.tmx");
 		//bounds
 		this.setMapBounds();
-
-		System.out.println(mapBounds);
 	}
 
 	/**
@@ -109,35 +125,124 @@ public class MapLibgdx extends Group implements InputListener {
 	 * @return la case (indices) dans la map depuis une positon x,y dans l'espace.
 	 * @since 3.0 14 décembre 2019
 	 */
-	private static Vector2 posToIndex(float posX, float posY, MapLibgdx map) {
+	private static Vector2 posToIndex(float posX, float posY, final MapLibgdx map) {
 		Vector2 index = new Vector2();
 
-		//convert coordinates to row and column
-		posX = (posX / map.getUnitScale()) - map.mapBounds.left;
-		posY = (posY / map.getUnitScale()) - map.mapBounds.top;
+		posX /= map.getUnitScale();
+		posY /= map.getUnitScale();
 
-		float mapW = (map.mapBounds.right - map.mapBounds.left) / map.tileWidth;
-		float mapH = (map.mapBounds.bot - map.mapBounds.top) / map.tileHeight;
-
-		//and clamp to the map
-		float column = MathUtils.clamp(Math.round(posX / map.getTileWidth()), 0, mapW);
-		float row = MathUtils.clamp(Math.round(posY / map.getTileHeight()), 0, mapH);
+		float column = MathUtils.clamp(Math.round(posX / map.getTileWidth()), 0, map.mapBounds.right);
+		float row = MathUtils.clamp(Math.round(posY / map.getTileHeight()), 0, map.mapBounds.top);
 
 		index.x = column;
-		index.y = mapH - row;
+		index.y = row;
 
 		return index;
+	}
+
+	/**
+	 * Charge une entité sur la map a un position si elle est sur la map
+	 *
+	 * @param entity l'entité à charger
+	 * @param pos    la position o&#249; charger
+	 * @return true si l'entité a étée chargée
+	 * @since 3.0
+	 */
+	public boolean loadEntity(EntitySerializable entity, Vector2 pos) {
+        /*
+            Inverse le zoom, avant avec un zoom de 0.95 la map était plus grande et 1.05
+            donnait une map plus petite
+
+            zoom contient l'inverse : 1.05 contient une plus grande map, 0.95 une plus petite
+         */
+		float zoom = camera.zoom;
+		if (zoom < 1) {
+			zoom = 1 + (1 - camera.zoom);
+		} else if (zoom > 1) {
+			zoom = 1 + (1 - camera.zoom);
+		}
+
+		//calcules les 4 coins de la map
+		Rectangle bounds = new Rectangle();
+		bounds.setPosition((Gdx.graphics.getWidth() / 2f - camera.position.x) * 1,
+				(Gdx.graphics.getHeight() / 2f - camera.position.y) * 1);
+		bounds.setSize(this.getMapWidth() * zoom, this.getMapHeight() * zoom);
+		this.mapBounds = new Bounds(bounds);
+
+		Gdx.app.debug("MapLibgdx - placement", mapBounds + " " + pos + " " + mapBounds.contains(pos));
+
+		//si pas dans la map
+		if (!mapBounds.contains(pos)) return false;
+
+        /*
+            retire l'offset de l'espace
+
+            la position x commence du clic est à 350 et la map à 300
+            donc on x=50
+         */
+		pos.x -= this.mapBounds.left;
+		pos.y -= this.mapBounds.bot;
+
+		// obtient le coin supérieur gauche ou commencer a placer des tiles
+		this.placer(entity, posToIndex(pos.x, pos.y, this));
+
+		return true;
+	}
+
+	/**
+	 * Place une entité
+	 *
+	 * @param entity l'entité à charger
+	 * @param start  le coin supérieur gauche ou commencer a placer des tiles
+	 */
+	private void placer(EntitySerializable entity, Vector2 start) {
+		//on parcours toutes les niveaux de la map et on y ajoute les tiles de l'entité
+		for (MapLayer mapLayer : this.map.getMap().getLayers()) {
+			//c'est un layer de tiles ?
+			if (!(mapLayer instanceof TiledMapTileLayer)) continue;
+
+			TiledMapTileLayer tileLayer = (TiledMapTileLayer) mapLayer;
+
+			//récupère les tiles de l'entités pour ce niveau
+			Array<Float> entities = entity.getTiles(Utility.stringToEnum(tileLayer.getName(), Layer.values()));
+
+			//si pas de tiles a mettre sur ce layer, on passe au suivant
+			if (entities == null) continue;
+
+			//calcul pour placer les tiles depuis x et y
+			//sachant que y est inversé, on part de la dernière tile et on remonte
+			//pas de problème pour x
+			for (int i = (int) start.y - 1, index = 0; i >= (start.y - entity.getHeight()); i--) {
+				for (int j = (int) start.x; j < start.x + entity.getWidth() && index < entities.size; j++, index++) {
+					MapLibgdxCell c = new MapLibgdxCell(tileLayer, index);
+					c.setTile(this.map.getMap().getTileSets().getTile(MathUtils.ceil(entities.get(index))));
+					c.setEntity(entity);
+					tileLayer.setCell(j, i, c);
+				}
+			}
+		}
 	}
 
 	@Override
 	public void act(float delta) {
 		super.act(delta);
 		//update caméra
-		camera.update();
+		//update map's camera from stage's camera
+		Camera c = this.getStage().getCamera();
+		this.camera.position.x = c.position.x;
+		this.camera.position.y = c.position.y;
+		this.camera.update();
 		//update borders
 		border.setProjectionMatrix(camera.combined);
 	}
 
+	/**
+	 * Dessine la map
+	 *
+	 * @param batch       batch openGL de dessin
+	 * @param parentAlpha transparence du parent
+	 * @since 2.0
+	 */
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
 		super.draw(batch, parentAlpha);
@@ -152,58 +257,31 @@ public class MapLibgdx extends Group implements InputListener {
 		this.border.draw();
 	}
 
-	@Override
-	public boolean keyDown(int keycode) {
-
-		if (keycode == Input.Keys.LEFT) {
-			camera.translate(-32, 0);
-			return true;
-		}
-		if (keycode == Input.Keys.RIGHT) {
-			camera.translate(32, 0);
-			return true;
-		}
-		if (keycode == Input.Keys.UP) {
-			camera.translate(0, 32);
-			return true;
-		}
-		if (keycode == Input.Keys.DOWN) {
-			camera.translate(0, -32);
-			return true;
-		}
-
-		return false;
-	}
-
+	/**
+	 * Gère le scroll de la map
+	 *
+	 * @param amount 1 pour zoom avant, -1 pour arrière
+	 * @return true si l'évènement est géré
+	 * @since 2.0
+	 */
 	@Override
 	public boolean scrolled(int amount) {
 		if (Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT)) {
 			if (amount == 1) {
-				camera.zoom += 0.1;
-				updateMapBounds(-1);
+				camera.zoom += 0.5;
 			} else {
-				camera.zoom -= 0.1;
-				updateMapBounds(1);
+				camera.zoom -= 0.5;
 			}
 			return true;
 		}
 		return false;
 	}
 
-	private void updateMapBounds(float zoom){
-		float left = this.mapBounds.left, right = this.mapBounds.right;
-		float top =  this.mapBounds.top, bot =  this.mapBounds.bot;
-
-		left -= zoom * 27;
-		right += zoom * 27;
-		top -= zoom * 18;
-		bot += zoom * 18;
-
-		this.mapBounds = new Bounds(left, right, top, bot);
-
-		System.out.println(this.mapBounds);
-	}
-
+	/**
+	 * Définit les bounds de la map
+	 *
+	 * @since 3.0
+	 */
 	private void setMapBounds() {
 		float left = Gdx.graphics.getWidth() / 2f - this.getMapWidth() / 2;
 		float right = Gdx.graphics.getWidth() / 2f + this.getMapWidth() / 2;
@@ -213,62 +291,32 @@ public class MapLibgdx extends Group implements InputListener {
 	}
 
 	/**
-	 * Charge une entité dans la map depuis un point
+	 * Met a jour les bounds de la map selon zoom
 	 *
-	 * @param entity   entité a placer
-	 * @param location coordonnés x,y ou placer l'entité
-	 * @since 3.0 14 décembre 2019
+	 * @param zoom de combien le zoom est augmenté ou diminué
+	 * @since 3.0
+	 * @deprecated since 4.0
 	 */
-	public void load(EntitySerializable entity, Point location) {
-		//on parcours toutes les niveaux de la map et on y ajoute les tiles de l'entité
-		for (MapLayer mapLayer : this.map.getMap().getLayers()) {
-			//c'est un layer de tiles ?
-			if (!(mapLayer instanceof TiledMapTileLayer)) continue;
+	@Deprecated
+	@MagicConstant
+	private void updateMapBounds(int zoom) {
+		float left = this.mapBounds.left, right = this.mapBounds.right;
+		float top = this.mapBounds.top, bot = this.mapBounds.bot;
 
-			TiledMapTileLayer tileLayer = (TiledMapTileLayer) mapLayer;
+		left -= zoom * 27;
+		right += zoom * 27;
+		top -= zoom * 18;
+		bot += zoom * 18;
 
-			//récupère les tiles de l'entités pour ce niveau
-			Array<Float> entities = entity.getTiles(Utility.stringToEnum(tileLayer.getName(), Layer.values()));
-
-			//si pas de tiles a mettre sur ce layer, on passe au suivant
-			if (entities == null) continue;
-
-			System.out.println(location+" "+camera.zoom);
-
-			float maxW = this.mapBounds.right ;//- entity.getWidth() * tileWidth;
-			float maxH = this.mapBounds.bot ;//- entity.getHeight() * tileHeight;
-
-			//on regarde si l'entités est dans la map
-			Vector2 start = null; //start contient le x, y ou on commence a placer les tiles
-			if (location.x >= this.mapBounds.left && location.x <= maxW) {//Axe x
-				if (location.y >= this.mapBounds.top && location.y <= maxH) {//Axe y
-					start = posToIndex(location.x, location.y, this);
-				}
-			}
-
-			//si pas dans la map
-			if (start == null) return;
-
-			//calcul pour placer les tiles depuis x et y
-			//sachant que y est inversé, on part de la dernière tile et on remonte
-			//pas de problème pour x
-			for (int i = (int) start.y - 1, index = 0; i >= (start.y - entity.getHeight()); i--) {
-				for (int j = (int) start.x; j < start.x + entity.getWidth() && index < entities.size; j++, index++) {
-					MapLibgdxCell c = new MapLibgdxCell(tileLayer, i, j);
-					c.setTile(this.map.getMap().getTileSets().getTile(MathUtils.ceil(entities.get(index))));
-					c.setEntity(entity);
-					tileLayer.setCell(j, i, c);
-				}
-			}
-		}
+		this.mapBounds = new Bounds(left, right, top, bot);
 	}
 
-	private float getMapHeight() {
-		return height * tileHeight;
+	public float getMapHeight() {
+		return mapHeight;
 	}
 
 	public float getMapWidth() {
-		return width * tileWidth;
+		return mapWidth;
 	}
 
 	public float getUnitScale() {

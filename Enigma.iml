@@ -10,6 +10,7 @@
       <sourceFolder url="file://$MODULE_DIR$/assets" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/documents" type="java-resource" />
       <excludeFolder url="file://$MODULE_DIR$/documents" />
+      <excludeFolder url="file://$MODULE_DIR$/libs/packer" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

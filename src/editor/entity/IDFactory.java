@@ -4,6 +4,13 @@ import java.util.ArrayList;
 
 /**
  * Crée et gère des ID à attribuer à des objets
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 2.0
+ * @since 2.0
  */
 public class IDFactory {
 

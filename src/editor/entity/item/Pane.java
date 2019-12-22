@@ -1,18 +1,18 @@
 package editor.entity.item;
 
+import api.entity.interfaces.Content;
+import api.entity.interfaces.Item;
 import editor.enigma.Enigma;
-import editor.entity.Player;
-import editor.entity.interfaces.Content;
-import editor.entity.interfaces.Item;
-import editor.textures.Texture;
+import editor.entity.player.Player;
+import editor.utils.textures.Texture;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
  * @version 2.2
- * @see editor.entity.interfaces.Item
- * @see editor.entity.interfaces.Content
+ * @see api.entity.interfaces.Item
+ * @see api.entity.interfaces.Content
  */
 public class Pane implements Content, Item {
 

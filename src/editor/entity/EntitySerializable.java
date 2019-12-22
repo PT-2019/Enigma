@@ -1,15 +1,21 @@
 package editor.entity;
 
+import api.enums.EntitiesCategories;
+import api.enums.Layer;
 import com.badlogic.gdx.utils.Array;
-import editor.datas.EntitiesCategories;
-import editor.datas.Layer;
+import game.ui.CategoriesMenu;
 
 import java.util.HashMap;
 
 /**
  * Représentation d'une entité du fichier json
  *
- * @version 3.0 14 décembre 2019
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 3.0
+ * @since 3.0
  */
 public class EntitySerializable {
 
@@ -52,26 +58,65 @@ public class EntitySerializable {
 		this.category = entity.category;
 	}
 
+	/**
+	 * Retourne la catégorie de l'entité
+	 *
+	 * @return la catégorie de l'entité
+	 * @see CategoriesMenu
+	 * @since 3.0
+	 */
 	public EntitiesCategories getCategory() {
 		return this.category;
 	}
 
+	/**
+	 * Renvoi le chemin vers le .png qui représente l'entité
+	 *
+	 * @return le chemin vers le .png qui représente l'entité
+	 * @since 3.0
+	 */
 	public String getPath() {
 		return this.path;
 	}
 
+	/**
+	 * Renvoi la largeur de l'objet
+	 *
+	 * @return la largeur de l'objet
+	 * @since 3.0
+	 */
 	public int getWidth() {
 		return this.width;
 	}
 
+	/**
+	 * Renvoi la hauteur de l'objet
+	 *
+	 * @return la hauteur de l'objet
+	 * @since 3.0
+	 */
 	public int getHeight() {
 		return this.height;
 	}
 
+	/**
+	 * Retourne un tableau de tiles TILED représentant l'entité selon niveau
+	 *
+	 * @param layer le niveau
+	 * @return Retourne un tableau de tiles TILED représentant l'entité
+	 * @see api.enums.Layer
+	 * @since 3.0
+	 */
 	public Array<Float> getTiles(Layer layer) {
 		return this.tiles.get(layer.name());
 	}
 
+	/**
+	 * Retourne le nom .class de la classe qui correspond a cet entité
+	 *
+	 * @return le nom .class de la classe qui correspond a cet entité
+	 * @since 3.0
+	 */
 	public String getClassName() {
 		return this.className;
 	}

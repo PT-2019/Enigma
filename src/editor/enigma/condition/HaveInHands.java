@@ -1,15 +1,20 @@
 package editor.enigma.condition;
 
-import editor.entity.Player;
-import editor.entity.interfaces.Item;
+import api.entity.interfaces.Item;
+import editor.entity.player.Player;
 
 import java.util.Map;
 
 /**
  * Vérifie que le joueur tien un item défini dans ses mains
  *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
  * @version 2.2
  * @see editor.enigma.condition.Condition
+ * @since 2.0
  */
 public class HaveInHands extends Condition {
 
@@ -37,7 +42,7 @@ public class HaveInHands extends Condition {
 	@Override
 	public boolean verify(Player p) {
 		Item i = (Item) this.entity;
-		//tester si p a i dans ses mains
+		//TODO: tester si p a i dans ses mains
 		return false;
 	}
 

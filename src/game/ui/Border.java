@@ -2,7 +2,18 @@ package game.ui;
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
+/**
+ * TODO: comment this class
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 3.0
+ * @since 3.0
+ */
 public class Border extends ShapeRenderer {
+
 	private int col;
 	private int row;
 	private int tile;

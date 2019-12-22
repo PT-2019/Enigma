@@ -11,11 +11,32 @@ import editor.entity.EntitySerializable;
  */
 public class MapLibgdxCell extends TiledMapTileLayer.Cell {
 
+	/**
+	 * Niveau ou se trouve l'entité
+	 */
 	private final TiledMapTileLayer layer;
+
+	/**
+	 * Index de la case parmi les cases de l'entité
+	 */
+	private final int index;
+
+	/**
+	 * L'entité contenue dans la case
+	 * <p>
+	 * this.entity.getClassName renvoi par exemple editor.entity.item.Chest
+	 */
 	private EntitySerializable entity;
 
-	public MapLibgdxCell(TiledMapTileLayer layer, int i, int j) {
+	/**
+	 * Crée une cellule de la map
+	 *
+	 * @param layer Niveau ou se trouve l'entité
+	 * @param index Index de la case parmi les cases de l'entité
+	 */
+	public MapLibgdxCell(TiledMapTileLayer layer, int index) {
 		this.layer = layer;
+		this.index = index;
 		this.entity = null;
 	}
 
@@ -23,8 +44,16 @@ public class MapLibgdxCell extends TiledMapTileLayer.Cell {
 		return entity;
 	}
 
+	/**
+	 * Défini l'entité contenue dans la case
+	 *
+	 * @param entity l'entité contenue dans la case
+	 */
 	public void setEntity(EntitySerializable entity) {
 		this.entity = entity;
-		//this.entity.getClassName renvoi par exemple editor.entity.item.Chest
+	}
+
+	public int getIndex() {
+		return index;
 	}
 }

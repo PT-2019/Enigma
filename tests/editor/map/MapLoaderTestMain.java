@@ -1,5 +1,8 @@
 package editor.map;
 
+import editor.utils.save.MapLoader;
+import editor.utils.save.SaveMap;
+
 /**
  * Utilisation de la méthode DOM car on veut utilisé de nombreuse données du
  * fichier XML.

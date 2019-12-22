@@ -1,18 +1,18 @@
 package editor.entity.item;
 
+import api.entity.interfaces.Item;
+import api.entity.interfaces.Lockable;
 import editor.enigma.Enigma;
-import editor.entity.Player;
-import editor.entity.interfaces.Item;
-import editor.entity.interfaces.Lockable;
-import editor.textures.Texture;
+import editor.entity.player.Player;
+import editor.utils.textures.Texture;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
  * @version 2.2
- * @see editor.entity.interfaces.Lockable
- * @see editor.entity.interfaces.Item
+ * @see api.entity.interfaces.Lockable
+ * @see api.entity.interfaces.Item
  */
 public class Chest implements Item, Lockable {
 

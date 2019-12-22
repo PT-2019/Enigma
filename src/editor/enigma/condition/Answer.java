@@ -1,6 +1,6 @@
 package editor.enigma.condition;
 
-import editor.entity.Player;
+import editor.entity.player.Player;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,8 +8,13 @@ import java.util.Map;
 /**
  * Vérifie que l'utilisateur donne une réponse correcte
  *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
  * @version 2.2
  * @see editor.enigma.condition.Condition
+ * @since 2.0
  */
 public class Answer extends Condition {
 

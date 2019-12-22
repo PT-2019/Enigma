@@ -1,17 +1,23 @@
 package editor;
 
-import editor.api.Application;
-import editor.bibliotheque.MenuScreen;
+import api.Application;
 import editor.window.Window;
 
-import java.awt.*;
+import java.awt.BorderLayout;
 
 /**
  * Lanceur de l'éditeur d'escape game
  *
- * @version 1.0
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 4.0 22/12/2019
+ * @since 1.0
  */
 public class EditorLuncher implements Application {
+
+	private static EditorLuncher editor;
 
 	/**
 	 * la fenêtre dans laquelle il est lancé
@@ -24,7 +30,7 @@ public class EditorLuncher implements Application {
 	 * @param width  largeur de la fenêtre
 	 * @param height hauteur de la fenêtre
 	 */
-	public EditorLuncher(int width, int height) {
+	private EditorLuncher(int width, int height) {
 		//préparer ici l'application pour son démarrage
 		this.window = new Window(width, height);
 
@@ -39,12 +45,30 @@ public class EditorLuncher implements Application {
 		this.window.setLayout(new BorderLayout());
 		this.window.setLocationRelativeTo(null);
 		this.window.setDefaultCloseOperation(Window.EXIT_ON_CLOSE);
-		this.window.add(new MenuScreen(this.window), BorderLayout.CENTER);
+		this.window.add(new EditorScreen(this.window), BorderLayout.CENTER);
+	}
+
+	public static EditorLuncher setEditor(int width, int height) {
+		if (editor == null) {
+			editor = new EditorLuncher(width, height);
+		}
+		return editor;
+	}
+
+	public static EditorLuncher getInstance() {
+		if (editor == null) {
+			editor = new EditorLuncher(1080, 720);
+		}
+		return editor;
 	}
 
 	@Override
 	public void start() {
 		//on démarre l'application
 		this.window.setVisible(true);
+	}
+
+	public Window getWindow() {
+		return window;
 	}
 }

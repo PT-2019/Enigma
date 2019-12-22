@@ -1,21 +1,21 @@
 package editor.entity.item;
 
+import api.entity.interfaces.Item;
+import api.entity.interfaces.Lockable;
+import api.entity.interfaces.Passage;
 import editor.enigma.Enigma;
-import editor.entity.Player;
-import editor.entity.interfaces.Item;
-import editor.entity.interfaces.Lockable;
-import editor.entity.interfaces.Passage;
-import editor.map.Room;
-import editor.textures.Texture;
+import editor.entity.map.Room;
+import editor.entity.player.Player;
+import editor.utils.textures.Texture;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
  * @version 2.1
- * @see editor.entity.interfaces.Item
- * @see editor.entity.interfaces.Lockable
- * @see editor.entity.interfaces.Passage
+ * @see api.entity.interfaces.Item
+ * @see api.entity.interfaces.Lockable
+ * @see api.entity.interfaces.Passage
  */
 public class Door implements Item, Passage, Lockable {
 

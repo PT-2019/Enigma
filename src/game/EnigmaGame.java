@@ -1,20 +1,25 @@
 package game;
 
+import api.LibgdxGame;
+import api.enums.EnigmaScreens;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
-import game.api.LibgdxGame;
-import game.screen.EnigmaScreens;
 import game.screen.TestScreen;
 
 /**
  * Lanceur du jeu
  *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
  * @version 3.0 14 décembre 2019
  * @since 2.0
  */
 public class EnigmaGame extends LibgdxGame {
 
 	//on charge ici le joueur et tout ce qui vit indépendamment des écrans
+	//....
 
 	//instance unique
 	private static EnigmaGame enigmaGame;
@@ -47,5 +52,10 @@ public class EnigmaGame extends LibgdxGame {
 
 		//définit l'écran actuel de l'application
 		EnigmaGame.setScreen(EnigmaScreens.TEST.name());
+	}
+
+	@Override
+	public void free() {
+
 	}
 }

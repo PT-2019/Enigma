@@ -1,16 +1,21 @@
 package editor.enigma.operation;
 
-import editor.entity.Player;
-import editor.entity.interfaces.Item;
-import editor.entity.interfaces.Lockable;
+import api.entity.interfaces.Item;
+import api.entity.interfaces.Lockable;
+import editor.entity.player.Player;
 
 import java.util.Map;
 
 /**
  * Déverrouille un objet verrouillable
  *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
  * @version 2.2
  * @see editor.enigma.operation.Operation
+ * @since 2.0
  */
 public class Unlock extends Operation {
 

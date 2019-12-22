@@ -1,11 +1,11 @@
 package editor.enigma;
 
-import editor.datas.Attributes;
+import api.enums.Attributes;
 import editor.enigma.condition.Condition;
 import editor.enigma.operation.Operation;
-import editor.entity.Player;
+import editor.entity.player.Player;
 
-import javax.swing.*;
+import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -17,10 +17,15 @@ import java.util.Map;
  * Enigma gère une énigme. Une énigme est définie par les {@link editor.enigma.condition.Condition conditions} à satisfaire pour résoudre l'énigme ainsi que les {@link editor.enigma.operation.Operation opérations} réalisées si toutes les conditions sont satisfaites.
  * Une énigme contient aussi des {@link editor.enigma.Advice indices} déstinés aux joueurs.
  *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
  * @version 2.4
  * @see editor.enigma.condition.Condition
  * @see editor.enigma.operation.Operation
  * @see editor.enigma.Advice
+ * @since 2.0
  */
 public class Enigma implements ActionListener {
 
@@ -361,7 +366,7 @@ public class Enigma implements ActionListener {
 	 * Obtenir un EnumMap de l'objet avec ses attributs et leur état
 	 *
 	 * @return EnumMap de l'objet
-	 * @see editor.datas.Attributes
+	 * @see api.enums.Attributes
 	 */
 	public HashMap<String, Object> objectToMap() {
 		HashMap<String, Object> object = new HashMap<>();

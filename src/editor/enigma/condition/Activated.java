@@ -1,15 +1,20 @@
 package editor.enigma.condition;
 
-import editor.entity.Player;
 import editor.entity.item.Activatable;
+import editor.entity.player.Player;
 
 import java.util.Map;
 
 /**
- * Vérify qu'un objet activable est activé
+ * Vérifie qu'un objet activable est activé
  *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
  * @version 2.1
  * @see editor.enigma.condition.Condition
+ * @since 2.0
  */
 public class Activated extends Condition {
 

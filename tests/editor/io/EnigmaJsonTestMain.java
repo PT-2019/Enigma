@@ -8,9 +8,11 @@ import editor.enigma.operation.Summon;
 import editor.enigma.operation.Unlock;
 import editor.entity.item.Door;
 import editor.entity.item.Switch;
-import editor.entity.Player;
+import editor.entity.player.Player;
 import editor.entity.IDFactory;
-import editor.map.Case;
+import editor.entity.map.Case;
+import editor.utils.json.EnigmaJsonReader;
+import editor.utils.json.EnigmaJsonWriter;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;

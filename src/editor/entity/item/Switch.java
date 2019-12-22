@@ -1,8 +1,8 @@
 package editor.entity.item;
 
 import editor.enigma.Enigma;
-import editor.entity.Player;
-import editor.textures.Texture;
+import editor.entity.player.Player;
+import editor.utils.textures.Texture;
 
 import java.util.ArrayList;
 import java.util.Iterator;

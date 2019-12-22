@@ -1,16 +1,16 @@
 package editor.entity.item;
 
+import api.entity.interfaces.Item;
 import editor.enigma.Enigma;
-import editor.entity.Player;
-import editor.entity.interfaces.Item;
-import editor.textures.Texture;
+import editor.entity.player.Player;
+import editor.utils.textures.Texture;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
  * @version 2.2
- * @see editor.entity.interfaces.Item
+ * @see api.entity.interfaces.Item
  */
 public class Floor implements Item {
 
