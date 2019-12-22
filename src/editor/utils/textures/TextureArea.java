@@ -1,5 +1,7 @@
 package editor.utils.textures;
 
+import org.lwjgl.Sys;
+
 import javax.imageio.ImageIO;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -114,7 +116,7 @@ public class TextureArea {
 	public void load() {
 		try {
 			//open file
-			FileInputStream input = new FileInputStream(new File(path));
+			FileInputStream input = new FileInputStream(new File("assets/"+path));
 			//read image
 			buffer = ImageIO.read(input);
 			//close file

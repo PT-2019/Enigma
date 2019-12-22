@@ -23,7 +23,7 @@ public class MapLibgdxCell extends TiledMapTileLayer.Cell {
 
 	/**
 	 * L'entité contenue dans la case
-	 * <p>
+	 *
 	 * this.entity.getClassName renvoi par exemple editor.entity.item.Chest
 	 */
 	private EntitySerializable entity;
@@ -57,3 +57,6 @@ public class MapLibgdxCell extends TiledMapTileLayer.Cell {
 		return index;
 	}
 }
+	public TiledMapTileLayer getLayer(){
+		return this.layer;
+	}

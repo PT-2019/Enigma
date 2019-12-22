@@ -5,6 +5,10 @@ import api.enums.keys.CameraKeys;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.badlogic.gdx.utils.viewport.FillViewport;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import editor.enigma.Enigma;
+import editor.map.view.TestMapControl;
 import game.EnigmaGame;
 import game.entity.MapLibgdx;
 import game.ui.CategoriesMenu;
@@ -70,7 +74,7 @@ public class TestScreen extends LibgdxScreen {
 		this.listen(this.dnd);
 		this.listen(this.hud);
 		this.listen(this.main);
-		this.listen(this.map);
+		this.listen(new TestMapControl(map));
 	}
 
 	@Override

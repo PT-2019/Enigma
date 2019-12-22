@@ -22,6 +22,9 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Array;
 import editor.entity.EntitySerializable;
 import editor.utils.save.SaveMap;
+import editor.map.view.MapControl;
+import editor.map.view.TestMapControl;
+import editor.utils.Utility;
 import game.ui.Border;
 import org.intellij.lang.annotations.MagicConstant;
 import org.jetbrains.annotations.NotNull;
@@ -41,7 +44,7 @@ import static api.MapsNameUtils.WIDTH_P;
  * @version 4.3 22/12/2019
  * @since 2.0 5 décembre 2019
  */
-public class MapLibgdx extends Group implements InputListener {
+public class MapLibgdx extends Group{
 
 	/**
 	 * Dimension d'un tile
@@ -263,26 +266,6 @@ public class MapLibgdx extends Group implements InputListener {
 
 		//render borders
 		this.border.draw();
-	}
-
-	/**
-	 * Gère le scroll de la map
-	 *
-	 * @param amount 1 pour zoom avant, -1 pour arrière
-	 * @return true si l'évènement est géré
-	 * @since 2.0
-	 */
-	@Override
-	public boolean scrolled(int amount) {
-		if (Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT)) {
-			if (amount == 1) {
-				camera.zoom += 0.5;
-			} else {
-				camera.zoom -= 0.5;
-			}
-			return true;
-		}
-		return false;
 	}
 
 	/**

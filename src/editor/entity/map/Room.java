@@ -55,7 +55,7 @@ public class Room implements IDInterface {
 
 		//fill
 		//pour les tests
-		ImageIcon img = new ImageIcon("assets/monsters/019.png");
+		ImageIcon img = new ImageIcon("assets/entities/monsters/019.png");
 
 		for (int i = 0; i < this.cases.length; i++) {
 			this.cases[i] = new Case();
@@ -134,5 +134,11 @@ public class Room implements IDInterface {
 	 */
 	public void setID(int id) {
 		this.id = id;
+	}
+
+	//pour test
+
+	public Case[] getCases() {
+		return cases;
 	}
 }
