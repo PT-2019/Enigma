@@ -6,8 +6,6 @@ import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.*;
-import editor.datas.Layer;
-import editor.textures.TextureArea;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -20,10 +18,7 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
-import java.awt.Point;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Sauvegarde une map et les textures associés.
@@ -33,7 +28,7 @@ import java.util.HashMap;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 2.0
+ * @version 4.0 22/12/2019
  * @since 2.0
  */
 public class SaveMap {
@@ -148,7 +143,12 @@ public class SaveMap {
 						if (tmp == null){
 							tmpstring.append("0");
 						}else{
-							tmpstring.append(tmp.getTile().getId());
+							TiledMapTile tile = tmp.getTile();
+							if(tile == null){//si cellule mais pas de tile
+								tmpstring.append("0");
+							} else {
+								tmpstring.append(tile.getId());
+							}
 						}
 						tmpstring.append(",");
 					}

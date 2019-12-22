@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-        <!ELEMENT map (tileset+,layer+,room+)>
+        <!-- par Quentin le 22/12/19
+        <!ELEMENT map (tileset+,layer+,room+)>-->
+        <!ELEMENT map (tileset+) (layer+) (room+)>
         <!ATTLIST map width CDATA #REQUIRED>
         <!ATTLIST map height CDATA #REQUIRED>
 

@@ -21,8 +21,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Array;
 import editor.entity.EntitySerializable;
-import editor.map.SaveMap;
-import editor.utils.Utility;
+import editor.utils.save.SaveMap;
 import game.ui.Border;
 import org.intellij.lang.annotations.MagicConstant;
 import org.jetbrains.annotations.NotNull;
@@ -108,10 +107,19 @@ public class MapLibgdx extends Group implements InputListener {
 		this.camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		this.camera.update();
 
-		SaveMap save = new SaveMap(tiledMap);
-		save.saveMap("assets/map/test.tmx");
 		//bounds
 		this.setMapBounds();
+	}
+
+	@Override
+	public boolean keyDown(int keycode) {
+		//Sauvegarde si l
+		if(keycode == Input.Keys.L){
+			SaveMap save = new SaveMap(this.map.getMap());
+			save.saveMap("assets/map/test.tmx");
+		}
+
+		return false;
 	}
 
 	/**
