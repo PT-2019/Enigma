@@ -1,7 +1,7 @@
 package editor.enigma.operation;
 
 
-import editor.datas.Attributes;
+import api.enums.Attributes;
 import editor.entity.IDFactory;
 import editor.entity.Player;
 import editor.entity.interfaces.Entity;
@@ -13,80 +13,85 @@ import java.util.Map;
 /**
  * Fait apparaître une entité sur une case donnée
  *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
  * @version 2.2
+ * @since 2.2
  * @see editor.enigma.operation.Operation
  */
 public class Summon extends Operation {
 
-	/**
-	 * Case où doit apparaître l'entité
-	 */
-	private Case spawn;
+    /**
+     * Case où doit apparaître l'entité
+     */
+    private Case spawn;
 
-	/**
-	 * @param e     Entité concernée par l'opération
-	 * @param spawn Case où doit apparaître l'entité
-	 */
-	public Summon(Entity e, Case spawn) {
-		super(e);
-		this.spawn = spawn;
-	}
+    /**
+     * @param e     Entité concernée par l'opération
+     * @param spawn Case où doit apparaître l'entité
+     */
+    public Summon(Entity e, Case spawn) {
+        super(e);
+        this.spawn = spawn;
+    }
 
-	/**
-	 * @param attributes Attributs de la classe
-	 * @throws IllegalArgumentException Si un attribut est manquant
-	 */
-	public Summon(Map<String, Object> attributes) {
-		super(attributes);
-		IDFactory idFactory = IDFactory.getInstance();
-		if (attributes.containsKey(Attributes.SPAWN))
-			this.spawn = (Case) idFactory.getObject(Integer.parseInt((String) attributes.get(Attributes.SPAWN)));
-		else throw new IllegalArgumentException("Attribut \"spawn\" abscent");
-	}
+    /**
+     * @param attributes Attributs de la classe
+     * @throws IllegalArgumentException Si un attribut est manquant
+     */
+    public Summon(Map<String, Object> attributes) {
+        super(attributes);
+        IDFactory idFactory = IDFactory.getInstance();
+        if (attributes.containsKey(Attributes.SPAWN))
+            this.spawn = (Case) idFactory.getObject(Integer.parseInt((String) attributes.get(Attributes.SPAWN)));
+        else throw new IllegalArgumentException("Attribut \"spawn\" abscent");
+    }
 
-	/**
-	 * Effectue l'action
-	 *
-	 * @param p Joueur ayant mené à l'appel de cette méthode
-	 */
-	@Override
-	public void doOperation(Player p) {
-		//faire apparaitre this.entity sur this.spawn
-	}
+    /**
+     * Effectue l'action
+     *
+     * @param p Joueur ayant mené à l'appel de cette méthode
+     */
+    @Override
+    public void doOperation(Player p) {
+        //faire apparaitre this.entity sur this.spawn
+    }
 
 
-	/**
-	 * Obtenir un EnumMap de l'objet avec ses attributs et leur état
-	 *
-	 * @return EnumMap de l'objet
-	 * @see editor.datas.Attributes
-	 */
-	@Override
-	public HashMap<String, Object> objectToMap() {
-		HashMap<String, Object> object = new HashMap<>();
-		object.put(Attributes.PATH, this.getClass().getName());
-		object.put(Attributes.ENTITY, this.entity.getID() + "");
-		object.put(Attributes.SPAWN, this.spawn.getID() + "");
-		return object;
-	}
+    /**
+     * Obtenir un EnumMap de l'objet avec ses attributs et leur état
+     *
+     * @return EnumMap de l'objet
+     * @see api.enums.Attributes
+     */
+    @Override
+    public HashMap<String, Object> objectToMap() {
+        HashMap<String, Object> object = new HashMap<>();
+        object.put(Attributes.PATH, this.getClass().getName());
+        object.put(Attributes.ENTITY, this.entity.getID() + "");
+        object.put(Attributes.SPAWN, this.spawn.getID() + "");
+        return object;
+    }
 
-	/**
-	 * Version texte de l'objet
-	 *
-	 * @return Texte représentant l'objet
-	 */
-	@Override
-	public String toString() {
-		return "[Summon]";
-	}
+    /**
+     * Version texte de l'objet
+     *
+     * @return Texte représentant l'objet
+     */
+    @Override
+    public String toString() {
+        return "[Summon]";
+    }
 
-	/**
-	 * Version texte longue de l'objet
-	 *
-	 * @return Texte représentant l'objet
-	 */
-	@Override
-	public String toLongString() {
-		return "[Summon  : entity = " + this.entity + ", spawn = " + this.spawn + "]";
-	}
+    /**
+     * Version texte longue de l'objet
+     *
+     * @return Texte représentant l'objet
+     */
+    @Override
+    public String toLongString() {
+        return "[Summon  : entity = " + this.entity + ", spawn = " + this.spawn + "]";
+    }
 }

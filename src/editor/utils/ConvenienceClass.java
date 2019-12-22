@@ -1,3 +1,4 @@
 package editor.utils;
 
-public @interface ConvenienceClass {}
+public @interface ConvenienceClass {
+}

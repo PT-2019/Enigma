@@ -5,11 +5,11 @@ package editor.entity.interfaces;
  */
 public interface Living {
 
-	/**
-	 * Obtenir les points de vie de l'entité
-	 *
-	 * @return Les points de vie
-	 */
-	int getHP();
+    /**
+     * Obtenir les points de vie de l'entité
+     *
+     * @return Les points de vie
+     */
+    int getHP();
 }
 

@@ -10,16 +10,16 @@ import javax.swing.*;
  */
 public class DesktopLuncher implements Runnable {
 
-	public static void main(String[] ignore) {
-		//appelle après initialisation de la libgdx, l'éditeur
-		SwingUtilities.invokeLater(new DesktopLuncher());
-	}
+    public static void main(String[] ignore) {
+        //appelle après initialisation de la libgdx, l'éditeur
+        SwingUtilities.invokeLater(new DesktopLuncher());
+    }
 
-	//cette méthode contient le code de lancement de l'éditeur
-	//après chargement de la libgdx par SwingUtilities.invokeLater(Runnable)
-	@Override
-	public void run() {
-		EditorLuncher editorLuncher = EditorLuncher.setEditor(1200, 800);
-		editorLuncher.start();
-	}
+    //cette méthode contient le code de lancement de l'éditeur
+    //après chargement de la libgdx par SwingUtilities.invokeLater(Runnable)
+    @Override
+    public void run() {
+        EditorLuncher editorLuncher = EditorLuncher.setEditor(1200, 800);
+        editorLuncher.start();
+    }
 }

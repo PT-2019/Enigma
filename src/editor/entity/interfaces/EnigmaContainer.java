@@ -12,25 +12,25 @@ import java.util.Iterator;
  */
 public interface EnigmaContainer {
 
-	/**
-	 * Ajouter une énigme
-	 *
-	 * @param e Enigme à ajouter
-	 * @throws IllegalArgumentException si l'énigme existe déjà
-	 */
-	void addEnigma(Enigma e);
+    /**
+     * Ajouter une énigme
+     *
+     * @param e Enigme à ajouter
+     * @throws IllegalArgumentException si l'énigme existe déjà
+     */
+    void addEnigma(Enigma e);
 
-	/**
-	 * Permet de supprimer une énigme
-	 *
-	 * @param e Enigme à supprimer
-	 */
-	void removeEnigma(Enigma e);
+    /**
+     * Permet de supprimer une énigme
+     *
+     * @param e Enigme à supprimer
+     */
+    void removeEnigma(Enigma e);
 
-	/**
-	 * Obtenir toutes les énigmes
-	 *
-	 * @return Iterator des énigmes
-	 */
-	Iterator<Enigma> getAllEnigmas();
+    /**
+     * Obtenir toutes les énigmes
+     *
+     * @return Iterator des énigmes
+     */
+    Iterator<Enigma> getAllEnigmas();
 }

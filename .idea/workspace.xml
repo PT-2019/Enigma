@@ -2,13 +2,107 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4b6e0b2a-a6ad-4eff-b2cc-63f9693ec5fe" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/api/keys/CameraKeys.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/keys/EnigmaKeys.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/enums/Attributes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/enums/Direction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/enums/EntitiesCategories.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/enums/Layer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/enums/Readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/enums/keys/CameraKeys.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/enums/keys/EnigmaKeys.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/editor/enigma/Readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/editor/enigma/operation/Readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/editor/entity/Readme.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DesktopLuncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DesktopLuncher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/IGameLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/IGameLogic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/LibgdxGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/LibgdxGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/LibgdxScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/LibgdxScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/MapsNameUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/MapsNameUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/actors/GameActor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/actors/GameActor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/actors/GameActorDragAndDrop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/actors/GameActorDragAndDrop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/actors/GameActorTextured.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/actors/GameActorTextured.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/actors/GameActorUtilities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/actors/GameActorUtilities.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/keys/CameraKeys.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/keys/EnigmaKeys.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/EditorLuncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/EditorLuncher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/bibliotheque/ChoixObjet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bibliotheque/ChoixObjet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/bibliotheque/DragAndDropDND.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bibliotheque/DragAndDropDND.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/bibliotheque/EntityContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bibliotheque/EntityContainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/bibliotheque/MenuScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bibliotheque/MenuScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/bibliotheque/Readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bibliotheque/Readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/datas/Attributes.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/datas/Direction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/datas/EntitiesCategories.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/datas/Layer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/enigma/Advice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/enigma/Advice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/enigma/Enigma.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/enigma/Enigma.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/enigma/condition/Activated.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/enigma/condition/Activated.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/enigma/condition/Answer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/enigma/condition/Answer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/enigma/condition/Condition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/enigma/condition/Condition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/enigma/condition/HaveInHands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/enigma/condition/HaveInHands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/enigma/condition/HaveInInventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/enigma/condition/HaveInInventory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/enigma/operation/Give.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/enigma/operation/Give.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/enigma/operation/Operation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/enigma/operation/Operation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/enigma/operation/Summon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/enigma/operation/Summon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/enigma/operation/Unlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/enigma/operation/Unlock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/EntityFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/EntityFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/EntitySerializable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/EntitySerializable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/IDFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/IDFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/display/EntityPopMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/display/EntityPopMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/display/EntityView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/display/EntityView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/display/EntityViewListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/display/EntityViewListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/interfaces/Content.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/interfaces/Content.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/interfaces/EnigmaContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/interfaces/EnigmaContainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/interfaces/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/interfaces/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/interfaces/IDInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/interfaces/IDInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/interfaces/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/interfaces/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/interfaces/Living.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/interfaces/Living.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/interfaces/Lockable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/interfaces/Lockable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/interfaces/Passage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/interfaces/Passage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/item/Activatable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/item/Activatable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/item/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/item/Book.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/item/Button.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/item/Button.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/item/Chest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/item/Chest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/item/Door.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/item/Door.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/item/Floor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/item/Floor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/item/Pane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/item/Pane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/item/PressurePlate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/item/PressurePlate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/item/Switch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/item/Switch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/io/AtlasFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/io/AtlasFile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/io/AtlasReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/io/AtlasReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/io/EnigmaJsonReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/io/EnigmaJsonReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/io/EnigmaJsonWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/io/EnigmaJsonWriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/io/JsonTextureLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/io/JsonTextureLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/map/Case.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/map/Case.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/map/LoadHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/map/LoadHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/map/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/map/Map.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/map/MapLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/map/MapLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/map/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/map/Room.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/map/SaveMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/map/SaveMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/map/Wall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/map/Wall.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/textures/Texture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/textures/Texture.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/textures/TextureArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/textures/TextureArea.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/textures/TextureProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/textures/TextureProxy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/utils/CalculHeader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/utils/CalculHeader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/utils/ConvenienceClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/utils/ConvenienceClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/utils/LoadGameLibgdxApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/utils/LoadGameLibgdxApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/utils/Utility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/utils/Utility.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/window/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/window/Window.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/EnigmaGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/EnigmaGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/entity/CategoriesMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/entity/CategoriesMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game/entity/DragAndDrop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/entity/DragAndDrop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/entity/DragAndDropBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/entity/DragAndDropBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/entity/DraggedEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/entity/DraggedEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/entity/EntityContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/entity/EntityContainer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game/entity/MapLibgdx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/entity/MapLibgdx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/entity/MapLibgdxCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/entity/MapLibgdxCell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/screen/EnigmaScreens.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/screen/EnigmaScreens.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game/screen/TestScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/screen/TestScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/ui/Border.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/ui/Border.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game/utils/Bounds.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/utils/Bounds.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/utils/InputListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/utils/InputListener.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -56,7 +150,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="editing.templates" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -106,7 +200,7 @@
       <module name="Enigma" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="editor.datas.*" />
+          <option name="PATTERN" value="api.enums.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -120,7 +214,7 @@
       <module name="Enigma" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="editor.datas.*" />
+          <option name="PATTERN" value="api.enums.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>

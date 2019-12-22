@@ -7,12 +7,12 @@ import javax.swing.*;
 
 public class Window extends JFrame {
 
-	public Window(int width, int height) {
-		super();
-		this.setSize(width, height);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    public Window(int width, int height) {
+        super();
+        this.setSize(width, height);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		//TODO: définir la position de la fenêtre (centrée).
-		//TODO: vérifier la taille (w, h) par rapport à l'écran
-	}
+        //TODO: définir la position de la fenêtre (centrée).
+        //TODO: vérifier la taille (w, h) par rapport à l'écran
+    }
 }

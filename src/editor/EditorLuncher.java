@@ -13,59 +13,57 @@ import java.awt.*;
  */
 public class EditorLuncher implements Application {
 
-	/**
-	 * la fenêtre dans laquelle il est lancé
-	 **/
-	private Window window;
+    private static EditorLuncher editor;
+    /**
+     * la fenêtre dans laquelle il est lancé
+     **/
+    private Window window;
 
-	private static EditorLuncher editor;
+    /**
+     * Construit l'éditeur d'escape game
+     *
+     * @param width  largeur de la fenêtre
+     * @param height hauteur de la fenêtre
+     */
+    private EditorLuncher(int width, int height) {
+        //préparer ici l'application pour son démarrage
+        this.window = new Window(width, height);
 
-	public static EditorLuncher setEditor(int width, int height) {
-		if(editor == null){
-			editor = new EditorLuncher(width, height);
-		}
-		return editor;
-	}
+        //ici on configure la fenêtre
 
-	public static EditorLuncher getInstance(){
-		if(editor == null){
-			editor = new EditorLuncher(1080, 720);
-		}
-		return editor;
-	}
+        //titre de la fenêtre
+        this.window.setTitle("Enigma");
 
+        // Icône de l'application
+        // this.window.setIconImage();
 
-	/**
-	 * Construit l'éditeur d'escape game
-	 *
-	 * @param width  largeur de la fenêtre
-	 * @param height hauteur de la fenêtre
-	 */
-	private EditorLuncher(int width, int height) {
-		//préparer ici l'application pour son démarrage
-		this.window = new Window(width, height);
+        this.window.setLayout(new BorderLayout());
+        this.window.setLocationRelativeTo(null);
+        this.window.setDefaultCloseOperation(Window.EXIT_ON_CLOSE);
+        this.window.add(new MenuScreen(this.window), BorderLayout.CENTER);
+    }
 
-		//ici on configure la fenêtre
+    public static EditorLuncher setEditor(int width, int height) {
+        if (editor == null) {
+            editor = new EditorLuncher(width, height);
+        }
+        return editor;
+    }
 
-		//titre de la fenêtre
-		this.window.setTitle("Enigma");
+    public static EditorLuncher getInstance() {
+        if (editor == null) {
+            editor = new EditorLuncher(1080, 720);
+        }
+        return editor;
+    }
 
-		// Icône de l'application
-		// this.window.setIconImage();
+    @Override
+    public void start() {
+        //on démarre l'application
+        this.window.setVisible(true);
+    }
 
-		this.window.setLayout(new BorderLayout());
-		this.window.setLocationRelativeTo(null);
-		this.window.setDefaultCloseOperation(Window.EXIT_ON_CLOSE);
-		this.window.add(new MenuScreen(this.window), BorderLayout.CENTER);
-	}
-
-	@Override
-	public void start() {
-		//on démarre l'application
-		this.window.setVisible(true);
-	}
-
-	public Window getWindow() {
-		return window;
-	}
+    public Window getWindow() {
+        return window;
+    }
 }

@@ -11,138 +11,114 @@ import game.utils.InputListener;
 import java.util.Iterator;
 
 /**
- * A typical game should have a init, game loop and dispose.
- * Game Loop means input, update, render.
- * <p>
- * Most Libgdx methods are hidden.
- * <p>
- * A screen could listener it's actors (don't forget {@link #listen(com.badlogic.gdx.InputProcessor)}
- * <p>
- * It could handle event {@link InputListener}
+ * Il s'agit d'un écran du jeu mais qui remplit toutes les fonctionnalités
+ * d'un jeu entier : phase initialisation et libération et la gameloop.
  *
- * @version 3.0 03 december 2019
+ * Les méthodes de la libgdx sont cachés au mieux.
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 03 december 2019
  * @since 03 december 2019
+ * @see #listen(InputProcessor)
+ * @see InputListener
  */
 public abstract class LibgdxScreen implements Screen, InputListener, IGameLogic {
 
-	private Array<InputProcessor> listened;
+    /**
+     * Liste des processus en écoute
+     */
+    private Array<InputProcessor> listened;
 
-	public LibgdxScreen() {
-		this.listened = new Array<>();
-		this.init();
-	}
+    public LibgdxScreen() {
+        this.listened = new Array<>();
+        this.init();
+    }
 
-	/**
-	 * Initialisations, allocations...
-	 */
-	public abstract void init();
+    /**
+     * Cache l'écran mais les évènements doivent continuer d'être capturés
+     *
+     * setVisible ou addAction(Actions.hide()) et addAction(Actions.show())
+     * devrait suffire sur les stages
+     *
+     * @param display true pour cacher l'écran sinon false
+     *
+     * @since 3.0 03 december 2019
+     */
+    public abstract void display(boolean display);
 
-	/**
-	 * poll user input
-	 */
-	public abstract void input();
+    /* listen méthods */
 
-	/**
-	 * Update of the game
-	 *
-	 * @param dt elapsed time since last call
-	 */
-	public abstract void update(float dt);
+    /**
+     * When a event happens, if no one before was concerned
+     * by the event, all stage's observers will be called.
+     *
+     * Warning! The events are called in the same order listens
+     * call were done.
+     *
+     * So it would be wise to call listen on hud's stage before main's stage
+     * for instance.
+     *
+     * @param stage the stage witch should be adverted of events
+     *
+     * @since 3.0 03 december 2019
+     */
+    protected void listen(InputProcessor stage) {
+        this.listened.add(stage);
+    }
 
-	/**
-	 * render (print) everything on the screen
-	 */
-	public abstract void render();
+    /**
+     * Return all listened stages.
+     * They could be removed.
+     *
+     * @return all listened stages.
+     *
+     * @since 3.0 03 december 2019
+     */
+    public Iterator<InputProcessor> getListened() {
+        return new Array.ArrayIterator<>(this.listened);
+    }
 
-	/**
-	 * Called each time the screen is resized
-	 *
-	 * @param width  screen width
-	 * @param height screen height
-	 */
-	@Override
-	public abstract void resize(int width, int height);
+    /* Screen methods are hidden, to make gameLogic (or game loop) more visible */
 
-	/**
-	 * Should hide or display the screen but event keep running
-	 * <p>
-	 * a setVisible or addAction(Actions.hide()) and addAction(Actions.show())
-	 * should be enough.
-	 *
-	 * @param display true for displaying else false
-	 */
-	public abstract void display(boolean display);
+    @Override
+    public void show() {
+        InputMultiplexer gestionnaireProcessus = (InputMultiplexer) Gdx.input.getInputProcessor();
+        gestionnaireProcessus.addProcessor(this);
+        for (InputProcessor processor : new Array.ArrayIterator<>(this.listened)) {
+            gestionnaireProcessus.addProcessor(processor);
+        }
+    }
 
-	/**
-	 * Close and frees
-	 */
-	@Override
-	public abstract void dispose();
+    @Override
+    public void render(float delta) {
+        //screen clear
+        Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-	/* Screen methods are hidden, to make gameLogic (or game loop) more visible */
+        //fake a gameLoop
+        this.input();
+        this.update(delta);
+        this.render();
+    }
 
-	/**
-	 * When a event happens, if no one before was concerned
-	 * by the event, all stage's observers will be called.
-	 * <p>
-	 * Warning! The events are called in the same order listens
-	 * call were done.
-	 * <p>
-	 * So it would be wise to call listen on hud's stage before main's stage
-	 * for instance.
-	 *
-	 * @param stage the stage witch should be adverted of events
-	 */
-	protected void listen(InputProcessor stage) {
-		this.listened.add(stage);
-	}
+    @Override
+    public void hide() {
+        InputMultiplexer gestionnaireProcessus = (InputMultiplexer) Gdx.input.getInputProcessor();
+        gestionnaireProcessus.removeProcessor(this);
+        for (InputProcessor processor : new Array.ArrayIterator<>(this.listened)) {
+            gestionnaireProcessus.removeProcessor(processor);
+        }
+    }
 
-	/**
-	 * Return all listened stages.
-	 * They could be removed.
-	 *
-	 * @return all listened stages.
-	 */
-	public Iterator<InputProcessor> getListened() {
-		return new Array.ArrayIterator<>(this.listened);
-	}
+    //don't care
 
-	@Override
-	public void show() {
-		InputMultiplexer gestionnaireProcessus = (InputMultiplexer) Gdx.input.getInputProcessor();
-		gestionnaireProcessus.addProcessor(this);
-		for (InputProcessor processor : new Array.ArrayIterator<>(this.listened)) {
-			gestionnaireProcessus.addProcessor(processor);
-		}
-	}
+    @Override
+    public void pause() {
+    }
 
-	@Override
-	public void render(float delta) {
-		//screen clear
-		Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-		//fake a gameLoop
-		this.input();
-		this.update(delta);
-		this.render();
-	}
-
-	@Override
-	public void hide() {
-		InputMultiplexer gestionnaireProcessus = (InputMultiplexer) Gdx.input.getInputProcessor();
-		gestionnaireProcessus.removeProcessor(this);
-		for (InputProcessor processor : new Array.ArrayIterator<>(this.listened)) {
-			gestionnaireProcessus.removeProcessor(processor);
-		}
-	}
-
-	//don't care
-
-	@Override
-	public void pause() {
-	}
-
-	@Override
-	public void resume() {
-	}
+    @Override
+    public void resume() {
+    }
 }

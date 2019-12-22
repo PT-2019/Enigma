@@ -7,19 +7,19 @@ package api;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 1.0
- * @since 1.0
- *
  * @see game.EnigmaGame
  * @see editor.EditorLuncher
+ * @since 1.0
  */
 @FunctionalInterface
 public interface Application {
 
-	/**
-	 * Cette méthode lance une application
-	 */
-	void start();
+    /**
+     * Cette méthode lance une application
+     *
+     * @since 1.0
+     */
+    void start();
 
 }

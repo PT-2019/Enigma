@@ -15,58 +15,58 @@ import java.util.Iterator;
  */
 public interface Item extends EnigmaContainer, Entity {
 
-	/**
-	 * Est appelé quand un joueur intéragit avec l'objet
-	 *
-	 * @param p Joueur ayant intéragit avec l'objet
-	 */
-	void interactsWith(Player p);
+    /**
+     * Est appelé quand un joueur intéragit avec l'objet
+     *
+     * @param p Joueur ayant intéragit avec l'objet
+     */
+    void interactsWith(Player p);
 
-	/**
-	 * Obtenir la texture de l'objet
-	 *
-	 * @return Texture de l'objet, null sinon
-	 */
-	Texture getTexture();
+    /**
+     * Obtenir la texture de l'objet
+     *
+     * @return Texture de l'objet, null sinon
+     */
+    Texture getTexture();
 
-	/**
-	 * Affiche un dialogue avec l'objet
-	 */
-	void showDialog();
+    /**
+     * Affiche un dialogue avec l'objet
+     */
+    void showDialog();
 
-	/**
-	 * Ajouter une énigme
-	 *
-	 * @param e Enigme à ajouter
-	 * @throws IllegalArgumentException si l'énigme existe déjà
-	 */
-	void addEnigma(Enigma e);
+    /**
+     * Ajouter une énigme
+     *
+     * @param e Enigme à ajouter
+     * @throws IllegalArgumentException si l'énigme existe déjà
+     */
+    void addEnigma(Enigma e);
 
-	/**
-	 * Permet de supprimer une énigme
-	 *
-	 * @param e Enigme à supprimer
-	 */
-	void removeEnigma(Enigma e);
+    /**
+     * Permet de supprimer une énigme
+     *
+     * @param e Enigme à supprimer
+     */
+    void removeEnigma(Enigma e);
 
-	/**
-	 * Obtenir toutes les énigmes
-	 *
-	 * @return Iterator des énigmes
-	 */
-	Iterator<Enigma> getAllEnigmas();
+    /**
+     * Obtenir toutes les énigmes
+     *
+     * @return Iterator des énigmes
+     */
+    Iterator<Enigma> getAllEnigmas();
 
-	/**
-	 * Obtenir l'ID
-	 *
-	 * @return L'ID, -1 si pas initialisé
-	 */
-	int getID();
+    /**
+     * Obtenir l'ID
+     *
+     * @return L'ID, -1 si pas initialisé
+     */
+    int getID();
 
-	/**
-	 * Définir l'ID
-	 *
-	 * @param id ID
-	 */
-	void setID(int id);
+    /**
+     * Définir l'ID
+     *
+     * @param id ID
+     */
+    void setID(int id);
 }

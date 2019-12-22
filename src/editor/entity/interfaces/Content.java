@@ -7,17 +7,17 @@ package editor.entity.interfaces;
  */
 public interface Content {
 
-	/**
-	 * Ajoute un contenu à l'objet
-	 *
-	 * @param content Contenu à ajouter
-	 */
-	void addContent(String content);
+    /**
+     * Ajoute un contenu à l'objet
+     *
+     * @param content Contenu à ajouter
+     */
+    void addContent(String content);
 
-	/**
-	 * Obtenir le contenu
-	 *
-	 * @return le contenu, le contenu peut être vide
-	 */
-	String getContent();
+    /**
+     * Obtenir le contenu
+     *
+     * @return le contenu, le contenu peut être vide
+     */
+    String getContent();
 }

@@ -10,19 +10,19 @@ import java.awt.*;
  */
 public class Texture {
 
-	private final Image texture;
-	private int position;
+    private final Image texture;
+    private int position;
 
-	public Texture(int pos, Image texture) {
-		this.position = pos;
-		this.texture = texture;
-	}
+    public Texture(int pos, Image texture) {
+        this.position = pos;
+        this.texture = texture;
+    }
 
-	public Image getImage() {
-		return texture;
-	}
+    public Image getImage() {
+        return texture;
+    }
 
-	public int getPosition() {
-		return position;
-	}
+    public int getPosition() {
+        return position;
+    }
 }

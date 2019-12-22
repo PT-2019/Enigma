@@ -1,8 +1,8 @@
 package game;
 
+import api.LibgdxGame;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
-import api.LibgdxGame;
 import game.screen.EnigmaScreens;
 import game.screen.TestScreen;
 
@@ -14,38 +14,43 @@ import game.screen.TestScreen;
  */
 public class EnigmaGame extends LibgdxGame {
 
-	//on charge ici le joueur et tout ce qui vit indépendamment des écrans
+    //on charge ici le joueur et tout ce qui vit indépendamment des écrans
 
-	//instance unique
-	private static EnigmaGame enigmaGame;
+    //instance unique
+    private static EnigmaGame enigmaGame;
 
-	private EnigmaGame() {
-	}
+    private EnigmaGame() {
+    }
 
-	/**
-	 * Il s'agit d'une singleton.
-	 *
-	 * @return l'instance unique du jeu
-	 */
-	public static EnigmaGame getInstance() {
-		if (enigmaGame == null) {
-			enigmaGame = new EnigmaGame();
-		}
-		return enigmaGame;
-	}
+    /**
+     * Il s'agit d'une singleton.
+     *
+     * @return l'instance unique du jeu
+     */
+    public static EnigmaGame getInstance() {
+        if (enigmaGame == null) {
+            enigmaGame = new EnigmaGame();
+        }
+        return enigmaGame;
+    }
 
-	@Override
-	public void start() {
-		enigmaGame = this;
-		Gdx.app.setLogLevel(Application.LOG_ERROR | Application.LOG_DEBUG);
+    @Override
+    public void start() {
+        enigmaGame = this;
+        Gdx.app.setLogLevel(Application.LOG_ERROR | Application.LOG_DEBUG);
 
-		//ajout des screens disponibles
-		EnigmaGame.addScreen(EnigmaScreens.TEST.name(), TestScreen.class);
+        //ajout des screens disponibles
+        EnigmaGame.addScreen(EnigmaScreens.TEST.name(), TestScreen.class);
 
-		//chargement des screens au début pour éviter les chargement pendant le jeu
-		EnigmaGame.load(EnigmaScreens.TEST.name());
+        //chargement des screens au début pour éviter les chargement pendant le jeu
+        EnigmaGame.load(EnigmaScreens.TEST.name());
 
-		//définit l'écran actuel de l'application
-		EnigmaGame.setScreen(EnigmaScreens.TEST.name());
-	}
+        //définit l'écran actuel de l'application
+        EnigmaGame.setScreen(EnigmaScreens.TEST.name());
+    }
+
+    @Override
+    public void free() {
+
+    }
 }
