@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import editor.EditorLuncher;
+import editor.utils.save.SaveMap;
 import editor.window.Window;
 import game.entity.MapLibgdx;
 
@@ -47,6 +48,12 @@ public class TestMapControl implements InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
+        //TODO: test sav
+        if(keycode == Input.Keys.L){
+            SaveMap s = new SaveMap(this.map.getTiledMap(), map.getEntities());
+            Gdx.app.debug(this.getClass().toString(), "Sauvegarde");
+            s.saveMap("assets/map/test.tmx");
+        }
 
         if (keycode == Input.Keys.CONTROL_LEFT)
             ispush = true;

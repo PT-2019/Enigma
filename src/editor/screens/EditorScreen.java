@@ -48,7 +48,7 @@ public class EditorScreen extends JPanel {
 		this.setLayout(new BorderLayout());
 
 		//génère une map vide
-		EmptyMapGenerator.generate("assets/map/EmptyTest.tmx", 50, 10);
+		EmptyMapGenerator.generate("assets/map/EmptyTest.tmx", 50, 30);
 
 		//charge entités
 		EntityFactory.loadEntities("assets/rooms.json");

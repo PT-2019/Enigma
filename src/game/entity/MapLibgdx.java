@@ -23,6 +23,8 @@ import game.ui.CategoriesMenu;
 import org.intellij.lang.annotations.MagicConstant;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashMap;
+
 import static api.MapsNameUtils.HEIGHT_P;
 import static api.MapsNameUtils.TILE_HEIGHT_P;
 import static api.MapsNameUtils.TILE_WIDTH_P;
@@ -68,6 +70,11 @@ public class MapLibgdx extends Group{
 	private Bounds mapBounds;
 
 	/**
+	 * Les entités de la maps
+	 */
+	private HashMap<Vector2 ,EntitySerializable> added;
+
+	/**
 	 * Crée une map depuis un fichier tmx
 	 *
 	 * @param path fichier .tmx
@@ -110,6 +117,8 @@ public class MapLibgdx extends Group{
 
 		this.camera.position.set(x, y, 0);
 		this.camera.update();
+
+		this.added = new HashMap<>();
 
 		//bounds
 		this.setMapBounds();
@@ -171,7 +180,13 @@ public class MapLibgdx extends Group{
 		pos.y -= this.mapBounds.bot;
 
 		// obtient le coin supérieur gauche ou commencer a placer des tiles
-		this.placer(entity, posToIndex(pos.x, pos.y, this));
+		Vector2 start = posToIndex(pos.x, pos.y, this);
+
+		//ajout à la liste des entités de la map
+		this.added.put(start,entity);
+
+		// on place les tiles
+		this.set(entity, start);
 
 		return true;
 	}
@@ -206,7 +221,7 @@ public class MapLibgdx extends Group{
 	 *
 	 * @since 4.0
 	 */
-	private void placer(EntitySerializable entity, Vector2 start) {
+	private void set(EntitySerializable entity, Vector2 start) {
 		//on parcours toutes les niveaux de la map et on y ajoute les tiles de l'entité
 		for (MapLayer mapLayer : this.map.getMap().getLayers()) {
 			//c'est un layer de tiles ?
@@ -325,5 +340,16 @@ public class MapLibgdx extends Group{
 	public OrthographicCamera getCamera() {
 		return camera;
 	}
+
+	/**
+	 * Retourne les entités de la map et leur position
+	 *
+	 * @return les entités de la map et leur position
+	 */
+	public HashMap<Vector2, EntitySerializable> getEntities() {
+		return added;
+	}
+
+	public TiledMap getTiledMap() { return this.map.getMap(); }
 }
 
