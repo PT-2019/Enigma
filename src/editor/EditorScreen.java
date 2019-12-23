@@ -49,6 +49,9 @@ public class EditorScreen extends JPanel {
 		EntityFactory.loadEntities("assets/decors.json");
 		EntityFactory.loadEntities("assets/entities.json");
 
+		//création de la barre d'outils
+		JPanel outilBar = this.loadOutilBar();
+
 		//création de la zone de choix du menu d'objets
 		JPanel sideBar = this.loadSideBar();
 
@@ -96,6 +99,37 @@ public class EditorScreen extends JPanel {
 		}
 
 		return menuChoix;
+	}
+
+	/**
+	 * Charge la barre d'outils
+	 *
+	 * @return JPanel contenant la barre d'outils
+	 * @since 3.1 19 décembre 2019
+	 */
+	private JPanel loadOutilBar() {
+		OutilAction listener = new OutilAction();
+
+		//création de la zone de la barre d'outils
+		JPanel outilBar = new JPanel();
+
+		String[] elements = new String[]{"25%","50%","100%","125%","150%","175%","200%"};
+		JComboBox<String> zoom = new JComboBox<>(elements);
+
+		JCheckBox fit = new JCheckBox("fit");
+		JCheckBox inGame = new JCheckBox("in game");
+
+		for (Outil o : Outil.values()) {
+			JButton a = new JButton(o.name);
+			a.addActionListener(listener);
+			outilBar.add(a);
+		}
+
+		outilBar.add(zoom);
+		outilBar.add(fit);
+		outilBar.add(inGame);
+
+		return outilBar;
 	}
 
 	/**

@@ -39,6 +39,8 @@ public class TestScreen extends LibgdxScreen {
 	 */
 	private MapLibgdx map;
 
+	public static String str = "assets/map/Empty.tmx";
+
 	/**
 	 * Prépare les stages, la map et la caméra
 	 */
@@ -48,7 +50,7 @@ public class TestScreen extends LibgdxScreen {
 
 		//map
 		this.main = new Stage();
-		this.map = new MapLibgdx("assets/map/Empty.tmx");
+		this.map = new MapLibgdx(str);
 		this.main.addActor(this.map);
 
 		//Drag and drop
