@@ -23,6 +23,7 @@ public class EnigmaLabel extends JLabel {
         this.addMouseListener(new EnigmaLabelManager(this));
         this.setOpaque(true);
         this.setHorizontalAlignment(JLabel.CENTER);
+        this.setLabelUI(new EnigmaLabelUI());
     }
 
     public void setLabelUI(EnigmaLabelUI ui){

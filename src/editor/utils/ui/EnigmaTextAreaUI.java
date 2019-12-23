@@ -50,21 +50,25 @@ public class EnigmaTextAreaUI extends BasicTextAreaUI {
     public void paintTextArea(Graphics g, JComponent c) {
         Graphics brush = g.create();
         JTextArea ta = (JTextArea) c;
+        ta.setBorder(BorderFactory.createEmptyBorder());
         if(ta.hasFocus()){
             ta.setBackground(this.focusedBackground);
             ta.setForeground(this.focusedForeground);
+            ta.setCaretColor(this.focusedForeground);
             if(this.focusedBorder != null){
                 this.paintBorder(ta,this.focusedBorder,this.focusedBorderSize,this.focusedShowedBorders);
             }
         } else if(this.hovered){
             ta.setBackground(this.hoveredBackground);
             ta.setForeground(this.hoveredForeground);
+            ta.setCaretColor(this.hoveredForeground);
             if(this.hoveredBorder != null){
                 this.paintBorder(ta,this.hoveredBorder,this.hoveredBorderSize,this.hoveredShowedBorders);
             }
         } else {
             ta.setBackground(this.background);
             ta.setForeground(this.foreground);
+            ta.setCaretColor(this.foreground);
             if(this.border != null){
                 this.paintBorder(ta,this.border,this.borderSize,this.showedBorders);
             }
@@ -77,7 +81,7 @@ public class EnigmaTextAreaUI extends BasicTextAreaUI {
         for (int i = 0; i < 4; i++) {
             if(showedBorders[i]) borders[i] = borderSize;
         }
-        c.setBorder(BorderFactory.createMatteBorder(borders[0],borders[3],borders[2],borders[2],borderColor));
+        c.setBorder(BorderFactory.createMatteBorder(borders[EnigmaUIValues.TOP_BORDER],borders[EnigmaUIValues.LEFT_BORDER],borders[EnigmaUIValues.BOTTOM_BORDER],borders[EnigmaUIValues.RIGHT_BORDER],borderColor));
     }
 
     public Font getFont() {

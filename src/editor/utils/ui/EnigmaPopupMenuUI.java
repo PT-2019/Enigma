@@ -23,6 +23,7 @@ public class EnigmaPopupMenuUI extends BasicPopupMenuUI {
     public void paint(Graphics g, JComponent c) {
         Graphics brush = g.create();
         JPopupMenu pm = (JPopupMenu) c;
+        pm.setBorder(BorderFactory.createEmptyBorder());
 
         if(this.popupBorder != null){
             int[] borders = new int[4];
@@ -30,9 +31,7 @@ public class EnigmaPopupMenuUI extends BasicPopupMenuUI {
                 if (this.showedPopupBorders[i]) borders[i] = this.popupBorderSize;
                 else borders[i] = 0;
             }
-            pm.setBorder(BorderFactory.createMatteBorder(borders[0],borders[1],borders[2],borders[3],this.popupBorder));
-        }else{
-            pm.setBorder(BorderFactory.createEmptyBorder());
+            pm.setBorder(BorderFactory.createMatteBorder(borders[EnigmaUIValues.TOP_BORDER],borders[EnigmaUIValues.LEFT_BORDER],borders[EnigmaUIValues.BOTTOM_BORDER],borders[EnigmaUIValues.RIGHT_BORDER],this.popupBorder));
         }
         super.paint(brush,c);
     }

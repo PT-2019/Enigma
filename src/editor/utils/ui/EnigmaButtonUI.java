@@ -24,6 +24,9 @@ public class EnigmaButtonUI extends BasicButtonUI {
     private boolean[] showedBorders;
     private boolean[] hoveredShowedBorders;
     private boolean[] pressedShowedBorders;
+    private ImageIcon backgroundImage;
+    private ImageIcon hoveredBackgroundImage;
+    private ImageIcon pressedBackgroundImage;
 
     private Color selectedBackground;
     private Color selectedForeground;
@@ -42,6 +45,9 @@ public class EnigmaButtonUI extends BasicButtonUI {
     private boolean[] selectedShowedBorders;
     private boolean[] selectedHoveredShowedBorders;
     private boolean[] selectedPressedShowedBorders;
+    private ImageIcon selectedBackgroundImage;
+    private ImageIcon selectedHoveredBackgroundImage;
+    private ImageIcon selectedPressedBackgroundImage;
 
     private Font font;
 
@@ -63,6 +69,9 @@ public class EnigmaButtonUI extends BasicButtonUI {
         this.pressedShowedBorders = EnigmaUIValues.ENIGMA_BUTTON_PRESSED_SHOWED_BORDERS;
         this.hovered = false;
         this.cursor = new Cursor(Cursor.HAND_CURSOR);
+        this.backgroundImage = null;
+        this.hoveredBackgroundImage = null;
+        this.pressedBackgroundImage = null;
 
         this.selectedBackground = EnigmaUIValues.ENIGMA_BUTTON_SELECTED_BACKGROUND;
         this.selectedHoveredBackground = EnigmaUIValues.ENIGMA_BUTTON_SELECTED_HOVERED_BACKGROUND;
@@ -81,6 +90,9 @@ public class EnigmaButtonUI extends BasicButtonUI {
         this.selectedPressedShowedBorders = EnigmaUIValues.ENIGMA_BUTTON_SELECTED_PRESSED_SHOWED_BORDERS;
         this.selected = false;
         this.selectedCursor = new Cursor(Cursor.DEFAULT_CURSOR);
+        this.selectedBackgroundImage = null;
+        this.selectedHoveredBackgroundImage = null;
+        this.selectedPressedBackgroundImage = null;
 
         this.font = EnigmaUIValues.ENIGMA_FONT;
     }
@@ -89,32 +101,53 @@ public class EnigmaButtonUI extends BasicButtonUI {
     public void paint(Graphics g, JComponent c) {
         Graphics brush = g.create();
         JButton b = (JButton)c;
+        boolean[] borders;
         if(this.selected) b.setCursor(this.selectedCursor);
         else b.setCursor(this.cursor);
 
         if(this.hovered){
-            if(this.selected){
+            if(this.selected) {
                 b.setBackground(this.selectedHoveredBackground);
                 b.setForeground(this.selectedHoveredForeground);
-                if(this.selectedHoveredBorder != null)
-                    this.paintBorder(brush,b,this.selectedHoveredBorder,this.selectedHoveredBorderSize,this.selectedHoveredShowedBorders);
+                if (this.selectedHoveredBorder != null) {
+                    this.paintBorder(brush, b, this.selectedHoveredBorder, this.selectedHoveredBorderSize, this.selectedHoveredShowedBorders);
+                    borders = this.selectedHoveredShowedBorders;
+                } else borders = EnigmaUIValues.ALL_BORDER_HIDDEN;
+
+                if (this.selectedHoveredBackgroundImage != null)
+                    this.paintImage(brush, b, this.selectedHoveredBackgroundImage, this.selectedHoveredBorderSize, borders);
             }else{
                 b.setBackground(this.hoveredBackground);
                 b.setForeground(this.hoveredForeground);
-                if(this.hoveredBorder != null)
+                if(this.hoveredBorder != null){
                     this.paintBorder(brush,b,this.hoveredBorder,this.hoveredBorderSize,this.hoveredShowedBorders);
+                    borders = this.hoveredShowedBorders;
+                } else borders = EnigmaUIValues.ALL_BORDER_HIDDEN;
+
+                if (this.hoveredBackgroundImage != null)
+                    this.paintImage(brush, b, this.hoveredBackgroundImage, this.hoveredBorderSize, borders);
             }
         } else {
             if(this.selected){
                 b.setBackground(this.selectedBackground);
                 b.setForeground(this.selectedForeground);
-                if(this.selectedBorder != null)
+                if(this.selectedBorder != null){
                     this.paintBorder(brush,b,this.selectedBorder,this.selectedBorderSize,this.selectedShowedBorders);
+                    borders = this.selectedShowedBorders;
+                } else borders = EnigmaUIValues.ALL_BORDER_HIDDEN;
+
+                if (this.selectedBackgroundImage != null)
+                    this.paintImage(brush, b, this.selectedBackgroundImage, this.selectedBorderSize, borders);
             }else{
                 b.setBackground(this.background);
                 b.setForeground(this.foreground);
-                if(this.border != null)
+                if(this.border != null){
                     this.paintBorder(brush,b,this.border,this.borderSize,this.showedBorders);
+                    borders = this.showedBorders;
+                } else borders = EnigmaUIValues.ALL_BORDER_HIDDEN;
+
+                if (this.backgroundImage != null)
+                    this.paintImage(brush, b, this.backgroundImage, this.borderSize, borders);
             }
         }
         super.paint(brush, c);
@@ -126,16 +159,27 @@ public class EnigmaButtonUI extends BasicButtonUI {
     @Override
     protected void paintButtonPressed(Graphics g, AbstractButton b) {
         Graphics brush = g.create();
+        boolean[] borders;
         if(this.selected){
             b.setBackground(this.selectedPressedBackground);
             b.setForeground(this.selectedPressedForeground);
-            if(this.selectedPressedBorder != null)
+            if(this.selectedPressedBorder != null){
                 this.paintBorder(brush,b,this.selectedPressedBorder,this.selectedPressedBorderSize,this.selectedPressedShowedBorders);
+                borders = this.selectedPressedShowedBorders;
+            } else borders = EnigmaUIValues.ALL_BORDER_HIDDEN;
+
+            if (this.selectedPressedBackgroundImage != null)
+                this.paintImage(brush, b, this.selectedPressedBackgroundImage, this.selectedPressedBorderSize, borders);
         }else{
             b.setBackground(this.pressedBackground);
             b.setForeground(this.pressedForeground);
-            if(this.pressedBorder != null)
+            if(this.pressedBorder != null){
                 this.paintBorder(brush,b,this.pressedBorder,this.pressedBorderSize,this.pressedShowedBorders);
+                borders = this.pressedShowedBorders;
+            } else borders = EnigmaUIValues.ALL_BORDER_HIDDEN;
+
+            if (this.pressedBackgroundImage != null)
+                this.paintImage(brush, b, this.pressedBackgroundImage, this.pressedBorderSize, borders);
         }
         super.paintButtonPressed(brush, b);
     }
@@ -148,6 +192,89 @@ public class EnigmaButtonUI extends BasicButtonUI {
             if(i == EnigmaUIValues.BOTTOM_BORDER && showedBorders[i]) g.fillRect(0,b.getHeight() - borderSize,b.getWidth(),b.getHeight());
             if(i == EnigmaUIValues.LEFT_BORDER && showedBorders[i]) g.fillRect(0,0,borderSize,b.getHeight());
         }
+    }
+
+    private void paintImage(Graphics g, AbstractButton b, ImageIcon image, int borderSize, boolean[] showedBorders){
+        int x = 0;
+        int y = 0;
+        int w = b.getWidth();
+        int h = b.getHeight();
+
+        for (int i = 0; i < 4; i++) {
+            if(i == EnigmaUIValues.TOP_BORDER && showedBorders[i]){
+                y += borderSize;
+                w -= borderSize;
+            }
+            if(i == EnigmaUIValues.RIGHT_BORDER && showedBorders[i]) w -= borderSize;
+            if(i == EnigmaUIValues.BOTTOM_BORDER && showedBorders[i]) h -= borderSize;
+            if(i == EnigmaUIValues.LEFT_BORDER && showedBorders[i]){
+                x += borderSize;
+                h -= borderSize;
+            }
+        }
+
+        ImageIcon i = new ImageIcon(image.getImage().getScaledInstance(w,h,Image.SCALE_DEFAULT));
+        i.paintIcon(b,g,x,y);
+    }
+
+    public void setAllBackgroundImage(ImageIcon backgroundImage, ImageIcon hoveredBackgroundImage, ImageIcon pressedBackgroundImage){
+        this.backgroundImage = backgroundImage;
+        this.hoveredBackgroundImage = hoveredBackgroundImage;
+        this.pressedBackgroundImage = pressedBackgroundImage;
+    }
+
+    public ImageIcon getBackgroundImage() {
+        return backgroundImage;
+    }
+
+    public void setBackgroundImage(ImageIcon backgroundImage) {
+        this.backgroundImage = backgroundImage;
+    }
+
+    public ImageIcon getHoveredBackgroundImage() {
+        return hoveredBackgroundImage;
+    }
+
+    public void setHoveredBackgroundImage(ImageIcon hoveredBackgroundImage) {
+        this.hoveredBackgroundImage = hoveredBackgroundImage;
+    }
+
+    public ImageIcon getPressedBackgroundImage() {
+        return pressedBackgroundImage;
+    }
+
+    public void setPressedBackgroundImage(ImageIcon pressedBackgroundImage) {
+        this.pressedBackgroundImage = pressedBackgroundImage;
+    }
+
+    public void setAllSelectedBackgroundImage(ImageIcon selectedBackgroundImage, ImageIcon selectedHoveredBackgroundImage, ImageIcon selectedPressedBackgroundImage){
+        this.selectedBackgroundImage = selectedBackgroundImage;
+        this.selectedHoveredBackgroundImage = selectedHoveredBackgroundImage;
+        this.selectedPressedBackgroundImage = selectedPressedBackgroundImage;
+    }
+
+    public ImageIcon getSelectedBackgroundImage() {
+        return selectedBackgroundImage;
+    }
+
+    public void setSelectedBackgroundImage(ImageIcon selectedBackgroundImage) {
+        this.selectedBackgroundImage = selectedBackgroundImage;
+    }
+
+    public ImageIcon getSelectedHoveredBackgroundImage() {
+        return selectedHoveredBackgroundImage;
+    }
+
+    public void setSelectedHoveredBackgroundImage(ImageIcon selectedHoveredBackgroundImage) {
+        this.selectedHoveredBackgroundImage = selectedHoveredBackgroundImage;
+    }
+
+    public ImageIcon getSelectedPressedBackgroundImage() {
+        return selectedPressedBackgroundImage;
+    }
+
+    public void setSelectedPressedBackgroundImage(ImageIcon selectedPressedBackgroundImage) {
+        this.selectedPressedBackgroundImage = selectedPressedBackgroundImage;
     }
 
     public Font getFont() {
@@ -531,6 +658,7 @@ public class EnigmaButtonUI extends BasicButtonUI {
         clone.setAllBorders(this.getBorder(), this.getHoveredBorder(), this.getPressedBorder());
         clone.setAllBordersSize(this.getBorderSize(), this.getHoveredBorderSize(), this.getPressedBorderSize());
         clone.setAllShowedBorders(this.getShowedBorders(), this.getHoveredShowedBorders(), this.getPressedShowedBorders());
+        clone.setAllBackgroundImage(this.getBackgroundImage(),this.getHoveredBackgroundImage(),this.getPressedBackgroundImage());
 
         clone.setSelectedCursor(this.getSelectedCursor());
         clone.setAllSelectedBackgrounds(this.getSelectedBackground(), this.getSelectedHoveredBackground(), this.getSelectedPressedBackground());
@@ -538,6 +666,7 @@ public class EnigmaButtonUI extends BasicButtonUI {
         clone.setAllSelectedBorders(this.getSelectedBorder(), this.getSelectedHoveredBorder(), this.getSelectedPressedBorder());
         clone.setAllSelectedBordersSize(this.getSelectedBorderSize(), this.getSelectedHoveredBorderSize(), this.getSelectedPressedBorderSize());
         clone.setAllSelectedShowedBorders(this.getSelectedShowedBorders(), this.getSelectedHoveredShowedBorders(), this.getSelectedPressedShowedBorders());
+        clone.setAllSelectedBackgroundImage(this.getSelectedBackgroundImage(),this.getSelectedHoveredBackgroundImage(),this.getSelectedPressedBackgroundImage());
 
         clone.setFont(this.getFont());
 

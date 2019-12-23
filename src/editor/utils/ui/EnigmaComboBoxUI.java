@@ -50,6 +50,7 @@ public class EnigmaComboBoxUI extends BasicComboBoxUI {
     public void paint(Graphics g, JComponent c) {
         Graphics brush = g.create();
         JPanel p = (JPanel)c;
+        p.setBorder(BorderFactory.createEmptyBorder());
         if(this.border != null){
             brush.setColor(this.border);
             brush.fillRect(0,0,c.getWidth(),c.getHeight());
@@ -63,7 +64,7 @@ public class EnigmaComboBoxUI extends BasicComboBoxUI {
             if (showedBorders[i]) borders[i] = borderSize;
             else borders[i] = 0;
         }
-        p.setBorder(BorderFactory.createMatteBorder(borders[0],borders[1],borders[2],borders[3],borderColor));
+        p.setBorder(BorderFactory.createMatteBorder(borders[EnigmaUIValues.TOP_BORDER],borders[EnigmaUIValues.LEFT_BORDER],borders[EnigmaUIValues.BOTTOM_BORDER],borders[EnigmaUIValues.RIGHT_BORDER],borderColor));
     }
 
     public Font getFont() {

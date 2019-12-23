@@ -15,12 +15,6 @@ public class EnigmaMenuItem extends JMenuItem {
         this.setMenuItemUI(new EnigmaMenuItemUI());
     }
 
-    public EnigmaMenuItem(String title, Icon icon){
-        super(title, icon);
-        this.setOpaque(true);
-        this.setMenuItemUI(new EnigmaMenuItemUI());
-    }
-
     public void setMenuItemUI(EnigmaMenuItemUI ui){
         this.ui = ui.duplicate();
         this.setCursor(this.ui.getCursor());

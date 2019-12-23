@@ -17,6 +17,13 @@ public class EnigmaTextArea extends JTextArea {
         this.addFocusListener(manager);
         this.setOpaque(true);
         this.setTextAreaUI(new EnigmaTextAreaUI());
+        this.setLineWrap(true);
+    }
+
+    public JScrollPane setScrollBar(){
+        JScrollPane scroll = new JScrollPane(this);
+        scroll.setBorder(BorderFactory.createEmptyBorder());
+        return scroll;
     }
 
     public void setTextAreaUI(EnigmaTextAreaUI ui){

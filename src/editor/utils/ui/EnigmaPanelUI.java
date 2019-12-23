@@ -21,6 +21,9 @@ public class EnigmaPanelUI extends BasicPanelUI {
     private boolean[] showedBorders;
     private boolean[] hoveredShowedBorders;
     private boolean[] pressedShowedBorders;
+    private ImageIcon backgroundImage;
+    private ImageIcon hoveredBackgroundImage;
+    private ImageIcon pressedBackgroundImage;
 
     public EnigmaPanelUI(){
         this.background = EnigmaUIValues.ENIGMA_PANEL_BACKGROUND;
@@ -37,51 +40,115 @@ public class EnigmaPanelUI extends BasicPanelUI {
         this.pressedShowedBorders = EnigmaUIValues.ENIGMA_PANEL_PRESSED_SHOWED_BORDERS;
         this.hovered = false;
         this.pressed = false;
-        this.cursor = new Cursor(Cursor.HAND_CURSOR);
+        this.cursor = new Cursor(Cursor.DEFAULT_CURSOR);
+        this.backgroundImage = null;
+        this.hoveredBackgroundImage = null;
+        this.pressedBackgroundImage = null;
     }
 
     @Override
     public void paint(Graphics g, JComponent c) {
         Graphics brush = g.create();
         JPanel p = (JPanel)c;
+        boolean[] borders;
         if(this.pressed){
             brush.setColor(this.pressedBackground);
             brush.fillRect(0,0,p.getWidth(),p.getHeight());
             if(this.pressedBorder != null){
-                brush.setColor(this.pressedBorder);
-                for (int i = 0; i < 4; i++) {
-                    if(i == EnigmaUIValues.TOP_BORDER && this.pressedShowedBorders[i]) brush.fillRect(0,0,p.getWidth(),this.pressedBorderSize);
-                    if(i == EnigmaUIValues.RIGHT_BORDER && this.pressedShowedBorders[i]) brush.fillRect(p.getWidth() - this.pressedBorderSize,0,p.getWidth(),p.getHeight());
-                    if(i == EnigmaUIValues.BOTTOM_BORDER && this.pressedShowedBorders[i]) brush.fillRect(0,p.getHeight() - this.pressedBorderSize,p.getWidth(),p.getHeight());
-                    if(i == EnigmaUIValues.LEFT_BORDER && this.pressedShowedBorders[i]) brush.fillRect(0,0,this.pressedBorderSize,p.getHeight());
-                }
-            }
+                this.paintBorder(brush,p,this.pressedBorder,this.pressedBorderSize,this.pressedShowedBorders);
+                borders = this.pressedShowedBorders;
+            }else borders = EnigmaUIValues.ALL_BORDER_HIDDEN;
+
+            if(this.pressedBackgroundImage != null)
+                this.paintImage(brush,p,this.pressedBackgroundImage,this.pressedBorderSize,borders);
+
         } else if(this.hovered){
             brush.setColor(this.hoveredBackground);
             brush.fillRect(0,0,p.getWidth(),p.getHeight());
             if(this.hoveredBorder != null){
-                brush.setColor(this.hoveredBorder);
-                for (int i = 0; i < 4; i++) {
-                    if(i == EnigmaUIValues.TOP_BORDER && this.hoveredShowedBorders[i]) brush.fillRect(0,0,p.getWidth(),this.hoveredBorderSize);
-                    if(i == EnigmaUIValues.RIGHT_BORDER && this.hoveredShowedBorders[i]) brush.fillRect(p.getWidth() - this.hoveredBorderSize,0,p.getWidth(),p.getHeight());
-                    if(i == EnigmaUIValues.BOTTOM_BORDER && this.hoveredShowedBorders[i]) brush.fillRect(0,p.getHeight() - this.hoveredBorderSize,p.getWidth(),p.getHeight());
-                    if(i == EnigmaUIValues.LEFT_BORDER && this.hoveredShowedBorders[i]) brush.fillRect(0,0,this.hoveredBorderSize,p.getHeight());
-                }
-            }
+                this.paintBorder(brush,p,this.hoveredBorder,this.hoveredBorderSize,this.hoveredShowedBorders);
+                borders = this.hoveredShowedBorders;
+            }else borders = EnigmaUIValues.ALL_BORDER_HIDDEN;
+
+            if(this.hoveredBackgroundImage != null)
+                this.paintImage(brush,p,this.hoveredBackgroundImage,this.hoveredBorderSize,borders);
+
         } else {
             brush.setColor(this.background);
             brush.fillRect(0,0,p.getWidth(),p.getHeight());
             if(this.border != null){
-                brush.setColor(this.border);
-                for (int i = 0; i < 4; i++) {
-                    if(i == EnigmaUIValues.TOP_BORDER && this.showedBorders[i]) brush.fillRect(0,0,p.getWidth(),this.borderSize);
-                    if(i == EnigmaUIValues.RIGHT_BORDER && this.showedBorders[i]) brush.fillRect(p.getWidth() - this.borderSize,0,p.getWidth(),p.getHeight());
-                    if(i == EnigmaUIValues.BOTTOM_BORDER && this.showedBorders[i]) brush.fillRect(0,p.getHeight() - this.borderSize,p.getWidth(),p.getHeight());
-                    if(i == EnigmaUIValues.LEFT_BORDER && this.showedBorders[i]) brush.fillRect(0,0,this.borderSize,p.getHeight());
-                }
-            }
+                this.paintBorder(brush,p,this.border,this.borderSize,this.showedBorders);
+                borders = this.showedBorders;
+            }else borders = EnigmaUIValues.ALL_BORDER_HIDDEN;
+
+            if(this.backgroundImage != null)
+                this.paintImage(brush,p,this.backgroundImage,this.borderSize,borders);
+
         }
         super.paint(brush,c);
+    }
+
+    private void paintBorder(Graphics g, JPanel p, Color borderColor, int borderSize, boolean[] showedBorders){
+        g.setColor(borderColor);
+        for (int i = 0; i < 4; i++) {
+            if(i == EnigmaUIValues.TOP_BORDER && showedBorders[i]) g.fillRect(0,0,p.getWidth(),borderSize);
+            if(i == EnigmaUIValues.RIGHT_BORDER && showedBorders[i]) g.fillRect(p.getWidth() - borderSize,0,p.getWidth(),p.getHeight());
+            if(i == EnigmaUIValues.BOTTOM_BORDER && showedBorders[i]) g.fillRect(0,p.getHeight() - borderSize,p.getWidth(),p.getHeight());
+            if(i == EnigmaUIValues.LEFT_BORDER && showedBorders[i]) g.fillRect(0,0,borderSize,p.getHeight());
+        }
+    }
+
+    private void paintImage(Graphics g, JPanel p, ImageIcon image, int borderSize, boolean[] showedBorders){
+        int x = 0;
+        int y = 0;
+        int w = p.getWidth();
+        int h = p.getHeight();
+
+        for (int i = 0; i < 4; i++) {
+            if(i == EnigmaUIValues.TOP_BORDER && showedBorders[i]){
+                y += borderSize;
+                w -= borderSize;
+            }
+            if(i == EnigmaUIValues.RIGHT_BORDER && showedBorders[i]) w -= borderSize;
+            if(i == EnigmaUIValues.BOTTOM_BORDER && showedBorders[i]) h -= borderSize;
+            if(i == EnigmaUIValues.LEFT_BORDER && showedBorders[i]){
+                x += borderSize;
+                h -= borderSize;
+            }
+        }
+
+        ImageIcon i = new ImageIcon(image.getImage().getScaledInstance(w,h,Image.SCALE_DEFAULT));
+        i.paintIcon(p,g,x,y);
+    }
+
+    public void setAllBackgroundImage(ImageIcon backgroundImage, ImageIcon hoveredBackgroundImage, ImageIcon pressedBackgroundImage){
+        this.backgroundImage = backgroundImage;
+        this.hoveredBackgroundImage = hoveredBackgroundImage;
+        this.pressedBackgroundImage = pressedBackgroundImage;
+    }
+
+    public ImageIcon getBackgroundImage() {
+        return backgroundImage;
+    }
+
+    public void setBackgroundImage(ImageIcon backgroundImage) {
+        this.backgroundImage = backgroundImage;
+    }
+
+    public ImageIcon getHoveredBackgroundImage() {
+        return hoveredBackgroundImage;
+    }
+
+    public void setHoveredBackgroundImage(ImageIcon hoveredBackgroundImage) {
+        this.hoveredBackgroundImage = hoveredBackgroundImage;
+    }
+
+    public ImageIcon getPressedBackgroundImage() {
+        return pressedBackgroundImage;
+    }
+
+    public void setPressedBackgroundImage(ImageIcon pressedBackgroundImage) {
+        this.pressedBackgroundImage = pressedBackgroundImage;
     }
 
     public boolean[] getShowedBorders(){
@@ -250,6 +317,7 @@ public class EnigmaPanelUI extends BasicPanelUI {
         clone.setIsHovered(this.isHovered());
         clone.setAllBordersSize(this.getBorderSize(), this.getHoveredBorderSize(), this.getPressedBorderSize());
         clone.setAllShowedBorders(this.getShowedBorders(), this.getHoveredShowedBorders(), this.getPressedShowedBorders());
+        clone.setAllBackgroundImage(this.getBackgroundImage(),this.getHoveredBackgroundImage(),this.getPressedBackgroundImage());
 
         return clone;
     }

@@ -4,7 +4,6 @@ import editor.EditorLauncher;
 import editor.api.Application;
 import editor.utils.EnigmaLabel;
 import editor.utils.Window;
-import editor.utils.ui.EnigmaButtonUI;
 import editor.utils.EnigmaButton;
 import editor.utils.ui.EnigmaLabelUI;
 
@@ -53,7 +52,7 @@ public class DesktopLauncher implements Runnable {
     @Override
     public void run() {
 
-        Window window = new Window("Enigma");
+        Window window = new Window();
         window.setSize(Window.HALF_SCREEN_SIZE);
         window.setLocation(Window.CENTER);
         window.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -102,6 +101,7 @@ public class DesktopLauncher implements Runnable {
         background.add(EDIT_BUTTON, gbc);
 
         window.setVisible(true);
+        window.setIfAskBeforeClosing(true);
     }
 
     /**

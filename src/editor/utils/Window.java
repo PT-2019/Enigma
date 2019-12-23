@@ -33,21 +33,26 @@ public class Window extends JFrame {
 	private final static int BOTTOM_LEFT_RESIZER = 6;
 	private final static int BOTTOM_RIGHT_RESIZER = 7;
 
+	private EnigmaPanel windowContent;
 	private ResizeComponent[] resizers = new ResizeComponent[8];
 	private EnigmaPanel content;
 	private boolean resizable;
 	private EnigmaButton minimize;
 	private EnigmaButton smaller;
 	private EnigmaButton close;
+	private Color menuBarBorderConfiguration;
+	private int menuBarBorderSizeConfiguration;
+	private boolean[] menuBarShowedBorderConfiguration;
+	private boolean ask;
 
 	/**
 	 * Initialise une fenêtre de la taille de l'écran
-	 * @param title Titre de la fenêtre
 	 */
-	public Window(String title) {
-		super(title);
+	public Window() {
+		super();
 		Rectangle screenSize = this.getGraphicsConfiguration().getBounds();
 		this.resizable = true;
+		this.ask = false;
 		this.setSize(screenSize.getSize());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(FULL_SCREEN_SIZE);
@@ -56,10 +61,11 @@ public class Window extends JFrame {
 		this.init();
 	}
 
-	public Window(String title, int width, int height) {
-		super(title);
+	public Window(int width, int height) {
+		super();
 		Rectangle screenSize = this.getGraphicsConfiguration().getBounds();
 		this.resizable = true;
+		this.ask = false;
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(width,height);
 		this.setLocation(CENTER);
@@ -68,6 +74,7 @@ public class Window extends JFrame {
 	}
 
 	private void init(){
+		this.setIconImage(new ImageIcon(this.getClass().getResource("image/o.JPG")).getImage());
 		this.setUndecorated(true);
 		EnigmaMenuBar windowActionBar = new EnigmaMenuBar();
 		EnigmaMenuBarUI barUI = new EnigmaMenuBarUI();
@@ -105,7 +112,11 @@ public class Window extends JFrame {
 		windowActionBar.add(this.smaller);
 		windowActionBar.add(this.close);
 		this.setJMenuBar(windowActionBar);
+		this.menuBarBorderConfiguration = windowActionBar.getMenuBarUI().getBorder();
+		this.menuBarBorderSizeConfiguration = windowActionBar.getMenuBarUI().getBorderSize();
+		this.menuBarShowedBorderConfiguration = windowActionBar.getMenuBarUI().getShowedBorders();
 
+		this.windowContent = new EnigmaPanel();
 		this.content = new EnigmaPanel();
 		this.content.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 		this.resizers[RIGHT_RESIZER] = new ResizeComponent(new Cursor(Cursor.E_RESIZE_CURSOR));
@@ -138,12 +149,22 @@ public class Window extends JFrame {
 		this.resizers[TOP_RESIZER].add(this.resizers[TOP_LEFT_RESIZER],BorderLayout.WEST);
 		this.resizers[TOP_RESIZER].add(this.resizers[TOP_RIGHT_RESIZER],BorderLayout.EAST);
 
+		this.windowContent.setLayout(new BorderLayout());
+		this.windowContent.add(this.resizers[RIGHT_RESIZER],BorderLayout.EAST);
+		this.windowContent.add(this.resizers[LEFT_RESIZER],BorderLayout.WEST);
+		this.windowContent.add(this.resizers[BOTTOM_RESIZER],BorderLayout.SOUTH);
+		this.windowContent.add(this.resizers[TOP_RESIZER],BorderLayout.NORTH);
+		this.windowContent.add(this.content,BorderLayout.CENTER);
+		this.windowContent.getPanelUI().setBackground(Color.RED);
+		this.add(this.windowContent,BorderLayout.CENTER);
+	}
 
-		this.add(this.resizers[RIGHT_RESIZER],BorderLayout.EAST);
-		this.add(this.resizers[LEFT_RESIZER],BorderLayout.WEST);
-		this.add(this.resizers[BOTTOM_RESIZER],BorderLayout.SOUTH);
-		this.add(this.resizers[TOP_RESIZER],BorderLayout.NORTH);
-		this.add(this.content, BorderLayout.CENTER);
+	public void setIfAskBeforeClosing(boolean askBeforeClosing){
+		this.ask = askBeforeClosing;
+	}
+
+	public boolean willAskBeforeClosing() {
+		return ask;
 	}
 
 	public void showMinimizeButton(boolean show){
@@ -180,11 +201,6 @@ public class Window extends JFrame {
 
 	public EnigmaPanel getContentSpace(){
 		return this.content;
-	}
-
-	public void setWindowBackground(Color bgColor){
-		for(ResizeComponent r: this.resizers) r.setBackground(bgColor);
-		this.content.setBackground(bgColor);
 	}
 
 	public boolean isFullScreen(){
@@ -306,11 +322,111 @@ public class Window extends JFrame {
 		this.setLocation(windowPosX + screenSize.x, windowPosY + screenSize.y);
 	}
 
+	public void setWindowMenuBar(EnigmaMenuBar menuBar){
+		this.setJMenuBar(menuBar);
+		this.menuBarBorderConfiguration = menuBar.getMenuBarUI().getBorder();
+		this.menuBarBorderSizeConfiguration = menuBar.getMenuBarUI().getBorderSize();
+		this.menuBarShowedBorderConfiguration = menuBar.getMenuBarUI().getShowedBorders();
+	}
+
+	public void setWindowBackground(Color bgColor){
+		this.content.setOpaque(true);
+		this.windowContent.getPanelUI().setAllBackgroundImage(null,null,null);
+		this.content.setBackground(bgColor);
+		for(ResizeComponent r: this.resizers) {
+			r.setOpaque(true);
+			r.setBackground(bgColor);
+		}
+	}
+
 	public void setBackground(ImageIcon image){
 		this.content.setOpaque(false);
 		for(ResizeComponent r: this.resizers) r.setOpaque(false);
-		ImageIcon i = new ImageIcon("o.png");
-		this.setIconImage(i.getImage().getScaledInstance(this.getWidth(),this.getHeight(),Image.SCALE_DEFAULT));
+		this.windowContent.getPanelUI().setAllBackgroundImage(image,image,image);
+	}
+
+	public void hideBorder(){
+		EnigmaMenuBar bar = (EnigmaMenuBar) this.getJMenuBar();
+		bar.getMenuBarUI().setShowedBorders(this.menuBarShowedBorderConfiguration);
+		bar.getMenuBarUI().setShowedBorders(this.menuBarShowedBorderConfiguration);
+		bar.getMenuBarUI().setShowedBorders(this.menuBarShowedBorderConfiguration);
+
+		this.resizers[LEFT_RESIZER].setBorder(BorderFactory.createEmptyBorder());
+		this.resizers[RIGHT_RESIZER].setBorder(BorderFactory.createEmptyBorder());
+		this.resizers[BOTTOM_RESIZER].setBorder(BorderFactory.createEmptyBorder());
+		this.resizers[TOP_LEFT_RESIZER].setBorder(BorderFactory.createEmptyBorder());
+		this.resizers[TOP_RIGHT_RESIZER].setBorder(BorderFactory.createEmptyBorder());
+		this.resizers[BOTTOM_LEFT_RESIZER].setBorder(BorderFactory.createEmptyBorder());
+		this.resizers[BOTTOM_RIGHT_RESIZER].setBorder(BorderFactory.createEmptyBorder());
+
+		if(this.close.isVisible())
+			this.close.getButtonUI().setAllShowedBorders(EnigmaUIValues.ALL_BORDER_HIDDEN,EnigmaUIValues.ALL_BORDER_HIDDEN,EnigmaUIValues.ALL_BORDER_HIDDEN);
+		if(this.minimize.isVisible())
+			this.minimize.getButtonUI().setAllShowedBorders(EnigmaUIValues.ALL_BORDER_HIDDEN,EnigmaUIValues.ALL_BORDER_HIDDEN,EnigmaUIValues.ALL_BORDER_HIDDEN);
+		if(this.smaller.isVisible())
+			this.smaller.getButtonUI().setAllShowedBorders(EnigmaUIValues.ALL_BORDER_HIDDEN,EnigmaUIValues.ALL_BORDER_HIDDEN,EnigmaUIValues.ALL_BORDER_HIDDEN);
+	}
+
+	public void showBorder(Color color, int borderSize){
+		EnigmaMenuBar bar = (EnigmaMenuBar) this.getJMenuBar();
+		EnigmaMenuBarUI barUI = bar.getMenuBarUI();
+
+		this.menuBarBorderConfiguration = barUI.getBorder();
+		this.menuBarBorderSizeConfiguration = barUI.getBorderSize();
+		this.menuBarShowedBorderConfiguration = barUI.getShowedBorders();
+
+		barUI.setShowedBorders(EnigmaUIValues.ALL_BORDERS_SHOWED);
+		barUI.setBorder(color);
+		barUI.setBorderSize(borderSize);
+
+		this.resizers[LEFT_RESIZER].setBorder(BorderFactory.createMatteBorder(0,borderSize,0,0,color));
+		this.resizers[RIGHT_RESIZER].setBorder(BorderFactory.createMatteBorder(0,0,0,borderSize,color));
+		this.resizers[BOTTOM_RESIZER].setBorder(BorderFactory.createMatteBorder(0,0,borderSize,0,color));
+		this.resizers[TOP_LEFT_RESIZER].setBorder(BorderFactory.createMatteBorder(0,borderSize,0,0,color));
+		this.resizers[TOP_RIGHT_RESIZER].setBorder(BorderFactory.createMatteBorder(0,0,0,borderSize,color));
+		this.resizers[BOTTOM_LEFT_RESIZER].setBorder(BorderFactory.createMatteBorder(0,borderSize,0,0,color));
+		this.resizers[BOTTOM_RIGHT_RESIZER].setBorder(BorderFactory.createMatteBorder(0,0,0,borderSize,color));
+
+		EnigmaButtonUI bUI;
+		boolean[] borders = new boolean[4];
+		borders[EnigmaUIValues.TOP_BORDER] = true;
+		boolean[] bordersRight = new boolean[4];
+		bordersRight[EnigmaUIValues.TOP_BORDER] = true;
+		bordersRight[EnigmaUIValues.RIGHT_BORDER] = true;
+
+		if(this.close.isVisible()){
+			bUI = this.close.getButtonUI();
+			bUI.setAllBorders(color,color,color);
+			bUI.setAllBordersSize(borderSize,borderSize,borderSize);
+			bUI.setAllShowedBorders(bordersRight,bordersRight,bordersRight);
+
+			bUI = this.smaller.getButtonUI();
+			bUI.setAllBorders(color,color,color);
+			bUI.setAllBordersSize(borderSize,borderSize,borderSize);
+			bUI.setAllShowedBorders(borders,borders,borders);
+
+			bUI = this.minimize.getButtonUI();
+			bUI.setAllBorders(color,color,color);
+			bUI.setAllBordersSize(borderSize,borderSize,borderSize);
+			bUI.setAllShowedBorders(borders,borders,borders);
+
+		}else if(this.smaller.isVisible()){
+			bUI = this.smaller.getButtonUI();
+			bUI.setAllBorders(color,color,color);
+			bUI.setAllBordersSize(borderSize,borderSize,borderSize);
+			bUI.setAllShowedBorders(bordersRight,bordersRight,bordersRight);
+
+			bUI = this.minimize.getButtonUI();
+			bUI.setAllBorders(color,color,color);
+			bUI.setAllBordersSize(borderSize,borderSize,borderSize);
+			bUI.setAllShowedBorders(borders,borders,borders);
+
+		}else if(this.minimize.isVisible()){
+			bUI = this.minimize.getButtonUI();
+			bUI.setAllBorders(color,color,color);
+			bUI.setAllBordersSize(borderSize,borderSize,borderSize);
+			bUI.setAllShowedBorders(bordersRight, bordersRight, bordersRight);
+		}
 	}
 }
 

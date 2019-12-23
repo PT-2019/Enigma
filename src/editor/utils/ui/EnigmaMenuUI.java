@@ -34,6 +34,7 @@ public class EnigmaMenuUI extends BasicMenuUI {
     public void paint(Graphics g, JComponent c) {
         Graphics brush = g.create();
         JMenu m = (JMenu)c;
+        m.setBorder(BorderFactory.createEmptyBorder());
         if(this.hovered){
             m.setBackground(this.hoveredBackground);
             m.setForeground(this.hoveredForeground);
@@ -47,7 +48,7 @@ public class EnigmaMenuUI extends BasicMenuUI {
             if(this.showedPopupBorders[i]) borders[i] = this.popupBorderSize;
             else borders[i] = 0;
 
-        m.getPopupMenu().setBorder(BorderFactory.createMatteBorder(borders[0],borders[1],borders[2],borders[3],popupBackground));
+        m.getPopupMenu().setBorder(BorderFactory.createMatteBorder(borders[EnigmaUIValues.TOP_BORDER],borders[EnigmaUIValues.LEFT_BORDER],borders[EnigmaUIValues.BOTTOM_BORDER],borders[EnigmaUIValues.RIGHT_BORDER],popupBackground));
         super.paint(brush,c);
     }
 
