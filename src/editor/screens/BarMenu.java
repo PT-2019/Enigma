@@ -1,24 +1,26 @@
 package editor.screens;
 
-import javax.swing.*;
+import editor.hud.EnigmaMenu;
+import editor.hud.EnigmaMenuBar;
+import editor.hud.EnigmaMenuItem;
 
-public class BarMenu extends JMenuBar {
+public class BarMenu extends EnigmaMenuBar {
     //1er onglet
-    private JMenu file = new JMenu("File");
-    private JMenuItem ouvrir = new JMenuItem("Ouvrir");
-    private JMenuItem save = new JMenuItem("Sauvegarder");
-    private JMenuItem map = new JMenuItem("Exporter la map");
+    private EnigmaMenu file = new EnigmaMenu("File");
+    private EnigmaMenuItem ouvrir = new EnigmaMenuItem("Ouvrir");
+    private EnigmaMenuItem save = new EnigmaMenuItem("Sauvegarder");
+    private EnigmaMenuItem map = new EnigmaMenuItem("Exporter la map");
     //2eme onglet
-    private JMenu edit = new JMenu("Edit");
-    private JMenuItem redo = new JMenuItem("Redo");
-    private JMenuItem undo = new JMenuItem("Undo");
+    private EnigmaMenu edit = new EnigmaMenu("Edit");
+    private EnigmaMenuItem redo = new EnigmaMenuItem("Redo");
+    private EnigmaMenuItem undo = new EnigmaMenuItem("Undo");
     //3eme onglet
-    private JMenu run = new JMenu("Run");
-    private JMenuItem runjeu = new JMenuItem("Lancer le jeu");
+    private EnigmaMenu run = new EnigmaMenu("Run");
+    private EnigmaMenuItem runjeu = new EnigmaMenuItem("Lancer le jeu");
     //4eme onglet
-    private JMenu help = new JMenu("Help");
-    private JMenuItem a = new JMenuItem("Ouvrir");
-    private JMenuItem b = new JMenuItem("Ouvrir");
+    private EnigmaMenu help = new EnigmaMenu("Help");
+    private EnigmaMenuItem a = new EnigmaMenuItem("Ouvrir");
+    private EnigmaMenuItem b = new EnigmaMenuItem("Ouvrir");
 
     public BarMenu(){
         this.file.add(ouvrir);

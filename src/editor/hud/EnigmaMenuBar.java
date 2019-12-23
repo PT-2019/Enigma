@@ -1,0 +1,53 @@
+package editor.hud;
+
+import com.badlogic.gdx.utils.Array;
+import editor.hud.ui.EnigmaMenuBarUI;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class EnigmaMenuBar extends JMenuBar {
+
+    private Array<Component> menus;
+
+    private EnigmaMenuBarUI ui;
+
+    public EnigmaMenuBar(){
+        super();
+        this.ui = null;
+        this.menus = new Array<>();
+        this.setOpaque(true);
+        this.setMenuBarUI(new EnigmaMenuBarUI());
+    }
+
+    public void setMenuBarUI(EnigmaMenuBarUI ui){
+        this.ui = ui.duplicate();
+        this.setBorderPainted(false);
+        super.setUI(this.ui);
+    }
+
+    public EnigmaMenuBarUI getMenuBarUI(){
+        return this.ui;
+    }
+
+    @Override
+    public void paintComponent(Graphics g){
+        this.ui.paint(g,this);
+    }
+
+    @Override
+    public Component add(Component comp) {
+        this.menus.add(comp);
+        return super.add(comp);
+    }
+
+    @Override
+    public JMenu add(JMenu c) {
+        this.menus.add(c);
+        return super.add(c);
+    }
+
+    public Array<Component> getMenus() {
+        return menus;
+    }
+}

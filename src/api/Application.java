@@ -9,7 +9,7 @@ package api;
  * @author Quentin RAMSAMY-AGEORGES
  * @version 1.0
  * @see game.EnigmaGame
- * @see editor.EditorLuncher
+ * @see editor.EditorLauncher
  * @since 1.0
  */
 @FunctionalInterface

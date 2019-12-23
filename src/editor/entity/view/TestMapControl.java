@@ -4,9 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import editor.EditorLuncher;
+import editor.EditorLauncher;
 import editor.utils.save.SaveMap;
-import editor.window.Window;
+import editor.hud.Window;
 import game.entity.MapLibgdx;
 
 /**
@@ -40,7 +40,7 @@ public class TestMapControl implements InputProcessor {
         this.ispush = false;
         this.map = map;
         //changed to window
-        this.window = EditorLuncher.getInstance().getWindow();
+        this.window = EditorLauncher.getInstance().getWindow();
         //this.menu = new EntityPopMenu(r,col,cam);
         //TODO: test pour vérifier que cela marche avec une window
         this.menu = new EntityPopMenu();

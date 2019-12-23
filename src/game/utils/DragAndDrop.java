@@ -7,7 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import editor.EditorLuncher;
+import editor.EditorLauncher;
 import game.EnigmaGame;
 import game.entity.DraggedEntity;
 import game.entity.EntityContainer;
@@ -61,7 +61,7 @@ public class DragAndDrop extends InputListener {
 	public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 		if (this.dragged.isDraggable()) {
 			//cursor de drag
-			EditorLuncher.getInstance().getWindow().setCursor(new Cursor(Cursor.HAND_CURSOR));
+			EditorLauncher.getInstance().getWindow().setCursor(new Cursor(Cursor.HAND_CURSOR));
 
 			this.offsetX = x; //sauvegarde la décalage
 			this.offsetY = y;
@@ -77,7 +77,7 @@ public class DragAndDrop extends InputListener {
 	@Override
 	public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
 		//reset cursor
-		EditorLuncher.getInstance().getWindow().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+		EditorLauncher.getInstance().getWindow().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 
 		Vector2 pos = GameActorUtilities.getAbsolutePosition(dragged);//x,y de l'object bas gauche
 		//correction parce que je veux haut à gauche

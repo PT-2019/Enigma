@@ -7,10 +7,10 @@ import com.badlogic.gdx.utils.Array;
 import editor.entity.EntityFactory;
 import editor.entity.EntitySerializable;
 import editor.utils.EmptyMapGenerator;
+import editor.hud.Window;
 import editor.utils.dnd.ChoixObjet;
 import editor.utils.dnd.DragAndDropDND;
 import editor.utils.dnd.EntityContainer;
-import editor.window.Window;
 import org.intellij.lang.annotations.MagicConstant;
 
 import javax.swing.JButton;
@@ -83,7 +83,7 @@ public class EditorScreen extends JPanel {
 		this.add(menu, BorderLayout.NORTH);
 		this.add(map, BorderLayout.CENTER);
 
-		parent.setJMenuBar(new BarMenu());
+		parent.addToMenuBar(new BarMenu());
 	}
 
 	/**
