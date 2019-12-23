@@ -6,6 +6,7 @@ import api.utils.LoadGameLibgdxApplication;
 import com.badlogic.gdx.utils.Array;
 import editor.entity.EntityFactory;
 import editor.entity.EntitySerializable;
+import editor.utils.EmptyMapGenerator;
 import editor.utils.dnd.ChoixObjet;
 import editor.utils.dnd.DragAndDropDND;
 import editor.utils.dnd.EntityContainer;
@@ -46,7 +47,10 @@ public class EditorScreen extends JPanel {
 		this.setBackground(Color.RED);
 		this.setLayout(new BorderLayout());
 
-		//load entities
+		//génère une map vide
+		EmptyMapGenerator.generate("assets/map/EmptyTest.tmx", 50, 10);
+
+		//charge entités
 		EntityFactory.loadEntities("assets/rooms.json");
 		EntityFactory.loadEntities("assets/items.json");
 		EntityFactory.loadEntities("assets/decors.json");

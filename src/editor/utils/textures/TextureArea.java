@@ -115,12 +115,13 @@ public class TextureArea {
 	public void load() {
 		try {
 			//open file
-			FileInputStream input = new FileInputStream(new File("assets/"+path));
+			FileInputStream input = new FileInputStream(new File(path));
 			//read image
 			buffer = ImageIO.read(input);
 			//close file
 			input.close();
 		} catch (FileNotFoundException e) {
+			System.out.println(path);
 			throw new IllegalStateException("File not found. Bad Path.");
 		} catch (IOException e) {
 			throw new IllegalStateException("Error reading image!");

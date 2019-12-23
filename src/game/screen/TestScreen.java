@@ -39,7 +39,7 @@ public class TestScreen extends LibgdxScreen {
 	 */
 	private MapLibgdx map;
 
-	private static String MAP_PATH = "assets/map/Empty.tmx";
+	private static String MAP_PATH = "assets/map/EmptyTest.tmx";
 
 	/**
 	 * Prépare les stages, la map et la caméra
