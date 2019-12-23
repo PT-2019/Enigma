@@ -8,9 +8,6 @@ import java.awt.event.ActionListener;
 
 public class Exit implements ActionListener {
 
-	public final static boolean CLOSE_WITHOUT_ASKING = false;
-	public final static boolean ASK_BEFORE_CLOSING = true;
-
 	private Window window;
 
 	public Exit(Window window){
@@ -19,10 +16,12 @@ public class Exit implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent actionEvent) {
-		if(this.window.willAskBeforeClosing()) {
+		/*if(this.window.willAskBeforeClosing()) {
 			if (EnigmaOptionPane.showConfirmDialog(this.window, "Voulez vous vraiment quittez?"))
 				this.window.dispose();
-		}else this.window.dispose();
-
+		}else this.window.dispose();*/
+		EnigmaOptionPane o = new EnigmaOptionPane(this.window,"meee");
+		o.show();
+		//o.waitForAnswer();
 	}
 }
