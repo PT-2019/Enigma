@@ -1,4 +1,4 @@
-package editor.utils.save.view;
+package editor.entity.view;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
@@ -10,6 +10,16 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
+/**
+ * TODO: comment PopMenuListener and write Readme.md in editor.entity.view
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 4.0
+ * @since 4.0
+ */
 public class PopMenuListener implements ItemListener, ActionListener {
 
     private RoomView view;

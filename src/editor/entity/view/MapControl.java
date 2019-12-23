@@ -1,14 +1,23 @@
-package editor.utils.save.view;
+package editor.entity.view;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.maps.tiled.TiledMap;
 
 import javax.swing.*;
 
+/**
+ * TODO: comment MapControl and write Readme.md in editor.entity.view
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 4.0
+ * @since 4.0
+ */
 public class MapControl implements InputProcessor {
 
     private boolean ispush;

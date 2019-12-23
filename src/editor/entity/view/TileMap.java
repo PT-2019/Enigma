@@ -1,4 +1,4 @@
-package editor.utils.save.view;
+package editor.entity.view;
 
 import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -10,6 +10,16 @@ import game.entity.MapLibgdxCell;
 
 import javax.swing.*;
 
+/**
+ * TODO: comment TileMap and write Readme.md in editor.entity.view
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 4.0
+ * @since 4.0
+ */
 public class TileMap extends Stage{
 
     private TiledMap map;

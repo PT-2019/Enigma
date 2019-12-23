@@ -4,7 +4,7 @@ import api.LibgdxScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
-import editor.utils.save.view.TestMapControl;
+import editor.entity.view.TestMapControl;
 import game.EnigmaGame;
 import game.entity.MapLibgdx;
 import game.ui.CategoriesMenu;

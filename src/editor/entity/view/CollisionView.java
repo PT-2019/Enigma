@@ -1,8 +1,18 @@
-package editor.utils.save.view;
+package editor.entity.view;
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import editor.entity.map.Case;
 
+/**
+ * TODO: comment CollisionView and write Readme.md in editor.entity.view
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 4.0
+ * @since 4.0
+ */
 public class CollisionView extends ShapeRenderer {
 
     private boolean visible;

@@ -1,4 +1,4 @@
-package editor.utils.save.view;
+package editor.entity.view;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -8,6 +8,16 @@ import editor.EditorLuncher;
 import editor.window.Window;
 import game.entity.MapLibgdx;
 
+/**
+ * TODO: comment TestMapControl and write Readme.md in editor.entity.view
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 4.0
+ * @since 4.0
+ */
 public class TestMapControl implements InputProcessor {
 
     private static final float ZOOM_VALUE = 0.05f;
@@ -18,9 +28,6 @@ public class TestMapControl implements InputProcessor {
 
     private EntityPopMenu menu;
 
-    //@Deprecated
-    //private JComponent component;
-
     private Window window;
 
     private OrthographicCamera camera;
@@ -28,11 +35,10 @@ public class TestMapControl implements InputProcessor {
     private MapLibgdx map;
 
     public TestMapControl(MapLibgdx map) {
-        camera = map.getCamera();
-        ispush = false;
+        this.camera = map.getCamera();
+        this.ispush = false;
         this.map = map;
         //changed to window
-        //this.component = (JComponent) map.getContainer();
         this.window = EditorLuncher.getInstance().getWindow();
         //this.menu = new EntityPopMenu(r,col,cam);
         //TODO: test pour vérifier que cela marche avec une window

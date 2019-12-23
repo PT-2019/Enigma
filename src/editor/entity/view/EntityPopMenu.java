@@ -1,9 +1,19 @@
-package editor.utils.save.view;
+package editor.entity.view;
 
 import com.badlogic.gdx.graphics.Camera;
 
 import javax.swing.*;
 
+/**
+ * TODO: comment EntityPopMenu and write Readme.md in editor.entity.view
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 4.0
+ * @since 4.0
+ */
 public class EntityPopMenu extends JPopupMenu {
 
     public EntityPopMenu(RoomView v,CollisionView collision, Camera cam){

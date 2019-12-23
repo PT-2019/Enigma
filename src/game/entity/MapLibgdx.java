@@ -4,7 +4,6 @@ import api.enums.Layer;
 import api.utils.Bounds;
 import api.utils.Utility;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.maps.MapLayer;
@@ -114,7 +113,7 @@ public class MapLibgdx extends Group{
 
 	/**
 	 * Retourne la case (indices) dans la map depuis une positon x,y dans l'espace.
-	 * <p>
+	 *
 	 * Attention! La position  x,y est considérée comme étant toujours dans la map.
 	 *
 	 * @param posX position x
@@ -147,27 +146,13 @@ public class MapLibgdx extends Group{
 	 * @since 3.0
 	 */
 	public boolean loadEntity(EntitySerializable entity, Vector2 pos) {
-        /*
-            Inverse le zoom, avant avec un zoom de 0.95 la map était plus grande et 1.05
-            donnait une map plus petite
-
-            zoom contient l'inverse : 1.05 contient une plus grande map, 0.95 une plus petite
-         */
-		float zoom = camera.zoom;
-		if (zoom < 1) {
-			zoom = 1 + (1 - camera.zoom);
-		} else if (zoom > 1) {
-			zoom = 1 + (1 - camera.zoom);
-		}
-
 		//calcules les 4 coins de la map
-		Rectangle bounds = new Rectangle();
+		Rectangle bounds = this.getMapSize();
 		bounds.setPosition((Gdx.graphics.getWidth() / 2f - camera.position.x) * 1,
 				(Gdx.graphics.getHeight() / 2f - camera.position.y) * 1);
-		bounds.setSize(this.getMapWidth() * zoom, this.getMapHeight() * zoom);
 		this.mapBounds = new Bounds(bounds);
 
-		Gdx.app.debug("MapLibgdx - placement", mapBounds + " " + pos + " " + mapBounds.contains(pos));
+		Gdx.app.debug("MapLibgdx - placement", mapBounds + " pos=" + pos + " " + mapBounds.contains(pos));
 
 		//si pas dans la map
 		if (!mapBounds.contains(pos)) return false;
@@ -187,11 +172,35 @@ public class MapLibgdx extends Group{
 		return true;
 	}
 
+	private Rectangle getMapSize(){
+		Rectangle r = new Rectangle();
+		/*
+            Inverse le zoom, avant avec un zoom de 0.95 la map était plus grande et 1.05
+            donnait une map plus petite
+
+            zoom contient l'inverse : 1.05 contient une plus grande map, 0.95 une plus petite
+         */
+		float zoom = camera.zoom;
+		if (zoom < 1) {
+			zoom = 1 + (1 - camera.zoom);
+		} else if (zoom > 1) {
+			zoom = 1 + (1 - camera.zoom);
+		}
+
+		//mapSize according to zoom
+		r.width = Math.round(this.getMapWidth() * zoom);
+		r.height = Math.round(this.getMapHeight() * zoom);
+
+		return r;
+	}
+
 	/**
 	 * Place une entité
 	 *
 	 * @param entity l'entité à charger
 	 * @param start  le coin supérieur gauche ou commencer a placer des tiles
+	 *
+	 * @since 4.0
 	 */
 	private void placer(EntitySerializable entity, Vector2 start) {
 		//on parcours toutes les niveaux de la map et on y ajoute les tiles de l'entité
@@ -224,7 +233,7 @@ public class MapLibgdx extends Group{
 	@Override
 	public void act(float delta) {
 		super.act(delta);
-		//update caméra
+		//update camera
 		//update map's camera from stage's camera
 		//Camera c = this.getStage().getCamera();
 		//this.camera.position.x = c.position.x;
