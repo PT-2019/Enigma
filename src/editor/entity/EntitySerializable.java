@@ -26,7 +26,7 @@ public class EntitySerializable {
 	/**
 	 * dimension
 	 */
-	private int width, height;
+	private int width = 1, height = 1;
 	/**
 	 * les tiles (a convertir en int)
 	 */

@@ -1,4 +1,4 @@
-package editor.entity.item;
+package item;
 
 import api.entity.interfaces.Content;
 import api.entity.interfaces.Item;
@@ -14,7 +14,7 @@ import java.util.Iterator;
  * @see api.entity.interfaces.Item
  * @see api.entity.interfaces.Content
  */
-public class Book implements Item, Content {
+public class Pane implements Content, Item {
 
 	/**
 	 * Enigmes données à l'objet
@@ -41,7 +41,7 @@ public class Book implements Item, Content {
 	 */
 	private int id;
 
-	public Book() {
+	public Pane() {
 		this.enigmas = new ArrayList<Enigma>();
 		this.id = -1;
 	}
@@ -49,11 +49,10 @@ public class Book implements Item, Content {
 	/**
 	 * @param id ID
 	 */
-	public Book(int id) {
+	public Pane(int id) {
 		this.enigmas = new ArrayList<Enigma>();
 		this.id = id;
 	}
-
 
 	/**
 	 * Est appelé quand un joueur intéragit avec l'objet
@@ -66,6 +65,26 @@ public class Book implements Item, Content {
 			if (!e.isKnown()) e.discovered();
 			else e.verifyConditions(p);
 		}
+	}
+
+	/**
+	 * Ajoute un contenu à l'objet
+	 *
+	 * @param content Contenu à ajouter
+	 */
+	@Override
+	public void addContent(String content) {
+		this.content = content;
+	}
+
+	/**
+	 * Obtenir le contenu
+	 *
+	 * @return le contenu, le contenu peut être vide
+	 */
+	@Override
+	public String getContent() {
+		return this.content;
 	}
 
 	/**
@@ -98,6 +117,7 @@ public class Book implements Item, Content {
 	 */
 	@Override
 	public void addEnigma(Enigma e) {
+		if (this.enigmas.contains(e)) throw new IllegalArgumentException("Cette énigme existe déjà dans la liste");
 		this.enigmas.add(e);
 	}
 
@@ -121,26 +141,6 @@ public class Book implements Item, Content {
 	public Iterator<Enigma> getAllEnigmas() {
 		ArrayList<Enigma> e = (ArrayList<Enigma>) this.enigmas.clone();
 		return e.iterator();
-	}
-
-	/**
-	 * Ajoute un contenu à l'objet
-	 *
-	 * @param content Contenu à ajouter
-	 */
-	@Override
-	public void addContent(String content) {
-		this.content = content;
-	}
-
-	/**
-	 * Obtenir le contenu
-	 *
-	 * @return le contenu, le contenu peut être vide
-	 */
-	@Override
-	public String getContent() {
-		return this.content;
 	}
 
 	/**
@@ -170,7 +170,7 @@ public class Book implements Item, Content {
 	 */
 	@Override
 	public String toString() {
-		return "[Book  : ID = " + this.id + ", dialog = " + this.dialog + ", content = " + this.content + ", texture = " + this.texture + "]";
+		return "[Pane  : ID = " + this.id + ", dialog = " + this.dialog + ", content = " + this.content + ", texture = " + this.texture + "]";
 	}
 
 	/**
@@ -179,7 +179,7 @@ public class Book implements Item, Content {
 	 * @return Texte représentant l'objet
 	 */
 	public String toLongString() {
-		StringBuilder s = new StringBuilder("[Book  : ID = " + this.id + ", dialog = " + this.dialog + ", content = " + this.content + ", texture = " + this.texture + ", enigmas = {");
+		StringBuilder s = new StringBuilder("[Pane  : ID = " + this.id + ", dialog = " + this.dialog + ", content = " + this.content + ", texture = " + this.texture + ", enigmas = {");
 		int size = this.enigmas.size() - 1;
 		int i = 0;
 		for (Enigma e : this.enigmas) {

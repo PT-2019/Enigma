@@ -1,6 +1,5 @@
-package editor.entity.item;
+package item;
 
-import api.entity.interfaces.Item;
 import editor.enigma.Enigma;
 import editor.entity.player.Player;
 import editor.utils.textures.Texture;
@@ -9,10 +8,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- * @version 2.2
- * @see api.entity.interfaces.Item
+ * @version 2.1
+ * @see item.Activatable
  */
-public class Floor implements Item {
+public class PressurePlate extends Activatable {
 
 	/**
 	 * Enigmes données à l'objet
@@ -29,22 +28,17 @@ public class Floor implements Item {
 	 */
 	private Texture texture;
 
-	/**
-	 * ID
-	 */
-	private int id;
-
-	public Floor() {
+	public PressurePlate() {
+		super(false);
 		this.enigmas = new ArrayList<Enigma>();
-		this.id = -1;
 	}
 
 	/**
-	 * @param id ID
+	 * @param activated true si l'objet est activé de base, false sinon
 	 */
-	public Floor(int id) {
+	public PressurePlate(boolean activated) {
+		super(activated);
 		this.enigmas = new ArrayList<Enigma>();
-		this.id = id;
 	}
 
 	/**
@@ -54,6 +48,8 @@ public class Floor implements Item {
 	 */
 	@Override
 	public void interactsWith(Player p) {
+		this.activated = !this.activated;
+
 		for (Enigma e : this.enigmas) {
 			if (!e.isKnown()) e.discovered();
 			else e.verifyConditions(p);
@@ -117,23 +113,13 @@ public class Floor implements Item {
 	}
 
 	/**
-	 * Obtenir l'ID
+	 * Indique si l'objet est activé
 	 *
-	 * @return L'ID, -1 si pas initialisé
+	 * @return true si l'objet est activé, false sinon
 	 */
 	@Override
-	public int getID() {
-		return this.id;
-	}
-
-	/**
-	 * Définir l'ID
-	 *
-	 * @param id ID
-	 */
-	@Override
-	public void setID(int id) {
-		this.id = id;
+	public boolean isActivated() {
+		return this.activated;
 	}
 
 	/**
@@ -143,7 +129,7 @@ public class Floor implements Item {
 	 */
 	@Override
 	public String toString() {
-		return "[Floor  : ID = " + this.id + ", dialog = " + this.dialog + ", texture = " + this.texture + "]";
+		return "[PressurePlate  : ID = " + this.id + ", dialog = " + this.dialog + ", activated = " + this.activated + ", texture = " + this.texture + "]";
 	}
 
 	/**
@@ -152,7 +138,7 @@ public class Floor implements Item {
 	 * @return Texte représentant l'objet
 	 */
 	public String toLongString() {
-		StringBuilder s = new StringBuilder("[Floor  : ID = " + this.id + ", dialog = " + this.dialog + ", texture = " + this.texture + ", enigmas = {");
+		StringBuilder s = new StringBuilder("[PressurePlate  : ID = " + this.id + ", dialog = " + this.dialog + ", activated = " + this.activated + ", texture = " + this.texture + ", enigmas = {");
 		int size = this.enigmas.size() - 1;
 		int i = 0;
 		for (Enigma e : this.enigmas) {

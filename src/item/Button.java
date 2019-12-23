@@ -1,4 +1,4 @@
-package editor.entity.item;
+package item;
 
 import editor.enigma.Enigma;
 import editor.entity.player.Player;
@@ -9,7 +9,7 @@ import java.util.Iterator;
 
 /**
  * @version 2.1
- * @see editor.entity.item.Activatable
+ * @see item.Activatable
  */
 public class Button extends Activatable {
 

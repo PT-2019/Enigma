@@ -63,8 +63,8 @@ public class OutilAction implements ActionListener {
 
             //relance le screen
             if(this.file != null) {
-                ((TestScreen) EnigmaGame.getCurrentScreen()).setMap(this.file.getAbsolutePath());
-                Gdx.app.postRunnable(() -> EnigmaGame.reload(EnigmaScreens.TEST.name()));
+                if(((TestScreen) EnigmaGame.getCurrentScreen()).setMap(this.file.getAbsolutePath()))
+                    Gdx.app.postRunnable(() -> EnigmaGame.reload(EnigmaScreens.TEST.name()));
             }
 
         }else if(msg.equals(Outil.SAVE.name)){

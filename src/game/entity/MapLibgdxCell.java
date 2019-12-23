@@ -1,7 +1,7 @@
 package game.entity;
 
+import api.entity.GameObject;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import editor.entity.EntitySerializable;
 
 /**
  * Une cellule de la map libgdx
@@ -23,10 +23,10 @@ public class MapLibgdxCell extends TiledMapTileLayer.Cell {
 
 	/**
 	 * L'entité contenue dans la case
-	 * <p>
+	 *
 	 * this.entity.getClassName renvoi par exemple editor.entity.item.Chest
 	 */
-	private EntitySerializable entity;
+	private GameObject entity;
 
 	/**
 	 * Crée une cellule de la map
@@ -40,7 +40,7 @@ public class MapLibgdxCell extends TiledMapTileLayer.Cell {
 		this.entity = null;
 	}
 
-	public EntitySerializable getEntity() {
+	public GameObject getEntity() {
 		return entity;
 	}
 
@@ -49,7 +49,7 @@ public class MapLibgdxCell extends TiledMapTileLayer.Cell {
 	 *
 	 * @param entity l'entité contenue dans la case
 	 */
-	public void setEntity(EntitySerializable entity) {
+	public void setEntity(GameObject entity) {
 		this.entity = entity;
 	}
 

@@ -2,6 +2,9 @@ package editor.entity.player;
 
 import api.entity.interfaces.Entity;
 import api.entity.interfaces.Living;
+import api.enums.Layer;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
 import editor.utils.textures.Texture;
 
 /**
@@ -12,7 +15,7 @@ import editor.utils.textures.Texture;
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  * @version 2.0
- * @see api.entity.interfaces.Entity
+ * @see Entity
  * @see api.entity.interfaces.Living
  * @since 2.0
  */
@@ -122,5 +125,40 @@ public class Player implements Entity, Living {
 	@Override
 	public String toString() {
 		return "[Player  : ID = " + this.id + ", dialog = " + this.dialog + ", pv = " + this.pv + ", texture = " + this.texture + "]";
+	}
+
+	@Override
+	public int getWidth() {
+		return 0;
+	}
+
+	@Override
+	public int getHeight() {
+		return 0;
+	}
+
+	@Override
+	public void setDimension(int width, int height) {
+
+	}
+
+	@Override
+	public Vector2 getPosition() {
+		return null;
+	}
+
+	@Override
+	public void setPosition(Vector2 pos) {
+
+	}
+
+	@Override
+	public Array<Float> getTexture(Layer layer) {
+		return null;
+	}
+
+	@Override
+	public void setTexture(Array<Float> texture, Layer layer) {
+
 	}
 }

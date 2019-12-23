@@ -1,7 +1,7 @@
 {
   //TODO: implements textures
   content: [
-    {
+    /*{
       className: editor.map.Room
       path: assets/map/datas/small-room.png
       category: ROOMS
@@ -33,6 +33,6 @@
           2041,2041,2041,2041,0,0,2041,2041,2041,2041
         ]
       }
-    }
+    }*/
   ]
 }

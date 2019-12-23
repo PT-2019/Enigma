@@ -5,7 +5,7 @@ import editor.enigma.Enigma;
 import java.util.Iterator;
 
 /**
- * Permet à une {@link api.entity.interfaces.Entity entité} de contenir des énigmes
+ * Permet à une {@link Entity entité} de contenir des énigmes
  *
  * @author Jorys-Micke ALAÏS
  * @author Louka DOZ

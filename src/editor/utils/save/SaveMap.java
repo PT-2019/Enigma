@@ -1,5 +1,6 @@
 package editor.utils.save;
 
+import api.entity.GameObject;
 import api.enums.Layer;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.FileTextureData;
@@ -51,7 +52,7 @@ public class SaveMap {
 	/**
 	 * Les entités de la map
 	 */
-	private final HashMap<Vector2, EntitySerializable> entities;
+	private final HashMap<Vector2, GameObject> entities;
 
 	/**
 	 * Crée un sauvegarde de la map
@@ -59,7 +60,7 @@ public class SaveMap {
 	 * @param game la map
 	 * @param entities Les entités de la map et leur position
 	 */
-	public SaveMap(TiledMap game, HashMap<Vector2,EntitySerializable> entities) {
+	public SaveMap(TiledMap game, HashMap<Vector2, GameObject> entities) {
 		this.gameMap = game;
 		this.entities = entities;
 	}
@@ -193,12 +194,12 @@ public class SaveMap {
 				objetGroup.setAttribute("id", "6");
 				map.appendChild(objetGroup);
 
-				for (java.util.Map.Entry<Vector2, EntitySerializable> entitySet : entities.entrySet()) {
-					EntitySerializable entity = entitySet.getValue();
+				for (java.util.Map.Entry<Vector2, GameObject> entitySet : entities.entrySet()) {
+					GameObject entity = entitySet.getValue();
 					Vector2 pos = entitySet.getKey();
 
 					Element object = document.createElement("object");
-					object.setAttribute("name", entity.getClassName());
+					object.setAttribute("name", entity.getClass().getName());
 					object.setAttribute("x", String.valueOf(pos.x));
 					//TODO : q-check
 					object.setAttribute("y", String.valueOf(pos.y - entity.getHeight()));

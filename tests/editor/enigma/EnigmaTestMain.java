@@ -2,8 +2,8 @@ package editor.enigma;
 
 import editor.enigma.condition.Activated;
 import editor.enigma.operation.Unlock;
-import editor.entity.item.Door;
-import editor.entity.item.Switch;
+import item.Door;
+import item.Switch;
 import editor.entity.player.Player;
 
 /**

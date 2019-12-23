@@ -112,7 +112,11 @@ public class TestScreen extends LibgdxScreen {
 		this.hud.dispose();
 	}
 
-	public void setMap(String absolutePath) {
-		MAP_PATH = absolutePath;
+	public boolean setMap(String absolutePath) {
+		if(!absolutePath.equals(MAP_PATH)) {
+			MAP_PATH = absolutePath;
+			return true;
+		}
+		return false;
 	}
 }

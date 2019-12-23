@@ -1,5 +1,7 @@
 package game.entity;
 
+import api.LibgdxScreen;
+import api.entity.GameObject;
 import api.enums.Layer;
 import api.utils.Bounds;
 import api.utils.Utility;
@@ -17,12 +19,15 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Array;
+import editor.entity.EntityFactory;
 import editor.entity.EntitySerializable;
 import game.ui.Border;
 import game.ui.CategoriesMenu;
 import org.intellij.lang.annotations.MagicConstant;
 import org.jetbrains.annotations.NotNull;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 
 import static api.MapsNameUtils.HEIGHT_P;
@@ -72,7 +77,7 @@ public class MapLibgdx extends Group{
 	/**
 	 * Les entités de la maps
 	 */
-	private HashMap<Vector2 ,EntitySerializable> added;
+	private HashMap<Vector2, GameObject> added;
 
 	/**
 	 * Crée une map depuis un fichier tmx
@@ -94,7 +99,7 @@ public class MapLibgdx extends Group{
 
 		//bordures
 		this.border = new Border(width,
-				(height * (int) this.map.getUnitScale()),
+				height,
 				this.tileHeight);
 
 		//dimension de la map
@@ -115,7 +120,10 @@ public class MapLibgdx extends Group{
 		if(x < 0) x*= -1;
 		if(y < 0) y*=-1;
 
-		this.camera.position.set(x, y, 0);
+		//this.camera.position.set(x, y, 0);
+		System.out.println(mapHeight);
+		this.camera.position.set(Gdx.graphics.getWidth()/2f - height/2f - CategoriesMenu.WIDTH,
+				Gdx.graphics.getHeight()/2f - width/2f,0);
 		this.camera.update();
 
 		this.added = new HashMap<>();
@@ -179,14 +187,17 @@ public class MapLibgdx extends Group{
 		pos.x -= this.mapBounds.left;
 		pos.y -= this.mapBounds.bot;
 
-		// obtient le coin supérieur gauche ou commencer a placer des tiles
+		//obtient le coin supérieur gauche ou commencer a placer des tiles
 		Vector2 start = posToIndex(pos.x, pos.y, this);
 
+		//instancie l'entité
+		GameObject object = EntityFactory.createEntity(entity, this.added.size(), start);
+
 		//ajout à la liste des entités de la map
-		this.added.put(start,entity);
+		this.added.put(start, object);
 
 		// on place les tiles
-		this.set(entity, start);
+		this.set(object, start);
 
 		return true;
 	}
@@ -221,7 +232,7 @@ public class MapLibgdx extends Group{
 	 *
 	 * @since 4.0
 	 */
-	private void set(EntitySerializable entity, Vector2 start) {
+	private void set(GameObject entity, Vector2 start) {
 		//on parcours toutes les niveaux de la map et on y ajoute les tiles de l'entité
 		for (MapLayer mapLayer : this.map.getMap().getLayers()) {
 			//c'est un layer de tiles ?
@@ -230,7 +241,7 @@ public class MapLibgdx extends Group{
 			TiledMapTileLayer tileLayer = (TiledMapTileLayer) mapLayer;
 
 			//récupère les tiles de l'entités pour ce niveau
-			Array<Float> entities = entity.getTiles(Utility.stringToEnum(tileLayer.getName(), Layer.values()));
+			Array<Float> entities = entity.getTexture(Utility.stringToEnum(tileLayer.getName(), Layer.values()));
 
 			//si pas de tiles a mettre sur ce layer, on passe au suivant
 			if (entities == null) continue;
@@ -346,7 +357,7 @@ public class MapLibgdx extends Group{
 	 *
 	 * @return les entités de la map et leur position
 	 */
-	public HashMap<Vector2, EntitySerializable> getEntities() {
+	public HashMap<Vector2, GameObject> getEntities() {
 		return added;
 	}
 

@@ -1,11 +1,11 @@
 package editor.entity;
 
 import api.entity.interfaces.Entity;
-import editor.entity.item.Book;
 import editor.entity.display.EntityPopMenu;
 import editor.entity.display.EntityView;
 import editor.entity.display.EntityViewListener;
 import editor.utils.textures.Texture;
+import game.entity.item.Book;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,6 +1,6 @@
 {
   content: [
-    {
+    /*{
       className: editor.entity.item.Chest
       path: assets/map/datas/coffre.png
       category: DECORS
@@ -43,6 +43,6 @@
         DECORATIONS1: [284]
         COLLISION: [2041]
       }
-    }
+    }*/
   ]
 }

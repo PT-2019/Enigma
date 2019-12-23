@@ -7,7 +7,6 @@ import com.badlogic.gdx.utils.Array;
 import editor.entity.EntityFactory;
 import editor.entity.EntitySerializable;
 import editor.utils.EmptyMapGenerator;
-import editor.utils.dnd.ChoixObjet;
 import editor.utils.dnd.DragAndDropDND;
 import editor.utils.dnd.EntityContainer;
 import editor.window.Window;
@@ -20,7 +19,6 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.dnd.DnDConstants;
 
@@ -59,28 +57,12 @@ public class EditorScreen extends JPanel {
 		//création de la barre d'outils
 		JPanel outilBar = this.loadOutilBar();
 
-		//création de la zone de choix du menu d'objets
-		JPanel sideBar = this.loadSideBar();
-
 		//création de la zone d'affichage de la map (partie droite)
 		JPanel map = new JPanel();
 		LoadGameLibgdxApplication.load(map, parent);
 
-		//ajout des observateurs
-		@Deprecated
-		ChoixObjet choix = new ChoixObjet();
-		for (Component c : sideBar.getComponents()) {
-			if (c instanceof JButton) {
-				((JButton) c).addActionListener(choix);
-			}
-		}
-
-		JPanel menu = new JPanel(new BorderLayout());
-		menu.add(outilBar, BorderLayout.NORTH);
-		menu.add(sideBar, BorderLayout.SOUTH);
-
 		//ajout aux conteneurs
-		this.add(menu, BorderLayout.NORTH);
+		this.add(outilBar, BorderLayout.NORTH);
 		this.add(map, BorderLayout.CENTER);
 
 		parent.setJMenuBar(new BarMenu());
@@ -150,7 +132,9 @@ public class EditorScreen extends JPanel {
 	 *
 	 * @return JPanel contenant la barre des éléments de la catégorie
 	 * @since 3.0 14 décembre 2019
+	 * @deprecated 4.0 fait en libgdx
 	 */
+	@Deprecated
 	private JPanel loadSideBar() {
 		//création de la zone de choix du menu d'objets
 		JPanel sidebar = new JPanel();
