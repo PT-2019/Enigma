@@ -1,6 +1,7 @@
-package editor;
+package editor.screens;
 
 import api.enums.EntitiesCategories;
+import api.enums.Outil;
 import api.utils.LoadGameLibgdxApplication;
 import com.badlogic.gdx.utils.Array;
 import editor.entity.EntityFactory;
@@ -12,6 +13,8 @@ import editor.window.Window;
 import org.intellij.lang.annotations.MagicConstant;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -68,9 +71,15 @@ public class EditorScreen extends JPanel {
 			}
 		}
 
+		JPanel menu = new JPanel(new BorderLayout());
+		menu.add(outilBar, BorderLayout.NORTH);
+		menu.add(sideBar, BorderLayout.SOUTH);
+
 		//ajout aux conteneurs
-		this.add(sideBar, BorderLayout.NORTH);
+		this.add(menu, BorderLayout.NORTH);
 		this.add(map, BorderLayout.CENTER);
+
+		parent.setJMenuBar(new BarMenu());
 	}
 
 	/**

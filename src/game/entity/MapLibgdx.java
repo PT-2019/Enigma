@@ -102,9 +102,13 @@ public class MapLibgdx extends Group{
 		//setup camera
 		this.camera = new OrthographicCamera();
 		this.camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		this.camera.position.set(
-				Gdx.graphics.getWidth()/2f - this.mapWidth/2f - CategoriesMenu.WIDTH,
-				Gdx.graphics.getHeight()/2f - this.mapHeight/2f, 0);
+		//centre map dans l'écran
+		float x = Gdx.graphics.getWidth()/2f - this.mapWidth/2f - CategoriesMenu.WIDTH;
+		float y = Gdx.graphics.getHeight()/2f - this.mapHeight/2f;
+		if(x < 0) x*= -1;
+		if(y < 0) y*=-1;
+
+		this.camera.position.set(x, y, 0);
 		this.camera.update();
 
 		//bounds

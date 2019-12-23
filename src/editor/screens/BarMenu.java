@@ -1,4 +1,4 @@
-package editor.bibliotheque;
+package editor.screens;
 
 import javax.swing.*;
 

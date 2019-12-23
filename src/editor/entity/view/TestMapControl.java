@@ -55,11 +55,6 @@ public class TestMapControl implements InputProcessor {
         if (keycode == Input.Keys.MINUS && ispush)
             this.minCamera();
 
-        return false;
-    }
-
-    @Override
-    public boolean keyUp(int keycode) {
         if (keycode == Input.Keys.LEFT) {
             camera.translate(-CAMERA_OFFSET, 0);
             camera.update();
@@ -86,6 +81,9 @@ public class TestMapControl implements InputProcessor {
         }
         return false;
     }
+
+    @Override
+    public boolean keyUp(int keycode) { return false; }
 
     @Override
     public boolean keyTyped(char character) { return false; }

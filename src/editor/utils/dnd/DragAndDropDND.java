@@ -3,7 +3,7 @@ package editor.utils.dnd;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.utils.UIUtils;
-import editor.EditorScreen;
+import editor.screens.EditorScreen;
 import editor.window.Window;
 import game.EnigmaGame;
 import game.entity.MapLibgdx;

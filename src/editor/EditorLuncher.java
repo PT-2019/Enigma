@@ -1,6 +1,7 @@
 package editor;
 
 import api.Application;
+import editor.screens.EditorScreen;
 import editor.window.Window;
 
 import java.awt.BorderLayout;

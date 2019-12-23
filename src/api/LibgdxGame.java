@@ -176,6 +176,25 @@ public abstract class LibgdxGame extends Game implements Application {
 		return game.screenSize;
 	}
 
+	//TODO: redo reload
+	public static void reload(String key) {
+		Class c;
+		if(screens.containsKey(key)) {
+			c = screens.get(key).getClass();// Test()
+			screens.remove(key);
+			added.put(key, c);// Test.class
+			//load(key); //Test()
+			setScreen(key);
+		} else if(added.containsKey(key)) {// Test.class
+			//load(key);// Test()
+			//setScreen(key);
+		}
+		else {
+			throw new IllegalStateException("jamais chargé");
+		}
+
+	}
+
 	/**
 	 * Chnage la taille de l'écran si on veut revenir de plein écran a l'ancienne
 	 * taille.

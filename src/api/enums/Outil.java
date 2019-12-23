@@ -1,4 +1,4 @@
-package editor.datas;
+package api.enums;
 
 public enum Outil {
     OPEN("Open"),
