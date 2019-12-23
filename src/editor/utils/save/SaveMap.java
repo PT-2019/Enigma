@@ -7,6 +7,9 @@ import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.*;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
+import editor.entity.EntitySerializable;
 import editor.entity.map.Case;
 import editor.entity.map.Map;
 import editor.utils.textures.TextureArea;
@@ -25,6 +28,7 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 
 /**
  * Sauvegarde une map et les textures associés.
@@ -42,10 +46,22 @@ public class SaveMap {
 	/**
 	 * Map à sauvegarder.
 	 */
-	private TiledMap gameMap;
+	private final TiledMap gameMap;
 
-	public SaveMap(TiledMap game) {
+	/**
+	 * Les entités de la map
+	 */
+	private final HashMap<Vector2, EntitySerializable> entities;
+
+	/**
+	 * Crée un sauvegarde de la map
+	 *
+	 * @param game la map
+	 * @param entities Les entités de la map et leur position
+	 */
+	public SaveMap(TiledMap game, HashMap<Vector2,EntitySerializable> entities) {
 		this.gameMap = game;
+		this.entities = entities;
 	}
 
 
@@ -171,6 +187,28 @@ public class SaveMap {
 				tmpstring = new StringBuilder("\n");
 			}
 
+			//écriture des entités
+			if(this.entities.size() > 0) {
+				Element objetGroup = document.createElement("objectgroup");
+				objetGroup.setAttribute("id", "6");
+				map.appendChild(objetGroup);
+
+				for (java.util.Map.Entry<Vector2, EntitySerializable> entitySet : entities.entrySet()) {
+					EntitySerializable entity = entitySet.getValue();
+					Vector2 pos = entitySet.getKey();
+
+					Element object = document.createElement("object");
+					object.setAttribute("name", entity.getClassName());
+					object.setAttribute("x", String.valueOf(pos.x));
+					//TODO : q-check
+					object.setAttribute("y", String.valueOf(pos.y - entity.getHeight()));
+					object.setAttribute("width", String.valueOf(entity.getWidth()));
+					object.setAttribute("height", String.valueOf(entity.getHeight()));
+
+					objetGroup.appendChild(object);
+				}
+			}
+
 			TransformerFactory factoryTrans = TransformerFactory.newInstance();
 			Transformer transformer = factoryTrans.newTransformer();
 
@@ -179,8 +217,8 @@ public class SaveMap {
 
 			DOMSource source = new DOMSource(document);
 
-			StreamResult resultat = new StreamResult(new File(fichier));
-			transformer.transform(source, resultat);
+			StreamResult result = new StreamResult(new File(fichier));
+			transformer.transform(source, result);
 
 		} catch (ParserConfigurationException | TransformerException pce) {
 			pce.printStackTrace();
@@ -192,8 +230,8 @@ public class SaveMap {
 	 *
 	 * @param file nom du fichier de sauvegarde.
 	 * @param map  map a sauvegarder
+	 * @param textures les textures de la map
 	 *
-	 * @param textures
 	 * @since 2.0
 	 */
 	public static void saveMap(String file, Map map, ArrayList<TextureArea> textures){
