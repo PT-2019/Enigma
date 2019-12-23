@@ -82,6 +82,7 @@ public abstract class LibgdxGame extends Game implements Application {
 					screens.put(key, (LibgdxScreen) declaredConstructor.newInstance());
 				} catch (IllegalAccessException | InstantiationException | NoSuchMethodException | InvocationTargetException e) {
 					Gdx.app.error("FilesManager", "create instance failed");
+
 					throw new IllegalStateException("create instance failed");
 				}
 			}

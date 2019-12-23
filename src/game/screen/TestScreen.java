@@ -48,7 +48,7 @@ public class TestScreen extends LibgdxScreen {
 
 		//map
 		this.main = new Stage();
-		this.map = new MapLibgdx("assets/map/Empty.tmx");
+		this.map = new MapLibgdx("assets/map/test.tmx");
 		this.main.addActor(this.map);
 
 		//Drag and drop

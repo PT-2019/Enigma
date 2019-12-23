@@ -32,7 +32,6 @@ public class Border extends ShapeRenderer {
 				this.rect(j * tile, tile * i, tile, tile);
 			}
 		}
-
 		this.end();
 	}
 }

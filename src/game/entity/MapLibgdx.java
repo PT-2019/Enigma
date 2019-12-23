@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.maps.MapLayer;
+import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -18,11 +19,21 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Array;
+import editor.EditorLuncher;
 import editor.entity.EntitySerializable;
+import editor.entity.map.Case;
+import editor.utils.save.view.CaseListener;
+import editor.utils.save.view.CasePopUp;
+import editor.utils.save.view.CaseView;
+import editor.window.Window;
 import game.ui.Border;
 import game.ui.CategoriesMenu;
 import org.intellij.lang.annotations.MagicConstant;
 import org.jetbrains.annotations.NotNull;
+
+import javax.swing.*;
+
+import java.awt.*;
 
 import static api.MapsNameUtils.HEIGHT_P;
 import static api.MapsNameUtils.TILE_HEIGHT_P;
@@ -53,6 +64,12 @@ public class MapLibgdx extends Group{
 	 * Caméra de la map
 	 */
 	private final OrthographicCamera camera;
+
+	/**
+	 * Fenetre parent qui contient la map
+	 */
+	private final Window window;
+
 	/**
 	 * Bordure des cases de la map
 	 */
@@ -107,6 +124,11 @@ public class MapLibgdx extends Group{
 				Gdx.graphics.getWidth()/2f - this.mapWidth/2f - CategoriesMenu.WIDTH,
 				Gdx.graphics.getHeight()/2f - this.mapHeight/2f, 0);
 		this.camera.update();
+
+		this.window = EditorLuncher.getInstance().getWindow();
+
+		init();
+		createCell(this.window.getContentPane());
 
 		//bounds
 		this.setMapBounds();
@@ -212,11 +234,66 @@ public class MapLibgdx extends Group{
 			//pas de problème pour x
 			for (int i = (int) start.y - 1, index = 0; i >= (start.y - entity.getHeight()); i--) {
 				for (int j = (int) start.x; j < start.x + entity.getWidth() && index < entities.size; j++, index++) {
-					MapLibgdxCell c = new MapLibgdxCell(tileLayer, index);
+					MapLibgdxCell c = (MapLibgdxCell) tileLayer.getCell(j,i);
 					c.setTile(this.map.getMap().getTileSets().getTile(MathUtils.ceil(entities.get(index))));
 					c.setEntity(entity);
+
 					tileLayer.setCell(j, i, c);
 				}
+			}
+		}
+	}
+
+	/**
+	 * Cette méthode transforme toutes les cellules de la map en MapLibgdxCell
+	 * @see MapLibgdxCell
+	 */
+	private void init(){
+		MapLayers layers = map.getMap().getLayers();
+		for (int i =0; i < 5; i++){
+			TiledMapTileLayer layer = (TiledMapTileLayer) layers.get(i);
+			for (int y = 0; y < layer.getHeight(); y++) {
+				for (int x = 0; x < layer.getWidth(); x++) {
+				MapLibgdxCell cell = new MapLibgdxCell(layer, y * layer.getWidth() + x);
+
+				TiledMapTileLayer.Cell tmp = layer.getCell(x, y);
+
+				if (tmp != null)
+					cell.setTile(tmp.getTile());
+
+				layer.setCell(x, y, cell);
+				}
+			}
+		}
+
+
+	}
+
+	/**
+	 * Permet de créer tout les listeners sur les cases
+	 * @param component
+	 */
+	private void createCell(Container component){
+		JComponent jcomponent =(JComponent) component;
+		CasePopUp popUp = new CasePopUp(jcomponent,this.map.getMap());
+		CaseListener listenerCase = new CaseListener(popUp);
+		MapLayers layers = map.getMap().getLayers();
+
+		TiledMapTileLayer layer = (TiledMapTileLayer) layers.get(0);
+		for (int y = 0; y < layer.getHeight(); y++) {
+			for (int x = 0; x < layer.getWidth(); x++) {
+				MapLibgdxCell cell =(MapLibgdxCell) layer.getCell(x,y);
+
+				CaseView actor = new CaseView(cell);
+
+				actor.setBounds(x * layer.getTileWidth(), y * layer.getTileHeight(),
+						layer.getTileWidth(), layer.getTileHeight());
+
+				addActor(actor);
+
+				layer.setCell(x,y,cell);
+
+				actor.addListener(listenerCase);
 			}
 		}
 	}
@@ -226,10 +303,11 @@ public class MapLibgdx extends Group{
 		super.act(delta);
 		//update caméra
 		//update map's camera from stage's camera
-		//Camera c = this.getStage().getCamera();
-		//this.camera.position.x = c.position.x;
-		//this.camera.position.y = c.position.y;
-		//this.camera.update();
+		Camera c = this.getStage().getCamera();
+		this.camera.position.x = c.position.x;
+		this.camera.position.y = c.position.y;
+		this.camera.update();
+
 		//update borders
 		this.border.setProjectionMatrix(this.camera.combined);
 	}

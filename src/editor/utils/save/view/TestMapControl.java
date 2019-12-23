@@ -34,9 +34,10 @@ public class TestMapControl implements InputProcessor {
         //changed to window
         //this.component = (JComponent) map.getContainer();
         this.window = EditorLuncher.getInstance().getWindow();
-        //this.menu = new EntityPopMenu(r,col,cam);
-        //TODO: test pour vérifier que cela marche avec une window
+        //this.menu = new EntityPopMenu(camera);
         this.menu = new EntityPopMenu();
+        //TODO: test pour vérifier que cela marche avec une window
+
     }
 
     @Override

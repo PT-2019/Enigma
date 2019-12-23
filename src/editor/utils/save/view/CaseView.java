@@ -3,22 +3,18 @@ package editor.utils.save.view;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import editor.entity.map.Case;
+import game.entity.MapLibgdx;
+import game.entity.MapLibgdxCell;
 
 public class CaseView extends Actor {
-    private Case c;
 
-    private TiledMapTileLayer.Cell cell;
+    private MapLibgdxCell cell;
 
-    public CaseView(TiledMapTileLayer.Cell cell, Case c){
-        this.c = c;
+    public CaseView(MapLibgdxCell cell){
         this.cell = cell;
     }
 
-    public Case getCase() {
-        return c;
-    }
-
-    public TiledMapTileLayer.Cell getCell(){
+    public MapLibgdxCell getCell(){
         return this.cell;
     }
 }

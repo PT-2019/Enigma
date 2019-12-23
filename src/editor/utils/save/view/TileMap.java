@@ -45,7 +45,7 @@ public class TileMap extends Stage{
 
                     currentCase = gameMap.getCase(y * layer.getWidth() + x);
 
-                    CaseView actor = new CaseView(cell, currentCase);
+                    CaseView actor = new CaseView(cell);
 
                     actor.setBounds(x * layer.getTileWidth(), y * layer.getTileHeight(),
                             layer.getTileWidth(), layer.getTileHeight());
