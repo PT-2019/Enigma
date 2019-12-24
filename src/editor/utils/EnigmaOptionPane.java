@@ -5,6 +5,7 @@ import editor.utils.managers.OptionPaneButtonManager;
 import editor.utils.ui.EnigmaButtonUI;
 import editor.utils.ui.EnigmaTextAreaUI;
 import editor.utils.ui.EnigmaUIValues;
+import editor.window.Window;
 
 import java.awt.*;
 
@@ -64,7 +65,6 @@ public class EnigmaOptionPane {
 
     public void show(){
         this.window.setVisible(true);
-        System.out.println("-----------");
     }
 
     public void close(){
@@ -90,7 +90,7 @@ public class EnigmaOptionPane {
     }
 
     public void waitForAnswer(){
-        while(!this.haveAnswered) System.out.flush();
+        while(!this.haveAnswered){}
     }
 
     public static EnigmaButton getClassicButton(String text){
@@ -154,7 +154,6 @@ public class EnigmaOptionPane {
 
         optionPane.show();
         optionPane.waitForAnswer();
-        System.out.println(optionPane.getAnswer().equals(CONFIRM));
         return optionPane.getAnswer().equals(CONFIRM);
     }
 

@@ -1,10 +1,9 @@
 package editor.utils.managers;
 
-import editor.utils.Window;
-
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import editor.window.Window;
 
 public class Drag extends MouseAdapter {
 

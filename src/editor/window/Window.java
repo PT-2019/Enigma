@@ -1,5 +1,8 @@
 package editor.window;
 
+import editor.utils.EnigmaButton;
+import editor.utils.EnigmaMenuBar;
+import editor.utils.EnigmaPanel;
 import editor.utils.managers.*;
 import editor.utils.ui.*;
 
@@ -74,7 +77,7 @@ public class Window extends JFrame {
 	}
 
 	private void init(){
-		this.setIconImage(new ImageIcon(this.getClass().getResource("image/o.JPG")).getImage());
+		//this.setIconImage(new ImageIcon(this.getClass().getResource("image/o.JPG")).getImage());
 		this.setUndecorated(true);
 		EnigmaMenuBar windowActionBar = new EnigmaMenuBar();
 		EnigmaMenuBarUI barUI = new EnigmaMenuBarUI();
@@ -203,7 +206,6 @@ public class Window extends JFrame {
 		return this.content;
 	}
 
-<<<<<<< HEAD:src/editor/utils/Window.java
 	public boolean isFullScreen(){
 		return (this.getExtendedState() == JFrame.MAXIMIZED_BOTH);
 	}
@@ -349,8 +351,8 @@ public class Window extends JFrame {
 	public void hideBorder(){
 		EnigmaMenuBar bar = (EnigmaMenuBar) this.getJMenuBar();
 		bar.getMenuBarUI().setShowedBorders(this.menuBarShowedBorderConfiguration);
-		bar.getMenuBarUI().setShowedBorders(this.menuBarShowedBorderConfiguration);
-		bar.getMenuBarUI().setShowedBorders(this.menuBarShowedBorderConfiguration);
+		bar.getMenuBarUI().setBorderSize(this.menuBarBorderSizeConfiguration);
+		bar.getMenuBarUI().setBorder(this.menuBarBorderConfiguration);
 
 		this.resizers[LEFT_RESIZER].setBorder(BorderFactory.createEmptyBorder());
 		this.resizers[RIGHT_RESIZER].setBorder(BorderFactory.createEmptyBorder());
@@ -428,10 +430,6 @@ public class Window extends JFrame {
 			bUI.setAllBordersSize(borderSize,borderSize,borderSize);
 			bUI.setAllShowedBorders(bordersRight, bordersRight, bordersRight);
 		}
-=======
-		//TODO: définir la position de la fenêtre (centrée).
-		//TODO: vérifier la taille (w, h) par rapport à l'écran
->>>>>>> master:src/editor/window/Window.java
 	}
 }
 

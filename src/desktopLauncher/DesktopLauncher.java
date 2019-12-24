@@ -3,9 +3,9 @@ package desktopLauncher;
 import editor.EditorLauncher;
 import editor.api.Application;
 import editor.utils.EnigmaLabel;
-import editor.utils.Window;
 import editor.utils.EnigmaButton;
 import editor.utils.ui.EnigmaLabelUI;
+import editor.window.Window;
 
 import javax.swing.*;
 import java.awt.*;

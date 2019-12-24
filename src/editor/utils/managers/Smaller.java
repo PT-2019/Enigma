@@ -1,6 +1,6 @@
 package editor.utils.managers;
 
-import editor.utils.Window;
+import editor.window.Window;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

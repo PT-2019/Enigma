@@ -1,11 +1,7 @@
 package editor;
 
 import editor.api.Application;
-import editor.utils.*;
-import editor.utils.Window;
-
-import javax.swing.*;
-import java.awt.*;
+import editor.window.Window;
 
 /**
  * Lanceur de l'éditeur d'escape game
