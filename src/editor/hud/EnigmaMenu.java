@@ -6,6 +6,16 @@ import editor.hud.ui.EnigmaMenuUI;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * TODO: comment EnigmaMenu and write Readme.md in editor.hud
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 3.0
+ * @since 3.0
+ */
 public class EnigmaMenu extends JMenu {
 
     private EnigmaMenuUI ui;

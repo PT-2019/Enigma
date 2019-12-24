@@ -6,6 +6,16 @@ import editor.hud.ui.EnigmaPanelUI;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * TODO: comment EnigmaPanel and write Readme.md in editor.hud
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 3.0
+ * @since 3.0
+ */
 public class EnigmaPanel extends JPanel {
 
     private EnigmaPanelUI ui;

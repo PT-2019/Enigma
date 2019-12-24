@@ -6,6 +6,16 @@ import editor.hud.ui.EnigmaMenuBarUI;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * TODO: comment EnigmaMenuBar and write Readme.md in editor.hud
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 3.0
+ * @since 3.0
+ */
 public class EnigmaMenuBar extends JMenuBar {
 
     private Array<Component> menus;

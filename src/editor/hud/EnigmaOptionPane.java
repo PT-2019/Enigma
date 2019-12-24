@@ -10,8 +10,16 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 
-//import Window;//TODO: awt window???
-
+/**
+ * TODO: comment EnigmaOptionPane and write Readme.md in editor.hud
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 3.0
+ * @since 3.0
+ */
 public class EnigmaOptionPane {
 
     private String answer;

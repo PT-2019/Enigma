@@ -5,6 +5,16 @@ import editor.hud.ui.EnigmaPopupMenuUI;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * TODO: comment EnigmaPopupMenu and write Readme.md in editor.hud
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 3.0
+ * @since 3.0
+ */
 public class EnigmaPopupMenu extends JPopupMenu {
 
     private EnigmaPopupMenuUI ui;

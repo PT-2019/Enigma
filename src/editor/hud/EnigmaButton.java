@@ -5,6 +5,16 @@ import editor.hud.ui.EnigmaButtonUI;
 
 import javax.swing.*;
 
+/**
+ * TODO: comment EnigmaButton and write Readme.md in editor.hud
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 3.0
+ * @since 3.0
+ */
 public class EnigmaButton extends JButton {
 
     private EnigmaButtonUI ui;
