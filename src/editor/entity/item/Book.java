@@ -1,10 +1,10 @@
 package editor.entity.item;
 
 import editor.enigma.Enigma;
+import editor.entity.Player;
 import editor.entity.interfaces.Content;
 import editor.entity.interfaces.Item;
-import editor.entity.player.Player;
-import editor.texture.Texture;
+import editor.textures.Texture;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -74,6 +74,11 @@ public class Book implements Item, Content {
     @Override
     public Texture getTexture() {
         return this.texture;
+    }
+
+    @Override
+    public void setTexture(Texture t) {
+        texture = t;
     }
 
     /**

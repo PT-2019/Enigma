@@ -1,8 +1,8 @@
 package editor.entity.item;
 
 import editor.enigma.Enigma;
-import editor.entity.player.Player;
-import editor.texture.Texture;
+import editor.entity.Player;
+import editor.textures.Texture;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -62,6 +62,11 @@ public class PressurePlate extends Activatable {
     @Override
     public Texture getTexture() {
         return this.texture;
+    }
+
+    @Override
+    public void setTexture(Texture t) {
+        texture = t;
     }
 
     /**

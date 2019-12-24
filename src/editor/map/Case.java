@@ -1,14 +1,13 @@
 package editor.map;
 
+import editor.entity.interfaces.Entity;
+import editor.datas.Layer;
 import editor.entity.interfaces.IDInterface;
-import editor.enums.Layer;
-import editor.texture.Texture;
 
 import java.util.HashMap;
 
 /**
  * Une case de la map
- * @version 2.0
  */
 public class Case implements IDInterface {
 
@@ -18,8 +17,8 @@ public class Case implements IDInterface {
 	/** détermine s'il est possible de se rendre sur la case */
 	private boolean walkable;
 
-	/** Map, pour chaque niveau, on va possible une texture **/
-	private HashMap<Layer, Texture> textures;
+	/** Map, pour chaque niveau, on a possiblement une texture **/
+	private HashMap<Layer, Entity> entities;
 
 	/** taille de la case **/
 	private int width, height;
@@ -36,7 +35,7 @@ public class Case implements IDInterface {
 		this.width = Case.WIDTH;
 		this.height = Case.HEIGHT;
 		this.walkable = false;
-		this.textures = new HashMap<>();
+		this.entities = new HashMap<>();
 	}
 
 	/**
@@ -47,7 +46,7 @@ public class Case implements IDInterface {
 		this.width = Case.WIDTH;
 		this.height = Case.HEIGHT;
 		this.walkable = false;
-		this.textures = new HashMap<>();
+		this.entities = new HashMap<>();
 		this.id = id;
 	}
 
@@ -61,8 +60,8 @@ public class Case implements IDInterface {
 	 * @param layer le niveau
 	 * @param texture la texture
 	 */
-	public void setTexture(Layer layer, Texture texture) {
-		this.textures.put(layer,texture);
+	public void setEntity(Layer layer, Entity texture) {
+		this.entities.put(layer,texture);
 	}
 
 	/**
@@ -89,8 +88,12 @@ public class Case implements IDInterface {
 	 */
 	public int getHeight() { return this.height; }
 
-	public HashMap<Layer, Texture> getTextures() {
-		return textures;
+	public HashMap<Layer, Entity> getEntities() {
+		return this.entities;
+	}
+
+	public Entity getEntity(Layer layer) {
+		return this.entities.get(layer);
 	}
 
 	/**

@@ -4,9 +4,9 @@ import editor.enigma.Enigma;
 import editor.entity.interfaces.Item;
 import editor.entity.interfaces.Lockable;
 import editor.entity.interfaces.Passage;
-import editor.entity.player.Player;
+import editor.entity.Player;
 import editor.map.Room;
-import editor.texture.Texture;
+import editor.textures.Texture;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -97,6 +97,11 @@ public class Door implements Item, Passage, Lockable {
     @Override
     public Texture getTexture() {
         return this.texture;
+    }
+
+    @Override
+    public void setTexture(Texture t) {
+        texture = t;
     }
 
     /**

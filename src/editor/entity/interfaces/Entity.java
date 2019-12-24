@@ -1,7 +1,7 @@
 package editor.entity.interfaces;
 
-import editor.entity.player.Player;
-import editor.texture.Texture;
+import editor.entity.Player;
+import editor.textures.Texture;
 
 /**
  * Définie une entité
@@ -9,32 +9,34 @@ import editor.texture.Texture;
  */
 public interface Entity extends IDInterface {
 
-    /**
-     * Est appelé quand un joueur intéragit avec l'objet
-     * @param p Joueur ayant intéragit avec l'objet
-     */
-    public void interactsWith(Player p);
+	/**
+	 * Est appelé quand un joueur intéragit avec l'objet
+	 * @param p Joueur ayant intéragit avec l'objet
+	 */
+	void interactsWith(Player p);
 
-    /**
-     * Obtenir la texture de l'objet
-     * @return Texture de l'objet, null sinon
-     */
-    public Texture getTexture();
+	/**
+	 * Obtenir la texture de l'objet
+	 * @return Texture de l'objet, null sinon
+	 */
+	Texture getTexture();
 
-    /**
-     * Affiche un dialogue avec l'objet
-     */
-    public void showDialog();
+	void setTexture(Texture t);
 
-    /**
-     * Obtenir l'ID
-     * @return L'ID, -1 si pas initialisé
-     */
-    public int getID();
+	/**
+	 * Affiche un dialogue avec l'objet
+	 */
+	void showDialog();
 
-    /**
-     * Définir l'ID
-     * @param id ID
-     */
-    public void setID(int id);
+	/**
+	 * Obtenir l'ID
+	 * @return L'ID, -1 si pas initialisé
+	 */
+	int getID();
+
+	/**
+	 * Définir l'ID
+	 * @param id ID
+	 */
+	void setID(int id);
 }

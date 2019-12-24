@@ -1,8 +1,8 @@
 package editor.enigma.operation;
 
 
+import editor.entity.Player;
 import editor.entity.interfaces.Item;
-import editor.entity.player.Player;
 
 import java.util.Map;
 

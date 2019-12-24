@@ -1,9 +1,10 @@
 package editor.map;
 
-import editor.enums.Layer;
-import editor.texture.Texture;
-import editor.texture.TextureArea;
-import editor.texture.TextureProxy;
+import editor.datas.Layer;
+import editor.entity.Player;
+import editor.entity.interfaces.Entity;
+import editor.textures.Texture;
+import editor.textures.TextureProxy;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
@@ -16,183 +17,225 @@ import org.xml.sax.helpers.DefaultHandler;
  */
 public class LoadHandler extends DefaultHandler {
 
-    private String currentName;
+	private String currentName;
 
-    private TextureProxy proxyTexture;
+	private TextureProxy proxyTexture;
 
-    private Map loadMap;
+	private Map loadMap;
 
-    private int[] dataTexture = new int[4];
+	private int[] dataTexture = new int[4];
 
-    private String currentLayer;
+	private String currentLayer;
 
-    private int indice;
+	private int indice;
 
-    public LoadHandler(){
-        proxyTexture = new TextureProxy();
-        indice = 0;
-    }
+	public LoadHandler(){
+		proxyTexture = new TextureProxy();
+		indice = 0;
+	}
 
-    /**
-     * Cette méthode est activé lorsqu'une balise xml est détecté dans le fichier. Elle permet
-     * de récupérer les différents attributs des balises et donc créer les objets de la map.
-     * @param uri
-     * @param localName
-     * @param qName
-     * @param attributes
-     * @throws SAXException
-     */
-    @Override
-    public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
-        currentName = qName;
+	/**
+	 * Cette méthode est activé lorsqu'une balise xml est détecté dans le fichier. Elle permet
+	 * de récupérer les différents attributs des balises et donc créer les objets de la map.
+	 * @param uri
+	 * @param localName
+	 * @param qName
+	 * @param attributes
+	 * @throws SAXException
+	 */
+	@Override
+	public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
+		currentName = qName;
 
-        if (qName.equals("map")){
-            int col = Integer.parseInt(attributes.getValue("width"));
-            int row = Integer.parseInt(attributes.getValue("height"));
+		if (qName.equals("map")){
+			int col = Integer.parseInt(attributes.getValue("width"));
+			int row = Integer.parseInt(attributes.getValue("height"));
 
-            loadMap = new Map(col,row);
-        } else if (qName.equals("tileset")){
-            dataTexture[0] = Integer.parseInt(attributes.getValue("tileheight"));
-            dataTexture[1] = Integer.parseInt(attributes.getValue("columns"));
-            dataTexture[2] = Integer.parseInt(attributes.getValue("firstgid"));
-            dataTexture[3] = dataTexture[2] + Integer.parseInt(attributes.getValue("tilecount"));
+			loadMap = new Map(col,row);
+		} else if (qName.equals("tileset")){
+			dataTexture[0] = Integer.parseInt(attributes.getValue("tileheight"));
+			dataTexture[1] = Integer.parseInt(attributes.getValue("columns"));
+			dataTexture[2] = Integer.parseInt(attributes.getValue("firstgid"));
+			dataTexture[3] = dataTexture[2] + Integer.parseInt(attributes.getValue("tilecount"));
 
-        }else if(qName.equals("image")){
-            String source = attributes.getValue("source");
-            source = source.substring(6);
+		}else if(qName.equals("image")){
+			String source = attributes.getValue("source");
+			source = source.substring(6);
 
-            TextureArea currentTexture = new TextureArea(dataTexture[0],source,
-                    dataTexture[1],dataTexture[2],dataTexture[3]);
+			proxyTexture.addTexture(dataTexture[0],source, dataTexture[1], dataTexture[2], dataTexture[3]);
+		} else if(qName.equals("layer")){
+			indice = 0;
+			currentLayer = attributes.getValue("name");
 
-            proxyTexture.addTexture(currentTexture);
-        } else if(qName.equals("layer")){
-            indice = 0;
-            currentLayer = attributes.getValue("name");
+		} else if(qName.equals("room")){
+			int row = Integer.parseInt(attributes.getValue("heigth"));
+			int col = Integer.parseInt(attributes.getValue("width"));
+			int pointrow = Integer.parseInt(attributes.getValue("heigthpos"));
+			int pointcol = Integer.parseInt(attributes.getValue("widthpos"));
+			Case[] mapcase = loadMap.getCases();
+			Case[] roomcase = new Case[row*col];
 
-        } else if(qName.equals("room")){
-            int row = Integer.parseInt(attributes.getValue("heigth"));
-            int col = Integer.parseInt(attributes.getValue("width"));
-            int pointrow = Integer.parseInt(attributes.getValue("heigthpos"));
-            int pointcol = Integer.parseInt(attributes.getValue("widthpos"));
-            Case[] mapcase = loadMap.getCases();
-            Case[] roomcase = new Case[row*col];
+			for (int i = 0,k = pointrow; k < row+pointrow; i++,k++) {
+				for (int j = 0,n = pointcol; n < col+pointcol; j++,n++) {
 
-            for (int i = 0,k = pointrow; k < row+pointrow; i++,k++) {
-                for (int j = 0,n = pointcol; n < col+pointcol; j++,n++) {
+					roomcase[i*col+j] = mapcase[k*loadMap.getCol()+n];
+				}
+			}
 
-                    roomcase[i*col+j] = mapcase[k*loadMap.getCol()+n];
-                }
-            }
+			Room r = new Room(col,row,roomcase);
 
-            Room r = new Room(col,row,roomcase);
+			loadMap.addRoom(pointcol,pointrow,r);
 
-            loadMap.addRoom(pointcol,pointrow,r);
+		}
+	}
 
-        }
-    }
+	/**
+	 * Cette méthode permet de récupérer le contenu qu'il y a dans un noeud xml.
+	 * Elle est invoqué lorsqu'un noeud avec contenu est détecté.
+	 * @param value
+	 * @param start
+	 * @param length
+	 * @throws SAXException
+	 */
+	@Override
+	public void characters(char[] value, int start, int length) throws SAXException {
+		StringBuilder numText = new StringBuilder();
+		String str = new String(value, start, length);
+		str = str.replaceAll("\\s","");
 
-    /**
-     * Cette méthode permet de récupérer le contenu qu'il y a dans un noeud xml.
-     * Elle est invoqué lorsqu'un noeud avec contenu est détecté.
-     * @param value
-     * @param start
-     * @param length
-     * @throws SAXException
-     */
-    @Override
-    public void characters(char[] value, int start, int length) throws SAXException {
-        String numText = "";
-        String str = new String(value, start, length);
-        str = str.replaceAll("\\s","");
+		if (currentName.equals("data")){
 
-        if (currentName.equals("data")){
+			for (int i = 0; i < str.length(); i++) {
+				char tmp = str.charAt(i);
 
-            for (int i = 0; i < str.length(); i++) {
-                char tmp = str.charAt(i);
+				//Le point virgule signifie qu'on change de numéro de texture
+				if(tmp == ',' ){
 
-                //Le point virgule signifie qu'on change de numéro de texture
-                if(tmp == ',' ){
+					Case tmpCase = loadMap.getCase(indice);
+					int num = Integer.parseInt(numText.toString());
 
-                    Case tmpCase = loadMap.getCase(indice);
-                    int num = Integer.parseInt(numText);
+					//si la case est null on l'instancie
+					if (tmpCase == null){
+						tmpCase = new Case();
+						loadMap.setCase(indice,tmpCase);
+					}
+					//si c'est une collision on applique une méthode différente
+					if (currentLayer.equals("Colision")){
+						if (num == 1){
+							tmpCase.setWalkable(true);
+						}
+					}else{
+						Entity e = new Entity() {//todo: hum ???? fait par quentin car luc demande entité a la place de textures mais ...
+							private Texture texture;
 
-                    //si la case est null on l'instancie
-                    if (tmpCase == null){
-                        tmpCase = new Case();
-                        loadMap.setCase(indice,tmpCase);
-                    }
-                    //si c'est une collision on applique une méthode différente
-                    if (currentLayer.equals("Colision")){
-                        if (num == 1){
-                            tmpCase.setWalkable(true);
-                        }
-                    }else{
-                        tmpCase.setTexture(Layer.valueOf(currentLayer),new Texture(num,proxyTexture.getImage(num)));
-                    }
-                    indice++;
-                    numText="";
-                }else{
-                    //on ajoute le caractère
-                    numText += tmp;
-                }
-            }
-            if (!numText.equals("")){
-                Case tmpCase = loadMap.getCase(indice);
-                int num = Integer.parseInt(numText);
+							@Override
+							public void interactsWith(Player p) {}
 
-                //si la case est null on l'instancie
-                if (tmpCase == null){
-                    tmpCase = new Case();
-                    loadMap.setCase(indice,tmpCase);
-                }
-                //si c'est une collision on applique une méthode différente
-                if (currentLayer.equals("Colision")){
-                    if (num == 1){
-                        tmpCase.setWalkable(true);
-                    }
-                }else{
-                    tmpCase.setTexture(Layer.valueOf(currentLayer),new Texture(num,proxyTexture.getImage(num)));
-                }
-                indice++;
-            }
-        }
-    }
+							@Override
+							public Texture getTexture() {return texture;}
 
-    /**
-     * invoqué si le fichier ne respecte pas le dtd.
-     * @param e
-     * @throws SAXException
-     */
-    @Override
-    public void error(SAXParseException e) throws SAXException {
-        System.out.println("ERROR : " + e.getMessage());
-        throw e;
-    }
+							@Override
+							public void setTexture(Texture t) {texture=t;}
 
-    /**
-     * Invoqué lors d'une erreur avec une des règles du xml.
-     * @param e
-     * @throws SAXException
-     */
-    @Override
-    public void fatalError(SAXParseException e) throws SAXException {
-        System.out.println("FATAL ERROR : " + e.getMessage());
-        throw e;
-    }
+							@Override
+							public void showDialog() {}
 
-    /**
-     * Warning du parseur.
-     * @param e
-     * @throws SAXException
-     */
-    @Override
-    public void warning(SAXParseException e) throws SAXException {}
+							@Override
+							public int getID() {return 0;}
 
-    public  Map getMap(){
-        return loadMap;
-    }
+							@Override
+							public void setID(int id) {}
+						};
+						e.setTexture(new Texture(num,proxyTexture.getImage(num)));
+						tmpCase.setEntity(Layer.valueOf(currentLayer), e);
+					}
+					indice++;
+					numText = new StringBuilder();
+				}else{
+					//on ajoute le caractère
+					numText.append(tmp);
+				}
+			}
+			if (!numText.toString().equals("")){
+				Case tmpCase = loadMap.getCase(indice);
+				int num = Integer.parseInt(numText.toString());
 
-    public TextureProxy getProxyTexture() {
-        return proxyTexture;
-    }
+				//si la case est null on l'instancie
+				if (tmpCase == null){
+					tmpCase = new Case();
+					loadMap.setCase(indice,tmpCase);
+				}
+				//si c'est une collision on applique une méthode différente
+				if (currentLayer.equals("Colision")){
+					if (num == 1){
+						tmpCase.setWalkable(true);
+					}
+				}else{
+					Entity e = new Entity() {
+						private Texture texture;
+
+						@Override
+						public void interactsWith(Player p) {}
+
+						@Override
+						public Texture getTexture() {return texture;}
+
+						@Override
+						public void setTexture(Texture t) {texture=t;}
+
+						@Override
+						public void showDialog() {}
+
+						@Override
+						public int getID() {return 0;}
+
+						@Override
+						public void setID(int id) {}
+					};
+					e.setTexture(new Texture(num,proxyTexture.getImage(num)));
+					tmpCase.setEntity(Layer.valueOf(currentLayer), e);
+				}
+				indice++;
+			}
+		}
+	}
+
+	/**
+	 * invoqué si le fichier ne respecte pas le dtd.
+	 * @param e
+	 * @throws SAXException
+	 */
+	@Override
+	public void error(SAXParseException e) throws SAXException {
+		System.out.println("ERROR : " + e.getMessage());
+		throw e;
+	}
+
+	/**
+	 * Invoqué lors d'une erreur avec une des règles du xml.
+	 * @param e
+	 * @throws SAXException
+	 */
+	@Override
+	public void fatalError(SAXParseException e) throws SAXException {
+		System.out.println("FATAL ERROR : " + e.getMessage());
+		throw e;
+	}
+
+	/**
+	 * Warning du parseur.
+	 * @param e
+	 * @throws SAXException
+	 */
+	@Override
+	public void warning(SAXParseException e) throws SAXException {}
+
+	public  Map getMap(){
+		return loadMap;
+	}
+
+	public TextureProxy getProxyTexture() {
+		return proxyTexture;
+	}
 }
+
