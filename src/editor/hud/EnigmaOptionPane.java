@@ -15,7 +15,7 @@ import java.awt.GridLayout;
 public class EnigmaOptionPane {
 
     private String answer;
-    private boolean haveAnswered;
+    private volatile boolean haveAnswered;
     private Window window;
     private Window parent;
 
@@ -27,6 +27,43 @@ public class EnigmaOptionPane {
         this.answer = CANCEL;
         this.window = window;
         this.parent = parent;
+    }
+
+    public EnigmaOptionPane(Window parent, String message){
+        this.haveAnswered = false;
+        this.answer = CANCEL;
+        this.parent = parent;
+        EnigmaLabel questionComponent = new EnigmaLabel(message);
+        EnigmaPanel answersComponent = new EnigmaPanel();
+        Window window = new Window(0,0);
+
+        EnigmaButton[] buttons = new EnigmaButton[2];
+        buttons[0] = getClassicButton(CONFIRM);
+        buttons[1] = getClassicButton(CANCEL);
+        for(EnigmaButton b: buttons){
+            b.addActionListener(new OptionPaneButtonManager(this));
+            answersComponent.add(b);
+
+        }
+        buttons[1].getButtonUI().setPressedBackground(Color.RED);
+
+        parent.setAlwaysOnTop(true);
+        Dimension dim = new Dimension(300,200);
+        window.setAlwaysOnTop(true);
+        window.setMinimumSize(dim);
+        window.setSize(dim);
+        window.setLocation(Window.CENTER);
+        window.setResizable(false);
+        window.showMinimizeButton(false);
+        window.setWindowBackground(Color.DARK_GRAY);
+        window.showBorder(Color.WHITE,1);
+        window.addWindowListener(new OptionPaneWindowManager(this));
+
+        window.getContentSpace().setLayout(new GridLayout(2,1));
+        window.getContentSpace().add(questionComponent);
+        window.getContentSpace().add(answersComponent);
+
+        this.window = window;
     }
 
     public void show(){
@@ -120,6 +157,7 @@ public class EnigmaOptionPane {
         window.getContentSpace().add(answersComponent);
 
         optionPane.show();
+        optionPane.waitForAnswer();
         System.out.println(optionPane.getAnswer().equals(CONFIRM));
         return optionPane.getAnswer().equals(CONFIRM);
     }
