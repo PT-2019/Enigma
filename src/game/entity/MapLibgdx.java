@@ -265,8 +265,6 @@ public class MapLibgdx extends Group{
 				}
 			}
 		}
-
-
 	}
 
 	/**

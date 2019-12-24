@@ -61,6 +61,7 @@ public class TestScreen extends LibgdxScreen {
 		//cameras
 		this.main.setViewport(new ExtendViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
 		//centre map dans l'écran
+		this.main.getViewport().setCamera(this.map.getCamera());
 		this.main.getCamera().position.set(
 				map.getMapWidth() / 2 - CategoriesMenu.WIDTH / 2f,
 				map.getMapHeight() / 2, 0
