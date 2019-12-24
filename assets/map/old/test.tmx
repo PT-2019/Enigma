@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="16" tileheight="16" infinite="0" nextlayerid="1" nextobjectid="3">
+ <tileset firstgid="1" name="0" tilewidth="16" tileheight="16" tilecount="48" columns="8">
+  <image source="tiles/ground/dungeon1.png" width="128" height="96"/>
+ </tileset>
+ <tileset firstgid="49" name="1" tilewidth="16" tileheight="16" tilecount="1992" columns="8">
+  <image source="tiles/pipo.png" width="128" height="3984"/>
+ </tileset>
+ <tileset firstgid="2041" name="2" tilewidth="16" tileheight="16" tilecount="64" columns="8">
+  <image source="collision.png" width="128" height="128"/>
+ </tileset>
+ <layer id="1" name="FLOOR1" width="10" height="10">
+  <data encoding="csv">
+910,911,912,0,0,0,0,0,0,0,
+910,911,912,0,0,0,0,0,0,0,
+910,911,912,0,0,0,0,0,0,0,
+910,911,912,0,0,0,0,0,0,0,
+910,911,912,0,0,0,0,0,0,0,
+910,911,912,0,0,0,0,0,0,0,
+910,911,912,0,0,0,0,0,0,0,
+910,911,912,0,0,0,0,0,0,0,
+910,911,912,0,0,0,0,0,0,0,
+910,911,912,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="1" name="FLOOR2" width="10" height="10">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="1" name="DECORATIONS1" width="10" height="10">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="1" name="DECORATIONS2" width="10" height="10">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="1" name="COLLISION" width="10" height="10">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+</map>

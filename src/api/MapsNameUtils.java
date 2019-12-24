@@ -16,7 +16,7 @@ public enum MapsNameUtils {
 	//specials
 	/**
 	 * Indique le point maximal ou la caméra peut décendre si on n'est pas inside.
-	 *
+	 * <p>
 	 * Si on est inside alors il s'agit du point maximal
 	 *
 	 * @see #INSIDE

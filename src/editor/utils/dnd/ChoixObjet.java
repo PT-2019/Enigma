@@ -1,9 +1,7 @@
 package editor.utils.dnd;
 
 import api.enums.EntitiesCategories;
-import com.badlogic.gdx.Gdx;
 import editor.screens.EditorScreen;
-import game.ui.CategoriesMenu;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -36,14 +34,17 @@ public class ChoixObjet implements ActionListener {
 		String msg = actionEvent.getActionCommand();
 
 		/*
-			TODO: ceci est un fix temporaire qui charge une variable public static pour changer de catégorie
+
+			PATCH FAIT!
+
+			ceci est un fix temporaire qui charge une variable public static pour changer de catégorie
 				normalement, les observés et l'observateur sont en libgdx.
 				Ce listener doit être marqué deprecated et patché
 				Il faut retirer les observateurs qui sont ajoutés dans MenuScreen
 		 */
 		for (EntitiesCategories category : EntitiesCategories.values()) {
 			if (msg.equals(category.name)) {
-				Gdx.app.postRunnable(() -> CategoriesMenu.c.loadCategory(category));
+				//Gdx.app.postRunnable(() -> CategoriesMenu.c.loadCategory(category));
 				return;
 			}
 		}

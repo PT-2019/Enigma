@@ -1,15 +1,18 @@
 package editor.utils.save;
 
+import api.entity.GameObject;
 import api.enums.Layer;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.FileTextureData;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.MapProperties;
-import com.badlogic.gdx.maps.tiled.*;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTile;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
+import com.badlogic.gdx.maps.tiled.TiledMapTileSets;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.Array;
-import editor.entity.EntitySerializable;
 import editor.entity.map.Case;
 import editor.entity.map.Map;
 import editor.utils.textures.TextureArea;
@@ -28,7 +31,6 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Set;
 
 /**
  * Sauvegarde une map et les textures associés.
@@ -51,15 +53,15 @@ public class SaveMap {
 	/**
 	 * Les entités de la map
 	 */
-	private final HashMap<Vector2, EntitySerializable> entities;
+	private final HashMap<Vector2, GameObject> entities;
 
 	/**
 	 * Crée un sauvegarde de la map
 	 *
-	 * @param game la map
+	 * @param game     la map
 	 * @param entities Les entités de la map et leur position
 	 */
-	public SaveMap(TiledMap game, HashMap<Vector2,EntitySerializable> entities) {
+	public SaveMap(TiledMap game, HashMap<Vector2, GameObject> entities) {
 		this.gameMap = game;
 		this.entities = entities;
 	}
@@ -69,7 +71,6 @@ public class SaveMap {
 	 * Sauvegarde la map et texture.
 	 *
 	 * @param fichier nom du fichier de sauvegarde.
-	 *
 	 * @since 4.0
 	 */
 	public void saveMap(String fichier) {
@@ -85,7 +86,7 @@ public class SaveMap {
 			StringBuilder tmpstring = new StringBuilder("\n");
 
 			MapLayers mapLayers = gameMap.getLayers();
-			TiledMapTileLayer l =(TiledMapTileLayer) mapLayers.get(0);
+			TiledMapTileLayer l = (TiledMapTileLayer) mapLayers.get(0);
 
 			String col = Integer.toString(l.getWidth());
 
@@ -93,7 +94,7 @@ public class SaveMap {
 
 			TiledMapTileSets tileSets = gameMap.getTileSets();
 
-			Element datas, layers,tileset, rooms;
+			Element datas, layers, tileset, rooms;
 			int tilePosition = 1;
 
 			//element map in xml file
@@ -105,21 +106,21 @@ public class SaveMap {
 			map.setAttribute("renderorder", "right-down");
 			map.setAttribute("width", col);
 			map.setAttribute("height", row);
-			map.setAttribute("tilewidth", String.valueOf((int)l.getTileWidth()));
-			map.setAttribute("tileheight", String.valueOf((int)l.getTileHeight()));
+			map.setAttribute("tilewidth", String.valueOf((int) l.getTileWidth()));
+			map.setAttribute("tileheight", String.valueOf((int) l.getTileHeight()));
 			map.setAttribute("infinite", "0");
 			map.setAttribute("nextlayerid", "1");
 			map.setAttribute("nextobjectid", "3");
 
 			//tileset représente les textures dans le fichier xml
-			for (TiledMapTileSet tileSet: tileSets) {
+			for (TiledMapTileSet tileSet : tileSets) {
 				MapProperties tileProp = tileSet.getProperties();
 
 				tileset = document.createElement("tileset");
-				tileset.setAttribute("firstgid",String.valueOf(tilePosition));
+				tileset.setAttribute("firstgid", String.valueOf(tilePosition));
 				tileset.setAttribute("name", tileSet.getName());
-				tileset.setAttribute("tilewidth",String.valueOf((int)l.getTileWidth()));
-				tileset.setAttribute("tileheight",String.valueOf((int)l.getTileHeight()));
+				tileset.setAttribute("tilewidth", String.valueOf((int) l.getTileWidth()));
+				tileset.setAttribute("tileheight", String.valueOf((int) l.getTileHeight()));
 
 				tileset.setAttribute("tilecount", String.valueOf(tileSet.size()));
 
@@ -127,13 +128,13 @@ public class SaveMap {
 				TiledMapTile img = tileSet.getTile(tilePosition);
 				Texture t = img.getTextureRegion().getTexture();
 
-				FileTextureData data = (FileTextureData ) t.getTextureData();
+				FileTextureData data = (FileTextureData) t.getTextureData();
 
-				image.setAttribute("source", "../../"+data.getFileHandle().path());
+				image.setAttribute("source", "../../" + data.getFileHandle().path());
 				image.setAttribute("width", String.valueOf(t.getWidth()));
 				image.setAttribute("height", String.valueOf(t.getHeight()));
 
-				tileset.setAttribute("columns", String.valueOf((int)(t.getWidth()/l.getTileWidth())));
+				tileset.setAttribute("columns", String.valueOf((int) (t.getWidth() / l.getTileWidth())));
 
 				map.appendChild(tileset);
 				tileset.appendChild(image);
@@ -144,9 +145,9 @@ public class SaveMap {
 
 			//écriture des différents layers de la map
 
-			for (MapLayer layer: mapLayers) {
+			for (MapLayer layer : mapLayers) {
 
-				if (! (layer instanceof TiledMapTileLayer))
+				if (!(layer instanceof TiledMapTileLayer))
 					continue;
 
 				TiledMapTileLayer tileLayer = (TiledMapTileLayer) layer;
@@ -164,12 +165,12 @@ public class SaveMap {
 				//tmpstring = new StringBuilder("\n");
 				for (int i = 0; i < tileLayer.getHeight(); i++) {
 					for (int j = 0; j < tileLayer.getWidth(); j++) {
-						TiledMapTileLayer.Cell tmp = tileLayer.getCell(j,i);
-						if (tmp == null){
+						TiledMapTileLayer.Cell tmp = tileLayer.getCell(j, i);
+						if (tmp == null) {
 							tmpstring.append("0");
-						}else{
+						} else {
 							TiledMapTile tile = tmp.getTile();
-							if(tile == null){//si cellule mais pas de tile
+							if (tile == null) {//si cellule mais pas de tile
 								tmpstring.append("0");
 							} else {
 								tmpstring.append(tile.getId());
@@ -188,22 +189,22 @@ public class SaveMap {
 			}
 
 			//écriture des entités
-			if(this.entities.size() > 0) {
+			if (this.entities.size() > 0) {
 				Element objetGroup = document.createElement("objectgroup");
 				objetGroup.setAttribute("id", "6");
 				map.appendChild(objetGroup);
 
-				for (java.util.Map.Entry<Vector2, EntitySerializable> entitySet : entities.entrySet()) {
-					EntitySerializable entity = entitySet.getValue();
+				for (java.util.Map.Entry<Vector2, GameObject> entitySet : entities.entrySet()) {
+					GameObject entity = entitySet.getValue();
 					Vector2 pos = entitySet.getKey();
 
 					Element object = document.createElement("object");
-					object.setAttribute("name", entity.getClassName());
+					object.setAttribute("name", entity.getClass().getName());
 					object.setAttribute("x", String.valueOf(pos.x));
 					//TODO : q-check
-					object.setAttribute("y", String.valueOf(pos.y - entity.getHeight()));
-					object.setAttribute("width", String.valueOf(entity.getWidth()));
-					object.setAttribute("height", String.valueOf(entity.getHeight()));
+					object.setAttribute("y", String.valueOf(pos.y - entity.getGameObjectHeight()));
+					object.setAttribute("width", String.valueOf(entity.getGameObjectWidth()));
+					object.setAttribute("height", String.valueOf(entity.getGameObjectHeight()));
 
 					objetGroup.appendChild(object);
 				}
@@ -228,13 +229,12 @@ public class SaveMap {
 	/**
 	 * Sauvegarde la map et texture.
 	 *
-	 * @param file nom du fichier de sauvegarde.
-	 * @param map  map a sauvegarder
+	 * @param file     nom du fichier de sauvegarde.
+	 * @param map      map a sauvegarder
 	 * @param textures les textures de la map
-	 *
 	 * @since 2.0
 	 */
-	public static void saveMap(String file, Map map, ArrayList<TextureArea> textures){
+	public static void saveMap(String file, Map map, ArrayList<TextureArea> textures) {
 		DocumentBuilderFactory fabrique = DocumentBuilderFactory.newInstance();
 
 		try {
@@ -261,7 +261,7 @@ public class SaveMap {
 
 			//tileset représente les textures dans le fichier xml
 			Element tileset, image;
-			for (int i = 0; i < textures.size() ; i++) {
+			for (int i = 0; i < textures.size(); i++) {
 				textures.get(i).load();
 
 				tileset = document.createElement("tileset");
@@ -278,7 +278,7 @@ public class SaveMap {
 
 				image = document.createElement("image");
 				String src = textures.get(i).getPath();
-				if(src.contains("assets/map/"))
+				if (src.contains("assets/map/"))
 					src = src.split("assets/map/")[1];
 				image.setAttribute("source", src);
 
@@ -302,17 +302,17 @@ public class SaveMap {
 				mapHeader.appendChild(layers);
 
 				datas = document.createElement("data");
-				datas.setAttribute("encoding","csv");
+				datas.setAttribute("encoding", "csv");
 
 				stringBuilder = new StringBuilder("\n");
-				for (int k=0 ; k < map.getRow();k++){
-					for (int j=0; j < map.getCol();j++ ){
-						if (tmpCase[k*map.getCol()+j] == null){
+				for (int k = 0; k < map.getRow(); k++) {
+					for (int j = 0; j < map.getCol(); j++) {
+						if (tmpCase[k * map.getCol() + j] == null) {
 
 							stringBuilder.append("0,");
-						}else{
+						} else {
 							HashMap<Layer, editor.utils.textures.Texture> hash;
-							hash = tmpCase[k*map.getCol()+j].getEntities();
+							hash = tmpCase[k * map.getCol() + j].getEntities();
 
 							editor.utils.textures.Texture texture = hash.get(type);
 							stringBuilder.append(texture.getPosition());

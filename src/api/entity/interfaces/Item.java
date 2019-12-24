@@ -1,10 +1,6 @@
 package api.entity.interfaces;
 
-import editor.enigma.Enigma;
 import editor.entity.player.Player;
-import editor.utils.textures.Texture;
-
-import java.util.Iterator;
 
 /**
  * Définie une entité comme un item
@@ -13,9 +9,10 @@ import java.util.Iterator;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 2.1
+ * @version 4.1
+ * @apiNote suppression des méthode de IDInterface pour lisibilité et de Entity et de EnigmaContainer
  * @see api.entity.interfaces.EnigmaContainer
- * @see api.entity.interfaces.Entity
+ * @see Entity
  * @since 2.0
  */
 public interface Item extends EnigmaContainer, Entity {
@@ -28,50 +25,26 @@ public interface Item extends EnigmaContainer, Entity {
 	void interactsWith(Player p);
 
 	/**
-	 * Obtenir la texture de l'objet
+	 * Version texte de l'objet
 	 *
-	 * @return Texture de l'objet, null sinon
+	 * @return Texte représentant l'objet
 	 */
-	Texture getTexture();
+	String toString();
 
 	/**
-	 * Affiche un dialogue avec l'objet
-	 */
-	void showDialog();
-
-	/**
-	 * Ajouter une énigme
+	 * Version texte longue de l'objet
 	 *
-	 * @param e Enigme à ajouter
-	 * @throws IllegalArgumentException si l'énigme existe déjà
+	 * @return Texte représentant l'objet
 	 */
-	void addEnigma(Enigma e);
+	String toLongString();
 
-	/**
-	 * Permet de supprimer une énigme
-	 *
-	 * @param e Enigme à supprimer
-	 */
-	void removeEnigma(Enigma e);
+	@Override
+	default float getGameObjectWidth() {
+		return 1f;
+	}
 
-	/**
-	 * Obtenir toutes les énigmes
-	 *
-	 * @return Iterator des énigmes
-	 */
-	Iterator<Enigma> getAllEnigmas();
-
-	/**
-	 * Obtenir l'ID
-	 *
-	 * @return L'ID, -1 si pas initialisé
-	 */
-	int getID();
-
-	/**
-	 * Définir l'ID
-	 *
-	 * @param id ID
-	 */
-	void setID(int id);
+	@Override
+	default float getGameObjectHeight() {
+		return 1f;
+	}
 }

@@ -39,7 +39,7 @@ public class TestScreen extends LibgdxScreen {
 	 */
 	private MapLibgdx map;
 
-	private static String MAP_PATH = "assets/map/EmptyTest.tmx";
+	private static String MAP_PATH = "assets/map/EmptyMap.tmx";
 
 	/**
 	 * Prépare les stages, la map et la caméra
@@ -50,7 +50,8 @@ public class TestScreen extends LibgdxScreen {
 
 		//map
 		this.main = new Stage();
-		this.map = new MapLibgdx(MAP_PATH);
+		this.map = new MapLibgdx(MAP_PATH, 1f);
+		this.map.showGrid(true);
 		this.main.addActor(this.map);
 
 		//Drag and drop
@@ -62,6 +63,7 @@ public class TestScreen extends LibgdxScreen {
 
 		//cameras
 		this.main.setViewport(new ExtendViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
+		this.main.getViewport().setCamera(map.getCamera());
 
 		//écoute inputProcessors
 		this.listen(this.dnd);
@@ -112,7 +114,16 @@ public class TestScreen extends LibgdxScreen {
 		this.hud.dispose();
 	}
 
-	public void setMap(String absolutePath) {
-		MAP_PATH = absolutePath;
+	public boolean setMap(String absolutePath) {
+		if (!absolutePath.equals(MAP_PATH)) {
+			MAP_PATH = absolutePath;
+			return true;
+		}
+		return false;
 	}
+
+	public static String getMapPath() {
+		return MAP_PATH;
+	}
+
 }

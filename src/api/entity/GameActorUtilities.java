@@ -22,7 +22,6 @@ public class GameActorUtilities {
 	 * relativement a son parent
 	 *
 	 * @param actor l'acteur dont on veut la position absolue
-	 *
 	 * @return la position absolue dans entité dans l'écran et non
 	 * relativement a son parent
 	 * @since 4.0 20/12/2019
@@ -40,7 +39,7 @@ public class GameActorUtilities {
 	/**
 	 * Renvoi s'il y a collision entre deux acteurs
 	 *
-	 * @param actor un actor
+	 * @param actor  un actor
 	 * @param target une autre acteur
 	 * @return true s'il y a collision sinon false
 	 * @since 4.0 20/12/2019

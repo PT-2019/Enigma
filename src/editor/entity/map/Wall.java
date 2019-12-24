@@ -13,6 +13,7 @@ import api.entity.interfaces.IDInterface;
  * @see Room
  * @since 2.0
  */
+@Deprecated
 public class Wall implements IDInterface {
 
 	/**

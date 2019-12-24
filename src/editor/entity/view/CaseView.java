@@ -15,20 +15,20 @@ import editor.entity.map.Case;
  * @since 4.0
  */
 public class CaseView extends Actor {
-    private Case c;
+	private Case c;
 
-    private TiledMapTileLayer.Cell cell;
+	private TiledMapTileLayer.Cell cell;
 
-    public CaseView(TiledMapTileLayer.Cell cell, Case c){
-        this.c = c;
-        this.cell = cell;
-    }
+	public CaseView(TiledMapTileLayer.Cell cell, Case c) {
+		this.c = c;
+		this.cell = cell;
+	}
 
-    public Case getCase() {
-        return c;
-    }
+	public Case getCase() {
+		return c;
+	}
 
-    public TiledMapTileLayer.Cell getCell(){
-        return this.cell;
-    }
+	public TiledMapTileLayer.Cell getCell() {
+		return this.cell;
+	}
 }

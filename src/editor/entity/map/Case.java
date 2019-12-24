@@ -15,6 +15,8 @@ import java.util.HashMap;
  * @author Quentin RAMSAMY-AGEORGES
  * @version 4.0 22/12/2019
  * @since 4.0 22/12/2019
+ *
+ * @apiNote On utilise les cases de la map libgdx
  */
 public class Case implements IDInterface {
 

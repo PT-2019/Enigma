@@ -1,5 +1,6 @@
 package api.entity.interfaces;
 
+import api.entity.GameObject;
 import editor.entity.player.Player;
 import editor.utils.textures.Texture;
 
@@ -10,15 +11,17 @@ import editor.utils.textures.Texture;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 2.0
+ * @version 4.1
+ * @apiNote suppression des méthode de IDInterface pour lisibilité
  * @since 2.0
  */
-public interface Entity extends IDInterface {
+public interface Entity extends GameObject {
 
 	/**
 	 * Est appelé quand un joueur intéragit avec l'objet
 	 *
 	 * @param p Joueur ayant intéragit avec l'objet
+	 * @since 2.0
 	 */
 	void interactsWith(Player p);
 
@@ -26,27 +29,32 @@ public interface Entity extends IDInterface {
 	 * Obtenir la texture de l'objet
 	 *
 	 * @return Texture de l'objet, null sinon
+	 * @since 2.0
+	 * @deprecated 4.0 aucune utilitée
 	 */
-	Texture getTexture();
+	@Deprecated
+	default Texture getTexture() {
+		return null;
+	}
 
-	void setTexture(Texture t);
+	/**
+	 * Aucune utilitée
+	 *
+	 * @param t texture a associer
+	 * @since 2.0
+	 * @deprecated 4.0 aucune utilitée
+	 */
+	@Deprecated
+	default void setTexture(Texture t) {
+	}
 
 	/**
 	 * Affiche un dialogue avec l'objet
-	 */
-	void showDialog();
-
-	/**
-	 * Obtenir l'ID
 	 *
-	 * @return L'ID, -1 si pas initialisé
+	 * @since 2.0
+	 * @deprecated 4.0 car pas utilisée
 	 */
-	int getID();
-
-	/**
-	 * Définir l'ID
-	 *
-	 * @param id ID
-	 */
-	void setID(int id);
+	@Deprecated
+	default void showDialog() {
+	}
 }

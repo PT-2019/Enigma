@@ -135,7 +135,7 @@ public class LoadHandler extends DefaultHandler {
 							tmpCase.setWalkable(true);
 						}
 					} else {
-						tmpCase.setEntity(Layer.valueOf(currentLayer), new Texture(num, proxyTexture.getImage(num)));
+						tmpCase.setEntity(Layer.valueOf(currentLayer), new Texture(num, null));
 					}
 					indice++;
 					numText = new StringBuilder();
@@ -159,7 +159,7 @@ public class LoadHandler extends DefaultHandler {
 						tmpCase.setWalkable(true);
 					}
 				} else {
-					tmpCase.setEntity(Layer.valueOf(currentLayer), new Texture(num, proxyTexture.getImage(num)));
+					tmpCase.setEntity(Layer.valueOf(currentLayer), new Texture(num, null));
 				}
 				indice++;
 			}

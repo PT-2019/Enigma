@@ -30,9 +30,9 @@ public abstract class LibgdxGame extends Game implements Application {
 
 	/**
 	 * Conserve tous les écran qui ont étés instanciés et donc déjà chargés.
-	 *
+	 * <p>
 	 * Il seront libérés.
-	 *
+	 * <p>
 	 * On les charges avec la méthode {@link #loadScreen(String, Class)} ou
 	 * {@link #load(String)} si le screen a été ajouté.
 	 */
@@ -179,17 +179,16 @@ public abstract class LibgdxGame extends Game implements Application {
 	//TODO: redo reload
 	public static void reload(String key) {
 		Class c;
-		if(screens.containsKey(key)) {
+		if (screens.containsKey(key)) {
 			c = screens.get(key).getClass();// Test()
 			screens.remove(key);
 			added.put(key, c);// Test.class
 			//load(key); //Test()
 			setScreen(key);
-		} else if(added.containsKey(key)) {// Test.class
+		} else if (added.containsKey(key)) {// Test.class
 			//load(key);// Test()
 			//setScreen(key);
-		}
-		else {
+		} else {
 			throw new IllegalStateException("jamais chargé");
 		}
 
@@ -225,9 +224,9 @@ public abstract class LibgdxGame extends Game implements Application {
 	/**
 	 * Cette méthode est appelée au lancement du jeu.
 	 * Le processus de gestion des évènements a déjà été créé ({@link InputMultiplexer}
-	 *
+	 * <p>
 	 * Ici les ressources du jeu sont crées. Les écrans sont ajoutés et chargés si voulu.
-	 *
+	 * <p>
 	 * On doit définir l'écran courrant
 	 *
 	 * @see #addScreen(String, Class)
@@ -253,7 +252,7 @@ public abstract class LibgdxGame extends Game implements Application {
 	/**
 	 * Ici les ressources initialisés dans start doivent être
 	 * libérés.
-	 *
+	 * <p>
 	 * Les écrans sont déjà libérés.
 	 */
 	public abstract void free();

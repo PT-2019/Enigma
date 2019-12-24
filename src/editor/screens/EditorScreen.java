@@ -20,7 +20,6 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.dnd.DnDConstants;
 
@@ -40,7 +39,6 @@ public class EditorScreen extends JPanel {
 	 * Crée l'écran de création de l'escape game
 	 *
 	 * @param parent fenêtre swing
-	 *
 	 * @since 1.0 10 novembre 2019
 	 */
 	public EditorScreen(Window parent) {
@@ -48,7 +46,7 @@ public class EditorScreen extends JPanel {
 		this.setLayout(new BorderLayout());
 
 		//génère une map vide
-		EmptyMapGenerator.generate("assets/map/EmptyTest.tmx", 50, 30);
+		EmptyMapGenerator.generate(TestScreen.getMapPath(), 50, 50);
 
 		//charge entités
 		EntityFactory.loadEntities("assets/rooms.json");
@@ -59,28 +57,12 @@ public class EditorScreen extends JPanel {
 		//création de la barre d'outils
 		JPanel outilBar = this.loadOutilBar();
 
-		//création de la zone de choix du menu d'objets
-		JPanel sideBar = this.loadSideBar();
-
 		//création de la zone d'affichage de la map (partie droite)
 		JPanel map = new JPanel();
 		LoadGameLibgdxApplication.load(map, parent);
 
-		//ajout des observateurs
-		@Deprecated
-		ChoixObjet choix = new ChoixObjet();
-		for (Component c : sideBar.getComponents()) {
-			if (c instanceof JButton) {
-				((JButton) c).addActionListener(choix);
-			}
-		}
-
-		JPanel menu = new JPanel(new BorderLayout());
-		menu.add(outilBar, BorderLayout.NORTH);
-		menu.add(sideBar, BorderLayout.SOUTH);
-
 		//ajout aux conteneurs
-		this.add(menu, BorderLayout.NORTH);
+		this.add(outilBar, BorderLayout.NORTH);
 		this.add(map, BorderLayout.CENTER);
 
 		parent.addToMenuBar(new BarMenu());
@@ -90,8 +72,7 @@ public class EditorScreen extends JPanel {
 	 * Charge le menu des choix de catégories dans un JPanel
 	 *
 	 * @param layout layout du menu
-	 * @param dnd le gestionnaire du drag and drop
-	 *
+	 * @param dnd    le gestionnaire du drag and drop
 	 * @return JPanel contenant le menu
 	 * @since 3.0 14 décembre 2019
 	 * @deprecated chargé via la libgdx
@@ -126,7 +107,7 @@ public class EditorScreen extends JPanel {
 		//création de la zone de la barre d'outils
 		JPanel outilBar = new JPanel();
 
-		String[] elements = new String[]{"25%","50%","100%","125%","150%","175%","200%"};
+		String[] elements = new String[]{"25%", "50%", "100%", "125%", "150%", "175%", "200%"};
 		JComboBox<String> zoom = new JComboBox<>(elements);
 
 		JCheckBox fit = new JCheckBox("fit");
@@ -150,7 +131,9 @@ public class EditorScreen extends JPanel {
 	 *
 	 * @return JPanel contenant la barre des éléments de la catégorie
 	 * @since 3.0 14 décembre 2019
+	 * @deprecated 4.0 fait en libgdx
 	 */
+	@Deprecated
 	private JPanel loadSideBar() {
 		//création de la zone de choix du menu d'objets
 		JPanel sidebar = new JPanel();
@@ -168,8 +151,7 @@ public class EditorScreen extends JPanel {
 	 *
 	 * @param pane page qui sera remplit
 	 * @param name nom de la catégorie
-	 * @param dnd le gestionnaire du drag and drop
-	 *
+	 * @param dnd  le gestionnaire du drag and drop
 	 * @since 2.0 05 décembre 2019
 	 */
 	@Deprecated//(since = "4.0")

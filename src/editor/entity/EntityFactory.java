@@ -1,10 +1,16 @@
 package editor.entity;
 
+import api.entity.GameObject;
 import api.enums.EntitiesCategories;
+import api.enums.Layer;
 import api.utils.Utility;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
+import org.jetbrains.annotations.Nullable;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,7 +21,7 @@ import java.util.Map;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 3.0 14 décembre 2019
+ * @version 4.0 23 décembre 2019
  * @since 3.0 14 décembre 2019
  */
 public class EntityFactory {
@@ -35,7 +41,7 @@ public class EntityFactory {
 	private Array<EntitySerializable> content = new Array<>();
 
 	/**
-	 * constructeur par défault pour new Instance de {@link Json#fromJson(Class, String)}
+	 * constructeur par défaut pour new Instance de {@link Json#fromJson(Class, String)}
 	 **/
 	EntityFactory() {
 	}
@@ -84,5 +90,46 @@ public class EntityFactory {
 		}
 
 		return entityGraphics;
+	}
+
+	/**
+	 * Crée une entité depuis une entité serializable
+	 *
+	 * @param entity une entité
+	 * @param id     son identifiant ou -1 si aucun
+	 * @param pos    sa position @Nullable
+	 * @return un GameObject représentant l'entitée
+	 * @since 4.0
+	 */
+	@SuppressWarnings("unchecked")
+	public static GameObject createEntity(EntitySerializable entity, int id, @Nullable Vector2 pos) {
+		GameObject object;
+		try {
+			Class c = Class.forName(entity.getClassName());
+			Constructor declaredConstructor = c.getDeclaredConstructor();
+			object = (GameObject) declaredConstructor.newInstance();
+			//id
+			object.setID(id);
+			//location
+			object.setDimension(entity.getWidth(), entity.getHeight());
+
+			if (pos != null)
+				object.setGameObjectPosition(pos);
+			//layers
+			for (Layer l : Layer.values()) {
+				//récupère les tiles de l'entités pour ce niveau
+				Array<Float> entities = entity.getTiles(l);
+
+				//si pas de tiles a mettre sur ce layer, on passe au suivant
+				if (entities == null) continue;
+
+				object.setTiles(entities, l);
+			}
+		} catch (IllegalAccessException | InstantiationException | NoSuchMethodException
+				| InvocationTargetException | ClassNotFoundException e) {
+			throw new IllegalStateException("EntityFactory create instance failed" + e);
+		}
+
+		return object;
 	}
 }

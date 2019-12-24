@@ -28,65 +28,65 @@ import static javafx.stage.FileChooser.ExtensionFilter;
  */
 public class OutilAction implements ActionListener {
 
-    private static final ExtensionFilter extensions = new ExtensionFilter("Fichier map .tmx",
-            "*.tmx");
+	private static final ExtensionFilter extensions = new ExtensionFilter("Fichier map .tmx",
+			"*.tmx");
 
-    private volatile boolean finished;
-    private volatile File file;
+	private volatile boolean finished;
+	private volatile File file;
 
-    public OutilAction(){
-        //force lancement javafx
-        new JFXPanel();
-        this.finished = false;
-    }
+	public OutilAction() {
+		//force lancement javafx
+		new JFXPanel();
+		this.finished = false;
+	}
 
-    @Override
-    public void actionPerformed(ActionEvent actionEvent) {
-        String msg = actionEvent.getActionCommand();
-        this.finished=false;
+	@Override
+	public void actionPerformed(ActionEvent actionEvent) {
+		String msg = actionEvent.getActionCommand();
+		this.finished = false;
 
-        if (msg.equals(Outil.OPEN.name)){
+		if (msg.equals(Outil.OPEN.name)) {
 
-            Platform.runLater(
-                    () ->
-                    {
-                        FileChooser fileChooser = new FileChooser();
-                        fileChooser.setInitialDirectory(new File("./assets/map"));
-                        fileChooser.getExtensionFilters().addAll(extensions);
+			Platform.runLater(
+					() ->
+					{
+						FileChooser fileChooser = new FileChooser();
+						fileChooser.setInitialDirectory(new File("./assets/map"));
+						fileChooser.getExtensionFilters().addAll(extensions);
 
-                        this.file = fileChooser.showOpenDialog(null);
-                        this.finished = true;
-                    }
-            );
+						this.file = fileChooser.showOpenDialog(null);
+						this.finished = true;
+					}
+			);
 
-            while ( !this.finished ); //attends le thread file chooser
+			while (!this.finished) ; //attends le thread file chooser
 
-            //relance le screen
-            if(this.file != null) {
-                ((TestScreen) EnigmaGame.getCurrentScreen()).setMap(this.file.getAbsolutePath());
-                Gdx.app.postRunnable(() -> EnigmaGame.reload(EnigmaScreens.TEST.name()));
-            }
+			//relance le screen
+			if (this.file != null) {
+				if (((TestScreen) EnigmaGame.getCurrentScreen()).setMap(this.file.getAbsolutePath()))
+					Gdx.app.postRunnable(() -> EnigmaGame.reload(EnigmaScreens.TEST.name()));
+			}
 
-        }else if(msg.equals(Outil.SAVE.name)){
+		} else if (msg.equals(Outil.SAVE.name)) {
 
-            Platform.runLater(
-                    () ->
-                    {
-                        FileChooser fileChooser = new FileChooser();
-                        fileChooser.setInitialDirectory(new File("./assets/map"));
-                        fileChooser.getExtensionFilters().addAll(extensions);
+			Platform.runLater(
+					() ->
+					{
+						FileChooser fileChooser = new FileChooser();
+						fileChooser.setInitialDirectory(new File("./assets/map"));
+						fileChooser.getExtensionFilters().addAll(extensions);
 
-                        this.file = fileChooser.showSaveDialog(null);
-                        this.finished = true;
-                    }
-            );
+						this.file = fileChooser.showSaveDialog(null);
+						this.finished = true;
+					}
+			);
 
-            while ( !this.finished ); //attends le thread file chooser
+			while (!this.finished) ; //attends le thread file chooser
 
-            //sauvegarde
-            if(this.file != null) {
+			//sauvegarde
+			if (this.file != null) {
 
-            }
-        }
-    }
+			}
+		}
+	}
 }
