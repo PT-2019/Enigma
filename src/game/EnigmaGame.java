@@ -4,6 +4,7 @@ import api.LibgdxGame;
 import api.enums.EnigmaScreens;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
+import game.screen.GameScreen;
 import game.screen.TestScreen;
 
 /**
@@ -46,9 +47,11 @@ public class EnigmaGame extends LibgdxGame {
 
 		//ajout des screens disponibles
 		EnigmaGame.addScreen(EnigmaScreens.TEST.name(), TestScreen.class);
+		EnigmaGame.addScreen(EnigmaScreens.GAME.name(), GameScreen.class);
 
 		//chargement des screens au début pour éviter les chargement pendant le jeu
 		EnigmaGame.load(EnigmaScreens.TEST.name());
+		EnigmaGame.load(EnigmaScreens.GAME.name());
 
 		//définit l'écran actuel de l'application
 		EnigmaGame.setScreen(EnigmaScreens.TEST.name());

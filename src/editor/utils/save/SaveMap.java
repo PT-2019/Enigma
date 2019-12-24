@@ -202,9 +202,9 @@ public class SaveMap {
 					object.setAttribute("name", entity.getClass().getName());
 					object.setAttribute("x", String.valueOf(pos.x));
 					//TODO : q-check
-					object.setAttribute("y", String.valueOf(pos.y - entity.getHeight()));
-					object.setAttribute("width", String.valueOf(entity.getWidth()));
-					object.setAttribute("height", String.valueOf(entity.getHeight()));
+					object.setAttribute("y", String.valueOf(pos.y - entity.getGameObjectHeight()));
+					object.setAttribute("width", String.valueOf(entity.getGameObjectWidth()));
+					object.setAttribute("height", String.valueOf(entity.getGameObjectHeight()));
 
 					objetGroup.appendChild(object);
 				}

@@ -1,5 +1,8 @@
 package api.entity.interfaces;
 
+import editor.enigma.Enigma;
+import editor.entity.player.Player;
+
 /**
  * Désigne des objets pouvant être activés ou désactivés
  *
@@ -41,5 +44,17 @@ public abstract class Activatable extends AbstractItem {
 	 *
 	 * @return true si l'objet est activé, false sinon
 	 */
-	public abstract boolean isActivated();
+	public boolean isActivated(){
+		return this.activated;
+	}
+
+	@Override
+	public void interactsWith(Player p) {
+		this.activated = !this.activated;
+
+		for (Enigma e : this.enigmas) {
+			if (!e.isKnown()) e.discovered();
+			else e.verifyConditions(p);
+		}
+	}
 }

@@ -1,6 +1,7 @@
 package game.entity;
 
 import api.entity.GameObject;
+import api.enums.EntitiesCategories;
 import api.enums.Layer;
 import api.utils.Bounds;
 import api.utils.Utility;
@@ -16,6 +17,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Array;
 import editor.entity.EntityFactory;
@@ -76,16 +78,18 @@ public class MapLibgdx extends Group {
 	 */
 	private HashMap<Vector2, GameObject> added;
 
+	private boolean showGrid;
+
 	/**
 	 * Crée une map depuis un fichier tmx
 	 *
 	 * @param path fichier .tmx
 	 * @since 2.0
 	 */
-	public MapLibgdx(@NotNull final String path) {
+	public MapLibgdx(@NotNull final String path, float unitScale) {
 		//load the map
 		TiledMap tiledMap = new TmxMapLoader().load(path);
-		this.map = new OrthogonalTiledMapRenderer(tiledMap, 1f);
+		this.map = new OrthogonalTiledMapRenderer(tiledMap, unitScale);
 
 		//save needed properties
 		MapProperties properties = tiledMap.getProperties();
@@ -93,6 +97,8 @@ public class MapLibgdx extends Group {
 		this.tileHeight = properties.get(TILE_HEIGHT_P.value, Integer.class);
 		int width = properties.get(WIDTH_P.value, Integer.class);
 		int height = properties.get(HEIGHT_P.value, Integer.class);
+
+		this.showGrid = false;
 
 		//bordures
 		this.border = new Border(width,
@@ -230,7 +236,7 @@ public class MapLibgdx extends Group {
 			TiledMapTileLayer tileLayer = (TiledMapTileLayer) mapLayer;
 
 			//récupère les tiles de l'entités pour ce niveau
-			Array<Float> entities = entity.getTexture(Utility.stringToEnum(tileLayer.getName(), Layer.values()));
+			Array<Float> entities = entity.getTiles(Utility.stringToEnum(tileLayer.getName(), Layer.values()));
 
 			//si pas de tiles a mettre sur ce layer, on passe au suivant
 			if (entities == null) continue;
@@ -238,8 +244,8 @@ public class MapLibgdx extends Group {
 			//calcul pour placer les tiles depuis x et y
 			//sachant que y est inversé, on part de la dernière tile et on remonte
 			//pas de problème pour x
-			for (int i = (int) start.y - 1, index = 0; i >= (start.y - entity.getHeight()); i--) {
-				for (int j = (int) start.x; j < start.x + entity.getWidth() && index < entities.size; j++, index++) {
+			for (int i = (int) start.y - 1, index = 0; i >= (start.y - entity.getGameObjectHeight()); i--) {
+				for (int j = (int) start.x; j < start.x + entity.getGameObjectWidth() && index < entities.size; j++, index++) {
 					MapLibgdxCell c = new MapLibgdxCell(tileLayer, index);
 					c.setTile(this.map.getMap().getTileSets().getTile(MathUtils.ceil(entities.get(index))));
 					c.setEntity(entity);
@@ -262,6 +268,10 @@ public class MapLibgdx extends Group {
 		this.border.setProjectionMatrix(this.camera.combined);
 	}
 
+	public void showGrid(boolean show){
+		this.showGrid = show;
+	}
+
 	/**
 	 * Dessine la map
 	 *
@@ -280,7 +290,8 @@ public class MapLibgdx extends Group {
 		this.map.render();
 
 		//render borders
-		this.border.draw();
+		if(this.showGrid)
+			this.border.draw();
 	}
 
 	/**

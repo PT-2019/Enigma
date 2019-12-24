@@ -1,10 +1,7 @@
-package item;
+package game.entity.item;
 
-import api.entity.interfaces.Item;
-import api.entity.interfaces.Lockable;
-import api.entity.interfaces.Passage;
+import api.entity.interfaces.Activatable;
 import editor.enigma.Enigma;
-import editor.entity.map.Room;
 import editor.entity.player.Player;
 import editor.utils.textures.Texture;
 
@@ -13,11 +10,10 @@ import java.util.Iterator;
 
 /**
  * @version 2.1
- * @see api.entity.interfaces.Item
- * @see api.entity.interfaces.Lockable
- * @see api.entity.interfaces.Passage
+ * @see api.entity.interfaces.Activatable
  */
-public class Door implements Item, Passage, Lockable {
+@Deprecated
+public class PressurePlate extends Activatable {
 
 	/**
 	 * Enigmes données à l'objet
@@ -34,48 +30,17 @@ public class Door implements Item, Passage, Lockable {
 	 */
 	private Texture texture;
 
-	/**
-	 * Indique si l'objet est verrouillé
-	 */
-	private boolean locked;
-
-	/**
-	 * Pièce 1
-	 */
-	private Room room1;
-
-	/**
-	 * Pièce 2
-	 */
-	private Room room2;
-
-	/**
-	 * ID
-	 */
-	private int id;
-
-	public Door() {
+	public PressurePlate() {
+		super(false);
 		this.enigmas = new ArrayList<Enigma>();
-		this.locked = true;
-		this.id = -1;
 	}
 
 	/**
-	 * @param id ID
+	 * @param activated true si l'objet est activé de base, false sinon
 	 */
-	public Door(int id) {
+	public PressurePlate(boolean activated) {
+		super(activated);
 		this.enigmas = new ArrayList<Enigma>();
-		this.locked = true;
-		this.id = id;
-	}
-
-
-	/**
-	 * @param locked true si l'objet est verrouillé de base, false sinon
-	 */
-	public Door(boolean locked) {
-		this.enigmas = new ArrayList<Enigma>();
-		this.locked = locked;
 	}
 
 	/**
@@ -85,6 +50,8 @@ public class Door implements Item, Passage, Lockable {
 	 */
 	@Override
 	public void interactsWith(Player p) {
+		this.activated = !this.activated;
+
 		for (Enigma e : this.enigmas) {
 			if (!e.isKnown()) e.discovered();
 			else e.verifyConditions(p);
@@ -148,69 +115,13 @@ public class Door implements Item, Passage, Lockable {
 	}
 
 	/**
-	 * Obtenir la première pièce
+	 * Indique si l'objet est activé
 	 *
-	 * @return La piece, null sinon
+	 * @return true si l'objet est activé, false sinon
 	 */
 	@Override
-	public Room getRoom1() {
-		return this.room1;
-	}
-
-	/**
-	 * Obtenir la seconde pièce
-	 *
-	 * @return La pièce, null sinon
-	 */
-	@Override
-	public Room getRoom2() {
-		return this.room2;
-	}
-
-	/**
-	 * Verrouille l'objet
-	 */
-	@Override
-	public void lock() {
-		this.locked = true;
-	}
-
-	/**
-	 * Deverrouille l'objet
-	 */
-	@Override
-	public void unlock() {
-		this.locked = false;
-	}
-
-	/**
-	 * Indique si l'objet est verrouillé
-	 *
-	 * @return true si il est verrouillé, false sinon
-	 */
-	@Override
-	public boolean isLocked() {
-		return this.locked;
-	}
-
-	/**
-	 * Obtenir l'ID
-	 *
-	 * @return L'ID, -1 si pas initialisé
-	 */
-	@Override
-	public int getID() {
-		return this.id;
-	}
-
-	/**
-	 * Définir l'ID
-	 *
-	 * @param id ID
-	 */
-	@Override
-	public void setID(int id) {
-		this.id = id;
+	public boolean isActivated() {
+		return this.activated;
 	}
 
 	/**
@@ -220,7 +131,7 @@ public class Door implements Item, Passage, Lockable {
 	 */
 	@Override
 	public String toString() {
-		return "[Door  : ID = " + this.id + ", dialog = " + this.dialog + ", locked = " + this.locked + ", texture = " + this.texture + ", Room1 = " + this.room1 + ", Room2 = " + this.room2 + "]";
+		return "[PressurePlate  : ID = " + this.id + ", dialog = " + this.dialog + ", activated = " + this.activated + ", texture = " + this.texture + "]";
 	}
 
 	/**
@@ -229,7 +140,7 @@ public class Door implements Item, Passage, Lockable {
 	 * @return Texte représentant l'objet
 	 */
 	public String toLongString() {
-		StringBuilder s = new StringBuilder("[Door  : ID = " + this.id + ", dialog = " + this.dialog + ", locked = " + this.locked + ", texture = " + this.texture + ", Room1 = " + this.room1 + ", Room2 = " + this.room2 + ", enigmas = {");
+		StringBuilder s = new StringBuilder("[PressurePlate  : ID = " + this.id + ", dialog = " + this.dialog + ", activated = " + this.activated + ", texture = " + this.texture + ", enigmas = {");
 		int size = this.enigmas.size() - 1;
 		int i = 0;
 		for (Enigma e : this.enigmas) {

@@ -15,9 +15,12 @@ import java.util.HashMap;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 2.0
+ * @version 4.0
  * @since 2.0
+ *
+ * @apiNote UTILISEZ LA CLASSE game.entities.Room plutôt
  */
+@Deprecated
 public class Room implements IDInterface {
 
 	/**
@@ -44,8 +47,8 @@ public class Room implements IDInterface {
 	 * Crée un pièce
 	 */
 	public Room() {//TODO: include a way to render walls
-		this.col = 8;
-		this.row = 11;
+		this.col = 10;
+		this.row = 10;
 
 		this.cases = new Case[this.row * this.col];
 

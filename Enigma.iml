@@ -11,7 +11,6 @@
       <excludeFolder url="file://$MODULE_DIR$/documents" />
       <excludeFolder url="file://$MODULE_DIR$/libs/packer" />
       <excludeFolder url="file://$MODULE_DIR$/src/item" />
-      <excludeFolder url="file://$MODULE_DIR$/tests" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

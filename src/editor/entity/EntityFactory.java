@@ -114,7 +114,7 @@ public class EntityFactory {
 			object.setDimension(entity.getWidth(), entity.getHeight());
 
 			if (pos != null)
-				object.setPosition(pos);
+				object.setGameObjectPosition(pos);
 			//layers
 			for (Layer l : Layer.values()) {
 				//récupère les tiles de l'entités pour ce niveau
@@ -123,7 +123,7 @@ public class EntityFactory {
 				//si pas de tiles a mettre sur ce layer, on passe au suivant
 				if (entities == null) continue;
 
-				object.setTexture(entities, l);
+				object.setTiles(entities, l);
 			}
 		} catch (IllegalAccessException | InstantiationException | NoSuchMethodException
 				| InvocationTargetException | ClassNotFoundException e) {

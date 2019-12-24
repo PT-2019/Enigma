@@ -43,6 +43,16 @@ public class CategoriesMenu extends Window implements InputListener, Disposable 
 	private final Stage dnd;
 
 	/**
+	 * Tableau des catégories
+	 */
+	private final TextButton[] categories;
+
+	/**
+	 * Dernière catégorie sélectionnée
+	 */
+	private int latest;
+
+	/**
 	 * Conteneur de toutes les entités chargés
 	 * pour une catégorie
 	 */
@@ -71,16 +81,18 @@ public class CategoriesMenu extends Window implements InputListener, Disposable 
 		Table table = new Table(this.getSkin());
 		table.add().padTop(10).row();
 		EntitiesCategories[] categories = EntitiesCategories.values();
+		this.categories = new TextButton[categories.length];
+		this.latest = -1;
 		for (int i = 0; i < categories.length; i++) {
 			if (i % 3 == 0)
 				table.row();
-			TextButton category = new TextButton(categories[i].name, getSkin());
+			this.categories[i] = new TextButton(categories[i].name, getSkin());
 			TextTooltip tooltip = new TextTooltip(categories[i].name, getSkin());
 			tooltip.setInstant(true);
 			tooltip.setAlways(true);
-			category.addListener(tooltip);
-			category.addListener(new NextCategory(categories[i], this));
-			table.add(category).space(10);
+			this.categories[i].addListener(tooltip);
+			this.categories[i].addListener(new NextCategory(categories[i], this));
+			table.add(this.categories[i]).space(10);
 		}
 		table.row();
 		//contenu
@@ -101,6 +113,13 @@ public class CategoriesMenu extends Window implements InputListener, Disposable 
 	 * @see EntitiesCategories
 	 */
 	private void loadCategory(EntitiesCategories c) {
+		if(this.latest != -1 && this.latest != c.ordinal()){
+			this.categories[this.latest].setChecked(false);
+			this.latest = c.ordinal();
+		} else if(this.latest == -1){
+			this.categories[c.ordinal()].setChecked(true);
+			this.latest = c.ordinal();
+		}
 		this.container.clear();
 		Array<EntitySerializable> entities = EntityFactory.getEntitiesByCategory(c);
 

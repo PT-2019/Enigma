@@ -1,5 +1,6 @@
 package api.utils;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.lwjgl.LwjglAWTCanvas;
 import game.EnigmaGame;
 import org.jetbrains.annotations.NotNull;
@@ -33,6 +34,10 @@ public class LoadGameLibgdxApplication {
 	 * @since 3.0
 	 */
 	public static void load(Container container, @NotNull JFrame frame) {
+		if(Gdx.app != null) {//si déjà lancée
+			Gdx.app.postRunnable(() -> load(container, frame));
+			return;
+		}
 		//récupère contenu fenêtre et on la vide
 		//final Container container = frame.getContentPane();
 		container.removeAll();

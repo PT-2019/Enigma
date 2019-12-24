@@ -4,6 +4,7 @@ import api.utils.ConvenienceClass;
 import api.utils.ConvenienceMethod;
 import editor.entity.map.Map;
 import editor.utils.save.SaveMap;
+import editor.utils.textures.TextureArea;
 import editor.utils.textures.TextureProxy;
 
 /**
@@ -29,13 +30,17 @@ public class EmptyMapGenerator {
 	 */
 	@ConvenienceMethod
 	public static void generate(String path, int col, int row) {
-	/*<tileset name="dungeon1"><image width="128" height="96"/></tileset>
-	<tileset name="pipo"><image width="128" height="3984"/></tileset>
-	<tileset name="collision"><image width="128" height="128"/></tileset>*/
+	/*
+		<tileset name="dungeon1"><image width="128" height="96"/></tileset>
+		<tileset name="pipo"><image width="128" height="3984"/></tileset>
+		<tileset name="collision"><image width="128" height="128"/></tileset>
+		<tileset name="3"><image width="1280" height="1280"/></tileset>
+	*/
 		TextureProxy proxy = new TextureProxy();
 		proxy.addTexture(16, "assets/map/tiles/ground/dungeon1.png", 8, 1, 48);
 		proxy.addTexture(16, "assets/map/tiles/pipo.png", 8, 49, 1992 + 49);
 		proxy.addTexture(16, "assets/map/collision.png", 8, 2041, 2041 + 64);
+		proxy.addTexture(16, "assets/map/Player.png", 80, 2105, 2105+6400);
 
 		SaveMap.saveMap(path, new Map(col, row), proxy.getTextures());
 	}

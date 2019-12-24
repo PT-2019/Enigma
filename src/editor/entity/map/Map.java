@@ -30,6 +30,7 @@ public class Map implements IDInterface {
 	 * Map, chaque point est le le coin supérieur gauche de la map ou
 	 * a été ajouté la pièce
 	 */
+	@Deprecated
 	private HashMap<Point, Room> rooms;
 
 	/**
@@ -75,6 +76,7 @@ public class Map implements IDInterface {
 	 * @param room la pièce à ajouter
 	 * @throws IllegalArgumentException si la colonne ou la ligne est invalide
 	 */
+	@Deprecated
 	public void addRoom(int col, int row, Room room) {//todo : affecter les cases sans render
 		int w = room.getCol(), h = room.getRow();
 
@@ -90,6 +92,7 @@ public class Map implements IDInterface {
 	/**
 	 * Affiche la map dans la console
 	 */
+	@Deprecated
 	public void render() {
 		StringBuilder sb = new StringBuilder("Map (");
 
@@ -129,6 +132,7 @@ public class Map implements IDInterface {
 		System.out.println(sb);
 	}
 
+	@Deprecated
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder("Map (");
@@ -173,10 +177,12 @@ public class Map implements IDInterface {
 		return this.row;
 	}
 
+	@Deprecated
 	public HashMap<Point, Room> getRooms() {
 		return rooms;
 	}
 
+	@Deprecated
 	public void setRooms(HashMap<Point, Room> rooms) {
 		this.rooms = rooms;
 	}
@@ -188,7 +194,6 @@ public class Map implements IDInterface {
 	public void setCases(Case[] cases) {
 		this.cases = cases;
 	}
-
 
 	public Case getCase(int i) {
 		return cases[i];

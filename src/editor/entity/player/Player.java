@@ -1,11 +1,14 @@
 package editor.entity.player;
 
+import api.entity.GameActorTextured;
 import api.entity.interfaces.Entity;
 import api.entity.interfaces.Living;
 import api.enums.Layer;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-import editor.utils.textures.Texture;
+
+import java.util.HashMap;
 
 /**
  * Définie un personnage contrôlable : un joueur
@@ -19,7 +22,7 @@ import editor.utils.textures.Texture;
  * @see api.entity.interfaces.Living
  * @since 2.0
  */
-public class Player implements Entity, Living {
+public class Player extends GameActorTextured implements Entity, Living {
 
 	/**
 	 * Points de vie maximaux du joueur
@@ -30,22 +33,20 @@ public class Player implements Entity, Living {
 	 */
 	private int pv;
 	/**
-	 * Dialogue de l'objet
-	 */
-	private String dialog;
-
-	/**
-	 * Texture de l'objet
-	 */
-	private Texture texture;
-
-	/**
 	 * ID
 	 */
 	private int id;
+	/**
+	 * les tiles (a convertir en int)
+	 */
+	private HashMap<Layer, Array<Float>> tiles;
+	/**
+	 * Dimensions de l'object
+	 */
+	private Rectangle bounds;
 
 	public Player() {
-		this.pv = MAX_PLAYER_PV;
+		this(-1);
 	}
 
 	/**
@@ -54,111 +55,78 @@ public class Player implements Entity, Living {
 	public Player(int id) {
 		this.pv = MAX_PLAYER_PV;
 		this.id = id;
+		this.bounds = new Rectangle();
+		this.tiles = new HashMap<>();
 	}
 
-	/**
-	 * Est appelé quand un joueur intéragit avec l'objet
-	 *
-	 * @param p Joueur ayant intéragit avec l'objet
-	 */
 	@Override
 	public void interactsWith(Player p) {
+		throw new UnsupportedOperationException("node codé. InteractWidth Player");
 	}
 
-	/**
-	 * Obtenir la texture de l'objet
-	 *
-	 * @return Texture de l'objet, null sinon
-	 */
-	@Override
-	public Texture getTexture() {
-		return null;
-	}
-
-	@Override
-	public void setTexture(Texture t) {
-		texture = t;
-	}
-
-	/**
-	 * Affiche un dialogue avec l'objet
-	 */
-	@Override
-	public void showDialog() {
-	}
-
-	/**
-	 * Obtenir l'ID
-	 *
-	 * @return L'ID, -1 si pas initialisé
-	 */
-	@Override
-	public int getID() {
-		return this.id;
-	}
-
-	/**
-	 * Définir l'ID
-	 *
-	 * @param id ID
-	 */
-	@Override
-	public void setID(int id) {
-		this.id = id;
-	}
-
-	/**
-	 * Obtenir les points de vie de l'entité
-	 *
-	 * @return Les points de vie
-	 */
 	@Override
 	public int getHP() {
 		return this.pv;
 	}
 
-	/**
-	 * Version texte de l'objet
-	 *
-	 * @return Texte représentant l'objet
-	 */
-	@Override
-	public String toString() {
-		return "[Player  : ID = " + this.id + ", dialog = " + this.dialog + ", pv = " + this.pv + ", texture = " + this.texture + "]";
-	}
-
-	@Override
-	public float getWidth() {
-		return 0;
-	}
-
-	@Override
-	public float getHeight() {
-		return 0;
-	}
+	//size
 
 	@Override
 	public void setDimension(int width, int height) {
-
+		this.bounds.setSize(width, height);
 	}
 
 	@Override
-	public Vector2 getPosition() {
-		return null;
+	public float getGameObjectWidth() {
+		return this.bounds.getWidth();
 	}
 
 	@Override
-	public void setPosition(Vector2 pos) {
+	public float getGameObjectHeight() {
+		return this.bounds.getHeight();
+	}
 
+	//pos
+
+	@Override
+	public Vector2 getGameObjectPosition() {
+		return this.bounds.getPosition(new Vector2());
 	}
 
 	@Override
-	public Array<Float> getTexture(Layer layer) {
-		return null;
+	public void setGameObjectPosition(Vector2 pos) {
+		this.bounds.setPosition(pos);
+	}
+
+	//tiles
+
+	@Override
+	public Array<Float> getTiles(Layer layer) {
+		return this.tiles.get(layer);
 	}
 
 	@Override
-	public void setTexture(Array<Float> texture, Layer layer) {
+	public void setTiles(Array<Float> texture, Layer layer) {
+		this.tiles.put(layer, texture);
+	}
 
+	//id
+
+	@Override
+	public int getID() {
+		return this.id;
+	}
+
+	@Override
+	public void setID(int id) {
+		this.id = id;
+	}
+
+	//toString
+
+	@Override
+	public String toString() {
+		return "Player{" + "MAX_PLAYER_PV=" + MAX_PLAYER_PV + ", pv=" + pv + ", id=" + id +
+				", tiles=" + tiles + ", bounds=" + bounds + '}';
 	}
 }

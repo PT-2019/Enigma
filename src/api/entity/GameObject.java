@@ -15,7 +15,7 @@ import com.badlogic.gdx.utils.Array;
  * @author Quentin RAMSAMY-AGEORGES
  * @version 4.0 23/12/2019
  * @see Entity
- * @see editor.entity.map.Room
+ * @see game.entity.item.Room
  * @since 4.0 23/12/2019
  */
 public interface GameObject extends IDInterface {
@@ -26,7 +26,7 @@ public interface GameObject extends IDInterface {
 	 * @return la largeur de l'entité (en cases de 16x16)
 	 * @since 4.0
 	 */
-	float getWidth();
+	float getGameObjectWidth();
 
 	/**
 	 * Renvoi la hauteur de l'entité (en cases de 16x16)
@@ -34,7 +34,7 @@ public interface GameObject extends IDInterface {
 	 * @return la hauteur de l'entité (en cases de 16x16)
 	 * @since 4.0
 	 */
-	float getHeight();
+	float getGameObjectHeight();
 
 	/**
 	 * Définit la taille de l'entité (en cases de 16x16)
@@ -51,7 +51,7 @@ public interface GameObject extends IDInterface {
 	 * @return la position de l'entité en indices ligne, colonne
 	 * @since 4.0
 	 */
-	Vector2 getPosition();
+	Vector2 getGameObjectPosition();
 
 	/**
 	 * Définit la position de l'entité en indices ligne, colonne
@@ -59,7 +59,7 @@ public interface GameObject extends IDInterface {
 	 * @param pos vecteur x=colonne, y=ligne
 	 * @since 4.0
 	 */
-	void setPosition(Vector2 pos);
+	void setGameObjectPosition(Vector2 pos);
 
 	/**
 	 * Renvoi les tiles représentant la texture de l'entité au niveau Layer
@@ -69,7 +69,7 @@ public interface GameObject extends IDInterface {
 	 * @see Layer
 	 * @since 4.0
 	 */
-	Array<Float> getTexture(Layer layer);
+	Array<Float> getTiles(Layer layer);
 
 	/**
 	 * Définit les tiles représentant la texture de l'entité au niveau Layer
@@ -79,5 +79,5 @@ public interface GameObject extends IDInterface {
 	 * @see Layer
 	 * @since 4.0
 	 */
-	void setTexture(Array<Float> texture, Layer layer);
+	void setTiles(Array<Float> texture, Layer layer);
 }

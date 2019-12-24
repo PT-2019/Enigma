@@ -1,7 +1,6 @@
-package item;
+package game.entity.item;
 
-import api.entity.interfaces.Content;
-import api.entity.interfaces.Item;
+import api.entity.interfaces.AbstractItem;
 import editor.enigma.Enigma;
 import editor.entity.player.Player;
 import editor.utils.textures.Texture;
@@ -12,19 +11,14 @@ import java.util.Iterator;
 /**
  * @version 2.2
  * @see api.entity.interfaces.Item
- * @see api.entity.interfaces.Content
  */
-public class Pane implements Content, Item {
+@Deprecated
+public class Floor extends AbstractItem {
 
 	/**
 	 * Enigmes données à l'objet
 	 */
 	private ArrayList<Enigma> enigmas;
-
-	/**
-	 * Contenu de l'objet
-	 */
-	private String content;
 
 	/**
 	 * Dialogue de l'objet
@@ -41,7 +35,7 @@ public class Pane implements Content, Item {
 	 */
 	private int id;
 
-	public Pane() {
+	public Floor() {
 		this.enigmas = new ArrayList<Enigma>();
 		this.id = -1;
 	}
@@ -49,7 +43,7 @@ public class Pane implements Content, Item {
 	/**
 	 * @param id ID
 	 */
-	public Pane(int id) {
+	public Floor(int id) {
 		this.enigmas = new ArrayList<Enigma>();
 		this.id = id;
 	}
@@ -65,26 +59,6 @@ public class Pane implements Content, Item {
 			if (!e.isKnown()) e.discovered();
 			else e.verifyConditions(p);
 		}
-	}
-
-	/**
-	 * Ajoute un contenu à l'objet
-	 *
-	 * @param content Contenu à ajouter
-	 */
-	@Override
-	public void addContent(String content) {
-		this.content = content;
-	}
-
-	/**
-	 * Obtenir le contenu
-	 *
-	 * @return le contenu, le contenu peut être vide
-	 */
-	@Override
-	public String getContent() {
-		return this.content;
 	}
 
 	/**
@@ -170,7 +144,7 @@ public class Pane implements Content, Item {
 	 */
 	@Override
 	public String toString() {
-		return "[Pane  : ID = " + this.id + ", dialog = " + this.dialog + ", content = " + this.content + ", texture = " + this.texture + "]";
+		return "[Floor  : ID = " + this.id + ", dialog = " + this.dialog + ", texture = " + this.texture + "]";
 	}
 
 	/**
@@ -179,7 +153,7 @@ public class Pane implements Content, Item {
 	 * @return Texte représentant l'objet
 	 */
 	public String toLongString() {
-		StringBuilder s = new StringBuilder("[Pane  : ID = " + this.id + ", dialog = " + this.dialog + ", content = " + this.content + ", texture = " + this.texture + ", enigmas = {");
+		StringBuilder s = new StringBuilder("[Floor  : ID = " + this.id + ", dialog = " + this.dialog + ", texture = " + this.texture + ", enigmas = {");
 		int size = this.enigmas.size() - 1;
 		int i = 0;
 		for (Enigma e : this.enigmas) {
@@ -190,5 +164,4 @@ public class Pane implements Content, Item {
 		s.append("}]");
 		return s.toString();
 	}
-
 }

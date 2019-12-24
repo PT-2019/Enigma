@@ -1,17 +1,12 @@
 package api.entity.interfaces;
 
-import api.enums.Layer;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.Array;
 import editor.enigma.Enigma;
 import editor.entity.player.Player;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 
-public abstract class AbstractItem implements Item { //peut extends GameActorTextured si besoin
+public abstract class AbstractItem extends AbstractGameObject implements Item {
 
 	/**
 	 * Enigmes données à l'objet
@@ -20,33 +15,14 @@ public abstract class AbstractItem implements Item { //peut extends GameActorTex
 	 */
 	protected ArrayList<Enigma> enigmas;
 
-	/**
-	 * ID
-	 *
-	 * @since 2.2
-	 */
-	protected int id;
-
-	/**
-	 * Dimensions de l'object
-	 */
-	protected Rectangle bounds;
-
-	/**
-	 * les tiles (a convertir en int)
-	 */
-	protected HashMap<Layer, Array<Float>> tiles;
-
 	//constructeur par default
-	public AbstractItem(){
+	protected AbstractItem(){
 		this(-1);
 	}
 
-	public AbstractItem(int id){
+	protected AbstractItem(int id){
+		super(id);
 		this.enigmas = new ArrayList<Enigma>();
-		this.id = id;
-		this.tiles = new HashMap<>();
-		this.bounds = new Rectangle();
 	}
 
 	//Enigmas
@@ -74,55 +50,6 @@ public abstract class AbstractItem implements Item { //peut extends GameActorTex
 	public Iterator<Enigma> getAllEnigmas() {
 		ArrayList<Enigma> e = (ArrayList<Enigma>) this.enigmas.clone();
 		return e.iterator();
-	}
-
-	//id
-
-	@Override
-	public int getID() {
-		return this.id;
-	}
-
-	@Override
-	public void setID(int id) {
-		this.id = id;
-	}
-
-	//new methods
-
-	@Override
-	public void setDimension(int width, int height) {
-		this.bounds.setSize(width, height);
-	}
-
-	@Override
-	public float getWidth() {
-		return this.bounds.getWidth();
-	}
-
-	@Override
-	public float getHeight() {
-		return this.bounds.getHeight();
-	}
-
-	@Override
-	public Vector2 getPosition() {
-		return this.bounds.getPosition(new Vector2());
-	}
-
-	@Override
-	public void setPosition(Vector2 pos) {
-		this.bounds.setPosition(pos);
-	}
-
-	@Override
-	public Array<Float> getTexture(Layer layer) {
-		return this.tiles.get(layer);
-	}
-
-	@Override
-	public void setTexture(Array<Float> texture, Layer layer) {
-		this.tiles.put(layer, texture);
 	}
 
 	//toString

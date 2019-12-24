@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 /**
  * La classe Texture permet de récupérer une sous-texture ({@link TextureArea}
@@ -28,7 +29,7 @@ public class TextureProxy {
 	 *
 	 * @see TextureArea
 	 */
-	private static HashMap<String, TextureArea> textures = new HashMap<String, TextureArea>();
+	private static LinkedHashMap<String, TextureArea> textures = new LinkedHashMap<>();
 
 	/**
 	 * Renvoi la sous-texture

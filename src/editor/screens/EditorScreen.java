@@ -10,6 +10,7 @@ import editor.utils.EmptyMapGenerator;
 import editor.utils.dnd.DragAndDropDND;
 import editor.utils.dnd.EntityContainer;
 import editor.window.Window;
+import game.screen.TestScreen;
 import org.intellij.lang.annotations.MagicConstant;
 
 import javax.swing.JButton;
@@ -45,7 +46,7 @@ public class EditorScreen extends JPanel {
 		this.setLayout(new BorderLayout());
 
 		//génère une map vide
-		EmptyMapGenerator.generate("assets/map/EmptyTest.tmx", 10, 10);
+		EmptyMapGenerator.generate(TestScreen.getMapPath(), 50, 50);
 
 		//charge entités
 		EntityFactory.loadEntities("assets/rooms.json");

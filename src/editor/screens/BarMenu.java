@@ -1,5 +1,12 @@
 package editor.screens;
 
+import api.enums.EnigmaScreens;
+import api.utils.LoadGameLibgdxApplication;
+import com.badlogic.gdx.Gdx;
+import editor.EditorLuncher;
+import editor.window.Window;
+import game.EnigmaGame;
+
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -16,11 +23,12 @@ public class BarMenu extends JMenuBar {
 	private JMenuItem undo = new JMenuItem("Undo");
 	//3eme onglet
 	private JMenu run = new JMenu("Run");
-	private JMenuItem runjeu = new JMenuItem("Lancer le jeu");
+	private JMenuItem runJeu = new JMenuItem("Lancer le jeu");
+	private JMenuItem finJeu = new JMenuItem("Terminer le jeu");
 	//4eme onglet
 	private JMenu help = new JMenu("Help");
-	private JMenuItem a = new JMenuItem("Ouvrir");
-	private JMenuItem b = new JMenuItem("Ouvrir");
+	private JMenuItem doc = new JMenuItem("Documentation");
+	private JMenuItem support = new JMenuItem("Support");
 
 	public BarMenu() {
 		this.file.add(ouvrir);
@@ -30,10 +38,25 @@ public class BarMenu extends JMenuBar {
 		this.edit.add(redo);
 		this.edit.add(undo);
 
-		this.run.add(runjeu);
+		this.run.add(runJeu);
+		this.run.add(finJeu);
 
-		this.help.add(a);
-		this.help.add(b);
+		runJeu.addActionListener((e -> {
+			Gdx.app.postRunnable(() -> EnigmaGame.setScreen(EnigmaScreens.GAME.name()));
+			finJeu.setEnabled(true);
+			runJeu.setEnabled(false);
+		}));
+		//Vérifier demande pas la fin avant le début
+		finJeu.addActionListener((e -> {
+			Gdx.app.postRunnable(() -> EnigmaGame.setScreen(EnigmaScreens.TEST.name()));
+			runJeu.setEnabled(true);
+			finJeu.setEnabled(false);
+		}));
+		finJeu.setEnabled(false);
+
+
+		this.help.add(doc);
+		this.help.add(support);
 
 		this.add(file);
 		this.add(edit);

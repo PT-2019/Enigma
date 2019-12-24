@@ -79,5 +79,381 @@
         ]
       }
     }
+
+    //panneaux
+    {
+      className: game.entity.item.Pane
+      path: assets/map/datas/panneau1.png
+      hover: une panneau
+      category: DECORS
+      height: 1
+      tiles: {
+        FLOOR2: [283]
+        COLLISION: [2041]
+      }
+    }
+    {
+      className: game.entity.item.Pane
+      path: assets/map/datas/panneau2.png
+      hover: une panneau
+      category: DECORS
+      height: 1
+      tiles: {
+        FLOOR2: [284]
+        COLLISION: [2041]
+      }
+    }
+    {
+      className: game.entity.item.Pane
+      path: assets/map/datas/panneau3.png
+      hover: une panneau
+      category: DECORS
+      height: 1
+      tiles: {
+        FLOOR2: [285]
+        COLLISION: [2041]
+      }
+    }
+    {
+      className: game.entity.item.Pane
+      path: assets/map/datas/panneau4.png
+      hover: une panneau
+      category: DECORS
+      height: 2
+      tiles: {
+        FLOOR2:
+        [
+          278,
+          286
+        ]
+        COLLISION:
+        [
+          2041,
+          2041
+        ]
+      }
+    }
+
+    //portes
+    {
+      className: game.entity.item.Door
+      path: assets/map/datas/decors/door/porte0.png
+      hover: une porte
+      category: DECORS
+      height: 2
+      tiles: {
+        FLOOR2:
+        [
+          408,
+          416
+        ]
+        COLLISION:
+        [
+          2041,
+          2041
+        ]
+      }
+    }
+    {
+      className: game.entity.item.Door
+      path: assets/map/datas/decors/door/porte1.png
+      hover: une porte
+      category: DECORS
+      height: 2
+      tiles: {
+        FLOOR2:
+        [
+          424,
+          432
+        ]
+        COLLISION:
+        [
+          2041,
+          2041
+        ]
+      }
+    }
+    {
+      className: game.entity.item.Door
+      path: assets/map/datas/decors/door/porte2.png
+      hover: une porte
+      category: DECORS
+      height: 2
+      tiles: {
+        FLOOR2:
+        [
+          440,
+          448
+        ]
+        COLLISION:
+        [
+          2041,
+          2041
+        ]
+      }
+    }
+    {
+      className: game.entity.item.Door
+      path: assets/map/datas/decors/door/porte3.png
+      hover: une porte
+      category: DECORS
+      height: 2
+      tiles: {
+        FLOOR2:
+        [
+          456,
+          464
+        ]
+        COLLISION:
+        [
+          2041,
+          2041
+        ]
+      }
+    }
+    {
+      className: game.entity.item.Door
+      path: assets/map/datas/decors/door/porte4.png
+      hover: une porte
+      category: DECORS
+      height: 2
+      tiles: {
+        FLOOR2:
+        [
+          472,
+          480
+        ]
+        COLLISION:
+        [
+          2041,
+          2041
+        ]
+      }
+    }
+    {
+      className: game.entity.item.Door
+      path: assets/map/datas/decors/door/porte5.png
+      hover: une porte
+      category: DECORS
+      height: 2
+      tiles: {
+        FLOOR2:
+        [
+          488,
+          496
+        ]
+        COLLISION:
+        [
+          2041,
+          2041
+        ]
+      }
+    }
+    {
+      className: game.entity.item.Door
+      path: assets/map/datas/decors/door/porte6.png
+      hover: une porte
+      category: DECORS
+      height: 2
+      tiles: {
+        FLOOR2:
+        [
+          504,
+          512
+        ]
+        COLLISION:
+        [
+          2041,
+          2041
+        ]
+      }
+    }
+    {
+      className: game.entity.item.Door
+      path: assets/map/datas/decors/door/porte7.png
+      hover: une porte
+      category: DECORS
+      height: 2
+      tiles: {
+        FLOOR2:
+        [
+          520,
+          528
+        ]
+        COLLISION:
+        [
+          2041,
+          2041
+        ]
+      }
+    }
+    {
+      className: game.entity.item.Door
+      path: assets/map/datas/decors/door/porte8.png
+      hover: une porte
+      category: DECORS
+      height: 2
+      tiles: {
+        FLOOR2:
+        [
+          536,
+          544
+        ]
+        COLLISION:
+        [
+          2041,
+          2041
+        ]
+      }
+    }
+
+    //boutons
+    {
+      className: game.entity.item.Button
+      path: assets/map/datas/decors/boutons/bouton0.png
+      hover: un bouton
+      category: DECORS
+      height: 1
+      tiles: {
+        FLOOR2: [1305]
+        COLLISION: [2041]
+      }
+    }
+    {
+      className: game.entity.item.Button
+      path: assets/map/datas/decors/boutons/bouton1.png
+      hover: un bouton
+      category: DECORS
+      height: 1
+      tiles: {
+        FLOOR2: [1307]
+        COLLISION: [2041]
+      }
+    }
+    {
+      className: game.entity.item.Button
+      path: assets/map/datas/decors/boutons/bouton2.png
+      hover: un bouton
+      category: DECORS
+      height: 1
+      tiles: {
+        FLOOR2: [1309]
+        COLLISION: [2041]
+      }
+    }
+    {
+      className: game.entity.item.Button
+      path: assets/map/datas/decors/boutons/bouton3.png
+      hover: un bouton
+      category: DECORS
+      height: 1
+      tiles: {
+        FLOOR2: [1311]
+        COLLISION: [2041]
+      }
+    }
+
+    //leviers
+    {
+      className: game.entity.item.Switch
+      path: assets/map/datas/decors/switch/switch0.png
+      hover: un interrupteur
+      category: DECORS
+      height: 1
+      tiles: {
+        FLOOR2: [1306]
+        COLLISION: [2041]
+      }
+    }
+    {
+      className: game.entity.item.Switch
+      path: assets/map/datas/decors/switch/switch1.png
+      hover: un interrupteur
+      category: DECORS
+      height: 1
+      tiles: {
+        FLOOR2: [1314]
+        COLLISION: [2041]
+      }
+    }
+    {
+      className: game.entity.item.Switch
+      path: assets/map/datas/decors/switch/switch2.png
+      hover: un interrupteur
+      category: DECORS
+      height: 1
+      tiles: {
+        FLOOR2: [1308]
+        COLLISION: [2041]
+      }
+    }
+    {
+      className: game.entity.item.Switch
+      path: assets/map/datas/decors/switch/switch3.png
+      hover: un interrupteur
+      category: DECORS
+      height: 1
+      tiles: {
+        FLOOR2: [1316]
+        COLLISION: [2041]
+      }
+    }
+    {
+      className: game.entity.item.Switch
+      path: assets/map/datas/decors/switch/switch4.png
+      hover: un interrupteur
+      category: DECORS
+      height: 1
+      tiles: {
+        FLOOR2: [1310]
+        COLLISION: [2041]
+      }
+    }
+    {
+      className: game.entity.item.Switch
+      path: assets/map/datas/decors/switch/switch5.png
+      hover: un interrupteur
+      category: DECORS
+      height: 1
+      tiles: {
+        FLOOR2: [1318]
+        COLLISION: [2041]
+      }
+    }
+
+    //coffres
+    {
+      className: game.entity.item.Chest
+      path: assets/map/datas/decors/chest/chest0.png
+      hover: un coffre
+      category: DECORS
+      height: 1
+      tiles: {
+        FLOOR2: [910]
+        COLLISION: [2041]
+      }
+    }
+    {
+      className: game.entity.item.Chest
+      path: assets/map/datas/decors/chest/chest1.png
+      hover: un coffre
+      category: DECORS
+      height: 1
+      tiles: {
+        FLOOR2: [911]
+        COLLISION: [2041]
+      }
+    }
+    {
+      className: game.entity.item.Chest
+      path: assets/map/datas/decors/chest/chest2.png
+      hover: une coffre
+      category: DECORS
+      height: 1
+      tiles: {
+        FLOOR2: [912]
+        COLLISION: [2041]
+      }
+    }
   ]
 }

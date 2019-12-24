@@ -39,12 +39,12 @@ public interface Item extends EnigmaContainer, Entity {
 	String toLongString();
 
 	@Override
-	default float getWidth() {
+	default float getGameObjectWidth() {
 		return 1f;
 	}
 
 	@Override
-	default float getHeight() {
+	default float getGameObjectHeight() {
 		return 1f;
 	}
 }
