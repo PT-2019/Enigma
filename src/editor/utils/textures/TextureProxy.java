@@ -10,7 +10,7 @@ import java.util.HashMap;
 /**
  * La classe Texture permet de récupérer une sous-texture ({@link TextureArea}
  * d'une Image.
- *
+ * <p>
  * Une texture doit d'abord être ajoutée {@link #addTexture(int, String, int, int, int)}.
  * On peut ensuite accéder a la sous-texture via un indice {@link #getImage(int)}.
  *
@@ -18,7 +18,6 @@ import java.util.HashMap;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 2.0 28 novembre 2019
  * @since 1.0
  */

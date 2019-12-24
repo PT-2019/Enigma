@@ -14,7 +14,7 @@ import java.util.HashMap;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 3.0
+ * @version 4.1
  * @since 3.0
  */
 public class EntitySerializable {
@@ -39,8 +39,17 @@ public class EntitySerializable {
 	 * sa classe
 	 */
 	private String className;
+	/**
+	 * Message de survol
+	 */
+	private String hover = null;
 
 	public EntitySerializable() {
+		//TOUTES LES VARIABLES DOIVENT ETRE INSTANCIEES EN DEHORS A CAUSE DE LA LIBGDX
+		//ET DE Json.fromJson qui fait des trucs bizarres avec une classe qui
+		//peut mettre un float dans une variable de type int et qui lève une
+		//NumberFormatException lorsque l'on passe ce int a une méthode qui attends
+		//un int
 	}
 
 	/**
@@ -56,6 +65,7 @@ public class EntitySerializable {
 		this.height = entity.height;
 		this.tiles = entity.tiles;
 		this.category = entity.category;
+		this.hover = entity.hover;
 	}
 
 	/**
@@ -119,5 +129,15 @@ public class EntitySerializable {
 	 */
 	public String getClassName() {
 		return this.className;
+	}
+
+	/**
+	 * Retourne un texte de survol de l'entité, null si aucun
+	 *
+	 * @return un texte de survol de l'entité, null si aucun
+	 * @since 4.0
+	 */
+	public String getHover() {
+		return hover;
 	}
 }

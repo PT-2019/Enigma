@@ -28,9 +28,9 @@ public class EntityFactory {
 
 	/**
 	 * Entités chargés
-	 *
+	 * <p>
 	 * La clef contient la class des entités
-	 *
+	 * <p>
 	 * Pour chaque clef, on a la liste des entités de ce type.
 	 */
 	private static HashMap<String, Array<EntitySerializable>> loaded = new HashMap<>();
@@ -96,15 +96,13 @@ public class EntityFactory {
 	 * Crée une entité depuis une entité serializable
 	 *
 	 * @param entity une entité
-	 * @param id son identifiant ou -1 si aucun
-	 * @param pos sa position @Nullable
-	 *
+	 * @param id     son identifiant ou -1 si aucun
+	 * @param pos    sa position @Nullable
 	 * @return un GameObject représentant l'entitée
-	 *
 	 * @since 4.0
 	 */
 	@SuppressWarnings("unchecked")
-	public static GameObject createEntity(EntitySerializable entity, int id, @Nullable Vector2 pos){
+	public static GameObject createEntity(EntitySerializable entity, int id, @Nullable Vector2 pos) {
 		GameObject object;
 		try {
 			Class c = Class.forName(entity.getClassName());
@@ -114,10 +112,11 @@ public class EntityFactory {
 			object.setID(id);
 			//location
 			object.setDimension(entity.getWidth(), entity.getHeight());
-			if(pos != null)
+
+			if (pos != null)
 				object.setPosition(pos);
 			//layers
-			for (Layer l: Layer.values() ) {
+			for (Layer l : Layer.values()) {
 				//récupère les tiles de l'entités pour ce niveau
 				Array<Float> entities = entity.getTiles(l);
 
@@ -128,7 +127,7 @@ public class EntityFactory {
 			}
 		} catch (IllegalAccessException | InstantiationException | NoSuchMethodException
 				| InvocationTargetException | ClassNotFoundException e) {
-			throw new IllegalStateException("EntityFactory create instance failed"+ e);
+			throw new IllegalStateException("EntityFactory create instance failed" + e);
 		}
 
 		return object;

@@ -9,12 +9,10 @@ import java.awt.Image;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 2.0
- * @since 1.0
- *
  * @see TextureArea
  * @see TextureProxy
+ * @since 1.0
  */
 public class Texture {
 

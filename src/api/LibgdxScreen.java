@@ -13,7 +13,7 @@ import java.util.Iterator;
 /**
  * Il s'agit d'un écran du jeu mais qui remplit toutes les fonctionnalités
  * d'un jeu entier : phase initialisation et libération et la gameloop.
- *
+ * <p>
  * Les méthodes de la libgdx sont cachés au mieux.
  *
  * @author Jorys-Micke ALAÏS
@@ -39,7 +39,7 @@ public abstract class LibgdxScreen implements Screen, InputListener, IGameLogic 
 
 	/**
 	 * Cache l'écran mais les évènements doivent continuer d'être capturés
-	 *
+	 * <p>
 	 * setVisible ou addAction(Actions.hide()) et addAction(Actions.show())
 	 * devrait suffire sur les stages
 	 *
@@ -53,10 +53,10 @@ public abstract class LibgdxScreen implements Screen, InputListener, IGameLogic 
 	/**
 	 * When a event happens, if no one before was concerned
 	 * by the event, all stage's observers will be called.
-	 *
+	 * <p>
 	 * Warning! The events are called in the same order listens
 	 * call were done.
-	 *
+	 * <p>
 	 * So it would be wise to call listen on hud's stage before main's stage
 	 * for instance.
 	 *

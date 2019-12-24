@@ -1,9 +1,7 @@
 package editor.utils.dnd;
 
 import api.enums.EntitiesCategories;
-import com.badlogic.gdx.Gdx;
 import editor.screens.EditorScreen;
-import game.ui.CategoriesMenu;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

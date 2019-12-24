@@ -10,7 +10,6 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 4.0 23/12/2019
  * @since 4.0 23/12/2019
  */
@@ -21,9 +20,7 @@ public class CheckEventType {
 	 * Clic de la souris
 	 *
 	 * @param event l'évènement
-	 *
 	 * @return true si c'est un clic
-	 *
 	 * @since 4.0
 	 */
 	public static boolean isMouseCliqued(Event event) {
@@ -34,9 +31,7 @@ public class CheckEventType {
 	 * Appui sur une touche
 	 *
 	 * @param event l'évènement
-	 *
 	 * @return true si c'est un appui sur une touche
-	 *
 	 * @since 4.0
 	 */
 	public static boolean isKeyPressed(Event event) {

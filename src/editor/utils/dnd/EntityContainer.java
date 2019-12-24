@@ -16,7 +16,6 @@ import java.awt.dnd.DragSource;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 3.0
  * @since 3.0
  */

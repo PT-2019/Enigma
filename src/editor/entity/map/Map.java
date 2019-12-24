@@ -101,11 +101,11 @@ public class Map implements IDInterface {
 		//put all room's values into map array
 		for (java.util.Map.Entry<Point, Room> room : this.rooms.entrySet()) {
 			int w = room.getValue().getCol(), h = room.getValue().getRow();
-			for (int i = room.getKey().y, ir = 0; ir < h ; i++, ir++) {
-				for (int j = room.getKey().x, jr = 0; jr < w ; j++, jr++) {
-					this.cases[i*this.col+j] = room.getValue().getCase(jr,ir);
+			for (int i = room.getKey().y, ir = 0; ir < h; i++, ir++) {
+				for (int j = room.getKey().x, jr = 0; jr < w; j++, jr++) {
+					this.cases[i * this.col + j] = room.getValue().getCase(jr, ir);
 
-					HashMap<Layer, Texture> hash = this.cases[i*this.col+j].getEntities();
+					HashMap<Layer, Texture> hash = this.cases[i * this.col + j].getEntities();
 					Texture texture = hash.get(Layer.DECORATIONS1);
 					System.out.println(texture.getPosition());
 				}

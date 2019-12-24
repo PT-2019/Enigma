@@ -16,19 +16,19 @@ import java.awt.event.ActionListener;
  * @since 4.0
  */
 public class CasePopListener implements ActionListener {
-    private TiledMapTileLayer.Cell after;
+	private TiledMapTileLayer.Cell after;
 
-    private CasePopUp popUp;
+	private CasePopUp popUp;
 
-    public CasePopListener(TiledMapTileLayer.Cell after,CasePopUp popup){
-        this.after = after;
-        popUp = popup;
-    }
+	public CasePopListener(TiledMapTileLayer.Cell after, CasePopUp popup) {
+		this.after = after;
+		popUp = popup;
+	}
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        System.out.println(after);
-        popUp.setCell(after);
-        popUp.display();
-    }
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		System.out.println(after);
+		popUp.setCell(after);
+		popUp.display();
+	}
 }

@@ -1,6 +1,5 @@
 package game.entity;
 
-import api.LibgdxScreen;
 import api.entity.GameObject;
 import api.enums.Layer;
 import api.utils.Bounds;
@@ -26,8 +25,6 @@ import game.ui.CategoriesMenu;
 import org.intellij.lang.annotations.MagicConstant;
 import org.jetbrains.annotations.NotNull;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 
 import static api.MapsNameUtils.HEIGHT_P;
@@ -45,7 +42,7 @@ import static api.MapsNameUtils.WIDTH_P;
  * @version 4.3 22/12/2019
  * @since 2.0 5 décembre 2019
  */
-public class MapLibgdx extends Group{
+public class MapLibgdx extends Group {
 
 	/**
 	 * Dimension d'un tile
@@ -115,15 +112,8 @@ public class MapLibgdx extends Group{
 		this.camera = new OrthographicCamera();
 		this.camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		//centre map dans l'écran
-		float x = Gdx.graphics.getWidth()/2f - this.mapWidth/2f - CategoriesMenu.WIDTH;
-		float y = Gdx.graphics.getHeight()/2f - this.mapHeight/2f;
-		if(x < 0) x*= -1;
-		if(y < 0) y*=-1;
-
-		//this.camera.position.set(x, y, 0);
-		System.out.println(mapHeight);
-		this.camera.position.set(Gdx.graphics.getWidth()/2f - height/2f - CategoriesMenu.WIDTH,
-				Gdx.graphics.getHeight()/2f - width/2f,0);
+		this.camera.position.set(Gdx.graphics.getWidth() / 2f - height / 2f - CategoriesMenu.WIDTH,
+				Gdx.graphics.getHeight() / 2f - width / 2f, 0);
 		this.camera.update();
 
 		this.added = new HashMap<>();
@@ -134,7 +124,7 @@ public class MapLibgdx extends Group{
 
 	/**
 	 * Retourne la case (indices) dans la map depuis une positon x,y dans l'espace.
-	 *
+	 * <p>
 	 * Attention! La position  x,y est considérée comme étant toujours dans la map.
 	 *
 	 * @param posX position x
@@ -202,7 +192,7 @@ public class MapLibgdx extends Group{
 		return true;
 	}
 
-	private Rectangle getMapSize(){
+	private Rectangle getMapSize() {
 		Rectangle r = new Rectangle();
 		/*
             Inverse le zoom, avant avec un zoom de 0.95 la map était plus grande et 1.05
@@ -229,7 +219,6 @@ public class MapLibgdx extends Group{
 	 *
 	 * @param entity l'entité à charger
 	 * @param start  le coin supérieur gauche ou commencer a placer des tiles
-	 *
 	 * @since 4.0
 	 */
 	private void set(GameObject entity, Vector2 start) {
@@ -269,7 +258,7 @@ public class MapLibgdx extends Group{
 		//this.camera.position.x = c.position.x;
 		//this.camera.position.y = c.position.y;
 		//this.camera.update();
-		//update borders
+		// update borders
 		this.border.setProjectionMatrix(this.camera.combined);
 	}
 
@@ -361,6 +350,8 @@ public class MapLibgdx extends Group{
 		return added;
 	}
 
-	public TiledMap getTiledMap() { return this.map.getMap(); }
+	public TiledMap getTiledMap() {
+		return this.map.getMap();
+	}
 }
 

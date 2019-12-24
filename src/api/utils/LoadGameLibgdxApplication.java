@@ -25,12 +25,11 @@ public class LoadGameLibgdxApplication {
 
 	/**
 	 * Charge l'application libgdx dans un composant SWING
-	 *
+	 * <p>
 	 * For a JFrame, container should ne {@link JFrame#getContentPane()}.
 	 *
 	 * @param container conteneur de la libgdx qui va être chargée
-	 * @param frame la fenêtre swing
-	 *
+	 * @param frame     la fenêtre swing
 	 * @since 3.0
 	 */
 	public static void load(Container container, @NotNull JFrame frame) {
@@ -85,7 +84,7 @@ public class LoadGameLibgdxApplication {
 
 		/**
 		 * Méthode appelée si on cherche à fermer la fenêtre.
-		 *
+		 * <p>
 		 * Si la fenêtre contient un application libgdx, elle la ferme
 		 * proprement avant de quitter
 		 *

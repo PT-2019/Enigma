@@ -9,7 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 
 /**
  * Crée un acteur basique qui peut gérer la collision.
- *
+ * <p>
  * On commence par utiliser {@link #setBounds(int)} pu {@link #setBounds()} pour créer
  * un Polygon qui recouvre l'entité. Après la méthode {@link #overlaps(Actor)} renvoi s'il y a collision.
  *

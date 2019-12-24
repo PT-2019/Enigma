@@ -1,48 +1,83 @@
 {
   content: [
-    /*{
-      className: editor.entity.item.Chest
-      path: assets/map/datas/coffre.png
+    //bibliothèques
+    {
+      className: game.entity.item.Library
+      path: assets/map/datas/library.png
+      hover: une bibliothèque
       category: DECORS
-      width: 1
-      height: 1
+      height: 2
       tiles: {
-        DECORATIONS1: [910]
-        COLLISION: [2041]
+        FLOOR2:
+        [
+          764,
+          772
+        ]
+        COLLISION:
+        [
+          2041,
+          2041
+        ]
       }
     }
     {
-      className: editor.entity.item.Button
-      path: assets/map/datas/button.png
+      className: game.entity.item.Library
+      path: assets/map/datas/library2.png
+      hover: une bibliothèque
       category: DECORS
-      width: 1
-      height: 1
+      height: 2
       tiles: {
-        DECORATIONS1: [1305]
-        COLLISION: [2041]
+        FLOOR2:
+        [
+          793,
+          801
+        ]
+        COLLISION:
+        [
+          2041,
+          2041
+        ]
+      }
+    }
+
+    //armoires
+    {
+      className: game.entity.item.Library
+      path: assets/map/datas/closet.png
+      hover: une armoire
+      category: DECORS
+      height: 2
+      tiles: {
+        FLOOR2:
+        [
+          763,
+          771
+        ]
+        COLLISION:
+        [
+          2041,
+          2041
+        ]
       }
     }
     {
-      className: editor.entity.item.Switch
-      path: assets/map/datas/switch.png
+      className: game.entity.item.Library
+      path: assets/map/datas/closet2.png
+      hover: une armoire
       category: DECORS
-      width: 1
-      height: 1
+      height: 2
       tiles: {
-        DECORATIONS1: [1310]
-        COLLISION: [2041]
+        FLOOR2:
+        [
+          761,
+          769
+        ]
+        COLLISION:
+        [
+          2041,
+          2041
+        ]
       }
     }
-    {
-      className: editor.entity.item.Pane
-      path: assets/map/datas/pane.png
-      category: DECORS
-      width: 1
-      height: 1
-      tiles: {
-        DECORATIONS1: [284]
-        COLLISION: [2041]
-      }
-    }*/
   ]
 }

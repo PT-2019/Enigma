@@ -16,24 +16,28 @@ public enum Layer {
 	//Exemple : il y a le sol (FLOOR1), sur le sol il y a une assiette (DECORATION1),
 	// dans l'assiette il y a à manger (DECORATION2)
 	/**
-	 * Couche de collision
+	 * Première couche de sol
 	 */
-	COLLISION,
-	/**
-	 * Seconde couche de décoration
-	 */
-	DECORATIONS2,
-	/**
-	 * Première couche de décoration
-	 */
-	DECORATIONS1,
+	FLOOR1,
+
 	/**
 	 * Seconde couche de sol
 	 */
 	FLOOR2,
+
 	/**
-	 * Première couche de sol
+	 * Première couche de décoration
 	 */
-	FLOOR1
+	DECORATIONS1,
+
+	/**
+	 * Seconde couche de décoration
+	 */
+	DECORATIONS2,
+
+	/**
+	 * Couche de collision
+	 */
+	COLLISION
 }
 

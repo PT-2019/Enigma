@@ -113,7 +113,7 @@ public class TestScreen extends LibgdxScreen {
 	}
 
 	public boolean setMap(String absolutePath) {
-		if(!absolutePath.equals(MAP_PATH)) {
+		if (!absolutePath.equals(MAP_PATH)) {
 			MAP_PATH = absolutePath;
 			return true;
 		}

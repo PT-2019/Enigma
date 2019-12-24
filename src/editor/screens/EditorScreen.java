@@ -38,7 +38,6 @@ public class EditorScreen extends JPanel {
 	 * Crée l'écran de création de l'escape game
 	 *
 	 * @param parent fenêtre swing
-	 *
 	 * @since 1.0 10 novembre 2019
 	 */
 	public EditorScreen(Window parent) {
@@ -46,7 +45,7 @@ public class EditorScreen extends JPanel {
 		this.setLayout(new BorderLayout());
 
 		//génère une map vide
-		EmptyMapGenerator.generate("assets/map/EmptyTest.tmx", 50, 30);
+		EmptyMapGenerator.generate("assets/map/EmptyTest.tmx", 10, 10);
 
 		//charge entités
 		EntityFactory.loadEntities("assets/rooms.json");
@@ -72,8 +71,7 @@ public class EditorScreen extends JPanel {
 	 * Charge le menu des choix de catégories dans un JPanel
 	 *
 	 * @param layout layout du menu
-	 * @param dnd le gestionnaire du drag and drop
-	 *
+	 * @param dnd    le gestionnaire du drag and drop
 	 * @return JPanel contenant le menu
 	 * @since 3.0 14 décembre 2019
 	 * @deprecated chargé via la libgdx
@@ -108,7 +106,7 @@ public class EditorScreen extends JPanel {
 		//création de la zone de la barre d'outils
 		JPanel outilBar = new JPanel();
 
-		String[] elements = new String[]{"25%","50%","100%","125%","150%","175%","200%"};
+		String[] elements = new String[]{"25%", "50%", "100%", "125%", "150%", "175%", "200%"};
 		JComboBox<String> zoom = new JComboBox<>(elements);
 
 		JCheckBox fit = new JCheckBox("fit");
@@ -152,8 +150,7 @@ public class EditorScreen extends JPanel {
 	 *
 	 * @param pane page qui sera remplit
 	 * @param name nom de la catégorie
-	 * @param dnd le gestionnaire du drag and drop
-	 *
+	 * @param dnd  le gestionnaire du drag and drop
 	 * @since 2.0 05 décembre 2019
 	 */
 	@Deprecated//(since = "4.0")

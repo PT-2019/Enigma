@@ -10,11 +10,10 @@ import editor.entity.player.Player;
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  * @version 4.1
+ * @apiNote suppression des méthode de IDInterface pour lisibilité et de Entity et de EnigmaContainer
  * @see api.entity.interfaces.EnigmaContainer
  * @see Entity
  * @since 2.0
- *
- * @apiNote suppression des méthode de IDInterface pour lisibilité et de Entity et de EnigmaContainer
  */
 public interface Item extends EnigmaContainer, Entity {
 
@@ -40,8 +39,12 @@ public interface Item extends EnigmaContainer, Entity {
 	String toLongString();
 
 	@Override
-	default int getWidth(){ return 1; }
+	default float getWidth() {
+		return 1f;
+	}
 
 	@Override
-	default int getHeight(){ return 1; }
+	default float getHeight() {
+		return 1f;
+	}
 }

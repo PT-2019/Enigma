@@ -16,11 +16,9 @@ import java.io.IOException;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 2.1 28 novembre 2019
- * @since 1.0
- *
  * @see TextureProxy
+ * @since 1.0
  */
 public class TextureArea {
 
