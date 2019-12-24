@@ -6,11 +6,16 @@ import api.utils.LoadGameLibgdxApplication;
 import com.badlogic.gdx.utils.Array;
 import editor.entity.EntityFactory;
 import editor.entity.EntitySerializable;
+import editor.hud.EnigmaButton;
+import editor.hud.EnigmaComboBox;
+import editor.hud.EnigmaMenuItem;
+import editor.hud.EnigmaPanel;
+import editor.hud.managers.CheckBoxManager;
 import editor.utils.EmptyMapGenerator;
 import editor.hud.Window;
-import editor.utils.dnd.ChoixObjet;
 import editor.utils.dnd.DragAndDropDND;
 import editor.utils.dnd.EntityContainer;
+import game.screen.TestScreen;
 import org.intellij.lang.annotations.MagicConstant;
 
 import javax.swing.JButton;
@@ -55,7 +60,7 @@ public class EditorScreen extends JPanel {
 		EntityFactory.loadEntities("assets/entities.json");
 
 		//création de la barre d'outils
-		JPanel outilBar = this.loadOutilBar();
+		EnigmaPanel outilBar = this.loadOutilBar();
 
 		//création de la zone d'affichage de la map (partie droite)
 		JPanel map = new JPanel();
@@ -101,20 +106,26 @@ public class EditorScreen extends JPanel {
 	 * @return JPanel contenant la barre d'outils
 	 * @since 3.1 19 décembre 2019
 	 */
-	private JPanel loadOutilBar() {
+	private EnigmaPanel loadOutilBar() {
 		OutilAction listener = new OutilAction();
 
 		//création de la zone de la barre d'outils
-		JPanel outilBar = new JPanel();
+		EnigmaPanel outilBar = new EnigmaPanel();
 
 		String[] elements = new String[]{"25%", "50%", "100%", "125%", "150%", "175%", "200%"};
 		JComboBox<String> zoom = new JComboBox<>(elements);
 
-		JCheckBox fit = new JCheckBox("fit");
-		JCheckBox inGame = new JCheckBox("in game");
+		CheckBoxManager c = new CheckBoxManager();
+
+		EnigmaButton fit = new EnigmaButton("fit");
+		fit.setToolTipText("toute la map est affichée dans l'écran");
+		EnigmaButton inGame = new EnigmaButton("in game");
+
+		c.add(fit);
+		c.add(inGame);
 
 		for (Outil o : Outil.values()) {
-			JButton a = new JButton(o.name);
+			EnigmaButton a = new EnigmaButton(o.name);
 			a.addActionListener(listener);
 			outilBar.add(a);
 		}

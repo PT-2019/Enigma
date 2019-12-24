@@ -1,37 +1,13 @@
 package editor.screens;
 
 import api.enums.EnigmaScreens;
-import api.utils.LoadGameLibgdxApplication;
 import com.badlogic.gdx.Gdx;
-import editor.EditorLuncher;
-import editor.window.Window;
 import game.EnigmaGame;
 
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import editor.hud.EnigmaMenu;
 import editor.hud.EnigmaMenuBar;
 import editor.hud.EnigmaMenuItem;
 
-public class BarMenu extends JMenuBar {
-	//1er onglet
-	private JMenu file = new JMenu("File");
-	private JMenuItem ouvrir = new JMenuItem("Ouvrir");
-	private JMenuItem save = new JMenuItem("Sauvegarder");
-	private JMenuItem map = new JMenuItem("Exporter la map");
-	//2eme onglet
-	private JMenu edit = new JMenu("Edit");
-	private JMenuItem redo = new JMenuItem("Redo");
-	private JMenuItem undo = new JMenuItem("Undo");
-	//3eme onglet
-	private JMenu run = new JMenu("Run");
-	private JMenuItem runJeu = new JMenuItem("Lancer le jeu");
-	private JMenuItem finJeu = new JMenuItem("Terminer le jeu");
-	//4eme onglet
-	private JMenu help = new JMenu("Help");
-	private JMenuItem doc = new JMenuItem("Documentation");
-	private JMenuItem support = new JMenuItem("Support");
 public class BarMenu extends EnigmaMenuBar {
     //1er onglet
     private EnigmaMenu file = new EnigmaMenu("File");
@@ -44,11 +20,12 @@ public class BarMenu extends EnigmaMenuBar {
     private EnigmaMenuItem undo = new EnigmaMenuItem("Undo");
     //3eme onglet
     private EnigmaMenu run = new EnigmaMenu("Run");
-    private EnigmaMenuItem runjeu = new EnigmaMenuItem("Lancer le jeu");
+    private EnigmaMenuItem runJeu = new EnigmaMenuItem("Lancer le jeu");
+	private EnigmaMenuItem finJeu = new EnigmaMenuItem("Terminer le jeu");
     //4eme onglet
     private EnigmaMenu help = new EnigmaMenu("Help");
-    private EnigmaMenuItem a = new EnigmaMenuItem("Ouvrir");
-    private EnigmaMenuItem b = new EnigmaMenuItem("Ouvrir");
+	private EnigmaMenuItem doc = new EnigmaMenuItem("Documentation");
+	private EnigmaMenuItem support = new EnigmaMenuItem("Support");
 
 	public BarMenu() {
 		this.file.add(ouvrir);
