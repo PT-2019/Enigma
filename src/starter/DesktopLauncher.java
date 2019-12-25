@@ -8,7 +8,6 @@ import editor.hud.Window;
 import editor.hud.ui.EnigmaLabelUI;
 import game.EnigmaGameLauncher;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -70,7 +69,6 @@ public class DesktopLauncher implements Runnable {
 		Window window = new Window();
 		window.setSize(Window.HALF_SCREEN_SIZE);
 		window.setLocation(Window.CENTER);
-		window.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		window.setWindowBackground(Color.DARK_GRAY);
 
 		JPanel background = window.getContentSpace();
@@ -116,6 +114,5 @@ public class DesktopLauncher implements Runnable {
 		background.add(EDIT_BUTTON, gbc);
 
 		window.setVisible(true);
-		window.setIfAskBeforeClosing(true);
 	}
 }
