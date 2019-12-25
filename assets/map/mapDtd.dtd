@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-        <!ELEMENT map (tileset+,layer+,room+)>
+        <!ELEMENT map (tileset+,layer+, room*, objectgroup*)>
         <!ATTLIST map width CDATA #REQUIRED>
         <!ATTLIST map height CDATA #REQUIRED>
-
         <!ATTLIST map infinite CDATA #IMPLIED>
         <!ATTLIST map nextlayerid CDATA #IMPLIED>
         <!ATTLIST map nextobjectid CDATA #IMPLIED>
@@ -31,12 +30,24 @@
         <!ATTLIST layer height CDATA #IMPLIED>
         <!ATTLIST layer id CDATA #IMPLIED>
         <!ATTLIST layer width CDATA #IMPLIED>
+        <!ATTLIST layer visible CDATA #IMPLIED>
+        <!ATTLIST layer opacity CDATA #IMPLIED>
 
         <!ELEMENT data (#PCDATA)>
         <!ATTLIST data encoding CDATA #IMPLIED>
 
         <!ELEMENT room (#PCDATA)>
-        <!ATTLIST room heigth CDATA #REQUIRED>
+        <!ATTLIST room height CDATA #REQUIRED>
         <!ATTLIST room width CDATA #REQUIRED>
         <!ATTLIST room heigthpos CDATA #REQUIRED>
         <!ATTLIST room widthpos CDATA #REQUIRED>
+
+        <!ELEMENT objectgroup (object)>
+        <!ATTLIST objectgroup id CDATA #REQUIRED>
+
+        <!ELEMENT object (#PCDATA)>
+        <!ATTLIST object height CDATA #REQUIRED>
+        <!ATTLIST object width CDATA #REQUIRED>
+        <!ATTLIST object x CDATA #REQUIRED>
+        <!ATTLIST object y CDATA #REQUIRED>
+        <!ATTLIST object name CDATA #REQUIRED>

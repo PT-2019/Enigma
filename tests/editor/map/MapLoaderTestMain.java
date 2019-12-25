@@ -1,5 +1,8 @@
 package editor.map;
 
+import editor.utils.save.MapLoader;
+import editor.utils.save.SaveMap;
+
 /**
  * Utilisation de la méthode DOM car on veut utilisé de nombreuse données du
  * fichier XML.
@@ -13,8 +16,8 @@ public class MapLoaderTestMain {
 
 		m.getMap().render();
 
-		SaveMap save = new SaveMap(m.getTextureproxy().getTextures() ,m.getMap());
+		/*SaveMap save = new SaveMap(m.getTextureproxy().getTextures() ,m.getMap());
 
-		save.saveMap("assets/map/Loadtest.tmx");
+		save.saveMap("assets/map/Loadtest.tmx");*/
 	}
 }

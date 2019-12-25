@@ -1,9 +1,8 @@
 package editor.map;
 
+import editor.entity.map.Map;
+import editor.entity.map.Room;
 import org.junit.Test;
-
-import javax.swing.*;
-import java.awt.*;
 
 /**
  * Fait des tests sur la map
