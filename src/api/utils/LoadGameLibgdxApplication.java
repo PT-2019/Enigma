@@ -34,7 +34,7 @@ public class LoadGameLibgdxApplication {
 	 * @since 3.0
 	 */
 	public static void load(Container container, @NotNull JFrame frame) {
-		if(Gdx.app != null) {//si déjà lancée
+		if (Gdx.app != null) {//si déjà lancée
 			Gdx.app.postRunnable(() -> load(container, frame));
 			return;
 		}

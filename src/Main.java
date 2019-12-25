@@ -1,3 +1,4 @@
+import api.utils.annotations.Temporary;
 import editor.EditorLauncher;
 
 import javax.swing.SwingUtilities;
@@ -20,10 +21,11 @@ public class Main {
 		SwingUtilities.invokeLater(new EditorFastLuncher());
 	}
 
-	private static class EditorFastLuncher implements Runnable{
+	@Temporary(reason = "lancer l'éditeur rapidement", since = 4.0f)
+	private static class EditorFastLuncher implements Runnable {
 		@Override
 		public void run() {
-			EditorLauncher.setEditor(1200, 800 );
+			EditorLauncher.setEditor(1200, 800);
 			EditorLauncher.getInstance().start();
 		}
 	}

@@ -1,6 +1,6 @@
 package game.entity;
 
-import api.entity.GameActorDragAndDrop;
+import api.entity.actor.GameActorDragAndDrop;
 import editor.entity.EntitySerializable;
 import game.utils.DragAndDrop;
 

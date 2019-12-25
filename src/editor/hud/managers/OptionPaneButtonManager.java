@@ -8,15 +8,15 @@ import java.awt.event.ActionListener;
 
 public class OptionPaneButtonManager implements ActionListener {
 
-    private EnigmaOptionPane optionPane;
+	private EnigmaOptionPane optionPane;
 
-    public OptionPaneButtonManager(EnigmaOptionPane optionPane){
-        this.optionPane = optionPane;
-    }
+	public OptionPaneButtonManager(EnigmaOptionPane optionPane) {
+		this.optionPane = optionPane;
+	}
 
-    @Override
-    public void actionPerformed(ActionEvent actionEvent) {
-        this.optionPane.setHaveAnswered(true,((EnigmaButton) actionEvent.getSource()).getText());
-        this.optionPane.close();
-    }
+	@Override
+	public void actionPerformed(ActionEvent actionEvent) {
+		this.optionPane.setHaveAnswered(true, ((EnigmaButton) actionEvent.getSource()).getText());
+		this.optionPane.close();
+	}
 }

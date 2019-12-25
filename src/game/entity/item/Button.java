@@ -1,12 +1,6 @@
 package game.entity.item;
 
-import api.entity.interfaces.Activatable;
-import editor.enigma.Enigma;
-import editor.entity.player.Player;
-import editor.utils.textures.Texture;
-
-import java.util.ArrayList;
-import java.util.Iterator;
+import api.entity.utils.Activatable;
 
 /**
  * Un bouton
@@ -15,10 +9,9 @@ import java.util.Iterator;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 4.0 24/12/2019
+ * @see api.entity.utils.Activatable
  * @since 2.0 24/12/2019
- * @see api.entity.interfaces.Activatable
  */
 public class Button extends Activatable {
 

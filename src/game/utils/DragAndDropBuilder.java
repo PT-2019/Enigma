@@ -4,7 +4,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.TooltipManager;
 import game.entity.DraggedEntity;
 import game.entity.EntityContainer;
 
@@ -33,7 +32,8 @@ public class DragAndDropBuilder extends InputListener {
 
 	/**
 	 * Constructeur d'objects drag and drop.
-	 *  @param container entity qui sera déplaçable
+	 *
+	 * @param container entity qui sera déplaçable
 	 * @param dnd       le stage du drag and drop
 	 */
 	public DragAndDropBuilder(EntityContainer container, Stage dnd) {

@@ -1,6 +1,6 @@
 package editor.entity.map;
 
-import api.entity.interfaces.IDInterface;
+import api.entity.utils.IDInterface;
 import api.enums.Direction;
 import api.enums.Layer;
 import editor.utils.textures.Texture;
@@ -16,9 +16,8 @@ import java.util.HashMap;
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  * @version 4.0
- * @since 2.0
- *
  * @apiNote UTILISEZ LA CLASSE game.entities.Room plutôt
+ * @since 2.0
  */
 @Deprecated
 public class Room implements IDInterface {

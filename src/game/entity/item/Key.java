@@ -1,7 +1,7 @@
 package game.entity.item;
 
-import api.entity.interfaces.AbstractItem;
-import api.entity.interfaces.NeedContainer;
+import api.entity.AbstractItem;
+import api.entity.types.NeedContainer;
 
 /**
  * Une clef
@@ -10,7 +10,6 @@ import api.entity.interfaces.NeedContainer;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 4.0 24/12/2019
  * @since 4.0 24/12/2019
  */

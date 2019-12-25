@@ -27,19 +27,13 @@ import java.awt.event.WindowListener;
  */
 public class CasePopUp extends JDialog implements WindowListener {
 
-	private TiledMapTileLayer.Cell cell;
-
-	private TiledMap tileMap;
-
 	JLabel label = new JLabel();
-
 	JButton next = new JButton();
-
 	JButton preview = new JButton();
-
 	JLabel eng = new JLabel("Gérer les énigmes");
-
 	JButton b3 = new JButton("Supprimer");
+	private TiledMapTileLayer.Cell cell;
+	private TiledMap tileMap;
 
 	public CasePopUp(JComponent component, TiledMap tiledMap) {
 		super((JFrame) component.getRootPane().getParent(), "Case Information", false);

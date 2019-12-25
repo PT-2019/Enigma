@@ -1,7 +1,7 @@
 package game.entity.item;
 
-import api.entity.interfaces.AbstractItem;
-import api.entity.interfaces.Content;
+import api.entity.AbstractItem;
+import api.entity.types.Content;
 
 /**
  * Un livre
@@ -11,9 +11,8 @@ import api.entity.interfaces.Content;
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  * @version 4.0
- * @since 2.0
- *
  * @implNote Factorisé avec AbstractItem
+ * @since 2.0
  */
 public class Book extends AbstractItem implements Content {
 

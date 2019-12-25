@@ -1,16 +1,10 @@
 package game.entity.item;
 
-import api.entity.interfaces.AbstractItem;
-import api.entity.interfaces.Item;
-import api.entity.interfaces.Lockable;
-import api.entity.interfaces.Passage;
-import editor.enigma.Enigma;
+import api.entity.AbstractItem;
+import api.entity.Item;
+import api.entity.types.Lockable;
+import api.entity.types.Passage;
 import editor.entity.map.Room;
-import editor.entity.player.Player;
-import editor.utils.textures.Texture;
-
-import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  * Une porte
@@ -19,13 +13,11 @@ import java.util.Iterator;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 4.0 24/12/2019
+ * @see Item
+ * @see Lockable
+ * @see Passage
  * @since 2.0
- *
- * @see api.entity.interfaces.Item
- * @see api.entity.interfaces.Lockable
- * @see api.entity.interfaces.Passage
  */
 public class Door extends AbstractItem implements Passage, Lockable {
 

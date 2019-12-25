@@ -18,13 +18,16 @@ public class GameScreen extends LibgdxScreen {
 		this.hud = new Stage();
 
 		MapLibgdx map = new MapLibgdx(TestScreen.getMapPath(), 2.5f);
-		this.main.setViewport(new ExtendViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
 
 		this.main.addActor(map);
+		map.showGrid(true);
 
-		this.listen(new TestMapControl(map));
+		this.main.setViewport(new ExtendViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
+		this.main.getViewport().setCamera(map.getCamera());
+
 		this.listen(this.hud);
 		this.listen(this.main);
+		this.listen(new TestMapControl(map));
 	}
 
 	@Override

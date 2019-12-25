@@ -1,6 +1,6 @@
 package editor.entity.display;
 
-import api.entity.interfaces.Entity;
+import api.entity.Entity;
 
 import javax.swing.JComponent;
 import java.awt.Graphics;

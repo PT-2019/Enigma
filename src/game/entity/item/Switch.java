@@ -1,6 +1,6 @@
 package game.entity.item;
 
-import api.entity.interfaces.Activatable;
+import api.entity.utils.Activatable;
 
 /**
  * Un bouton
@@ -9,10 +9,9 @@ import api.entity.interfaces.Activatable;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 4.0 24/12/2019
+ * @see api.entity.utils.Activatable
  * @since 2.0 24/12/2019
- * @see api.entity.interfaces.Activatable
  */
 public class Switch extends Activatable {
 

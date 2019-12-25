@@ -2,7 +2,7 @@ package game.ui;
 
 import api.enums.EntitiesCategories;
 import api.utils.CheckEventType;
-import api.utils.InputListener;
+import api.utils.InputAdapter;
 import api.utils.Utility;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Event;
@@ -30,7 +30,7 @@ import game.entity.EntityContainer;
  * @version 4.2 24/12/2019
  * @since 4.0 22/12/2019
  */
-public class CategoriesMenu extends Window implements InputListener, Disposable {
+public class CategoriesMenu extends Window implements InputAdapter, Disposable {
 
 	/**
 	 * Largeur du menu
@@ -113,10 +113,10 @@ public class CategoriesMenu extends Window implements InputListener, Disposable 
 	 * @see EntitiesCategories
 	 */
 	private void loadCategory(EntitiesCategories c) {
-		if(this.latest != -1 && this.latest != c.ordinal()){
+		if (this.latest != -1 && this.latest != c.ordinal()) {
 			this.categories[this.latest].setChecked(false);
 			this.latest = c.ordinal();
-		} else if(this.latest == -1){
+		} else if (this.latest == -1) {
 			this.categories[c.ordinal()].setChecked(true);
 			this.latest = c.ordinal();
 		}
@@ -132,7 +132,7 @@ public class CategoriesMenu extends Window implements InputListener, Disposable 
 			if (i < entities.size) {
 				EntityContainer entity = new EntityContainer(entities.get(i), dnd);
 				String hover = entities.get(i).getHover();
-				if(hover != null && hover.length() > 0) {
+				if (hover != null && hover.length() > 0) {
 					TextTooltip textTooltip = new TextTooltip(hover, getSkin());
 					textTooltip.setAlways(true);
 					textTooltip.setInstant(true);
@@ -141,6 +141,10 @@ public class CategoriesMenu extends Window implements InputListener, Disposable 
 				container.add(entity).minWidth(32).space(32);
 			}
 		}
+	}
+
+	@Override
+	public void dispose() {
 	}
 
 	/**
@@ -176,9 +180,5 @@ public class CategoriesMenu extends Window implements InputListener, Disposable 
 			}
 			return false;
 		}
-	}
-
-	@Override
-	public void dispose() {
 	}
 }

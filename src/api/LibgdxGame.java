@@ -1,6 +1,6 @@
 package api;
 
-import api.utils.ConvenienceMethod;
+import api.utils.annotations.ConvenienceMethod;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;

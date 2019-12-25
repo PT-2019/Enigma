@@ -1,6 +1,6 @@
 package editor.entity;
 
-import api.entity.interfaces.Entity;
+import api.entity.utils.Entity;
 import editor.entity.display.EntityPopMenu;
 import editor.entity.display.EntityView;
 import editor.entity.display.EntityViewListener;

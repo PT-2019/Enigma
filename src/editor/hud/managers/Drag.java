@@ -2,7 +2,7 @@ package editor.hud.managers;
 
 import editor.hud.Window;
 
-import java.awt.*;
+import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -16,7 +16,8 @@ public class Drag extends MouseAdapter {
 		this.window = window;
 	}
 
-	public void mouseReleased(MouseEvent e) {}
+	public void mouseReleased(MouseEvent e) {
+	}
 
 	public void mousePressed(MouseEvent e) {
 		this.pressedCords = e.getPoint();

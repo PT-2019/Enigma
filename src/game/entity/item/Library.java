@@ -1,8 +1,8 @@
 package game.entity.item;
 
-import api.entity.interfaces.AbstractItem;
-import api.entity.interfaces.Container;
-import api.entity.interfaces.Lockable;
+import api.entity.AbstractItem;
+import api.entity.types.Container;
+import api.entity.types.Lockable;
 
 /**
  * Une bibliothèque
@@ -11,7 +11,6 @@ import api.entity.interfaces.Lockable;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 4.0 24/12/2019
  * @since 4.0 24/12/2019
  */
