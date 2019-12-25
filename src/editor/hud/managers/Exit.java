@@ -27,7 +27,7 @@ public class Exit implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent actionEvent) {
-		if (!this.window.willAskBeforeClosing()) {
+		if (this.window.willAskBeforeClosing()) {
 			if (EnigmaOptionPane.showConfirmDialog(this.window, new Dimension(300, 200), "Voulez vous vraiment quittez?"))
 				this.window.dispose();
 		} else this.window.dispose();

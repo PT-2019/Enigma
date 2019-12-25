@@ -3,6 +3,7 @@ package game;
 import api.Application;
 import api.enums.EnigmaScreens;
 import api.utils.LoadGameLibgdxApplication;
+import editor.hud.EnigmaButton;
 import editor.hud.Window;
 import starter.AppClosingManager;
 
@@ -39,9 +40,9 @@ public class EnigmaGameLauncher implements Application {
 	}
 
 	/**
-	 * Retourne l'instace unique du lanceur du jeu
+	 * Retourne l'instance unique du lanceur du jeu
 	 *
-	 * @return l'instace unique du lanceur du jeu
+	 * @return l'instance unique du lanceur du jeu
 	 * @since 4.0
 	 */
 	public static EnigmaGameLauncher getInstance() {
