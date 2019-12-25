@@ -11,7 +11,7 @@ import editor.utils.textures.Texture;
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  * @version 4.1
- * @apiNote suppression des méthode de IDInterface pour lisibilité
+ * apiNote suppression des méthode de IDInterface pour lisibilité
  * @since 2.0
  */
 public interface Entity extends GameObject {

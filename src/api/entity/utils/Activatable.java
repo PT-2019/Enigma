@@ -14,7 +14,7 @@ import editor.entity.player.Player;
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  * @version 2.2
- * @apiNote on peux entends une seule classe donc autant que ce soit un actor (possible)
+ * apiNote : on peux entends une seule classe donc autant que ce soit un actor (possible)
  * @see Item
  * @since 1.0
  */

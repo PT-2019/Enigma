@@ -10,6 +10,16 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 
+/**
+ * TODO: comment EnigmaLabelUI and write Readme.md in editor.hud.ui
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 4.0
+ * @since 3.0
+ */
 public class EnigmaLabelUI extends BasicLabelUI {
 
 	private Color background;

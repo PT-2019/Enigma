@@ -6,6 +6,16 @@ import javax.swing.plaf.basic.BasicMenuBarUI;
 import java.awt.Color;
 import java.awt.Graphics;
 
+/**
+ * TODO: comment EnigmaMenuBarUI and write Readme.md in editor.hud.ui
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 4.0
+ * @since 3.0
+ */
 public class EnigmaMenuBarUI extends BasicMenuBarUI {
 
 	private Color background;

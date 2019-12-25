@@ -5,6 +5,16 @@ import editor.hud.ui.EnigmaButtonUI;
 
 import java.util.ArrayList;
 
+/**
+ * TODO: comment CheckBoxManager and write Readme.md in editor.hud.managers
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 4.0
+ * @since 3.0
+ */
 public class CheckBoxManager implements MultipleButtonManager {
 
 	private ArrayList<EnigmaButton> selected;

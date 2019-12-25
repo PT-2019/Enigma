@@ -5,6 +5,16 @@ import editor.hud.EnigmaOptionPane;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+/**
+ * TODO: comment OptionPaneWindowManager and write Readme.md in editor.hud.managers
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 4.0
+ * @since 3.0
+ */
 public class OptionPaneWindowManager implements WindowListener {
 
 	private EnigmaOptionPane optionPane;
@@ -23,8 +33,7 @@ public class OptionPaneWindowManager implements WindowListener {
 
 	@Override
 	public void windowClosed(WindowEvent windowEvent) {
-		this.optionPane.setHaveAnswered(true, EnigmaOptionPane.CANCEL);
-		this.optionPane.close();
+		this.optionPane.cancel();
 	}
 
 	@Override

@@ -24,56 +24,26 @@ public class EnigmaOptionPane {
 
 	public final static String CONFIRM = "Confirmer";
 	public final static String CANCEL = "Annuler";
-	private String answer;
-	private volatile boolean haveAnswered;
-	private Window window;
+	private final static Dimension BASIC_DIMENSION = new Dimension(500, 300);
+	private Alert window;
 	private Window parent;
+	private String answer;
+	private EnigmaTextArea input;
 
-	public EnigmaOptionPane(Window window, Window parent) {
-		this.haveAnswered = false;
-		this.answer = CANCEL;
+	public EnigmaOptionPane(Alert window, Window parent) {
 		this.window = window;
 		this.parent = parent;
-	}
-
-	public EnigmaOptionPane(Window parent, String message) {
-		this.haveAnswered = false;
 		this.answer = CANCEL;
-		this.parent = parent;
-		EnigmaLabel questionComponent = new EnigmaLabel(message);
-		EnigmaPanel answersComponent = new EnigmaPanel();
-		Window window = new Window(0, 0);
-
-		EnigmaButton[] buttons = new EnigmaButton[2];
-		buttons[0] = getClassicButton(CONFIRM);
-		buttons[1] = getClassicButton(CANCEL);
-		for (EnigmaButton b : buttons) {
-			b.addActionListener(new OptionPaneButtonManager(this));
-			answersComponent.add(b);
-
-		}
-		buttons[1].getButtonUI().setPressedBackground(Color.RED);
-
-		parent.setAlwaysOnTop(true);
-		Dimension dim = new Dimension(300, 200);
-		window.setAlwaysOnTop(true);
-		window.setMinimumSize(dim);
-		window.setSize(dim);
-		window.setLocation(Window.CENTER);
-		window.setResizable(false);
-		window.showMinimizeButton(false);
-		window.setWindowBackground(Color.DARK_GRAY);
-		window.showBorder(Color.WHITE, 1);
-		window.addWindowListener(new OptionPaneWindowManager(this));
-
-		window.getContentSpace().setLayout(new GridLayout(2, 1));
-		window.getContentSpace().add(questionComponent);
-		window.getContentSpace().add(answersComponent);
-
-		this.window = window;
 	}
 
-	public static EnigmaButton getClassicButton(String text) {
+	public EnigmaOptionPane(Alert window, Window parent, EnigmaTextArea input) {
+		this.window = window;
+		this.parent = parent;
+		this.input = input;
+		this.answer = CANCEL;
+	}
+
+	private static EnigmaButton getClassicButton(String text) {
 		boolean[] borders = new boolean[4];
 		borders[EnigmaUIValues.BOTTOM_BORDER] = true;
 		Color grey = new Color(100, 100, 100);
@@ -87,7 +57,7 @@ public class EnigmaOptionPane {
 		return b;
 	}
 
-	public static EnigmaTextArea getClassicTextArea() {
+	private static EnigmaTextArea getClassicTextArea() {
 		EnigmaTextArea ta = new EnigmaTextArea();
 		boolean[] borders = EnigmaUIValues.ALL_BORDER_HIDDEN;
 		borders[EnigmaUIValues.BOTTOM_BORDER] = true;
@@ -103,7 +73,7 @@ public class EnigmaOptionPane {
 	public static boolean showConfirmDialog(Window parent, String message) {
 		EnigmaLabel questionComponent = new EnigmaLabel(message);
 		EnigmaPanel answersComponent = new EnigmaPanel();
-		Window window = new Window(0, 0);//TODO: o0,. ???
+		Alert window = new Alert(0, 0);
 		EnigmaOptionPane optionPane = new EnigmaOptionPane(window, parent);
 
 		EnigmaButton[] buttons = new EnigmaButton[2];
@@ -117,13 +87,10 @@ public class EnigmaOptionPane {
 		buttons[1].getButtonUI().setPressedBackground(Color.RED);
 
 		parent.setAlwaysOnTop(true);
-		Dimension dim = new Dimension(300, 200);
 		window.setAlwaysOnTop(true);
-		window.setMinimumSize(dim);
-		window.setSize(dim);
-		window.setLocation(Window.CENTER);
-		window.setResizable(false);
-		window.showMinimizeButton(false);
+		window.setMinimumSize(BASIC_DIMENSION);
+		window.setSize(BASIC_DIMENSION);
+		window.setLocation(Alert.CENTER);
 		window.setWindowBackground(Color.DARK_GRAY);
 		window.showBorder(Color.WHITE, 1);
 		window.addWindowListener(new OptionPaneWindowManager(optionPane));
@@ -131,17 +98,16 @@ public class EnigmaOptionPane {
 		window.getContentSpace().setLayout(new GridLayout(2, 1));
 		window.getContentSpace().add(questionComponent);
 		window.getContentSpace().add(answersComponent);
+		window.setModal(true);
 
-		optionPane.show();
-		optionPane.waitForAnswer();
-		System.out.println(optionPane.getAnswer().equals(CONFIRM));
+		optionPane.start();
 		return optionPane.getAnswer().equals(CONFIRM);
 	}
 
-	public static String showPersonalizedDialog(Window parent, String message, EnigmaButton[] buttons) {
+	public static String showChoicesDialog(Window parent, String message, EnigmaButton[] buttons) {
 		EnigmaLabel questionComponent = new EnigmaLabel(message);
 		EnigmaPanel answersComponent = new EnigmaPanel();
-		Window window = new Window(0, 0);
+		Alert window = new Alert(0, 0);
 		EnigmaOptionPane optionPane = new EnigmaOptionPane(window, parent);
 
 		for (EnigmaButton b : buttons) {
@@ -150,13 +116,10 @@ public class EnigmaOptionPane {
 		}
 
 		parent.setAlwaysOnTop(true);
-		Dimension dim = new Dimension(300, 200);
 		window.setAlwaysOnTop(true);
-		window.setMinimumSize(dim);
-		window.setSize(dim);
-		window.setLocation(Window.CENTER);
-		window.setResizable(false);
-		window.showMinimizeButton(false);
+		window.setMinimumSize(BASIC_DIMENSION);
+		window.setSize(BASIC_DIMENSION);
+		window.setLocation(Alert.CENTER);
 		window.setWindowBackground(Color.DARK_GRAY);
 		window.showBorder(Color.WHITE, 1);
 		window.addWindowListener(new OptionPaneWindowManager(optionPane));
@@ -164,31 +127,28 @@ public class EnigmaOptionPane {
 		window.getContentSpace().setLayout(new GridLayout(2, 1));
 		window.getContentSpace().add(questionComponent);
 		window.getContentSpace().add(answersComponent);
+		window.setModal(true);
 
-		optionPane.show();
-		optionPane.waitForAnswer();
+		optionPane.start();
 		return optionPane.getAnswer();
 	}
 
 	public static String showInputDialog(Window parent, String message) {
+		Alert window = new Alert();
 		EnigmaLabel questionComponent = new EnigmaLabel(message);
 		EnigmaTextArea answerComponent = getClassicTextArea();
 		EnigmaPanel confirmComponent = new EnigmaPanel();
 		EnigmaButton confirm = getClassicButton(CONFIRM);
-		Window window = new Window(0, 0);
-		EnigmaOptionPane optionPane = new EnigmaOptionPane(window, parent);
+		EnigmaOptionPane optionPane = new EnigmaOptionPane(window, parent, answerComponent);
 
 		confirm.addActionListener(new OptionPaneButtonManager(optionPane));
 		confirmComponent.add(confirm);
 
 		parent.setAlwaysOnTop(true);
-		Dimension dim = new Dimension(300, 200);
 		window.setAlwaysOnTop(true);
-		window.setMinimumSize(dim);
-		window.setSize(dim);
-		window.setLocation(Window.CENTER);
-		window.setResizable(false);
-		window.showMinimizeButton(false);
+		window.setMinimumSize(BASIC_DIMENSION);
+		window.setSize(BASIC_DIMENSION);
+		window.setLocation(Alert.CENTER);
 		window.setWindowBackground(Color.DARK_GRAY);
 		window.showBorder(Color.WHITE, 1);
 		window.addWindowListener(new OptionPaneWindowManager(optionPane));
@@ -197,80 +157,16 @@ public class EnigmaOptionPane {
 		window.getContentSpace().add(questionComponent);
 		window.getContentSpace().add(answerComponent.setScrollBar());
 		window.getContentSpace().add(confirmComponent);
+		window.setModal(true);
 
-		optionPane.show();
-		optionPane.waitForAnswer();
-		return answerComponent.getText();
-	}
-
-	public static String showPersonalizedInputDialog(Window parent, String message, EnigmaTextArea area) {
-		EnigmaLabel questionComponent = new EnigmaLabel(message);
-		EnigmaPanel confirmComponent = new EnigmaPanel();
-		EnigmaButton confirm = getClassicButton(CONFIRM);
-		Window window = new Window(0, 0);
-		EnigmaOptionPane optionPane = new EnigmaOptionPane(window, parent);
-
-		confirm.addActionListener(new OptionPaneButtonManager(optionPane));
-		confirmComponent.add(confirm);
-
-		parent.setAlwaysOnTop(true);
-		Dimension dim = new Dimension(300, 200);
-		window.setAlwaysOnTop(true);
-		window.setMinimumSize(dim);
-		window.setSize(dim);
-		window.setLocation(Window.CENTER);
-		window.setResizable(false);
-		window.showMinimizeButton(false);
-		window.setWindowBackground(Color.DARK_GRAY);
-		window.showBorder(Color.WHITE, 1);
-		window.addWindowListener(new OptionPaneWindowManager(optionPane));
-
-		window.getContentSpace().setLayout(new GridLayout(3, 1));
-		window.getContentSpace().add(questionComponent);
-		window.getContentSpace().add(area.setScrollBar());
-		window.getContentSpace().add(confirmComponent);
-
-		optionPane.show();
-		optionPane.waitForAnswer();
-		return area.getText();
-	}
-
-	public static String showPersonalizedInputDialog(Window parent, String message, EnigmaTextArea area, EnigmaButton confirmButton) {
-		EnigmaLabel questionComponent = new EnigmaLabel(message);
-		EnigmaPanel confirmComponent = new EnigmaPanel();
-		Window window = new Window(0, 0);
-		EnigmaOptionPane optionPane = new EnigmaOptionPane(window, parent);
-
-		confirmButton.setText(CONFIRM);
-		confirmButton.addActionListener(new OptionPaneButtonManager(optionPane));
-		confirmComponent.add(confirmButton);
-
-		parent.setAlwaysOnTop(true);
-		Dimension dim = new Dimension(300, 200);
-		window.setAlwaysOnTop(true);
-		window.setMinimumSize(dim);
-		window.setSize(dim);
-		window.setLocation(Window.CENTER);
-		window.setResizable(false);
-		window.showMinimizeButton(false);
-		window.setWindowBackground(Color.DARK_GRAY);
-		window.showBorder(Color.WHITE, 1);
-		window.addWindowListener(new OptionPaneWindowManager(optionPane));
-
-		window.getContentSpace().setLayout(new GridLayout(3, 1));
-		window.getContentSpace().add(questionComponent);
-		window.getContentSpace().add(area.setScrollBar());
-		window.getContentSpace().add(confirmComponent);
-
-		optionPane.show();
-		optionPane.waitForAnswer();
-		return area.getText();
+		optionPane.start();
+		return optionPane.getAnswer();
 	}
 
 	public static void showAlert(Window parent, String message) {
 		EnigmaLabel questionComponent = new EnigmaLabel(message);
 		EnigmaPanel answersComponent = new EnigmaPanel();
-		Window window = new Window(0, 0);
+		Alert window = new Alert(0, 0);
 		EnigmaOptionPane optionPane = new EnigmaOptionPane(window, parent);
 
 		EnigmaButton confirm = getClassicButton(CONFIRM);
@@ -278,13 +174,10 @@ public class EnigmaOptionPane {
 		answersComponent.add(confirm);
 
 		parent.setAlwaysOnTop(true);
-		Dimension dim = new Dimension(300, 200);
 		window.setAlwaysOnTop(true);
-		window.setMinimumSize(dim);
-		window.setSize(dim);
-		window.setLocation(Window.CENTER);
-		window.setResizable(false);
-		window.showMinimizeButton(false);
+		window.setMinimumSize(BASIC_DIMENSION);
+		window.setSize(BASIC_DIMENSION);
+		window.setLocation(Alert.CENTER);
 		window.setWindowBackground(Color.DARK_GRAY);
 		window.showBorder(Color.WHITE, 1);
 		window.addWindowListener(new OptionPaneWindowManager(optionPane));
@@ -292,15 +185,15 @@ public class EnigmaOptionPane {
 		window.getContentSpace().setLayout(new GridLayout(2, 1));
 		window.getContentSpace().add(questionComponent);
 		window.getContentSpace().add(answersComponent);
+		window.setModal(true);
 
-		optionPane.show();
-		optionPane.waitForAnswer();
+		optionPane.start();
 	}
 
-	public static boolean showConfirmDialog(Window parent, Dimension windowSize, String message) {
+	public static boolean showConfirmDialog(Window parent, Dimension size, String message) {
 		EnigmaLabel questionComponent = new EnigmaLabel(message);
 		EnigmaPanel answersComponent = new EnigmaPanel();
-		Window window = new Window(windowSize.width, windowSize.height);
+		Alert window = new Alert(0, 0);
 		EnigmaOptionPane optionPane = new EnigmaOptionPane(window, parent);
 
 		EnigmaButton[] buttons = new EnigmaButton[2];
@@ -315,11 +208,9 @@ public class EnigmaOptionPane {
 
 		parent.setAlwaysOnTop(true);
 		window.setAlwaysOnTop(true);
-		window.setMinimumSize(windowSize);
-		window.setSize(windowSize);
-		window.setLocation(Window.CENTER);
-		window.setResizable(false);
-		window.showMinimizeButton(false);
+		window.setMinimumSize(size);
+		window.setSize(size);
+		window.setLocation(Alert.CENTER);
 		window.setWindowBackground(Color.DARK_GRAY);
 		window.showBorder(Color.WHITE, 1);
 		window.addWindowListener(new OptionPaneWindowManager(optionPane));
@@ -327,16 +218,16 @@ public class EnigmaOptionPane {
 		window.getContentSpace().setLayout(new GridLayout(2, 1));
 		window.getContentSpace().add(questionComponent);
 		window.getContentSpace().add(answersComponent);
+		window.setModal(true);
 
-		optionPane.show();
-		optionPane.waitForAnswer();
+		optionPane.start();
 		return optionPane.getAnswer().equals(CONFIRM);
 	}
 
-	public static String showPersonalizedDialog(Window parent, Dimension windowSize, String message, EnigmaButton[] buttons) {
+	public static String showChoicesDialog(Window parent, Dimension size, String message, EnigmaButton[] buttons) {
 		EnigmaLabel questionComponent = new EnigmaLabel(message);
 		EnigmaPanel answersComponent = new EnigmaPanel();
-		Window window = new Window(windowSize.width, windowSize.height);
+		Alert window = new Alert(0, 0);
 		EnigmaOptionPane optionPane = new EnigmaOptionPane(window, parent);
 
 		for (EnigmaButton b : buttons) {
@@ -346,11 +237,9 @@ public class EnigmaOptionPane {
 
 		parent.setAlwaysOnTop(true);
 		window.setAlwaysOnTop(true);
-		window.setMinimumSize(windowSize);
-		window.setSize(windowSize);
-		window.setLocation(Window.CENTER);
-		window.setResizable(false);
-		window.showMinimizeButton(false);
+		window.setMinimumSize(size);
+		window.setSize(size);
+		window.setLocation(Alert.CENTER);
 		window.setWindowBackground(Color.DARK_GRAY);
 		window.showBorder(Color.WHITE, 1);
 		window.addWindowListener(new OptionPaneWindowManager(optionPane));
@@ -358,30 +247,28 @@ public class EnigmaOptionPane {
 		window.getContentSpace().setLayout(new GridLayout(2, 1));
 		window.getContentSpace().add(questionComponent);
 		window.getContentSpace().add(answersComponent);
+		window.setModal(true);
 
-		optionPane.show();
-		optionPane.waitForAnswer();
+		optionPane.start();
 		return optionPane.getAnswer();
 	}
 
-	public static String showInputDialog(Window parent, Dimension windowSize, String message) {
+	public static String showInputDialog(Window parent, Dimension size, String message) {
+		Alert window = new Alert();
 		EnigmaLabel questionComponent = new EnigmaLabel(message);
 		EnigmaTextArea answerComponent = getClassicTextArea();
 		EnigmaPanel confirmComponent = new EnigmaPanel();
 		EnigmaButton confirm = getClassicButton(CONFIRM);
-		Window window = new Window(windowSize.width, windowSize.height);
-		EnigmaOptionPane optionPane = new EnigmaOptionPane(window, parent);
+		EnigmaOptionPane optionPane = new EnigmaOptionPane(window, parent, answerComponent);
 
 		confirm.addActionListener(new OptionPaneButtonManager(optionPane));
 		confirmComponent.add(confirm);
 
 		parent.setAlwaysOnTop(true);
 		window.setAlwaysOnTop(true);
-		window.setMinimumSize(windowSize);
-		window.setSize(windowSize);
-		window.setLocation(Window.CENTER);
-		window.setResizable(false);
-		window.showMinimizeButton(false);
+		window.setMinimumSize(size);
+		window.setSize(size);
+		window.setLocation(Alert.CENTER);
 		window.setWindowBackground(Color.DARK_GRAY);
 		window.showBorder(Color.WHITE, 1);
 		window.addWindowListener(new OptionPaneWindowManager(optionPane));
@@ -390,78 +277,16 @@ public class EnigmaOptionPane {
 		window.getContentSpace().add(questionComponent);
 		window.getContentSpace().add(answerComponent.setScrollBar());
 		window.getContentSpace().add(confirmComponent);
+		window.setModal(true);
 
-		optionPane.show();
-		optionPane.waitForAnswer();
-		return answerComponent.getText();
+		optionPane.start();
+		return optionPane.getAnswer();
 	}
 
-	public static String showPersonalizedInputDialog(Window parent, Dimension windowSize, String message, EnigmaTextArea area) {
-		EnigmaLabel questionComponent = new EnigmaLabel(message);
-		EnigmaPanel confirmComponent = new EnigmaPanel();
-		EnigmaButton confirm = getClassicButton(CONFIRM);
-		Window window = new Window(windowSize.width, windowSize.height);
-		EnigmaOptionPane optionPane = new EnigmaOptionPane(window, parent);
-
-		confirm.addActionListener(new OptionPaneButtonManager(optionPane));
-		confirmComponent.add(confirm);
-
-		parent.setAlwaysOnTop(true);
-		window.setAlwaysOnTop(true);
-		window.setMinimumSize(windowSize);
-		window.setSize(windowSize);
-		window.setLocation(Window.CENTER);
-		window.setResizable(false);
-		window.showMinimizeButton(false);
-		window.setWindowBackground(Color.DARK_GRAY);
-		window.showBorder(Color.WHITE, 1);
-		window.addWindowListener(new OptionPaneWindowManager(optionPane));
-
-		window.getContentSpace().setLayout(new GridLayout(3, 1));
-		window.getContentSpace().add(questionComponent);
-		window.getContentSpace().add(area.setScrollBar());
-		window.getContentSpace().add(confirmComponent);
-
-		optionPane.show();
-		optionPane.waitForAnswer();
-		return area.getText();
-	}
-
-	public static String showPersonalizedInputDialog(Window parent, Dimension windowSize, String message, EnigmaTextArea area, EnigmaButton confirmButton) {
-		EnigmaLabel questionComponent = new EnigmaLabel(message);
-		EnigmaPanel confirmComponent = new EnigmaPanel();
-		Window window = new Window(windowSize.width, windowSize.height);
-		EnigmaOptionPane optionPane = new EnigmaOptionPane(window, parent);
-
-		confirmButton.setText(CONFIRM);
-		confirmButton.addActionListener(new OptionPaneButtonManager(optionPane));
-		confirmComponent.add(confirmButton);
-
-		parent.setAlwaysOnTop(true);
-		window.setAlwaysOnTop(true);
-		window.setMinimumSize(windowSize);
-		window.setSize(windowSize);
-		window.setLocation(Window.CENTER);
-		window.setResizable(false);
-		window.showMinimizeButton(false);
-		window.setWindowBackground(Color.DARK_GRAY);
-		window.showBorder(Color.WHITE, 1);
-		window.addWindowListener(new OptionPaneWindowManager(optionPane));
-
-		window.getContentSpace().setLayout(new GridLayout(3, 1));
-		window.getContentSpace().add(questionComponent);
-		window.getContentSpace().add(area.setScrollBar());
-		window.getContentSpace().add(confirmComponent);
-
-		optionPane.show();
-		optionPane.waitForAnswer();
-		return area.getText();
-	}
-
-	public static void showAlert(Window parent, Dimension windowSize, String message) {
+	public static void showAlert(Window parent, Dimension size, String message) {
 		EnigmaLabel questionComponent = new EnigmaLabel(message);
 		EnigmaPanel answersComponent = new EnigmaPanel();
-		Window window = new Window(windowSize.width, windowSize.height);
+		Alert window = new Alert(0, 0);
 		EnigmaOptionPane optionPane = new EnigmaOptionPane(window, parent);
 
 		EnigmaButton confirm = getClassicButton(CONFIRM);
@@ -470,11 +295,9 @@ public class EnigmaOptionPane {
 
 		parent.setAlwaysOnTop(true);
 		window.setAlwaysOnTop(true);
-		window.setMinimumSize(windowSize);
-		window.setSize(windowSize);
-		window.setLocation(Window.CENTER);
-		window.setResizable(false);
-		window.showMinimizeButton(false);
+		window.setMinimumSize(size);
+		window.setSize(size);
+		window.setLocation(Alert.CENTER);
 		window.setWindowBackground(Color.DARK_GRAY);
 		window.showBorder(Color.WHITE, 1);
 		window.addWindowListener(new OptionPaneWindowManager(optionPane));
@@ -482,39 +305,40 @@ public class EnigmaOptionPane {
 		window.getContentSpace().setLayout(new GridLayout(2, 1));
 		window.getContentSpace().add(questionComponent);
 		window.getContentSpace().add(answersComponent);
+		window.setModal(true);
 
-		optionPane.show();
-		optionPane.waitForAnswer();
+		optionPane.start();
 	}
 
-	public void show() {
-		this.window.setVisible(true);
-		System.out.println("-----------");
+	public void start() {
+		if (this.window != null)
+			this.window.setVisible(true);
 	}
 
 	public void close() {
-		this.parent.setAlwaysOnTop(false);
-		this.window.dispose();
+		if (this.parent != null)
+			this.parent.setAlwaysOnTop(false);
+
+		if (this.window != null)
+			this.window.dispose();
 	}
 
 	public String getAnswer() {
 		return this.answer;
 	}
 
-	public boolean haveAnswered() {
-		return this.haveAnswered;
+	public void answer(String answer) {
+		if (this.input != null) this.answer = this.input.getText();
+		else this.answer = answer;
+		this.close();
 	}
 
-	public void setHaveAnswered(boolean haveAnswered) {
-		this.haveAnswered = haveAnswered;
+	public void cancel() {
+		this.answer = CANCEL;
+		this.close();
 	}
 
-	public void setHaveAnswered(boolean haveAnswered, String answer) {
-		this.haveAnswered = haveAnswered;
-		this.answer = answer;
-	}
-
-	public void waitForAnswer() {
-		while (!this.haveAnswered) System.out.flush();
+	public Alert getWindow() {
+		return this.window;
 	}
 }

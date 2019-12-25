@@ -12,6 +12,16 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Rectangle;
 
+/**
+ * TODO: comment EnigmaButtonUI and write Readme.md in editor.hud.ui
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 4.0
+ * @since 3.0
+ */
 public class EnigmaButtonUI extends BasicButtonUI {
 
 	private Color background;

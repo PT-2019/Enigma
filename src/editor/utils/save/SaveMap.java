@@ -318,7 +318,6 @@ public class SaveMap {
 					Element object = document.createElement("object");
 					object.setAttribute("name", entity.getClass().getName());
 					object.setAttribute("x", String.valueOf(pos.x));
-					//TODO : q-check
 					object.setAttribute("y", String.valueOf(pos.y - entity.getGameObjectHeight()));
 					object.setAttribute("width", String.valueOf(entity.getGameObjectWidth()));
 					object.setAttribute("height", String.valueOf(entity.getGameObjectHeight()));

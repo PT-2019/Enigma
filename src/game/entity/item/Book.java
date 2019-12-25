@@ -11,7 +11,7 @@ import api.entity.types.Content;
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  * @version 4.0
- * @implNote Factorisé avec AbstractItem
+ * implNote Factorisé avec AbstractItem
  * @since 2.0
  */
 public class Book extends AbstractItem implements Content {
