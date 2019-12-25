@@ -1,17 +1,16 @@
-package editor.utils.managers;
+package editor.utils.alert;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import editor.window.Window;
 
 public class Drag extends MouseAdapter {
 
-	private final Window window;
+	private final Alert window;
 	private Point pressedCords;
 
 
-	public Drag(Window window) {
+	public Drag(Alert window) {
 		this.window = window;
 	}
 

@@ -1,6 +1,6 @@
-package editor.utils.managers;
+package editor.utils.alert;
 
-import javax.swing.*;
+import java.awt.Window;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 

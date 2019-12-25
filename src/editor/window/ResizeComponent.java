@@ -1,8 +1,7 @@
-package editor.utils.managers;
+package editor.window;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
 public class ResizeComponent extends JPanel {

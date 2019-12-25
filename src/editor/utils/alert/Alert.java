@@ -1,20 +1,16 @@
-package editor.window;
+package editor.utils.alert;
 
 import editor.utils.EnigmaButton;
 import editor.utils.EnigmaMenuBar;
 import editor.utils.EnigmaPanel;
-import editor.utils.ui.*;
+import editor.utils.ui.EnigmaButtonUI;
+import editor.utils.ui.EnigmaMenuBarUI;
+import editor.utils.ui.EnigmaUIValues;
 
 import javax.swing.*;
 import java.awt.*;
 
-//TODO: permettre le plein écran (avec une méthode)
-//TODO: permettre l'ajout d'un fond d'écran
-
-public class Window extends JFrame {
-
-	public final static int FULL_SCREEN_SIZE = 0;
-	public final static int HALF_SCREEN_SIZE = 1;
+public class Alert extends JDialog {
 
 	public final static int NORTH = 0;
 	public final static int EAST = 1;
@@ -39,35 +35,29 @@ public class Window extends JFrame {
 	private ResizeComponent[] resizers = new ResizeComponent[8];
 	private EnigmaPanel content;
 	private boolean resizable;
-	private EnigmaButton minimize;
-	private EnigmaButton smaller;
 	private EnigmaButton close;
 	private Color menuBarBorderConfiguration;
 	private int menuBarBorderSizeConfiguration;
 	private boolean[] menuBarShowedBorderConfiguration;
-	private boolean ask;
 
 	/**
 	 * Initialise une fenêtre de la taille de l'écran
 	 */
-	public Window() {
+	public Alert() {
 		super();
 		Rectangle screenSize = this.getGraphicsConfiguration().getBounds();
 		this.resizable = true;
-		this.ask = false;
 		this.setSize(screenSize.getSize());
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		this.setSize(FULL_SCREEN_SIZE);
 		this.setMinimumSize(new Dimension((int) screenSize.getWidth() / 4, (int) screenSize.getHeight() / 3));
 		this.setLocation(0,0);
 		this.init();
 	}
 
-	public Window(int width, int height) {
+	public Alert(int width, int height) {
 		super();
 		Rectangle screenSize = this.getGraphicsConfiguration().getBounds();
 		this.resizable = true;
-		this.ask = false;
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		this.setSize(width,height);
 		this.setLocation(CENTER);
@@ -100,18 +90,7 @@ public class Window extends JFrame {
 		this.close.setButtonUI(buttonUI);
 		this.close.addActionListener(new Exit(this));
 
-		this.minimize = new EnigmaButton("-");
-		buttonUI.setAllBackgrounds(barUI.getBackground(), EnigmaUIValues.ENIGMA_BUTTON_PRESSED_BACKGROUND, EnigmaUIValues.ENIGMA_BUTTON_PRESSED_BACKGROUND);
-		this.minimize.setButtonUI(buttonUI);
-		this.minimize.addActionListener(new Minimize(this));
-
-		this.smaller = new EnigmaButton("[]");
-		this.smaller.setButtonUI(buttonUI);
-		this.smaller.addActionListener(new Smaller(this));
-
 		windowActionBar.add(Box.createHorizontalGlue());
-		windowActionBar.add(this.minimize);
-		windowActionBar.add(this.smaller);
 		windowActionBar.add(this.close);
 		this.setJMenuBar(windowActionBar);
 		this.menuBarBorderConfiguration = windowActionBar.getMenuBarUI().getBorder();
@@ -158,39 +137,11 @@ public class Window extends JFrame {
 		this.windowContent.add(this.resizers[TOP_RESIZER],BorderLayout.NORTH);
 		this.windowContent.add(this.content,BorderLayout.CENTER);
 		this.windowContent.getPanelUI().setBackground(Color.RED);
-		this.add(this.windowContent,BorderLayout.CENTER);
-	}
-
-	public void setIfAskBeforeClosing(boolean askBeforeClosing){
-		this.ask = askBeforeClosing;
-	}
-
-	public boolean willAskBeforeClosing() {
-		return ask;
-	}
-
-	public void showMinimizeButton(boolean show){
-		this.minimize.setVisible(show);
-	}
-
-	public void showSmallerButton(boolean show){
-		this.smaller.setVisible(show);
+		this.getContentPane().add(this.windowContent,BorderLayout.CENTER);
 	}
 
 	public void showCloseButton(boolean show){
 		this.close.setVisible(show);
-	}
-
-	public void hideAllButton(){
-		this.showMinimizeButton(false);
-		this.showSmallerButton(false);
-		this.showCloseButton(false);
-	}
-
-	public void showAllButton(){
-		this.showMinimizeButton(true);
-		this.showSmallerButton(true);
-		this.showCloseButton(true);
 	}
 
 	public void hideMenuBar(){
@@ -205,10 +156,6 @@ public class Window extends JFrame {
 		return this.content;
 	}
 
-	public boolean isFullScreen(){
-		return (this.getExtendedState() == JFrame.MAXIMIZED_BOTH);
-	}
-
 	public boolean isResizable(){
 		return this.resizable;
 	}
@@ -217,10 +164,8 @@ public class Window extends JFrame {
 	public void setResizable(boolean resizable) {
 		if(resizable){
 			for(ResizeComponent r: this.resizers) r.enableResize();
-			this.showSmallerButton(true);
 		} else {
 			for(ResizeComponent r: this.resizers) r.disableResize();
-			this.showSmallerButton(false);
 		}
 		this.resizable = resizable;
 	}
@@ -235,34 +180,17 @@ public class Window extends JFrame {
 		if(this.resizable) super.setSize(dimension);
 	}
 
-	public void setSize(int size){
+	public void setHalfScreenSize(){
 		if(this.resizable) {
 			Rectangle screenSize = this.getGraphicsConfiguration().getBounds();
-			this.setExtendedState(JFrame.NORMAL);
-			switch (size) {
-				default:
-					return;
-				case FULL_SCREEN_SIZE:
-					this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-					break;
-				case HALF_SCREEN_SIZE:
-					this.setSize(screenSize.width / 2, screenSize.height / 2);
-					break;
-			}
+			this.setSize(screenSize.width / 2, screenSize.height / 2);
 			this.setLocation(CENTER);
 		}
 	}
 
-	public boolean compareWindowSizeWith(int size){
+	public boolean isHalfScreenSize(){
 		Rectangle screenSize = this.getGraphicsConfiguration().getBounds();
-		switch (size){
-			default: return false;
-			case FULL_SCREEN_SIZE:
-				return this.isFullScreen();
-			case HALF_SCREEN_SIZE:
-				Dimension half = new Dimension(screenSize.width / 2, screenSize.height / 2);
-				return (half.equals(this.getSize()));
-		}
+		return (this.getSize().equals(new Dimension(screenSize.width / 2, screenSize.height / 2)));
 	}
 
 	public boolean compareWindowSizeWith(int width, int height){
@@ -363,10 +291,6 @@ public class Window extends JFrame {
 
 		if(this.close.isVisible())
 			this.close.getButtonUI().setAllShowedBorders(EnigmaUIValues.ALL_BORDER_HIDDEN,EnigmaUIValues.ALL_BORDER_HIDDEN,EnigmaUIValues.ALL_BORDER_HIDDEN);
-		if(this.minimize.isVisible())
-			this.minimize.getButtonUI().setAllShowedBorders(EnigmaUIValues.ALL_BORDER_HIDDEN,EnigmaUIValues.ALL_BORDER_HIDDEN,EnigmaUIValues.ALL_BORDER_HIDDEN);
-		if(this.smaller.isVisible())
-			this.smaller.getButtonUI().setAllShowedBorders(EnigmaUIValues.ALL_BORDER_HIDDEN,EnigmaUIValues.ALL_BORDER_HIDDEN,EnigmaUIValues.ALL_BORDER_HIDDEN);
 	}
 
 	public void showBorder(Color color, int borderSize){
@@ -390,8 +314,6 @@ public class Window extends JFrame {
 		this.resizers[BOTTOM_RIGHT_RESIZER].setBorder(BorderFactory.createMatteBorder(0,0,0,borderSize,color));
 
 		EnigmaButtonUI bUI;
-		boolean[] borders = new boolean[4];
-		borders[EnigmaUIValues.TOP_BORDER] = true;
 		boolean[] bordersRight = new boolean[4];
 		bordersRight[EnigmaUIValues.TOP_BORDER] = true;
 		bordersRight[EnigmaUIValues.RIGHT_BORDER] = true;
@@ -402,32 +324,6 @@ public class Window extends JFrame {
 			bUI.setAllBordersSize(borderSize,borderSize,borderSize);
 			bUI.setAllShowedBorders(bordersRight,bordersRight,bordersRight);
 
-			bUI = this.smaller.getButtonUI();
-			bUI.setAllBorders(color,color,color);
-			bUI.setAllBordersSize(borderSize,borderSize,borderSize);
-			bUI.setAllShowedBorders(borders,borders,borders);
-
-			bUI = this.minimize.getButtonUI();
-			bUI.setAllBorders(color,color,color);
-			bUI.setAllBordersSize(borderSize,borderSize,borderSize);
-			bUI.setAllShowedBorders(borders,borders,borders);
-
-		}else if(this.smaller.isVisible()){
-			bUI = this.smaller.getButtonUI();
-			bUI.setAllBorders(color,color,color);
-			bUI.setAllBordersSize(borderSize,borderSize,borderSize);
-			bUI.setAllShowedBorders(bordersRight,bordersRight,bordersRight);
-
-			bUI = this.minimize.getButtonUI();
-			bUI.setAllBorders(color,color,color);
-			bUI.setAllBordersSize(borderSize,borderSize,borderSize);
-			bUI.setAllShowedBorders(borders,borders,borders);
-
-		}else if(this.minimize.isVisible()){
-			bUI = this.minimize.getButtonUI();
-			bUI.setAllBorders(color,color,color);
-			bUI.setAllBordersSize(borderSize,borderSize,borderSize);
-			bUI.setAllShowedBorders(bordersRight, bordersRight, bordersRight);
 		}
 	}
 }

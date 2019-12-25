@@ -1,4 +1,4 @@
-package editor.utils.managers;
+package editor.window;
 
 import editor.window.Window;
 

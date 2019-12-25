@@ -1,6 +1,4 @@
-package editor.utils.managers;
-
-import editor.utils.EnigmaOptionPane;
+package editor.utils.enigmaOptionPane;
 
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -21,8 +19,7 @@ public class OptionPaneWindowManager implements WindowListener {
 
     @Override
     public void windowClosed(WindowEvent windowEvent) {
-        this.optionPane.setHaveAnswered(true, EnigmaOptionPane.CANCEL);
-        this.optionPane.close();
+        this.optionPane.cancel();
     }
 
     @Override

@@ -4,6 +4,8 @@ import editor.utils.managers.EnigmaTextAreaManager;
 import editor.utils.ui.EnigmaTextAreaUI;
 
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicScrollBarUI;
+import javax.swing.plaf.basic.BasicScrollPaneUI;
 import java.awt.*;
 
 public class EnigmaTextArea extends JTextArea {

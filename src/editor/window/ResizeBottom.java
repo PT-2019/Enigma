@@ -1,7 +1,7 @@
-package editor.utils.managers;
+package editor.window;
 
-import javax.swing.*;
 import java.awt.*;
+import java.awt.Window;
 import java.awt.event.MouseEvent;
 
 public class ResizeBottom extends Resize {

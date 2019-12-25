@@ -1,7 +1,6 @@
-package editor.utils.managers;
+package editor.utils.enigmaOptionPane;
 
 import editor.utils.EnigmaButton;
-import editor.utils.EnigmaOptionPane;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,7 +15,6 @@ public class OptionPaneButtonManager implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        this.optionPane.setHaveAnswered(true,((EnigmaButton) actionEvent.getSource()).getText());
-        this.optionPane.close();
+        this.optionPane.answer(((EnigmaButton) actionEvent.getSource()).getText());
     }
 }
