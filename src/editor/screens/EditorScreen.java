@@ -1,5 +1,6 @@
 package editor.screens;
 
+import api.enums.EnigmaScreens;
 import api.enums.EntitiesCategories;
 import api.enums.Outil;
 import api.utils.LoadGameLibgdxApplication;
@@ -7,19 +8,17 @@ import com.badlogic.gdx.utils.Array;
 import editor.entity.EntityFactory;
 import editor.entity.EntitySerializable;
 import editor.hud.EnigmaButton;
-import editor.hud.EnigmaComboBox;
-import editor.hud.EnigmaMenuItem;
 import editor.hud.EnigmaPanel;
+import editor.hud.Window;
 import editor.hud.managers.CheckBoxManager;
 import editor.utils.EmptyMapGenerator;
-import editor.hud.Window;
 import editor.utils.dnd.DragAndDropDND;
 import editor.utils.dnd.EntityContainer;
+import game.EnigmaGame;
 import game.screen.TestScreen;
 import org.intellij.lang.annotations.MagicConstant;
 
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
@@ -64,6 +63,7 @@ public class EditorScreen extends JPanel {
 
 		//création de la zone d'affichage de la map (partie droite)
 		JPanel map = new JPanel();
+		EnigmaGame.setFirstScreen(EnigmaScreens.TEST.name());
 		LoadGameLibgdxApplication.load(map, parent);
 
 		//ajout aux conteneurs
@@ -135,6 +135,44 @@ public class EditorScreen extends JPanel {
 		outilBar.add(inGame);
 
 		return outilBar;
+		/*
+		 * 	OutilAction listener = new OutilAction();
+
+		//création de la zone de la barre d'outils
+		EnigmaPanel outilBar = new EnigmaPanel();
+
+
+		EnigmaComboBox zoom = new EnigmaComboBox();
+
+		for (String element:new String[]{"25%", "50%", "100%", "125%", "150%", "175%", "200%"}) {
+			EnigmaMenuItem item = new EnigmaMenuItem(element);
+			zoom.addItem(item);
+		}
+
+		new EnigmaComboBoxManager(zoom);
+
+		CheckBoxManager c = new CheckBoxManager();
+
+		EnigmaButton fit = new EnigmaButton("fit");
+		fit.setToolTipText("toute la map est affichée dans l'écran");
+
+		EnigmaButton inGame = new EnigmaButton("in game");
+
+		c.add(fit);
+		c.add(inGame);
+
+		for (Outil o : Outil.values()) {
+			EnigmaButton a = new EnigmaButton(o.name);
+			a.addActionListener(listener);
+			outilBar.add(a);
+		}
+
+		outilBar.add(zoom);
+		outilBar.add(fit);
+		outilBar.add(inGame);
+
+		return outilBar;
+		 */
 	}
 
 	/**

@@ -1,6 +1,6 @@
 package editor.entity.map;
 
-import api.entity.interfaces.IDInterface;
+import api.entity.utils.IDInterface;
 import api.enums.Layer;
 import editor.utils.textures.Texture;
 

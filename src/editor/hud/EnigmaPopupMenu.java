@@ -2,8 +2,8 @@ package editor.hud;
 
 import editor.hud.ui.EnigmaPopupMenuUI;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JPopupMenu;
+import java.awt.Graphics;
 
 /**
  * TODO: comment EnigmaPopupMenu and write Readme.md in editor.hud
@@ -17,25 +17,25 @@ import java.awt.*;
  */
 public class EnigmaPopupMenu extends JPopupMenu {
 
-    private EnigmaPopupMenuUI ui;
+	private EnigmaPopupMenuUI ui;
 
-    public EnigmaPopupMenu(){
-        super();
-        this.setOpaque(true);
-        this.setPopupMenuUI(new EnigmaPopupMenuUI());
-    }
+	public EnigmaPopupMenu() {
+		super();
+		this.setOpaque(true);
+		this.setPopupMenuUI(new EnigmaPopupMenuUI());
+	}
 
-    public void setPopupMenuUI(EnigmaPopupMenuUI ui){
-        this.ui = ui.duplicate();
-        this.repaint();
-    }
+	public EnigmaPopupMenuUI getPopupMenuUI() {
+		return this.ui;
+	}
 
-    public EnigmaPopupMenuUI getPopupMenuUI(){
-        return this.ui;
-    }
+	public void setPopupMenuUI(EnigmaPopupMenuUI ui) {
+		this.ui = ui.duplicate();
+		this.repaint();
+	}
 
-    @Override
-    public void paintComponent(Graphics g){
-        this.ui.paint(g,this);
-    }
+	@Override
+	public void paintComponent(Graphics g) {
+		this.ui.paint(g, this);
+	}
 }

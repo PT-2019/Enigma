@@ -4,12 +4,12 @@
       className: editor.entity.player.Player
       path: assets/map/datas/players/player1.png
       category: ENTITIES
-      height: 2
       width: 2
+      height: 2
       tiles: {
         FLOOR2: [
           2105,2106,
-          2185,2186
+          2185,2186,
         ]
       }
     }
@@ -17,12 +17,12 @@
       className: editor.entity.player.Player
       path: assets/map/datas/players/player2.png
       category: ENTITIES
-      height: 2
       width: 2
+      height: 2
       tiles: {
         FLOOR2: [
           2107,2108,
-          2187,2188
+          2187,2188,
         ]
       }
     }
@@ -30,12 +30,38 @@
       className: editor.entity.player.Player
       path: assets/map/datas/players/player3.png
       category: ENTITIES
-      height: 2
       width: 2
+      height: 2
       tiles: {
         FLOOR2: [
           2109,2110,
-          2189,2190
+          2189,2190,
+        ]
+      }
+    }
+    {
+      className: editor.entity.player.Player
+      path: assets/map/datas/players/player4.png
+      category: ENTITIES
+      width: 2
+      height: 2
+      tiles: {
+        FLOOR2: [
+          2111,2112,
+          2191,2192,
+        ]
+      }
+    }
+    {
+      className: editor.entity.player.Player
+      path: assets/map/datas/players/player5.png
+      category: ENTITIES
+      width: 2
+      height: 2
+      tiles: {
+        FLOOR2: [
+          2113,2114,
+          2193,2194,
         ]
       }
     }

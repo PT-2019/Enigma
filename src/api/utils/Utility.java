@@ -1,5 +1,7 @@
 package api.utils;
 
+import api.utils.annotations.ConvenienceClass;
+import api.utils.annotations.ConvenienceMethod;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -24,7 +26,7 @@ import java.util.Map;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 2.0 27 novembre 2019
+ * @version 4.0
  * @since 2.0 27 novembre 2019
  */
 @ConvenienceClass

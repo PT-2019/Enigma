@@ -1,6 +1,6 @@
 package editor.entity.map;
 
-import api.entity.interfaces.IDInterface;
+import api.entity.utils.IDInterface;
 
 /**
  * Le mur d'une pièce

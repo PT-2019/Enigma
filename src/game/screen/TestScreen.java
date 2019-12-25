@@ -21,6 +21,7 @@ import game.ui.CategoriesMenu;
  */
 public class TestScreen extends LibgdxScreen {
 
+	private static String MAP_PATH = "assets/map/EmptyMap.tmx";
 	/**
 	 * Stage de la map et du jeu
 	 */
@@ -33,13 +34,14 @@ public class TestScreen extends LibgdxScreen {
 	 * Stage du drag and drop
 	 */
 	private Stage dnd;
-
 	/**
 	 * La map libgdx
 	 */
 	private MapLibgdx map;
 
-	private static String MAP_PATH = "assets/map/EmptyMap.tmx";
+	public static String getMapPath() {
+		return MAP_PATH;
+	}
 
 	/**
 	 * Prépare les stages, la map et la caméra
@@ -120,10 +122,6 @@ public class TestScreen extends LibgdxScreen {
 			return true;
 		}
 		return false;
-	}
-
-	public static String getMapPath() {
-		return MAP_PATH;
 	}
 
 }

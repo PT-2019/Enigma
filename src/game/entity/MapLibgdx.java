@@ -1,7 +1,6 @@
 package game.entity;
 
 import api.entity.GameObject;
-import api.enums.EntitiesCategories;
 import api.enums.Layer;
 import api.utils.Bounds;
 import api.utils.Utility;
@@ -17,7 +16,6 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Array;
 import editor.entity.EntityFactory;
@@ -268,7 +266,7 @@ public class MapLibgdx extends Group {
 		this.border.setProjectionMatrix(this.camera.combined);
 	}
 
-	public void showGrid(boolean show){
+	public void showGrid(boolean show) {
 		this.showGrid = show;
 	}
 
@@ -290,7 +288,7 @@ public class MapLibgdx extends Group {
 		this.map.render();
 
 		//render borders
-		if(this.showGrid)
+		if (this.showGrid)
 			this.border.draw();
 	}
 

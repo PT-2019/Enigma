@@ -1,6 +1,6 @@
 package game.entity.item;
 
-import api.entity.interfaces.Activatable;
+import api.entity.utils.Activatable;
 import editor.enigma.Enigma;
 import editor.entity.player.Player;
 import editor.utils.textures.Texture;
@@ -10,7 +10,7 @@ import java.util.Iterator;
 
 /**
  * @version 2.1
- * @see api.entity.interfaces.Activatable
+ * @see api.entity.utils.Activatable
  */
 @Deprecated
 public class PressurePlate extends Activatable {
@@ -56,28 +56,6 @@ public class PressurePlate extends Activatable {
 			if (!e.isKnown()) e.discovered();
 			else e.verifyConditions(p);
 		}
-	}
-
-	/**
-	 * Obtenir la texture de l'objet
-	 *
-	 * @return Texture de l'objet, null sinon
-	 */
-	@Override
-	public Texture getTexture() {
-		return this.texture;
-	}
-
-	@Override
-	public void setTexture(Texture t) {
-		texture = t;
-	}
-
-	/**
-	 * Affiche un dialogue avec l'objet
-	 */
-	@Override
-	public void showDialog() {
 	}
 
 	/**

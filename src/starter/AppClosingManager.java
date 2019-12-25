@@ -5,9 +5,9 @@ import java.awt.event.WindowEvent;
 
 public class AppClosingManager extends WindowAdapter {
 
-    @Override
-    public void windowClosed(WindowEvent windowEvent) {
-        DesktopLauncher.closeRunningApp();
-    }
+	@Override
+	public void windowClosed(WindowEvent windowEvent) {
+		DesktopLauncher.closeRunningApp();
+	}
 
 }

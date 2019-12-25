@@ -3,8 +3,8 @@ package editor.hud;
 import editor.hud.managers.EnigmaPanelManager;
 import editor.hud.ui.EnigmaPanelUI;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JPanel;
+import java.awt.Graphics;
 
 /**
  * TODO: comment EnigmaPanel and write Readme.md in editor.hud
@@ -18,27 +18,27 @@ import java.awt.*;
  */
 public class EnigmaPanel extends JPanel {
 
-    private EnigmaPanelUI ui;
+	private EnigmaPanelUI ui;
 
-    public EnigmaPanel(){
-        super();
-        this.addMouseListener(new EnigmaPanelManager(this));
-        this.setOpaque(true);
-        this.setPanelUI(new EnigmaPanelUI());
-    }
+	public EnigmaPanel() {
+		super();
+		this.addMouseListener(new EnigmaPanelManager(this));
+		this.setOpaque(true);
+		this.setPanelUI(new EnigmaPanelUI());
+	}
 
-    public void setPanelUI(EnigmaPanelUI ui){
-        this.ui = ui.duplicate();
-        this.setCursor(this.ui.getCursor());
-        super.setUI(this.ui);
-    }
+	public EnigmaPanelUI getPanelUI() {
+		return this.ui;
+	}
 
-    public EnigmaPanelUI getPanelUI(){
-        return this.ui;
-    }
+	public void setPanelUI(EnigmaPanelUI ui) {
+		this.ui = ui.duplicate();
+		this.setCursor(this.ui.getCursor());
+		super.setUI(this.ui);
+	}
 
-    @Override
-    public void paintComponent(Graphics g){
-        this.ui.paint(g,this);
-    }
+	@Override
+	public void paintComponent(Graphics g) {
+		this.ui.paint(g, this);
+	}
 }

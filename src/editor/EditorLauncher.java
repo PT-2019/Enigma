@@ -1,8 +1,10 @@
 package editor;
 
 import api.Application;
-import editor.screens.EditorScreen;
+import api.enums.EnigmaScreens;
 import editor.hud.Window;
+import editor.screens.EditorScreen;
+import game.EnigmaGame;
 import starter.AppClosingManager;
 
 import java.awt.BorderLayout;
@@ -32,19 +34,8 @@ public class EditorLauncher implements Application {
 	private EditorLauncher() {
 		this.window = new Window();
 		this.window.addWindowListener(new AppClosingManager());
-		this.window.setSize(Window.HALF_SCREEN_SIZE);
-	}
-
-	/**
-	 * Retourne le singleton qui représente l'éditor luncher
-	 * @return le singleton qui représente l'éditor luncher
-	 * @since 4.0
-	 */
-	public static EditorLauncher getInstance() {
-		if (editor == null) {
-			editor = new EditorLauncher();
-		}
-		return editor;
+		this.window.setLayout(new BorderLayout());
+		this.window.add(new EditorScreen(this.window), BorderLayout.CENTER);
 	}
 
 	/**
@@ -52,7 +43,6 @@ public class EditorLauncher implements Application {
 	 *
 	 * @param width  largeur de la fenêtre
 	 * @param height hauteur de la fenêtre
-	 *
 	 * @since 1.0
 	 * @deprecated since 3.0 utiliser {@link EditorLauncher#EditorLauncher()}
 	 */
@@ -74,15 +64,23 @@ public class EditorLauncher implements Application {
 		this.window.addWindowListener(new AppClosingManager());
 	}
 
-	@Override
-	public void start() {
-		//on démarre l'application
-		this.window.setVisible(true);
+	/**
+	 * Retourne le singleton qui représente l'éditor luncher
+	 *
+	 * @return le singleton qui représente l'éditor luncher
+	 * @since 4.0
+	 */
+	public static EditorLauncher getInstance() {
+		if (editor == null) {
+			editor = new EditorLauncher();
+		}
+		return editor;
 	}
 
 	/**
 	 * Crée un éditeur d'une certaine taille
-	 * @param width largeur de l'éditeur
+	 *
+	 * @param width  largeur de l'éditeur
 	 * @param height hauteur de l'éditeur
 	 * @return l'éditeur
 	 */
@@ -94,8 +92,16 @@ public class EditorLauncher implements Application {
 		return editor;
 	}
 
+	@Override
+	public void start() {
+		EnigmaGame.setFirstScreen(EnigmaScreens.TEST.name());
+		//on démarre l'application
+		this.window.setVisible(true);
+	}
+
 	/**
 	 * Retourne la fenêtre de l'application
+	 *
 	 * @return la fenêtre de l'application
 	 */
 	public Window getWindow() {

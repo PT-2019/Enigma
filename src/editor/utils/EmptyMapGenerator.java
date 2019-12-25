@@ -1,10 +1,9 @@
 package editor.utils;
 
-import api.utils.ConvenienceClass;
-import api.utils.ConvenienceMethod;
+import api.utils.annotations.ConvenienceClass;
+import api.utils.annotations.ConvenienceMethod;
 import editor.entity.map.Map;
 import editor.utils.save.SaveMap;
-import editor.utils.textures.TextureArea;
 import editor.utils.textures.TextureProxy;
 
 /**
@@ -40,7 +39,7 @@ public class EmptyMapGenerator {
 		proxy.addTexture(16, "assets/map/tiles/ground/dungeon1.png", 8, 1, 48);
 		proxy.addTexture(16, "assets/map/tiles/pipo.png", 8, 49, 1992 + 49);
 		proxy.addTexture(16, "assets/map/collision.png", 8, 2041, 2041 + 64);
-		proxy.addTexture(16, "assets/map/Player.png", 80, 2105, 2105+6400);
+		proxy.addTexture(16, "assets/map/Player.png", 80, 2105, 2105 + 6400);
 
 		SaveMap.saveMap(path, new Map(col, row), proxy.getTextures());
 	}

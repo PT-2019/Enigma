@@ -25,7 +25,10 @@ public class EnigmaGame extends LibgdxGame {
 	//instance unique
 	private static EnigmaGame enigmaGame;
 
+	private static String firstScreen = EnigmaScreens.GAME.name();
+
 	private EnigmaGame() {
+
 	}
 
 	/**
@@ -38,6 +41,15 @@ public class EnigmaGame extends LibgdxGame {
 			enigmaGame = new EnigmaGame();
 		}
 		return enigmaGame;
+	}
+
+	/**
+	 * Définit l'écran lancé au lancement du jeu
+	 *
+	 * @param string l'écran lancé au lancement du jeu
+	 */
+	public static void setFirstScreen(String string) {
+		EnigmaGame.firstScreen = string;
 	}
 
 	@Override
@@ -54,7 +66,7 @@ public class EnigmaGame extends LibgdxGame {
 		EnigmaGame.load(EnigmaScreens.GAME.name());
 
 		//définit l'écran actuel de l'application
-		EnigmaGame.setScreen(EnigmaScreens.TEST.name());
+		EnigmaGame.setScreen(EnigmaGame.firstScreen);
 	}
 
 	@Override

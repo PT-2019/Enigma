@@ -1,7 +1,6 @@
 package api.entity;
 
-import api.entity.interfaces.Entity;
-import api.entity.interfaces.IDInterface;
+import api.entity.utils.IDInterface;
 import api.enums.Layer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;

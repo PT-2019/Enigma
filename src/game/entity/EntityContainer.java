@@ -1,6 +1,6 @@
 package game.entity;
 
-import api.entity.GameActorTextured;
+import api.entity.actor.GameActorTextured;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import editor.entity.EntitySerializable;
 import game.utils.DragAndDropBuilder;

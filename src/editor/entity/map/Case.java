@@ -1,6 +1,6 @@
 package editor.entity.map;
 
-import api.entity.interfaces.IDInterface;
+import api.entity.utils.IDInterface;
 import api.enums.Layer;
 import editor.utils.textures.Texture;
 
@@ -14,9 +14,8 @@ import java.util.HashMap;
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  * @version 4.0 22/12/2019
- * @since 4.0 22/12/2019
- *
  * @apiNote On utilise les cases de la map libgdx
+ * @since 4.0 22/12/2019
  */
 public class Case implements IDInterface {
 

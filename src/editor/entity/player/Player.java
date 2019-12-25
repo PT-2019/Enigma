@@ -1,8 +1,8 @@
 package editor.entity.player;
 
-import api.entity.GameActorTextured;
-import api.entity.interfaces.Entity;
-import api.entity.interfaces.Living;
+import api.entity.Entity;
+import api.entity.actor.GameActorTextured;
+import api.entity.types.Living;
 import api.enums.Layer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -19,7 +19,7 @@ import java.util.HashMap;
  * @author Quentin RAMSAMY-AGEORGES
  * @version 2.0
  * @see Entity
- * @see api.entity.interfaces.Living
+ * @see Living
  * @since 2.0
  */
 public class Player extends GameActorTextured implements Entity, Living {

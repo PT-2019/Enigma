@@ -1,6 +1,6 @@
 package editor.enigma.condition;
 
-import api.entity.interfaces.Activatable;
+import api.entity.utils.Activatable;
 import editor.entity.player.Player;
 
 import java.util.Map;

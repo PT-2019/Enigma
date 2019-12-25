@@ -5,8 +5,8 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import editor.EditorLauncher;
-import editor.utils.save.SaveMap;
 import editor.hud.Window;
+import editor.utils.save.SaveMap;
 import game.entity.MapLibgdx;
 
 /**
@@ -35,16 +35,16 @@ public class TestMapControl implements InputProcessor {
 
 	private MapLibgdx map;
 
-    public TestMapControl(MapLibgdx map) {
-        this.camera = map.getCamera();
-        this.ispush = false;
-        this.map = map;
-        //changed to window
-        this.window = EditorLauncher.getInstance().getWindow();
-        //this.menu = new EntityPopMenu(r,col,cam);
-        //TODO: test pour vérifier que cela marche avec une window
-        this.menu = new EntityPopMenu();
-    }
+	public TestMapControl(MapLibgdx map) {
+		this.camera = map.getCamera();
+		this.ispush = false;
+		this.map = map;
+		//changed to window
+		this.window = EditorLauncher.getInstance().getWindow();
+		//this.menu = new EntityPopMenu(r,col,cam);
+		//TODO: test pour vérifier que cela marche avec une window
+		this.menu = new EntityPopMenu();
+	}
 
 	@Override
 	public boolean keyDown(int keycode) {

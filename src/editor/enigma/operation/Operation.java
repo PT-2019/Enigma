@@ -1,6 +1,6 @@
 package editor.enigma.operation;
 
-import api.entity.interfaces.Entity;
+import api.entity.Entity;
 import api.enums.Attributes;
 import editor.entity.IDFactory;
 import editor.entity.player.Player;

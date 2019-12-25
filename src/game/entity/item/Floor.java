@@ -1,6 +1,7 @@
 package game.entity.item;
 
-import api.entity.interfaces.AbstractItem;
+import api.entity.AbstractItem;
+import api.entity.Item;
 import editor.enigma.Enigma;
 import editor.entity.player.Player;
 import editor.utils.textures.Texture;
@@ -10,7 +11,7 @@ import java.util.Iterator;
 
 /**
  * @version 2.2
- * @see api.entity.interfaces.Item
+ * @see Item
  */
 @Deprecated
 public class Floor extends AbstractItem {
@@ -59,28 +60,6 @@ public class Floor extends AbstractItem {
 			if (!e.isKnown()) e.discovered();
 			else e.verifyConditions(p);
 		}
-	}
-
-	/**
-	 * Obtenir la texture de l'objet
-	 *
-	 * @return Texture de l'objet, null sinon
-	 */
-	@Override
-	public Texture getTexture() {
-		return this.texture;
-	}
-
-	@Override
-	public void setTexture(Texture t) {
-		texture = t;
-	}
-
-	/**
-	 * Affiche un dialogue avec l'objet
-	 */
-	@Override
-	public void showDialog() {
 	}
 
 	/**

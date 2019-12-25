@@ -8,14 +8,14 @@ import java.awt.event.ActionListener;
 
 public class ComboBoxItemManager implements ActionListener {
 
-    private EnigmaComboBox box;
+	private EnigmaComboBox box;
 
-    public ComboBoxItemManager(EnigmaComboBox box){
-        this.box = box;
-    }
+	public ComboBoxItemManager(EnigmaComboBox box) {
+		this.box = box;
+	}
 
-    @Override
-    public void actionPerformed(ActionEvent actionEvent) {
-        this.box.setSelected((EnigmaMenuItem) actionEvent.getSource());
-    }
+	@Override
+	public void actionPerformed(ActionEvent actionEvent) {
+		this.box.setSelected((EnigmaMenuItem) actionEvent.getSource());
+	}
 }

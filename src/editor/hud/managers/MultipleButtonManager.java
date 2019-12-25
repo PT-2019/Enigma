@@ -4,9 +4,9 @@ import editor.hud.EnigmaButton;
 
 interface MultipleButtonManager {
 
-    void add(EnigmaButton b);
+	void add(EnigmaButton b);
 
-    void setSelected(EnigmaButton b);
+	EnigmaButton[] getSelected();
 
-    EnigmaButton[] getSelected();
+	void setSelected(EnigmaButton b);
 }
