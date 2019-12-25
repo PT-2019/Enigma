@@ -7,6 +7,16 @@ import javax.swing.plaf.basic.BasicPopupMenuUI;
 import java.awt.Color;
 import java.awt.Graphics;
 
+/**
+ * TODO: comment EnigmaPopupMenuUI and write Readme.md in editor.hud.ui
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 4.0
+ * @since 3.0
+ */
 public class EnigmaPopupMenuUI extends BasicPopupMenuUI {
 
 	private Color popupBackground;

@@ -116,6 +116,5 @@ public class DesktopLauncher implements Runnable {
 		background.add(EDIT_BUTTON, gbc);
 
 		window.setVisible(true);
-		window.setIfAskBeforeClosing(true);
 	}
 }

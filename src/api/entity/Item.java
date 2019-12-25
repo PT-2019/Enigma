@@ -11,7 +11,7 @@ import editor.entity.player.Player;
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  * @version 4.1
- * @apiNote suppression des méthode de IDInterface pour lisibilité et de Entity et de EnigmaContainer
+ * apiNote suppression des méthode de IDInterface pour lisibilité et de Entity et de EnigmaContainer
  * @see EnigmaContainer
  * @see Entity
  * @since 2.0

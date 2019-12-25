@@ -5,6 +5,16 @@ import editor.hud.EnigmaLabel;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+/**
+ * TODO: comment EnigmaLabelManager and write Readme.md in editor.hud.managers
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 4.0
+ * @since 3.0
+ */
 public class EnigmaLabelManager implements MouseListener {
 
 	private EnigmaLabel label;

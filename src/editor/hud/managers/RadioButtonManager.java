@@ -3,6 +3,16 @@ package editor.hud.managers;
 import editor.hud.EnigmaButton;
 import editor.hud.ui.EnigmaButtonUI;
 
+/**
+ * TODO: comment RadioButtonManager and write Readme.md in editor.hud.managers
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 4.0
+ * @since 3.0
+ */
 public class RadioButtonManager implements MultipleButtonManager {
 
 	private EnigmaButton selected;

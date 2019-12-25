@@ -16,7 +16,7 @@ import java.util.HashMap;
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  * @version 4.0
- * @apiNote UTILISEZ LA CLASSE game.entities.Room plutôt
+ * apiNote UTILISEZ LA CLASSE game.entities.Room plutôt
  * @since 2.0
  */
 @Deprecated

@@ -6,6 +6,16 @@ import editor.hud.EnigmaPopupMenu;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+/**
+ * TODO: comment EnigmaComboBoxManager and write Readme.md in editor.hud.managers
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 4.0
+ * @since 3.0
+ */
 public class EnigmaComboBoxManager implements MouseListener {
 
 	private EnigmaComboBox box;

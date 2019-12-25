@@ -5,7 +5,6 @@ import editor.hud.managers.Drag;
 import editor.hud.managers.Exit;
 import editor.hud.managers.Minimize;
 import editor.hud.managers.ResizeBottom;
-import editor.hud.managers.ResizeComponent;
 import editor.hud.managers.ResizeLeft;
 import editor.hud.managers.ResizeRight;
 import editor.hud.managers.ResizeTop;
@@ -81,7 +80,7 @@ public class Window extends JFrame {
 		this.resizable = true;
 		this.ask = false;
 		this.setSize(screenSize.getSize());
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		this.setSize(FULL_SCREEN_SIZE);
 		this.setMinimumSize(new Dimension((int) screenSize.getWidth() / 4, (int) screenSize.getHeight() / 3));
 		this.setLocation(0, 0);
@@ -93,7 +92,7 @@ public class Window extends JFrame {
 		Rectangle screenSize = this.getGraphicsConfiguration().getBounds();
 		this.resizable = true;
 		this.ask = false;
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		this.setSize(width, height);
 		this.setLocation(CENTER);
 		this.setMinimumSize(new Dimension((int) screenSize.getWidth() / 4, (int) screenSize.getHeight() / 3));
@@ -101,7 +100,7 @@ public class Window extends JFrame {
 	}
 
 	private void init() {
-		this.setIconImage(new ImageIcon(this.getClass().getResource("image/o.JPG")).getImage());
+		//this.setIconImage(new ImageIcon(this.getClass().getResource("image/o.JPG")).getImage());
 		this.setUndecorated(true);
 		windowActionBar = new EnigmaMenuBar();
 		EnigmaMenuBarUI barUI = new EnigmaMenuBarUI();
@@ -395,8 +394,8 @@ public class Window extends JFrame {
 	public void hideBorder() {
 		EnigmaMenuBar bar = (EnigmaMenuBar) this.getJMenuBar();
 		bar.getMenuBarUI().setShowedBorders(this.menuBarShowedBorderConfiguration);
-		bar.getMenuBarUI().setShowedBorders(this.menuBarShowedBorderConfiguration);
-		bar.getMenuBarUI().setShowedBorders(this.menuBarShowedBorderConfiguration);
+		bar.getMenuBarUI().setBorderSize(this.menuBarBorderSizeConfiguration);
+		bar.getMenuBarUI().setBorder(this.menuBarBorderConfiguration);
 
 		this.resizers[LEFT_RESIZER].setBorder(BorderFactory.createEmptyBorder());
 		this.resizers[RIGHT_RESIZER].setBorder(BorderFactory.createEmptyBorder());
