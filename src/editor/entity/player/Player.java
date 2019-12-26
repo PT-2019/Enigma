@@ -45,8 +45,21 @@ public class Player extends GameActorTextured implements Entity, Living {
 	 */
 	private Rectangle bounds;
 
+	/**
+	 * Nom du joueur
+	 */
+	private String name;
+
 	public Player() {
 		this(-1);
+	}
+
+	/**
+	 * @param name Nom du joueur
+	 */
+	public Player(String name) {
+		this(-1);
+		this.name = name;
 	}
 
 	/**
@@ -57,6 +70,18 @@ public class Player extends GameActorTextured implements Entity, Living {
 		this.id = id;
 		this.bounds = new Rectangle();
 		this.tiles = new HashMap<>();
+	}
+
+	/**
+	 * @param id ID
+	 * @param name Nom du joueur
+	 */
+	public Player(int id, String name) {
+		this.pv = MAX_PLAYER_PV;
+		this.id = id;
+		this.bounds = new Rectangle();
+		this.tiles = new HashMap<>();
+		this.name = name;
 	}
 
 	@Override
@@ -120,6 +145,16 @@ public class Player extends GameActorTextured implements Entity, Living {
 	@Override
 	public void setID(int id) {
 		this.id = id;
+	}
+
+	@Override
+	public String getName() {
+		return name;
+	}
+
+	@Override
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	//toString

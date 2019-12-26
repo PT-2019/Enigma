@@ -1,8 +1,6 @@
 package editor.hud.ui;
 
-import javax.swing.ImageIcon;
-import javax.swing.JComponent;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.plaf.basic.BasicPanelUI;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -65,12 +63,13 @@ public class EnigmaPanelUI extends BasicPanelUI {
 	public void paint(Graphics g, JComponent c) {
 		Graphics brush = g.create();
 		JPanel p = (JPanel) c;
+		p.setBorder(BorderFactory.createEmptyBorder());
 		boolean[] borders;
 		if (this.pressed) {
 			brush.setColor(this.pressedBackground);
 			brush.fillRect(0, 0, p.getWidth(), p.getHeight());
 			if (this.pressedBorder != null) {
-				this.paintBorder(brush, p, this.pressedBorder, this.pressedBorderSize, this.pressedShowedBorders);
+				this.paintBorder(p, this.pressedBorder, this.pressedBorderSize, this.pressedShowedBorders);
 				borders = this.pressedShowedBorders;
 			} else borders = EnigmaUIValues.ALL_BORDER_HIDDEN;
 
@@ -81,7 +80,7 @@ public class EnigmaPanelUI extends BasicPanelUI {
 			brush.setColor(this.hoveredBackground);
 			brush.fillRect(0, 0, p.getWidth(), p.getHeight());
 			if (this.hoveredBorder != null) {
-				this.paintBorder(brush, p, this.hoveredBorder, this.hoveredBorderSize, this.hoveredShowedBorders);
+				this.paintBorder(p, this.hoveredBorder, this.hoveredBorderSize, this.hoveredShowedBorders);
 				borders = this.hoveredShowedBorders;
 			} else borders = EnigmaUIValues.ALL_BORDER_HIDDEN;
 
@@ -92,7 +91,7 @@ public class EnigmaPanelUI extends BasicPanelUI {
 			brush.setColor(this.background);
 			brush.fillRect(0, 0, p.getWidth(), p.getHeight());
 			if (this.border != null) {
-				this.paintBorder(brush, p, this.border, this.borderSize, this.showedBorders);
+				this.paintBorder(p, this.border, this.borderSize, this.showedBorders);
 				borders = this.showedBorders;
 			} else borders = EnigmaUIValues.ALL_BORDER_HIDDEN;
 
@@ -103,16 +102,13 @@ public class EnigmaPanelUI extends BasicPanelUI {
 		super.paint(brush, c);
 	}
 
-	private void paintBorder(Graphics g, JPanel p, Color borderColor, int borderSize, boolean[] showedBorders) {
-		g.setColor(borderColor);
-		for (int i = 0; i < 4; i++) {
-			if (i == EnigmaUIValues.TOP_BORDER && showedBorders[i]) g.fillRect(0, 0, p.getWidth(), borderSize);
-			if (i == EnigmaUIValues.RIGHT_BORDER && showedBorders[i])
-				g.fillRect(p.getWidth() - borderSize, 0, p.getWidth(), p.getHeight());
-			if (i == EnigmaUIValues.BOTTOM_BORDER && showedBorders[i])
-				g.fillRect(0, p.getHeight() - borderSize, p.getWidth(), p.getHeight());
-			if (i == EnigmaUIValues.LEFT_BORDER && showedBorders[i]) g.fillRect(0, 0, borderSize, p.getHeight());
+	public void paintBorder(JPanel p, Color borderColor, int borderSize, boolean[] showedBorders) {
+		int[] borders = new int[4];
+		for (int i = 0; i < borders.length; i++) {
+			if (showedBorders[i]) borders[i] = borderSize;
+			else borders[i] = 0;
 		}
+		p.setBorder(BorderFactory.createMatteBorder(borders[EnigmaUIValues.TOP_BORDER], borders[EnigmaUIValues.LEFT_BORDER], borders[EnigmaUIValues.BOTTOM_BORDER], borders[EnigmaUIValues.RIGHT_BORDER], borderColor));
 	}
 
 	private void paintImage(Graphics g, JPanel p, ImageIcon image, int borderSize, boolean[] showedBorders) {

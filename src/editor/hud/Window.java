@@ -70,6 +70,7 @@ public class Window extends JFrame {
 	private boolean[] menuBarShowedBorderConfiguration;
 	private boolean ask;
 	private EnigmaMenuBar windowActionBar;
+	private EnigmaLabel titleComponent;
 
 	/**
 	 * Initialise une fenêtre de la taille de l'écran
@@ -84,7 +85,20 @@ public class Window extends JFrame {
 		this.setSize(FULL_SCREEN_SIZE);
 		this.setMinimumSize(new Dimension((int) screenSize.getWidth() / 4, (int) screenSize.getHeight() / 3));
 		this.setLocation(0, 0);
-		this.init();
+		this.init("");
+	}
+
+	public Window(String title) {
+		super();
+		Rectangle screenSize = this.getGraphicsConfiguration().getBounds();
+		this.resizable = true;
+		this.ask = false;
+		this.setSize(screenSize.getSize());
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		this.setSize(FULL_SCREEN_SIZE);
+		this.setMinimumSize(new Dimension((int) screenSize.getWidth() / 4, (int) screenSize.getHeight() / 3));
+		this.setLocation(0, 0);
+		this.init(title);
 	}
 
 	public Window(int width, int height) {
@@ -96,10 +110,22 @@ public class Window extends JFrame {
 		this.setSize(width, height);
 		this.setLocation(CENTER);
 		this.setMinimumSize(new Dimension((int) screenSize.getWidth() / 4, (int) screenSize.getHeight() / 3));
-		this.init();
+		this.init("");
 	}
 
-	private void init() {
+	public Window(String title, int width, int height) {
+		super();
+		Rectangle screenSize = this.getGraphicsConfiguration().getBounds();
+		this.resizable = true;
+		this.ask = false;
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		this.setSize(width, height);
+		this.setLocation(CENTER);
+		this.setMinimumSize(new Dimension((int) screenSize.getWidth() / 4, (int) screenSize.getHeight() / 3));
+		this.init(title);
+	}
+
+	private void init(String title) {
 		//this.setIconImage(new ImageIcon(this.getClass().getResource("image/o.JPG")).getImage());
 		this.setUndecorated(true);
 		windowActionBar = new EnigmaMenuBar();
@@ -110,6 +136,12 @@ public class Window extends JFrame {
 		barUI.setBorderSize(2);
 		barUI.setBorder(Color.RED);
 		windowActionBar.setMenuBarUI(barUI);
+
+		Color grey = new Color(100,100,100);
+
+		this.titleComponent = new EnigmaLabel(title);
+		this.titleComponent.getLabelUI().setAllForegrounds(grey,grey,grey);
+		windowActionBar.add(this.titleComponent);
 
 		Drag drag = new Drag(this);
 		windowActionBar.addMouseListener(drag);
@@ -125,7 +157,7 @@ public class Window extends JFrame {
 		this.close.addActionListener(new Exit(this));
 
 		this.minimize = new EnigmaButton("-");
-		buttonUI.setAllBackgrounds(barUI.getBackground(), EnigmaUIValues.ENIGMA_BUTTON_PRESSED_BACKGROUND, EnigmaUIValues.ENIGMA_BUTTON_PRESSED_BACKGROUND);
+		buttonUI.setAllBackgrounds(barUI.getBackground(), grey, grey);
 		this.minimize.setButtonUI(buttonUI);
 		this.minimize.addActionListener(new Minimize(this));
 
@@ -144,7 +176,6 @@ public class Window extends JFrame {
 
 		this.windowContent = new EnigmaPanel();
 		this.content = new EnigmaPanel();
-		this.content.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 		this.resizers[RIGHT_RESIZER] = new ResizeComponent(new Cursor(Cursor.E_RESIZE_CURSOR));
 		this.resizers[LEFT_RESIZER] = new ResizeComponent(new Cursor(Cursor.W_RESIZE_CURSOR));
 		this.resizers[BOTTOM_RESIZER] = new ResizeComponent(new Cursor(Cursor.S_RESIZE_CURSOR));
@@ -317,6 +348,10 @@ public class Window extends JFrame {
 		return (dim1.equals(dim2));
 	}
 
+	public Rectangle getScreenBounds(){
+		return this.getGraphicsConfiguration().getBounds();
+	}
+
 	public void setLocation(int location) {
 
 		Rectangle screenSize = this.getGraphicsConfiguration().getBounds();
@@ -368,7 +403,7 @@ public class Window extends JFrame {
 		this.setLocation(windowPosX + screenSize.x, windowPosY + screenSize.y);
 	}
 
-	public void setWindowMenuBar(EnigmaMenuBar menuBar) {
+	public void setMenuBar(EnigmaMenuBar menuBar) {
 		this.setJMenuBar(menuBar);
 		this.menuBarBorderConfiguration = menuBar.getMenuBarUI().getBorder();
 		this.menuBarBorderSizeConfiguration = menuBar.getMenuBarUI().getBorderSize();
@@ -385,7 +420,7 @@ public class Window extends JFrame {
 		}
 	}
 
-	public void setBackground(ImageIcon image) {
+	public void setWindowBackground(ImageIcon image) {
 		this.content.setOpaque(false);
 		for (ResizeComponent r : this.resizers) r.setOpaque(false);
 		this.windowContent.getPanelUI().setAllBackgroundImage(image, image, image);
