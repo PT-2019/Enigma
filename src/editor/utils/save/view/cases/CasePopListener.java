@@ -6,8 +6,11 @@ import game.entity.MapLibgdxCell;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 public class CasePopListener implements ActionListener {
+
     private TiledMapTileLayer.Cell after;
 
     private CasePopUp popUp;
