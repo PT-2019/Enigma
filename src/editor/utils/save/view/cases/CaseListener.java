@@ -1,9 +1,8 @@
-package editor.utils.save.view;
+package editor.utils.save.view.cases;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import game.entity.MapLibgdxCell;
 
 /**
  * Cette classe permet d'écouter les cliques de la souris sur les cases

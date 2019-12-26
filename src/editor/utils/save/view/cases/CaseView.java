@@ -1,4 +1,4 @@
-package editor.utils.save.view;
+package editor.utils.save.view.cases;
 
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.scenes.scene2d.Actor;

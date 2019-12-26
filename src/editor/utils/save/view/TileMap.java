@@ -6,6 +6,9 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import editor.entity.map.Case;
 import editor.entity.map.Map;
+import editor.utils.save.view.cases.CaseListener;
+import editor.utils.save.view.cases.CasePopUp;
+import editor.utils.save.view.cases.CaseView;
 import game.entity.MapLibgdxCell;
 
 import javax.swing.*;

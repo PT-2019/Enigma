@@ -1,8 +1,9 @@
-package editor.utils.save.view;
+package editor.utils.save.view.cases;
 
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import game.entity.MapLibgdxCell;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

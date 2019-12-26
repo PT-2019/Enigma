@@ -1,11 +1,11 @@
-package editor.utils.save.view;
+package editor.utils.save.view.cases;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import editor.utils.save.view.cases.CasePopListener;
 import game.entity.MapLibgdxCell;
-import org.lwjgl.Sys;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,7 +24,7 @@ public class CasePopUp extends JDialog implements WindowListener {
 
     private JLabel eng = new JLabel("Gérer les énigmes");
 
-    private JButton b3 = new JButton("Supprimer");
+    private JButton del = new JButton("Supprimer");
 
     private JLabel info = new JLabel();
 
@@ -41,9 +41,8 @@ public class CasePopUp extends JDialog implements WindowListener {
     public void display(){
         TiledMapTileLayer l = cell.getLayer();
         MapLayers layers = tileMap.getLayers();
-        TiledMapTileLayer layer;
-
         int index = layers.getIndex(l.getName());
+        TiledMapTileLayer layer;
         int x,y;
 
         this.setLayout(new GridLayout(2,3));
@@ -94,12 +93,13 @@ public class CasePopUp extends JDialog implements WindowListener {
             preview.addActionListener(new CasePopListener(layer.getCell(x,y),this));
         }
 
+        layer = (TiledMapTileLayer) layers.get(index);
+
         this.add(eng);
-        this.add(b3);
+        this.add(del);
+        del.addActionListener(new CaseDelete(cell,layer,info));
         this.setVisible(true);
     }
-
-
 
     public void setCell(MapLibgdxCell cell) {
         this.cell = cell;
@@ -108,7 +108,8 @@ public class CasePopUp extends JDialog implements WindowListener {
     public void clean(){
         this.remove(info);
         info = new JLabel();
-        this.remove(b3);
+        this.remove(del);
+        del = new JButton("Supprimer");
         this.remove(next);
         next = new JButton();
 
@@ -141,4 +142,8 @@ public class CasePopUp extends JDialog implements WindowListener {
 
     @Override
     public void windowDeactivated(WindowEvent e) {}
+
+    public MapLibgdxCell getCell() {
+        return cell;
+    }
 }
