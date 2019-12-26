@@ -388,5 +388,9 @@ public class MapLibgdx extends Group{
 	public OrthographicCamera getCamera() {
 		return camera;
 	}
+
+    public OrthogonalTiledMapRenderer getMap() {
+        return map;
+    }
 }
 

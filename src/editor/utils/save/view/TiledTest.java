@@ -16,6 +16,7 @@ import game.ui.Border;
 
 import javax.swing.JComponent;
 
+@Deprecated
 public class TiledTest extends Game {
 
 	OrthographicCamera camera;

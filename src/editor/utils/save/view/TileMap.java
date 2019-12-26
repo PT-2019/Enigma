@@ -10,6 +10,7 @@ import game.entity.MapLibgdxCell;
 
 import javax.swing.*;
 
+@Deprecated
 public class TileMap extends Stage{
 
     private TiledMap map;

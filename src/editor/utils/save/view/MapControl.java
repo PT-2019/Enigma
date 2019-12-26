@@ -9,6 +9,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 
 import javax.swing.*;
 
+@Deprecated
 public class MapControl implements InputProcessor {
 
     private boolean ispush;
@@ -23,7 +24,7 @@ public class MapControl implements InputProcessor {
         camera =(OrthographicCamera) cam;
         ispush = false;
         this.component = component;
-        this.menu = new EntityPopMenu(r,col,cam);
+        this.menu = new EntityPopMenu();
     }
 
     @Override

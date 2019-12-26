@@ -3,6 +3,7 @@ package editor.utils.save.view;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import editor.entity.map.Case;
 
+@Deprecated
 public class CollisionView extends ShapeRenderer {
 
     private boolean visible;
