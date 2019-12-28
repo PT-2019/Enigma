@@ -1,5 +1,6 @@
 package editor.utils.save.view.cases;
 
+import api.enums.Layer;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -74,6 +75,8 @@ public class CasePopUp extends JDialog implements WindowListener {
         MapLayers layers = tileMap.getLayers();
         int index = layers.getIndex(l.getName());
         TiledMapTileLayer layer = null;
+        TiledMapTileLayer collision = (TiledMapTileLayer) tileMap.getLayers().get(Layer.COLLISION.name());
+
         //si il y a un objet content, ou si c'est une entitée
         boolean iscontent = false, isEntity = false, isPassage = false;
 
@@ -133,9 +136,13 @@ public class CasePopUp extends JDialog implements WindowListener {
         displayNavBouton(index,layers,layer);
 
         layer = (TiledMapTileLayer) layers.get(index);
+        TiledMapTileLayer.Cell cellTmp = collision.getCell(cell.getIndex()%layer.getWidth(),cell.getIndex()/layer.getWidth());
+        if (cellTmp.getTile() != null){
+            walkable.setState(true);
+        }
         navigation.add(eng);
         navigation.add(walkable);
-        walkable.addItemListener(new PopItemListener()); //todo ce listener
+        walkable.addItemListener(new PopItemListener(tileMap,cell));
         navigation.add(del);
 
         if (iscontent){
