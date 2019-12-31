@@ -6,6 +6,7 @@ import editor.utils.map.Room;
 import java.awt.Point;
 import java.util.Map;
 
+@Deprecated
 public class RoomView extends ShapeRenderer {
 
     private boolean visible;
