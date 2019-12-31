@@ -1,45 +1,32 @@
 package editor.hud;
 
+import api.hud.components.CustomMenuItem;
 import editor.hud.ui.EnigmaMenuItemUI;
 
-import javax.swing.JMenuItem;
-import java.awt.Graphics;
-
 /**
- * TODO: comment EnigmaMenuItem and write Readme.md in editor.hud
+ * Un élément d'un menu
  *
  * @author Jorys-Micke ALAÏS
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 3.0
+ * @version 4.0
  * @since 3.0
  */
-public class EnigmaMenuItem extends JMenuItem {
+public class EnigmaMenuItem extends CustomMenuItem {
 
-	private EnigmaMenuItemUI ui;
-
+	/**
+	 * Un élément d'un menu
+	 *
+	 * @param title contenu
+	 */
 	public EnigmaMenuItem(String title) {
 		super(title);
-		this.setOpaque(true);
-		this.setMenuItemUI(new EnigmaMenuItemUI());
-	}
-
-	public EnigmaMenuItemUI getMenuItemUI() {
-		return this.ui;
-	}
-
-	public void setMenuItemUI(EnigmaMenuItemUI ui) {
-		this.ui = ui.duplicate();
-		this.setCursor(this.ui.getCursor());
-		this.setFont(this.ui.getFont());
-		this.setFocusPainted(false);
-		this.setBorderPainted(false);
-		super.setUI(this.ui);
+		this.setComponentUI(new EnigmaMenuItemUI());
 	}
 
 	@Override
-	public void paintComponent(Graphics g) {
-		this.ui.paint(g, this);
+	public EnigmaMenuItemUI getComponentUI() {
+		return (EnigmaMenuItemUI) super.getComponentUI();
 	}
 }

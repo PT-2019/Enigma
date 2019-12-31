@@ -1,13 +1,10 @@
 package editor.utils.dnd;
 
+import api.hud.components.CustomWindow;
+import api.utils.annotations.NeedPatch;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.utils.UIUtils;
-import editor.hud.Window;
 import editor.screens.EditorScreen;
-import game.EnigmaGame;
-import game.entity.MapLibgdx;
-import game.screen.TestScreen;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.AbstractButton;
@@ -63,7 +60,7 @@ public class DragAndDropDND extends TransferHandler implements DragGestureListen
 	/**
 	 * La fenêtre, utilisée pour changer le curseur sous window
 	 */
-	private final Window window;
+	private final CustomWindow window;
 	/**
 	 * Sert au transfert handler pour le déplacement
 	 */
@@ -75,7 +72,7 @@ public class DragAndDropDND extends TransferHandler implements DragGestureListen
 
 	//dépôt de l'élément déplacé sur target
 
-	public DragAndDropDND(Window window) {
+	public DragAndDropDND(CustomWindow window) {
 		try {
 			dataFlavor = new DataFlavor[]{new DataFlavor(DataFlavor.javaJVMLocalObjectMimeType)};
 		} catch (ClassNotFoundException e) {
@@ -93,6 +90,7 @@ public class DragAndDropDND extends TransferHandler implements DragGestureListen
 	//fin drag et drop
 
 	@Override
+	@NeedPatch
 	public void drop(DropTargetDropEvent dtde) {
 		dtde.acceptDrop(dtde.getDropAction());
 
@@ -103,7 +101,7 @@ public class DragAndDropDND extends TransferHandler implements DragGestureListen
 			//on le transforme en label
 			EntityContainer component = (EntityContainer) ((DragSourceContext) source).getComponent();
 
-			if (EnigmaGame.getInstance() != null) {
+			/*if (EnigmaGame.getInstance() != null) {
 				//récupère la map
 				MapLibgdx m = ((TestScreen) EnigmaGame.getCurrentScreen()).getMap();
 				//lui transmet le 'label' déplacé
@@ -111,7 +109,7 @@ public class DragAndDropDND extends TransferHandler implements DragGestureListen
 			} else {
 				Gdx.app.error(this.getClass().toString(), "Game isn't loaded !");
 				throw new IllegalStateException("Game isn't loaded !");
-			}
+			}*/
 		} catch (UnsupportedFlavorException | IOException ex) {
 			Gdx.app.error(this.getClass().toString(), "failed dnd drop");
 		}

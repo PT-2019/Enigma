@@ -1,16 +1,13 @@
 package editor.hud.ui;
 
-import javax.swing.BorderFactory;
-import javax.swing.JComponent;
-import javax.swing.JPanel;
-import javax.swing.plaf.basic.BasicComboBoxUI;
+import api.hud.ui.CustomComboBoxUI;
+import editor.hud.EnigmaUIValues;
+
 import java.awt.Color;
 import java.awt.Cursor;
-import java.awt.Font;
-import java.awt.Graphics;
 
 /**
- * TODO: comment EnigmaComboBoxUI and write Readme.md in editor.hud.ui
+ * Style d'une liste déroulante de enigma
  *
  * @author Jorys-Micke ALAÏS
  * @author Louka DOZ
@@ -19,16 +16,7 @@ import java.awt.Graphics;
  * @version 4.0
  * @since 3.0
  */
-public class EnigmaComboBoxUI extends BasicComboBoxUI {
-
-	private Color border;
-	private int borderSize;
-	private boolean[] showedBorders;
-	private Cursor cursor;
-	private EnigmaLabelUI labelUI;
-	private EnigmaButtonUI buttonUI;
-	private EnigmaPopupMenuUI popupUI;
-	private Font font;
+public final class EnigmaComboBoxUI extends CustomComboBoxUI {
 
 	public EnigmaComboBoxUI() {
 		this.border = EnigmaUIValues.ENIGMA_COMBOBOX_BORDER;
@@ -62,104 +50,22 @@ public class EnigmaComboBoxUI extends BasicComboBoxUI {
 	}
 
 	@Override
-	public void paint(Graphics g, JComponent c) {
-		Graphics brush = g.create();
-		JPanel p = (JPanel) c;
-		p.setBorder(BorderFactory.createEmptyBorder());
-		if (this.border != null) {
-			brush.setColor(this.border);
-			brush.fillRect(0, 0, c.getWidth(), c.getHeight());
-			this.paintBorder(p, this.border, this.borderSize, this.showedBorders);
-		}
+	public CustomComboBoxUI duplicate() {
+		return duplicate(this);
 	}
 
-	public void paintBorder(JPanel p, Color borderColor, int borderSize, boolean[] showedBorders) {
-		int[] borders = new int[4];
-		for (int i = 0; i < borders.length; i++) {
-			if (showedBorders[i]) borders[i] = borderSize;
-			else borders[i] = 0;
-		}
-		p.setBorder(BorderFactory.createMatteBorder(borders[EnigmaUIValues.TOP_BORDER], borders[EnigmaUIValues.LEFT_BORDER], borders[EnigmaUIValues.BOTTOM_BORDER], borders[EnigmaUIValues.RIGHT_BORDER], borderColor));
-	}
-
-	public Font getFont() {
-		return font;
-	}
-
-	public void setFont(Font font) {
-		this.font = font;
-	}
-
-	public boolean[] getShowedBorders() {
-		return this.showedBorders;
-	}
-
-	public void setShowedBorders(boolean[] showedBorders) {
-		if (showedBorders.length != 4) throw new IllegalArgumentException("Le tableau doit être de 4 éléments");
-		this.showedBorders = showedBorders;
-	}
-
-	public int getBorderSize() {
-		return borderSize;
-	}
-
-	public void setBorderSize(int borderSize) {
-		if (borderSize < 0) throw new IllegalArgumentException("La taille de la bordure ne peut être négative");
-		this.borderSize = borderSize;
-	}
-
-	public Cursor getCursor() {
-		return this.cursor;
-	}
-
-	public void setCursor(Cursor cursor) {
-		this.cursor = cursor;
-	}
-
-	public Color getBorder() {
-		return border;
-	}
-
-	public void setBorder(Color border) {
-		this.border = border;
-	}
-
-	public EnigmaLabelUI getLabelUI() {
-		return labelUI;
-	}
-
-	public void setLabelUI(EnigmaLabelUI labelUI) {
-		this.labelUI = labelUI;
-	}
-
+	@Override
 	public EnigmaButtonUI getButtonUI() {
-		return buttonUI;
+		return (EnigmaButtonUI) super.getButtonUI();
 	}
 
-	public void setButtonUI(EnigmaButtonUI buttonUI) {
-		this.buttonUI = buttonUI;
+	@Override
+	public EnigmaLabelUI getLabelUI() {
+		return (EnigmaLabelUI) super.getLabelUI();
 	}
 
+	@Override
 	public EnigmaPopupMenuUI getPopupUI() {
-		return popupUI;
-	}
-
-	public void setPopupUI(EnigmaPopupMenuUI popupUI) {
-		this.popupUI = popupUI;
-	}
-
-	public EnigmaComboBoxUI duplicate() {
-		EnigmaComboBoxUI clone = new EnigmaComboBoxUI();
-
-		clone.setCursor(this.getCursor());
-		clone.setBorder(this.getBorder());
-		clone.setBorderSize(this.getBorderSize());
-		clone.setShowedBorders(this.getShowedBorders());
-		clone.setLabelUI(this.getLabelUI());
-		clone.setButtonUI(this.getButtonUI());
-		clone.setPopupUI(this.getPopupUI());
-		clone.setFont(this.getFont());
-
-		return clone;
+		return (EnigmaPopupMenuUI) super.getPopupUI();
 	}
 }

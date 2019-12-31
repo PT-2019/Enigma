@@ -1,14 +1,19 @@
 package starter;
 
 import api.Application;
-import editor.EditorLauncher;
+import api.hud.WindowSize;
+import api.hud.components.CustomWindow;
+import api.utils.LoadGameLibgdxApplication;
 import editor.hud.EnigmaButton;
 import editor.hud.EnigmaLabel;
-import editor.hud.Window;
+import editor.hud.EnigmaPanel;
+import editor.hud.EnigmaWindow;
 import editor.hud.ui.EnigmaLabelUI;
-import game.EnigmaGameLauncher;
+import editor.screens.EditorScreen;
+import editor.utils.lang.GameLanguage;
+import game.EnigmaGame;
 
-import javax.swing.JPanel;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.GridBagConstraints;
@@ -16,73 +21,174 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 /**
- * TODO: comment DesktopLauncher
- * <p>
  * Lance la version pc de l'application
  *
  * @author Jorys-Micke ALAÏS
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 4.0
+ * @version 4.2
  * @since 1.0
  */
 public class DesktopLauncher implements Runnable {
 
+	/**
+	 * Bouton de l'application en cours, null si aucune
+	 *
+	 * @since 4.0
+	 */
 	private static Application RUNNING_APP;
+
+	/**
+	 * Le bouton pour lancer le jeu
+	 *
+	 * @since 4.0
+	 */
 	private static EnigmaButton PLAY_BUTTON;
+
+	/**
+	 * Le bouton pour lancer l'éditeur
+	 *
+	 * @since 4.0
+	 */
 	private static EnigmaButton EDIT_BUTTON;
 
-	public DesktopLauncher() {
+	/**
+	 * l'instance unique du lanceur de la version pc de l'application
+	 *
+	 * @since 4.1
+	 */
+	private static DesktopLauncher launcher;
+	private static EnigmaWindow c;
+	/**
+	 * La fenêtre du lancer
+	 *
+	 * @since 4.1
+	 */
+	private EnigmaWindow window;
+
+	/**
+	 * Crée le lanceur de la version pc de l'application
+	 *
+	 * @since 4.0
+	 */
+	private DesktopLauncher() {
 		RUNNING_APP = null;
-		PLAY_BUTTON = new EnigmaButton();
-		PLAY_BUTTON = new EnigmaButton("Jouer");
+		GameLanguage.init();
+		LoadGameLibgdxApplication.setGame(EnigmaGame.getInstance());
+		PLAY_BUTTON = new EnigmaButton(GameLanguage.gl.getPlayButton());
 		PLAY_BUTTON.addActionListener(new LauncherManagement(EnigmaGameLauncher.getInstance()));
 
-		EDIT_BUTTON = new EnigmaButton();
-		EDIT_BUTTON = new EnigmaButton("Editer une map");
+		EDIT_BUTTON = new EnigmaButton(GameLanguage.gl.getEditorButton());
 		EDIT_BUTTON.addActionListener(new LauncherManagement(EditorLauncher.getInstance()));
 	}
 
+	/**
+	 * Retourne l'instance unique du lanceur de la version pc de l'application
+	 *
+	 * @return l'instance unique du lanceur de la version pc de l'application
+	 * @since 4.1
+	 */
+	public static DesktopLauncher getInstance() {
+		if (DesktopLauncher.launcher == null) {
+			DesktopLauncher.launcher = new DesktopLauncher();
+		}
+		return DesktopLauncher.launcher;
+	}
+
+	/**
+	 * Lance une application
+	 *
+	 * @param app l'application a lancer
+	 * @since 4.0
+	 */
 	public static void startApp(Application app) {
 		if (RUNNING_APP == null) {
+			if (c != null) {
+				c.close();
+				c = null;
+			}
 			RUNNING_APP = app;
 			RUNNING_APP.start();
-			PLAY_BUTTON.setText("Une application est déjà en cours d'execution");
-			EDIT_BUTTON.setText("Une application est déjà en cours d'execution");
+			PLAY_BUTTON.setText(GameLanguage.gl.getRunningMessage());
+			EDIT_BUTTON.setText(GameLanguage.gl.getRunningMessage());
 		}
 	}
 
+	/**
+	 * Ferme l'application en cours
+	 *
+	 * @since 4.0
+	 */
 	public static void closeRunningApp() {
 		if (RUNNING_APP != null) {
 			RUNNING_APP = null;
-			PLAY_BUTTON.setText("Jouer");
-			EDIT_BUTTON.setText("Editer une map");
+			PLAY_BUTTON.setText(GameLanguage.gl.getPlayButton());
+			EDIT_BUTTON.setText(GameLanguage.gl.getEditorButton());
 		}
 	}
 
+	/**
+	 * Ferme toute l'application
+	 *
+	 * @since 4.2
+	 */
+	public static void close() {
+		//Dernière, on quitte
+		if (c != null) {
+			c.close();
+			c = null;
+		}
+		if (RUNNING_APP != null) {
+			RUNNING_APP.stop();
+		}
+
+		launcher.window.dispose();
+		System.exit(0);
+	}
+
+	/**
+	 * Lance le lanceur de la version pc de l'application
+	 *
+	 * @since 1.0
+	 */
 	//cette méthode contient le code de lancement de l'éditeur
 	//après chargement de la libgdx par SwingUtilities.invokeLater(Runnable)
 	@Override
 	public void run() {
+		this.window = new EnigmaWindow();
+		this.window.setSize(WindowSize.HALF_SCREEN_SIZE);
+		this.window.setLocation(CustomWindow.CENTER);
+		this.window.setWindowBackground(Color.DARK_GRAY);
+		this.window.setMinimumSize(WindowSize.HALF_SCREEN_SIZE);
 
-		Window window = new Window();
-		window.setSize(Window.HALF_SCREEN_SIZE);
-		window.setLocation(Window.CENTER);
-		window.setWindowBackground(Color.DARK_GRAY);
+		//Cette chose charge la libgdx au lancement du jeu
+		//on ne peut pas directement l'attacher a this.window
+		c = new EnigmaWindow();
+		c.setIfAskBeforeClosing(false);
 
-		JPanel background = window.getContentSpace();
-		background.setLayout(new GridBagLayout());
+		//Card layout pour cacher le chargement de la libgdx
+		EnigmaPanel background = this.window.getContentSpace();
+		CardLayout cardLayout = new CardLayout();
+		background.setLayout(cardLayout);
+
+		EnigmaPanel p1 = new EnigmaPanel();
+
+		background.add(p1);
+		background.add(new EditorScreen(c, false));
+
+
+		p1.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
 
-		int inset = 50;
+		final int inset = 50;
 
 		EnigmaLabel info = new EnigmaLabel("ENIGMA");
 		EnigmaLabelUI infoUI = new EnigmaLabelUI();
 		Color infoColor = new Color(100, 100, 100);
 		infoUI.setAllBackgrounds(infoColor, infoColor, infoColor);
 		infoUI.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-		info.setLabelUI(infoUI);
+		info.setComponentUI(infoUI);
 		gbc.gridx = 2;
 		gbc.gridy = 1;
 		gbc.gridwidth = 1;
@@ -91,7 +197,7 @@ public class DesktopLauncher implements Runnable {
 		gbc.weightx = 2;
 		gbc.weighty = 1;
 		gbc.insets = new Insets(inset / 2, inset / 2, inset / 2, inset / 2);
-		background.add(info, gbc);
+		p1.add(info, gbc);
 
 		gbc.gridx = 1;
 		gbc.gridy = 1;
@@ -101,7 +207,7 @@ public class DesktopLauncher implements Runnable {
 		gbc.weightx = 1;
 		gbc.weighty = 1;
 		gbc.insets = new Insets(inset, inset, inset, inset / 4);
-		background.add(PLAY_BUTTON, gbc);
+		p1.add(PLAY_BUTTON, gbc);
 
 		gbc.gridx = 1;
 		gbc.gridy = 2;
@@ -111,8 +217,12 @@ public class DesktopLauncher implements Runnable {
 		gbc.weightx = 1;
 		gbc.weighty = 1;
 		gbc.insets = new Insets(inset, inset, inset, inset / 4);
-		background.add(EDIT_BUTTON, gbc);
+		p1.add(EDIT_BUTTON, gbc);
 
-		window.setVisible(true);
+		this.window.setVisible(true);
+	}
+
+	public EnigmaWindow getWindow() {
+		return this.window;
 	}
 }

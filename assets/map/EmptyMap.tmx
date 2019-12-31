@@ -1,20 +1,19 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE map SYSTEM "../../assets/map/mapDtd.dtd">
-<map height="50" infinite="0" nextlayerid="2" nextobjectid="1" orientation="orthogonal" renderorder="right-down" tiledversion="2019.11.12" tileheight="16" tilewidth="16" version="1.2" width="50">
-    <tileset columns="8" firstgid="1" name="0" tilecount="47" tileheight="16" tilewidth="16">
-        <image height="96" source="tiles/ground/dungeon1.png" width="128"/>
-    </tileset>
-    <tileset columns="8" firstgid="49" name="1" tilecount="1992" tileheight="16" tilewidth="16">
-        <image height="3984" source="tiles/pipo.png" width="128"/>
-    </tileset>
-    <tileset columns="8" firstgid="2041" name="2" tilecount="64" tileheight="16" tilewidth="16">
-        <image height="128" source="collision.png" width="128"/>
-    </tileset>
-    <tileset columns="80" firstgid="2105" name="3" tilecount="6400" tileheight="16" tilewidth="16">
-        <image height="1280" source="Player.png" width="1280"/>
-    </tileset>
-    <layer height="50" id="0" name="FLOOR1" width="50">
-        <data encoding="csv">
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="1">
+ <tileset firstgid="1" name="0" tilewidth="16" tileheight="16" tilecount="48" columns="8">
+  <image source="tiles/ground/dungeon1.png" width="128" height="96"/>
+ </tileset>
+ <tileset firstgid="49" name="1" tilewidth="16" tileheight="16" tilecount="1992" columns="8">
+  <image source="tiles/pipo.png" width="128" height="3984"/>
+ </tileset>
+ <tileset firstgid="2041" name="2" tilewidth="16" tileheight="16" tilecount="64" columns="8">
+  <image source="collision.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="2105" name="3" tilewidth="16" tileheight="16" tilecount="6400" columns="80">
+  <image source="Player.png" width="1280" height="1280"/>
+ </tileset>
+ <layer id="2" name="FLOOR1" width="50" height="50">
+  <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -66,9 +65,9 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
-    </layer>
-    <layer height="50" id="1" name="FLOOR2" width="50">
-        <data encoding="csv">
+ </layer>
+ <layer id="1" name="FLOOR2" width="50" height="50">
+  <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -120,9 +119,9 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
-    </layer>
-    <layer height="50" id="2" name="DECORATIONS1" width="50">
-        <data encoding="csv">
+ </layer>
+ <layer id="2" name="DECORATIONS1" width="50" height="50">
+  <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -174,9 +173,9 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
-    </layer>
-    <layer height="50" id="3" name="DECORATIONS2" width="50">
-        <data encoding="csv">
+ </layer>
+ <layer id="3" name="DECORATIONS2" width="50" height="50">
+  <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -228,9 +227,9 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
-    </layer>
-    <layer height="50" id="4" name="COLLISION" width="50">
-        <data encoding="csv">
+ </layer>
+ <layer id="4" name="COLLISION" width="50" height="50">
+  <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -282,5 +281,5 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
-    </layer>
+ </layer>
 </map>

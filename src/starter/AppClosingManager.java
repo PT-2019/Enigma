@@ -4,7 +4,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 /**
- * TODO: comment AppClosingManager and write Readme.md in starter
+ * Ferme un sous-application en appelant {@link DesktopLauncher#closeRunningApp()}
  *
  * @author Jorys-Micke ALAÏS
  * @author Louka DOZ

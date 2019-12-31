@@ -13,7 +13,7 @@ import com.badlogic.gdx.utils.Array;
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  * @version 4.0 23/12/2019
- * @see Entity
+ * @see api.entity.Entity
  * @see game.entity.item.Room
  * @since 4.0 23/12/2019
  */

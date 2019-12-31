@@ -1,13 +1,10 @@
 package editor.hud;
 
-import editor.hud.managers.EnigmaPanelManager;
+import api.hud.components.CustomPanel;
 import editor.hud.ui.EnigmaPanelUI;
 
-import javax.swing.JPanel;
-import java.awt.Graphics;
-
 /**
- * TODO: comment EnigmaPanel and write Readme.md in editor.hud
+ * Un panneau de l'application enigma
  *
  * @author Jorys-Micke ALAÏS
  * @author Louka DOZ
@@ -16,29 +13,15 @@ import java.awt.Graphics;
  * @version 3.0
  * @since 3.0
  */
-public class EnigmaPanel extends JPanel {
-
-	private EnigmaPanelUI ui;
+public class EnigmaPanel extends CustomPanel {
 
 	public EnigmaPanel() {
 		super();
-		this.addMouseListener(new EnigmaPanelManager(this));
-		this.setOpaque(true);
-		this.setPanelUI(new EnigmaPanelUI());
-	}
-
-	public EnigmaPanelUI getPanelUI() {
-		return this.ui;
-	}
-
-	public void setPanelUI(EnigmaPanelUI ui) {
-		this.ui = ui.duplicate();
-		this.setCursor(this.ui.getCursor());
-		super.setUI(this.ui);
+		this.setComponentUI(new EnigmaPanelUI());
 	}
 
 	@Override
-	public void paintComponent(Graphics g) {
-		this.ui.paint(g, this);
+	public EnigmaPanelUI getComponentUI() {
+		return (EnigmaPanelUI) this.ui;
 	}
 }
