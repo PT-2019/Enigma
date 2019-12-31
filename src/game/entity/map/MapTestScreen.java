@@ -2,9 +2,11 @@ package game.entity.map;
 
 import api.entity.GameObject;
 import api.enums.Layer;
+import api.hud.components.CustomWindow;
 import api.utils.Bounds;
 import api.utils.Utility;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.maps.MapLayer;
@@ -20,15 +22,18 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import editor.entity.EntityFactory;
 import editor.entity.EntitySerializable;
+import editor.entity.view.CaseListener;
+import editor.entity.view.CasePopUp;
+import editor.entity.view.CaseView;
 import game.hud.Border;
 import game.hud.CategoriesMenu;
 import org.intellij.lang.annotations.MagicConstant;
 import org.jetbrains.annotations.NotNull;
+import starter.EditorLauncher;
 
+import javax.swing.JComponent;
+import java.awt.Container;
 import java.util.HashMap;
-import javax.swing.*;
-
-import java.awt.*;
 
 import static api.MapsNameUtils.HEIGHT_P;
 import static api.MapsNameUtils.TILE_HEIGHT_P;
@@ -63,7 +68,7 @@ public class MapTestScreen extends AbstractMap {
 	/**
 	 * Fenetre parent qui contient la map
 	 */
-	private final Window window;
+	private final CustomWindow window;
 
 	/**
 	 * Bordure des cases de la map
@@ -109,10 +114,7 @@ public class MapTestScreen extends AbstractMap {
 		this.showGrid = false;
 
 		//bordures
-		this.border = new Border(width,
-				//TODO: height
-				(height * (int) this.map.getUnitScale()),
-				this.tileHeight);
+		this.border = new Border(width, height, this.tileHeight);
 
 		//dimension de la map
 		this.mapWidth = width * tileWidth;
@@ -126,15 +128,12 @@ public class MapTestScreen extends AbstractMap {
 		//setup camera
 		this.camera = new OrthographicCamera();
 		this.camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		//TODO://centre map dans l'écran
-		//		this.camera.position.set(Gdx.graphics.getWidth() / 2f - height / 2f - CategoriesMenu.WIDTH,
-		//				Gdx.graphics.getHeight() / 2f - width / 2f, 0);
-		this.camera.position.set(
-				Gdx.graphics.getWidth()/2f - this.mapWidth/2f - CategoriesMenu.WIDTH,
-				Gdx.graphics.getHeight()/2f - this.mapHeight/2f, 0);
+		//centre map dans l'écran
+		this.camera.position.set(Gdx.graphics.getWidth() / 2f - height / 2f - CategoriesMenu.WIDTH,
+				Gdx.graphics.getHeight() / 2f - width / 2f, 0);
 		this.camera.update();
 
-		this.window = EditorLuncher.getInstance().getWindow();
+		this.window = EditorLauncher.getInstance().getWindow();
 
 		init();
 		createCell(this.window.getContentPane());
@@ -221,8 +220,8 @@ public class MapTestScreen extends AbstractMap {
 			//calcul pour placer les tiles depuis x et y
 			//sachant que y est inversé, on part de la dernière tile et on remonte
 			//pas de problème pour x
-			for (int i = (int) start.y - 1, index = 0; i >= (start.y - entity.getHeight()); i--) {
-				for (int j = (int) start.x; j < start.x + entity.getWidth() && index < entities.size; j++, index++) {
+			for (int i = (int) start.y - 1, index = 0; i >= (start.y - entity.getGameObjectHeight()); i--) {
+				for (int j = (int) start.x; j < start.x + entity.getGameObjectWidth() && index < entities.size; j++, index++) {
 					MapTestScreenCell c = (MapTestScreenCell) tileLayer.getCell(j,i);
 					c.setTile(this.map.getMap().getTileSets().getTile(MathUtils.ceil(entities.get(index))));
 					c.setEntity(entity);
@@ -235,7 +234,7 @@ public class MapTestScreen extends AbstractMap {
 
 	/**
 	 * Cette méthode transforme toutes les cellules de la map en MapLibgdxCell
-	 * @see MapLibgdxCell
+	 * @see MapTestScreenCell
 	 */
 	private void init(){
 		MapLayers layers = map.getMap().getLayers();
@@ -269,7 +268,7 @@ public class MapTestScreen extends AbstractMap {
 		TiledMapTileLayer layer = (TiledMapTileLayer) layers.get(0);
 		for (int y = 0; y < layer.getHeight(); y++) {
 			for (int x = 0; x < layer.getWidth(); x++) {
-				MapLibgdxCell cell =(MapLibgdxCell) layer.getCell(x,y);
+				MapTestScreenCell cell =(MapTestScreenCell) layer.getCell(x,y);
 
 				CaseView actor = new CaseView(cell);
 
@@ -290,10 +289,10 @@ public class MapTestScreen extends AbstractMap {
 		super.act(delta);
 		//update camera
 		//update map's camera from stage's camera
-		Camera c = this.getStage().getCamera();
+		/*Camera c = this.getStage().getCamera();
 		this.camera.position.x = c.position.x;
 		this.camera.position.y = c.position.y;
-		this.camera.update();
+		this.camera.update();*/
 
 		//update borders
 		this.border.setProjectionMatrix(this.camera.combined);

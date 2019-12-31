@@ -1,12 +1,12 @@
-package editor.utils.save.view;
+package editor.entity.view;
 
 import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import editor.entity.map.Case;
-import editor.entity.map.Map;
-import game.entity.MapLibgdxCell;
+import editor.utils.map.Case;
+import editor.utils.map.Map;
+import game.entity.map.MapTestScreenCell;
 
 import javax.swing.*;
 
@@ -42,7 +42,7 @@ public class TileMap extends Stage{
             for (int y = 0; y < layer.getHeight(); y++) {
                 for (int x = 0; x < layer.getWidth(); x++) {
 
-                    MapLibgdxCell cell = new MapLibgdxCell(layer, y * layer.getWidth() + x);
+                    MapTestScreenCell cell = new MapTestScreenCell(layer, y * layer.getWidth() + x);
 
                     currentCase = gameMap.getCase(y * layer.getWidth() + x);
 

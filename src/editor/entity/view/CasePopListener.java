@@ -1,7 +1,7 @@
-package editor.utils.save.view;
+package editor.entity.view;
 
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import game.entity.MapLibgdxCell;
+import game.entity.map.MapTestScreenCell;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,7 +18,7 @@ public class CasePopListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        popUp.setCell((MapLibgdxCell)after);
+        popUp.setCell((MapTestScreenCell)after);
         popUp.clean();
         popUp.display();
     }

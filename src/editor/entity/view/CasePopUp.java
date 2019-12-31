@@ -1,11 +1,10 @@
-package editor.utils.save.view;
+package editor.entity.view;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import game.entity.MapLibgdxCell;
-import org.lwjgl.Sys;
+import game.entity.map.MapTestScreenCell;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,7 +13,7 @@ import java.awt.event.WindowListener;
 
 public class CasePopUp extends JDialog implements WindowListener {
 
-    private MapLibgdxCell cell;
+    private MapTestScreenCell cell;
 
     private TiledMap tileMap;
 
@@ -64,19 +63,19 @@ public class CasePopUp extends JDialog implements WindowListener {
         if (cell.getEntity() == null){
             info.setText("Aucune entité");
         }else{
-            System.out.println(cell.getEntity().getClassName());
+            System.out.println(cell.getEntity().getClass().getName());
             String nom = "";
-            if (cell.getEntity().getClassName().equals("editor.map.Room"))
+            if (cell.getEntity().getClass().getName().equals("editor.map.Room"))
                 nom = "room";
-            else if(cell.getEntity().getClassName().equals("editor.entity.item.Chest"))
+            else if(cell.getEntity().getClass().getName().equals("editor.entity.item.Chest"))
                 nom = "coffre";
-            else if(cell.getEntity().getClassName().equals("editor.entity.item.Pane"))
+            else if(cell.getEntity().getClass().getName().equals("editor.entity.item.Pane"))
                 nom = "Panneau";
-            else if(cell.getEntity().getClassName().equals("editor.entity.item.Switch"))
+            else if(cell.getEntity().getClass().getName().equals("editor.entity.item.Switch"))
                 nom = "Commutateur";
-            else if(cell.getEntity().getClassName().equals("editor.entity.item.Button"))
+            else if(cell.getEntity().getClass().getName().equals("editor.entity.item.Button"))
                 nom = "Bouton";
-            else if(cell.getEntity().getClassName().equals("editor.entity.item.Book"))
+            else if(cell.getEntity().getClass().getName().equals("editor.entity.item.Book"))
                 nom = "Livre";
                 info.setText(nom);
         }
@@ -101,7 +100,7 @@ public class CasePopUp extends JDialog implements WindowListener {
 
 
 
-    public void setCell(MapLibgdxCell cell) {
+    public void setCell(MapTestScreenCell cell) {
         this.cell = cell;
     }
 

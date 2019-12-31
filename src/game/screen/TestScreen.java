@@ -3,6 +3,8 @@ package game.screen;
 import api.LibgdxScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import editor.entity.view.TestMapControl;
 import game.EnigmaGame;
 import game.entity.map.MapTestScreen;
 import game.hud.CategoriesMenu;
@@ -58,13 +60,9 @@ public class TestScreen extends LibgdxScreen {
 		this.hud.addActor(new CategoriesMenu(dnd));
 
 		//cameras
-		this.main.setViewport(new ExtendViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
-		//centre map dans l'écran
-		this.main.getViewport().setCamera(this.map.getCamera());
-		this.main.getCamera().position.set(
-				map.getMapWidth() / 2 - CategoriesMenu.WIDTH / 2f,
-				map.getMapHeight() / 2, 0
-		);
+		//cameras
+	//	this.main.setViewport(new ExtendViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
+		//this.main.getViewport().setCamera(map.getCamera());
 
 		//écoute inputProcessors
 		this.listen(this.dnd);

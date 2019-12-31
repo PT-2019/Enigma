@@ -1,13 +1,12 @@
-package editor.utils.save.view;
+package editor.entity.view;
 
+import api.hud.components.CustomWindow;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import editor.EditorLuncher;
-import editor.window.Window;
-import game.entity.MapLibgdx;
+import game.entity.map.MapTestScreen;
+import starter.EditorLauncher;
 
 public class TestMapControl implements InputProcessor {
 
@@ -22,18 +21,18 @@ public class TestMapControl implements InputProcessor {
     //@Deprecated
     //private JComponent component;
 
-    private Window window;
+    private CustomWindow window;
 
     private OrthographicCamera camera;
 
-    private MapLibgdx map;
+    private MapTestScreen map;
 
-    public TestMapControl(MapLibgdx map) {
+    public TestMapControl(MapTestScreen map) {
         camera = map.getCamera();
         ispush = false;
         this.map = map;
         //changed to window
-        this.window = EditorLuncher.getInstance().getWindow();
+        this.window = EditorLauncher.getInstance().getWindow();
 
         this.menu = new EntityPopMenu(map.getMap().getMap(),camera);
         //TODO: test pour vérifier que cela marche avec une window

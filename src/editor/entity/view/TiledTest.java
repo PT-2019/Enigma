@@ -1,4 +1,4 @@
-package editor.utils.save.view;
+package editor.entity.view;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -10,9 +10,9 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import editor.entity.map.Map;
+import editor.utils.map.Map;
 import editor.utils.save.MapLoader;
-import game.ui.Border;
+import game.hud.Border;
 
 import javax.swing.JComponent;
 
