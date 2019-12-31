@@ -8,6 +8,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.maps.MapLayer;
+import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -25,9 +26,25 @@ import org.intellij.lang.annotations.MagicConstant;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
+import javax.swing.*;
 
-import static api.MapsNameUtils.*;
+import java.awt.*;
 
+import static api.MapsNameUtils.HEIGHT_P;
+import static api.MapsNameUtils.TILE_HEIGHT_P;
+import static api.MapsNameUtils.TILE_WIDTH_P;
+import static api.MapsNameUtils.WIDTH_P;
+
+/**
+ * Map de la libgdx
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 4.4
+ * @since 2.0 5 décembre 2019
+ */
 public class MapTestScreen extends AbstractMap {
 
 	/**
@@ -42,6 +59,12 @@ public class MapTestScreen extends AbstractMap {
 	 * Caméra de la map
 	 */
 	private final OrthographicCamera camera;
+
+	/**
+	 * Fenetre parent qui contient la map
+	 */
+	private final Window window;
+
 	/**
 	 * Bordure des cases de la map
 	 */
@@ -87,7 +110,8 @@ public class MapTestScreen extends AbstractMap {
 
 		//bordures
 		this.border = new Border(width,
-				height,
+				//TODO: height
+				(height * (int) this.map.getUnitScale()),
 				this.tileHeight);
 
 		//dimension de la map
@@ -102,10 +126,18 @@ public class MapTestScreen extends AbstractMap {
 		//setup camera
 		this.camera = new OrthographicCamera();
 		this.camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		//centre map dans l'écran
-		this.camera.position.set(Gdx.graphics.getWidth() / 2f - height / 2f - CategoriesMenu.WIDTH,
-				Gdx.graphics.getHeight() / 2f - width / 2f, 0);
+		//TODO://centre map dans l'écran
+		//		this.camera.position.set(Gdx.graphics.getWidth() / 2f - height / 2f - CategoriesMenu.WIDTH,
+		//				Gdx.graphics.getHeight() / 2f - width / 2f, 0);
+		this.camera.position.set(
+				Gdx.graphics.getWidth()/2f - this.mapWidth/2f - CategoriesMenu.WIDTH,
+				Gdx.graphics.getHeight()/2f - this.mapHeight/2f, 0);
 		this.camera.update();
+
+		this.window = EditorLuncher.getInstance().getWindow();
+
+		init();
+		createCell(this.window.getContentPane());
 
 		this.added = new HashMap<>();
 
@@ -189,13 +221,66 @@ public class MapTestScreen extends AbstractMap {
 			//calcul pour placer les tiles depuis x et y
 			//sachant que y est inversé, on part de la dernière tile et on remonte
 			//pas de problème pour x
-			for (int i = (int) start.y - 1, index = 0; i >= (start.y - entity.getGameObjectHeight()); i--) {
-				for (int j = (int) start.x; j < start.x + entity.getGameObjectWidth() && index < entities.size; j++, index++) {
-					MapTestScreenCell c = new MapTestScreenCell(tileLayer, index);
+			for (int i = (int) start.y - 1, index = 0; i >= (start.y - entity.getHeight()); i--) {
+				for (int j = (int) start.x; j < start.x + entity.getWidth() && index < entities.size; j++, index++) {
+					MapTestScreenCell c = (MapTestScreenCell) tileLayer.getCell(j,i);
 					c.setTile(this.map.getMap().getTileSets().getTile(MathUtils.ceil(entities.get(index))));
 					c.setEntity(entity);
+
 					tileLayer.setCell(j, i, c);
 				}
+			}
+		}
+	}
+
+	/**
+	 * Cette méthode transforme toutes les cellules de la map en MapLibgdxCell
+	 * @see MapLibgdxCell
+	 */
+	private void init(){
+		MapLayers layers = map.getMap().getLayers();
+		for (int i =0; i < 5; i++){
+			TiledMapTileLayer layer = (TiledMapTileLayer) layers.get(i);
+			for (int y = 0; y < layer.getHeight(); y++) {
+				for (int x = 0; x < layer.getWidth(); x++) {
+					MapTestScreenCell cell = new MapTestScreenCell(layer, y * layer.getWidth() + x);
+
+				TiledMapTileLayer.Cell tmp = layer.getCell(x, y);
+
+				if (tmp != null)
+					cell.setTile(tmp.getTile());
+
+				layer.setCell(x, y, cell);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Permet de créer tout les listeners sur les cases
+	 * @param component
+	 */
+	private void createCell(Container component){
+		JComponent jcomponent =(JComponent) component;
+		CasePopUp popUp = new CasePopUp(jcomponent,this.map.getMap());
+		CaseListener listenerCase = new CaseListener(popUp);
+		MapLayers layers = map.getMap().getLayers();
+
+		TiledMapTileLayer layer = (TiledMapTileLayer) layers.get(0);
+		for (int y = 0; y < layer.getHeight(); y++) {
+			for (int x = 0; x < layer.getWidth(); x++) {
+				MapLibgdxCell cell =(MapLibgdxCell) layer.getCell(x,y);
+
+				CaseView actor = new CaseView(cell);
+
+				actor.setBounds(x * layer.getTileWidth(), y * layer.getTileHeight(),
+						layer.getTileWidth(), layer.getTileHeight());
+
+				addActor(actor);
+
+				layer.setCell(x,y,cell);
+
+				actor.addListener(listenerCase);
 			}
 		}
 	}
@@ -205,11 +290,12 @@ public class MapTestScreen extends AbstractMap {
 		super.act(delta);
 		//update camera
 		//update map's camera from stage's camera
-		//Camera c = this.getStage().getCamera();
-		//this.camera.position.x = c.position.x;
-		//this.camera.position.y = c.position.y;
-		//this.camera.update();
-		// update borders
+		Camera c = this.getStage().getCamera();
+		this.camera.position.x = c.position.x;
+		this.camera.position.y = c.position.y;
+		this.camera.update();
+
+		//update borders
 		this.border.setProjectionMatrix(this.camera.combined);
 	}
 
@@ -303,4 +389,8 @@ public class MapTestScreen extends AbstractMap {
 	public HashMap<Vector2, GameObject> getEntities() {
 		return added;
 	}
+
+    public OrthogonalTiledMapRenderer getMap() {
+        return map;
+    }
 }

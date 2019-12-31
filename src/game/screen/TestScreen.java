@@ -7,6 +7,16 @@ import game.EnigmaGame;
 import game.entity.map.MapTestScreen;
 import game.hud.CategoriesMenu;
 
+/**
+ * TestScreen de la libgdx dans l'éditeur
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 4.4
+ * @since 2.0
+ */
 public class TestScreen extends LibgdxScreen {
 
 	private static String MAP_PATH = "assets/map/EmptyMap.tmx";
@@ -27,11 +37,13 @@ public class TestScreen extends LibgdxScreen {
 	 */
 	private MapTestScreen map;
 
+	/**
+	 * Prépare les stages, la map et la caméra
+	 */
 	@Override
 	public void init() {
-		main = new Stage();
-		hud = new Stage();
-		dnd = new Stage();
+		Gdx.gl.glClearColor(255, 255, 255, 255);
+
 		//map
 		this.main = new Stage();
 		this.map = new MapTestScreen(MAP_PATH, 1f);
@@ -46,14 +58,19 @@ public class TestScreen extends LibgdxScreen {
 		this.hud.addActor(new CategoriesMenu(dnd));
 
 		//cameras
-		//this.main.setViewport(new ExtendViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
-		//this.main.getViewport().setCamera(map.getCamera());
+		this.main.setViewport(new ExtendViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
+		//centre map dans l'écran
+		this.main.getViewport().setCamera(this.map.getCamera());
+		this.main.getCamera().position.set(
+				map.getMapWidth() / 2 - CategoriesMenu.WIDTH / 2f,
+				map.getMapHeight() / 2, 0
+		);
 
 		//écoute inputProcessors
 		this.listen(this.dnd);
 		this.listen(this.hud);
 		this.listen(this.main);
-		//TODO:this.listen(new TestMapControl(map));
+		this.listen(new TestMapControl(map));
 	}
 
 	@Override
@@ -62,8 +79,8 @@ public class TestScreen extends LibgdxScreen {
 		Gdx.gl.glClearColor(255, 255, 255, 255);
 	}
 
-	@Override
-	public void input() {//géré par input processor
+	@Override//géré par input processor
+	public void input() {
 	}
 
 	@Override
