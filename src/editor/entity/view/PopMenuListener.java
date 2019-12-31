@@ -66,7 +66,7 @@ public class PopMenuListener implements ItemListener, ActionListener {
         }else{
             float x = camera.position.x;
             float y = camera.position.y;
-            ((OrthographicCamera) camera).setToOrtho(false, Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
+            ((OrthographicCamera) camera).setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
             ((OrthographicCamera) camera).zoom = 1;
             //pour garder la caméra a la même position
             camera.position.x = x;

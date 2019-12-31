@@ -128,9 +128,9 @@ public class MapTestScreen extends AbstractMap {
 		//setup camera
 		this.camera = new OrthographicCamera();
 		this.camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		//centre map dans l'écran
-		this.camera.position.set(Gdx.graphics.getWidth() / 2f - height / 2f - CategoriesMenu.WIDTH,
-				Gdx.graphics.getHeight() / 2f - width / 2f, 0);
+		this.camera.position.set(
+				Gdx.graphics.getWidth()/2f - this.mapWidth/2f - CategoriesMenu.WIDTH,
+				Gdx.graphics.getHeight()/2f - this.mapHeight/2f, 0);
 		this.camera.update();
 
 		this.window = EditorLauncher.getInstance().getWindow();
@@ -289,10 +289,10 @@ public class MapTestScreen extends AbstractMap {
 		super.act(delta);
 		//update camera
 		//update map's camera from stage's camera
-		/*Camera c = this.getStage().getCamera();
+		Camera c = this.getStage().getCamera();
 		this.camera.position.x = c.position.x;
 		this.camera.position.y = c.position.y;
-		this.camera.update();*/
+		this.camera.update();
 
 		//update borders
 		this.border.setProjectionMatrix(this.camera.combined);

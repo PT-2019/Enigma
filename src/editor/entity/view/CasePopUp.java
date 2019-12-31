@@ -6,8 +6,12 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import game.entity.map.MapTestScreenCell;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import java.awt.GridLayout;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
@@ -27,10 +31,10 @@ public class CasePopUp extends JDialog implements WindowListener {
 
     private JLabel info = new JLabel();
 
-    public CasePopUp(JComponent component,TiledMap tiledMap){
+    public CasePopUp(JComponent component, TiledMap tiledMap){
         super((JFrame)component.getRootPane().getParent());
         this.setSize(300,300);
-        this.setLocation(Gdx.graphics.getWidth()/2,Gdx.graphics.getHeight()/2);
+        this.setLocation(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight()/2);
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.addWindowListener(this);
@@ -63,19 +67,19 @@ public class CasePopUp extends JDialog implements WindowListener {
         if (cell.getEntity() == null){
             info.setText("Aucune entité");
         }else{
-            System.out.println(cell.getEntity().getClass().getName());
+            System.out.println(cell.getEntity().getClass());
             String nom = "";
-            if (cell.getEntity().getClass().getName().equals("editor.map.Room"))
+            if (cell.getEntity().getClassName().equals("editor.map.Room"))
                 nom = "room";
-            else if(cell.getEntity().getClass().getName().equals("editor.entity.item.Chest"))
+            else if(cell.getEntity().getClassName().equals("editor.entity.item.Chest"))
                 nom = "coffre";
-            else if(cell.getEntity().getClass().getName().equals("editor.entity.item.Pane"))
+            else if(cell.getEntity().getClassName().equals("editor.entity.item.Pane"))
                 nom = "Panneau";
-            else if(cell.getEntity().getClass().getName().equals("editor.entity.item.Switch"))
+            else if(cell.getEntity().getClassName().equals("editor.entity.item.Switch"))
                 nom = "Commutateur";
-            else if(cell.getEntity().getClass().getName().equals("editor.entity.item.Button"))
+            else if(cell.getEntity().getClassName().equals("editor.entity.item.Button"))
                 nom = "Bouton";
-            else if(cell.getEntity().getClass().getName().equals("editor.entity.item.Book"))
+            else if(cell.getEntity().getClassName().equals("editor.entity.item.Book"))
                 nom = "Livre";
                 info.setText(nom);
         }

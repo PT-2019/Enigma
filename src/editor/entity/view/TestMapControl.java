@@ -35,8 +35,6 @@ public class TestMapControl implements InputProcessor {
         this.window = EditorLauncher.getInstance().getWindow();
 
         this.menu = new EntityPopMenu(map.getMap().getMap(),camera);
-        //TODO: test pour vérifier que cela marche avec une window
-
     }
 
     @Override
@@ -64,7 +62,7 @@ public class TestMapControl implements InputProcessor {
             camera.update();
             return true;
         }
-        if(keycode ==Input.Keys.UP){
+        if(keycode == Input.Keys.UP){
             camera.translate(0,CAMERA_OFFSET);
             camera.update();
             return true;
@@ -92,7 +90,7 @@ public class TestMapControl implements InputProcessor {
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
         if (button == Input.Buttons.RIGHT){
-            menu.show(this.window, Gdx.input.getX(),Gdx.input.getY());
+            menu.show(this.window, Gdx.input.getX(), Gdx.input.getY());
             return true;
         }
         return false;

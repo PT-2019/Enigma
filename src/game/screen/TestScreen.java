@@ -60,9 +60,14 @@ public class TestScreen extends LibgdxScreen {
 		this.hud.addActor(new CategoriesMenu(dnd));
 
 		//cameras
-		//cameras
-	//	this.main.setViewport(new ExtendViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
-		//this.main.getViewport().setCamera(map.getCamera());
+		this.main.setViewport(new ExtendViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
+		//centre map dans l'écran
+		this.main.getViewport().setCamera(this.map.getCamera());
+		this.main.getCamera().position.set(
+				map.getMapWidth() / 2 - CategoriesMenu.WIDTH / 2f,
+				map.getMapHeight() / 2, 0
+		);
+		System.out.println("viewport"+this.main.getCamera().position);
 
 		//écoute inputProcessors
 		this.listen(this.dnd);

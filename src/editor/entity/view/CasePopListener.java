@@ -11,14 +11,14 @@ public class CasePopListener implements ActionListener {
 
     private CasePopUp popUp;
 
-    public CasePopListener(TiledMapTileLayer.Cell after,CasePopUp popup){
+    public CasePopListener(TiledMapTileLayer.Cell after, CasePopUp popup){
         this.after = after;
         popUp = popup;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        popUp.setCell((MapTestScreenCell)after);
+        popUp.setCell((MapTestScreenCell) after);
         popUp.clean();
         popUp.display();
     }

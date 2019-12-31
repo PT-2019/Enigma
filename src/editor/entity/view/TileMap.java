@@ -8,10 +8,10 @@ import editor.utils.map.Case;
 import editor.utils.map.Map;
 import game.entity.map.MapTestScreenCell;
 
-import javax.swing.*;
+import javax.swing.JComponent;
 
 @Deprecated
-public class TileMap extends Stage{
+public class TileMap extends Stage {
 
     private TiledMap map;
 
