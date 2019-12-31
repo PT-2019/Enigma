@@ -1,5 +1,6 @@
 package api.utils;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.lwjgl.LwjglAWTCanvas;
 
 import java.awt.event.WindowAdapter;
@@ -52,6 +53,17 @@ public final class CloseWindowLibgdxApplication extends WindowAdapter {
 			this.application.exit();
 		}
 	}
+
+	public void stop(){
+		if (this.application != null)
+			this.application.stop();
+	}
+
+	public void exit(){
+		if (this.application != null)
+			this.application.exit();
+	}
+
 
 	public LwjglAWTCanvas getApplication() {
 		return application;

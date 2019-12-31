@@ -4,6 +4,7 @@ import editor.hud.EnigmaUIValues;
 
 import javax.swing.JCheckBox;
 import javax.swing.plaf.basic.BasicCheckBoxUI;
+import java.awt.Color;
 
 /**
  * Une classe de style pour les checkbox fait rapidement
@@ -25,6 +26,16 @@ public final class EnigmaJCheckBoxUI extends BasicCheckBoxUI {
 		EnigmaJCheckBoxUI ui = new EnigmaJCheckBoxUI();
 
 		c.setBackground(EnigmaUIValues.ENIGMA_BUTTON_BACKGROUND);
+		c.setForeground(EnigmaUIValues.ENIGMA_BUTTON_FOREGROUND);
+		c.setFont(EnigmaUIValues.ENIGMA_FONT);
+
+		return ui;
+	}
+
+	public static EnigmaJCheckBoxUI createUI(JCheckBox c, Color background) {
+		EnigmaJCheckBoxUI ui = new EnigmaJCheckBoxUI();
+
+		c.setBackground(background);
 		c.setForeground(EnigmaUIValues.ENIGMA_BUTTON_FOREGROUND);
 		c.setFont(EnigmaUIValues.ENIGMA_FONT);
 

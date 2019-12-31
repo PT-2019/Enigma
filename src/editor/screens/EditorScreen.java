@@ -12,16 +12,15 @@ import editor.hud.EnigmaButton;
 import editor.hud.EnigmaPanel;
 import editor.hud.EnigmaUIValues;
 import editor.hud.EnigmaWindow;
+import editor.hud.ui.EnigmaButtonUI;
 import editor.hud.ui.EnigmaJCheckBoxUI;
 import editor.hud.ui.EnigmaJComboBoxUI;
 import editor.screens.menus.BarMenu;
-import editor.screens.menus.OutilAction;
+import editor.screens.menus.listeners.OutilAction;
 import editor.utils.dnd.DragAndDropDND;
 import editor.utils.dnd.EntityContainer;
-import editor.utils.lang.GameLanguage;
 import org.intellij.lang.annotations.MagicConstant;
 
-import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -65,15 +64,6 @@ public class EditorScreen extends JPanel {
 	public EditorScreen(EnigmaWindow parent, boolean bar) {
 		this.setBackground(Color.RED);
 		this.setLayout(new BorderLayout());
-
-		//génère une map vide
-		//EmptyMapGenerator.generate(TestScreen.getMapPath(), 50, 50);
-
-		//charge entités
-		EntityFactory.loadEntities("assets/rooms.json");
-		EntityFactory.loadEntities("assets/items.json");
-		EntityFactory.loadEntities("assets/decors.json");
-		EntityFactory.loadEntities("assets/entities.json");
 
 		//création de la barre d'outils
 		EnigmaPanel outilBar = this.loadOutilBar(parent);
@@ -124,10 +114,12 @@ public class EditorScreen extends JPanel {
 	 * @since 3.1 19 décembre 2019
 	 */
 	private EnigmaPanel loadOutilBar(EnigmaWindow window) {
+		final Color COLOR = Color.decode("#bfbfbf");
 		OutilAction listener = new OutilAction(window);
 
 		//création de la zone de la barre d'outils
 		EnigmaPanel outilBar = new EnigmaPanel();
+		outilBar.getComponentUI().setAllBackgrounds(COLOR, COLOR, COLOR);
 
 		//zoom
 		String[] elements = new String[]{"25%", "50%", "100%", "125%", "150%", "175%", "200%"};
@@ -137,44 +129,39 @@ public class EditorScreen extends JPanel {
 		//checkbox fit et in game
 		JCheckBox fit = new JCheckBox("fit");
 		fit.setToolTipText("toute la map est affichée dans l'écran");
-		fit.setUI(EnigmaJCheckBoxUI.createUI(fit));
+		fit.setUI(EnigmaJCheckBoxUI.createUI(fit, COLOR));
+		fit.setForeground(Color.BLACK);
 
 		JCheckBox inGame = new JCheckBox("in game");
 		inGame.setToolTipText("zoom en jeu");
-		inGame.setUI(EnigmaJCheckBoxUI.createUI(inGame));
+		inGame.setUI(EnigmaJCheckBoxUI.createUI(inGame, COLOR));
+		inGame.setForeground(Color.BLACK);
+
+		EnigmaButtonUI ui = new EnigmaButtonUI();
+		ui.setHoveredShowedBorders(EnigmaUIValues.ALL_BORDERS_SHOWED);
+		ui.setSelectedHoveredShowedBorders(EnigmaUIValues.ALL_BORDERS_SHOWED);
+		ui.setShowedBorders(EnigmaUIValues.ALL_BORDERS_SHOWED);
+		ui.setAllBorders(COLOR, EnigmaUIValues.ENIGMA_BUTTON_HOVERED_BORDER, EnigmaUIValues.ENIGMA_BUTTON_PRESSED_BORDER);
+		ui.setAllBackgrounds(COLOR, COLOR, COLOR);
+
+		Class<? extends ActionListener> c;
 
 		//reste de la barre
-		boolean isLong = GameLanguage.gl.getLanguage().isLong;
-
 		for (Outil o : Outil.values()) {
-			/*EnigmaButton a;
-			if(!isLong)
-			 a = new EnigmaButton(o.name);
-			else {
-				a = new EnigmaButton();
-				a.setToolTipText(o.name);
-			}
-			a.getComponentUI().setSelectedShowedBorders(EnigmaUIValues.ALL_BORDER_HIDDEN);
-			a.setIcon(o.icon);
-			Class<? extends ActionListener> c = o.actionListener;
-			if(c != null){
-				a.addActionListener((ActionListener) Utility.instance(c));
-			} else {
-				a.addActionListener(listener);
-			}
-			outilBar.add(a);
-			if (o.glue) {
-				outilBar.add(Box.createHorizontalGlue());
-			}*/
 			EnigmaButton a = new EnigmaButton();
 			a.setToolTipText(o.name);
-			a.getComponentUI().setHoveredShowedBorders(EnigmaUIValues.ALL_BORDER_HIDDEN);
-			a.getComponentUI().setShowedBorders(EnigmaUIValues.ALL_BORDER_HIDDEN);
 			a.setIcon(o.icon);
-			Class<? extends ActionListener> c = o.actionListener;
-			if(c != null) a.addActionListener((ActionListener) Utility.instance(c));
+			a.setUI(ui);
+			c = o.actionListener;
+			if(c != null) a.addActionListener((ActionListener) Utility.instance(c, window));
 			else a.addActionListener(listener);
 			outilBar.add(a);
+			if(o.glue){
+				EnigmaButton sep = new EnigmaButton();
+				sep.setUI(ui);
+				sep.setIcon(Outil.SEPARATOR);
+				outilBar.add(sep);
+			}
 		}
 
 		outilBar.add(zoom);

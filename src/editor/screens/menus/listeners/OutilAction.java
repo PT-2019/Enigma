@@ -1,4 +1,4 @@
-package editor.screens.menus;
+package editor.screens.menus.listeners;
 
 import api.enums.EnigmaScreens;
 import api.enums.Outil;
@@ -30,6 +30,7 @@ import static javafx.stage.FileChooser.ExtensionFilter;
  * @see editor.screens.EditorScreen
  * @since 3.0 19 décembre 2019
  */
+@Deprecated
 public class OutilAction implements ActionListener {
 
 	private static final ExtensionFilter extensions = new ExtensionFilter("Fichier map .tmx",

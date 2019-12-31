@@ -4,6 +4,7 @@ import api.Application;
 import api.enums.EnigmaScreens;
 import api.hud.WindowSize;
 import api.hud.components.CustomWindow;
+import editor.entity.EntityFactory;
 import editor.hud.EnigmaWindow;
 import editor.screens.EditorScreen;
 import game.EnigmaGame;
@@ -39,6 +40,11 @@ public class EditorLauncher implements Application {
 		this.window.addWindowListener(new AppClosingManager());
 		this.window.setSize(WindowSize.FULL_SCREEN_SIZE);
 		this.editorScreen = null;
+		//charge entités
+		EntityFactory.loadEntities("assets/rooms.json");
+		EntityFactory.loadEntities("assets/items.json");
+		EntityFactory.loadEntities("assets/decors.json");
+		EntityFactory.loadEntities("assets/entities.json");
 	}
 
 	/**

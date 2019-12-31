@@ -617,7 +617,6 @@ public class CustomOptionPane implements OptionPaneStyle {
 				}
 				questionComponent.add((Component) o);
 			}
-			System.out.println(sum);
 			((GridLayout)questionComponent.getLayout()).setRows(sum);
 			((GridLayout)questionComponent.getLayout()).setColumns(1);
 		}
