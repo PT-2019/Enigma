@@ -21,6 +21,7 @@ import game.hud.CategoriesMenu;
  */
 public class TestScreen extends LibgdxScreen {
 
+	//TODO: si tu veux charger une map c'est ici sans passer par le launcher
 	private static String MAP_PATH = "assets/map/EmptyMap.tmx";
 	/**
 	 * Stage de la map et du jeu
@@ -46,11 +47,18 @@ public class TestScreen extends LibgdxScreen {
 	public void init() {
 		Gdx.gl.glClearColor(255, 255, 255, 255);
 
+		boolean noMap = false;
+
+		if(MAP_PATH == null || MAP_PATH.length() == 0)
+			noMap = true;
+
 		//map
 		this.main = new Stage();
-		this.map = new MapTestScreen(MAP_PATH, 1f);
-		this.map.showGrid(true);
-		this.main.addActor(this.map);
+		if(!noMap) {
+			this.map = new MapTestScreen(MAP_PATH, 1f);
+			this.map.showGrid(true);
+			this.main.addActor(this.map);
+		}
 
 		//Drag and drop
 		this.dnd = new Stage();
@@ -60,20 +68,22 @@ public class TestScreen extends LibgdxScreen {
 		this.hud.addActor(new CategoriesMenu(dnd));
 
 		//cameras
-		this.main.setViewport(new ExtendViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
-		//centre map dans l'écran
-		this.main.getViewport().setCamera(this.map.getCamera());
-		this.main.getCamera().position.set(
-				map.getMapWidth() / 2 - CategoriesMenu.WIDTH / 2f,
-				map.getMapHeight() / 2, 0
-		);
-		System.out.println("viewport"+this.main.getCamera().position);
+		if(!noMap) {
+			this.main.setViewport(new ExtendViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
+			//centre map dans l'écran
+			this.main.getViewport().setCamera(this.map.getCamera());
+			this.main.getCamera().position.set(
+					map.getMapWidth() / 2 - CategoriesMenu.WIDTH / 2f,
+					map.getMapHeight() / 2, 0
+			);
+		}
 
 		//écoute inputProcessors
 		this.listen(this.dnd);
 		this.listen(this.hud);
 		this.listen(this.main);
-		this.listen(new TestMapControl(map));
+		if(!noMap)
+			this.listen(new TestMapControl(map));
 	}
 
 	@Override

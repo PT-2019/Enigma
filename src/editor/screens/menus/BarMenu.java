@@ -1,15 +1,20 @@
 package editor.screens.menus;
 
 import api.enums.EnigmaScreens;
+import api.hud.components.CustomWindow;
 import com.badlogic.gdx.Gdx;
 import editor.hud.EnigmaMenu;
 import editor.hud.EnigmaMenuBar;
 import editor.hud.EnigmaMenuItem;
+import editor.hud.EnigmaWindow;
+import editor.screens.menus.listeners.CreateListener;
+import editor.screens.menus.listeners.OpenListener;
 import game.EnigmaGame;
 
 public class BarMenu extends EnigmaMenuBar {
 	//1er onglet
 	private EnigmaMenu file = new EnigmaMenu("File");
+	private EnigmaMenuItem create = new EnigmaMenuItem("Nouveau");
 	private EnigmaMenuItem ouvrir = new EnigmaMenuItem("Ouvrir");
 	private EnigmaMenuItem save = new EnigmaMenuItem("Sauvegarder");
 	private EnigmaMenuItem map = new EnigmaMenuItem("Exporter la map");
@@ -26,7 +31,8 @@ public class BarMenu extends EnigmaMenuBar {
 	private EnigmaMenuItem doc = new EnigmaMenuItem("Documentation");
 	private EnigmaMenuItem support = new EnigmaMenuItem("Support");
 
-	public BarMenu() {
+	public BarMenu(EnigmaWindow window) {
+		this.file.add(create);
 		this.file.add(ouvrir);
 		this.file.add(save);
 		this.file.add(map);
@@ -37,19 +43,6 @@ public class BarMenu extends EnigmaMenuBar {
 		this.run.add(runJeu);
 		this.run.add(finJeu);
 
-		runJeu.addActionListener((e -> {
-			Gdx.app.postRunnable(() -> EnigmaGame.setScreen(EnigmaScreens.GAME.name()));
-			finJeu.setEnabled(true);
-			runJeu.setEnabled(false);
-		}));
-		//Vérifier demande pas la fin avant le début
-		finJeu.addActionListener((e -> {
-			Gdx.app.postRunnable(() -> EnigmaGame.setScreen(EnigmaScreens.TEST.name()));
-			runJeu.setEnabled(true);
-			finJeu.setEnabled(false);
-		}));
-		finJeu.setEnabled(false);
-
 		this.help.add(doc);
 		this.help.add(support);
 
@@ -57,5 +50,23 @@ public class BarMenu extends EnigmaMenuBar {
 		this.add(edit);
 		this.add(run);
 		this.add(help);
+
+		//listeners
+
+		this.create.addActionListener(new CreateListener(window));
+		this.ouvrir.addActionListener(new OpenListener(window));
+		this.save.addActionListener(new OpenListener(window));
+
+		this.runJeu.addActionListener((e -> {
+			Gdx.app.postRunnable(() -> EnigmaGame.setScreen(EnigmaScreens.GAME.name()));
+			this.finJeu.setEnabled(true);
+			this.runJeu.setEnabled(false);
+		}));
+		this.finJeu.addActionListener((e -> {
+			Gdx.app.postRunnable(() -> EnigmaGame.setScreen(EnigmaScreens.TEST.name()));
+			this.runJeu.setEnabled(true);
+			this.finJeu.setEnabled(false);
+		}));
+		this.finJeu.setEnabled(false);
 	}
 }

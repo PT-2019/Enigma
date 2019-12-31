@@ -60,7 +60,6 @@ public class EditorScreen extends JPanel {
 	 * @param parent fenêtre swing
 	 * @since 4.2
 	 */
-	@NeedPatch
 	public EditorScreen(EnigmaWindow parent, boolean bar) {
 		this.setBackground(Color.RED);
 		this.setLayout(new BorderLayout());
@@ -77,7 +76,7 @@ public class EditorScreen extends JPanel {
 		this.add(map, BorderLayout.CENTER);
 
 		if (bar)
-			parent.addToMenuBar(new BarMenu());
+			parent.addToMenuBar(new BarMenu(parent));
 	}
 
 	/**
