@@ -4,6 +4,7 @@ import api.Application;
 import api.hud.WindowSize;
 import api.hud.components.CustomWindow;
 import api.utils.LoadGameLibgdxApplication;
+import api.utils.Utility;
 import editor.hud.EnigmaButton;
 import editor.hud.EnigmaLabel;
 import editor.hud.EnigmaPanel;
@@ -156,6 +157,7 @@ public class DesktopLauncher implements Runnable {
 	//après chargement de la libgdx par SwingUtilities.invokeLater(Runnable)
 	@Override
 	public void run() {
+		final String OS = "Linux";
 		this.window = new EnigmaWindow();
 		this.window.setSize(WindowSize.HALF_SCREEN_SIZE);
 		this.window.setLocation(CustomWindow.CENTER);
@@ -175,7 +177,10 @@ public class DesktopLauncher implements Runnable {
 		EnigmaPanel p1 = new EnigmaPanel();
 
 		background.add(p1);
-		background.add(new EditorScreen(c, false));
+		if(!System.getProperty("os.name").equals(OS))
+			background.add(new EditorScreen(c, false));
+		else
+			c = null;
 
 
 		p1.setLayout(new GridBagLayout());

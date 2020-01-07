@@ -45,45 +45,49 @@ public class TestScreen extends LibgdxScreen {
 	 */
 	@Override
 	public void init() {
-		Gdx.gl.glClearColor(255, 255, 255, 255);
+		try {
+			Gdx.gl.glClearColor(255, 255, 255, 255);
 
-		boolean noMap = false;
+			boolean noMap = false;
 
-		if(MAP_PATH == null || MAP_PATH.length() == 0)
-			noMap = true;
+			if(MAP_PATH == null || MAP_PATH.length() == 0)
+				noMap = true;
 
-		//map
-		this.main = new Stage();
-		if(!noMap) {
-			this.map = new MapTestScreen(MAP_PATH, 1f);
-			this.map.showGrid(true);
-			this.main.addActor(this.map);
+			//map
+			this.main = new Stage();
+			if(!noMap) {
+				this.map = new MapTestScreen(MAP_PATH, 1f);
+				this.map.showGrid(true);
+				this.main.addActor(this.map);
+			}
+
+			//Drag and drop
+			this.dnd = new Stage();
+
+			//hud (interface)
+			this.hud = new Stage();
+			this.hud.addActor(new CategoriesMenu(dnd));
+
+			//cameras
+			if(!noMap) {
+				this.main.setViewport(new ExtendViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
+				//centre map dans l'écran
+				this.main.getViewport().setCamera(this.map.getCamera());
+				this.main.getCamera().position.set(
+						map.getMapWidth() / 2 - CategoriesMenu.WIDTH / 2f,
+						map.getMapHeight() / 2, 0
+				);
+			}
+
+			//écoute inputProcessors
+			this.listen(this.dnd);
+			this.listen(this.hud);
+			this.listen(this.main);
+			if(!noMap)
+				this.listen(new TestMapControl(map));
+		} catch (Exception e){
+			System.out.println(e+" ");
 		}
-
-		//Drag and drop
-		this.dnd = new Stage();
-
-		//hud (interface)
-		this.hud = new Stage();
-		this.hud.addActor(new CategoriesMenu(dnd));
-
-		//cameras
-		if(!noMap) {
-			this.main.setViewport(new ExtendViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
-			//centre map dans l'écran
-			this.main.getViewport().setCamera(this.map.getCamera());
-			this.main.getCamera().position.set(
-					map.getMapWidth() / 2 - CategoriesMenu.WIDTH / 2f,
-					map.getMapHeight() / 2, 0
-			);
-		}
-
-		//écoute inputProcessors
-		this.listen(this.dnd);
-		this.listen(this.hud);
-		this.listen(this.main);
-		if(!noMap)
-			this.listen(new TestMapControl(map));
 	}
 
 	@Override
