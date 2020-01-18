@@ -17,8 +17,6 @@ import editor.utils.save.view.cases.CaseView;
 import editor.utils.save.view.cases.SpecialPopUp;
 import game.entity.MapLibgdxCell;
 
-import javax.xml.bind.Marshaller;
-
 /**
  * Cette classe permet d'écouter les cliques de la souris sur les cases
  * de la map.
