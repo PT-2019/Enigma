@@ -1,9 +1,9 @@
 package editor.enigma.operation;
 
-import api.entity.Entity;
+import api.entity.interfaces.Entity;
 import api.enums.Attributes;
 import editor.entity.IDFactory;
-import editor.entity.Player;
+import editor.entity.player.Player;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -42,7 +42,7 @@ public abstract class Operation {
 		IDFactory idFactory = IDFactory.getInstance();
 		if (attributes.containsKey(Attributes.ENTITY))
 			this.entity = (Entity) idFactory.getObject(Integer.parseInt((String) attributes.get(Attributes.ENTITY)));
-		else throw new IllegalArgumentException("Attribut \"entity\" abscent");
+		else throw new IllegalArgumentException("Attribut \"entity\" absent");
 	}
 
 	/**

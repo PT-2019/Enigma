@@ -1,9 +1,13 @@
 package api.entity;
 
-import api.entity.utils.IDInterface;
+import api.entity.interfaces.Entity;
+import api.entity.interfaces.IDInterface;
 import api.enums.Layer;
+import api.enums.TypeEntite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+
+import java.util.EnumMap;
 
 /**
  * Un object du jeu
@@ -13,7 +17,7 @@ import com.badlogic.gdx.utils.Array;
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  * @version 4.0 23/12/2019
- * @see api.entity.Entity
+ * @see Entity
  * @see game.entity.item.Room
  * @since 4.0 23/12/2019
  */
@@ -80,7 +84,10 @@ public interface GameObject extends IDInterface {
 	 */
 	void setTiles(Array<Float> texture, Layer layer);
 
-	@Deprecated
-	//TODO: ,,am%ZFe,
-	default String getClassName(){ return ""; }
+	/**
+	 * Renvoi les différentes classes implémenté par l'entité
+	 * @return EnumMap<TypeEntite,Boolean>
+	 * @since 4.0
+	 */
+	EnumMap<TypeEntite,Boolean> getImplements();
 }

@@ -1,6 +1,9 @@
 package game.entity.item;
 
-import api.entity.utils.Activatable;
+import api.entity.interfaces.Activatable;
+import api.enums.TypeEntite;
+
+import java.util.EnumMap;
 
 /**
  * Un bouton
@@ -9,9 +12,10 @@ import api.entity.utils.Activatable;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
+ *
  * @version 4.0 24/12/2019
- * @see api.entity.utils.Activatable
  * @since 2.0 24/12/2019
+ * @see api.entity.interfaces.Activatable
  */
 public class Switch extends Activatable {
 
@@ -57,5 +61,15 @@ public class Switch extends Activatable {
 	@Override
 	public String toString() {
 		return "Switch{" + "activated=" + activated + ", enigmas=" + enigmas + ", id=" + id + '}';
+	}
+
+	@Override
+	public EnumMap<TypeEntite, Boolean> getImplements() {
+		EnumMap<TypeEntite,Boolean> imp = new EnumMap<>(TypeEntite.class);
+		imp.put(TypeEntite.item,true);
+		imp.put(TypeEntite.activatable,true);
+		imp.put(TypeEntite.lockable,false);
+		imp.put(TypeEntite.passage,false);
+		return imp;
 	}
 }

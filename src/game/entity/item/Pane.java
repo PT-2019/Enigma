@@ -1,8 +1,16 @@
 package game.entity.item;
 
-import api.entity.AbstractItem;
-import api.entity.Item;
-import api.entity.types.Content;
+import api.entity.interfaces.AbstractItem;
+import api.entity.interfaces.Content;
+import api.entity.interfaces.Item;
+import api.enums.TypeEntite;
+import editor.enigma.Enigma;
+import editor.entity.player.Player;
+import editor.utils.textures.Texture;
+
+import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.Iterator;
 
 /**
  * Un panneau
@@ -11,11 +19,13 @@ import api.entity.types.Content;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
+ *
  * @version 4.0
- * @see Item
- * @see Content
- * @see AbstractItem
  * @since 2.0
+ *
+ * @see api.entity.interfaces.Item
+ * @see api.entity.interfaces.Content
+ * @see AbstractItem
  */
 public class Pane extends AbstractItem implements Content {
 
@@ -63,5 +73,15 @@ public class Pane extends AbstractItem implements Content {
 	@Override
 	public String toString() {
 		return "Pane{" + "content='" + content + '\'' + ", id=" + id + '}';
+	}
+
+	@Override
+	public EnumMap<TypeEntite, Boolean> getImplements() {
+		EnumMap<TypeEntite,Boolean> imp = new EnumMap<>(TypeEntite.class);
+		imp.put(TypeEntite.lockable,false);
+		imp.put(TypeEntite.item,true);
+		imp.put(TypeEntite.passage,false);
+		imp.put(TypeEntite.activatable,false);
+		return imp;
 	}
 }

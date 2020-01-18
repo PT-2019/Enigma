@@ -1,8 +1,5 @@
 package api;
 
-import game.entity.map.MapGame;
-import game.entity.map.MapTestScreen;
-
 /**
  * Toutes les constantes pouvant être utilisés par la map de l'éditeur
  * et reconnues par la map libgdx.
@@ -12,8 +9,7 @@ import game.entity.map.MapTestScreen;
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  * @version 1.0 03 december 2019
- * @see MapGame
- * @see MapTestScreen
+ * @see game.entity.MapLibgdx
  * @since 1.0 03 december 2019
  */
 public enum MapsNameUtils {

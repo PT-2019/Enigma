@@ -1,11 +1,11 @@
 package editor.enigma.operation;
 
 
-import api.entity.Entity;
+import api.entity.interfaces.Entity;
 import api.enums.Attributes;
 import editor.entity.IDFactory;
-import editor.utils.map.Case;
-import editor.entity.Player;
+import editor.entity.map.Case;
+import editor.entity.player.Player;
 
 import java.util.HashMap;
 import java.util.Map;

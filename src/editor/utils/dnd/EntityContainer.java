@@ -1,6 +1,6 @@
 package editor.utils.dnd;
 
-import api.utils.annotations.ConvenienceMethod;
+import api.utils.ConvenienceMethod;
 import editor.entity.EntitySerializable;
 import org.intellij.lang.annotations.MagicConstant;
 

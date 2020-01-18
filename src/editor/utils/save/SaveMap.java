@@ -13,8 +13,8 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSets;
 import com.badlogic.gdx.math.Vector2;
-import editor.utils.map.Case;
-import editor.utils.map.Map;
+import editor.entity.map.Case;
+import editor.entity.map.Map;
 import editor.utils.textures.TextureArea;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -66,123 +66,6 @@ public class SaveMap {
 		this.entities = entities;
 	}
 
-	/**
-	 * Sauvegarde la map et texture.
-	 *
-	 * @param file     nom du fichier de sauvegarde.
-	 * @param map      map a sauvegarder
-	 * @param textures les textures de la map
-	 * @since 2.0
-	 */
-	public static void saveMap(String file, Map map, ArrayList<TextureArea> textures) {
-		DocumentBuilderFactory fabrique = DocumentBuilderFactory.newInstance();
-
-		try {
-			DocumentBuilder builder = fabrique.newDocumentBuilder();
-
-			//on instancie notre document
-			Document document = builder.newDocument();
-
-			//element map in xml file
-			Element mapHeader = document.createElement("map");
-			mapHeader.setAttribute("version", "1.2");
-			mapHeader.setAttribute("tiledversion", "2019.11.12");
-			mapHeader.setAttribute("orientation", "orthogonal");
-			mapHeader.setAttribute("renderorder", "right-down");
-			mapHeader.setAttribute("width", String.valueOf(map.getCol()));
-			mapHeader.setAttribute("height", String.valueOf(map.getRow()));
-			mapHeader.setAttribute("tilewidth", String.valueOf(textures.get(0).getTileWidth()));
-			mapHeader.setAttribute("tileheight", String.valueOf(textures.get(0).getTileHeight()));
-			mapHeader.setAttribute("infinite", "0");
-			mapHeader.setAttribute("nextlayerid", "2");
-			mapHeader.setAttribute("nextobjectid", "1");
-
-			document.appendChild(mapHeader);
-
-			//tileset représente les textures dans le fichier xml
-			Element tileset, image;
-			for (int i = 0; i < textures.size(); i++) {
-				textures.get(i).load();
-
-				tileset = document.createElement("tileset");
-				tileset.setAttribute("firstgid", String.valueOf(textures.get(i).getMin()));
-				tileset.setAttribute("name", String.valueOf(i));
-				tileset.setAttribute("tilewidth", String.valueOf(textures.get(i).getTileWidth()));
-				tileset.setAttribute("tileheight", String.valueOf(textures.get(i).getTileHeight()));
-
-				int tileCount = textures.get(i).getMax() - textures.get(i).getMin();
-				tileset.setAttribute("tilecount", String.valueOf(tileCount));
-				tileset.setAttribute("columns", String.valueOf(textures.get(i).getNbcol()));
-
-				mapHeader.appendChild(tileset);
-
-				image = document.createElement("image");
-				String src = textures.get(i).getPath();
-				if (src.contains("assets/map/"))
-					src = src.split("assets/map/")[1];
-				image.setAttribute("source", src);
-
-				image.setAttribute("width", String.valueOf(textures.get(i).getWidth()));
-				image.setAttribute("height", String.valueOf(textures.get(i).getHeight()));
-
-				tileset.appendChild(image);
-			}
-
-			//écriture des différents layers de la map
-			int i = 0;
-			Element datas, layers;
-			StringBuilder stringBuilder;
-			Case[] tmpCase = map.getCases();
-			for (Layer type : Layer.values()) {
-				layers = document.createElement("layer");
-				layers.setAttribute("id", String.valueOf(i));
-				layers.setAttribute("name", String.valueOf(type));
-				layers.setAttribute("width", String.valueOf(map.getCol()));
-				layers.setAttribute("height", String.valueOf(map.getRow()));
-				mapHeader.appendChild(layers);
-
-				datas = document.createElement("data");
-				datas.setAttribute("encoding", "csv");
-
-				stringBuilder = new StringBuilder("\n");
-				for (int k = 0; k < map.getRow(); k++) {
-					for (int j = 0; j < map.getCol(); j++) {
-						if (tmpCase[k * map.getCol() + j] == null) {
-
-							stringBuilder.append("0,");
-						} else {
-							HashMap<Layer, editor.utils.textures.Texture> hash;
-							hash = tmpCase[k * map.getCol() + j].getEntities();
-
-							editor.utils.textures.Texture texture = hash.get(type);
-							stringBuilder.append(texture.getPosition());
-							stringBuilder.append(",");
-						}
-					}
-					stringBuilder.append("\n");
-				}
-				stringBuilder = new StringBuilder(stringBuilder.substring(0, stringBuilder.length() - 2));
-				stringBuilder.append("\n");
-				datas.setTextContent(stringBuilder.toString());
-				layers.appendChild(datas);
-				i++;
-			}
-
-			TransformerFactory factoryTrans = TransformerFactory.newInstance();
-			Transformer transformer = factoryTrans.newTransformer();
-
-			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-			transformer.setOutputProperty(OutputKeys.DOCTYPE_SYSTEM, "../../assets/map/mapDtd.dtd");
-
-			DOMSource source = new DOMSource(document);
-
-			StreamResult result = new StreamResult(new File(file));
-			transformer.transform(source, result);
-
-		} catch (ParserConfigurationException | TransformerException pce) {
-			pce.printStackTrace();
-		}
-	}
 
 	/**
 	 * Sauvegarde la map et texture.
@@ -318,6 +201,7 @@ public class SaveMap {
 					Element object = document.createElement("object");
 					object.setAttribute("name", entity.getClass().getName());
 					object.setAttribute("x", String.valueOf(pos.x));
+					//TODO : q-check
 					object.setAttribute("y", String.valueOf(pos.y - entity.getGameObjectHeight()));
 					object.setAttribute("width", String.valueOf(entity.getGameObjectWidth()));
 					object.setAttribute("height", String.valueOf(entity.getGameObjectHeight()));
@@ -335,6 +219,124 @@ public class SaveMap {
 			DOMSource source = new DOMSource(document);
 
 			StreamResult result = new StreamResult(new File(fichier));
+			transformer.transform(source, result);
+
+		} catch (ParserConfigurationException | TransformerException pce) {
+			pce.printStackTrace();
+		}
+	}
+
+	/**
+	 * Sauvegarde la map et texture.
+	 *
+	 * @param file     nom du fichier de sauvegarde.
+	 * @param map      map a sauvegarder
+	 * @param textures les textures de la map
+	 * @since 2.0
+	 */
+	public static void saveMap(String file, Map map, ArrayList<TextureArea> textures) {
+		DocumentBuilderFactory fabrique = DocumentBuilderFactory.newInstance();
+
+		try {
+			DocumentBuilder builder = fabrique.newDocumentBuilder();
+
+			//on instancie notre document
+			Document document = builder.newDocument();
+
+			//element map in xml file
+			Element mapHeader = document.createElement("map");
+			mapHeader.setAttribute("version", "1.2");
+			mapHeader.setAttribute("tiledversion", "2019.11.12");
+			mapHeader.setAttribute("orientation", "orthogonal");
+			mapHeader.setAttribute("renderorder", "right-down");
+			mapHeader.setAttribute("width", String.valueOf(map.getCol()));
+			mapHeader.setAttribute("height", String.valueOf(map.getRow()));
+			mapHeader.setAttribute("tilewidth", String.valueOf(textures.get(0).getTileWidth()));
+			mapHeader.setAttribute("tileheight", String.valueOf(textures.get(0).getTileHeight()));
+			mapHeader.setAttribute("infinite", "0");
+			mapHeader.setAttribute("nextlayerid", "2");
+			mapHeader.setAttribute("nextobjectid", "1");
+
+			document.appendChild(mapHeader);
+
+			//tileset représente les textures dans le fichier xml
+			Element tileset, image;
+			for (int i = 0; i < textures.size(); i++) {
+				textures.get(i).load();
+
+				tileset = document.createElement("tileset");
+				tileset.setAttribute("firstgid", String.valueOf(textures.get(i).getMin()));
+				tileset.setAttribute("name", String.valueOf(i));
+				tileset.setAttribute("tilewidth", String.valueOf(textures.get(i).getTileWidth()));
+				tileset.setAttribute("tileheight", String.valueOf(textures.get(i).getTileHeight()));
+
+				int tileCount = textures.get(i).getMax() - textures.get(i).getMin();
+				tileset.setAttribute("tilecount", String.valueOf(tileCount));
+				tileset.setAttribute("columns", String.valueOf(textures.get(i).getNbcol()));
+
+				mapHeader.appendChild(tileset);
+
+				image = document.createElement("image");
+				String src = textures.get(i).getPath();
+				if (src.contains("assets/map/"))
+					src = src.split("assets/map/")[1];
+				image.setAttribute("source", src);
+
+				image.setAttribute("width", String.valueOf(textures.get(i).getWidth()));
+				image.setAttribute("height", String.valueOf(textures.get(i).getHeight()));
+
+				tileset.appendChild(image);
+			}
+
+			//écriture des différents layers de la map
+			int i = 0;
+			Element datas, layers;
+			StringBuilder stringBuilder;
+			Case[] tmpCase = map.getCases();
+			for (Layer type : Layer.values()) {
+				layers = document.createElement("layer");
+				layers.setAttribute("id", String.valueOf(i));
+				layers.setAttribute("name", String.valueOf(type));
+				layers.setAttribute("width", String.valueOf(map.getCol()));
+				layers.setAttribute("height", String.valueOf(map.getRow()));
+				mapHeader.appendChild(layers);
+
+				datas = document.createElement("data");
+				datas.setAttribute("encoding", "csv");
+
+				stringBuilder = new StringBuilder("\n");
+				for (int k = 0; k < map.getRow(); k++) {
+					for (int j = 0; j < map.getCol(); j++) {
+						if (tmpCase[k * map.getCol() + j] == null) {
+
+							stringBuilder.append("0,");
+						} else {
+							HashMap<Layer, editor.utils.textures.Texture> hash;
+							hash = tmpCase[k * map.getCol() + j].getEntities();
+
+							editor.utils.textures.Texture texture = hash.get(type);
+							stringBuilder.append(texture.getPosition());
+							stringBuilder.append(",");
+						}
+					}
+					stringBuilder.append("\n");
+				}
+				stringBuilder = new StringBuilder(stringBuilder.substring(0, stringBuilder.length() - 2));
+				stringBuilder.append("\n");
+				datas.setTextContent(stringBuilder.toString());
+				layers.appendChild(datas);
+				i++;
+			}
+
+			TransformerFactory factoryTrans = TransformerFactory.newInstance();
+			Transformer transformer = factoryTrans.newTransformer();
+
+			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+			transformer.setOutputProperty(OutputKeys.DOCTYPE_SYSTEM, "../../assets/map/mapDtd.dtd");
+
+			DOMSource source = new DOMSource(document);
+
+			StreamResult result = new StreamResult(new File(file));
 			transformer.transform(source, result);
 
 		} catch (ParserConfigurationException | TransformerException pce) {

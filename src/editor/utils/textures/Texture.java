@@ -28,12 +28,6 @@ public class Texture {
 		return texture;
 	}
 
-	/**
-	 * Un int de 0 a nombre de sous textures dans la texture.
-	 * Peut commencer a une valeur différente selon son ordre de création par le proxy.
-	 * Dans le proxy, cette valeur est unique.
-	 * @return valeur unique qui représente la texture.
-	 */
 	public int getPosition() {
 		return position;
 	}

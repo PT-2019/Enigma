@@ -1,6 +1,6 @@
 # Enums
 
-Attributes : Attributs des champs de la sauvegarde des énigmes
+Attributes : ...
 
 Direction : les 4 directions
 

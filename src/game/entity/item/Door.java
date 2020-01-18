@@ -1,10 +1,18 @@
 package game.entity.item;
 
-import api.entity.AbstractItem;
-import api.entity.Item;
-import api.entity.types.Lockable;
-import api.entity.types.Passage;
-import editor.utils.map.Room;
+import api.entity.interfaces.AbstractItem;
+import api.entity.interfaces.Item;
+import api.entity.interfaces.Lockable;
+import api.entity.interfaces.Passage;
+import api.enums.TypeEntite;
+import editor.enigma.Enigma;
+import editor.entity.map.Room;
+import editor.entity.player.Player;
+import editor.utils.textures.Texture;
+
+import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.Iterator;
 
 /**
  * Une porte
@@ -13,11 +21,13 @@ import editor.utils.map.Room;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
+ *
  * @version 4.0 24/12/2019
- * @see Item
- * @see Lockable
- * @see Passage
  * @since 2.0
+ *
+ * @see api.entity.interfaces.Item
+ * @see api.entity.interfaces.Lockable
+ * @see api.entity.interfaces.Passage
  */
 public class Door extends AbstractItem implements Passage, Lockable {
 
@@ -105,5 +115,15 @@ public class Door extends AbstractItem implements Passage, Lockable {
 	public String toString() {
 		return "Door{" + "locked=" + locked + ", room1=" + room1 + ", room2=" + room2 +
 				", enigmas=" + enigmas + ", id=" + id + '}';
+	}
+
+	@Override
+	public EnumMap<TypeEntite, Boolean> getImplements() {
+		EnumMap<TypeEntite,Boolean> imp = new EnumMap<>(TypeEntite.class);
+		imp.put(TypeEntite.item,true);
+		imp.put(TypeEntite.lockable,true);
+		imp.put(TypeEntite.passage,true);
+		imp.put(TypeEntite.activatable,false);
+		return imp;
 	}
 }

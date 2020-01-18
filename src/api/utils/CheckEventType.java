@@ -1,6 +1,5 @@
 package api.utils;
 
-import api.utils.annotations.ConvenienceClass;
 import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 

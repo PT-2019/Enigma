@@ -1,16 +1,14 @@
-# Entity
+# GameActor
 
-GameObject représente n'importe quelle entité du jeu et également
-des ensembles d'entités comme les pièces.
+Les classes GameActor représentent une entité du jeu :
 
-Entité représente toutes les être vivants mais aussi les objects.
+GameActor contient les méthodes de base
+	
+GameActorDragAndDrop représente un acteur avec une texture que l'on peut
+déplacer
 
-Item représente la sous catégorie d'entité qui sont des objects.
+GameActorTextured représente un acteur avec une texture
 
-### Convenience
-
-AbstractItem est une classe pratique pour ne pas devoir réécrire
-les méthodes de base de item.
-
-AbstractGameObject est une classe pratique pour ne pas devoir réécrire
-les méthodes de base de GameObject.
+GameActorUtilities donne des méthodes static que l'on peut appliquer
+sur des actor mais qui peuvent donner de meilleurs résultats sur des
+GameActor...

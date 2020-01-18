@@ -1,6 +1,6 @@
 package editor.enigma.condition;
 
-import editor.entity.Player;
+import editor.entity.player.Player;
 
 import java.util.HashMap;
 import java.util.Map;

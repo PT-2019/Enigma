@@ -7,11 +7,12 @@ package api;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 4.0
+ * @version 1.0
  * @see game.EnigmaGame
- * @see starter.EditorLauncher
+ * @see editor.EditorLuncher
  * @since 1.0
  */
+@FunctionalInterface
 public interface Application {
 
 	/**
@@ -20,12 +21,5 @@ public interface Application {
 	 * @since 1.0
 	 */
 	void start();
-
-	/**
-	 * Ferme l'application
-	 *
-	 * @since 4.0
-	 */
-	void stop();
 
 }

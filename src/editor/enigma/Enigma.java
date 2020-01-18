@@ -3,7 +3,7 @@ package editor.enigma;
 import api.enums.Attributes;
 import editor.enigma.condition.Condition;
 import editor.enigma.operation.Operation;
-import editor.entity.Player;
+import editor.entity.player.Player;
 
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;

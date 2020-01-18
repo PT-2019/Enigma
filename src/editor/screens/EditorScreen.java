@@ -3,22 +3,14 @@ package editor.screens;
 import api.enums.EntitiesCategories;
 import api.enums.Outil;
 import api.utils.LoadGameLibgdxApplication;
-import api.utils.Utility;
-import api.utils.annotations.NeedPatch;
 import com.badlogic.gdx.utils.Array;
 import editor.entity.EntityFactory;
 import editor.entity.EntitySerializable;
-import editor.hud.EnigmaButton;
-import editor.hud.EnigmaPanel;
-import editor.hud.EnigmaUIValues;
-import editor.hud.EnigmaWindow;
-import editor.hud.ui.EnigmaButtonUI;
-import editor.hud.ui.EnigmaJCheckBoxUI;
-import editor.hud.ui.EnigmaJComboBoxUI;
-import editor.screens.menus.BarMenu;
-import editor.screens.menus.listeners.OutilAction;
+import editor.utils.EmptyMapGenerator;
 import editor.utils.dnd.DragAndDropDND;
 import editor.utils.dnd.EntityContainer;
+import editor.window.Window;
+import game.screen.TestScreen;
 import org.intellij.lang.annotations.MagicConstant;
 
 import javax.swing.JButton;
@@ -30,7 +22,6 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.dnd.DnDConstants;
-import java.awt.event.ActionListener;
 
 /**
  * Ecran de l'éditeur
@@ -39,7 +30,7 @@ import java.awt.event.ActionListener;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 4.2
+ * @version 4.0 22/12/2019
  * @since 2.0 05 décembre 2019
  */
 public class EditorScreen extends JPanel {
@@ -50,22 +41,21 @@ public class EditorScreen extends JPanel {
 	 * @param parent fenêtre swing
 	 * @since 1.0 10 novembre 2019
 	 */
-	public EditorScreen(EnigmaWindow parent) {
-		this(parent, true);
-	}
-
-	/**
-	 * Crée l'écran de création de l'escape game
-	 *
-	 * @param parent fenêtre swing
-	 * @since 4.2
-	 */
-	public EditorScreen(EnigmaWindow parent, boolean bar) {
+	public EditorScreen(Window parent) {
 		this.setBackground(Color.RED);
 		this.setLayout(new BorderLayout());
 
+		//génère une map vide
+		EmptyMapGenerator.generate(TestScreen.getMapPath(), 50, 50);
+
+		//charge entités
+		EntityFactory.loadEntities("assets/rooms.json");
+		EntityFactory.loadEntities("assets/items.json");
+		EntityFactory.loadEntities("assets/decors.json");
+		EntityFactory.loadEntities("assets/entities.json");
+
 		//création de la barre d'outils
-		EnigmaPanel outilBar = this.loadOutilBar(parent);
+		JPanel outilBar = this.loadOutilBar();
 
 		//création de la zone d'affichage de la map (partie droite)
 		JPanel map = new JPanel();
@@ -75,8 +65,7 @@ public class EditorScreen extends JPanel {
 		this.add(outilBar, BorderLayout.NORTH);
 		this.add(map, BorderLayout.CENTER);
 
-		if (bar)
-			parent.addToMenuBar(new BarMenu(parent));
+		parent.setJMenuBar(new BarMenu());
 	}
 
 	/**
@@ -88,7 +77,7 @@ public class EditorScreen extends JPanel {
 	 * @since 3.0 14 décembre 2019
 	 * @deprecated chargé via la libgdx
 	 */
-	@Deprecated
+	@Deprecated//(since = "4.0")
 	private JPanel loadChoicesMenu(CardLayout layout, DragAndDropDND dnd) {
 		//création des zone du menu des choix d'objets (partie gauche)
 		JPanel menuChoix = new JPanel();
@@ -112,55 +101,22 @@ public class EditorScreen extends JPanel {
 	 * @return JPanel contenant la barre d'outils
 	 * @since 3.1 19 décembre 2019
 	 */
-	private EnigmaPanel loadOutilBar(EnigmaWindow window) {
-		final Color COLOR = Color.decode("#bfbfbf");
-		OutilAction listener = new OutilAction(window);
+	private JPanel loadOutilBar() {
+		//OutilAction listener = new OutilAction();
 
 		//création de la zone de la barre d'outils
-		EnigmaPanel outilBar = new EnigmaPanel();
-		outilBar.getComponentUI().setAllBackgrounds(COLOR, COLOR, COLOR);
+		JPanel outilBar = new JPanel();
 
-		//zoom
 		String[] elements = new String[]{"25%", "50%", "100%", "125%", "150%", "175%", "200%"};
 		JComboBox<String> zoom = new JComboBox<>(elements);
-		zoom.setUI(EnigmaJComboBoxUI.createUI(zoom));
 
-		//checkbox fit et in game
 		JCheckBox fit = new JCheckBox("fit");
-		fit.setToolTipText("toute la map est affichée dans l'écran");
-		fit.setUI(EnigmaJCheckBoxUI.createUI(fit, COLOR));
-		fit.setForeground(Color.BLACK);
-
 		JCheckBox inGame = new JCheckBox("in game");
-		inGame.setToolTipText("zoom en jeu");
-		inGame.setUI(EnigmaJCheckBoxUI.createUI(inGame, COLOR));
-		inGame.setForeground(Color.BLACK);
 
-		EnigmaButtonUI ui = new EnigmaButtonUI();
-		ui.setHoveredShowedBorders(EnigmaUIValues.ALL_BORDERS_SHOWED);
-		ui.setSelectedHoveredShowedBorders(EnigmaUIValues.ALL_BORDERS_SHOWED);
-		ui.setShowedBorders(EnigmaUIValues.ALL_BORDERS_SHOWED);
-		ui.setAllBorders(COLOR, EnigmaUIValues.ENIGMA_BUTTON_HOVERED_BORDER, EnigmaUIValues.ENIGMA_BUTTON_PRESSED_BORDER);
-		ui.setAllBackgrounds(COLOR, COLOR, COLOR);
-
-		Class<? extends ActionListener> c;
-
-		//reste de la barre
 		for (Outil o : Outil.values()) {
-			EnigmaButton a = new EnigmaButton();
-			a.setToolTipText(o.name);
-			a.setIcon(o.icon);
-			a.setUI(ui);
-			c = o.actionListener;
-			if(c != null) a.addActionListener((ActionListener) Utility.instance(c, window));
-			else a.addActionListener(listener);
+			JButton a = new JButton(o.name);
+			//a.addActionListener(listener);
 			outilBar.add(a);
-			if(o.glue){
-				EnigmaButton sep = new EnigmaButton();
-				sep.setUI(ui);
-				sep.setIcon(Outil.SEPARATOR);
-				outilBar.add(sep);
-			}
 		}
 
 		outilBar.add(zoom);
@@ -169,14 +125,6 @@ public class EditorScreen extends JPanel {
 
 		return outilBar;
 	}
-
-	/*private JFXPanel checkbox() {
-		JFXPanel jfxPanel = new JFXPanel();
-		Group root = new Group();
-		root.getChildren().add(new CheckBox("ttt"));
-		jfxPanel.setScene(new Scene(root, javafx.scene.paint.Color.ALICEBLUE));
-		return jfxPanel;
-	}*/
 
 	/**
 	 * Charge la barre qui contient les éléments de la catégorie
@@ -206,7 +154,7 @@ public class EditorScreen extends JPanel {
 	 * @param dnd  le gestionnaire du drag and drop
 	 * @since 2.0 05 décembre 2019
 	 */
-	@Deprecated
+	@Deprecated//(since = "4.0")
 	private void fill(JPanel pane, EntitiesCategories name, DragAndDropDND dnd) {
 		Array<EntitySerializable> entities = EntityFactory.getEntitiesByCategory(name);
 

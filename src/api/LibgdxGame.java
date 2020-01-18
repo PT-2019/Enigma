@@ -1,6 +1,6 @@
 package api;
 
-import api.utils.annotations.ConvenienceMethod;
+import api.utils.ConvenienceMethod;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
@@ -17,13 +17,17 @@ import java.util.HashMap;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 4.2 26/12/2019
+ * @version 4.0 22/12/2019
  * @see Game
  * @since 3.0 03 december 2019
  */
 public abstract class LibgdxGame extends Game implements Application {
 
-	private static LibgdxGame libgdxGame;
+	/**
+	 * Static and singleton instance du jeu
+	 **/
+	private static LibgdxGame game;
+
 	/**
 	 * Conserve tous les écran qui ont étés instanciés et donc déjà chargés.
 	 * <p>
@@ -33,6 +37,7 @@ public abstract class LibgdxGame extends Game implements Application {
 	 * {@link #load(String)} si le screen a été ajouté.
 	 */
 	private static HashMap<String, LibgdxScreen> screens = new HashMap<>();
+
 	/**
 	 * On peut vouloir charger un écran mais pas l'instancier directement.
 	 * Cela ce fait avec la méthode add et il sont conservés ici.
@@ -40,6 +45,7 @@ public abstract class LibgdxGame extends Game implements Application {
 	 * @see #addScreen(String, Class)
 	 */
 	private static HashMap<String, Class<? extends LibgdxScreen>> added = new HashMap<>();
+
 	/**
 	 * Conserve la taille de l'écran si on veut revenir de plein écran a l'ancienne
 	 * taille.
@@ -55,10 +61,6 @@ public abstract class LibgdxGame extends Game implements Application {
 	 * Permet la création de singletons
 	 */
 	protected LibgdxGame() {
-	}
-
-	public static LibgdxGame getInstance() {
-		return libgdxGame;
 	}
 
 	/**
@@ -140,7 +142,7 @@ public abstract class LibgdxGame extends Game implements Application {
 		if (!screens.containsKey(key)) {
 			load(key);//throws IllegalArgumentException
 		}
-		getInstance().setScreen(screens.get(key));
+		game.setScreen(screens.get(key));
 	}
 
 	/**
@@ -149,7 +151,7 @@ public abstract class LibgdxGame extends Game implements Application {
 	 * @return l'écran actuel
 	 */
 	public static LibgdxScreen getCurrentScreen() {
-		return (LibgdxScreen) getInstance().getScreen();
+		return (LibgdxScreen) game.getScreen();
 	}
 
 	/**
@@ -158,7 +160,7 @@ public abstract class LibgdxGame extends Game implements Application {
 	 * @param screen l'écran a charger
 	 */
 	public static void setCurrentScreen(LibgdxScreen screen) {
-		getInstance().setScreen(screen);
+		game.setScreen(screen);
 	}
 
 	/**
@@ -172,29 +174,25 @@ public abstract class LibgdxGame extends Game implements Application {
 	 * @see #setScreenSize(int, int)
 	 */
 	public static Rectangle getScreenSize() {
-		return getInstance().screenSize;
+		return game.screenSize;
 	}
 
-	/**
-	 * Recharge un écran
-	 *
-	 * @param key son nom
-	 */
+	//TODO: redo reload
 	public static void reload(String key) {
-		Class<? extends LibgdxScreen> c;
+		Class c;
 		if (screens.containsKey(key)) {
 			c = screens.get(key).getClass();// Test()
 			screens.remove(key);
 			added.put(key, c);// Test.class
 			//load(key); //Test()
-			setScreen(key); //Test()
-		}// else if (added.containsKey(key)) {// Test.class
+			setScreen(key);
+		} else if (added.containsKey(key)) {// Test.class
 			//load(key);// Test()
 			//setScreen(key);
-		//}
-		else {
+		} else {
 			throw new IllegalStateException("jamais chargé");
 		}
+
 	}
 
 	/**
@@ -207,7 +205,7 @@ public abstract class LibgdxGame extends Game implements Application {
 	 * @see #getScreenSize()
 	 */
 	public static void setScreenSize(int width, int height) {
-		getInstance().screenSize.setSize(width, height);
+		game.screenSize.setSize(width, height);
 	}
 
 	/**
@@ -215,7 +213,7 @@ public abstract class LibgdxGame extends Game implements Application {
 	 */
 	@Override
 	public void create() {
-		libgdxGame = this;
+		game = this;
 		screens = new HashMap<>();
 		screenSize = new Rectangle(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		//Gdx.gl20.glClearColor(0.20f,0.20f,0.20f,1.0f); //my grey <3
@@ -259,5 +257,4 @@ public abstract class LibgdxGame extends Game implements Application {
 	 * Les écrans sont déjà libérés.
 	 */
 	public abstract void free();
-
 }

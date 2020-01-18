@@ -1,9 +1,9 @@
 package editor.utils.save;
 
 import api.enums.Layer;
-import editor.utils.map.Case;
-import editor.utils.map.Map;
-import editor.utils.map.Room;
+import editor.entity.map.Case;
+import editor.entity.map.Map;
+import editor.entity.map.Room;
 import editor.utils.textures.Texture;
 import editor.utils.textures.TextureProxy;
 import org.xml.sax.Attributes;
@@ -94,6 +94,7 @@ public class LoadHandler extends DefaultHandler {
 			Room r = new Room(col, row, roomcase);
 
 			loadMap.addRoom(pointcol, pointrow, r);
+
 		}
 	}
 

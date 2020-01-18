@@ -1,7 +1,5 @@
 package api.utils;
 
-import api.utils.annotations.ConvenienceClass;
-import api.utils.annotations.Immutable;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
@@ -16,7 +14,6 @@ import com.badlogic.gdx.math.Vector2;
  * @since 4.0 22/12/2019
  */
 @Immutable
-@ConvenienceClass
 public final class Bounds {
 
 	/**
@@ -69,6 +66,11 @@ public final class Bounds {
 
 	@Override
 	public String toString() {
-		return "Bounds{" + "left=" + left + ", right=" + right + ", top=" + top + ", bot=" + bot + '}';
+		return "Bounds{" +
+				"left=" + left +
+				", right=" + right +
+				", top=" + top +
+				", bot=" + bot +
+				'}';
 	}
 }

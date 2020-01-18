@@ -1,8 +1,11 @@
 package game.entity.item;
 
-import api.entity.AbstractItem;
-import api.entity.types.Container;
-import api.entity.types.Lockable;
+import api.entity.interfaces.AbstractItem;
+import api.entity.interfaces.Container;
+import api.entity.interfaces.Lockable;
+import api.enums.TypeEntite;
+
+import java.util.EnumMap;
 
 /**
  * Une bibliothèque
@@ -11,6 +14,7 @@ import api.entity.types.Lockable;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
+ *
  * @version 4.0 24/12/2019
  * @since 4.0 24/12/2019
  */
@@ -62,5 +66,15 @@ public class Library extends AbstractItem implements Container, Lockable {
 	@Override
 	public String toString() {
 		return "Library{" + "enigmas=" + enigmas + ", id=" + id + '}';
+	}
+
+	@Override
+	public EnumMap<TypeEntite, Boolean> getImplements() {
+		EnumMap<TypeEntite,Boolean> imp = new EnumMap<>(TypeEntite.class);
+		imp.put(TypeEntite.lockable,true);
+		imp.put(TypeEntite.item,true);
+		imp.put(TypeEntite.passage,false);
+		imp.put(TypeEntite.activatable,false);
+		return imp;
 	}
 }

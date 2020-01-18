@@ -3,6 +3,7 @@ package editor.entity;
 import api.enums.EntitiesCategories;
 import api.enums.Layer;
 import com.badlogic.gdx.utils.Array;
+import game.ui.CategoriesMenu;
 
 import java.util.HashMap;
 
@@ -71,7 +72,7 @@ public class EntitySerializable {
 	 * Retourne la catégorie de l'entité
 	 *
 	 * @return la catégorie de l'entité
-	 * @see game.ui.CategoriesMenu
+	 * @see CategoriesMenu
 	 * @since 3.0
 	 */
 	public EntitiesCategories getCategory() {

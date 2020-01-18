@@ -1,18 +1,18 @@
 package game.utils;
 
-import api.entity.actor.GameActorUtilities;
+import api.entity.GameActorUtilities;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import editor.EditorLuncher;
 import game.EnigmaGame;
 import game.entity.DraggedEntity;
 import game.entity.EntityContainer;
-import game.entity.map.MapTestScreen;
+import game.entity.MapLibgdx;
 import game.screen.TestScreen;
-import starter.EditorLauncher;
 
 import java.awt.Cursor;
 
@@ -61,7 +61,7 @@ public class DragAndDrop extends InputListener {
 	public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
 		if (this.dragged.isDraggable()) {
 			//cursor de drag
-			EditorLauncher.getInstance().getWindow().setCursor(new Cursor(Cursor.HAND_CURSOR));
+			EditorLuncher.getInstance().getWindow().setCursor(new Cursor(Cursor.HAND_CURSOR));
 
 			this.offsetX = x; //sauvegarde la décalage
 			this.offsetY = y;
@@ -77,7 +77,7 @@ public class DragAndDrop extends InputListener {
 	@Override
 	public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
 		//reset cursor
-		EditorLauncher.getInstance().getWindow().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+		EditorLuncher.getInstance().getWindow().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 
 		Vector2 pos = GameActorUtilities.getAbsolutePosition(dragged);//x,y de l'object bas gauche
 		//correction parce que je veux haut à gauche
@@ -86,7 +86,7 @@ public class DragAndDrop extends InputListener {
 		//si on la pas mis sur le menu donc partie de la map non visible car cachée par celui-ci
 		boolean retour = !GameActorUtilities.contains(this.container, pos);
 		if (retour) {//si pas caché
-			MapTestScreen map = ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap();
+			MapLibgdx map = ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap();
 			//on regarde si on l'a mis sur la map
 			retour = map.loadEntity(dragged.getEntity(), pos);
 		} else {

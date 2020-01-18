@@ -1,9 +1,9 @@
 package editor.enigma.condition;
 
-import api.entity.Entity;
+import api.entity.interfaces.Entity;
 import api.enums.Attributes;
 import editor.entity.IDFactory;
-import editor.entity.Player;
+import editor.entity.player.Player;
 
 import java.util.HashMap;
 import java.util.Map;

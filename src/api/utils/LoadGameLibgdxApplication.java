@@ -1,13 +1,15 @@
 package api.utils;
 
-import api.LibgdxGame;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.lwjgl.LwjglAWTCanvas;
+import game.EnigmaGame;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.JFrame;
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
 /**
@@ -17,33 +19,10 @@ import java.awt.event.WindowListener;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 4.0
+ * @version 3.0
  * @since 1.0
  */
-public class LoadGameLibgdxApplication<T extends LibgdxGame> {
-
-	/**
-	 * Garde l'instance unique au moment T du chargeur
-	 */
-	private static LoadGameLibgdxApplication inst;
-
-	/**
-	 * le jeu qui veux être lancé
-	 *
-	 * @see api.LibgdxGame
-	 * @since 4.0
-	 */
-	private T game;
-
-	/**
-	 * Crée une instance qui garde le jeu qui veux être lancé
-	 *
-	 * @param instance une instance du jeu qui veux être lancé
-	 * @since 4.0
-	 */
-	private LoadGameLibgdxApplication(T instance) {
-		this.game = instance;
-	}
+public class LoadGameLibgdxApplication {
 
 	/**
 	 * Charge l'application libgdx dans un composant SWING
@@ -55,7 +34,7 @@ public class LoadGameLibgdxApplication<T extends LibgdxGame> {
 	 * @since 3.0
 	 */
 	public static void load(Container container, @NotNull JFrame frame) {
-		if (Gdx.app != null) {//si déjà lancée
+		if(Gdx.app != null) {//si déjà lancée
 			Gdx.app.postRunnable(() -> load(container, frame));
 			return;
 		}
@@ -65,8 +44,7 @@ public class LoadGameLibgdxApplication<T extends LibgdxGame> {
 		container.setLayout(new BorderLayout());
 
 		//Récupère le jeu
-		if (inst == null) throw new IllegalStateException("pas de d'instance de libgdx game définie.");
-		LwjglAWTCanvas canvas = new LwjglAWTCanvas(inst.game);
+		LwjglAWTCanvas canvas = new LwjglAWTCanvas(EnigmaGame.getInstance());
 		container.add(canvas.getCanvas(), BorderLayout.CENTER);//ajoute le jeu
 
 		//vire tous les listeners de la classe CloseWindowLibgdxApplication
@@ -84,15 +62,46 @@ public class LoadGameLibgdxApplication<T extends LibgdxGame> {
 	}
 
 	/**
-	 * Définit le jeu qui doit être lancé.
-	 * Attention, le jeu est redéfini a chaque appel.
+	 * Ferme une fenêtre qui contient une application LIBGDX
 	 *
-	 * @param game le jeu a lancer
-	 * @param <T>  qui extends LibgdxGame
-	 * @return l'instance du jeu
-	 * @since 4.0
+	 * @author Jorys-Micke ALAÏS
+	 * @author Louka DOZ
+	 * @author Loic SENECAT
+	 * @author Quentin RAMSAMY-AGEORGES
+	 * @version 1.0
+	 * @since 1.0
 	 */
-	public static <T extends LibgdxGame> LoadGameLibgdxApplication setGame(T game) {
-		return inst = new LoadGameLibgdxApplication<>(game);
+	public static final class CloseWindowLibgdxApplication extends WindowAdapter {
+
+		/**
+		 * L'application Libgdx
+		 */
+		private final LwjglAWTCanvas application;
+
+		/**
+		 * Ferme une fenêtre qui contient une application LIBGDX
+		 *
+		 * @param application canvas de l'application
+		 */
+		public CloseWindowLibgdxApplication(LwjglAWTCanvas application) {
+			this.application = application;
+		}
+
+		/**
+		 * Méthode appelée si on cherche à fermer la fenêtre.
+		 * <p>
+		 * Si la fenêtre contient un application libgdx, elle la ferme
+		 * proprement avant de quitter
+		 *
+		 * @param windowEvent évenement de fermeture
+		 */
+		@Override
+		public void windowClosing(WindowEvent windowEvent) {
+			if (this.application != null) {
+				this.application.stop();
+				this.application.exit();
+			}
+			System.exit(0);
+		}
 	}
 }

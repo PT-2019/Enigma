@@ -1,6 +1,6 @@
 package api;
 
-import api.utils.InputAdapter;
+import api.utils.InputListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.InputProcessor;
@@ -22,10 +22,10 @@ import java.util.Iterator;
  * @author Quentin RAMSAMY-AGEORGES
  * @version 03 december 2019
  * @see #listen(InputProcessor)
- * @see InputAdapter
+ * @see InputListener
  * @since 03 december 2019
  */
-public abstract class LibgdxScreen implements Screen, InputAdapter, IGameLogic {
+public abstract class LibgdxScreen implements Screen, InputListener, IGameLogic {
 
 	/**
 	 * Liste des processus en écoute
