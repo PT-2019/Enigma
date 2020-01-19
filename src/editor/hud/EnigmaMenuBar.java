@@ -1,15 +1,10 @@
 package editor.hud;
 
-import com.badlogic.gdx.utils.Array;
+import api.hud.components.CustomMenuBar;
 import editor.hud.ui.EnigmaMenuBarUI;
 
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import java.awt.Component;
-import java.awt.Graphics;
-
 /**
- * TODO: comment EnigmaMenuBar and write Readme.md in editor.hud
+ * Barre de menu du jeu enigma
  *
  * @author Jorys-Micke ALAÏS
  * @author Louka DOZ
@@ -18,48 +13,15 @@ import java.awt.Graphics;
  * @version 3.0
  * @since 3.0
  */
-public class EnigmaMenuBar extends JMenuBar {
-
-	private Array<Component> menus;
-
-	private EnigmaMenuBarUI ui;
+public class EnigmaMenuBar extends CustomMenuBar {
 
 	public EnigmaMenuBar() {
 		super();
-		this.ui = null;
-		this.menus = new Array<>();
-		this.setOpaque(true);
-		this.setMenuBarUI(new EnigmaMenuBarUI());
-	}
-
-	public EnigmaMenuBarUI getMenuBarUI() {
-		return this.ui;
-	}
-
-	public void setMenuBarUI(EnigmaMenuBarUI ui) {
-		this.ui = ui.duplicate();
-		this.setBorderPainted(false);
-		super.setUI(this.ui);
+		this.setComponentUI(new EnigmaMenuBarUI());
 	}
 
 	@Override
-	public void paintComponent(Graphics g) {
-		this.ui.paint(g, this);
-	}
-
-	@Override
-	public Component add(Component comp) {
-		this.menus.add(comp);
-		return super.add(comp);
-	}
-
-	@Override
-	public JMenu add(JMenu c) {
-		this.menus.add(c);
-		return super.add(c);
-	}
-
-	public Array<Component> getMenus() {
-		return menus;
+	public EnigmaMenuBarUI getComponentUI() {
+		return (EnigmaMenuBarUI) this.ui;
 	}
 }

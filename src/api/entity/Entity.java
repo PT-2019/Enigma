@@ -1,6 +1,6 @@
 package api.entity;
 
-import editor.entity.player.Player;
+import editor.entity.Player;
 import editor.utils.textures.Texture;
 
 /**

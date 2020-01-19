@@ -1,6 +1,6 @@
 package editor.utils.save;
 
-import editor.entity.map.Map;
+import editor.utils.map.Map;
 import editor.utils.textures.TextureProxy;
 import org.xml.sax.SAXException;
 

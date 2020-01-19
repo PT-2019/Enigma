@@ -2,7 +2,7 @@ package editor.utils;
 
 import api.utils.annotations.ConvenienceClass;
 import api.utils.annotations.ConvenienceMethod;
-import editor.entity.map.Map;
+import editor.utils.map.Map;
 import editor.utils.save.SaveMap;
 import editor.utils.textures.TextureProxy;
 

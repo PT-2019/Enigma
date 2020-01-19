@@ -1,14 +1,18 @@
 package editor.hud.ui;
 
+<<<<<<< HEAD
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicPanelUI;
 import java.awt.Color;
+=======
+import api.hud.ui.CustomPanelUI;
+import editor.hud.EnigmaUIValues;
+
+>>>>>>> e3069dfb0e80fc64dd0c3b99e16d2ec82f0dd0e7
 import java.awt.Cursor;
-import java.awt.Graphics;
-import java.awt.Image;
 
 /**
- * TODO: comment EnigmaPanelUI and write Readme.md in editor.hud.ui
+ * Style d'un panneau de enigma
  *
  * @author Jorys-Micke ALAÏS
  * @author Louka DOZ
@@ -17,28 +21,10 @@ import java.awt.Image;
  * @version 4.0
  * @since 3.0
  */
-public class EnigmaPanelUI extends BasicPanelUI {
-
-	private Color background;
-	private Color hoveredBackground;
-	private Color pressedBackground;
-	private Color border;
-	private Color hoveredBorder;
-	private Color pressedBorder;
-	private boolean hovered;
-	private boolean pressed;
-	private Cursor cursor;
-	private int borderSize;
-	private int hoveredBorderSize;
-	private int pressedBorderSize;
-	private boolean[] showedBorders;
-	private boolean[] hoveredShowedBorders;
-	private boolean[] pressedShowedBorders;
-	private ImageIcon backgroundImage;
-	private ImageIcon hoveredBackgroundImage;
-	private ImageIcon pressedBackgroundImage;
+public final class EnigmaPanelUI extends CustomPanelUI {
 
 	public EnigmaPanelUI() {
+		super();
 		this.background = EnigmaUIValues.ENIGMA_PANEL_BACKGROUND;
 		this.hoveredBackground = EnigmaUIValues.ENIGMA_PANEL_HOVERED_BACKGROUND;
 		this.pressedBackground = EnigmaUIValues.ENIGMA_PANEL_PRESSED_BACKGROUND;
@@ -60,6 +46,7 @@ public class EnigmaPanelUI extends BasicPanelUI {
 	}
 
 	@Override
+<<<<<<< HEAD
 	public void paint(Graphics g, JComponent c) {
 		Graphics brush = g.create();
 		JPanel p = (JPanel) c;
@@ -323,17 +310,9 @@ public class EnigmaPanelUI extends BasicPanelUI {
 		this.pressedBorder = pressedBorder;
 	}
 
+=======
+>>>>>>> e3069dfb0e80fc64dd0c3b99e16d2ec82f0dd0e7
 	public EnigmaPanelUI duplicate() {
-		EnigmaPanelUI clone = new EnigmaPanelUI();
-
-		clone.setCursor(this.getCursor());
-		clone.setAllBackgrounds(this.getBackground(), this.getHoveredBackground(), this.getPressedBackground());
-		clone.setAllBorders(this.getBorder(), this.getHoveredBorder(), this.getPressedBorder());
-		clone.setIsHovered(this.isHovered());
-		clone.setAllBordersSize(this.getBorderSize(), this.getHoveredBorderSize(), this.getPressedBorderSize());
-		clone.setAllShowedBorders(this.getShowedBorders(), this.getHoveredShowedBorders(), this.getPressedShowedBorders());
-		clone.setAllBackgroundImage(this.getBackgroundImage(), this.getHoveredBackgroundImage(), this.getPressedBackgroundImage());
-
-		return clone;
+		return duplicate(this);
 	}
 }

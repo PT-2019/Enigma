@@ -2,32 +2,12 @@ package game.screen;
 
 import api.LibgdxScreen;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
-import editor.entity.view.TestMapControl;
-import game.EnigmaGame;
-import game.entity.MapLibgdx;
+import com.badlogic.gdx.graphics.GL20;
 
 public class GameScreen extends LibgdxScreen {
 
-	private Stage hud, main;
-
 	@Override
 	public void init() {
-		this.main = new Stage();
-		this.hud = new Stage();
-
-		MapLibgdx map = new MapLibgdx(TestScreen.getMapPath(), 2.5f);
-
-		this.main.addActor(map);
-		map.showGrid(true);
-
-		this.main.setViewport(new ExtendViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
-		this.main.getViewport().setCamera(map.getCamera());
-
-		this.listen(this.hud);
-		this.listen(this.main);
-		this.listen(new TestMapControl(map));
 	}
 
 	@Override
@@ -36,32 +16,30 @@ public class GameScreen extends LibgdxScreen {
 
 	@Override
 	public void update(float dt) {
-		this.hud.act(dt);
-		this.main.act(dt);
-	}
-
-	@Override
-	public void render() {
-		this.main.draw();
-		this.hud.draw();
 	}
 
 	@Override
 	public void resize(int width, int height) {
-		this.hud.getViewport().setScreenSize(width, height);
-		this.main.getViewport().setScreenSize(width, height);
-		this.main.getViewport().update(width, height);
-		EnigmaGame.setScreenSize(width, height);
 	}
 
 	@Override
 	public void dispose() {
-		this.main.dispose();
-		this.hud.dispose();
+	}
+
+	@Override
+	public void show() {
+		Gdx.gl20.glClearColor(255, 0, 0, 255);
+		Gdx.gl20.glClear(GL20.GL_COLOR_BUFFER_BIT);
+	}
+
+	@Override
+	public void render() {
 	}
 
 	@Override
 	public void display(boolean display) {
 
 	}
+
+
 }

@@ -13,6 +13,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Serializable;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,7 +29,7 @@ import java.util.Map;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 4.0
+ * @version 4.2
  * @since 2.0 27 novembre 2019
  */
 @ConvenienceClass
@@ -91,7 +94,7 @@ public class Utility implements Serializable {
 	 * @since 2.0
 	 */
 	@ConvenienceMethod
-	public static <T extends java.lang.Enum> T stringToEnum(String name, T[] enumValues) {
+	public static <T extends Enum> T stringToEnum(String name, T[] enumValues) {
 		name = normalize(name);
 
 		for (T screen : enumValues) {
@@ -150,6 +153,91 @@ public class Utility implements Serializable {
 	@ConvenienceMethod
 	public static Skin loadSkin(String json, String atlas) {
 		return new Skin(Gdx.files.internal(json), new TextureAtlas(atlas));
+	}
+
+	/**
+	 * Retourne null ou une méthode d'un object depuis une string
+	 *
+	 * @param object     class d'un object
+	 * @param methodName nom d'une méthode
+	 * @return la méthode ou null
+	 * @see Method#invoke(Object, Object...) (attention, le premier object doit être la classe)
+	 * @since 4.1
+	 */
+	public static Method findMethod(Class object, String methodName) {
+		/*methodName = normalize(methodName);
+
+		for (Method method : object.getDeclaredMethods()) {
+			String name = normalize(method.getName());
+
+			if (methodName.equals(name)) {
+				//method call
+				//try {
+				//	return (????) method.invoke(????.class, args);
+				//} catch (IllegalAccessException | InvocationTargetException e) {
+				//	//fail
+				//}
+				//break;
+
+				return method;
+			}
+		}*/
+
+		throw new UnsupportedOperationException("disabled");
+	}
+
+	/**
+	 * Retourne une instance d'une classe
+	 * @param aClass une classe avec un constructeur par default
+	 * @return une instance de la classe
+	 * @since 4.2
+	 * @throws IllegalStateException si une erreur survient
+	 */
+	public static Object instance(Class<?> aClass) {
+		Object object;
+		try {
+			Constructor declaredConstructor = aClass.getDeclaredConstructor();
+			object = declaredConstructor.newInstance();
+		} catch (IllegalAccessException | InstantiationException | NoSuchMethodException
+				| InvocationTargetException e) {
+			throw new IllegalStateException("EntityFactory create instance failed" + e);
+		}
+		return object;
+	}
+
+	/**
+	 * Retourne une instance d'une classe
+	 * @param aClass une classe avec un constructeur ayant 1 argument
+	 * @param value valeur de l'unique argument
+	 * @return une instance de la classe
+	 * @since 4.2
+	 * @throws IllegalStateException si une erreur survient
+	 */
+	public static Object instance(Class<?> aClass, Object value) {
+		Object object;
+		try {
+			Constructor declaredConstructor = aClass.getDeclaredConstructor(value.getClass());
+			object = declaredConstructor.newInstance(value);
+		} catch (IllegalAccessException | InstantiationException | NoSuchMethodException
+				| InvocationTargetException e) {
+			throw new IllegalStateException("EntityFactory create instance failed" + e);
+		}
+		return object;
+	}
+
+	/**
+	 * Retourne une instance d'une classe
+	 * @param aClass nom d'une classe avec un constructeur par default
+	 * @return une instance de la classe
+	 * @since 4.2
+	 * @throws IllegalStateException si une erreur survient
+	 */
+	public static Object instance(String aClass) {
+		try {
+			return instance(Class.forName(aClass));
+		} catch (ClassNotFoundException e) {
+			throw new IllegalStateException("EntityFactory create instance failed" + e);
+		}
 	}
 }
 

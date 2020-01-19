@@ -1,0 +1,25 @@
+{
+  play: Jouer
+  editor: Lancer l'éditeur de maps
+  running: Une application est déjà en cours d'execution
+
+  /*create: nouveau
+  open: ouvrir
+  save: sauvegarder
+  undo: undo
+  redo: redo
+  brush: pinceau
+  eraser: gomme
+  move: déplacement*/
+
+  //TODO: franglais est de retour...
+
+  create:new
+  open:open
+  save:save
+  undo:undo
+  redo:redo
+  brush:brush
+  eraser:eraser
+  move:move
+}

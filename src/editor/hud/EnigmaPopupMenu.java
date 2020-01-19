@@ -1,41 +1,27 @@
 package editor.hud;
 
+import api.hud.components.CustomPopupMenu;
 import editor.hud.ui.EnigmaPopupMenuUI;
 
-import javax.swing.JPopupMenu;
-import java.awt.Graphics;
-
 /**
- * TODO: comment EnigmaPopupMenu and write Readme.md in editor.hud
+ * Un popup de menus de l'application enigma
  *
  * @author Jorys-Micke ALAÏS
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 3.0
+ * @version 4.0
  * @since 3.0
  */
-public class EnigmaPopupMenu extends JPopupMenu {
-
-	private EnigmaPopupMenuUI ui;
+public class EnigmaPopupMenu extends CustomPopupMenu {
 
 	public EnigmaPopupMenu() {
 		super();
-		this.setOpaque(true);
-		this.setPopupMenuUI(new EnigmaPopupMenuUI());
-	}
-
-	public EnigmaPopupMenuUI getPopupMenuUI() {
-		return this.ui;
-	}
-
-	public void setPopupMenuUI(EnigmaPopupMenuUI ui) {
-		this.ui = ui.duplicate();
-		this.repaint();
+		this.setComponentUI(new EnigmaPopupMenuUI());
 	}
 
 	@Override
-	public void paintComponent(Graphics g) {
-		this.ui.paint(g, this);
+	public EnigmaPopupMenuUI getComponentUI() {
+		return (EnigmaPopupMenuUI) super.getComponentUI();
 	}
 }

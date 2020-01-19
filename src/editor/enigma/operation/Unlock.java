@@ -2,7 +2,7 @@ package editor.enigma.operation;
 
 import api.entity.Item;
 import api.entity.types.Lockable;
-import editor.entity.player.Player;
+import editor.entity.Player;
 
 import java.util.Map;
 

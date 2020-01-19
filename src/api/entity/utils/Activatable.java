@@ -4,7 +4,7 @@ import api.entity.AbstractItem;
 import api.entity.Item;
 import api.utils.annotations.ConvenienceClass;
 import editor.enigma.Enigma;
-import editor.entity.player.Player;
+import editor.entity.Player;
 
 /**
  * Désigne des objets pouvant être activés ou désactivés

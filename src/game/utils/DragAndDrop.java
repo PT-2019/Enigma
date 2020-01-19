@@ -7,12 +7,12 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import editor.EditorLauncher;
 import game.EnigmaGame;
 import game.entity.DraggedEntity;
 import game.entity.EntityContainer;
-import game.entity.MapLibgdx;
+import game.entity.map.MapTestScreen;
 import game.screen.TestScreen;
+import starter.EditorLauncher;
 
 import java.awt.Cursor;
 
@@ -86,7 +86,7 @@ public class DragAndDrop extends InputListener {
 		//si on la pas mis sur le menu donc partie de la map non visible car cachée par celui-ci
 		boolean retour = !GameActorUtilities.contains(this.container, pos);
 		if (retour) {//si pas caché
-			MapLibgdx map = ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap();
+			MapTestScreen map = ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap();
 			//on regarde si on l'a mis sur la map
 			retour = map.loadEntity(dragged.getEntity(), pos);
 		} else {

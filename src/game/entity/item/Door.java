@@ -4,7 +4,7 @@ import api.entity.AbstractItem;
 import api.entity.Item;
 import api.entity.types.Lockable;
 import api.entity.types.Passage;
-import editor.entity.map.Room;
+import editor.utils.map.Room;
 
 /**
  * Une porte

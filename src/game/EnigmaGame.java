@@ -1,9 +1,12 @@
 package game;
 
 import api.LibgdxGame;
+import api.LibgdxScreen;
 import api.enums.EnigmaScreens;
+import api.utils.annotations.NeedPatch;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
 import game.screen.GameScreen;
 import game.screen.TestScreen;
 
@@ -19,13 +22,15 @@ import game.screen.TestScreen;
  */
 public class EnigmaGame extends LibgdxGame {
 
-	//on charge ici le joueur et tout ce qui vit indépendamment des écrans
-	//....
-
 	//instance unique
 	private static EnigmaGame enigmaGame;
+	/**
+	 * Le screen a lancer au début du jeu
+	 */
+	private static EnigmaScreens startScreen = EnigmaScreens.GAME;
 
-	private static String firstScreen = EnigmaScreens.GAME.name();
+	//on charge ici le joueur et tout ce qui vit indépendamment des écrans
+	//....
 
 	private EnigmaGame() {
 
@@ -43,18 +48,15 @@ public class EnigmaGame extends LibgdxGame {
 		return enigmaGame;
 	}
 
-	/**
-	 * Définit l'écran lancé au lancement du jeu
-	 *
-	 * @param string l'écran lancé au lancement du jeu
-	 */
-	public static void setFirstScreen(String string) {
-		EnigmaGame.firstScreen = string;
+	public static void setStartScreen(EnigmaScreens screen) {
+		startScreen = screen;
 	}
 
 	@Override
+	@NeedPatch
 	public void start() {
 		enigmaGame = this;
+
 		Gdx.app.setLogLevel(Application.LOG_ERROR | Application.LOG_DEBUG);
 
 		//ajout des screens disponibles
@@ -66,7 +68,11 @@ public class EnigmaGame extends LibgdxGame {
 		EnigmaGame.load(EnigmaScreens.GAME.name());
 
 		//définit l'écran actuel de l'application
-		EnigmaGame.setScreen(EnigmaGame.firstScreen);
+		EnigmaGame.setScreen(EnigmaGame.startScreen.name());
+	}
+
+	@Override
+	public void stop() {
 	}
 
 	@Override

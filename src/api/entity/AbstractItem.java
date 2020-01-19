@@ -2,7 +2,7 @@ package api.entity;
 
 import api.utils.annotations.ConvenienceClass;
 import editor.enigma.Enigma;
-import editor.entity.player.Player;
+import editor.entity.Player;
 
 import java.util.ArrayList;
 import java.util.Iterator;

@@ -1,0 +1,14 @@
+{
+  play: Start Game
+  editor: Launch Map Editor
+  running: application already started
+
+  create:new
+  open:open
+  save:save
+  undo:undo
+  redo:redo
+  brush:brush
+  eraser:eraser
+  move:move
+}

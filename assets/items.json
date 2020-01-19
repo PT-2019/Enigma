@@ -117,7 +117,7 @@
     //clefs
     {
       className: game.entity.item.Key
-      path: assets/map/datas/Key.png
+      path: assets/map/datas/key.png
       hover: une clef
       category: ITEMS
       tiles: {

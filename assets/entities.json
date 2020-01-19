@@ -1,7 +1,7 @@
 {
   content: [
     {
-      className: editor.entity.player.Player
+      className: editor.entity.Player
       path: assets/map/datas/players/player1.png
       category: ENTITIES
       width: 2
@@ -16,7 +16,7 @@
       }
     }
     {
-      className: editor.entity.player.Player
+      className: editor.entity.Player
       path: assets/map/datas/players/player2.png
       category: ENTITIES
       width: 2
@@ -31,7 +31,7 @@
       }
     }
     {
-      className: editor.entity.player.Player
+      className: editor.entity.Player
       path: assets/map/datas/players/player3.png
       category: ENTITIES
       width: 2
@@ -46,7 +46,7 @@
       }
     }
     {
-      className: editor.entity.player.Player
+      className: editor.entity.Player
       path: assets/map/datas/players/player4.png
       category: ENTITIES
       width: 2
@@ -61,7 +61,7 @@
       }
     }
     {
-      className: editor.entity.player.Player
+      className: editor.entity.Player
       path: assets/map/datas/players/player5.png
       category: ENTITIES
       width: 2

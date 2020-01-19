@@ -1,7 +1,7 @@
 package api.entity;
 
 import api.entity.types.EnigmaContainer;
-import editor.entity.player.Player;
+import editor.entity.Player;
 
 /**
  * Définie une entité comme un item

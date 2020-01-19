@@ -1,344 +1,204 @@
 package editor.hud;
 
-import editor.hud.managers.OptionPaneButtonManager;
-import editor.hud.managers.OptionPaneWindowManager;
-import editor.hud.ui.EnigmaButtonUI;
+import api.hud.DefaultUIValues;
+import api.hud.components.CustomButton;
+import api.hud.components.CustomOptionPane;
+import api.hud.components.CustomPanel;
+import api.hud.components.CustomWindow;
+import api.hud.components.OptionPaneStyle;
+import api.hud.ui.CustomButtonUI;
 import editor.hud.ui.EnigmaTextAreaUI;
-import editor.hud.ui.EnigmaUIValues;
 
+import javax.swing.JOptionPane;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 
 /**
- * TODO: comment EnigmaOptionPane and write Readme.md in editor.hud
+ * Un panneau de choix modal d'enigma
  *
  * @author Jorys-Micke ALAÏS
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 3.0
+ * @version 4.0
  * @since 3.0
  */
-public class EnigmaOptionPane {
+public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyle {
 
-	public final static String CONFIRM = "Confirmer";
-	public final static String CANCEL = "Annuler";
-	private final static Dimension BASIC_DIMENSION = new Dimension(500, 300);
-	private Alert window;
-	private Window parent;
-	private String answer;
-	private EnigmaTextArea input;
-
-	public EnigmaOptionPane(Alert window, Window parent) {
-		this.window = window;
-		this.parent = parent;
-		this.answer = CANCEL;
+	private EnigmaOptionPane() {
+		super(new EnigmaAlert());
 	}
 
-	public EnigmaOptionPane(Alert window, Window parent, EnigmaTextArea input) {
-		this.window = window;
-		this.parent = parent;
-		this.input = input;
-		this.answer = CANCEL;
-	}
-
-	private static EnigmaButton getClassicButton(String text) {
+	/**
+	 * Retourne le style de base d'un bouton de l'option bane
+	 *
+	 * @param text contenu du bouton
+	 * @return le bouton auquel le style a été appliqué
+	 */
+	private static CustomButton getClassicButton(String text) {
 		boolean[] borders = new boolean[4];
-		borders[EnigmaUIValues.BOTTOM_BORDER] = true;
+		borders[DefaultUIValues.BOTTOM_BORDER] = true;
 		Color grey = new Color(100, 100, 100);
-		EnigmaButton b = new EnigmaButton(text);
-		EnigmaButtonUI bui = b.getButtonUI();
+		CustomButton b = new CustomButton(text);
+		CustomButtonUI bui = b.getComponentUI();
 		bui.setAllBorders(null, Color.WHITE, Color.WHITE);
 		bui.setAllBackgrounds(grey, grey, new Color(50, 150, 200));
-		bui.setAllShowedBorders(EnigmaUIValues.ALL_BORDER_HIDDEN, borders, borders);
+		bui.setAllShowedBorders(DefaultUIValues.ALL_BORDER_HIDDEN, borders, borders);
 		bui.setAllBordersSize(1, 1, 1);
 		bui.setAllForegrounds(Color.WHITE, Color.WHITE, Color.WHITE);
 		return b;
 	}
 
+	/**
+	 * Retourne le style de base d'un champ de saisie de l'option bane
+	 *
+	 * @return le champ de saisie auquel le style a été appliqué
+	 */
 	private static EnigmaTextArea getClassicTextArea() {
 		EnigmaTextArea ta = new EnigmaTextArea();
-		boolean[] borders = EnigmaUIValues.ALL_BORDER_HIDDEN;
-		borders[EnigmaUIValues.BOTTOM_BORDER] = true;
+		boolean[] borders = DefaultUIValues.ALL_BORDER_HIDDEN;
+		borders[DefaultUIValues.BOTTOM_BORDER] = true;
 		Color grey = new Color(100, 100, 100);
-		EnigmaTextAreaUI tui = ta.getTextAreaUI();
+		EnigmaTextAreaUI tui = ta.getComponentUI();
 		tui.setAllBackgrounds(grey, grey, grey);
 		tui.setAllBorders(null, Color.WHITE, Color.WHITE);
 		tui.setAllBordersSize(1, 1, 1);
-		tui.setAllShowedBorders(EnigmaUIValues.ALL_BORDER_HIDDEN, borders, borders);
+		tui.setAllShowedBorders(DefaultUIValues.ALL_BORDER_HIDDEN, borders, borders);
 		return ta;
 	}
 
-	public static boolean showConfirmDialog(Window parent, String message) {
-		EnigmaLabel questionComponent = new EnigmaLabel(message);
-		EnigmaPanel answersComponent = new EnigmaPanel();
-		Alert window = new Alert(0, 0);
-		EnigmaOptionPane optionPane = new EnigmaOptionPane(window, parent);
-
-		EnigmaButton[] buttons = new EnigmaButton[2];
-		buttons[0] = getClassicButton(CONFIRM);
-		buttons[1] = getClassicButton(CANCEL);
-		for (EnigmaButton b : buttons) {
-			b.addActionListener(new OptionPaneButtonManager(optionPane));
-			answersComponent.add(b);
-
-		}
-		buttons[1].getButtonUI().setPressedBackground(Color.RED);
-
-		parent.setAlwaysOnTop(true);
-		window.setAlwaysOnTop(true);
-		window.setMinimumSize(BASIC_DIMENSION);
-		window.setSize(BASIC_DIMENSION);
-		window.setLocation(Alert.CENTER);
-		window.setWindowBackground(Color.DARK_GRAY);
-		window.showBorder(Color.WHITE, 1);
-		window.addWindowListener(new OptionPaneWindowManager(optionPane));
-
-		window.getContentSpace().setLayout(new GridLayout(2, 1));
-		window.getContentSpace().add(questionComponent);
-		window.getContentSpace().add(answersComponent);
-		window.setModal(true);
-
-		optionPane.start();
-		return optionPane.getAnswer().equals(CONFIRM);
+	/**
+	 * Affiche une fenêtre de confirmation
+	 *
+	 * @param parent  fenêtre parent
+	 * @param size    taille popup
+	 * @param message contenu de la popup
+	 * @return true si confirmer a été saisi sinon false
+	 * @since 4.0
+	 */
+	public static boolean showConfirmDialog(CustomWindow parent, Dimension size, String message) {
+		return showConfirmDialog(parent, size, message, new EnigmaOptionPane());
 	}
 
-	public static String showChoicesDialog(Window parent, String message, EnigmaButton[] buttons) {
-		EnigmaLabel questionComponent = new EnigmaLabel(message);
-		EnigmaPanel answersComponent = new EnigmaPanel();
-		Alert window = new Alert(0, 0);
-		EnigmaOptionPane optionPane = new EnigmaOptionPane(window, parent);
-
-		for (EnigmaButton b : buttons) {
-			b.addActionListener(new OptionPaneButtonManager(optionPane));
-			answersComponent.add(b);
-		}
-
-		parent.setAlwaysOnTop(true);
-		window.setAlwaysOnTop(true);
-		window.setMinimumSize(BASIC_DIMENSION);
-		window.setSize(BASIC_DIMENSION);
-		window.setLocation(Alert.CENTER);
-		window.setWindowBackground(Color.DARK_GRAY);
-		window.showBorder(Color.WHITE, 1);
-		window.addWindowListener(new OptionPaneWindowManager(optionPane));
-
-		window.getContentSpace().setLayout(new GridLayout(2, 1));
-		window.getContentSpace().add(questionComponent);
-		window.getContentSpace().add(answersComponent);
-		window.setModal(true);
-
-		optionPane.start();
-		return optionPane.getAnswer();
+	/**
+	 * Affiche une fenêtre de confirmation
+	 *
+	 * @param parent  parent
+	 * @param message message
+	 * @return true si confirmer a été saisi sinon false
+	 * @since 4.0
+	 */
+	public static boolean showConfirmDialog(CustomWindow parent, String message) {
+		return showConfirmDialog(parent, message, new EnigmaOptionPane());
 	}
 
-	public static String showInputDialog(Window parent, String message) {
-		Alert window = new Alert();
-		EnigmaLabel questionComponent = new EnigmaLabel(message);
-		EnigmaTextArea answerComponent = getClassicTextArea();
-		EnigmaPanel confirmComponent = new EnigmaPanel();
-		EnigmaButton confirm = getClassicButton(CONFIRM);
-		EnigmaOptionPane optionPane = new EnigmaOptionPane(window, parent, answerComponent);
-
-		confirm.addActionListener(new OptionPaneButtonManager(optionPane));
-		confirmComponent.add(confirm);
-
-		parent.setAlwaysOnTop(true);
-		window.setAlwaysOnTop(true);
-		window.setMinimumSize(BASIC_DIMENSION);
-		window.setSize(BASIC_DIMENSION);
-		window.setLocation(Alert.CENTER);
-		window.setWindowBackground(Color.DARK_GRAY);
-		window.showBorder(Color.WHITE, 1);
-		window.addWindowListener(new OptionPaneWindowManager(optionPane));
-
-		window.getContentSpace().setLayout(new GridLayout(3, 1));
-		window.getContentSpace().add(questionComponent);
-		window.getContentSpace().add(answerComponent.setScrollBar());
-		window.getContentSpace().add(confirmComponent);
-		window.setModal(true);
-
-		optionPane.start();
-		return optionPane.getAnswer();
+	/**
+	 * Crée un panneau de choix et retourne la string contenue par le bouton choisi
+	 *
+	 * @param parent  parent
+	 * @param message messages
+	 * @param buttons des boutons
+	 * @return la string contenue par le bouton choisi
+	 * @since 4.0
+	 */
+	public static String showChoicesDialog(CustomWindow parent, String message, CustomButton[] buttons) {
+		return showChoicesDialog(parent, message, buttons, new EnigmaOptionPane());
 	}
 
-	public static void showAlert(Window parent, String message) {
-		EnigmaLabel questionComponent = new EnigmaLabel(message);
-		EnigmaPanel answersComponent = new EnigmaPanel();
-		Alert window = new Alert(0, 0);
-		EnigmaOptionPane optionPane = new EnigmaOptionPane(window, parent);
-
-		EnigmaButton confirm = getClassicButton(CONFIRM);
-		confirm.addActionListener(new OptionPaneButtonManager(optionPane));
-		answersComponent.add(confirm);
-
-		parent.setAlwaysOnTop(true);
-		window.setAlwaysOnTop(true);
-		window.setMinimumSize(BASIC_DIMENSION);
-		window.setSize(BASIC_DIMENSION);
-		window.setLocation(Alert.CENTER);
-		window.setWindowBackground(Color.DARK_GRAY);
-		window.showBorder(Color.WHITE, 1);
-		window.addWindowListener(new OptionPaneWindowManager(optionPane));
-
-		window.getContentSpace().setLayout(new GridLayout(2, 1));
-		window.getContentSpace().add(questionComponent);
-		window.getContentSpace().add(answersComponent);
-		window.setModal(true);
-
-		optionPane.start();
+	/**
+	 * Crée un popup de saisie et retourne le message saisi
+	 *
+	 * @param parent  parent
+	 * @param message la question qui demande une saisie
+	 * @return le message saisi
+	 * @since 4.0
+	 */
+	public static String showInputDialog(CustomWindow parent, String message) {
+		return showInputDialog(parent, message, new EnigmaOptionPane());
 	}
 
-	public static boolean showConfirmDialog(Window parent, Dimension size, String message) {
-		EnigmaLabel questionComponent = new EnigmaLabel(message);
-		EnigmaPanel answersComponent = new EnigmaPanel();
-		Alert window = new Alert(0, 0);
-		EnigmaOptionPane optionPane = new EnigmaOptionPane(window, parent);
+	// réécriture des méthodes static avec le bon style
 
-		EnigmaButton[] buttons = new EnigmaButton[2];
-		buttons[0] = getClassicButton(CONFIRM);
-		buttons[1] = getClassicButton(CANCEL);
-		for (EnigmaButton b : buttons) {
-			b.addActionListener(new OptionPaneButtonManager(optionPane));
-			answersComponent.add(b);
-
-		}
-		buttons[1].getButtonUI().setPressedBackground(Color.RED);
-
-		parent.setAlwaysOnTop(true);
-		window.setAlwaysOnTop(true);
-		window.setMinimumSize(size);
-		window.setSize(size);
-		window.setLocation(Alert.CENTER);
-		window.setWindowBackground(Color.DARK_GRAY);
-		window.showBorder(Color.WHITE, 1);
-		window.addWindowListener(new OptionPaneWindowManager(optionPane));
-
-		window.getContentSpace().setLayout(new GridLayout(2, 1));
-		window.getContentSpace().add(questionComponent);
-		window.getContentSpace().add(answersComponent);
-		window.setModal(true);
-
-		optionPane.start();
-		return optionPane.getAnswer().equals(CONFIRM);
+	/**
+	 * Affiche un popup
+	 *
+	 * @param parent  parent
+	 * @param message message
+	 * @since 4.0
+	 */
+	public static void showAlert(CustomWindow parent, String message) {
+		showAlert(parent, message, new EnigmaOptionPane());
 	}
 
-	public static String showChoicesDialog(Window parent, Dimension size, String message, EnigmaButton[] buttons) {
-		EnigmaLabel questionComponent = new EnigmaLabel(message);
-		EnigmaPanel answersComponent = new EnigmaPanel();
-		Alert window = new Alert(0, 0);
-		EnigmaOptionPane optionPane = new EnigmaOptionPane(window, parent);
-
-		for (EnigmaButton b : buttons) {
-			b.addActionListener(new OptionPaneButtonManager(optionPane));
-			answersComponent.add(b);
-		}
-
-		parent.setAlwaysOnTop(true);
-		window.setAlwaysOnTop(true);
-		window.setMinimumSize(size);
-		window.setSize(size);
-		window.setLocation(Alert.CENTER);
-		window.setWindowBackground(Color.DARK_GRAY);
-		window.showBorder(Color.WHITE, 1);
-		window.addWindowListener(new OptionPaneWindowManager(optionPane));
-
-		window.getContentSpace().setLayout(new GridLayout(2, 1));
-		window.getContentSpace().add(questionComponent);
-		window.getContentSpace().add(answersComponent);
-		window.setModal(true);
-
-		optionPane.start();
-		return optionPane.getAnswer();
+	/**
+	 * Affiche un panneau de choix
+	 *
+	 * @param parent  parent
+	 * @param size    taille
+	 * @param message message
+	 * @param buttons des boutons
+	 * @return le texte du bouton choisi
+	 * @since 4.0
+	 */
+	public static String showChoicesDialog(CustomWindow parent, Dimension size, String message, CustomButton[] buttons) {
+		return showChoicesDialog(parent, size, message, buttons, new EnigmaOptionPane());
 	}
 
-	public static String showInputDialog(Window parent, Dimension size, String message) {
-		Alert window = new Alert();
-		EnigmaLabel questionComponent = new EnigmaLabel(message);
-		EnigmaTextArea answerComponent = getClassicTextArea();
-		EnigmaPanel confirmComponent = new EnigmaPanel();
-		EnigmaButton confirm = getClassicButton(CONFIRM);
-		EnigmaOptionPane optionPane = new EnigmaOptionPane(window, parent, answerComponent);
-
-		confirm.addActionListener(new OptionPaneButtonManager(optionPane));
-		confirmComponent.add(confirm);
-
-		parent.setAlwaysOnTop(true);
-		window.setAlwaysOnTop(true);
-		window.setMinimumSize(size);
-		window.setSize(size);
-		window.setLocation(Alert.CENTER);
-		window.setWindowBackground(Color.DARK_GRAY);
-		window.showBorder(Color.WHITE, 1);
-		window.addWindowListener(new OptionPaneWindowManager(optionPane));
-
-		window.getContentSpace().setLayout(new GridLayout(3, 1));
-		window.getContentSpace().add(questionComponent);
-		window.getContentSpace().add(answerComponent.setScrollBar());
-		window.getContentSpace().add(confirmComponent);
-		window.setModal(true);
-
-		optionPane.start();
-		return optionPane.getAnswer();
+	/**
+	 * Affiche un popup personnalisé
+	 *
+	 * @param parent parent
+	 * @param message possiblement un tableau, des composants a afficher dans le popup
+	 * @param title titre de la fenêtre
+	 * @param options option (ok, confirmer, ...), par exemple un tableau de string
+	 * @return la position dans le tableau d'options choisie
+	 */
+	public static int showOptionDialog(CustomWindow parent, Object message, String title, String[] options){
+		return showOptionDialog(parent, message, title, options, new EnigmaOptionPane());
 	}
 
-	public static void showAlert(Window parent, Dimension size, String message) {
-		EnigmaLabel questionComponent = new EnigmaLabel(message);
-		EnigmaPanel answersComponent = new EnigmaPanel();
-		Alert window = new Alert(0, 0);
-		EnigmaOptionPane optionPane = new EnigmaOptionPane(window, parent);
-
-		EnigmaButton confirm = getClassicButton(CONFIRM);
-		confirm.addActionListener(new OptionPaneButtonManager(optionPane));
-		answersComponent.add(confirm);
-
-		parent.setAlwaysOnTop(true);
-		window.setAlwaysOnTop(true);
-		window.setMinimumSize(size);
-		window.setSize(size);
-		window.setLocation(Alert.CENTER);
-		window.setWindowBackground(Color.DARK_GRAY);
-		window.showBorder(Color.WHITE, 1);
-		window.addWindowListener(new OptionPaneWindowManager(optionPane));
-
-		window.getContentSpace().setLayout(new GridLayout(2, 1));
-		window.getContentSpace().add(questionComponent);
-		window.getContentSpace().add(answersComponent);
-		window.setModal(true);
-
-		optionPane.start();
+	/**
+	 * Crée une fenêtre de saisie
+	 *
+	 * @param parent  parent
+	 * @param size    taille
+	 * @param message message
+	 * @return la réponse saisie
+	 * @since 4.0
+	 */
+	public static String showInputDialog(CustomWindow parent, Dimension size, String message) {
+		return showInputDialog(parent, size, message, new EnigmaOptionPane());
 	}
 
-	public void start() {
-		if (this.window != null)
-			this.window.setVisible(true);
+	/**
+	 * Affiche un popup
+	 *
+	 * @param parent  parent
+	 * @param size    taille
+	 * @param message message
+	 * @since 4.0
+	 */
+	public static void showAlert(CustomWindow parent, Dimension size, String message) {
+		showAlert(parent, size, message, new EnigmaOptionPane());
 	}
 
-	public void close() {
-		if (this.parent != null)
-			this.parent.setAlwaysOnTop(false);
-
-		if (this.window != null)
-			this.window.dispose();
+	@Override
+	public CustomButton getButtonStyle(String text) {
+		return getClassicButton(text);
 	}
 
-	public String getAnswer() {
-		return this.answer;
+	@Override
+	public EnigmaTextArea getTextAreaStyle() {
+		return getClassicTextArea();
 	}
 
-	public void answer(String answer) {
-		if (this.input != null) this.answer = this.input.getText();
-		else this.answer = answer;
-		this.close();
+	@Override
+	public CustomPanel getPanelStyle() {
+		return new EnigmaPanel();
 	}
 
-	public void cancel() {
-		this.answer = CANCEL;
-		this.close();
-	}
-
-	public Alert getWindow() {
-		return this.window;
+	@Override
+	public EnigmaLabel getLabelStyle(String content) {
+		return new EnigmaLabel(content);
 	}
 }

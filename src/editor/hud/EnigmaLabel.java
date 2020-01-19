@@ -1,54 +1,40 @@
 package editor.hud;
 
-import editor.hud.managers.EnigmaLabelManager;
+import api.hud.components.CustomLabel;
 import editor.hud.ui.EnigmaLabelUI;
 
-import javax.swing.JLabel;
-import java.awt.Graphics;
-
 /**
- * TODO: comment EnigmaLabel and write Readme.md in editor.hud
+ * Un label de l'application enigma
  *
  * @author Jorys-Micke ALAÏS
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 3.0
+ * @version 4.0
  * @since 3.0
  */
-public class EnigmaLabel extends JLabel {
+public class EnigmaLabel extends CustomLabel {
 
-	private EnigmaLabelUI ui;
-
+	/**
+	 * Crée un label
+	 */
 	public EnigmaLabel() {
 		super();
-		this.addMouseListener(new EnigmaLabelManager(this));
-		this.setOpaque(true);
-		this.setHorizontalAlignment(JLabel.CENTER);
-		this.setLabelUI(new EnigmaLabelUI());
+		this.setComponentUI(new EnigmaLabelUI());
 	}
 
+	/**
+	 * Crée un label
+	 *
+	 * @param title son contenu
+	 */
 	public EnigmaLabel(String title) {
 		super(title);
-		this.addMouseListener(new EnigmaLabelManager(this));
-		this.setOpaque(true);
-		this.setHorizontalAlignment(JLabel.CENTER);
-		this.setLabelUI(new EnigmaLabelUI());
-	}
-
-	public EnigmaLabelUI getLabelUI() {
-		return this.ui;
-	}
-
-	public void setLabelUI(EnigmaLabelUI ui) {
-		this.ui = ui.duplicate();
-		this.setCursor(this.ui.getCursor());
-		this.setFont(this.ui.getFont());
-		super.setUI(this.ui);
+		this.setComponentUI(new EnigmaLabelUI());
 	}
 
 	@Override
-	public void paintComponent(Graphics g) {
-		this.ui.paint(g, this);
+	public EnigmaLabelUI getComponentUI() {
+		return (EnigmaLabelUI) super.getComponentUI();
 	}
 }

@@ -2,7 +2,7 @@ package game.entity.item;
 
 import api.entity.utils.Activatable;
 import editor.enigma.Enigma;
-import editor.entity.player.Player;
+import editor.entity.Player;
 import editor.utils.textures.Texture;
 
 import java.util.ArrayList;

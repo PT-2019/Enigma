@@ -2,9 +2,9 @@ package editor.enigma;
 
 import editor.enigma.condition.Activated;
 import editor.enigma.operation.Unlock;
-import item.Door;
-import item.Switch;
-import editor.entity.player.Player;
+import editor.entity.Player;
+import game.entity.item.Door;
+import game.entity.item.Switch;
 
 /**
  * Main énigmes

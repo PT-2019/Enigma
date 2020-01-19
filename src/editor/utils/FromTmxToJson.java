@@ -4,7 +4,7 @@ import api.enums.Layer;
 import api.utils.annotations.ConvenienceClass;
 import api.utils.annotations.ConvenienceMethod;
 import com.badlogic.gdx.math.Vector2;
-import editor.entity.map.Map;
+import editor.utils.map.Map;
 import editor.utils.save.MapLoader;
 
 /**

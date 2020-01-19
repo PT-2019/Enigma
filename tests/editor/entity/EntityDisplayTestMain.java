@@ -1,5 +1,6 @@
 package editor.entity;
 
+import api.entity.Entity;
 import api.entity.utils.Entity;
 import editor.entity.display.EntityPopMenu;
 import editor.entity.display.EntityView;
