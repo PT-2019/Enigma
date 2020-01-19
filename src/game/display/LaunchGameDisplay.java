@@ -39,7 +39,7 @@ public class LaunchGameDisplay {
         gbc.weightx = 1;
         gbc.weighty = 1;
         this.panel.add(RightBarDisplayManager.getInstance().getPanel(),gbc);
-        this.showDisplay(JOIN_GAME);
+        this.showDisplay(WAIT_PLAYERS);
     }
 
     public void showDisplay(String displayName){

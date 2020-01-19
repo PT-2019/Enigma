@@ -38,6 +38,7 @@ public class EnigmaGameLauncher implements Application {
 	 * @since 4.0
 	 */
 	private EnigmaGameLauncher() {
+		GameConfiguration.getInstance().setOwner(new Player("utilisateur qui à lancé la partie"));
 		this.window = new Window();
 		this.window.setWindowBackground(Color.DARK_GRAY);
 		this.window.addWindowListener(new AppClosingManager());
@@ -83,8 +84,6 @@ public class EnigmaGameLauncher implements Application {
 		this.window.getContentSpace().add(configurationPanel,CONFIGURATION);*/
 		this.window.getContentSpace().add(LaunchGameDisplay.getInstance().getPanel(),LAUNCH_GAME);
 		this.window.getContentSpace().add(gamePanel, PLAY_GAME);
-
-		GameConfiguration.getInstance().setOwner(new Player("utilisateur qui à lancé la partie"));
 	}
 
 	/**

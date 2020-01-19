@@ -122,7 +122,7 @@ class CreateGameDisplayManager {
         this.nameAnswer.setText(gameConfig.getGameName());
         this.mapAnswer.setText(gameConfig.getMap());
         this.durationAnswer.setText(Double.toString(gameConfig.getDuration()).replace(".",":"));
-        if(gameConfig.getPlayerNumber() > 1) this.numberPlayerRBM.setSelected(this.numberPlayerOptions[gameConfig.getPlayerNumber() - 2]);
+        if(gameConfig.getMaxGamePlayers() > 1) this.numberPlayerRBM.setSelected(this.numberPlayerOptions[gameConfig.getMaxGamePlayers() - 2]);
         if(gameConfig.isMultiPlayer()) this.multiRBM.setSelected(this.multiOptions[0]);
         else {
             this.multiRBM.setSelected(this.multiOptions[1]);

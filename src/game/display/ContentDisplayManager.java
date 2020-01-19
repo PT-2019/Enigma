@@ -1,13 +1,12 @@
 package game.display;
 
+import editor.enigma.Enigma;
+import editor.entity.player.Player;
 import editor.hud.EnigmaButton;
 import editor.hud.EnigmaLabel;
 import editor.hud.EnigmaPanel;
 import editor.hud.EnigmaTextArea;
-import editor.hud.Window;
-import editor.hud.managers.CheckBoxManager;
-import editor.hud.ui.EnigmaButtonUI;
-import editor.hud.ui.EnigmaUIValues;
+import game.GameConfiguration;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,6 +18,11 @@ public class ContentDisplayManager {
     private CardLayout layout;
 
     private ContentDisplayManager(){
+        GameConfiguration.getInstance().setMultiPlayer(true);
+        GameConfiguration.getInstance().setMaxGamePlayers(GameConfiguration.MAX_PLAYERS);
+        GameConfiguration.getInstance().playerJoined(new Player("aszdf"));
+        GameConfiguration.getInstance().playerJoined(new Player("zerstrhtgjyh"));
+        //GameConfiguration.getInstance().playerJoined(new Player("bite non binaire"));
         this.layout = new CardLayout();
         this.panel = new EnigmaPanel();
         this.panel.setLayout(this.layout);
@@ -164,13 +168,105 @@ public class ContentDisplayManager {
     }
 
     private EnigmaPanel initWaitPlayers() {
+        Color grey = new Color(100,100,100);
+        Color lighterGrey = new Color(150,150,150);
 
-        return null;
+        EnigmaPanel displayContent = new EnigmaPanel();
+        EnigmaPanel content = new EnigmaPanel();
+        EnigmaPanel players = new EnigmaPanel();
+        EnigmaPanel playersJoin = new EnigmaPanel();
+        GridBagConstraints gbc = new GridBagConstraints();
+        GameConfiguration gameConfig = GameConfiguration.getInstance();
+
+        content.setLayout(new GridBagLayout());
+        displayContent.setLayout(new GridBagLayout());
+        playersJoin.setLayout(new GridBagLayout());
+        int inset = 50;
+        int inset2 = 5;
+
+        content.getPanelUI().setAllBackgrounds(Color.WHITE,Color.WHITE,Color.WHITE);
+        displayContent.getPanelUI().setAllBackgrounds(Color.WHITE,Color.WHITE,Color.WHITE);
+        playersJoin.getPanelUI().setAllBackgrounds(Color.WHITE,Color.WHITE,Color.WHITE);
+
+        gbc.gridy = 1;
+        gbc.gridwidth = 1;
+        gbc.gridheight = 1;
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.weightx = 1;
+        gbc.weighty = 1;
+        gbc.insets = new Insets(inset2,inset2,inset2,inset2);
+
+        GridBagConstraints gbcP = new GridBagConstraints();
+        gbcP.gridy = 1;
+        gbcP.gridwidth = 1;
+        gbcP.gridheight = 1;
+        gbcP.fill = GridBagConstraints.BOTH;
+        gbcP.weighty = 1;
+
+        players.setLayout(new GridLayout(GameConfiguration.MAX_PLAYERS,1));
+        int i = 1;
+        for(Player p: gameConfig.getAllPlayers()){
+            gbc.gridx = i;
+            gbc.gridy = 1;
+            gbc.gridwidth = 1;
+            gbc.gridheight = 1;
+            gbc.fill = GridBagConstraints.BOTH;
+            gbc.weightx = 1;
+            gbc.weighty = 1;
+            EnigmaPanel joined = new EnigmaPanel();
+            joined.getPanelUI().setAllBackgrounds(Color.BLACK,Color.BLACK,Color.BLACK);
+            playersJoin.add(joined,gbc);
+
+            EnigmaPanel player = new EnigmaPanel();
+            EnigmaPanel isLeader = new EnigmaPanel();
+            EnigmaLabel name = new EnigmaLabel(p.getName());
+
+            if(p.equals(gameConfig.getOwner()))
+                isLeader.getPanelUI().setAllBackgrounds(Color.GREEN,Color.GREEN,Color.GREEN);
+            player.setLayout(new GridBagLayout());
+
+            gbcP.gridx = 1;
+            gbcP.weightx = 1;
+            player.add(isLeader,gbcP);
+
+            gbcP.gridx = 2;
+            gbcP.weightx = 5;
+            player.add(name,gbcP);
+
+            players.add(player,gbc);
+            i++;
+        }
+
+        gbc.gridy = 1;
+        gbc.gridwidth = 1;
+        gbc.gridheight = 1;
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.weightx = 1;
+        gbc.weighty = 1;
+        for(i = gameConfig.getTotalPlayers(); i < gameConfig.getMaxGamePlayers(); i++){
+            gbc.gridx = i;
+            EnigmaPanel joined = new EnigmaPanel();
+            joined.getPanelUI().setAllBackgrounds(Color.LIGHT_GRAY,Color.LIGHT_GRAY,Color.LIGHT_GRAY);
+            playersJoin.add(joined,gbc);
+        }
+
+        content.add(playersJoin,gbc);
+
+        gbc.gridy = 2;
+        gbc.weighty = 2;
+        content.add(players,gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        gbc.insets = new Insets(inset,inset,inset,inset);
+        displayContent.add(content,gbc);
+
+        return displayContent;
     }
 
     private EnigmaPanel initWaitPlayersLeader() {
 
-        return null;
+        return new EnigmaPanel();
     }
 
     public void showDisplay(String displayName){
