@@ -9,15 +9,10 @@ import editor.hud.EnigmaTextArea;
 import editor.hud.EnigmaWindow;
 import game.EnigmaGame;
 import game.screen.TestScreen;
-import javafx.application.Platform;
-import javafx.embed.swing.JFXPanel;
-import javafx.stage.FileChooser;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-
-import static javafx.stage.FileChooser.ExtensionFilter;
 
 /**
  * Observateur des boutons de la barre d'outil
@@ -33,8 +28,8 @@ import static javafx.stage.FileChooser.ExtensionFilter;
 @Deprecated
 public class OutilAction implements ActionListener {
 
-	private static final ExtensionFilter extensions = new ExtensionFilter("Fichier map .tmx",
-			"*.tmx");
+	/*private static final ExtensionFilter extensions = new ExtensionFilter("Fichier map .tmx",
+			"*.tmx");*/
 	private final EnigmaWindow window;
 
 	private volatile boolean finished;
@@ -43,7 +38,7 @@ public class OutilAction implements ActionListener {
 	public OutilAction(EnigmaWindow window) {
 		this.window = window;
 		//force lancement javafx
-		new JFXPanel();
+		//new JFXPanel();
 		this.finished = false;
 	}
 
@@ -54,7 +49,7 @@ public class OutilAction implements ActionListener {
 
 		if (msg.equals(Outil.OPEN.name)) {
 
-			Platform.runLater(
+			/*Platform.runLater(
 					() ->
 					{
 						FileChooser fileChooser = new FileChooser();
@@ -72,11 +67,11 @@ public class OutilAction implements ActionListener {
 			if (this.file != null) {
 				if (((TestScreen) EnigmaGame.getCurrentScreen()).setMap(this.file.getAbsolutePath()))
 					Gdx.app.postRunnable(() -> EnigmaGame.reload(EnigmaScreens.TEST.name()));
-			}
+			}*/
 
 		} else if (msg.equals(Outil.SAVE.name)) {
 
-			Platform.runLater(
+			/*Platform.runLater(
 					() ->
 					{
 						FileChooser fileChooser = new FileChooser();
@@ -86,7 +81,7 @@ public class OutilAction implements ActionListener {
 						this.file = fileChooser.showSaveDialog(null);
 						this.finished = true;
 					}
-			);
+			);*/
 
 			while (!this.finished) ; //attends le thread file chooser
 
