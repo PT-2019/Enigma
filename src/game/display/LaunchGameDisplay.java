@@ -1,12 +1,8 @@
 package game.display;
 
-import editor.hud.EnigmaButton;
 import editor.hud.EnigmaPanel;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 public class LaunchGameDisplay {
     private final static LaunchGameDisplay instance = new LaunchGameDisplay();
     private EnigmaPanel panel;
@@ -39,7 +35,7 @@ public class LaunchGameDisplay {
         gbc.weightx = 1;
         gbc.weighty = 1;
         this.panel.add(RightBarDisplayManager.getInstance().getPanel(),gbc);
-        this.showDisplay(WAIT_PLAYERS);
+        this.showDisplay(JOIN_GAME);
     }
 
     public void showDisplay(String displayName){

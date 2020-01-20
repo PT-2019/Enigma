@@ -47,12 +47,6 @@ public class CustomAlert extends JDialog implements AbstractWindow {
 	private Color menuBarBorderConfiguration;
 	private int menuBarBorderSizeConfiguration;
 	private boolean[] menuBarShowedBorderConfiguration;
-<<<<<<< HEAD:src/editor/hud/Window.java
-	private boolean ask;
-	private EnigmaMenuBar windowActionBar;
-	private EnigmaLabel titleComponent;
-=======
->>>>>>> e3069dfb0e80fc64dd0c3b99e16d2ec82f0dd0e7:src/api/hud/components/CustomAlert.java
 
 	/**
 	 * Initialise un popup de la taille de l'écran
@@ -83,53 +77,6 @@ public class CustomAlert extends JDialog implements AbstractWindow {
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		this.setMinimumSize(new Dimension((int) screenSize.getWidth() / 4, (int) screenSize.getHeight() / 3));
 		this.setLocation(0, 0);
-<<<<<<< HEAD:src/editor/hud/Window.java
-		this.init("");
-	}
-
-	public Window(String title) {
-		super();
-		Rectangle screenSize = this.getGraphicsConfiguration().getBounds();
-		this.resizable = true;
-		this.ask = false;
-		this.setSize(screenSize.getSize());
-		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		this.setSize(FULL_SCREEN_SIZE);
-		this.setMinimumSize(new Dimension((int) screenSize.getWidth() / 4, (int) screenSize.getHeight() / 3));
-		this.setLocation(0, 0);
-		this.init(title);
-	}
-
-	public Window(int width, int height) {
-		super();
-		Rectangle screenSize = this.getGraphicsConfiguration().getBounds();
-		this.resizable = true;
-		this.ask = false;
-		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		this.setSize(width, height);
-		this.setLocation(CENTER);
-		this.setMinimumSize(new Dimension((int) screenSize.getWidth() / 4, (int) screenSize.getHeight() / 3));
-		this.init("");
-	}
-
-	public Window(String title, int width, int height) {
-		super();
-		Rectangle screenSize = this.getGraphicsConfiguration().getBounds();
-		this.resizable = true;
-		this.ask = false;
-		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		this.setSize(width, height);
-		this.setLocation(CENTER);
-		this.setMinimumSize(new Dimension((int) screenSize.getWidth() / 4, (int) screenSize.getHeight() / 3));
-		this.init(title);
-	}
-
-	private void init(String title) {
-		//this.setIconImage(new ImageIcon(this.getClass().getResource("image/o.JPG")).getImage());
-		this.setUndecorated(true);
-		windowActionBar = new EnigmaMenuBar();
-		EnigmaMenuBarUI barUI = new EnigmaMenuBarUI();
-=======
 
 		this.windowContent = new CustomPanel();
 		this.content = new CustomPanel();
@@ -164,19 +111,12 @@ public class CustomAlert extends JDialog implements AbstractWindow {
 	 * @since 4.1
 	 */
 	protected void createMenuBar(@NotNull CustomMenuBar bar, @NotNull CustomMenuBarUI barUI) {
->>>>>>> e3069dfb0e80fc64dd0c3b99e16d2ec82f0dd0e7:src/api/hud/components/CustomAlert.java
 		boolean[] borderShowed = new boolean[4];
 		borderShowed[DefaultUIValues.BOTTOM_BORDER] = DefaultUIValues.SHOWED_BORDER;
 		barUI.setShowedBorders(borderShowed);
 		barUI.setBorderSize(2);
 		barUI.setBorder(Color.RED);
 		bar.setComponentUI(barUI);
-
-		Color grey = new Color(100,100,100);
-
-		this.titleComponent = new EnigmaLabel(title);
-		this.titleComponent.getLabelUI().setAllForegrounds(grey,grey,grey);
-		windowActionBar.add(this.titleComponent);
 
 		Drag drag = new Drag(this);
 		bar.addMouseListener(drag);
@@ -191,28 +131,6 @@ public class CustomAlert extends JDialog implements AbstractWindow {
 		this.close.setComponentUI(buttonUI);
 		this.close.addActionListener(new Exit(this));
 
-<<<<<<< HEAD:src/editor/hud/Window.java
-		this.minimize = new EnigmaButton("-");
-		buttonUI.setAllBackgrounds(barUI.getBackground(), grey, grey);
-		this.minimize.setButtonUI(buttonUI);
-		this.minimize.addActionListener(new Minimize(this));
-
-		this.smaller = new EnigmaButton("[]");
-		this.smaller.setButtonUI(buttonUI);
-		this.smaller.addActionListener(new Smaller(this));
-
-		windowActionBar.add(Box.createHorizontalGlue());
-		windowActionBar.add(this.minimize);
-		windowActionBar.add(this.smaller);
-		windowActionBar.add(this.close);
-		this.setJMenuBar(windowActionBar);
-		this.menuBarBorderConfiguration = windowActionBar.getMenuBarUI().getBorder();
-		this.menuBarBorderSizeConfiguration = windowActionBar.getMenuBarUI().getBorderSize();
-		this.menuBarShowedBorderConfiguration = windowActionBar.getMenuBarUI().getShowedBorders();
-
-		this.windowContent = new EnigmaPanel();
-		this.content = new EnigmaPanel();
-=======
 		bar.add(Box.createHorizontalGlue());
 		bar.add(this.close);
 		this.setJMenuBar(bar);
@@ -229,7 +147,6 @@ public class CustomAlert extends JDialog implements AbstractWindow {
 	protected void initContent() {
 		this.content.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 
->>>>>>> e3069dfb0e80fc64dd0c3b99e16d2ec82f0dd0e7:src/api/hud/components/CustomAlert.java
 		this.resizers[RIGHT_RESIZER] = new ResizeComponent(new Cursor(Cursor.E_RESIZE_CURSOR));
 		this.resizers[LEFT_RESIZER] = new ResizeComponent(new Cursor(Cursor.W_RESIZE_CURSOR));
 		this.resizers[BOTTOM_RESIZER] = new ResizeComponent(new Cursor(Cursor.S_RESIZE_CURSOR));
@@ -389,23 +306,7 @@ public class CustomAlert extends JDialog implements AbstractWindow {
 		}
 	}
 
-<<<<<<< HEAD:src/editor/hud/Window.java
-	public boolean compareWindowSizeWith(int width, int height) {
-		Dimension dim = new Dimension(width, height);
-		return (dim.equals(this.getSize()));
-	}
-
-	public boolean compareWindowSizes(Dimension dim1, Dimension dim2) {
-		return (dim1.equals(dim2));
-	}
-
-	public Rectangle getScreenBounds(){
-		return this.getGraphicsConfiguration().getBounds();
-	}
-
-=======
 	@Override
->>>>>>> e3069dfb0e80fc64dd0c3b99e16d2ec82f0dd0e7:src/api/hud/components/CustomAlert.java
 	public void setLocation(int location) {
 
 		Rectangle screenSize = this.getGraphicsConfiguration().getBounds();
@@ -457,13 +358,9 @@ public class CustomAlert extends JDialog implements AbstractWindow {
 		this.setLocation(windowPosX + screenSize.x, windowPosY + screenSize.y);
 	}
 
-<<<<<<< HEAD:src/editor/hud/Window.java
-	public void setMenuBar(EnigmaMenuBar menuBar) {
-=======
 
 	@Override
 	public void setWindowMenuBar(CustomMenuBar menuBar) {
->>>>>>> e3069dfb0e80fc64dd0c3b99e16d2ec82f0dd0e7:src/api/hud/components/CustomAlert.java
 		this.setJMenuBar(menuBar);
 		this.menuBarBorderConfiguration = menuBar.getComponentUI().getBorder();
 		this.menuBarBorderSizeConfiguration = menuBar.getComponentUI().getBorderSize();
@@ -481,9 +378,6 @@ public class CustomAlert extends JDialog implements AbstractWindow {
 		}
 	}
 
-<<<<<<< HEAD:src/editor/hud/Window.java
-	public void setWindowBackground(ImageIcon image) {
-=======
 	@Override
 	public void setIfAskBeforeClosing(boolean askBeforeClosing) {
 		if (askBeforeClosing)
@@ -497,7 +391,6 @@ public class CustomAlert extends JDialog implements AbstractWindow {
 
 	@Override
 	public void setBackground(ImageIcon image) {
->>>>>>> e3069dfb0e80fc64dd0c3b99e16d2ec82f0dd0e7:src/api/hud/components/CustomAlert.java
 		this.content.setOpaque(false);
 		for (ResizeComponent r : this.resizers) r.setOpaque(false);
 		this.windowContent.getComponentUI().setAllBackgroundImage(image, image, image);

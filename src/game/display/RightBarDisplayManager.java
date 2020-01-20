@@ -1,12 +1,8 @@
 package game.display;
 
-import editor.hud.EnigmaButton;
-import editor.hud.EnigmaLabel;
-import editor.hud.EnigmaPanel;
-import editor.hud.EnigmaTextArea;
-import editor.hud.managers.CheckBoxManager;
+import api.hud.manager.choices.CheckBoxManager;
+import editor.hud.*;
 import editor.hud.ui.EnigmaButtonUI;
-import editor.hud.ui.EnigmaUIValues;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,7 +19,7 @@ public class RightBarDisplayManager {
         this.panel.setLayout(this.layout);
 
         this.panel.add(this.initSelectGame(),LaunchGameDisplay.SELECT_GAME);
-        this.panel.add(this.initJoinGame(),LaunchGameDisplay.JOIN_GAME);
+        this.panel.add(JoinGameDisplayManager.getInstance().getRightBar(),LaunchGameDisplay.JOIN_GAME);
         this.panel.add(this.initWaitPlayers(),LaunchGameDisplay.WAIT_PLAYERS);
         this.panel.add(this.initWaitPlayersLeader(),LaunchGameDisplay.WAIT_PLAYERS_LEADER);
     }
@@ -42,14 +38,14 @@ public class RightBarDisplayManager {
         bui.setAllBackgrounds(grey,lighterGrey,lighterGrey);
         bui.setAllForegrounds(Color.WHITE,Color.WHITE,Color.WHITE);
         bui.setAllBorders(null,null,null);
-        EnigmaButtonUI bui2 = bui.duplicate();
+        EnigmaButtonUI bui2 = (EnigmaButtonUI) bui.duplicate();
         bui2.setAllBackgrounds(darkRed,lighterDarkRed,lighterDarkRed);
 
         EnigmaPanel content = new EnigmaPanel();
         content.setLayout(new GridLayout(2,1));
-        content.getPanelUI().setAllBorders(Color.RED,Color.RED,Color.RED);
-        content.getPanelUI().setAllBordersSize(3,3,3);
-        content.getPanelUI().setAllShowedBorders(borders,borders,borders);
+        content.getComponentUI().setAllBorders(Color.RED,Color.RED,Color.RED);
+        content.getComponentUI().setAllBordersSize(3,3,3);
+        content.getComponentUI().setAllShowedBorders(borders,borders,borders);
 
         EnigmaPanel buttonsComponent = new EnigmaPanel();
         EnigmaPanel filtersComponent = new EnigmaPanel();
@@ -67,19 +63,19 @@ public class RightBarDisplayManager {
         gbc.weighty = 1;
         gbc.insets = new Insets(inset,inset,inset,inset);
         EnigmaButton b = new EnigmaButton("Jouer");
-        b.setButtonUI(bui);
+        b.setComponentUI(bui);
         buttonsComponent.add(b,gbc);
 
         gbc.gridy = 2;
         gbc.insets = new Insets(0,inset,inset,inset);
         b = new EnigmaButton("Supprimer");
-        b.setButtonUI(bui2);
+        b.setComponentUI(bui2);
         buttonsComponent.add(b,gbc);
 
         gbc.gridy = 3;
         gbc.insets = new Insets(inset * 2,inset,inset,inset);
         b = new EnigmaButton("Nouvelle partie");
-        b.setButtonUI(bui);
+        b.setComponentUI(bui);
         buttonsComponent.add(b,gbc);
 
         content.add(buttonsComponent);
@@ -95,7 +91,7 @@ public class RightBarDisplayManager {
         gbc.insets = new Insets(inset,inset,inset,inset);
         EnigmaTextArea ta = new EnigmaTextArea();
         ta.setPreferredSize(new Dimension());
-        ta.getTextAreaUI().setAllBackgrounds(grey,grey,grey);
+        ta.getComponentUI().setAllBackgrounds(grey,grey,grey);
         EnigmaPanel search = new EnigmaPanel();
         search.setLayout(new GridLayout(2,1));
         EnigmaLabel l = new EnigmaLabel("Rechercher :");
@@ -112,8 +108,8 @@ public class RightBarDisplayManager {
         bui.setSelectedCursor(new Cursor(Cursor.HAND_CURSOR));
         EnigmaButton filter1 = new EnigmaButton("Solo");
         EnigmaButton filter2 = new EnigmaButton("Multijoueurs");
-        filter1.setButtonUI(bui);
-        filter2.setButtonUI(bui);
+        filter1.setComponentUI(bui);
+        filter2.setComponentUI(bui);
         CheckBoxManager cbm = new CheckBoxManager();
         cbm.add(filter1);
         cbm.add(filter2);
@@ -126,18 +122,6 @@ public class RightBarDisplayManager {
         filtersComponent.add(p,gbc);
 
         content.add(filtersComponent);
-
-        return content;
-    }
-
-    public EnigmaPanel initJoinGame(){
-        boolean[] borders = new boolean[4];
-        borders[EnigmaUIValues.LEFT_BORDER] = EnigmaUIValues.SHOWED_BORDER;
-
-        EnigmaPanel content = new EnigmaPanel();
-        content.getPanelUI().setAllBorders(Color.RED,Color.RED,Color.RED);
-        content.getPanelUI().setAllBordersSize(3,3,3);
-        content.getPanelUI().setAllShowedBorders(borders,borders,borders);
 
         return content;
     }
@@ -160,9 +144,9 @@ public class RightBarDisplayManager {
 
         EnigmaPanel content = new EnigmaPanel();
         content.setLayout(new GridLayout(2,1));
-        content.getPanelUI().setAllBorders(Color.RED,Color.RED,Color.RED);
-        content.getPanelUI().setAllBordersSize(3,3,3);
-        content.getPanelUI().setAllShowedBorders(borders,borders,borders);
+        content.getComponentUI().setAllBorders(Color.RED,Color.RED,Color.RED);
+        content.getComponentUI().setAllBordersSize(3,3,3);
+        content.getComponentUI().setAllShowedBorders(borders,borders,borders);
 
         EnigmaPanel buttonsComponent = new EnigmaPanel();
         EnigmaPanel filtersComponent = new EnigmaPanel();
@@ -180,19 +164,19 @@ public class RightBarDisplayManager {
         gbc.weighty = 1;
         gbc.insets = new Insets(inset,inset,inset,inset);
         EnigmaButton b = new EnigmaButton("Quitter");
-        b.setButtonUI(bui);
+        b.setComponentUI(bui);
         buttonsComponent.add(b,gbc);
 
         gbc.gridy = 2;
         gbc.insets = new Insets(0,inset,inset,inset);
         EnigmaButton voidButton = new EnigmaButton("nothing");
-        voidButton.setButtonUI(voidBUI);
+        voidButton.setComponentUI(voidBUI);
         buttonsComponent.add(voidButton,gbc);
 
         gbc.gridy = 3;
         gbc.insets = new Insets(inset * 2,inset,inset,inset);
         voidButton = new EnigmaButton("nothing");
-        voidButton.setButtonUI(voidBUI);
+        voidButton.setComponentUI(voidBUI);
         buttonsComponent.add(voidButton,gbc);
 
         content.add(buttonsComponent);
@@ -213,7 +197,7 @@ public class RightBarDisplayManager {
         bui.setAllBackgrounds(grey,lighterGrey,lighterGrey);
         bui.setAllForegrounds(Color.WHITE,Color.WHITE,Color.WHITE);
         bui.setAllBorders(null,null,null);
-        EnigmaButtonUI bui2 = bui.duplicate();
+        EnigmaButtonUI bui2 = (EnigmaButtonUI) bui.duplicate();
         bui2.setAllBackgrounds(darkRed,lighterDarkRed,lighterDarkRed);
         EnigmaButtonUI voidBUI = new EnigmaButtonUI();
         voidBUI.setAllBorders(null,null,null);
@@ -223,9 +207,9 @@ public class RightBarDisplayManager {
 
         EnigmaPanel content = new EnigmaPanel();
         content.setLayout(new GridLayout(2,1));
-        content.getPanelUI().setAllBorders(Color.RED,Color.RED,Color.RED);
-        content.getPanelUI().setAllBordersSize(3,3,3);
-        content.getPanelUI().setAllShowedBorders(borders,borders,borders);
+        content.getComponentUI().setAllBorders(Color.RED,Color.RED,Color.RED);
+        content.getComponentUI().setAllBordersSize(3,3,3);
+        content.getComponentUI().setAllShowedBorders(borders,borders,borders);
 
         EnigmaPanel buttonsComponent = new EnigmaPanel();
         EnigmaPanel filtersComponent = new EnigmaPanel();
@@ -243,19 +227,19 @@ public class RightBarDisplayManager {
         gbc.weighty = 1;
         gbc.insets = new Insets(inset,inset,inset,inset);
         EnigmaButton b = new EnigmaButton("Lancer la partie");
-        b.setButtonUI(bui);
+        b.setComponentUI(bui);
         buttonsComponent.add(b,gbc);
 
         gbc.gridy = 2;
         gbc.insets = new Insets(0,inset,inset,inset);
         b = new EnigmaButton("Annuler la partie");
-        b.setButtonUI(bui2);
+        b.setComponentUI(bui2);
         buttonsComponent.add(b,gbc);
 
         gbc.gridy = 3;
         gbc.insets = new Insets(inset * 2,inset,inset,inset);
         EnigmaButton voidButton = new EnigmaButton("nothing");
-        voidButton.setButtonUI(voidBUI);
+        voidButton.setComponentUI(voidBUI);
         buttonsComponent.add(voidButton,gbc);
 
         content.add(buttonsComponent);

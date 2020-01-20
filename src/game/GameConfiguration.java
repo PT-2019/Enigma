@@ -1,6 +1,6 @@
 package game;
 
-import editor.entity.player.Player;
+import editor.entity.Player;
 
 import java.util.ArrayList;
 

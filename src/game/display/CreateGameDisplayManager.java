@@ -1,13 +1,9 @@
 package game.display;
 
-import editor.hud.EnigmaButton;
-import editor.hud.EnigmaLabel;
-import editor.hud.EnigmaPanel;
-import editor.hud.EnigmaTextArea;
-import editor.hud.managers.RadioButtonManager;
+import api.hud.manager.choices.RadioButtonManager;
+import editor.hud.*;
 import editor.hud.ui.EnigmaLabelUI;
 import editor.hud.ui.EnigmaPanelUI;
-import editor.hud.ui.EnigmaUIValues;
 import game.GameConfiguration;
 
 import java.awt.*;
@@ -42,20 +38,20 @@ class CreateGameDisplayManager {
         optionTitleUI.setAllShowedBorders(titleBorders,titleBorders,titleBorders);
 
         EnigmaPanel gameName = new EnigmaPanel();
-        gameName.setPanelUI(optionUI);
+        gameName.setComponentUI(optionUI);
         gameName.setLayout(optionLayout);
         EnigmaLabel nameTitle = new EnigmaLabel("Nom de la partie (max 50 charactères) :");
-        nameTitle.setLabelUI(optionTitleUI);
+        nameTitle.setComponentUI(optionTitleUI);
         gameName.add(nameTitle);
         this.nameAnswer = new EnigmaTextArea();
         gameName.add(this.nameAnswer.setScrollBar());
         this.panel.add(gameName);
 
         EnigmaPanel multi = new EnigmaPanel();
-        multi.setPanelUI(optionUI);
+        multi.setComponentUI(optionUI);
         multi.setLayout(optionLayout);
         EnigmaLabel multiTitle = new EnigmaLabel("Multijoueurs :");
-        multiTitle.setLabelUI(optionTitleUI);
+        multiTitle.setComponentUI(optionTitleUI);
         multi.add(multiTitle);
         EnigmaPanel multiAnswer = new EnigmaPanel();
         multiAnswer.setLayout(new FlowLayout());
@@ -71,10 +67,10 @@ class CreateGameDisplayManager {
         this.panel.add(multi);
 
         EnigmaPanel nbPlayers = new EnigmaPanel();
-        nbPlayers.setPanelUI(optionUI);
+        nbPlayers.setComponentUI(optionUI);
         nbPlayers.setLayout(optionLayout);
         EnigmaLabel nbTitle = new EnigmaLabel("Nombre de joueurs :");
-        nbTitle.setLabelUI(optionTitleUI);
+        nbTitle.setComponentUI(optionTitleUI);
         nbPlayers.add(nbTitle);
         EnigmaPanel nbAnswer = new EnigmaPanel();
         nbAnswer.setLayout(new FlowLayout());
@@ -89,29 +85,29 @@ class CreateGameDisplayManager {
         this.panel.add(nbPlayers);
 
         EnigmaPanel duration = new EnigmaPanel();
-        duration.setPanelUI(optionUI);
+        duration.setComponentUI(optionUI);
         duration.setLayout(optionLayout);
         EnigmaLabel durationTitle = new EnigmaLabel("Durée de la partie (en minutes) :");
-        durationTitle.setLabelUI(optionTitleUI);
+        durationTitle.setComponentUI(optionTitleUI);
         duration.add(durationTitle);
         this.durationAnswer = new EnigmaTextArea();
         duration.add(this.durationAnswer.setScrollBar());
         this.panel.add(duration);
 
         EnigmaPanel map = new EnigmaPanel();
-        map.setPanelUI(optionUI);
+        map.setComponentUI(optionUI);
         map.setLayout(optionLayout);
         EnigmaLabel mapTitle = new EnigmaLabel("Choisir une map :");
-        mapTitle.setLabelUI(optionTitleUI);
+        mapTitle.setComponentUI(optionTitleUI);
         map.add(mapTitle);
         this.mapAnswer = new EnigmaLabel();
         map.add(this.mapAnswer);
         this.panel.add(map);
 
         EnigmaButton play = new EnigmaButton("Commencer");
-        play.getButtonUI().setAllBackgrounds(new Color(0,150,0),new Color(0,150,0),new Color(0,100,0));
-        play.getButtonUI().setAllBorders(null,null,null);
-        play.getButtonUI().setAllForegrounds(Color.WHITE,Color.WHITE,Color.WHITE);
+        play.getComponentUI().setAllBackgrounds(new Color(0,150,0),new Color(0,150,0),new Color(0,100,0));
+        play.getComponentUI().setAllBorders(null,null,null);
+        play.getComponentUI().setAllForegrounds(Color.WHITE,Color.WHITE,Color.WHITE);
         this.panel.add(play);
 
         this.refresh();
