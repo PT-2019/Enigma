@@ -32,7 +32,7 @@ public class SpecialPopUp extends AbstractPopUp{
         this.setSize(400,200);
         this.setLocation(Gdx.graphics.getWidth()/2,Gdx.graphics.getHeight()/2);
         this.setResizable(false);
-        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.tileMap = tiledMap;
         this.setLayout(new GridLayout(2,1));
         this.popUp = popUp;
