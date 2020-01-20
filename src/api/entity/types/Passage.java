@@ -1,6 +1,7 @@
 package api.entity.types;
 
-import editor.utils.map.Room;
+
+import game.entity.item.Room;
 
 /**
  * Définie une entité comme traversable pour faire le lien entre deux pièces

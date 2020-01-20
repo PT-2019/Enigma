@@ -2,8 +2,11 @@ package api.entity;
 
 import api.entity.utils.IDInterface;
 import api.enums.Layer;
+import api.enums.TypeEntite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+
+import java.util.EnumMap;
 
 /**
  * Un object du jeu
@@ -83,4 +86,11 @@ public interface GameObject extends IDInterface {
 	@Deprecated
 	//TODO: ,,am%ZFe,
 	default String getClassName(){ return ""; }
+
+	/**
+	 * Renvoi les différentes classes implémenté par l'entité
+	 * @return EnumMap<TypeEntite,Boolean>
+	 * @since 4.0
+	 */
+	EnumMap<TypeEntite,Boolean> getImplements();
 }

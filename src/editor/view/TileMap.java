@@ -1,4 +1,4 @@
-package editor.entity.view;
+package editor.view;
 
 import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -6,12 +6,15 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import editor.utils.map.Case;
 import editor.utils.map.Map;
+import editor.view.cases.CasePopUp;
+import editor.view.cases.CaseView;
+import editor.view.listeners.CaseListener;
 import game.entity.map.MapTestScreenCell;
 
-import javax.swing.JComponent;
+import javax.swing.*;
 
 @Deprecated
-public class TileMap extends Stage {
+public class TileMap extends Stage{
 
     private TiledMap map;
 

@@ -2,6 +2,9 @@ package game.entity.item;
 
 import api.entity.AbstractItem;
 import api.entity.types.NeedContainer;
+import api.enums.TypeEntite;
+
+import java.util.EnumMap;
 
 /**
  * Une clef
@@ -10,6 +13,7 @@ import api.entity.types.NeedContainer;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
+ *
  * @version 4.0 24/12/2019
  * @since 4.0 24/12/2019
  */
@@ -39,5 +43,15 @@ public class Key extends AbstractItem implements NeedContainer {
 	@Override
 	public String toString() {
 		return "Key{" + "enigmas=" + enigmas + ", id=" + id + '}';
+	}
+
+	@Override
+	public EnumMap<TypeEntite, Boolean> getImplements() {
+		EnumMap<TypeEntite,Boolean> imp = new EnumMap<>(TypeEntite.class);
+		imp.put(TypeEntite.item,true);
+		imp.put(TypeEntite.lockable,false);
+		imp.put(TypeEntite.passage,false);
+		imp.put(TypeEntite.activatable,false);
+		return imp;
 	}
 }

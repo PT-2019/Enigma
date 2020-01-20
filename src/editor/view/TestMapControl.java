@@ -1,6 +1,5 @@
-package editor.entity.view;
+package editor.view;
 
-import api.hud.components.CustomWindow;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
@@ -8,6 +7,11 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import game.entity.map.MapTestScreen;
 import starter.EditorLauncher;
 
+import java.awt.*;
+
+/**
+ * Controlleur des différents évènement sur la map
+ */
 public class TestMapControl implements InputProcessor {
 
     private static final float ZOOM_VALUE = 0.05f;
@@ -21,7 +25,7 @@ public class TestMapControl implements InputProcessor {
     //@Deprecated
     //private JComponent component;
 
-    private CustomWindow window;
+    private Window window;
 
     private OrthographicCamera camera;
 
@@ -34,7 +38,9 @@ public class TestMapControl implements InputProcessor {
         //changed to window
         this.window = EditorLauncher.getInstance().getWindow();
 
+
         this.menu = new EntityPopMenu(map.getMap().getMap(),camera);
+        //TODO: test pour vérifier que cela marche avec une window
     }
 
     @Override
@@ -62,7 +68,7 @@ public class TestMapControl implements InputProcessor {
             camera.update();
             return true;
         }
-        if(keycode == Input.Keys.UP){
+        if(keycode ==Input.Keys.UP){
             camera.translate(0,CAMERA_OFFSET);
             camera.update();
             return true;
@@ -90,7 +96,7 @@ public class TestMapControl implements InputProcessor {
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
         if (button == Input.Buttons.RIGHT){
-            menu.show(this.window, Gdx.input.getX(), Gdx.input.getY());
+            menu.show(this.window, Gdx.input.getX(),Gdx.input.getY());
             return true;
         }
         return false;

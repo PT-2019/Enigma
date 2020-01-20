@@ -1,12 +1,10 @@
-package editor.entity.view;
+package editor.view;
 
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import org.lwjgl.Sys;
 
-import javax.swing.JCheckBoxMenuItem;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.JPopupMenu;
+import javax.swing.*;
 
 public class EntityPopMenu extends JPopupMenu {
 

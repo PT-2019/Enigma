@@ -1,4 +1,4 @@
-package editor.entity.view;
+package editor.view.cases.listeners;
 
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import game.entity.map.MapTestScreenCell;
@@ -7,11 +7,23 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Controlleur qui va supprimer une entité
+ */
 public class CaseDelete implements ActionListener {
+    /**
+     * Cellule courrante
+     */
     private MapTestScreenCell current;
 
+    /**
+     * La couche de cette cellule
+     */
     private TiledMapTileLayer layer;
 
+    /**
+     * Le widget qui affiche le nom de l'entité qu'on va supprimer
+     */
     private JLabel label;
 
     public CaseDelete(MapTestScreenCell current, TiledMapTileLayer layer, JLabel label){

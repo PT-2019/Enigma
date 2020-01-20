@@ -4,10 +4,12 @@ import api.entity.Entity;
 import api.entity.actor.GameActorTextured;
 import api.entity.types.Living;
 import api.enums.Layer;
+import api.enums.TypeEntite;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
+import java.util.EnumMap;
 import java.util.HashMap;
 
 /**
@@ -108,6 +110,11 @@ public class Player extends GameActorTextured implements Entity, Living {
 	@Override
 	public void setTiles(Array<Float> texture, Layer layer) {
 		this.tiles.put(layer, texture);
+	}
+
+	@Override
+	public EnumMap<TypeEntite, Boolean> getImplements() {
+		return null;
 	}
 
 	//id

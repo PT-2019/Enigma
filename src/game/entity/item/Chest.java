@@ -1,8 +1,9 @@
 package game.entity.item;
 
 import api.entity.AbstractItem;
-import api.entity.Item;
 import api.entity.types.Lockable;
+import api.enums.TypeEntite;
+import java.util.EnumMap;
 
 /**
  * Un coffre
@@ -11,10 +12,12 @@ import api.entity.types.Lockable;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
+ *
  * @version 4.0 24/12/2019
- * @see Lockable
- * @see Item
  * @since 2.0
+ *
+ * @see Lockable
+ * @see api.entity.Item
  */
 public class Chest extends AbstractItem implements Lockable {
 
@@ -25,7 +28,6 @@ public class Chest extends AbstractItem implements Lockable {
 
 	/**
 	 * Un coffre
-	 *
 	 * @since 2.0
 	 */
 	public Chest() {
@@ -82,5 +84,15 @@ public class Chest extends AbstractItem implements Lockable {
 	@Override
 	public String toString() {
 		return "Chest{" + "locked=" + locked + ", enigmas=" + enigmas + ", id=" + id + '}';
+	}
+
+	@Override
+	public EnumMap<TypeEntite, Boolean> getImplements() {
+		EnumMap<TypeEntite,Boolean> imp = new EnumMap<>(TypeEntite.class);
+		imp.put(TypeEntite.item,true);
+		imp.put(TypeEntite.lockable,true);
+		imp.put(TypeEntite.passage,false);
+		imp.put(TypeEntite.activatable,false);
+		return imp;
 	}
 }

@@ -1,4 +1,4 @@
-package editor.entity.view;
+package editor.view;
 
 import api.enums.Layer;
 import com.badlogic.gdx.Gdx;
@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -66,7 +67,7 @@ public class PopMenuListener implements ItemListener, ActionListener {
         }else{
             float x = camera.position.x;
             float y = camera.position.y;
-            ((OrthographicCamera) camera).setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+            ((OrthographicCamera) camera).setToOrtho(false, Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
             ((OrthographicCamera) camera).zoom = 1;
             //pour garder la caméra a la même position
             camera.position.x = x;

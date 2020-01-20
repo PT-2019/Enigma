@@ -2,6 +2,9 @@ package game.entity.item;
 
 import api.entity.AbstractItem;
 import api.entity.types.Content;
+import api.enums.TypeEntite;
+
+import java.util.EnumMap;
 
 /**
  * Un livre
@@ -11,8 +14,9 @@ import api.entity.types.Content;
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  * @version 4.0
- * implNote Factorisé avec AbstractItem
  * @since 2.0
+ *
+ * @implNote Factorisé avec AbstractItem
  */
 public class Book extends AbstractItem implements Content {
 
@@ -60,5 +64,15 @@ public class Book extends AbstractItem implements Content {
 	@Override
 	public String toString() {
 		return "Book{" + "enigmas=" + enigmas + ", content='" + content + '\'' + ", id=" + id + '}';
+	}
+
+	@Override
+	public EnumMap<TypeEntite,Boolean> getImplements(){
+		EnumMap<TypeEntite,Boolean> imp = new EnumMap<>(TypeEntite.class);
+		imp.put(TypeEntite.item,true);
+		imp.put(TypeEntite.lockable,false);
+		imp.put(TypeEntite.passage,false);
+		imp.put(TypeEntite.activatable,false);
+		return imp;
 	}
 }

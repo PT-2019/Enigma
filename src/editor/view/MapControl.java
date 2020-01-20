@@ -1,12 +1,13 @@
-package editor.entity.view;
+package editor.view;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.maps.tiled.TiledMap;
 
-import javax.swing.JComponent;
+import javax.swing.*;
 
 @Deprecated
 public class MapControl implements InputProcessor {
@@ -19,7 +20,7 @@ public class MapControl implements InputProcessor {
 
     private OrthographicCamera camera;
 
-    public MapControl (Camera cam, JComponent component, RoomView r, CollisionView col){
+    public MapControl (Camera cam, JComponent component,RoomView r,CollisionView col){
         camera =(OrthographicCamera) cam;
         ispush = false;
         this.component = component;
@@ -65,7 +66,7 @@ public class MapControl implements InputProcessor {
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
         if (button == Input.Buttons.RIGHT){
-            menu.show(component, Gdx.input.getX(), Gdx.input.getY());
+            menu.show(component, Gdx.input.getX(),Gdx.input.getY());
         }
         return false;
     }

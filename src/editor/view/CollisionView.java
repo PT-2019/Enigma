@@ -1,4 +1,4 @@
-package editor.entity.view;
+package editor.view;
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import editor.utils.map.Case;

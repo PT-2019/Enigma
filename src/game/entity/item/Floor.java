@@ -1,17 +1,18 @@
 package game.entity.item;
 
 import api.entity.AbstractItem;
-import api.entity.Item;
+import api.enums.TypeEntite;
 import editor.enigma.Enigma;
 import editor.entity.Player;
 import editor.utils.textures.Texture;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.Iterator;
 
 /**
  * @version 2.2
- * @see Item
+ * @see api.entity.Item
  */
 @Deprecated
 public class Floor extends AbstractItem {
@@ -60,6 +61,28 @@ public class Floor extends AbstractItem {
 			if (!e.isKnown()) e.discovered();
 			else e.verifyConditions(p);
 		}
+	}
+
+	/**
+	 * Obtenir la texture de l'objet
+	 *
+	 * @return Texture de l'objet, null sinon
+	 */
+	@Override
+	public Texture getTexture() {
+		return this.texture;
+	}
+
+	@Override
+	public void setTexture(Texture t) {
+		texture = t;
+	}
+
+	/**
+	 * Affiche un dialogue avec l'objet
+	 */
+	@Override
+	public void showDialog() {
 	}
 
 	/**
@@ -142,5 +165,10 @@ public class Floor extends AbstractItem {
 		}
 		s.append("}]");
 		return s.toString();
+	}
+
+	@Override
+	public EnumMap<TypeEntite, Boolean> getImplements() {
+		return null;
 	}
 }

@@ -1,9 +1,10 @@
-package editor.entity.view;
+package editor.view;
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+
 import editor.utils.map.Room;
 
-import java.awt.Point;
+import java.awt.*;
 import java.util.Map;
 
 @Deprecated
@@ -20,7 +21,7 @@ public class RoomView extends ShapeRenderer {
     private int mapWidth;
 
 
-    public RoomView(Map<Point,Room> r,int t,int mapHeight,int mapWidth){
+    public RoomView(Map<Point, Room> r, int t, int mapHeight, int mapWidth){
         visible = false;
         room = r;
         tile = t;
