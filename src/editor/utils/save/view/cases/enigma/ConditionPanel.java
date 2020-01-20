@@ -31,7 +31,7 @@ public class ConditionPanel extends EnigmaPanel {
     public ConditionPanel(EnigmaView parent){
         this.setLayout(new GridBagLayout());
         this.gbc = new GridBagConstraints();
-        MenuPanel menu = new MenuPanel("\nAjouter une Condition \n à l'énigme","zeafazefzfae");
+        MenuPanel menu = new MenuPanel("\nAjouter une Condition \n à l'énigme","zeafazefzfae",parent);
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.weightx = 0;

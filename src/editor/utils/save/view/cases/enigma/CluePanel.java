@@ -17,7 +17,7 @@ public class CluePanel extends EnigmaPanel {
     public CluePanel(EnigmaView parent){
         this.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-        MenuPanel menu = new MenuPanel("\nAjouter une Condition \n à l'énigme","zeafazefzfae");
+        MenuPanel menu = new MenuPanel("\nAjouter une Condition \n à l'énigme","zeafazefzfae",parent);
 
         JLabel clue = new JLabel("Indice :");
         JTextArea cluefield = new JTextArea();

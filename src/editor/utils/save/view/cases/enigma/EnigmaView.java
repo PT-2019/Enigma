@@ -20,6 +20,9 @@ public class EnigmaView extends JDialog {
 
     private CardLayout layout;
 
+    /**
+     * Composant principal de la fenêtre
+     */
     private JPanel panel;
 
     private CasePopUp popUp;
