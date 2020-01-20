@@ -1,25 +1,32 @@
 {
-  play: Jouer
-  editor: Lancer l'éditeur de maps
-  running: Une application est déjà en cours d'execution
+  values:{
+    play:Jouer
+    editor:Lancer l'éditeur de maps
+    running:Une application est déjà en cours d'execution
 
-  /*create: nouveau
-  open: ouvrir
-  save: sauvegarder
-  undo: undo
-  redo: redo
-  brush: pinceau
-  eraser: gomme
-  move: déplacement*/
+    create:nouveau
+    open:ouvrir
+    save:sauvegarder
+    undo:undo
+    redo:redo
+    brush:pinceau
+    eraser:gomme
+    move:déplacement
 
-  //TODO: franglais est de retour...
+    file: Fichier
+    edit: Edit
+    run: Lancer
+    help: Aide
+    export: exporter la map
+    doc: documentation
+    support: support
+    start: lancer le jeu
+    stop: terminer le jeu
 
-  create:new
-  open:open
-  save:save
-  undo:undo
-  redo:redo
-  brush:brush
-  eraser:eraser
-  move:move
+    room: Room
+    decors: Décors
+    objects: Objects
+    characters: Personnages
+    actions: Actions
+  }
 }

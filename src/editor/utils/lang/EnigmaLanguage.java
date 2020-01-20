@@ -1,5 +1,6 @@
 package editor.utils.lang;
 
+@Deprecated
 public interface EnigmaLanguage {
 
 	String getPlayButton();

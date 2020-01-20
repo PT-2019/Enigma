@@ -9,27 +9,30 @@ import editor.hud.EnigmaMenuItem;
 import editor.hud.EnigmaWindow;
 import editor.screens.menus.listeners.CreateListener;
 import editor.screens.menus.listeners.OpenListener;
+import editor.utils.lang.Field;
 import game.EnigmaGame;
+
+import static editor.utils.lang.GameLanguage.gl;
 
 public class BarMenu extends EnigmaMenuBar {
 	//1er onglet
-	private EnigmaMenu file = new EnigmaMenu("File");
-	private EnigmaMenuItem create = new EnigmaMenuItem("Nouveau");
-	private EnigmaMenuItem ouvrir = new EnigmaMenuItem("Ouvrir");
-	private EnigmaMenuItem save = new EnigmaMenuItem("Sauvegarder");
-	private EnigmaMenuItem map = new EnigmaMenuItem("Exporter la map");
+	private EnigmaMenu file = new EnigmaMenu(gl.get(Field.FILE));
+	private EnigmaMenuItem create = new EnigmaMenuItem(gl.get(Field.CREATE));
+	private EnigmaMenuItem ouvrir = new EnigmaMenuItem(gl.get(Field.OPEN));
+	private EnigmaMenuItem save = new EnigmaMenuItem(gl.get(Field.SAVE));
+	private EnigmaMenuItem map = new EnigmaMenuItem(gl.get(Field.EXPORT));
 	//2eme onglet
-	private EnigmaMenu edit = new EnigmaMenu("Edit");
-	private EnigmaMenuItem redo = new EnigmaMenuItem("Redo");
-	private EnigmaMenuItem undo = new EnigmaMenuItem("Undo");
+	private EnigmaMenu edit = new EnigmaMenu(gl.get(Field.EDIT));
+	private EnigmaMenuItem redo = new EnigmaMenuItem(gl.get(Field.REDO));
+	private EnigmaMenuItem undo = new EnigmaMenuItem(gl.get(Field.UNDO));
 	//3eme onglet
-	private EnigmaMenu run = new EnigmaMenu("Run");
-	private EnigmaMenuItem runJeu = new EnigmaMenuItem("Lancer le jeu");
-	private EnigmaMenuItem finJeu = new EnigmaMenuItem("Terminer le jeu");
+	private EnigmaMenu run = new EnigmaMenu(gl.get(Field.RUN));
+	private EnigmaMenuItem runJeu = new EnigmaMenuItem(gl.get(Field.START));
+	private EnigmaMenuItem finJeu = new EnigmaMenuItem(gl.get(Field.STOP));
 	//4eme onglet
-	private EnigmaMenu help = new EnigmaMenu("Help");
-	private EnigmaMenuItem doc = new EnigmaMenuItem("Documentation");
-	private EnigmaMenuItem support = new EnigmaMenuItem("Support");
+	private EnigmaMenu help = new EnigmaMenu(gl.get(Field.HELP));
+	private EnigmaMenuItem doc = new EnigmaMenuItem(gl.get(Field.DOC));
+	private EnigmaMenuItem support = new EnigmaMenuItem(gl.get(Field.SUPPORT));
 
 	public BarMenu(EnigmaWindow window) {
 		this.file.add(create);

@@ -1,5 +1,6 @@
 package editor.utils.lang;
 
+@Deprecated
 public class LanguageSerialization implements EnigmaLanguage {
 
 	private String play, editor, running;

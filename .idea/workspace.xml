@@ -5,10 +5,43 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4b6e0b2a-a6ad-4eff-b2cc-63f9693ec5fe" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/api/enums/TypeEntite.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/items.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/items.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/screen/TestScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/screen/TestScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/lang/english.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/lang/english.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/lang/french.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/lang/french.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/entity/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/entity/GameObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/enums/Outil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/enums/Outil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/view/CaseDelete.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/view/CaseListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/view/CasePopListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/view/CasePopUp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/view/CaseView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/view/EntityPopMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/view/EntityPopMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/view/MapControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/view/MapControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/view/PopItemListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/view/PopMenuListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/view/PopMenuListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/view/RoomView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/view/RoomView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/view/TestMapControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/view/TestMapControl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/view/TileMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/entity/view/TileMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/entity/view/TiledTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/screens/menus/BarMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/screens/menus/BarMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/utils/lang/EnigmaLanguage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/utils/lang/EnigmaLanguage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/utils/lang/GameLanguage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/utils/lang/GameLanguage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/utils/lang/LanguageSerialization.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/utils/lang/LanguageSerialization.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/entity/item/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/entity/item/Book.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/entity/item/Button.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/entity/item/Button.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/entity/item/Chest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/entity/item/Chest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/entity/item/Door.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/entity/item/Door.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/entity/item/Floor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/entity/item/Floor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/entity/item/Key.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/entity/item/Key.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/entity/item/Library.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/entity/item/Library.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/entity/item/Pane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/entity/item/Pane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/entity/item/PressurePlate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/entity/item/PressurePlate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/entity/item/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/entity/item/Room.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/entity/item/Switch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/entity/item/Switch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/entity/map/MapTestScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/entity/map/MapTestScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/starter/DesktopLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/starter/DesktopLauncher.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -37,12 +70,6 @@
       </map>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="228" />
-    <option name="y" value="2" />
-    <option name="width" value="640" />
-    <option name="height" value="984" />
-  </component>
   <component name="ProjectId" id="1T4PWZYsjf2nuTU9Vgk0aB5pF47" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -62,7 +89,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="editing.templates" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/src/editor/utils/save/view/cases/CaseListener.java" />
   </component>
   <component name="RecentsManager">
@@ -202,40 +229,15 @@
       <updated>1572716426843</updated>
       <workItem from="1576840016171" duration="987000" />
       <workItem from="1578388437203" duration="1171000" />
+      <workItem from="1578645421238" duration="1045000" />
+      <workItem from="1579170417133" duration="129000" />
+      <workItem from="1579173701401" duration="856000" />
+      <workItem from="1579174569366" duration="1779000" />
+      <workItem from="1579247260107" duration="5000" />
+      <workItem from="1579512570196" duration="206000" />
+      <workItem from="1579513229798" duration="1685000" />
     </task>
     <servers />
-  </component>
-  <component name="TestHistory">
-    <history-entry file="TestMap - 2019.11.11 at 19h 45m 59s.xml">
-      <configuration name="TestMap" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestMap - 2019.11.11 at 19h 46m 18s.xml">
-      <configuration name="TestMap" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestMap - 2019.11.11 at 19h 46m 39s.xml">
-      <configuration name="TestMap" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestMap - 2019.11.11 at 19h 47m 01s.xml">
-      <configuration name="TestMap" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestMap - 2019.11.11 at 19h 49m 39s.xml">
-      <configuration name="TestMap" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestMap - 2019.11.11 at 19h 50m 28s.xml">
-      <configuration name="TestMap" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestMap - 2019.11.11 at 19h 50m 56s.xml">
-      <configuration name="TestMap" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestMap - 2019.11.11 at 19h 51m 34s.xml">
-      <configuration name="TestMap" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestMap - 2019.11.11 at 19h 52m 10s.xml">
-      <configuration name="TestMap" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MapTestMain_testMapStructureWork - 2019.12.05 at 22h 18m 16s.xml">
-      <configuration name="MapTestMain.testMapStructureWork" configurationId="JUnit" />
-    </history-entry>
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -281,41 +283,69 @@
       <screen x="1920" y="0" width="1680" height="1050" />
     </state>
     <state x="2218" y="184" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1578388472635" />
-    <state width="1638" height="278" key="GridCell.Tab.0.bottom" timestamp="1578389608306">
+    <state x="2341" y="454" width="833" height="146" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1579513662017">
       <screen x="1920" y="0" width="1680" height="1050" />
     </state>
+    <state x="2341" y="454" width="833" height="146" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1579513662017" />
+    <state x="1946" y="157" width="1486" height="853" key="DiffContextDialog" timestamp="1579513625168">
+      <screen x="1920" y="0" width="1680" height="1050" />
+    </state>
+    <state x="1946" y="157" width="1486" height="853" key="DiffContextDialog/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1579513625168" />
+    <state width="1638" height="365" key="GridCell.Tab.0.bottom" timestamp="1579514914769">
+      <screen x="1920" y="0" width="1680" height="1050" />
+    </state>
+    <state width="1238" height="269" key="GridCell.Tab.0.bottom/0.31.1920.1000/1920.0.1280.1024@1920.0.1280.1024" timestamp="1578646465901" />
     <state width="1638" height="278" key="GridCell.Tab.0.bottom/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1578388435392" />
-    <state width="1638" height="278" key="GridCell.Tab.0.bottom/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1578389608306" />
-    <state width="1638" height="278" key="GridCell.Tab.0.center" timestamp="1578389608306">
+    <state width="1638" height="251" key="GridCell.Tab.0.bottom/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" timestamp="1579176443900" />
+    <state width="1878" height="344" key="GridCell.Tab.0.bottom/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1579512775951" />
+    <state width="1638" height="365" key="GridCell.Tab.0.bottom/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1579514914769" />
+    <state width="1638" height="365" key="GridCell.Tab.0.center" timestamp="1579514914769">
       <screen x="1920" y="0" width="1680" height="1050" />
     </state>
+    <state width="1238" height="269" key="GridCell.Tab.0.center/0.31.1920.1000/1920.0.1280.1024@1920.0.1280.1024" timestamp="1578646465901" />
     <state width="1638" height="278" key="GridCell.Tab.0.center/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1578388435392" />
-    <state width="1638" height="278" key="GridCell.Tab.0.center/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1578389608306" />
-    <state width="1638" height="278" key="GridCell.Tab.0.left" timestamp="1578389608306">
+    <state width="1638" height="251" key="GridCell.Tab.0.center/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" timestamp="1579176443900" />
+    <state width="1878" height="344" key="GridCell.Tab.0.center/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1579512775951" />
+    <state width="1638" height="365" key="GridCell.Tab.0.center/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1579514914769" />
+    <state width="1638" height="365" key="GridCell.Tab.0.left" timestamp="1579514914769">
       <screen x="1920" y="0" width="1680" height="1050" />
     </state>
+    <state width="1238" height="269" key="GridCell.Tab.0.left/0.31.1920.1000/1920.0.1280.1024@1920.0.1280.1024" timestamp="1578646465901" />
     <state width="1638" height="278" key="GridCell.Tab.0.left/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1578388435392" />
-    <state width="1638" height="278" key="GridCell.Tab.0.left/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1578389608306" />
-    <state width="1638" height="278" key="GridCell.Tab.0.right" timestamp="1578389608306">
+    <state width="1638" height="251" key="GridCell.Tab.0.left/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" timestamp="1579176443899" />
+    <state width="1878" height="344" key="GridCell.Tab.0.left/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1579512775951" />
+    <state width="1638" height="365" key="GridCell.Tab.0.left/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1579514914769" />
+    <state width="1638" height="365" key="GridCell.Tab.0.right" timestamp="1579514914769">
       <screen x="1920" y="0" width="1680" height="1050" />
     </state>
+    <state width="1238" height="269" key="GridCell.Tab.0.right/0.31.1920.1000/1920.0.1280.1024@1920.0.1280.1024" timestamp="1578646465901" />
     <state width="1638" height="278" key="GridCell.Tab.0.right/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1578388435392" />
-    <state width="1638" height="278" key="GridCell.Tab.0.right/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1578389608306" />
-    <state x="2243" y="104" width="1030" height="847" key="SettingsEditor" timestamp="1578388478555">
-      <screen x="1920" y="0" width="1680" height="1050" />
+    <state width="1638" height="251" key="GridCell.Tab.0.right/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" timestamp="1579176443900" />
+    <state width="1878" height="344" key="GridCell.Tab.0.right/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1579512775951" />
+    <state width="1638" height="365" key="GridCell.Tab.0.right/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1579514914769" />
+    <state x="323" y="104" width="1030" height="847" key="SettingsEditor" timestamp="1579174953192">
+      <screen x="0" y="0" width="1680" height="1050" />
     </state>
     <state x="2243" y="104" width="1030" height="847" key="SettingsEditor/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1578388435392" />
+    <state x="323" y="104" width="1030" height="847" key="SettingsEditor/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" timestamp="1579174953192" />
     <state x="2243" y="104" key="SettingsEditor/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1578388478555" />
-    <state x="626" y="358" key="com.intellij.ide.util.TipDialog" timestamp="1578388446920">
+    <state x="626" y="358" key="com.intellij.ide.util.TipDialog" timestamp="1579247260462">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
+    <state x="2337" y="339" key="com.intellij.ide.util.TipDialog/0.31.1920.1000/1920.0.1280.1024@1920.0.1280.1024" timestamp="1578645447658" />
     <state x="626" y="358" key="com.intellij.ide.util.TipDialog/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" timestamp="1578388435392" />
-    <state x="626" y="358" key="com.intellij.ide.util.TipDialog/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1578388446920" />
+    <state x="548" y="348" key="com.intellij.ide.util.TipDialog/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" timestamp="1579174569644" />
+    <state x="626" y="358" key="com.intellij.ide.util.TipDialog/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1579247260462" />
+    <state x="2546" y="358" key="com.intellij.ide.util.TipDialog/1920.0.1920.1080/0.0.1920.1080@1920.0.1920.1080" timestamp="1579170418400" />
+    <state x="737" y="452" width="441" height="162" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1579512579094">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="737" y="452" width="441" height="162" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1579512579094" />
     <state x="2530" y="232" width="455" height="591" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1578388435392" />
     <state x="2530" y="232" width="455" height="591" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1578388435392" />
-    <state x="2414" y="136" width="692" height="780" key="find.popup" timestamp="1578388833235">
+    <state x="2414" y="136" width="692" height="780" key="find.popup" timestamp="1579513892116">
       <screen x="1920" y="0" width="1680" height="1050" />
     </state>
-    <state x="2414" y="136" width="692" height="780" key="find.popup/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1578388833235" />
+    <state x="2414" y="136" width="692" height="780" key="find.popup/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1579513892116" />
   </component>
 </project>
