@@ -1,6 +1,7 @@
-package game.display;
+package starter.gameConfig;
 
 import editor.hud.*;
+import starter.gameConfig.managers.Redirect;
 
 import javax.swing.*;
 import java.awt.*;
@@ -46,6 +47,7 @@ class JoinGameDisplayManager implements DisplayManager {
         launchGame.getComponentUI().setAllBackgrounds(Color.DARK_GRAY,Color.DARK_GRAY,Color.DARK_GRAY);
         launchGame.getComponentUI().setAllBorders(null,null,null);
         launchGame.getComponentUI().setAllForegrounds(Color.BLACK,Color.BLACK,Color.BLACK);
+        launchGame.addActionListener(new Redirect(LaunchGameDisplay.SELECT_GAME));
         navBar.add(launchGame);
         EnigmaButton joinGame = new EnigmaButton("Rejoindre une partie");
         joinGame.getComponentUI().setAllBackgrounds(Color.WHITE,Color.WHITE,Color.WHITE);
@@ -121,6 +123,8 @@ class JoinGameDisplayManager implements DisplayManager {
     public void refreshAll(){
         this.refreshContent();
         this.refreshRightBar();
+        this.content.revalidate();
+        this.rightBar.revalidate();
     }
 
     public static JoinGameDisplayManager getInstance(){

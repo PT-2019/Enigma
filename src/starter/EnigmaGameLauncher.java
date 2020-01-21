@@ -7,7 +7,7 @@ import api.utils.LoadGameLibgdxApplication;
 import api.utils.annotations.NeedPatch;
 import editor.hud.EnigmaWindow;
 import game.EnigmaGame;
-import game.display.LaunchGameDisplay;
+import starter.gameConfig.LaunchGameDisplay;
 
 import javax.swing.JPanel;
 import java.awt.BorderLayout;

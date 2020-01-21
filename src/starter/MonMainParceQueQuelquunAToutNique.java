@@ -3,7 +3,7 @@ package starter;
 import editor.hud.EnigmaWindow;
 import game.GameConfiguration;
 import game.UserConfiguration;
-import game.display.LaunchGameDisplay;
+import starter.gameConfig.LaunchGameDisplay;
 
 import javax.swing.*;
 import java.awt.*;

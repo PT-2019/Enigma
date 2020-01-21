@@ -1,4 +1,4 @@
-package game.display;
+package starter.gameConfig;
 
 import editor.hud.EnigmaPanel;
 

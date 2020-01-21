@@ -1,8 +1,9 @@
-package game.display;
+package starter.gameConfig;
 
 import api.hud.manager.choices.CheckBoxManager;
 import editor.hud.*;
 import editor.hud.ui.EnigmaButtonUI;
+import starter.gameConfig.managers.Redirect;
 
 import javax.swing.*;
 import java.awt.*;
@@ -73,6 +74,7 @@ class SelectGameDisplayManager implements DisplayManager {
         gbc.insets = new Insets(inset * 2,inset,inset,inset);
         b = new EnigmaButton("Nouvelle partie");
         b.setComponentUI(bui);
+        b.addActionListener(new Redirect(LaunchGameDisplay.CREATE_GAME));
         buttonsComponent.add(b,gbc);
 
         this.rightBar.add(buttonsComponent);
@@ -143,6 +145,7 @@ class SelectGameDisplayManager implements DisplayManager {
         joinGame.getComponentUI().setAllBackgrounds(Color.DARK_GRAY,Color.DARK_GRAY,Color.DARK_GRAY);
         joinGame.getComponentUI().setAllBorders(null,null,null);
         joinGame.getComponentUI().setAllForegrounds(Color.BLACK,Color.BLACK,Color.BLACK);
+        joinGame.addActionListener(new Redirect(LaunchGameDisplay.JOIN_GAME));
         navBar.add(joinGame);
 
         gbc.gridx = 1;
@@ -179,6 +182,8 @@ class SelectGameDisplayManager implements DisplayManager {
     public void refreshAll(){
         this.refreshContent();
         this.refreshRightBar();
+        this.content.revalidate();
+        this.rightBar.revalidate();
     }
 
     public static SelectGameDisplayManager getInstance(){

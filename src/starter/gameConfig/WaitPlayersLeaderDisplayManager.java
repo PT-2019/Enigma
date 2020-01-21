@@ -1,10 +1,12 @@
-package game.display;
+package starter.gameConfig;
 
 import editor.entity.Player;
 import editor.hud.*;
 import editor.hud.ui.EnigmaButtonUI;
+import editor.hud.ui.EnigmaLabelUI;
 import game.GameConfiguration;
 import game.UserConfiguration;
+import starter.gameConfig.managers.Redirect;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,6 +16,8 @@ class WaitPlayersLeaderDisplayManager implements DisplayManager {
     private final static WaitPlayersLeaderDisplayManager instance = new WaitPlayersLeaderDisplayManager();
     private EnigmaPanel content;
     private EnigmaPanel rightBar;
+    private EnigmaPanel gameInfo;
+    private EnigmaPanel players;
 
     private WaitPlayersLeaderDisplayManager(){
 
@@ -71,6 +75,7 @@ class WaitPlayersLeaderDisplayManager implements DisplayManager {
         gbc.insets = new Insets(0,inset,inset,inset);
         b = new EnigmaButton("Annuler la partie");
         b.setComponentUI(bui2);
+        b.addActionListener(new Redirect(LaunchGameDisplay.SELECT_GAME));
         buttonsComponent.add(b,gbc);
 
         gbc.gridy = 3;
@@ -84,130 +89,102 @@ class WaitPlayersLeaderDisplayManager implements DisplayManager {
     }
 
     private void initContent(){
-        Color grey = new Color(100,100,100);
-        Color blue = new Color(50,100,200);
-        ImageIcon group = new ImageIcon("assets/icon/player/group.png");
-        ImageIcon single_black = new ImageIcon("assets/icon/player/single_black.png");
-        ImageIcon single_green = new ImageIcon("assets/icon/player/single_green.png");
+        int infoCount = 6;
 
         this.content = new EnigmaPanel();
         EnigmaPanel content = new EnigmaPanel();
-        EnigmaPanel playersJoin = new EnigmaPanel();
-        EnigmaPanel players = new EnigmaPanel();
-        EnigmaPanel playersLead = new EnigmaPanel();
-        EnigmaPanel playersName = new EnigmaPanel();
-        GameConfiguration gameConfig = GameConfiguration.getInstance();
+        this.gameInfo = new EnigmaPanel();
+        this.players = new EnigmaPanel();
 
-        GridBagConstraints gbcContent = new GridBagConstraints();
-        GridBagConstraints gbcPlayersList = new GridBagConstraints();
+        GridBagConstraints gbc = new GridBagConstraints();
 
         content.setLayout(new GridBagLayout());
         this.content.setLayout(new GridBagLayout());
-        playersJoin.setLayout(new GridLayout(1,GameConfiguration.MAX_PLAYERS));
-        players.setLayout(new GridBagLayout());
-        playersLead.setLayout(new GridLayout(GameConfiguration.MAX_PLAYERS,1));
-        playersName.setLayout(new GridLayout(GameConfiguration.MAX_PLAYERS,1));
+        this.gameInfo.setLayout(new GridLayout(infoCount,1));
+        this.players.setLayout(new GridLayout(GameConfiguration.MAX_PLAYERS,1));
         int inset = 50;
-        int inset2 = 5;
-        int borderSize = 4;
-
-        boolean[] bordersB = new boolean[4];
-        bordersB[EnigmaUIValues.BOTTOM_BORDER] = EnigmaUIValues.SHOWED_BORDER;
-        boolean[] bordersR = new boolean[4];
-        bordersR[EnigmaUIValues.RIGHT_BORDER] = EnigmaUIValues.SHOWED_BORDER;
-        boolean[] bordersBR = new boolean[4];
-        bordersBR[EnigmaUIValues.BOTTOM_BORDER] = EnigmaUIValues.SHOWED_BORDER;
-        bordersBR[EnigmaUIValues.RIGHT_BORDER] = EnigmaUIValues.SHOWED_BORDER;
+        int inset2 = 30;
 
         content.getComponentUI().setAllBackgrounds(Color.WHITE,Color.WHITE,Color.WHITE);
         this.content.getComponentUI().setAllBackgrounds(Color.WHITE,Color.WHITE,Color.WHITE);
-        playersJoin.getComponentUI().setAllBackgrounds(Color.WHITE,Color.WHITE,Color.WHITE);
+        this.gameInfo.getComponentUI().setAllBackgrounds(Color.WHITE,Color.WHITE,Color.WHITE);
 
-        gbcContent.gridy = 1;
-        gbcContent.gridwidth = 1;
-        gbcContent.gridheight = 1;
-        gbcContent.fill = GridBagConstraints.BOTH;
-        gbcContent.weightx = 1;
-        gbcContent.weighty = 1;
-        gbcContent.insets = new Insets(inset2,inset2,inset2,inset2);
+        gbc.gridy = 1;
+        gbc.gridwidth = 1;
+        gbc.gridheight = 1;
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.weightx = 1;
+        gbc.weighty = 1;
+        gbc.insets = new Insets(0,0,0,inset2);
+        content.add(this.gameInfo,gbc);
 
-        gbcPlayersList.gridx = 1;
-        gbcPlayersList.gridy = 1;
-        gbcPlayersList.gridwidth = 1;
-        gbcPlayersList.gridheight = 1;
-        gbcPlayersList.fill = GridBagConstraints.BOTH;
-        gbcPlayersList.weightx = 1;
-        gbcPlayersList.weighty = 1;
-        players.add(playersLead,gbcPlayersList);
+        gbc.gridx = 2;
+        gbc.insets = new Insets(0,inset2,0,0);
+        content.add(this.players,gbc);
 
-        gbcPlayersList.gridx = 2;
-        gbcPlayersList.weightx = 5;
-        players.add(playersName,gbcPlayersList);
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        gbc.insets = new Insets(inset,inset,inset,inset);
+        this.content.add(content,gbc);
+    }
 
-        for(int i = 1; i <= GameConfiguration.MAX_PLAYERS; i++){
-            EnigmaPanel joined = new EnigmaPanel();
-            joined.getComponentUI().setAllBackgrounds(Color.WHITE,Color.WHITE,Color.WHITE);
-            if(i > gameConfig.getTotalPlayers())
-                joined.getComponentUI().setAllBackgroundImage(single_black, single_black, single_black);
-            else
-                joined.getComponentUI().setAllBackgroundImage(single_green, single_green, single_green);
+    @Override
+    public void refreshContent(){
+        this.gameInfo.removeAll();
+        this.players.removeAll();
 
-            if(i > gameConfig.getMaxGamePlayers())
-                joined.getComponentUI().setAllBackgroundImage(null, null, null);
+        Color grey = new Color(100,100,100);
+        Color blue = new Color(50,100,200);
+        int infoCount = 6;
+        int borderSize = 4;
+        GameConfiguration gameConfig = GameConfiguration.getInstance();
+        boolean[] bordersB = new boolean[4];
+        bordersB[EnigmaUIValues.BOTTOM_BORDER] = EnigmaUIValues.SHOWED_BORDER;
 
-            playersJoin.add(joined);
+        String[] infos = new String[infoCount];
+        infos[0] = "Partie : " + gameConfig.getName();
+        infos[1] = "Description : " + gameConfig.getDescription();
+        infos[2] = "Chef de groupe : " + gameConfig.getOwner().getName();
+        infos[3] = "Map : " + gameConfig.getMap();
+        infos[4] = "Durée : " + gameConfig.getDuration() + " min";
+        infos[5] = "Nombre de joueurs : " + gameConfig.getTotalPlayers() + "/" + gameConfig.getMaxGamePlayers();
+        EnigmaLabelUI lui = new EnigmaLabelUI();
+        lui.setAllBackgrounds(Color.WHITE,Color.WHITE,Color.WHITE);
+        lui.setAllForegrounds(Color.BLACK,Color.BLACK,Color.BLACK);
+        lui.setFont(lui.getFont().deriveFont((float) 18.0));
+
+        for(int i = 0; i < infoCount; i++) {
+            EnigmaLabel l = new EnigmaLabel(infos[i]);
+            l.setComponentUI(lui);
+            l.setHorizontalAlignment(SwingConstants.LEFT);
+            this.gameInfo.add(l);
+
+            if (i < infoCount - 1){
+                l.getComponentUI().setAllBorders(grey,grey,grey);
+                l.getComponentUI().setAllShowedBorders(bordersB,bordersB,bordersB);
+                l.getComponentUI().setAllBordersSize(borderSize,borderSize,borderSize);
+            }
         }
 
         for(int i = 0; i < GameConfiguration.MAX_PLAYERS; i++) {
-
-            EnigmaPanel lead = new EnigmaPanel();
-            lead.setLayout(new GridBagLayout());
             EnigmaLabel name = new EnigmaLabel();
             if(i < gameConfig.getTotalPlayers()) {
                 Player p = gameConfig.getAllPlayers().get(i);
                 name.setText(p.getName());
 
-                if(p.equals(UserConfiguration.getInstance().getUser())) {
-                    lead.getComponentUI().setAllBackgrounds(blue,blue,blue);
+                if(p.equals(UserConfiguration.getInstance().getUser()))
                     name.getComponentUI().setAllBackgrounds(blue,blue,blue);
-                }
-
-                if(p.equals(gameConfig.getOwner()))
-                    lead.getComponentUI().setAllBackgroundImage(group, group, group);
             }
 
             if (i < GameConfiguration.MAX_PLAYERS - 1){
-                lead.getComponentUI().setAllBorders(grey,grey,grey);
-                lead.getComponentUI().setAllShowedBorders(bordersBR,bordersBR,bordersBR);
-                lead.getComponentUI().setAllBordersSize(borderSize,borderSize,borderSize);
-
                 name.getComponentUI().setAllBorders(grey,grey,grey);
                 name.getComponentUI().setAllShowedBorders(bordersB,bordersB,bordersB);
                 name.getComponentUI().setAllBordersSize(borderSize,borderSize,borderSize);
-            }else{
-                lead.getComponentUI().setAllBorders(grey,grey,grey);
-                lead.getComponentUI().setAllShowedBorders(bordersR,bordersR,bordersR);
-                lead.getComponentUI().setAllBordersSize(borderSize,borderSize,borderSize);
             }
 
-            playersLead.add(lead);
-            playersName.add(name);
+            this.players.add(name);
         }
-
-        content.add(playersJoin,gbcContent);
-
-        gbcContent.gridy = 2;
-        gbcContent.weighty = 2;
-        content.add(players,gbcContent);
-
-        gbcContent.gridx = 1;
-        gbcContent.gridy = 1;
-        gbcContent.insets = new Insets(inset,inset,inset,inset);
-        this.content.add(content,gbcContent);
     }
-
-    @Override
-    public void refreshContent(){}
 
     @Override
     public void refreshRightBar(){}
@@ -216,6 +193,8 @@ class WaitPlayersLeaderDisplayManager implements DisplayManager {
     public void refreshAll(){
         this.refreshContent();
         this.refreshRightBar();
+        this.content.revalidate();
+        this.rightBar.revalidate();
     }
 
     public static WaitPlayersLeaderDisplayManager getInstance(){

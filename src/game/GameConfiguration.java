@@ -10,18 +10,20 @@ public class GameConfiguration {
 
     private boolean isMultiPlayer;
     private int maxGamePlayers;
-    private double duration;
+    private int duration;
     private String map;
-    private String gameName;
+    private String name;
+    private String description;
     private Player owner;
     private ArrayList<Player> players;
 
     public final static int MAX_PLAYERS = 4;
 
     private GameConfiguration(){
-        this.duration = 5.0;
+        this.duration = 5;
         this.map = "demo";
-        this.gameName = "";
+        this.name = "";
+        this.description = "";
         this.players = new ArrayList<>();
         this.setMultiPlayer(false);
     }
@@ -54,11 +56,11 @@ public class GameConfiguration {
         return this.maxGamePlayers;
     }
 
-    public void setDuration(double duration){
+    public void setDuration(int duration){
         this.duration = duration;
     }
 
-    public double getDuration() {
+    public int getDuration() {
         return this.duration;
     }
 
@@ -70,12 +72,20 @@ public class GameConfiguration {
         return this.map;
     }
 
-    public void setGameName(String gameName) {
-        this.gameName = gameName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getGameName() {
-        return this.gameName;
+    public String getName() {
+        return this.name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return this.description;
     }
 
     public Player getOwner() {

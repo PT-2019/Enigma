@@ -1,8 +1,7 @@
-package game.display;
+package starter.gameConfig;
 
 import editor.hud.EnigmaPanel;
 
-import javax.swing.*;
 import java.awt.*;
 public class LaunchGameDisplay {
     private final static LaunchGameDisplay instance = new LaunchGameDisplay();
@@ -36,7 +35,7 @@ public class LaunchGameDisplay {
         gbc.weightx = 1;
         gbc.weighty = 1;
         this.panel.add(RightBarDisplayManager.getInstance().getPanel(),gbc);
-        this.showDisplay(JOIN_GAME);
+        this.showDisplay(CREATE_GAME);
     }
 
     public void showDisplay(String displayName){
@@ -50,6 +49,11 @@ public class LaunchGameDisplay {
 
     public EnigmaPanel getPanel(){
         return this.panel;
+    }
+
+    public void refreshCurrentDisplay() {
+        ContentDisplayManager.getInstance().refreshCurrentDisplay();
+        RightBarDisplayManager.getInstance().refreshCurrentDisplay();
     }
 }
 
