@@ -24,7 +24,7 @@ public @interface Temporary {
 	 *
 	 * @return quand on a implémenter le contenu temporaire
 	 */
-	float since();
+	float since() default 0;
 
 	/**
 	 * Indique une aide pour un patch possible

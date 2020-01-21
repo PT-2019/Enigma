@@ -23,13 +23,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Cette classe lit un fichier {@link #readFile(String)} et le renvoi sous la forme d'une String.
+ * Tout un paquet de méthodes utiles
  *
  * @author Jorys-Micke ALAÏS
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 4.2
+ * @version 5.0
  * @since 2.0 27 novembre 2019
  */
 @ConvenienceClass
@@ -238,6 +238,25 @@ public class Utility implements Serializable {
 		} catch (ClassNotFoundException e) {
 			throw new IllegalStateException("EntityFactory create instance failed" + e);
 		}
+	}
+
+	/**
+	 * Renvoi le chemin pour arriver a la racine depuis le bout.
+	 * (remplace ../ autant que la profondeur)
+	 * @param folder chemin
+	 * @return le chemin pour arriver a la racine depuis le bout.
+	 * @since 5.0
+	 */
+	public static String getRelativePath(String folder) {
+		StringBuilder path = new StringBuilder();
+
+		for (int i = 0; i < folder.length(); i++) {
+			if(folder.charAt(i) == '/'){
+				path.append("../");
+			}
+		}
+
+		return path.toString();
 	}
 }
 

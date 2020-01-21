@@ -95,4 +95,9 @@ public interface Attributes {
 	 * @see editor.enigma.Enigma
 	 */
 	String OPERATIONS = "operations";
+
+	/**
+	 * Id associé à une entité pour la sauvegarde
+	 */
+	String ID = "id";
 }

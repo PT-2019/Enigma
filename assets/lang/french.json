@@ -4,26 +4,26 @@
     editor:Lancer l'éditeur de maps
     running:Une application est déjà en cours d'execution
 
-    create:nouveau
-    open:ouvrir
-    save:sauvegarder
-    undo:undo
-    redo:redo
-    brush:pinceau
-    eraser:gomme
-    move:déplacement
+    create:Nouveau
+    open:Ouvrir
+    save:Sauvegarder
+    undo:Annuler
+    redo:Refaire
+    brush:Pinceau
+    eraser:Gomme
+    move:Déplacer
 
-    file: Fichier
-    edit: Edit
-    run: Lancer
-    help: Aide
-    export: exporter la map
-    doc: documentation
-    support: support
-    start: lancer le jeu
-    stop: terminer le jeu
+    file:Fichier
+    edit:Edition
+    run:Simulation
+    help:Aide
+    export:Exporter la map
+    doc:Documentation
+    support:Support
+    start:Lancer simulation
+    stop:Terminer simulation
 
-    room: Room
+    room: Salles
     decors: Décors
     objects: Objects
     characters: Personnages

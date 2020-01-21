@@ -13,7 +13,7 @@ import java.util.HashMap;
  */
 public class GameLanguage {
 
-	public static final Language DEFAULT = Language.ENGLISH;
+	public static final Language DEFAULT = Language.FRENCH;
 
 	public static GameLanguage gl;
 

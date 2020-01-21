@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapLayers;
+import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -22,9 +23,9 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import editor.entity.EntityFactory;
 import editor.entity.EntitySerializable;
-import editor.entity.view.cases.CasePopUp;
-import editor.entity.view.cases.CaseView;
-import editor.entity.view.listeners.CaseListener;
+import editor.entity.view.CaseListener;
+import editor.entity.view.CasePopUp;
+import editor.entity.view.CaseView;
 import game.hud.Border;
 import game.hud.CategoriesMenu;
 import org.intellij.lang.annotations.MagicConstant;
@@ -34,6 +35,7 @@ import starter.EditorLauncher;
 import javax.swing.JComponent;
 import java.awt.Container;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import static api.MapsNameUtils.HEIGHT_P;
 import static api.MapsNameUtils.TILE_HEIGHT_P;
@@ -142,8 +144,25 @@ public class MapTestScreen extends AbstractMap {
 
 		//bounds
 		this.setMapBounds();
+
+		this.initEntities();
 	}
 
+	private void initEntities() {
+		for (MapLayer layer : this.map.getMap().getLayers()) {
+			for (MapObject mapObject : layer.getObjects()) {
+				/*MapProperties prop = mapObject.getProperties();
+				if(prop.containsKey("entity")){
+					System.out.println("instancie!");
+				} else {
+					Iterator<String> values = prop.getKeys();
+					while (values.hasNext()) {
+						System.out.println(values.next());
+					}
+				}*/
+			}
+		}
+	}
 
 	@Override
 	@MagicConstant

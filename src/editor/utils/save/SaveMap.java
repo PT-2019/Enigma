@@ -40,7 +40,7 @@ import java.util.HashMap;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 4.0 22/12/2019
+ * @version 5.0
  * @since 2.0
  */
 public class SaveMap {
@@ -74,7 +74,19 @@ public class SaveMap {
 	 * @param textures les textures de la map
 	 * @since 2.0
 	 */
-	public static void saveMap(String file, Map map, ArrayList<TextureArea> textures) {
+	public static void saveMap(String file, Map map, ArrayList<TextureArea> textures){
+		saveMap(file, map, textures,"");
+	}
+
+	/**
+	 * Sauvegarde la map et texture.
+	 *
+	 * @param file     nom du fichier de sauvegarde.
+	 * @param map      map a sauvegarder
+	 * @param textures les textures de la map
+	 * @since 5.0
+	 */
+	public static void saveMap(String file, Map map, ArrayList<TextureArea> textures, String relativePath) {
 		DocumentBuilderFactory fabrique = DocumentBuilderFactory.newInstance();
 
 		try {
@@ -118,8 +130,11 @@ public class SaveMap {
 
 				image = document.createElement("image");
 				String src = textures.get(i).getPath();
-				if (src.contains("assets/map/"))
+				if (src.startsWith("assets/map/"))
 					src = src.split("assets/map/")[1];
+				if(!relativePath.equals(""))
+					src = relativePath+src;
+
 				image.setAttribute("source", src);
 
 				image.setAttribute("width", String.valueOf(textures.get(i).getWidth()));
@@ -191,6 +206,18 @@ public class SaveMap {
 	 * @since 4.0
 	 */
 	public void saveMap(String fichier) {
+		saveMap(fichier, "../../");
+	}
+
+	/**
+	 * Sauvegarde la map et texture.
+	 *
+	 * @param fichier nom du fichier de sauvegarde.
+	 * @param relativePath chemin relatif
+	 *
+	 * @since 5.0
+	 */
+	public void saveMap(String fichier, String relativePath) {
 		DocumentBuilderFactory fabrique = DocumentBuilderFactory.newInstance();
 
 		try {
@@ -247,7 +274,12 @@ public class SaveMap {
 
 				FileTextureData data = (FileTextureData) t.getTextureData();
 
-				image.setAttribute("source", "../../" + data.getFileHandle().path());
+				String src = data.getFileHandle().path();
+				if (src.contains("assets/map/")) {
+					src = src.split("assets/map/")[1];
+				}
+
+				image.setAttribute("source", relativePath + src);
 				image.setAttribute("width", String.valueOf(t.getWidth()));
 				image.setAttribute("height", String.valueOf(t.getHeight()));
 
@@ -280,7 +312,7 @@ public class SaveMap {
 				datas.setAttribute("encoding", "csv");
 
 				//tmpstring = new StringBuilder("\n");
-				for (int i = 0; i < tileLayer.getHeight(); i++) {
+				for (int i = tileLayer.getHeight()-1; i >= 0; i--) {
 					for (int j = 0; j < tileLayer.getWidth(); j++) {
 						TiledMapTileLayer.Cell tmp = tileLayer.getCell(j, i);
 						if (tmp == null) {
@@ -317,6 +349,7 @@ public class SaveMap {
 
 					Element object = document.createElement("object");
 					object.setAttribute("name", entity.getClass().getName());
+					object.setAttribute("id", String.valueOf(entity.getID()));
 					object.setAttribute("x", String.valueOf(pos.x));
 					object.setAttribute("y", String.valueOf(pos.y - entity.getGameObjectHeight()));
 					object.setAttribute("width", String.valueOf(entity.getGameObjectWidth()));

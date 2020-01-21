@@ -16,7 +16,6 @@ import editor.hud.ui.EnigmaButtonUI;
 import editor.hud.ui.EnigmaJCheckBoxUI;
 import editor.hud.ui.EnigmaJComboBoxUI;
 import editor.screens.menus.BarMenu;
-import editor.screens.menus.listeners.OutilAction;
 import editor.utils.dnd.DragAndDropDND;
 import editor.utils.dnd.EntityContainer;
 import org.intellij.lang.annotations.MagicConstant;
@@ -114,7 +113,6 @@ public class EditorScreen extends JPanel {
 	 */
 	private EnigmaPanel loadOutilBar(EnigmaWindow window) {
 		final Color COLOR = Color.decode("#bfbfbf");
-		OutilAction listener = new OutilAction(window);
 
 		//création de la zone de la barre d'outils
 		EnigmaPanel outilBar = new EnigmaPanel();
@@ -153,7 +151,6 @@ public class EditorScreen extends JPanel {
 			a.setUI(ui);
 			c = o.actionListener;
 			if(c != null) a.addActionListener((ActionListener) Utility.instance(c, window));
-			else a.addActionListener(listener);
 			outilBar.add(a);
 			if(o.glue){
 				EnigmaButton sep = new EnigmaButton();
