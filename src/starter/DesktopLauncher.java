@@ -10,8 +10,8 @@ import editor.hud.EnigmaPanel;
 import editor.hud.EnigmaWindow;
 import editor.hud.ui.EnigmaLabelUI;
 import editor.screens.EditorScreen;
-import editor.utils.lang.Field;
 import editor.utils.lang.GameLanguage;
+import editor.utils.lang.fields.HUDFields;
 import game.EnigmaGame;
 
 import java.awt.CardLayout;
@@ -77,10 +77,10 @@ public class DesktopLauncher implements Runnable {
 		RUNNING_APP = null;
 		GameLanguage.init();
 		LoadGameLibgdxApplication.setGame(EnigmaGame.getInstance());
-		PLAY_BUTTON = new EnigmaButton(GameLanguage.gl.get(Field.PLAY));
+		PLAY_BUTTON = new EnigmaButton(GameLanguage.gl.get(HUDFields.PLAY));
 		PLAY_BUTTON.addActionListener(new LauncherManagement(EnigmaGameLauncher.getInstance()));
 
-		EDIT_BUTTON = new EnigmaButton(GameLanguage.gl.get(Field.EDITOR));
+		EDIT_BUTTON = new EnigmaButton(GameLanguage.gl.get(HUDFields.EDITOR));
 		EDIT_BUTTON.addActionListener(new LauncherManagement(EditorLauncher.getInstance()));
 	}
 
@@ -111,8 +111,8 @@ public class DesktopLauncher implements Runnable {
 			}
 			RUNNING_APP = app;
 			RUNNING_APP.start();
-			PLAY_BUTTON.setText(GameLanguage.gl.get(Field.RUNNING));
-			EDIT_BUTTON.setText(GameLanguage.gl.get(Field.RUNNING));
+			PLAY_BUTTON.setText(GameLanguage.gl.get(HUDFields.RUNNING));
+			EDIT_BUTTON.setText(GameLanguage.gl.get(HUDFields.RUNNING));
 		}
 	}
 
@@ -124,8 +124,8 @@ public class DesktopLauncher implements Runnable {
 	public static void closeRunningApp() {
 		if (RUNNING_APP != null) {
 			RUNNING_APP = null;
-			PLAY_BUTTON.setText(GameLanguage.gl.get(Field.PLAY));
-			EDIT_BUTTON.setText(GameLanguage.gl.get(Field.EDITOR));
+			PLAY_BUTTON.setText(GameLanguage.gl.get(HUDFields.PLAY));
+			EDIT_BUTTON.setText(GameLanguage.gl.get(HUDFields.EDITOR));
 		}
 	}
 

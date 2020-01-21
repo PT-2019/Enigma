@@ -23,10 +23,22 @@
     start: start simulation
     stop: stop simulation
 
-    room: Room
+    rooms: Room
     decors: Decors
     objects: Objects
     characters: Characters
     actions: Actions
+
+    //game
+    room: Room
+    chest: Chest
+    pane: Pane
+    switch: Switch
+    button: Button
+    book: Book
+    door: Door
+    pressurePlate: Pressure Plate
+    player: Hero
+    library: Library
   }
 }

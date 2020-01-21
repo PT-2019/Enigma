@@ -4,7 +4,6 @@ package api.enums;
  * Desc
  *
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 4.0 21/01/2020
  * @since 4.0 21/01/2020
  */

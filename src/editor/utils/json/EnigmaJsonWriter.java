@@ -151,7 +151,8 @@ public class EnigmaJsonWriter {
 				} else if (attribute.getValue() instanceof List) {
 					writeList(writer, attribute.getKey(), (List) attribute.getValue(), indentation);
 				} else
-					throw new IllegalArgumentException("Erreur dans le map de l'objet: " + className + ". Ni un List, ni un String");
+					throw new IllegalArgumentException("Erreur dans le map de l'objet: " + className
+							+ ". Ni un List, ni un String." + attribute.getValue() + " " + attribute.getKey());
 			}
 
 			indentation--;

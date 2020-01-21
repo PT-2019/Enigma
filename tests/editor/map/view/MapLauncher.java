@@ -1,9 +1,5 @@
 package editor.map.view;
 
-import api.utils.CloseWindowLibgdxApplication;
-import com.badlogic.gdx.backends.lwjgl.LwjglAWTCanvas;
-import editor.entity.view.TiledTest;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -14,13 +10,13 @@ public class MapLauncher extends JFrame {
         final JPanel container =(JPanel) getContentPane();
         container.setLayout(new BorderLayout());
 
-        LwjglAWTCanvas canvas = new LwjglAWTCanvas(new TiledTest(container));
-        container.add(canvas.getCanvas(), BorderLayout.CENTER);
+        //LwjglAWTCanvas canvas = new LwjglAWTCanvas(new TiledTest(container));
+        //container.add(canvas.getCanvas(), BorderLayout.CENTER);
 
         pack();
         setVisible(true);
         setSize(800, 600);
-        addWindowListener(new CloseWindowLibgdxApplication(canvas));
+        //addWindowListener(new CloseWindowLibgdxApplication(canvas));
     }
 
     public static void main(String[] args) {

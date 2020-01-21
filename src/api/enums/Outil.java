@@ -3,7 +3,7 @@ package api.enums;
 import editor.screens.menus.listeners.CreateListener;
 import editor.screens.menus.listeners.OpenListener;
 import editor.screens.menus.listeners.SaveListener;
-import editor.utils.lang.Field;
+import editor.utils.lang.fields.HUDFields;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -12,14 +12,14 @@ import java.awt.event.ActionListener;
 import static editor.utils.lang.GameLanguage.gl;
 
 public enum Outil {
-	NEW(gl.get(Field.CREATE), new ImageIcon("assets/icon/new.png"), CreateListener.class),
-	OPEN(gl.get(Field.OPEN), new ImageIcon("assets/icon/open.png"), OpenListener.class),
-	SAVE(gl.get(Field.SAVE), new ImageIcon("assets/icon/save.png"), true, SaveListener.class),
-	UNDO(gl.get(Field.UNDO), new ImageIcon("assets/icon/undo.png")),
-	REDO(gl.get(Field.REDO), new ImageIcon("assets/icon/redo.png"), true),
-	SOURIS(gl.get(Field.BRUSH), new ImageIcon("assets/icon/brush.png")),
-	GOMME(gl.get(Field.ERASER), new ImageIcon("assets/icon/eraser.png")),
-	MOVE(gl.get(Field.MOVE), new ImageIcon("assets/icon/move.png"), true);
+	NEW(gl.get(HUDFields.CREATE), new ImageIcon("assets/icon/new.png"), CreateListener.class),
+	OPEN(gl.get(HUDFields.OPEN), new ImageIcon("assets/icon/open.png"), OpenListener.class),
+	SAVE(gl.get(HUDFields.SAVE), new ImageIcon("assets/icon/save.png"), true, SaveListener.class),
+	UNDO(gl.get(HUDFields.UNDO), new ImageIcon("assets/icon/undo.png")),
+	REDO(gl.get(HUDFields.REDO), new ImageIcon("assets/icon/redo.png"), true),
+	SOURIS(gl.get(HUDFields.BRUSH), new ImageIcon("assets/icon/brush.png")),
+	GOMME(gl.get(HUDFields.ERASER), new ImageIcon("assets/icon/eraser.png")),
+	MOVE(gl.get(HUDFields.MOVE), new ImageIcon("assets/icon/move.png"), true);
 
 	public static ImageIcon SEPARATOR = new ImageIcon("assets/icon/sep.png");
 

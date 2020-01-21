@@ -1,5 +1,7 @@
 {
   values:{
+
+    //hud
     play:Jouer
     editor:Lancer l'éditeur de maps
     running:Une application est déjà en cours d'execution
@@ -23,10 +25,22 @@
     start:Lancer simulation
     stop:Terminer simulation
 
-    room: Salles
+    rooms: Salles
     decors: Décors
     objects: Objects
     characters: Personnages
     actions: Actions
+
+    //game
+    room: Salle
+    chest: Coffre
+    pane: Panneau
+    switch: Commutateur
+    button: Bouton
+    book: Livre
+    door: Porte
+    pressurePlate: Plaque de pression
+    player: Héros
+    library: Bibliothèque
   }
 }

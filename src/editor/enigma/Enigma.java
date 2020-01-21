@@ -385,7 +385,7 @@ public class Enigma implements ActionListener, IDInterface {
 		object.put(Attributes.DESCRIPTION, this.description);
 		object.put(Attributes.KNOWN, this.known + "");
 		object.put(Attributes.CURRENT_ADVICE_INDEX, this.currentAdvice + "");
-		object.put(Attributes.ID, id);
+		object.put(Attributes.ID, String.valueOf(id));
 
 		ArrayList<HashMap<String, Object>> advices = new ArrayList<>();
 		for (Advice a : this.advices) {
@@ -394,8 +394,10 @@ public class Enigma implements ActionListener, IDInterface {
 		object.put("advices", advices);
 
 		ArrayList<HashMap<String, Object>> conditions = new ArrayList<>();
-		for (Condition c : this.conditions) {
-			conditions.add(c.objectToMap());
+		if (this.conditions != null && !this.conditions.isEmpty()) {
+			for (Condition c : this.conditions) {
+				conditions.add(c.objectToMap());
+			}
 		}
 		object.put("conditions", conditions);
 

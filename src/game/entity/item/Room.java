@@ -2,6 +2,8 @@ package game.entity.item;
 
 import api.entity.AbstractGameObject;
 import api.enums.TypeEntite;
+import editor.utils.lang.GameLanguage;
+import editor.utils.lang.fields.GameFields;
 
 import java.util.EnumMap;
 
@@ -12,7 +14,6 @@ import java.util.EnumMap;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 4.0 24/12/2019
  * @since 4.0 24/12/2019
  */
@@ -23,7 +24,7 @@ public class Room extends AbstractGameObject {
 	 *
 	 * @since 4.0
 	 */
-	public Room(){
+	public Room() {
 		super(-1);
 	}
 
@@ -32,20 +33,24 @@ public class Room extends AbstractGameObject {
 	 *
 	 * @param cols nombre de colonnes
 	 * @param rows nombre de lignes
-	 *
 	 * @since 4.0
 	 */
-	public Room(int cols, int rows){
+	public Room(int cols, int rows) {
 		super(-1);
 		this.setDimension(cols, rows);
 	}
 
 	@Override
 	public EnumMap<TypeEntite, Boolean> getImplements() {
-		EnumMap<TypeEntite,Boolean> imp = new EnumMap<>(TypeEntite.class);
-		imp.put(TypeEntite.item,false);
-		imp.put(TypeEntite.lockable,false);
-		imp.put(TypeEntite.passage,false);
+		EnumMap<TypeEntite, Boolean> imp = new EnumMap<>(TypeEntite.class);
+		imp.put(TypeEntite.item, false);
+		imp.put(TypeEntite.lockable, false);
+		imp.put(TypeEntite.passage, false);
 		return imp;
+	}
+
+	@Override
+	public String getReadableName() {
+		return GameLanguage.gl.get(GameFields.ROOM);
 	}
 }

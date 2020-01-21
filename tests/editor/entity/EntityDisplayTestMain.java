@@ -1,13 +1,13 @@
 package editor.entity;
 
 import api.entity.Entity;
-import editor.entity.view.EntityPopMenu;
 import editor.utils.textures.Texture;
 import game.entity.item.Book;
 
 import javax.swing.*;
 import java.awt.*;
 
+@Deprecated
 public class EntityDisplayTestMain {
 	public static void main(String[] args) {
 		JFrame f = new JFrame();

@@ -4,6 +4,8 @@ import api.entity.utils.Activatable;
 import api.enums.TypeEntite;
 import editor.enigma.Enigma;
 import editor.entity.Player;
+import editor.utils.lang.GameLanguage;
+import editor.utils.lang.fields.GameFields;
 import editor.utils.textures.Texture;
 
 import java.util.ArrayList;
@@ -156,6 +158,11 @@ public class PressurePlate extends Activatable {
 
 	@Override
 	public EnumMap<TypeEntite, Boolean> getImplements() {
-		return null;
+		return TypeEntite.emptyMap();
+	}
+
+	@Override
+	public String getReadableName() {
+		return GameLanguage.gl.get(GameFields.PRESSURE_PLATE);
 	}
 }

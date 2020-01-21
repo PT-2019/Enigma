@@ -8,6 +8,8 @@ import api.enums.TypeEntite;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+import editor.utils.lang.GameLanguage;
+import editor.utils.lang.fields.GameFields;
 
 import java.util.EnumMap;
 import java.util.HashMap;
@@ -114,7 +116,7 @@ public class Player extends GameActorTextured implements Entity, Living {
 
 	@Override
 	public EnumMap<TypeEntite, Boolean> getImplements() {
-		return null;
+		return TypeEntite.emptyMap();
 	}
 
 	//id
@@ -135,5 +137,10 @@ public class Player extends GameActorTextured implements Entity, Living {
 	public String toString() {
 		return "Player{" + "MAX_PLAYER_PV=" + MAX_PLAYER_PV + ", pv=" + pv + ", id=" + id +
 				", tiles=" + tiles + ", bounds=" + bounds + '}';
+	}
+
+	@Override
+	public String getReadableName() {
+		return GameLanguage.gl.get(GameFields.PLAYER);
 	}
 }

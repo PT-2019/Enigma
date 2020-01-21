@@ -3,6 +3,9 @@ package game.entity.item;
 import api.entity.AbstractItem;
 import api.entity.types.Lockable;
 import api.enums.TypeEntite;
+import editor.utils.lang.GameLanguage;
+import editor.utils.lang.fields.GameFields;
+
 import java.util.EnumMap;
 
 /**
@@ -12,12 +15,10 @@ import java.util.EnumMap;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 4.0 24/12/2019
- * @since 2.0
- *
  * @see Lockable
  * @see api.entity.Item
+ * @since 2.0
  */
 public class Chest extends AbstractItem implements Lockable {
 
@@ -28,6 +29,7 @@ public class Chest extends AbstractItem implements Lockable {
 
 	/**
 	 * Un coffre
+	 *
 	 * @since 2.0
 	 */
 	public Chest() {
@@ -88,11 +90,16 @@ public class Chest extends AbstractItem implements Lockable {
 
 	@Override
 	public EnumMap<TypeEntite, Boolean> getImplements() {
-		EnumMap<TypeEntite,Boolean> imp = new EnumMap<>(TypeEntite.class);
-		imp.put(TypeEntite.item,true);
-		imp.put(TypeEntite.lockable,true);
-		imp.put(TypeEntite.passage,false);
-		imp.put(TypeEntite.activatable,false);
+		EnumMap<TypeEntite, Boolean> imp = new EnumMap<>(TypeEntite.class);
+		imp.put(TypeEntite.item, true);
+		imp.put(TypeEntite.lockable, true);
+		imp.put(TypeEntite.passage, false);
+		imp.put(TypeEntite.activatable, false);
 		return imp;
+	}
+
+	@Override
+	public String getReadableName() {
+		return GameLanguage.gl.get(GameFields.CHEST);
 	}
 }

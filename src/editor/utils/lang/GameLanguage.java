@@ -2,6 +2,7 @@ package editor.utils.lang;
 
 import api.utils.Utility;
 import com.badlogic.gdx.utils.Json;
+import editor.utils.lang.fields.Field;
 
 import java.util.HashMap;
 

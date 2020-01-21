@@ -84,12 +84,22 @@ public interface GameObject extends IDInterface {
 	void setTiles(Array<Float> texture, Layer layer);
 
 	@Deprecated
-	default String getClassName(){ return ""; }
+	default String getClassName() {
+		return "";
+	}
 
 	/**
 	 * Renvoi les différentes classes implémenté par l'entité
-	 * @return EnumMap<TypeEntite,Boolean>
+	 *
+	 * @return EnumMap<TypeEntite, Boolean>
 	 * @since 4.0
 	 */
-	EnumMap<TypeEntite,Boolean> getImplements();
+	EnumMap<TypeEntite, Boolean> getImplements();
+
+	/**
+	 * Retourne le nom de l'entité
+	 *
+	 * @return le nom de l'entité
+	 */
+	String getReadableName();
 }

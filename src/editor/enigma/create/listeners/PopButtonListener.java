@@ -14,23 +14,23 @@ import java.awt.event.ActionListener;
  */
 public class PopButtonListener implements ActionListener {
 
-    /**
-     * Fenetre du popUp de la case
-     */
-    private CasePopUp frame;
+	/**
+	 * Fenetre du popUp de la case
+	 */
+	private CasePopUp frame;
 
-    private MapTestScreenCell cell;
+	private MapTestScreenCell cell;
 
-    public PopButtonListener(CasePopUp frame,MapTestScreenCell cell){
-        this.frame = frame;
-        this.cell = cell;
-    }
+	public PopButtonListener(CasePopUp frame, MapTestScreenCell cell) {
+		this.frame = frame;
+		this.cell = cell;
+	}
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        frame.setVisible(false);
-        EnigmaView enigmaView = new EnigmaView(frame,cell);
-        enigmaView.setVisible(true);
-        enigmaView.addWindowListener(new EnigmaWindowListener(frame));
-    }
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		frame.setVisible(false);
+		EnigmaView enigmaView = new EnigmaView(frame, cell);
+		enigmaView.setVisible(true);
+		enigmaView.addWindowListener(new EnigmaWindowListener(frame));
+	}
 }

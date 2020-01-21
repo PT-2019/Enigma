@@ -3,6 +3,8 @@ package game.entity.item;
 import api.entity.AbstractItem;
 import api.entity.types.Content;
 import api.enums.TypeEntite;
+import editor.utils.lang.GameLanguage;
+import editor.utils.lang.fields.GameFields;
 
 import java.util.EnumMap;
 
@@ -14,9 +16,8 @@ import java.util.EnumMap;
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  * @version 4.0
- * @since 2.0
- *
  * @implNote Factorisé avec AbstractItem
+ * @since 2.0
  */
 public class Book extends AbstractItem implements Content {
 
@@ -67,12 +68,17 @@ public class Book extends AbstractItem implements Content {
 	}
 
 	@Override
-	public EnumMap<TypeEntite,Boolean> getImplements(){
-		EnumMap<TypeEntite,Boolean> imp = new EnumMap<>(TypeEntite.class);
-		imp.put(TypeEntite.item,true);
-		imp.put(TypeEntite.lockable,false);
-		imp.put(TypeEntite.passage,false);
-		imp.put(TypeEntite.activatable,false);
+	public EnumMap<TypeEntite, Boolean> getImplements() {
+		EnumMap<TypeEntite, Boolean> imp = new EnumMap<>(TypeEntite.class);
+		imp.put(TypeEntite.item, true);
+		imp.put(TypeEntite.lockable, false);
+		imp.put(TypeEntite.passage, false);
+		imp.put(TypeEntite.activatable, false);
 		return imp;
+	}
+
+	@Override
+	public String getReadableName() {
+		return GameLanguage.gl.get(GameFields.BOOK);
 	}
 }

@@ -206,7 +206,7 @@ public class MapTestScreen extends AbstractMap {
 		//obtient le coin supérieur gauche ou commencer a placer des tiles
 		Vector2 start = posToIndex(pos.x, pos.y, this);
 
-		if(entity.getCategory().name.equals(EntitiesCategories.ACTIONS.name)){
+		if (entity.getCategory().name.equals(EntitiesCategories.ACTIONS.name)) {
 			// TODO: ajout des actions doit créer une énigme ou pas. (dépends de l'action)
 			//  en l'occurence start, exit doivent juste être ajoutés dans la sauvegarde.
 			//  une exit, [1 à x] start.

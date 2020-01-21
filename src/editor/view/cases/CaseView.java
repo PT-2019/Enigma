@@ -5,6 +5,7 @@ import game.entity.map.MapTestScreenCell;
 
 /**
  * Case qui permet de réalisé des actions sur la cell
+ *
  * @see MapTestScreenCell
  * @see editor.view.listeners.CaseListener
  */

@@ -11,10 +11,10 @@ import editor.view.cases.CaseView;
 import editor.view.listeners.CaseListener;
 import game.entity.map.MapTestScreenCell;
 
-import javax.swing.*;
+import javax.swing.JComponent;
 
 @Deprecated
-public class TileMap extends Stage{
+public class TileMap extends Stage {
 
 	private TiledMap map;
 
