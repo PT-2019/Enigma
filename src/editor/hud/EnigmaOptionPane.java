@@ -9,7 +9,6 @@ import api.hud.components.OptionPaneStyle;
 import api.hud.ui.CustomButtonUI;
 import editor.hud.ui.EnigmaTextAreaUI;
 
-import javax.swing.JOptionPane;
 import java.awt.Color;
 import java.awt.Dimension;
 
@@ -147,13 +146,13 @@ public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyl
 	/**
 	 * Affiche un popup personnalisé
 	 *
-	 * @param parent parent
+	 * @param parent  parent
 	 * @param message possiblement un tableau, des composants a afficher dans le popup
-	 * @param title titre de la fenêtre
+	 * @param title   titre de la fenêtre
 	 * @param options option (ok, confirmer, ...), par exemple un tableau de string
 	 * @return la position dans le tableau d'options choisie
 	 */
-	public static int showOptionDialog(CustomWindow parent, Object message, String title, String[] options){
+	public static int showOptionDialog(CustomWindow parent, Object message, String title, String[] options) {
 		return showOptionDialog(parent, message, title, options, new EnigmaOptionPane());
 	}
 

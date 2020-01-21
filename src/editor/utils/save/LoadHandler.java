@@ -46,11 +46,11 @@ public class LoadHandler extends DefaultHandler {
 	 * Cette méthode est activé lorsqu'une balise xml est détecté dans le fichier. Elle permet
 	 * de récupérer les différents attributs des balises et donc créer les objets de la map.
 	 *
-	 * @param uri
-	 * @param localName
-	 * @param qName
-	 * @param attributes
-	 * @throws SAXException
+	 * @param uri        none
+	 * @param localName  none
+	 * @param qName      none
+	 * @param attributes none
+	 * @throws SAXException none
 	 */
 	@Override
 	public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
@@ -101,10 +101,10 @@ public class LoadHandler extends DefaultHandler {
 	 * Cette méthode permet de récupérer le contenu qu'il y a dans un noeud xml.
 	 * Elle est invoqué lorsqu'un noeud avec contenu est détecté.
 	 *
-	 * @param value
-	 * @param start
-	 * @param length
-	 * @throws SAXException
+	 * @param value  none
+	 * @param start  none
+	 * @param length none
+	 * @throws SAXException none
 	 */
 	@Override
 	public void characters(char[] value, int start, int length) throws SAXException {
@@ -168,8 +168,8 @@ public class LoadHandler extends DefaultHandler {
 	/**
 	 * invoqué si le fichier ne respecte pas le dtd.
 	 *
-	 * @param e
-	 * @throws SAXException
+	 * @param e none
+	 * @throws SAXException none
 	 */
 	@Override
 	public void error(SAXParseException e) throws SAXException {
@@ -180,8 +180,8 @@ public class LoadHandler extends DefaultHandler {
 	/**
 	 * Invoqué lors d'une erreur avec une des règles du xml.
 	 *
-	 * @param e
-	 * @throws SAXException
+	 * @param e none
+	 * @throws SAXException none
 	 */
 	@Override
 	public void fatalError(SAXParseException e) throws SAXException {
@@ -192,8 +192,8 @@ public class LoadHandler extends DefaultHandler {
 	/**
 	 * Warning du parseur.
 	 *
-	 * @param e
-	 * @throws SAXException
+	 * @param e none
+	 * @throws SAXException none
 	 */
 	@Override
 	public void warning(SAXParseException e) throws SAXException {

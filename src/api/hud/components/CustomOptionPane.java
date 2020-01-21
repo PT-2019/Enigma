@@ -5,20 +5,12 @@ import api.hud.manager.CustomOptionPaneButtonManager;
 import api.hud.manager.CustomOptionPaneWindowManager;
 import api.hud.ui.CustomButtonUI;
 import api.hud.ui.CustomTextAreaUI;
-import editor.hud.EnigmaLabel;
-import editor.hud.EnigmaTextArea;
 
-import javax.swing.Box;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.util.Arrays;
 
 /**
  * Un panneau de choix modal customizable
@@ -554,27 +546,28 @@ public class CustomOptionPane implements OptionPaneStyle {
 	/**
 	 * Affiche un popup personnalisé
 	 *
-	 * @param parent parent
+	 * @param parent  parent
 	 * @param message possiblement un tableau, des composants a afficher dans le popup
-	 * @param title titre de la fenêtre
+	 * @param title   titre de la fenêtre
 	 * @param options option (ok, confirmer, ...), par exemple un tableau de string
 	 * @return la position dans le tableau d'options choisie
 	 */
-	public static int showOptionDialog(CustomWindow parent, Object message, String title, String[] options){
+	public static int showOptionDialog(CustomWindow parent, Object message, String title, String[] options) {
 		return showOptionDialog(parent, message, title, options, new CustomOptionPane());
 	}
 
 	/**
 	 * Affiche un popup personnalisé
 	 *
-	 * @param parent parent
+	 * @param parent  parent
 	 * @param message possiblement un tableau, des composants a afficher dans le popup
-	 * @param title titre de la fenêtre
+	 * @param title   titre de la fenêtre
 	 * @param options option (ok, confirmer, ...), par exemple un tableau de string
+	 * @param style   style
 	 * @return la position dans le tableau d'options choisie
 	 */
 	protected static int showOptionDialog(CustomWindow parent, Object message, String title, String[] options,
-	                                      OptionPaneStyle style){
+	                                      OptionPaneStyle style) {
 		CustomAlert window = style.getWindow();
 		window.setTitle(title);
 
@@ -583,14 +576,14 @@ public class CustomOptionPane implements OptionPaneStyle {
 
 		CustomPanel answersComponent = style.getPanelStyle();
 		//answersComponent.setLayout(new GridLayout(options.length/2, 2));
-		for (String o:options) {
+		for (String o : options) {
 			CustomButton confirm = style.getButtonStyle(o);
 			confirm.addActionListener(new CustomOptionPaneButtonManager(optionPane));
 			answersComponent.add(confirm);
 		}
 
 		CustomPanel questionComponent = style.getPanelStyle();
-		if(message instanceof Object[]){
+		if (message instanceof Object[]) {
 			/*questionComponent.setLayout(new GridLayout(((Object[]) message).length,1));
 			for (Object o: (Object[]) message) {
 				if(o instanceof CustomTextArea){
@@ -608,17 +601,17 @@ public class CustomOptionPane implements OptionPaneStyle {
 			int sum = 0;
 			for (int i = 0; i < messageA.length; i++, sum++) {
 				Object o = messageA[i];
-				if(o instanceof CustomTextArea){
+				if (o instanceof CustomTextArea) {
 					((CustomTextArea) o).setComponentUI(style.getTextAreaStyle().getComponentUI());
-				} else if(o instanceof CustomLabel){
+				} else if (o instanceof CustomLabel) {
 					((CustomLabel) o).setComponentUI(style.getLabelStyle("").getComponentUI());
-				} else if(o instanceof CustomButton){
+				} else if (o instanceof CustomButton) {
 					((CustomButton) o).setComponentUI(style.getButtonStyle("").getComponentUI());
 				}
 				questionComponent.add((Component) o);
 			}
-			((GridLayout)questionComponent.getLayout()).setRows(sum);
-			((GridLayout)questionComponent.getLayout()).setColumns(1);
+			((GridLayout) questionComponent.getLayout()).setRows(sum);
+			((GridLayout) questionComponent.getLayout()).setColumns(1);
 		}
 
 		parent.setAlwaysOnTop(true);
@@ -638,7 +631,7 @@ public class CustomOptionPane implements OptionPaneStyle {
 		optionPane.start();
 
 		for (int i = 0; i < options.length; i++) {
-			if(optionPane.getAnswer().equals(options[i]))
+			if (optionPane.getAnswer().equals(options[i]))
 				return i;
 		}
 

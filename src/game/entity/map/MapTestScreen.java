@@ -1,9 +1,12 @@
 package game.entity.map;
 
 import api.entity.GameObject;
+import api.enums.AnsiiColor;
+import api.enums.EntitiesCategories;
 import api.enums.Layer;
 import api.hud.components.CustomWindow;
 import api.utils.Bounds;
+import api.utils.PrintColor;
 import api.utils.Utility;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
@@ -11,6 +14,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapLayers;
+import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -95,7 +99,8 @@ public class MapTestScreen extends AbstractMap {
 	/**
 	 * Crée une map depuis un fichier tmx
 	 *
-	 * @param path fichier .tmx
+	 * @param path      fichier .tmx
+	 * @param unitScale zoom
 	 * @since 2.0
 	 */
 	public MapTestScreen(@NotNull final String path, float unitScale) {
@@ -129,8 +134,8 @@ public class MapTestScreen extends AbstractMap {
 		this.camera = new OrthographicCamera();
 		this.camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		this.camera.position.set(
-				Gdx.graphics.getWidth()/2f - this.mapWidth/2f - CategoriesMenu.WIDTH,
-				Gdx.graphics.getHeight()/2f - this.mapHeight/2f, 0);
+				Gdx.graphics.getWidth() / 2f - this.mapWidth / 2f - CategoriesMenu.WIDTH,
+				Gdx.graphics.getHeight() / 2f - this.mapHeight / 2f, 0);
 		this.camera.update();
 
 		this.window = EditorLauncher.getInstance().getWindow();
@@ -142,8 +147,25 @@ public class MapTestScreen extends AbstractMap {
 
 		//bounds
 		this.setMapBounds();
+
+		this.initEntities();
 	}
 
+	private void initEntities() {
+		for (MapLayer layer : this.map.getMap().getLayers()) {
+			for (MapObject mapObject : layer.getObjects()) {
+				/*MapProperties prop = mapObject.getProperties();
+				if(prop.containsKey("entity")){
+					System.out.println("instancie!");
+				} else {
+					Iterator<String> values = prop.getKeys();
+					while (values.hasNext()) {
+						System.out.println(values.next());
+					}
+				}*/
+			}
+		}
+	}
 
 	@Override
 	@MagicConstant
@@ -184,6 +206,14 @@ public class MapTestScreen extends AbstractMap {
 		//obtient le coin supérieur gauche ou commencer a placer des tiles
 		Vector2 start = posToIndex(pos.x, pos.y, this);
 
+		if(entity.getCategory().name.equals(EntitiesCategories.ACTIONS.name)){
+			// TODO: ajout des actions doit créer une énigme ou pas. (dépends de l'action)
+			//  en l'occurence start, exit doivent juste être ajoutés dans la sauvegarde.
+			//  une exit, [1 à x] start.
+			PrintColor.println("Ajout des actions non codé", AnsiiColor.YELLOW);
+			return false;
+		}
+
 		//instancie l'entité
 		GameObject object = EntityFactory.createEntity(entity, this.added.size(), start);
 
@@ -222,7 +252,7 @@ public class MapTestScreen extends AbstractMap {
 			//pas de problème pour x
 			for (int i = (int) start.y - 1, index = 0; i >= (start.y - entity.getGameObjectHeight()); i--) {
 				for (int j = (int) start.x; j < start.x + entity.getGameObjectWidth() && index < entities.size; j++, index++) {
-					MapTestScreenCell c = (MapTestScreenCell) tileLayer.getCell(j,i);
+					MapTestScreenCell c = (MapTestScreenCell) tileLayer.getCell(j, i);
 					c.setTile(this.map.getMap().getTileSets().getTile(MathUtils.ceil(entities.get(index))));
 					c.setEntity(entity);
 
@@ -234,22 +264,23 @@ public class MapTestScreen extends AbstractMap {
 
 	/**
 	 * Cette méthode transforme toutes les cellules de la map en MapLibgdxCell
+	 *
 	 * @see MapTestScreenCell
 	 */
-	private void init(){
+	private void init() {
 		MapLayers layers = map.getMap().getLayers();
-		for (int i =0; i < 5; i++){
+		for (int i = 0; i < 5; i++) {
 			TiledMapTileLayer layer = (TiledMapTileLayer) layers.get(i);
 			for (int y = 0; y < layer.getHeight(); y++) {
 				for (int x = 0; x < layer.getWidth(); x++) {
 					MapTestScreenCell cell = new MapTestScreenCell(layer, y * layer.getWidth() + x);
 
-				TiledMapTileLayer.Cell tmp = layer.getCell(x, y);
+					TiledMapTileLayer.Cell tmp = layer.getCell(x, y);
 
-				if (tmp != null)
-					cell.setTile(tmp.getTile());
+					if (tmp != null)
+						cell.setTile(tmp.getTile());
 
-				layer.setCell(x, y, cell);
+					layer.setCell(x, y, cell);
 				}
 			}
 		}
@@ -257,18 +288,19 @@ public class MapTestScreen extends AbstractMap {
 
 	/**
 	 * Permet de créer tout les listeners sur les cases
-	 * @param component
+	 *
+	 * @param component component swing
 	 */
-	private void createCell(Container component){
-		JComponent jcomponent =(JComponent) component;
-		CasePopUp popUp = new CasePopUp(jcomponent,this.map.getMap());
+	private void createCell(Container component) {
+		JComponent jcomponent = (JComponent) component;
+		CasePopUp popUp = new CasePopUp(jcomponent, this.map.getMap());
 		CaseListener listenerCase = new CaseListener(popUp);
 		MapLayers layers = map.getMap().getLayers();
 
 		TiledMapTileLayer layer = (TiledMapTileLayer) layers.get(0);
 		for (int y = 0; y < layer.getHeight(); y++) {
 			for (int x = 0; x < layer.getWidth(); x++) {
-				MapTestScreenCell cell =(MapTestScreenCell) layer.getCell(x,y);
+				MapTestScreenCell cell = (MapTestScreenCell) layer.getCell(x, y);
 
 				CaseView actor = new CaseView(cell);
 
@@ -277,7 +309,7 @@ public class MapTestScreen extends AbstractMap {
 
 				addActor(actor);
 
-				layer.setCell(x,y,cell);
+				layer.setCell(x, y, cell);
 
 				actor.addListener(listenerCase);
 			}
@@ -354,31 +386,49 @@ public class MapTestScreen extends AbstractMap {
 	}
 
 	@Override
-	public TiledMap getTiledMap() { return this.map.getMap(); }
+	public TiledMap getTiledMap() {
+		return this.map.getMap();
+	}
 
 	@Override
-	public void showGrid(boolean show) { this.showGrid = show; }
+	public void showGrid(boolean show) {
+		this.showGrid = show;
+	}
 
 	@Override
-	public float getMapHeight() { return mapHeight; }
+	public float getMapHeight() {
+		return mapHeight;
+	}
 
 	@Override
-	public float getMapWidth() { return mapWidth; }
+	public float getMapWidth() {
+		return mapWidth;
+	}
 
 	@Override
-	public float getUnitScale() { return this.map.getUnitScale(); }
+	public float getUnitScale() {
+		return this.map.getUnitScale();
+	}
 
 	@Override
-	public int getTileWidth() { return tileWidth; }
+	public int getTileWidth() {
+		return tileWidth;
+	}
 
 	@Override
-	public int getTileHeight() { return tileHeight; }
+	public int getTileHeight() {
+		return tileHeight;
+	}
 
 	@Override
-	public OrthographicCamera getCamera() { return camera; }
+	public OrthographicCamera getCamera() {
+		return camera;
+	}
 
 	@Override
-	public Bounds getMapBounds() { return mapBounds; }
+	public Bounds getMapBounds() {
+		return mapBounds;
+	}
 
 	/**
 	 * Retourne les entités de la map et leur position
@@ -389,7 +439,7 @@ public class MapTestScreen extends AbstractMap {
 		return added;
 	}
 
-    public OrthogonalTiledMapRenderer getMap() {
-        return map;
-    }
+	public OrthogonalTiledMapRenderer getMap() {
+		return map;
+	}
 }

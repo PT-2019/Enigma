@@ -7,9 +7,6 @@ import com.badlogic.gdx.InputProcessor;
  * Convenience interface pour la saisie pour éviter de devoir réécrire des méthodes
  * de input processor vides.
  *
- * @author Jorys-Micke ALAÏS
- * @author Louka DOZ
- * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  * @version 3.0
  * @since 3.0

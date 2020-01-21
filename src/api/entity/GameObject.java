@@ -84,7 +84,6 @@ public interface GameObject extends IDInterface {
 	void setTiles(Array<Float> texture, Layer layer);
 
 	@Deprecated
-	//TODO: ,,am%ZFe,
 	default String getClassName(){ return ""; }
 
 	/**

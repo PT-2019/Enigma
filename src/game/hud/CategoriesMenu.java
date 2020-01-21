@@ -23,9 +23,6 @@ import game.entity.EntityContainer;
 /**
  * Le menu libgdx des entités par catégorie
  *
- * @author Jorys-Micke ALAÏS
- * @author Louka DOZ
- * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  * @version 4.2 24/12/2019
  * @since 4.0 22/12/2019
@@ -36,6 +33,13 @@ public class CategoriesMenu extends Window implements InputAdapter, Disposable {
 	 * Largeur du menu
 	 */
 	public static final int WIDTH = 300;
+
+	/**
+	 * Catégorie chargée au lancement
+	 *
+	 * @since 4.2
+	 */
+	private static final EntitiesCategories DEFAULT_CATEGORY = EntitiesCategories.ROOMS;
 
 	/**
 	 * Stage du drag and drop
@@ -101,7 +105,7 @@ public class CategoriesMenu extends Window implements InputAdapter, Disposable {
 		scrollPane.setFlickScroll(false);
 		table.add(scrollPane).expand().colspan(3).fill();
 
-		loadCategory(EntitiesCategories.ITEMS);
+		loadCategory(DEFAULT_CATEGORY);
 
 		this.add(table).expand().fill();
 	}

@@ -9,7 +9,7 @@ public abstract class MenuListener implements ActionListener {
 
 	protected EnigmaWindow window;
 
-	MenuListener(EnigmaWindow window){
+	MenuListener(EnigmaWindow window) {
 		this.window = window;
 	}
 

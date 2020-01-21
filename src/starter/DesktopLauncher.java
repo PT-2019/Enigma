@@ -4,13 +4,13 @@ import api.Application;
 import api.hud.WindowSize;
 import api.hud.components.CustomWindow;
 import api.utils.LoadGameLibgdxApplication;
-import api.utils.Utility;
 import editor.hud.EnigmaButton;
 import editor.hud.EnigmaLabel;
 import editor.hud.EnigmaPanel;
 import editor.hud.EnigmaWindow;
 import editor.hud.ui.EnigmaLabelUI;
 import editor.screens.EditorScreen;
+import editor.utils.lang.Field;
 import editor.utils.lang.GameLanguage;
 import game.EnigmaGame;
 
@@ -77,10 +77,10 @@ public class DesktopLauncher implements Runnable {
 		RUNNING_APP = null;
 		GameLanguage.init();
 		LoadGameLibgdxApplication.setGame(EnigmaGame.getInstance());
-		PLAY_BUTTON = new EnigmaButton(GameLanguage.gl.getPlayButton());
+		PLAY_BUTTON = new EnigmaButton(GameLanguage.gl.get(Field.PLAY));
 		PLAY_BUTTON.addActionListener(new LauncherManagement(EnigmaGameLauncher.getInstance()));
 
-		EDIT_BUTTON = new EnigmaButton(GameLanguage.gl.getEditorButton());
+		EDIT_BUTTON = new EnigmaButton(GameLanguage.gl.get(Field.EDITOR));
 		EDIT_BUTTON.addActionListener(new LauncherManagement(EditorLauncher.getInstance()));
 	}
 
@@ -111,8 +111,8 @@ public class DesktopLauncher implements Runnable {
 			}
 			RUNNING_APP = app;
 			RUNNING_APP.start();
-			PLAY_BUTTON.setText(GameLanguage.gl.getRunningMessage());
-			EDIT_BUTTON.setText(GameLanguage.gl.getRunningMessage());
+			PLAY_BUTTON.setText(GameLanguage.gl.get(Field.RUNNING));
+			EDIT_BUTTON.setText(GameLanguage.gl.get(Field.RUNNING));
 		}
 	}
 
@@ -124,8 +124,8 @@ public class DesktopLauncher implements Runnable {
 	public static void closeRunningApp() {
 		if (RUNNING_APP != null) {
 			RUNNING_APP = null;
-			PLAY_BUTTON.setText(GameLanguage.gl.getPlayButton());
-			EDIT_BUTTON.setText(GameLanguage.gl.getEditorButton());
+			PLAY_BUTTON.setText(GameLanguage.gl.get(Field.PLAY));
+			EDIT_BUTTON.setText(GameLanguage.gl.get(Field.EDITOR));
 		}
 	}
 
@@ -163,6 +163,7 @@ public class DesktopLauncher implements Runnable {
 		this.window.setLocation(CustomWindow.CENTER);
 		this.window.setWindowBackground(Color.DARK_GRAY);
 		this.window.setMinimumSize(WindowSize.HALF_SCREEN_SIZE);
+		this.window.setIfAskBeforeClosing(false);
 
 		//Cette chose charge la libgdx au lancement du jeu
 		//on ne peut pas directement l'attacher a this.window
@@ -177,7 +178,7 @@ public class DesktopLauncher implements Runnable {
 		EnigmaPanel p1 = new EnigmaPanel();
 
 		background.add(p1);
-		if(!System.getProperty("os.name").equals(OS))
+		if (!System.getProperty("os.name").equals(OS))
 			background.add(new EditorScreen(c, false));
 		else
 			c = null;

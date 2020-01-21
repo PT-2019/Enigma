@@ -16,9 +16,6 @@ import java.util.Iterator;
  * <p>
  * Les méthodes de la libgdx sont cachés au mieux.
  *
- * @author Jorys-Micke ALAÏS
- * @author Louka DOZ
- * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  * @version 03 december 2019
  * @see #listen(InputProcessor)

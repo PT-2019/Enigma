@@ -3,10 +3,7 @@ package api.hud;
 /**
  * Constantes de la fenêtre
  *
- * @author Jorys-Micke ALAÏS
  * @author Louka DOZ
- * @author Loic SENECAT
- * @author Quentin RAMSAMY-AGEORGES
  * @version 4.0 26/12/2019
  * @since 3.0 26/12/2019
  */

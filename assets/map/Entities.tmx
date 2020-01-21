@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE map SYSTEM "../../assets/map/mapDtd.dtd">
+<!DOCTYPE map SYSTEM "mapDtd.dtd">
 <map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="1">
  <tileset firstgid="1" name="0" tilewidth="16" tileheight="16" tilecount="48" columns="8">
   <image source="tiles/ground/dungeon1.png" width="128" height="96"/>

@@ -1,0 +1,14 @@
+{
+  content: [
+    {
+      path: assets/map/datas/actions/start.png
+      hover: emplacement début partie joueurs
+      category: ACTIONS
+    },
+    {
+      path: assets/map/datas/actions/exit.png
+      hover: emplacement fin partie joueurs
+      category: ACTIONS
+    }
+  ]
+}

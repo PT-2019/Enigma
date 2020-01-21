@@ -1,5 +1,6 @@
 package editor.enigma;
 
+import api.entity.utils.IDInterface;
 import api.enums.Attributes;
 import editor.enigma.condition.Condition;
 import editor.enigma.operation.Operation;
@@ -21,13 +22,13 @@ import java.util.Map;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 2.4
+ * @version 5.0
  * @see editor.enigma.condition.Condition
  * @see editor.enigma.operation.Operation
  * @see editor.enigma.Advice
  * @since 2.0
  */
-public class Enigma implements ActionListener {
+public class Enigma implements ActionListener, IDInterface {
 
 	/**
 	 * Une minute en millisecondes
@@ -69,6 +70,10 @@ public class Enigma implements ActionListener {
 	 * Chronomètre le temps qui sépare deux énigmes
 	 */
 	private Timer timer;
+	/**
+	 * Id associé à une entité pour la sauvegarde
+	 */
+	private int id;
 
 	public Enigma() {
 		this.currentAdvice = ADVICE_INDEX_STARTING_VALUE;
@@ -79,6 +84,7 @@ public class Enigma implements ActionListener {
 		this.conditions = new ArrayList<Condition>();
 		this.operations = new ArrayList<Operation>();
 		this.advices = new ArrayList<Advice>();
+		this.id = -1;
 	}
 
 	/**
@@ -94,6 +100,7 @@ public class Enigma implements ActionListener {
 		this.conditions = new ArrayList<Condition>();
 		this.operations = new ArrayList<Operation>();
 		this.advices = new ArrayList<Advice>();
+		this.id = -1;
 	}
 
 	/**
@@ -122,6 +129,9 @@ public class Enigma implements ActionListener {
 		if (attributes.containsKey(Attributes.OPERATIONS))
 			this.operations = (ArrayList<Operation>) attributes.get(Attributes.OPERATIONS);
 		else throw new IllegalArgumentException("Attribut \"operations\" abscent");
+		if (attributes.containsKey(Attributes.ID)) {
+			this.id = Integer.parseInt((String) attributes.get(Attributes.ID));
+		}
 
 		this.timer = new Timer(0, this);
 		if (this.known && this.currentAdvice + 1 < this.advices.size()) {
@@ -375,6 +385,7 @@ public class Enigma implements ActionListener {
 		object.put(Attributes.DESCRIPTION, this.description);
 		object.put(Attributes.KNOWN, this.known + "");
 		object.put(Attributes.CURRENT_ADVICE_INDEX, this.currentAdvice + "");
+		object.put(Attributes.ID, id);
 
 		ArrayList<HashMap<String, Object>> advices = new ArrayList<>();
 		for (Advice a : this.advices) {
@@ -409,6 +420,24 @@ public class Enigma implements ActionListener {
 
 		Enigma e = (Enigma) o;
 		return (this.title.equals(e.getTitle()) && this.description.equals(e.getDescription()) && e.getAllConditions().equals(this.getAllConditions()) && e.getAllOperations().equals(this.getAllOperations()) && e.getAllAdvices().equals(this.getAllAdvices()));
+	}
+
+	/**
+	 * Retourne l'id ou -1 si aucun, ne peut être définit qu'à la sauvegarde et pour la sauvegarde
+	 *
+	 * @return l'id ou -1 si aucun, ne peut être définit qu'à la sauvegarde et pour la sauvegarde
+	 */
+	public int getID() {
+		return id;
+	}
+
+	/**
+	 * Définit l'id ou -1 si aucun, ne peut être définit qu'à la sauvegarde et pour la sauvegarde
+	 *
+	 * @param id l'id ou -1 si aucun, ne peut être définit qu'à la sauvegarde et pour la sauvegarde
+	 */
+	public void setID(int id) {
+		this.id = id;
 	}
 
 	/**

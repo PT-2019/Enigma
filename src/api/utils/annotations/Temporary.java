@@ -3,9 +3,6 @@ package api.utils.annotations;
 /**
  * Indique du contenu temporaire
  *
- * @author Jorys-Micke ALAÏS
- * @author Louka DOZ
- * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  * @version 4.0 25/12/2019
  * @since 4.0 25/12/2019
@@ -24,7 +21,7 @@ public @interface Temporary {
 	 *
 	 * @return quand on a implémenter le contenu temporaire
 	 */
-	float since();
+	float since() default 0;
 
 	/**
 	 * Indique une aide pour un patch possible

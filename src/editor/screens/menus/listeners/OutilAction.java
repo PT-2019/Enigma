@@ -1,18 +1,9 @@
 package editor.screens.menus.listeners;
 
-import api.enums.EnigmaScreens;
-import api.enums.Outil;
-import com.badlogic.gdx.Gdx;
-import editor.hud.EnigmaLabel;
-import editor.hud.EnigmaOptionPane;
-import editor.hud.EnigmaTextArea;
 import editor.hud.EnigmaWindow;
-import game.EnigmaGame;
-import game.screen.TestScreen;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 
 /**
  * Observateur des boutons de la barre d'outil
@@ -32,24 +23,24 @@ public class OutilAction implements ActionListener {
 			"*.tmx");*/
 	private final EnigmaWindow window;
 
-	private volatile boolean finished;
-	private volatile File file;
+	//private volatile boolean finished;
+	//private volatile File file;
 
 	public OutilAction(EnigmaWindow window) {
 		this.window = window;
 		//force lancement javafx
 		//new JFXPanel();
-		this.finished = false;
+		//this.finished = false;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent actionEvent) {
-		String msg = actionEvent.getActionCommand();
+		/*String msg = actionEvent.getActionCommand();
 		this.finished = false;
 
 		if (msg.equals(Outil.OPEN.name)) {
 
-			/*Platform.runLater(
+			Platform.runLater(
 					() ->
 					{
 						FileChooser fileChooser = new FileChooser();
@@ -67,11 +58,11 @@ public class OutilAction implements ActionListener {
 			if (this.file != null) {
 				if (((TestScreen) EnigmaGame.getCurrentScreen()).setMap(this.file.getAbsolutePath()))
 					Gdx.app.postRunnable(() -> EnigmaGame.reload(EnigmaScreens.TEST.name()));
-			}*/
+			}
 
 		} else if (msg.equals(Outil.SAVE.name)) {
 
-			/*Platform.runLater(
+			Platform.runLater(
 					() ->
 					{
 						FileChooser fileChooser = new FileChooser();
@@ -81,7 +72,7 @@ public class OutilAction implements ActionListener {
 						this.file = fileChooser.showSaveDialog(null);
 						this.finished = true;
 					}
-			);*/
+			);
 
 			while (!this.finished) ; //attends le thread file chooser
 
@@ -90,7 +81,6 @@ public class OutilAction implements ActionListener {
 
 			}
 		} else if(msg.equals(Outil.NEW.name)){
-			//TODO: new
 
 			String title = "Création d'une nouvelle map.";
 
@@ -112,7 +102,7 @@ public class OutilAction implements ActionListener {
 			int retour = EnigmaOptionPane.showOptionDialog(window, content, title, new String[]{"Ok", "Annuler"});
 
 			System.out.println(retour);
-		}
+		}*/
 	}
 
 }

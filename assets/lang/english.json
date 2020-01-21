@@ -1,14 +1,32 @@
 {
-  play: Start Game
-  editor: Launch Map Editor
-  running: application already started
+  values:{
+    play:Start Game
+    editor:Launch Map Editor
+    running:application already started
 
-  create:new
-  open:open
-  save:save
-  undo:undo
-  redo:redo
-  brush:brush
-  eraser:eraser
-  move:move
+    create:new file
+    open:open
+    save:save
+    undo:undo
+    redo:redo
+    brush:brush
+    eraser:eraser
+    move:move
+
+    file: File
+    edit: Edit
+    run: Run
+    help: Help
+    export: export map
+    doc: documentation
+    support: support
+    start: start simulation
+    stop: stop simulation
+
+    room: Room
+    decors: Decors
+    objects: Objects
+    characters: Characters
+    actions: Actions
+  }
 }

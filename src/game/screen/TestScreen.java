@@ -3,8 +3,8 @@ package game.screen;
 import api.LibgdxScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
-import editor.view.TestMapControl;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import editor.entity.view.TestMapControl;
 import game.EnigmaGame;
 import game.entity.map.MapTestScreen;
 import game.hud.CategoriesMenu;
@@ -21,8 +21,8 @@ import game.hud.CategoriesMenu;
  */
 public class TestScreen extends LibgdxScreen {
 
-	//TODO: si tu veux charger une map c'est ici sans passer par le launcher
-	private static String MAP_PATH = "assets/map/EmptyMap.tmx";
+	//si tu veux charger une map c'est ici sans passer par le launcher
+	private static String MAP_PATH = "assets/map/map_system/EmptyMap.tmx";
 	/**
 	 * Stage de la map et du jeu
 	 */
@@ -41,6 +41,15 @@ public class TestScreen extends LibgdxScreen {
 	private MapTestScreen map;
 
 	/**
+	 * Retourne le chemin de la map
+	 *
+	 * @return chemin de la map
+	 */
+	public static String getMapPath() {
+		return MAP_PATH;
+	}
+
+	/**
 	 * Prépare les stages, la map et la caméra
 	 */
 	@Override
@@ -50,12 +59,12 @@ public class TestScreen extends LibgdxScreen {
 
 			boolean noMap = false;
 
-			if(MAP_PATH == null || MAP_PATH.length() == 0)
+			if (MAP_PATH == null || MAP_PATH.length() == 0)
 				noMap = true;
 
 			//map
 			this.main = new Stage();
-			if(!noMap) {
+			if (!noMap) {
 				this.map = new MapTestScreen(MAP_PATH, 1f);
 				this.map.showGrid(true);
 				this.main.addActor(this.map);
@@ -69,8 +78,8 @@ public class TestScreen extends LibgdxScreen {
 			this.hud.addActor(new CategoriesMenu(dnd));
 
 			//cameras
-			if(!noMap) {
-				this.main.setViewport(new ExtendViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
+			if (!noMap) {
+				this.main.setViewport(new ScreenViewport());
 				//centre map dans l'écran
 				this.main.getViewport().setCamera(this.map.getCamera());
 				this.main.getCamera().position.set(
@@ -83,10 +92,10 @@ public class TestScreen extends LibgdxScreen {
 			this.listen(this.dnd);
 			this.listen(this.hud);
 			this.listen(this.main);
-			if(!noMap)
+			if (!noMap)
 				this.listen(new TestMapControl(map));
-		} catch (Exception e){
-			System.out.println(e+" ");
+		} catch (Exception e) {
+			System.out.println(e + " ");
 		}
 	}
 
@@ -118,6 +127,7 @@ public class TestScreen extends LibgdxScreen {
 	public void resize(int width, int height) {
 		this.dnd.getViewport().setScreenSize(width, height);
 		this.hud.getViewport().setScreenSize(width, height);
+		this.hud.getViewport().update(width, height);
 		this.main.getViewport().setScreenSize(width, height);
 		this.main.getViewport().update(width, height);
 		EnigmaGame.setScreenSize(width, height);
@@ -130,7 +140,7 @@ public class TestScreen extends LibgdxScreen {
 			this.dnd.dispose();
 			this.hud.dispose();
 		} catch (Exception e) {
-			Gdx.app.error("TestScreen","dispose failed");
+			Gdx.app.error("TestScreen", "dispose failed");
 		}
 	}
 
@@ -140,15 +150,8 @@ public class TestScreen extends LibgdxScreen {
 	}
 
 	/**
-	 * Retourne le chemin de la map
-	 * @return chemin de la map
-	 */
-	public static String getMapPath() {
-		return MAP_PATH;
-	}
-
-	/**
 	 * Définit la map de l'écran
+	 *
 	 * @param absolutePath chemin
 	 * @return true si map changée sinon false, pas changée si c'est déjà la bonne
 	 */
@@ -162,6 +165,7 @@ public class TestScreen extends LibgdxScreen {
 
 	/**
 	 * Retourne la map
+	 *
 	 * @return la map
 	 */
 	public MapTestScreen getMap() {

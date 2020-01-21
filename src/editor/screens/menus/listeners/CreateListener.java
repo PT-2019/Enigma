@@ -21,7 +21,6 @@ import java.awt.event.ActionEvent;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 4.0 31/12/2019
  * @since 4.0 31/12/2019
  */
@@ -47,9 +46,10 @@ public class CreateListener extends MenuListener {
 
 	/**
 	 * Observateur de la création d'une map
+	 *
 	 * @param window fenêtre
 	 */
-	public CreateListener(EnigmaWindow window){
+	public CreateListener(EnigmaWindow window) {
 		super(window);
 
 		//fields
@@ -97,7 +97,7 @@ public class CreateListener extends MenuListener {
 			} catch (NumberFormatException ex) {
 				System.err.println("gérer les erreurs!!!!");
 				System.out.println(choice);
-				System.out.println(widthF.getText()+" "+heightF.getText()+" "+nameF.getText());
+				System.out.println(widthF.getText() + " " + heightF.getText() + " " + nameF.getText());
 			}
 		}
 	}

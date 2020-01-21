@@ -3,24 +3,23 @@ package api.enums;
 import editor.screens.menus.listeners.CreateListener;
 import editor.screens.menus.listeners.OpenListener;
 import editor.screens.menus.listeners.SaveListener;
+import editor.utils.lang.Field;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-
 import java.awt.event.ActionListener;
 
 import static editor.utils.lang.GameLanguage.gl;
 
 public enum Outil {
-
-	NEW(gl.getCreate(), new ImageIcon("assets/icon/new.png"), CreateListener.class),
-	OPEN(gl.getOpen(), new ImageIcon("assets/icon/open.png"), OpenListener.class),
-	SAVE(gl.getSave(), new ImageIcon("assets/icon/save.png"), true, SaveListener.class),
-	UNDO(gl.getUndo(), new ImageIcon("assets/icon/undo.png")),
-	REDO(gl.getRedo(), new ImageIcon("assets/icon/redo.png"), true),
-	SOURIS(gl.getBrush(), new ImageIcon("assets/icon/brush.png")),
-	GOMME(gl.getEraser(), new ImageIcon("assets/icon/eraser.png")),
-	MOVE(gl.getMove(), new ImageIcon("assets/icon/move.png"), true);
+	NEW(gl.get(Field.CREATE), new ImageIcon("assets/icon/new.png"), CreateListener.class),
+	OPEN(gl.get(Field.OPEN), new ImageIcon("assets/icon/open.png"), OpenListener.class),
+	SAVE(gl.get(Field.SAVE), new ImageIcon("assets/icon/save.png"), true, SaveListener.class),
+	UNDO(gl.get(Field.UNDO), new ImageIcon("assets/icon/undo.png")),
+	REDO(gl.get(Field.REDO), new ImageIcon("assets/icon/redo.png"), true),
+	SOURIS(gl.get(Field.BRUSH), new ImageIcon("assets/icon/brush.png")),
+	GOMME(gl.get(Field.ERASER), new ImageIcon("assets/icon/eraser.png")),
+	MOVE(gl.get(Field.MOVE), new ImageIcon("assets/icon/move.png"), true);
 
 	public static ImageIcon SEPARATOR = new ImageIcon("assets/icon/sep.png");
 

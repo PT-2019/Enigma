@@ -1,12 +1,10 @@
 package game;
 
 import api.LibgdxGame;
-import api.LibgdxScreen;
 import api.enums.EnigmaScreens;
 import api.utils.annotations.NeedPatch;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
 import game.screen.GameScreen;
 import game.screen.TestScreen;
 

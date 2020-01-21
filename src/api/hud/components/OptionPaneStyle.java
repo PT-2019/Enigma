@@ -47,6 +47,7 @@ public interface OptionPaneStyle {
 	/**
 	 * Retourne le style d'un label de base de l'option pane
 	 *
+	 * @param content contenu du label
 	 * @return le style d'un label de base de l'option pane
 	 */
 	CustomLabel getLabelStyle(String content);
