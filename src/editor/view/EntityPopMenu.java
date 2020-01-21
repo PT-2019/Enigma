@@ -1,4 +1,4 @@
-package editor.utils.save.view;
+package editor.view;
 
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.maps.tiled.TiledMap;

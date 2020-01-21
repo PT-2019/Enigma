@@ -1,9 +1,9 @@
 package game.entity.item;
 
-import api.entity.interfaces.AbstractItem;
+import api.entity.AbstractItem;
 import api.enums.TypeEntite;
 import editor.enigma.Enigma;
-import editor.entity.player.Player;
+import editor.entity.Player;
 import editor.utils.textures.Texture;
 
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ import java.util.Iterator;
 
 /**
  * @version 2.2
- * @see api.entity.interfaces.Item
+ * @see api.entity.Item
  */
 @Deprecated
 public class Floor extends AbstractItem {

@@ -1,7 +1,7 @@
-package editor.utils.save.view;
+package editor.view;
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import editor.entity.map.Case;
+import editor.utils.map.Case;
 
 @Deprecated
 public class CollisionView extends ShapeRenderer {

@@ -1,7 +1,7 @@
-package editor.utils.save.view.listeners;
+package editor.view.cases.listeners;
 
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import game.entity.MapLibgdxCell;
+import game.entity.map.MapTestScreenCell;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -14,7 +14,7 @@ public class CaseDelete implements ActionListener {
     /**
      * Cellule courrante
      */
-    private MapLibgdxCell current;
+    private MapTestScreenCell current;
 
     /**
      * La couche de cette cellule
@@ -26,7 +26,7 @@ public class CaseDelete implements ActionListener {
      */
     private JLabel label;
 
-    public CaseDelete(MapLibgdxCell current, TiledMapTileLayer layer, JLabel label){
+    public CaseDelete(MapTestScreenCell current, TiledMapTileLayer layer, JLabel label){
         this.current = current;
         this.layer = layer;
         this.label = label;

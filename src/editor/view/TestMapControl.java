@@ -1,12 +1,13 @@
-package editor.utils.save.view;
+package editor.view;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import editor.EditorLuncher;
-import editor.window.Window;
-import game.entity.MapLibgdx;
+import game.entity.map.MapTestScreen;
+import starter.EditorLauncher;
+
+import java.awt.*;
 
 /**
  * Controlleur des différents évènement sur la map
@@ -28,14 +29,14 @@ public class TestMapControl implements InputProcessor {
 
     private OrthographicCamera camera;
 
-    private MapLibgdx map;
+    private MapTestScreen map;
 
-    public TestMapControl(MapLibgdx map) {
+    public TestMapControl(MapTestScreen map) {
         camera = map.getCamera();
         ispush = false;
         this.map = map;
         //changed to window
-        this.window = EditorLuncher.getInstance().getWindow();
+        this.window = EditorLauncher.getInstance().getWindow();
 
 
         this.menu = new EntityPopMenu(map.getMap().getMap(),camera);

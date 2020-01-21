@@ -1,9 +1,9 @@
 package game.entity.item;
 
-import api.entity.interfaces.Activatable;
+import api.entity.utils.Activatable;
 import api.enums.TypeEntite;
 import editor.enigma.Enigma;
-import editor.entity.player.Player;
+import editor.entity.Player;
 import editor.utils.textures.Texture;
 
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ import java.util.Iterator;
 
 /**
  * @version 2.1
- * @see api.entity.interfaces.Activatable
+ * @see Activatable
  */
 @Deprecated
 public class PressurePlate extends Activatable {

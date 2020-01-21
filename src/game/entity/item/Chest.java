@@ -1,16 +1,9 @@
 package game.entity.item;
 
-import api.entity.interfaces.AbstractItem;
-import api.entity.interfaces.Item;
-import api.entity.interfaces.Lockable;
+import api.entity.AbstractItem;
+import api.entity.types.Lockable;
 import api.enums.TypeEntite;
-import editor.enigma.Enigma;
-import editor.entity.player.Player;
-import editor.utils.textures.Texture;
-
-import java.util.ArrayList;
 import java.util.EnumMap;
-import java.util.Iterator;
 
 /**
  * Un coffre
@@ -23,8 +16,8 @@ import java.util.Iterator;
  * @version 4.0 24/12/2019
  * @since 2.0
  *
- * @see api.entity.interfaces.Lockable
- * @see api.entity.interfaces.Item
+ * @see Lockable
+ * @see api.entity.Item
  */
 public class Chest extends AbstractItem implements Lockable {
 

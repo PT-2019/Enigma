@@ -1,4 +1,4 @@
-package editor.utils.save.view;
+package editor.view;
 
 import api.enums.Layer;
 import com.badlogic.gdx.Gdx;

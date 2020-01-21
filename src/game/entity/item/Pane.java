@@ -1,16 +1,9 @@
 package game.entity.item;
 
-import api.entity.interfaces.AbstractItem;
-import api.entity.interfaces.Content;
-import api.entity.interfaces.Item;
+import api.entity.AbstractItem;
+import api.entity.types.Content;
 import api.enums.TypeEntite;
-import editor.enigma.Enigma;
-import editor.entity.player.Player;
-import editor.utils.textures.Texture;
-
-import java.util.ArrayList;
 import java.util.EnumMap;
-import java.util.Iterator;
 
 /**
  * Un panneau
@@ -23,7 +16,7 @@ import java.util.Iterator;
  * @version 4.0
  * @since 2.0
  *
- * @see api.entity.interfaces.Item
+ * @see api.entity.Item
  * @see api.entity.interfaces.Content
  * @see AbstractItem
  */

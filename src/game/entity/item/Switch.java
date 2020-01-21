@@ -1,6 +1,6 @@
 package game.entity.item;
 
-import api.entity.interfaces.Activatable;
+import api.entity.utils.Activatable;
 import api.enums.TypeEntite;
 
 import java.util.EnumMap;
@@ -15,7 +15,7 @@ import java.util.EnumMap;
  *
  * @version 4.0 24/12/2019
  * @since 2.0 24/12/2019
- * @see api.entity.interfaces.Activatable
+ * @see Activatable
  */
 public class Switch extends Activatable {
 

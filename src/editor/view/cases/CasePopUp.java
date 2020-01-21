@@ -1,26 +1,23 @@
-package editor.utils.save.view.cases;
+package editor.view.cases;
 
 import api.entity.GameObject;
-import api.entity.interfaces.EnigmaContainer;
+import api.entity.types.EnigmaContainer;
 import api.enums.Layer;
 import api.enums.TypeEntite;
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import editor.enigma.Enigma;
-import editor.utils.save.view.cases.panel.NavigationPanel;
-import editor.utils.save.view.listeners.CaseDelete;
-import editor.utils.save.view.listeners.CasePopListener;
-import editor.utils.save.view.listeners.PopButtonListener;
-import editor.utils.save.view.listeners.PopItemListener;
-import game.entity.MapLibgdxCell;
+
+import editor.enigma.create.listeners.PopButtonListener;
+import editor.view.cases.listeners.CaseDelete;
+import editor.view.cases.panel.NavigationPanel;
+import editor.view.listeners.PopItemListener;
+import game.entity.map.MapTestScreenCell;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.util.EnumMap;
 import java.util.Iterator;
 
@@ -51,7 +48,7 @@ public class CasePopUp extends AbstractPopUp{
 
     /**
      * Affiche la gestion de contenu pour les entités. //TODO ce fameux menu de gestion
-     * @see api.entity.interfaces.Content
+     * @see api.entity.types.Content
      */
     private JButton contentButton = new JButton("Dialogue de l'objet");
 
@@ -187,7 +184,7 @@ public class CasePopUp extends AbstractPopUp{
         this.setVisible(true);
     }
 
-    public void setCell(MapLibgdxCell cell) {
+    public void setCell(MapTestScreenCell cell) {
         this.cell = cell;
     }
 

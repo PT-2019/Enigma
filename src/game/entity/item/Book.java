@@ -1,7 +1,7 @@
 package game.entity.item;
 
-import api.entity.interfaces.AbstractItem;
-import api.entity.interfaces.Content;
+import api.entity.AbstractItem;
+import api.entity.types.Content;
 import api.enums.TypeEntite;
 
 import java.util.EnumMap;

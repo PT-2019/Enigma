@@ -1,4 +1,4 @@
-package editor.utils.save.view;
+package editor.view;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;

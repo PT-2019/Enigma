@@ -1,11 +1,9 @@
-package editor.utils.save.view.listeners;
+package editor.view.listeners;
 
 import api.enums.Layer;
-import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import game.entity.MapLibgdxCell;
-import org.lwjgl.Sys;
+import game.entity.map.MapTestScreenCell;
 
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -18,7 +16,7 @@ public class PopItemListener implements ItemListener {
 
     private TiledMap map;
 
-    private MapLibgdxCell cell;
+    private MapTestScreenCell cell;
     /**
      * Tile qui représente une case bloquante
      */
@@ -28,7 +26,7 @@ public class PopItemListener implements ItemListener {
      */
     private final int TILEVOID = 2041;
 
-    public PopItemListener(TiledMap map, MapLibgdxCell cell){
+    public PopItemListener(TiledMap map, MapTestScreenCell cell){
         this.map = map;
         this.cell = cell;
     }

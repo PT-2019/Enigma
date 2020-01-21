@@ -1,8 +1,8 @@
 package game.entity.item;
 
-import api.entity.interfaces.AbstractItem;
-import api.entity.interfaces.Container;
-import api.entity.interfaces.Lockable;
+import api.entity.AbstractItem;
+import api.entity.types.Container;
+import api.entity.types.Lockable;
 import api.enums.TypeEntite;
 
 import java.util.EnumMap;
