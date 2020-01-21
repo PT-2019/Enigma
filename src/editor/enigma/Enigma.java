@@ -258,6 +258,7 @@ public class Enigma implements ActionListener {
 	public void addAdvice(Advice a) {
 		if (this.advices.contains(a)) throw new IllegalStateException("Cet élément existe déjà dans la liste");
 		this.advices.add(a);
+		this.currentAdvice++;
 	}
 
 	/**

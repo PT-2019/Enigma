@@ -19,6 +19,11 @@ public class OperationPanel extends EnigmaPanel {
 
     private OperationListener listener;
 
+    /**
+     * Les informations sur l'entité sur laquelle l'opération sera faite
+     */
+    private JLabel entityName;
+
     public OperationPanel(EnigmaView parent){
         this.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -64,8 +69,17 @@ public class OperationPanel extends EnigmaPanel {
         gbc.fill = GridBagConstraints.BOTH;
         this.add(selection,gbc);
 
+        entityName = new JLabel("Vous n'avez pas encore choisi d'entité");
         gbc.gridx = 0;
         gbc.gridy = 3;
+        gbc.weightx = 0;
+        gbc.weighty = 0;
+        gbc.fill = GridBagConstraints.BOTH;
+        this.add(entityName,gbc);
+
+
+        gbc.gridx = 0;
+        gbc.gridy = 4;
         gbc.weightx = 1;
         gbc.weighty = 1;
         gbc.fill = GridBagConstraints.BOTH;
@@ -76,5 +90,6 @@ public class OperationPanel extends EnigmaPanel {
     @Override
     public void update(GameObject object) {
         listener.setGameObject(object);
+        entityName.setText(object.toString());
     }
 }

@@ -96,8 +96,7 @@ public class ConditionListener implements ActionListener, ItemListener {
             System.out.println(it.next());
         }
         CardLayout layout = parent.getCardLayout();
-        layout.previous(parent.getPanel());
-        layout.previous(parent.getPanel());
+        layout.show(parent.getPanel(),"menu");
         parent.setModal(true);
 }
 

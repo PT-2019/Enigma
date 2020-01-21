@@ -27,7 +27,6 @@ public class CluePanel extends EnigmaPanel {
         JTextField timeField= new JTextField();
         JButton submit = new JButton("Ajouter");
 
-        //todo : plus propre que ça
         submit.addActionListener(new ClueListener(parent,timeField,cluefield));
 
         gbc.gridx = 0;
@@ -74,7 +73,5 @@ public class CluePanel extends EnigmaPanel {
     }
 
     @Override
-    public void update(GameObject object) {
-
-    }
+    public void update(GameObject object) {}
 }

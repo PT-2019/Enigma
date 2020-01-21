@@ -32,6 +32,11 @@ public class ConditionPanel extends EnigmaPanel {
 
     private GridBagConstraints gbc;
 
+    /**
+     * Les informations sur l'entité responsable de la condition
+     */
+    private JLabel entityName;
+
     public ConditionPanel(EnigmaView parent){
         this.setLayout(new GridBagLayout());
         this.gbc = new GridBagConstraints();
@@ -81,7 +86,7 @@ public class ConditionPanel extends EnigmaPanel {
         submit.addActionListener(listener);
 
         gbc.gridx = 0;
-        gbc.gridy = 5;
+        gbc.gridy = 6;
         gbc.weightx = 0;
         gbc.weighty = 0;
         gbc.gridheight = 1;
@@ -100,15 +105,17 @@ public class ConditionPanel extends EnigmaPanel {
             answerPanel = null;
         }
         optionPanel = new JPanel();
+        optionPanel.setLayout(new BorderLayout());
         JLabel selection = new JLabel("Veuillez sélectionner un objet sur la carte : ");
-        optionPanel.add(selection);
+        optionPanel.add(selection,BorderLayout.CENTER);
         gbc.gridx = 0;
         gbc.gridy = 3;
         gbc.weightx = 0;
         gbc.weighty = 0;
         gbc.fill = GridBagConstraints.BOTH;
+        entityName = new JLabel("Vous n'avez pas encore choisi d'entité");
+        optionPanel.add(entityName,BorderLayout.SOUTH);
         this.add(optionPanel,gbc);
-
         activateSearchItem = true;
         this.revalidate();
     }
@@ -124,7 +131,7 @@ public class ConditionPanel extends EnigmaPanel {
         answerPanel.add(info);
         answerPanel.add(answer);
         gbc.gridx = 0;
-        gbc.gridy = 4;
+        gbc.gridy = 5;
         gbc.weightx = 1;
         gbc.weighty = 1;
         gbc.fill = GridBagConstraints.BOTH;
@@ -139,5 +146,6 @@ public class ConditionPanel extends EnigmaPanel {
     @Override
     public void update(GameObject g) {
         listener.setGameObject(g);
+        entityName.setText(g.toString());
     }
 }

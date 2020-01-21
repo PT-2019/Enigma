@@ -33,6 +33,7 @@ public class OperationListener implements ActionListener, ItemListener {
 
     public OperationListener(EnigmaView parent){
         this.parent = parent;
+        this.object = null;
     }
 
     @Override
@@ -75,9 +76,7 @@ public class OperationListener implements ActionListener, ItemListener {
             System.out.println(it.next());
         }
         CardLayout layout = parent.getCardLayout();
-        layout.previous(parent.getPanel());
-        layout.previous(parent.getPanel());
-        layout.previous(parent.getPanel());
+        layout.show(parent.getPanel(),"menu");
     }
 
     @Override
