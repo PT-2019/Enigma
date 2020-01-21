@@ -1,6 +1,8 @@
-package editor.enigma.create.enigma;
+package editor.enigma.create;
 
 
+import api.entity.Entity;
+import api.entity.GameObject;
 import editor.enigma.create.listeners.ConditionListener;
 import editor.view.cases.panel.MenuPanel;
 
@@ -132,5 +134,10 @@ public class ConditionPanel extends EnigmaPanel {
 
     public boolean isActivateSearchItem() {
         return activateSearchItem;
+    }
+
+    @Override
+    public void update(GameObject g) {
+        listener.setGameObject(g);
     }
 }

@@ -1,4 +1,4 @@
-package editor.enigma.create.enigma;
+package editor.enigma.create;
 
 import editor.view.cases.CasePopUp;
 

@@ -1,6 +1,7 @@
 package editor.view.cases.listeners;
 
 import api.entity.GameObject;
+import api.utils.Observer;
 import editor.view.cases.AbstractPopUp;
 import editor.view.cases.CasePopUp;
 
@@ -36,7 +37,8 @@ public class SpecialPopListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        popup.setEnigmaCurrent(objectChose);
+        EntityChoseListener obs = popup.getObserver();
+        obs.updateObserveur(objectChose);
         popDispose.dispose();
     }
 }

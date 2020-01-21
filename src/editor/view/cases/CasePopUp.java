@@ -12,6 +12,7 @@ import editor.enigma.Enigma;
 
 import editor.enigma.create.listeners.PopButtonListener;
 import editor.view.cases.listeners.CaseDelete;
+import editor.view.cases.listeners.EntityChoseListener;
 import editor.view.cases.panel.NavigationPanel;
 import editor.view.listeners.PopItemListener;
 import game.entity.map.MapTestScreenCell;
@@ -42,11 +43,6 @@ public class CasePopUp extends AbstractPopUp{
     private Checkbox walkable = new Checkbox("Case bloquante");
 
     /**
-     * L'entité actuelle choisi par l'utilisateur
-     */
-    private GameObject enigmaCurrent;
-
-    /**
      * Affiche la gestion de contenu pour les entités. //TODO ce fameux menu de gestion
      * @see api.entity.types.Content
      */
@@ -65,9 +61,12 @@ public class CasePopUp extends AbstractPopUp{
 
     private JComponent component;
 
-    public CasePopUp(JComponent component,TiledMap tiledMap){
+    private EntityChoseListener observer;
+
+    public CasePopUp(JComponent component, TiledMap tiledMap){
         super((JFrame)component.getRootPane().getParent(),"",false);
         this.component = component;
+        this.observer = new EntityChoseListener();
         this.setSize(400,200);
         this.setLocation(Gdx.graphics.getWidth()/2,Gdx.graphics.getHeight()/2);
         this.setResizable(false);
@@ -169,7 +168,7 @@ public class CasePopUp extends AbstractPopUp{
         }
         if (isenigma){
             extra.add(eng);
-            eng.addActionListener(new PopButtonListener(this,cell));
+            eng.addActionListener(new PopButtonListener(this,cell,observer));
         }
         if (isPassage){
             //TODO un listener pour ces 2 composants
@@ -213,11 +212,7 @@ public class CasePopUp extends AbstractPopUp{
         return this.component;
     }
 
-    public GameObject getEnigmaCurrent() {
-        return enigmaCurrent;
-    }
-
-    public void setEnigmaCurrent(GameObject enigmaCurrent) {
-        this.enigmaCurrent = enigmaCurrent;
+    public EntityChoseListener getObserver() {
+        return observer;
     }
 }

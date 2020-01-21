@@ -4,8 +4,8 @@ import api.entity.GameObject;
 import api.entity.Item;
 import api.entity.types.Lockable;
 import api.enums.TypeEntite;
-import editor.enigma.create.enigma.EnigmaView;
-import editor.enigma.create.enigma.OperationPanel;
+import editor.enigma.create.EnigmaView;
+import editor.enigma.create.OperationPanel;
 import editor.enigma.operation.Give;
 import editor.enigma.operation.Operation;
 import editor.enigma.operation.Unlock;
@@ -27,18 +27,16 @@ public class OperationListener implements ActionListener, ItemListener {
 
     private EnigmaView parent;
 
-    private OperationPanel panel;
-
     private JRadioButton currentButton;
 
-    public OperationListener(EnigmaView parent, OperationPanel panel){
+    private GameObject object;
+
+    public OperationListener(EnigmaView parent){
         this.parent = parent;
-        this.panel = panel;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        GameObject object = parent.getPopUp().getEnigmaCurrent();
         EnumMap<TypeEntite,Boolean> map = object.getImplements();
         Operation ope = null;
 
@@ -87,5 +85,9 @@ public class OperationListener implements ActionListener, ItemListener {
         if (e.getStateChange() == ItemEvent.SELECTED) {
             currentButton = (JRadioButton) e.getItem();
         }
+    }
+
+    public void setGameObject(GameObject object) {
+        this.object = object;
     }
 }

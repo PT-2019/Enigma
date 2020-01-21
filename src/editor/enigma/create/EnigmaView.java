@@ -1,8 +1,9 @@
-package editor.enigma.create.enigma;
+package editor.enigma.create;
 
 import com.badlogic.gdx.Gdx;
 import editor.enigma.Enigma;
 import editor.view.cases.CasePopUp;
+import editor.view.cases.listeners.EntityChoseListener;
 import game.entity.map.MapTestScreenCell;
 
 import javax.swing.*;
@@ -29,7 +30,7 @@ public class EnigmaView extends JDialog {
 
     private MapTestScreenCell cell;
 
-    public EnigmaView(CasePopUp popUp,MapTestScreenCell cell){
+    public EnigmaView(CasePopUp popUp, MapTestScreenCell cell, EntityChoseListener observer){
         super((JFrame)popUp.getComponent().getRootPane().getParent(),"Créer une enigme",false);
         this.setSize(300,700);
         this.setLocation(0,0);
@@ -41,10 +42,16 @@ public class EnigmaView extends JDialog {
         panel.setLayout(this.layout);
         this.add(panel);
         this.popUp = popUp;
+
+        ConditionPanel condition = new ConditionPanel(this);
+        observer.addObserveur(condition);
+        OperationPanel operation = new OperationPanel(this);
+        observer.addObserveur(operation);
+        CluePanel clue = new CluePanel(this);
         panel.add(new EnigmaMenu(this),"menu");
-        panel.add(new CluePanel(this),"clue");
-        panel.add(new ConditionPanel(this),"condition");
-        panel.add(new OperationPanel(this),"operation");
+        panel.add(clue,"clue");
+        panel.add(condition,"condition");
+        panel.add(operation,"operation");
         enigma = new Enigma();
         this.cell = cell;
     }

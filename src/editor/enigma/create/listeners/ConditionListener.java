@@ -6,8 +6,8 @@ import api.entity.types.Content;
 import api.entity.utils.Activatable;
 import api.enums.TypeEntite;
 import editor.enigma.condition.*;
-import editor.enigma.create.enigma.ConditionPanel;
-import editor.enigma.create.enigma.EnigmaView;
+import editor.enigma.create.ConditionPanel;
+import editor.enigma.create.EnigmaView;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -27,19 +27,22 @@ public class ConditionListener implements ActionListener, ItemListener {
     private EnigmaView parent;
 
     private ConditionPanel panel;
+
     /**
      * Attribut pour connaitre la condition choisi par l'utilisateur
      */
     private JRadioButton currentButton;
 
+    private GameObject object;
+
     public ConditionListener(EnigmaView parent,ConditionPanel panel){
         this.parent = parent;
         this.panel = panel;
+        this.object = null;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        GameObject object = parent.getPopUp().getEnigmaCurrent();
         EnumMap<TypeEntite,Boolean> map = object.getImplements();
         Condition cond = null;
 
@@ -111,5 +114,9 @@ public class ConditionListener implements ActionListener, ItemListener {
                 }
             }
         }
+    }
+
+    public void setGameObject(GameObject g){
+        object = g;
     }
 }

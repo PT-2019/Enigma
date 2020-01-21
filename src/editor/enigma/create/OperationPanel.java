@@ -1,5 +1,6 @@
-package editor.enigma.create.enigma;
+package editor.enigma.create;
 
+import api.entity.GameObject;
 import editor.enigma.create.listeners.OperationListener;
 import editor.view.cases.panel.MenuPanel;
 
@@ -43,7 +44,7 @@ public class OperationPanel extends EnigmaPanel {
         panel.add(hands);
         panel.add(inventory);
         //listener pour les boutons
-        listener = new OperationListener(parent,this);
+        listener = new OperationListener(parent);
         activated.addItemListener(listener);
         hands.addItemListener(listener);
         inventory.addItemListener(listener);
@@ -70,5 +71,10 @@ public class OperationPanel extends EnigmaPanel {
         gbc.fill = GridBagConstraints.BOTH;
         gbc.insets = new Insets(250,20,150,20);
         this.add(submit,gbc);
+    }
+
+    @Override
+    public void update(GameObject object) {
+        listener.setGameObject(object);
     }
 }

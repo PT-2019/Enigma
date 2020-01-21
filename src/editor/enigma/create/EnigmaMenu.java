@@ -1,4 +1,6 @@
-package editor.enigma.create.enigma;
+package editor.enigma.create;
+
+import api.entity.GameObject;
 
 import javax.swing.*;
 import java.awt.*;
@@ -74,5 +76,10 @@ public class EnigmaMenu extends EnigmaPanel {
         gbc.fill = GridBagConstraints.BOTH;
         this.add(submit,gbc);
         this.parent = parent;
+    }
+
+    @Override
+    public void update(GameObject object) {
+
     }
 }

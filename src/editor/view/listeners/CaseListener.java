@@ -16,6 +16,7 @@ import editor.view.cases.CasePopUp;
 import editor.view.cases.CaseView;
 import editor.view.cases.SpecialPopUp;
 import editor.view.cases.listeners.CasePopWindowListener;
+import editor.view.cases.listeners.EntityChoseListener;
 import game.entity.map.MapTestScreenCell;
 
 /**

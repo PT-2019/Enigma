@@ -1,6 +1,8 @@
-package editor.enigma.create.enigma;
+package editor.enigma.create;
 
+import api.entity.GameObject;
 import editor.enigma.Advice;
+import editor.enigma.create.listeners.ClueListener;
 import editor.view.cases.panel.MenuPanel;
 
 import javax.swing.*;
@@ -26,19 +28,7 @@ public class CluePanel extends EnigmaPanel {
         JButton submit = new JButton("Ajouter");
 
         //todo : plus propre que ça
-        submit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int time = Integer.parseInt(timeField.getText());
-                parent.getEnigma().addAdvice(new Advice(cluefield.getText(),time));
-                Iterator<Advice> it = parent.getEnigma().getAllAdvices();
-                while(it.hasNext()){
-                    System.out.println(it.next());
-                }
-                CardLayout layout = parent.getCardLayout();
-                layout.previous(parent.getPanel());
-            }
-        });
+        submit.addActionListener(new ClueListener(parent,timeField,cluefield));
 
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -81,5 +71,10 @@ public class CluePanel extends EnigmaPanel {
         gbc.fill = GridBagConstraints.BOTH;
         gbc.insets = new Insets(100,20,100,20);
         this.add(submit,gbc);
+    }
+
+    @Override
+    public void update(GameObject object) {
+
     }
 }
