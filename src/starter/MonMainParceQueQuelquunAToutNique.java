@@ -1,7 +1,5 @@
 package starter;
 
-import api.hud.manager.window.Exit;
-import editor.entity.Player;
 import editor.hud.EnigmaWindow;
 import game.GameConfiguration;
 import game.UserConfiguration;

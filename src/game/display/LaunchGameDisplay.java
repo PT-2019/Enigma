@@ -2,6 +2,7 @@ package game.display;
 
 import editor.hud.EnigmaPanel;
 
+import javax.swing.*;
 import java.awt.*;
 public class LaunchGameDisplay {
     private final static LaunchGameDisplay instance = new LaunchGameDisplay();
