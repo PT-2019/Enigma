@@ -10,25 +10,25 @@ import java.awt.event.ItemListener;
 
 public class PopItemListener implements ItemListener {
 
-    private TiledMap map;
+	private TiledMap map;
 
-    private MapTestScreenCell cell;
+	private MapTestScreenCell cell;
 
-    public PopItemListener(TiledMap map, MapTestScreenCell cell){
-        this.map = map;
-        this.cell = cell;
-    }
+	public PopItemListener(TiledMap map, MapTestScreenCell cell) {
+		this.map = map;
+		this.cell = cell;
+	}
 
-    @Override
-    public void itemStateChanged(ItemEvent e) {
-        TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(Layer.COLLISION.name());
+	@Override
+	public void itemStateChanged(ItemEvent e) {
+		TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get(Layer.COLLISION.name());
 
-        TiledMapTileLayer.Cell tmp = layer.getCell(cell.getIndex()%layer.getWidth(),cell.getIndex()/layer.getWidth());
+		TiledMapTileLayer.Cell tmp = layer.getCell(cell.getIndex() % layer.getWidth(), cell.getIndex() / layer.getWidth());
 
-        if( e.getStateChange() == ItemEvent.SELECTED){
-            tmp.setTile(map.getTileSets().getTile(2041));
-        }else{
-            tmp.setTile(map.getTileSets().getTile(0));
-        }
-    }
+		if (e.getStateChange() == ItemEvent.SELECTED) {
+			tmp.setTile(map.getTileSets().getTile(2041));
+		} else {
+			tmp.setTile(map.getTileSets().getTile(0));
+		}
+	}
 }

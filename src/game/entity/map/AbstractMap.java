@@ -11,7 +11,8 @@ import editor.entity.EntitySerializable;
 
 public abstract class AbstractMap extends Group {
 
-	AbstractMap(String path, float unitScale){}
+	AbstractMap(String path, float unitScale) {
+	}
 
 	/**
 	 * Retourne la case (indices) dans la map depuis une positon x,y dans l'espace.

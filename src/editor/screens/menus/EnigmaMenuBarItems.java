@@ -12,11 +12,11 @@ public enum EnigmaMenuBarItems {
 	public final String name;
 	public final Class<? extends ActionListener> run;
 
-	EnigmaMenuBarItems(String name){
+	EnigmaMenuBarItems(String name) {
 		this(name, null);
 	}
 
-	EnigmaMenuBarItems(String name, Class<? extends ActionListener> run){
+	EnigmaMenuBarItems(String name, Class<? extends ActionListener> run) {
 		this.name = name;
 		this.run = run;
 	}

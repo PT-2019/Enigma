@@ -58,6 +58,8 @@ public class CustomMenuBar extends JMenuBar implements CustomComponent<CustomMen
 
 	/**
 	 * Crée une sous-barre de menus
+	 *
+	 * @param sub sous-barre
 	 */
 	private CustomMenuBar(boolean sub) {
 		super();

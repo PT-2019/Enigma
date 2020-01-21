@@ -62,22 +62,22 @@ public class EmptyMapGenerator {
 	/**
 	 * Sauvegarde du jeu (.tmx et .json séparés)
 	 *
-	 * @param path chemin du fichier sans l'extension
-	 * @param game map tiled
+	 * @param path     chemin du fichier sans l'extension
+	 * @param game     map tiled
 	 * @param entities liste des entités de la map
 	 */
-	public static void save(String path, TiledMap game, HashMap<Vector2, GameObject> entities){
+	public static void save(String path, TiledMap game, HashMap<Vector2, GameObject> entities) {
 		//----------------- fichier .tmx -----------------
 		SaveMap save = new SaveMap(game, entities);
-		save.saveMap(path+".tmx", Config.MAP_FOLDER_SAV);
+		save.saveMap(path + ".tmx", Config.MAP_FOLDER_SAV);
 
 		// ------------ fichier .json ------------------
 
 		//Récupère les énigmes
 		ArrayList<Enigma> enigmas = new ArrayList<>();
 		for (GameObject entity : entities.values()) {
-			if(entities instanceof EnigmaContainer){
-				Iterator<Enigma> enigmasRaw = ((EnigmaContainer)entity).getAllEnigmas();
+			if (entities instanceof EnigmaContainer) {
+				Iterator<Enigma> enigmasRaw = ((EnigmaContainer) entity).getAllEnigmas();
 				while (enigmasRaw.hasNext()) {
 					//associe aux énigmes l'id de l'entité
 					Enigma e = enigmasRaw.next();
@@ -89,7 +89,7 @@ public class EmptyMapGenerator {
 
 		//Sauvegarde
 		try {
-			EnigmaJsonWriter.writeEnigmas(path+".json", enigmas);
+			EnigmaJsonWriter.writeEnigmas(path + ".json", enigmas);
 		} catch (IOException e) {
 			//TODO: do something
 		}
@@ -101,7 +101,7 @@ public class EmptyMapGenerator {
 	 *
 	 * @param path chemin sauvegarde
 	 */
-	public static void load(String path){
+	public static void load(String path) {
 		//------------ charge .tmx ------------
 		((TestScreen) EnigmaGame.getCurrentScreen()).setMap(path);
 
@@ -112,17 +112,17 @@ public class EmptyMapGenerator {
 
 		ArrayList<Enigma> enigmas;
 		ArrayList<Enigma> copy = new ArrayList<>();
-		path = path.substring(0, path.length()-4)+".json"; //retire l'extension tmx
+		path = path.substring(0, path.length() - 4) + ".json"; //retire l'extension tmx
 		System.out.println(path);
 		int id;
 		try {
 			enigmas = EnigmaJsonReader.readEnigmas(path);
-			for (GameObject o:entities.values()) {
-				if(!(o instanceof EnigmaContainer)) continue;
+			for (GameObject o : entities.values()) {
+				if (!(o instanceof EnigmaContainer)) continue;
 				//récupère les énigmes de cet object
-				for (Enigma en: enigmas) {
+				for (Enigma en : enigmas) {
 					id = en.getID();
-					if(id != -1 && id == o.getID()){
+					if (id != -1 && id == o.getID()) {
 						copy.add(en);
 					}
 				}
@@ -135,6 +135,8 @@ public class EmptyMapGenerator {
 			}
 		} catch (IOException | ClassNotFoundException | InvocationTargetException | NoSuchMethodException |
 				InstantiationException | IllegalAccessException ignore) {
+		} catch (IllegalStateException e) {
+			System.err.println(e.toString());
 		}
 	}
 }

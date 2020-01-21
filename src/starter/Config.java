@@ -5,11 +5,7 @@ import api.utils.annotations.NeedPatch;
 /**
  * Fichier des configurations de l'application
  *
- * @author Jorys-Micke ALAÏS
- * @author Louka DOZ
- * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 5.0
  * @since 4.0
  */
@@ -18,6 +14,7 @@ public final class Config {
 	/**
 	 * Map sauvegardé dans le logiciel tant que pas exportée.
 	 * Elles sont composées de deux fichiers : .tmx (map) et .json (énigmes)
+	 *
 	 * @see #MAP_FOLDER_SAV
 	 */
 	public static final String MAP_FOLDER = "assets/files/map/";

@@ -8,7 +8,7 @@ import java.util.HashMap;
 /**
  * Charger le json du langage par default.
  * Pouvoir changer de langage.
- *
+ * <p>
  * Phase de tests.
  */
 public class GameLanguage {
@@ -23,20 +23,24 @@ public class GameLanguage {
 
 	private Language language;
 
-	private GameLanguage(){
+	private GameLanguage() {
 		this.setLanguage(DEFAULT);
 	}
 
-	public static void init(){
-		if(gl == null){
+	public static void init() {
+		if (gl == null) {
 			gl = new GameLanguage();
 		}
+	}
+
+	public Language getLanguage() {
+		return language;
 	}
 
 	public void setLanguage(Language language) {
 		this.language = language;
 
-		if(!languages.containsKey(language)){
+		if (!languages.containsKey(language)) {
 			//load from json
 			Json j = new Json();
 			l = j.fromJson(EnigmaLanguageJson.class, Utility.loadFile(language.json));
@@ -46,9 +50,7 @@ public class GameLanguage {
 		}
 	}
 
-	public Language getLanguage() { return language; }
-
-	public String get(Field field){
+	public String get(Field field) {
 		return l.get(field);
 	}
 

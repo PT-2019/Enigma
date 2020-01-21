@@ -1,6 +1,6 @@
 package editor.map.view;
 
-import api.utils.LoadGameLibgdxApplication;
+import api.utils.CloseWindowLibgdxApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglAWTCanvas;
 import editor.entity.view.TiledTest;
 
@@ -20,7 +20,7 @@ public class MapLauncher extends JFrame {
         pack();
         setVisible(true);
         setSize(800, 600);
-        addWindowListener(new LoadGameLibgdxApplication.CloseWindowLibgdxApplication(canvas));
+        addWindowListener(new CloseWindowLibgdxApplication(canvas));
     }
 
     public static void main(String[] args) {

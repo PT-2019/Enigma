@@ -1,6 +1,5 @@
 package api.utils;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.lwjgl.LwjglAWTCanvas;
 
 import java.awt.event.WindowAdapter;
@@ -10,8 +9,6 @@ import java.util.ArrayList;
 /**
  * Ferme une fenêtre qui contient une application LIBGDX
  *
- * @author Jorys-Micke ALAÏS
- * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  * @version 4.0
@@ -54,12 +51,12 @@ public final class CloseWindowLibgdxApplication extends WindowAdapter {
 		}
 	}
 
-	public void stop(){
+	public void stop() {
 		if (this.application != null)
 			this.application.stop();
 	}
 
-	public void exit(){
+	public void exit() {
 		if (this.application != null)
 			this.application.exit();
 	}

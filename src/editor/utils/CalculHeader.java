@@ -5,8 +5,6 @@ import java.util.Scanner;
 /**
  * Calcule le header d'une map .tmx
  *
- * @author Jorys-Micke ALAÏS
- * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  * @version 1.0
@@ -17,6 +15,11 @@ public class CalculHeader {
 	/**
 	 * Cette méthode affiche le nb de colonne et le max d'un texture à ajouter
 	 * dans un fichier de texture (cf demander à Quentin ou Loïc)
+	 *
+	 * @param width    none
+	 * @param height   none
+	 * @param tile     none
+	 * @param max_last none
 	 */
 	public static void dispInfo(int width, int height, int tile, int max_last) {
 		int nbcol = width / tile;

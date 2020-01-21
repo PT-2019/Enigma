@@ -129,7 +129,7 @@ public class Enigma implements ActionListener, IDInterface {
 		if (attributes.containsKey(Attributes.OPERATIONS))
 			this.operations = (ArrayList<Operation>) attributes.get(Attributes.OPERATIONS);
 		else throw new IllegalArgumentException("Attribut \"operations\" abscent");
-		if(attributes.containsKey(Attributes.ID)){
+		if (attributes.containsKey(Attributes.ID)) {
 			this.id = Integer.parseInt((String) attributes.get(Attributes.ID));
 		}
 
@@ -424,6 +424,7 @@ public class Enigma implements ActionListener, IDInterface {
 
 	/**
 	 * Retourne l'id ou -1 si aucun, ne peut être définit qu'à la sauvegarde et pour la sauvegarde
+	 *
 	 * @return l'id ou -1 si aucun, ne peut être définit qu'à la sauvegarde et pour la sauvegarde
 	 */
 	public int getID() {
@@ -432,6 +433,7 @@ public class Enigma implements ActionListener, IDInterface {
 
 	/**
 	 * Définit l'id ou -1 si aucun, ne peut être définit qu'à la sauvegarde et pour la sauvegarde
+	 *
 	 * @param id l'id ou -1 si aucun, ne peut être définit qu'à la sauvegarde et pour la sauvegarde
 	 */
 	public void setID(int id) {

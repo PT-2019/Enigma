@@ -25,9 +25,6 @@ import java.util.Map;
 /**
  * Tout un paquet de méthodes utiles
  *
- * @author Jorys-Micke ALAÏS
- * @author Louka DOZ
- * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  * @version 5.0
  * @since 2.0 27 novembre 2019
@@ -188,10 +185,11 @@ public class Utility implements Serializable {
 
 	/**
 	 * Retourne une instance d'une classe
+	 *
 	 * @param aClass une classe avec un constructeur par default
 	 * @return une instance de la classe
-	 * @since 4.2
 	 * @throws IllegalStateException si une erreur survient
+	 * @since 4.2
 	 */
 	public static Object instance(Class<?> aClass) {
 		Object object;
@@ -207,11 +205,12 @@ public class Utility implements Serializable {
 
 	/**
 	 * Retourne une instance d'une classe
+	 *
 	 * @param aClass une classe avec un constructeur ayant 1 argument
-	 * @param value valeur de l'unique argument
+	 * @param value  valeur de l'unique argument
 	 * @return une instance de la classe
-	 * @since 4.2
 	 * @throws IllegalStateException si une erreur survient
+	 * @since 4.2
 	 */
 	public static Object instance(Class<?> aClass, Object value) {
 		Object object;
@@ -227,10 +226,11 @@ public class Utility implements Serializable {
 
 	/**
 	 * Retourne une instance d'une classe
+	 *
 	 * @param aClass nom d'une classe avec un constructeur par default
 	 * @return une instance de la classe
-	 * @since 4.2
 	 * @throws IllegalStateException si une erreur survient
+	 * @since 4.2
 	 */
 	public static Object instance(String aClass) {
 		try {
@@ -243,6 +243,7 @@ public class Utility implements Serializable {
 	/**
 	 * Renvoi le chemin pour arriver a la racine depuis le bout.
 	 * (remplace ../ autant que la profondeur)
+	 *
 	 * @param folder chemin
 	 * @return le chemin pour arriver a la racine depuis le bout.
 	 * @since 5.0
@@ -251,7 +252,7 @@ public class Utility implements Serializable {
 		StringBuilder path = new StringBuilder();
 
 		for (int i = 0; i < folder.length(); i++) {
-			if(folder.charAt(i) == '/'){
+			if (folder.charAt(i) == '/') {
 				path.append("../");
 			}
 		}

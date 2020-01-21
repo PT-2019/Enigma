@@ -4,7 +4,6 @@ import api.enums.EntitiesCategories;
 import api.enums.Outil;
 import api.utils.LoadGameLibgdxApplication;
 import api.utils.Utility;
-import api.utils.annotations.NeedPatch;
 import com.badlogic.gdx.utils.Array;
 import editor.entity.EntityFactory;
 import editor.entity.EntitySerializable;
@@ -57,6 +56,7 @@ public class EditorScreen extends JPanel {
 	 * Crée l'écran de création de l'escape game
 	 *
 	 * @param parent fenêtre swing
+	 * @param bar    true s'il y a une barre de menus
 	 * @since 4.2
 	 */
 	public EditorScreen(EnigmaWindow parent, boolean bar) {
@@ -108,6 +108,7 @@ public class EditorScreen extends JPanel {
 	/**
 	 * Charge la barre d'outils
 	 *
+	 * @param window window
 	 * @return JPanel contenant la barre d'outils
 	 * @since 3.1 19 décembre 2019
 	 */
@@ -150,9 +151,9 @@ public class EditorScreen extends JPanel {
 			a.setIcon(o.icon);
 			a.setUI(ui);
 			c = o.actionListener;
-			if(c != null) a.addActionListener((ActionListener) Utility.instance(c, window));
+			if (c != null) a.addActionListener((ActionListener) Utility.instance(c, window));
 			outilBar.add(a);
-			if(o.glue){
+			if (o.glue) {
 				EnigmaButton sep = new EnigmaButton();
 				sep.setUI(ui);
 				sep.setIcon(Outil.SEPARATOR);

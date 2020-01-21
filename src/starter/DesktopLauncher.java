@@ -4,7 +4,6 @@ import api.Application;
 import api.hud.WindowSize;
 import api.hud.components.CustomWindow;
 import api.utils.LoadGameLibgdxApplication;
-import api.utils.Utility;
 import editor.hud.EnigmaButton;
 import editor.hud.EnigmaLabel;
 import editor.hud.EnigmaPanel;
@@ -164,6 +163,7 @@ public class DesktopLauncher implements Runnable {
 		this.window.setLocation(CustomWindow.CENTER);
 		this.window.setWindowBackground(Color.DARK_GRAY);
 		this.window.setMinimumSize(WindowSize.HALF_SCREEN_SIZE);
+		this.window.setIfAskBeforeClosing(false);
 
 		//Cette chose charge la libgdx au lancement du jeu
 		//on ne peut pas directement l'attacher a this.window
@@ -178,7 +178,7 @@ public class DesktopLauncher implements Runnable {
 		EnigmaPanel p1 = new EnigmaPanel();
 
 		background.add(p1);
-		if(!System.getProperty("os.name").equals(OS))
+		if (!System.getProperty("os.name").equals(OS))
 			background.add(new EditorScreen(c, false));
 		else
 			c = null;

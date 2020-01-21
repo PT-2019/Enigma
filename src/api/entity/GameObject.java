@@ -82,5 +82,7 @@ public interface GameObject extends IDInterface {
 
 	@Deprecated
 	//TODO: ,,am%ZFe,
-	default String getClassName(){ return ""; }
+	default String getClassName() {
+		return "";
+	}
 }

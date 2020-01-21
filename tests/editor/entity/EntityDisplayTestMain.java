@@ -1,10 +1,7 @@
 package editor.entity;
 
 import api.entity.Entity;
-import api.entity.utils.Entity;
-import editor.entity.display.EntityPopMenu;
-import editor.entity.display.EntityView;
-import editor.entity.display.EntityViewListener;
+import editor.entity.view.EntityPopMenu;
 import editor.utils.textures.Texture;
 import game.entity.item.Book;
 
@@ -26,13 +23,13 @@ public class EntityDisplayTestMain {
 
 		ent.setTexture(new Texture(5,img.getImage()));
 
-		EntityView view = new EntityView(ent);
+		//EntityView view = new EntityView(ent);
 
-		EntityViewListener listener = new EntityViewListener(new EntityPopMenu());
+		//EntityViewListener listener = new EntityViewListener(new EntityPopMenu());
 
-		view.addMouseListener(listener);
+		//view.addMouseListener(listener);
 
-		p.add(view);
+		//p.add(view);
 
 		f.add(p, BorderLayout.CENTER);
 

@@ -14,7 +14,6 @@ import java.util.HashMap;
  * Lanceur de jeux vidéos
  *
  * @author Jorys-Micke ALAÏS
- * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  * @version 4.2 26/12/2019
@@ -189,8 +188,8 @@ public abstract class LibgdxGame extends Game implements Application {
 			//load(key); //Test()
 			setScreen(key); //Test()
 		}// else if (added.containsKey(key)) {// Test.class
-			//load(key);// Test()
-			//setScreen(key);
+		//load(key);// Test()
+		//setScreen(key);
 		//}
 		else {
 			throw new IllegalStateException("jamais chargé");

@@ -35,7 +35,7 @@ public class MapLoader {
 	/**
 	 * Chargement du fichier map
 	 *
-	 * @param fichier
+	 * @param fichier path
 	 */
 	public void load(String fichier) {
 		try {

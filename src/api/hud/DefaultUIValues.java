@@ -8,10 +8,7 @@ import java.awt.Font;
  * <p>
  * Inspiré a 100% du jeu Enigma.
  *
- * @author Jorys-Micke ALAÏS
  * @author Louka DOZ
- * @author Loic SENECAT
- * @author Quentin RAMSAMY-AGEORGES
  * @version 4.0 27/12/2019
  * @since 4.0 27/12/2019
  */

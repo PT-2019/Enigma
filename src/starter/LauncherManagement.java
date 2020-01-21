@@ -9,10 +9,7 @@ import java.awt.event.ActionListener;
  * Lance une application par la lanceur du bureau lors de l'appui
  * sur un bouton
  *
- * @author Jorys-Micke ALAÏS
  * @author Louka DOZ
- * @author Loic SENECAT
- * @author Quentin RAMSAMY-AGEORGES
  * @version 3.0
  * @since 3.0
  */

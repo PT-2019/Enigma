@@ -79,6 +79,7 @@ public class CustomMenu extends JMenu implements CustomComponent<CustomMenuUI> {
 
 	/**
 	 * Retourne les items d'un menu
+	 *
 	 * @return les items d'un menu
 	 */
 	public Component[] getItems() {

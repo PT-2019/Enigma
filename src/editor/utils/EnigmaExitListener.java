@@ -2,14 +2,12 @@ package editor.utils;
 
 import api.hud.manager.window.Exit;
 import api.utils.CloseWindowLibgdxApplication;
-import com.badlogic.gdx.Gdx;
 import editor.hud.EnigmaOptionPane;
 import editor.hud.EnigmaWindow;
 import starter.DesktopLauncher;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
-import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.ArrayList;
 
@@ -63,7 +61,7 @@ public class EnigmaExitListener extends Exit {
 							//ON NE PEUT PAS LIBERER LA LIBGDX AVANT DE FERMER LA FENETRE ???
 							//l.windowClosing(null);//libère libgdx
 							//remove
-							wl.add((CloseWindowLibgdxApplication)l);
+							wl.add((CloseWindowLibgdxApplication) l);
 							this.window.removeWindowListener(l);
 						}
 					}

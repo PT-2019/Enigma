@@ -74,16 +74,17 @@ public class SaveMap {
 	 * @param textures les textures de la map
 	 * @since 2.0
 	 */
-	public static void saveMap(String file, Map map, ArrayList<TextureArea> textures){
-		saveMap(file, map, textures,"");
+	public static void saveMap(String file, Map map, ArrayList<TextureArea> textures) {
+		saveMap(file, map, textures, "");
 	}
 
 	/**
 	 * Sauvegarde la map et texture.
 	 *
-	 * @param file     nom du fichier de sauvegarde.
-	 * @param map      map a sauvegarder
-	 * @param textures les textures de la map
+	 * @param file         nom du fichier de sauvegarde.
+	 * @param map          map a sauvegarder
+	 * @param textures     les textures de la map
+	 * @param relativePath chemin vers dossier map
 	 * @since 5.0
 	 */
 	public static void saveMap(String file, Map map, ArrayList<TextureArea> textures, String relativePath) {
@@ -132,8 +133,8 @@ public class SaveMap {
 				String src = textures.get(i).getPath();
 				if (src.startsWith("assets/map/"))
 					src = src.split("assets/map/")[1];
-				if(!relativePath.equals(""))
-					src = relativePath+src;
+				if (!relativePath.equals(""))
+					src = relativePath + src;
 
 				image.setAttribute("source", src);
 
@@ -212,9 +213,8 @@ public class SaveMap {
 	/**
 	 * Sauvegarde la map et texture.
 	 *
-	 * @param fichier nom du fichier de sauvegarde.
+	 * @param fichier      nom du fichier de sauvegarde.
 	 * @param relativePath chemin relatif
-	 *
 	 * @since 5.0
 	 */
 	public void saveMap(String fichier, String relativePath) {
@@ -312,7 +312,7 @@ public class SaveMap {
 				datas.setAttribute("encoding", "csv");
 
 				//tmpstring = new StringBuilder("\n");
-				for (int i = tileLayer.getHeight()-1; i >= 0; i--) {
+				for (int i = tileLayer.getHeight() - 1; i >= 0; i--) {
 					for (int j = 0; j < tileLayer.getWidth(); j++) {
 						TiledMapTileLayer.Cell tmp = tileLayer.getCell(j, i);
 						if (tmp == null) {

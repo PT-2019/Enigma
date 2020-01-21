@@ -71,7 +71,7 @@ public class EntitySerializable {
 	 * Retourne la catégorie de l'entité
 	 *
 	 * @return la catégorie de l'entité
-	 * @see game.ui.CategoriesMenu
+	 * @see game.hud.CategoriesMenu
 	 * @since 3.0
 	 */
 	public EntitiesCategories getCategory() {

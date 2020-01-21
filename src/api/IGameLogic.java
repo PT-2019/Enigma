@@ -3,6 +3,7 @@ package api;
 /**
  * Il s'agit de la structure d'un jeu
  *
+ * @author Quentin RAMSAMY-AGEORGES
  * @version 3.0 10 décembre 2019
  * @since 3.0 10 décembre 2019
  */

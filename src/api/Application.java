@@ -3,9 +3,6 @@ package api;
 /**
  * Représentation d'une application
  *
- * @author Jorys-Micke ALAÏS
- * @author Louka DOZ
- * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  * @version 4.0
  * @see game.EnigmaGame

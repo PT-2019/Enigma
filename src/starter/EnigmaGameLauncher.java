@@ -14,9 +14,7 @@ import java.awt.BorderLayout;
 /**
  * Lance le jeu
  *
- * @author Jorys-Micke ALAÏS
  * @author Louka DOZ
- * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  * @version 4.1
  * @since 4.0

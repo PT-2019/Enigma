@@ -9,7 +9,6 @@ import starter.Config;
 
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.filechooser.FileView;
 import java.awt.event.ActionEvent;
 
 public class SaveListener extends MenuListener {
@@ -58,7 +57,7 @@ public class SaveListener extends MenuListener {
 		fileChooser.setAcceptAllFileFilterUsed(false);
 		fileChooser.setFileFilter(tmx);
 
-		if(fileChooser.showSaveDialog(new EnigmaWindow()) == JFileChooser.APPROVE_OPTION){
+		if (fileChooser.showSaveDialog(new EnigmaWindow()) == JFileChooser.APPROVE_OPTION) {
 			MapTestScreen map = ((TestScreen) EnigmaGame.getCurrentScreen()).getMap();
 			EmptyMapGenerator.save(fileChooser.getSelectedFile().getAbsolutePath(), map.getTiledMap(), map.getEntities());
 			//TODO: message ok

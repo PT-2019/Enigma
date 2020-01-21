@@ -6,13 +6,13 @@ import editor.enigma.condition.Activated;
 import editor.enigma.condition.HaveInHands;
 import editor.enigma.operation.Summon;
 import editor.enigma.operation.Unlock;
-import item.Door;
-import item.Switch;
-import editor.entity.player.Player;
 import editor.entity.IDFactory;
-import editor.entity.map.Case;
+import editor.entity.Player;
 import editor.utils.json.EnigmaJsonReader;
 import editor.utils.json.EnigmaJsonWriter;
+import editor.utils.map.Case;
+import game.entity.item.Door;
+import game.entity.item.Switch;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;

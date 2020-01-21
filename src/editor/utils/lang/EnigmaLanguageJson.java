@@ -4,14 +4,14 @@ import java.util.HashMap;
 
 public class EnigmaLanguageJson {
 
-    private HashMap<String, String> values;
+	private HashMap<String, String> values;
 
-    public EnigmaLanguageJson(){
-        this.values = new HashMap<>();
-    }
+	public EnigmaLanguageJson() {
+		this.values = new HashMap<>();
+	}
 
-    public String get(Field field){
-        return this.values.get(field.toString());
-    }
+	public String get(Field field) {
+		return this.values.get(field.toString());
+	}
 
 }

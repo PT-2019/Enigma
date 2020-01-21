@@ -3,9 +3,6 @@ package api.utils.annotations;
 /**
  * Indique du contenu temporaire
  *
- * @author Jorys-Micke ALAÏS
- * @author Louka DOZ
- * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  * @version 4.0 25/12/2019
  * @since 4.0 25/12/2019

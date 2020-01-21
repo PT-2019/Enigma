@@ -9,9 +9,6 @@ import java.lang.annotation.Target;
  * Une annotation pour les classes immutables donc dont
  * on ne peut modifier les object que en créant de nouveaux object (ex: String)
  *
- * @author Jorys-Micke ALAÏS
- * @author Louka DOZ
- * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  * @version 3.0
  * @since 3.0

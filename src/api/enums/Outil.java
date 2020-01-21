@@ -7,7 +7,6 @@ import editor.utils.lang.Field;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-
 import java.awt.event.ActionListener;
 
 import static editor.utils.lang.GameLanguage.gl;

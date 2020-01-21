@@ -5,13 +5,13 @@ import game.entity.map.MapTestScreenCell;
 
 public class CaseView extends Actor {
 
-    private MapTestScreenCell cell;
+	private MapTestScreenCell cell;
 
-    public CaseView(MapTestScreenCell cell){
-        this.cell = cell;
-    }
+	public CaseView(MapTestScreenCell cell) {
+		this.cell = cell;
+	}
 
-    public MapTestScreenCell getCell(){
-        return this.cell;
-    }
+	public MapTestScreenCell getCell() {
+		return this.cell;
+	}
 }

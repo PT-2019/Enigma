@@ -7,38 +7,61 @@ public class LanguageSerialization implements EnigmaLanguage {
 
 	private String create, open, save, undo, redo, brush, eraser, move;
 
-	LanguageSerialization(){}
+	LanguageSerialization() {
+	}
 
 	@Override
-	public String getEditorButton() { return editor; }
+	public String getEditorButton() {
+		return editor;
+	}
 
 	@Override
-	public String getPlayButton() { return play; }
+	public String getPlayButton() {
+		return play;
+	}
 
 	@Override
-	public String getRunningMessage() { return running; }
+	public String getRunningMessage() {
+		return running;
+	}
 
 	@Override
-	public String getCreate() { return create; }
+	public String getCreate() {
+		return create;
+	}
 
 	@Override
-	public String getOpen() { return open; }
+	public String getOpen() {
+		return open;
+	}
 
 	@Override
-	public String getSave() { return save; }
+	public String getSave() {
+		return save;
+	}
 
 	@Override
-	public String getUndo() { return undo;	}
+	public String getUndo() {
+		return undo;
+	}
 
 	@Override
-	public String getRedo() { return redo; }
+	public String getRedo() {
+		return redo;
+	}
 
 	@Override
-	public String getBrush() { return brush; }
+	public String getBrush() {
+		return brush;
+	}
 
 	@Override
-	public String getEraser() { return eraser; }
+	public String getEraser() {
+		return eraser;
+	}
 
 	@Override
-	public String getMove() { return move; }
+	public String getMove() {
+		return move;
+	}
 }

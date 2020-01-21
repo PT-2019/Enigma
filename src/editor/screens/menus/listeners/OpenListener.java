@@ -5,7 +5,6 @@ import com.badlogic.gdx.Gdx;
 import editor.hud.EnigmaWindow;
 import editor.utils.EmptyMapGenerator;
 import game.EnigmaGame;
-import game.screen.TestScreen;
 import starter.Config;
 
 import javax.swing.JFileChooser;
@@ -56,7 +55,7 @@ public class OpenListener extends MenuListener {
 		fileChooser.setAcceptAllFileFilterUsed(false);
 		fileChooser.setFileFilter(tmx);
 
-		if(fileChooser.showOpenDialog(new EnigmaWindow()) == JFileChooser.APPROVE_OPTION){
+		if (fileChooser.showOpenDialog(new EnigmaWindow()) == JFileChooser.APPROVE_OPTION) {
 			//System.out.println("ouverture à "+fileChooser.getSelectedFile().getAbsolutePath());
 			EmptyMapGenerator.load(fileChooser.getSelectedFile().getAbsolutePath());
 			Gdx.app.postRunnable(() -> EnigmaGame.reload(EnigmaScreens.TEST.name()));

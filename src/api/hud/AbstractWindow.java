@@ -11,9 +11,7 @@ import java.awt.Dimension;
 /**
  * Une version abstraite d'une fenêtre
  *
- * @author Jorys-Micke ALAÏS
  * @author Louka DOZ
- * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  * @version 4.0 27/12/2019
  * @since 4.0 27/12/2019

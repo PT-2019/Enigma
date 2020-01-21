@@ -16,7 +16,6 @@ import java.awt.BorderLayout;
  *
  * @author Jorys-Micke ALAÏS
  * @author Louka DOZ
- * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  * @version 4.2
  * @since 1.0
@@ -45,6 +44,7 @@ public class EditorLauncher implements Application {
 		EntityFactory.loadEntities("assets/items.json");
 		EntityFactory.loadEntities("assets/decors.json");
 		EntityFactory.loadEntities("assets/entities.json");
+		EntityFactory.loadEntities("assets/actions.json");
 	}
 
 	/**

@@ -1,7 +1,6 @@
 package editor.screens.menus;
 
 import api.enums.EnigmaScreens;
-import api.hud.components.CustomWindow;
 import com.badlogic.gdx.Gdx;
 import editor.hud.EnigmaMenu;
 import editor.hud.EnigmaMenuBar;
