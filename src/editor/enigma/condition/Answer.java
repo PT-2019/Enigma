@@ -1,5 +1,7 @@
 package editor.enigma.condition;
 
+import api.entity.Entity;
+import api.entity.types.Content;
 import editor.entity.Player;
 
 import java.util.HashMap;
@@ -16,10 +18,13 @@ import java.util.Map;
  * @see editor.enigma.condition.Condition
  * @since 2.0
  */
-public class Answer extends Condition {
+public class Answer extends Condition implements Content {
 
-	public Answer() {
-		super(new HashMap<>());
+	private String content;
+
+	public Answer(Entity ent,String content) {
+		super(ent);
+		this.content = content;
 	}
 
 	/**
@@ -62,4 +67,13 @@ public class Answer extends Condition {
 		return "[Answer]";
 	}
 
+	@Override
+	public void addContent(String content) {
+		this.content = content;
+	}
+
+	@Override
+	public String getContent() {
+		return content;
+	}
 }

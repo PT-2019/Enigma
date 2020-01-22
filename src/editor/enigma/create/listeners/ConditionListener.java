@@ -1,5 +1,6 @@
 package editor.enigma.create.listeners;
 
+import api.entity.Entity;
 import api.entity.GameObject;
 import api.entity.Item;
 import api.entity.types.Content;
@@ -65,7 +66,7 @@ public class ConditionListener implements ActionListener, ItemListener {
             Class c = object.getClass();
             try {
                 Content tmp =(Content) c.newInstance();
-                System.out.println("pas encore implémenter");
+                cond = new Answer((Entity) tmp,"string");
             } catch (InstantiationException | IllegalAccessException ex) {
                 ex.printStackTrace();
             }
