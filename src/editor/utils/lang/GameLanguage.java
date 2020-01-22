@@ -3,56 +3,104 @@ package editor.utils.lang;
 import api.utils.Utility;
 import com.badlogic.gdx.utils.Json;
 import editor.utils.lang.fields.Field;
+import starter.Config;
 
 import java.util.HashMap;
 
 /**
- * Charger le json du langage par default.
- * Pouvoir changer de langage.
- * <p>
- * Phase de tests.
+ * Factory responsable des échanges entre les valeurs du json
+ * et le programme.
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ *
+ * @version 4.0 22/01/2020
+ * @since 4.0 22/01/2020
  */
 public class GameLanguage {
 
-	public static final Language DEFAULT = Language.FRENCH;
-
+	/**
+	 * Variable globale a utiliser pour demander la valeur
+	 * d'un FIELD
+	 * @see Field
+	 * @see editor.utils.lang.fields.GameFields
+	 * @see editor.utils.lang.fields.HUDFields
+	 *
+	 * Doit être initialisé ({@link #init()}.
+	 *
+	 * Globale et public pour éviter de devoir écrire trop de syntaxe
+	 * car très très souvent utilisée.
+	 */
 	public static GameLanguage gl;
 
+	/**
+	 * Garde les languages déjà chargés en mémoire
+	 */
 	private static HashMap<Language, EnigmaLanguageJson> languages = new HashMap<>();
 
-	private EnigmaLanguageJson l;
+	/**
+	 * Le json actuel, on lui demande les valeurs des champs
+	 */
+	private EnigmaLanguageJson json;
 
+	/**
+	 * Langage actuel
+	 */
 	private Language language;
 
+	/**
+	 * Crée un gameLanguage avec le langage par défaut.
+	 */
 	private GameLanguage() {
-		this.setLanguage(DEFAULT);
+		this.setLanguage(Config.DEFAULT);
 	}
 
+	/**
+	 * Initialise la variable globale a utiliser pour demander la valeur
+	 * d'un FIELD
+	 */
 	public static void init() {
 		if (gl == null) {
 			gl = new GameLanguage();
 		}
 	}
 
+	/**
+	 * Retourne le langage actuel
+	 * @return le langage actuel
+	 */
 	public Language getLanguage() {
 		return language;
 	}
 
+	/**
+	 * Change le language
+	 * @param language un language
+	 */
 	public void setLanguage(Language language) {
 		this.language = language;
 
-		if (!languages.containsKey(language)) {
+		//pas déjà chargé
+		if (!GameLanguage.languages.containsKey(language)) {
 			//load from json
 			Json j = new Json();
-			l = j.fromJson(EnigmaLanguageJson.class, Utility.loadFile(language.json));
-			languages.put(language, l);
+			this.json = j.fromJson(EnigmaLanguageJson.class, Utility.loadFile(language.json));
+			GameLanguage.languages.put(language, this.json);
 		} else {
-			l = languages.get(language);
+			this.json = GameLanguage.languages.get(language);
 		}
 	}
 
+	/**
+	 * Retourne la valeur d'un champ dans la langue actuelle
+	 * @param field un champ
+	 * @return la valeur d'un champ dans la langue actuelle
+	 */
 	public String get(Field field) {
-		return l.get(field);
+		//cache a qui on demande la valeur du field
+		return this.json.get(field);
 	}
 
 

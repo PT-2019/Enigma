@@ -8,6 +8,7 @@ import editor.enigma.create.enigma.EnigmaView;
 import editor.enigma.create.enigma.OperationPanel;
 import editor.enigma.operation.Give;
 import editor.enigma.operation.Operation;
+import editor.enigma.operation.Summon;
 import editor.enigma.operation.Unlock;
 
 import javax.swing.JRadioButton;
@@ -51,25 +52,28 @@ public class OperationListener implements ActionListener, ItemListener {
 
 		if (currentButton.getText().equals("Give")) {
 			if (map.get(TypeEntite.item)) {
-				Class c = object.getClass();
+				/*Class c = object.getClass();
 				try {
 					Item tmp = (Item) c.newInstance();
 					ope = new Give(tmp);
 				} catch (InstantiationException | IllegalAccessException ex) {
 					ex.printStackTrace();
-				}
+				}*/
+				if(object instanceof Item)
+					ope = new Give((Item) object);
 			}
 		} else if (currentButton.getText().equals("Summon")) {
 			System.out.println("pas implémenter");
 		} else if (currentButton.getText().equals("Unlock")) {
 			if (map.get(TypeEntite.lockable)) {
-				Class c = object.getClass();
-				try {
-					Lockable tmp = (Lockable) c.newInstance();
-					ope = new Unlock(tmp);
-				} catch (InstantiationException | IllegalAccessException ex) {
-					ex.printStackTrace();
-				}
+				//Class c = object.getClass();
+				//try {
+					//Lockable tmp = (Lockable) c.newInstance();
+					if(object instanceof Lockable)
+						ope = new Unlock((Lockable) object);
+				//} catch (InstantiationException | IllegalAccessException ex) {
+				//	ex.printStackTrace();
+				//}
 			}
 		}
 

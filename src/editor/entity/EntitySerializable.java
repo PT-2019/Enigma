@@ -2,6 +2,7 @@ package editor.entity;
 
 import api.enums.EntitiesCategories;
 import api.enums.Layer;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
 import java.util.HashMap;
@@ -13,7 +14,7 @@ import java.util.HashMap;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 4.1
+ * @version 5.0
  * @since 3.0
  */
 public class EntitySerializable {
@@ -49,6 +50,20 @@ public class EntitySerializable {
 		//peut mettre un float dans une variable de type int et qui lève une
 		//NumberFormatException lorsque l'on passe ce int a une méthode qui attends
 		//un int
+	}
+
+	/**
+	 * Une entité sérializable avec juste assez d'infos pour utiliser la fonction
+	 * {@link EntityFactory#createEntity(EntitySerializable, int, Vector2)}
+	 * @param width largeur
+	 * @param height hauteur
+	 * @param className chemin classe entité
+	 * @since 5.0
+	 */
+	public EntitySerializable(int width, int height, String className) {
+		this.width = width;
+		this.height = height;
+		this.className = className;
 	}
 
 	/**

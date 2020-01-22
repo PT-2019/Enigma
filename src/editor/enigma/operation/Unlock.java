@@ -52,7 +52,7 @@ public class Unlock extends Operation {
 	 */
 	@Override
 	public String toString() {
-		return "[Unlock]";
+		return toLongString();
 	}
 
 	/**

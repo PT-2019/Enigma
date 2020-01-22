@@ -4,6 +4,7 @@ import api.Application;
 import api.enums.EnigmaScreens;
 import api.hud.WindowSize;
 import api.hud.components.CustomWindow;
+import api.utils.Utility;
 import editor.entity.EntityFactory;
 import editor.hud.EnigmaWindow;
 import editor.screens.EditorScreen;
@@ -36,25 +37,15 @@ public class EditorLauncher implements Application {
 	/**
 	 * Construit l'éditeur d'escape game
 	 */
-	private EditorLauncher() {
-		this.window = new EnigmaWindow();
+	private EditorLauncher(EnigmaWindow launcher) {
+		if(launcher != null) {
+			this.window = new EnigmaWindow(Utility.getMonitorOf(launcher));
+		} else {
+			this.window = new EnigmaWindow();
+		}
 		this.window.addWindowListener(new AppClosingManager());
 		this.window.setSize(WindowSize.FULL_SCREEN_SIZE);
 		this.editorScreen = null;
-
-		//
-
-		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-		GraphicsDevice[] gs = ge.getScreenDevices();
-
-		for (GraphicsDevice gd : gs) {
-			System.out.println(gd);
-
-			JFrame jFrame = new JFrame(gd.getDefaultConfiguration());
-			jFrame.getGraphicsConfiguration();
-
-
-		}
 
 		//charge entités
 		EntityFactory.loadEntities("assets/rooms.json");
@@ -62,6 +53,13 @@ public class EditorLauncher implements Application {
 		EntityFactory.loadEntities("assets/decors.json");
 		EntityFactory.loadEntities("assets/entities.json");
 		EntityFactory.loadEntities("assets/actions.json");
+	}
+
+	/**
+	 * Construit l'éditeur d'escape game
+	 */
+	private EditorLauncher() {
+		this(null);
 	}
 
 	/**
@@ -99,6 +97,13 @@ public class EditorLauncher implements Application {
 	public static EditorLauncher getInstance() {
 		if (editor == null) {
 			editor = new EditorLauncher();
+		}
+		return editor;
+	}
+
+	public static EditorLauncher setEditor(EnigmaWindow window){
+		if (editor == null) {
+			editor = new EditorLauncher(window);
 		}
 		return editor;
 	}

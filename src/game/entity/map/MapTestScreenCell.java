@@ -2,11 +2,14 @@ package game.entity.map;
 
 import api.entity.GameObject;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import editor.enigma.Enigma;
+import game.EnigmaGame;
+import game.screen.TestScreen;
 
 /**
  * Une cellule de la map libgdx
  *
- * @version 3.0 14 décembre 2019
+ * @version 5.0
  * @since 3.0 14 décembre 2019
  */
 public class MapTestScreenCell extends TiledMapTileLayer.Cell {
@@ -59,6 +62,13 @@ public class MapTestScreenCell extends TiledMapTileLayer.Cell {
 
 	public TiledMapTileLayer getLayer() {
 		return this.layer;
+	}
+
+	/**
+	 * Vide la case
+	 */
+	public boolean clear() {
+		return ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap().removeEntity(entity);
 	}
 }
 

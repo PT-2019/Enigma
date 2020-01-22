@@ -77,11 +77,6 @@ public class DesktopLauncher implements Runnable {
 		RUNNING_APP = null;
 		GameLanguage.init();
 		LoadGameLibgdxApplication.setGame(EnigmaGame.getInstance());
-		PLAY_BUTTON = new EnigmaButton(GameLanguage.gl.get(HUDFields.PLAY));
-		PLAY_BUTTON.addActionListener(new LauncherManagement(EnigmaGameLauncher.getInstance()));
-
-		EDIT_BUTTON = new EnigmaButton(GameLanguage.gl.get(HUDFields.EDITOR));
-		EDIT_BUTTON.addActionListener(new LauncherManagement(EditorLauncher.getInstance()));
 	}
 
 	/**
@@ -164,6 +159,13 @@ public class DesktopLauncher implements Runnable {
 		this.window.setWindowBackground(Color.DARK_GRAY);
 		this.window.setMinimumSize(WindowSize.HALF_SCREEN_SIZE);
 		this.window.setIfAskBeforeClosing(false);
+
+		//boutons
+		PLAY_BUTTON = new EnigmaButton(GameLanguage.gl.get(HUDFields.PLAY));
+		PLAY_BUTTON.addActionListener(new LauncherManagement(EnigmaGameLauncher.getInstance()));
+
+		EDIT_BUTTON = new EnigmaButton(GameLanguage.gl.get(HUDFields.EDITOR));
+		EDIT_BUTTON.addActionListener(new LauncherManagement(EditorLauncher.setEditor(this.window)));
 
 		//Cette chose charge la libgdx au lancement du jeu
 		//on ne peut pas directement l'attacher a this.window

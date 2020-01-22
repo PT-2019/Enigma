@@ -95,7 +95,8 @@ public class TestScreen extends LibgdxScreen {
 			if (!noMap)
 				this.listen(new TestMapControl(map));
 		} catch (Exception e) {
-			System.out.println(e + " ");
+			System.err.println("échec création testScreen");
+			e.printStackTrace();
 		}
 	}
 

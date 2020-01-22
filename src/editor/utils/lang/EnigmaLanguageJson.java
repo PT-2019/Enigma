@@ -16,12 +16,22 @@ import java.util.HashMap;
  */
 public class EnigmaLanguageJson {
 
+	/**
+	 * Dans le json, il y a un attribut values et
+	 * des éléments (clef: valeur)
+	 * ce qui donne cette hashMap après serialization
+	 */
 	private HashMap<String, String> values;
 
 	public EnigmaLanguageJson() {
 		this.values = new HashMap<>();
 	}
 
+	/**
+	 * Retourne la valeur dans la HashMap correspond a ce field
+	 * @param field field
+	 * @return  la valeur dans la HashMap correspond a ce field
+	 */
 	public String get(Field field) {
 		return this.values.get(field.toString());
 	}

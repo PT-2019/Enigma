@@ -45,11 +45,17 @@
         <!ELEMENT objectgroup (object*)>
         <!ATTLIST objectgroup id CDATA #REQUIRED>
 
-        <!ELEMENT object (#PCDATA)>
+        <!ELEMENT object (properties*)>
         <!ATTLIST object height CDATA #REQUIRED>
         <!ATTLIST object width CDATA #REQUIRED>
         <!ATTLIST object x CDATA #REQUIRED>
         <!ATTLIST object y CDATA #REQUIRED>
-        <!ATTLIST object name CDATA #REQUIRED>
         <!ATTLIST object id CDATA #IMPLIED>
-        <!ATTLIST object entity CDATA #IMPLIED>
+        <!ATTLIST object name CDATA #REQUIRED>
+
+        <!ELEMENT properties (property+)>
+
+        <!ELEMENT property (#PCDATA) >
+        <!ATTLIST property name CDATA #REQUIRED>
+        <!ATTLIST property value CDATA #IMPLIED>
+        <!ATTLIST property type CDATA #IMPLIED>

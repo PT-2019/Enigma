@@ -1,12 +1,20 @@
 package api.utils;
 
+import api.entity.GameObject;
 import api.utils.annotations.ConvenienceClass;
 import api.utils.annotations.ConvenienceMethod;
+import api.utils.annotations.NeedPatch;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Array;
+import editor.hud.EnigmaWindow;
 
+import javax.swing.JFrame;
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -22,11 +30,13 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import static starter.Config.DEBUG_COLOR;
+
 /**
  * Tout un paquet de méthodes utiles
  *
  * @author Quentin RAMSAMY-AGEORGES
- * @version 5.0
+ * @version 5.1
  * @since 2.0 27 novembre 2019
  */
 @ConvenienceClass
@@ -161,8 +171,11 @@ public class Utility implements Serializable {
 	 * @see Method#invoke(Object, Object...) (attention, le premier object doit être la classe)
 	 * @since 4.1
 	 */
+	@NeedPatch
 	public static Method findMethod(Class object, String methodName) {
-		/*methodName = normalize(methodName);
+		/*
+		METHODE MARCHE MAIS LA OU YA DES ??? c'est compliqué (faut savoir les arguments de votre méthode)
+		methodName = normalize(methodName);
 
 		for (Method method : object.getDeclaredMethods()) {
 			String name = normalize(method.getName());
@@ -191,6 +204,7 @@ public class Utility implements Serializable {
 	 * @throws IllegalStateException si une erreur survient
 	 * @since 4.2
 	 */
+	@ConvenienceMethod
 	public static Object instance(Class<?> aClass) {
 		Object object;
 		try {
@@ -212,6 +226,7 @@ public class Utility implements Serializable {
 	 * @throws IllegalStateException si une erreur survient
 	 * @since 4.2
 	 */
+	@ConvenienceMethod
 	public static Object instance(Class<?> aClass, Object value) {
 		Object object;
 		try {
@@ -219,7 +234,7 @@ public class Utility implements Serializable {
 			object = declaredConstructor.newInstance(value);
 		} catch (IllegalAccessException | InstantiationException | NoSuchMethodException
 				| InvocationTargetException e) {
-			throw new IllegalStateException("EntityFactory create instance failed" + e);
+			throw new IllegalStateException("Utility. create instance failed" + e);
 		}
 		return object;
 	}
@@ -232,6 +247,7 @@ public class Utility implements Serializable {
 	 * @throws IllegalStateException si une erreur survient
 	 * @since 4.2
 	 */
+	@ConvenienceMethod
 	public static Object instance(String aClass) {
 		try {
 			return instance(Class.forName(aClass));
@@ -248,6 +264,7 @@ public class Utility implements Serializable {
 	 * @return le chemin pour arriver a la racine depuis le bout.
 	 * @since 5.0
 	 */
+	@ConvenienceMethod
 	public static String getRelativePath(String folder) {
 		StringBuilder path = new StringBuilder();
 
@@ -258,6 +275,51 @@ public class Utility implements Serializable {
 		}
 
 		return path.toString();
+	}
+
+	/**
+	 * Retourne la configuration de l'écran dans lequel est la fenêtre
+	 * @param window fenêtre
+	 * @return configuration de l'écran dans lequel est la fenêtre
+	 * @since 5.1
+	 * @throws IllegalArgumentException si moniteur pas trouvé
+	 */
+	public static GraphicsConfiguration getMonitorOf(EnigmaWindow window) {
+		GraphicsDevice monitor = window.getGraphicsConfiguration().getDevice();
+		GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		GraphicsDevice[] monitors = env.getScreenDevices();
+
+		//regarde si le moniteur fenêtre est l'object 'x' des moniteurs disponibles
+		for (GraphicsDevice aMonitor : monitors) {
+			if(aMonitor.equals(monitor)){
+				return aMonitor.getDefaultConfiguration();
+			}
+		}
+
+		throw new IllegalArgumentException("monitor non trouvé!");
+	}
+
+	public static Object getKeyFromValue(HashMap<?, ?> map, Object value) {
+		for (Map.Entry<?, ?> mapEntry:map.entrySet()){
+			if(mapEntry.getValue().equals(value))
+				return mapEntry.getKey();
+		}
+		throw new IllegalArgumentException("There is not such value in the map.("+value+")");
+	}
+
+	/**
+	 * Affichage de message concernant le débuggage
+	 * @param className nom de la classe
+	 * @param message message
+	 */
+	public static void printDebug(String className, String message) {
+		/*if(Gdx.app != null){
+			PrintColor.println(className+":"+message, DEBUG_COLOR);
+			//Gdx.app.debug(className, message);
+		} else {
+			PrintColor.println(className+":"+message, DEBUG_COLOR);
+		}*/
+		PrintColor.println(className+":"+message, DEBUG_COLOR);
 	}
 }
 

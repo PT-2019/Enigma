@@ -9,6 +9,7 @@ import editor.utils.EnigmaExitListener;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.GraphicsConfiguration;
 import java.awt.event.WindowListener;
 
 /**
@@ -18,7 +19,7 @@ import java.awt.event.WindowListener;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 4.0 27/12/2019
+ * @version 5.0
  * @since 4.0 27/12/2019
  */
 public class EnigmaWindow extends CustomWindow {
@@ -27,8 +28,23 @@ public class EnigmaWindow extends CustomWindow {
 		super();
 	}
 
+	/**
+	 * Crée une fenêtre enigma
+	 * @param width largeur
+	 * @param height hauteur
+	 * @since 4.0
+	 */
 	public EnigmaWindow(int width, int height) {
 		super(width, height);
+	}
+
+	/**
+	 * Crée une fenêtre dans un écran
+	 * @param monitor l'écran
+	 * @since 5.0
+	 */
+	public EnigmaWindow(GraphicsConfiguration monitor) {
+		super(monitor);
 	}
 
 	@Override

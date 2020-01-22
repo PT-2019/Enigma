@@ -348,13 +348,27 @@ public class SaveMap {
 					Vector2 pos = entitySet.getKey();
 
 					Element object = document.createElement("object");
-					object.setAttribute("name", entity.getClass().getName());
+					//TODO: enum/interface
 					object.setAttribute("id", String.valueOf(entity.getID()));
 					object.setAttribute("x", String.valueOf(pos.x));
-					object.setAttribute("y", String.valueOf(pos.y - entity.getGameObjectHeight()));
+					object.setAttribute("y", String.valueOf(pos.y));
+					//object.setAttribute("y", String.valueOf(pos.y));
 					object.setAttribute("width", String.valueOf(entity.getGameObjectWidth()));
 					object.setAttribute("height", String.valueOf(entity.getGameObjectHeight()));
+					object.setAttribute("name", "entity");
 
+					Element properties = document.createElement("properties");
+					Element property = document.createElement("property");
+					property.setAttribute("name", "className");
+					property.setAttribute("value", entity.getClass().getName());
+					properties.appendChild(property);
+
+					Element property2 = document.createElement("property");
+					property2.setAttribute("name", "y2");
+					property2.setAttribute("value", String.valueOf(pos.y));
+					properties.appendChild(property2);
+
+					object.appendChild(properties);
 					objetGroup.appendChild(object);
 				}
 			}
