@@ -107,6 +107,7 @@ public class ConditionListener implements ActionListener, ItemListener {
             currentButton = (JRadioButton) e.getItem();
 
             if (currentButton.getText().equals("Réponse")) {
+                panel.displaySearchItem();
                 panel.displayAnswer();
             } else {
                 if (!panel.isActivateSearchItem()) {
