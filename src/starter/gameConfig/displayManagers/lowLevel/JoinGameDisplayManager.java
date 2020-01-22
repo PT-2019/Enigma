@@ -1,12 +1,14 @@
-package starter.gameConfig;
+package starter.gameConfig.displayManagers.lowLevel;
 
 import editor.hud.*;
-import starter.gameConfig.managers.Redirect;
+import starter.gameConfig.LaunchGameDisplay;
+import starter.gameConfig.managers.redirect.JoinGame;
+import starter.gameConfig.managers.redirect.Redirect;
 
 import javax.swing.*;
 import java.awt.*;
 
-class JoinGameDisplayManager implements DisplayManager {
+public class JoinGameDisplayManager implements DisplayManager {
 
     private final static JoinGameDisplayManager instance = new JoinGameDisplayManager();
     private EnigmaPanel content;
@@ -97,6 +99,7 @@ class JoinGameDisplayManager implements DisplayManager {
         confirm.getComponentUI().setAllBackgrounds(grey,lighterGrey,lighterGrey);
         confirm.getComponentUI().setAllForegrounds(Color.WHITE,Color.WHITE,Color.WHITE);
         confirm.getComponentUI().setAllBorders(null,null,null);
+        confirm.addActionListener(new JoinGame(input));
         confirmComponent.add(confirm);
         joinComponent.add(confirmComponent);
 

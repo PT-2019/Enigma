@@ -1,14 +1,17 @@
-package starter.gameConfig;
+package starter.gameConfig.displayManagers.lowLevel;
 
 import api.hud.manager.choices.CheckBoxManager;
 import editor.hud.*;
 import editor.hud.ui.EnigmaButtonUI;
-import starter.gameConfig.managers.Redirect;
+import starter.gameConfig.LaunchGameDisplay;
+import starter.gameConfig.managers.redirect.DeleteGame;
+import starter.gameConfig.managers.redirect.LaunchGame;
+import starter.gameConfig.managers.redirect.Redirect;
 
 import javax.swing.*;
 import java.awt.*;
 
-class SelectGameDisplayManager implements DisplayManager {
+public class SelectGameDisplayManager implements DisplayManager {
 
     private final static SelectGameDisplayManager instance = new SelectGameDisplayManager();
     private EnigmaPanel content;
@@ -62,12 +65,14 @@ class SelectGameDisplayManager implements DisplayManager {
         gbc.insets = new Insets(inset,inset,inset,inset);
         EnigmaButton b = new EnigmaButton("Jouer");
         b.setComponentUI(bui);
+        b.addActionListener(new LaunchGame());
         buttonsComponent.add(b,gbc);
 
         gbc.gridy = 2;
         gbc.insets = new Insets(0,inset,inset,inset);
         b = new EnigmaButton("Supprimer");
         b.setComponentUI(bui2);
+        b.addActionListener(new DeleteGame());
         buttonsComponent.add(b,gbc);
 
         gbc.gridy = 3;

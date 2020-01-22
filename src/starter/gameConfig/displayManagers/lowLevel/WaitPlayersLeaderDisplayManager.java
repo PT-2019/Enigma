@@ -1,4 +1,4 @@
-package starter.gameConfig;
+package starter.gameConfig.displayManagers.lowLevel;
 
 import editor.entity.Player;
 import editor.hud.*;
@@ -6,35 +6,42 @@ import editor.hud.ui.EnigmaButtonUI;
 import editor.hud.ui.EnigmaLabelUI;
 import game.GameConfiguration;
 import game.UserConfiguration;
-import starter.gameConfig.managers.Redirect;
+import starter.gameConfig.LaunchGameDisplay;
+import starter.gameConfig.managers.redirect.LaunchGame;
+import starter.gameConfig.managers.redirect.Redirect;
 
 import javax.swing.*;
 import java.awt.*;
 
-class WaitPlayersDisplayManager implements DisplayManager {
+public class WaitPlayersLeaderDisplayManager implements DisplayManager {
 
-    private final static WaitPlayersDisplayManager instance = new WaitPlayersDisplayManager();
+    private final static WaitPlayersLeaderDisplayManager instance = new WaitPlayersLeaderDisplayManager();
     private EnigmaPanel content;
     private EnigmaPanel rightBar;
     private EnigmaPanel gameInfo;
     private EnigmaPanel players;
 
-    private WaitPlayersDisplayManager(){
+    private WaitPlayersLeaderDisplayManager(){
+
         this.initContent();
         this.initRightBar();
         this.refreshAll();
     }
 
     private void initRightBar(){
+        Color grey = new Color(100,100,100);
+        Color lighterGrey = new Color(150,150,150);
         Color darkRed = new Color(150,0,0);
         Color lighterDarkRed = new Color(200,0,0);
         boolean[] borders = new boolean[4];
         borders[EnigmaUIValues.LEFT_BORDER] = EnigmaUIValues.SHOWED_BORDER;
 
         EnigmaButtonUI bui = new EnigmaButtonUI();
+        bui.setAllBackgrounds(grey,lighterGrey,lighterGrey);
         bui.setAllForegrounds(Color.WHITE,Color.WHITE,Color.WHITE);
         bui.setAllBorders(null,null,null);
-        bui.setAllBackgrounds(darkRed,lighterDarkRed,lighterDarkRed);
+        EnigmaButtonUI bui2 = (EnigmaButtonUI) bui.duplicate();
+        bui2.setAllBackgrounds(darkRed,lighterDarkRed,lighterDarkRed);
         EnigmaButtonUI voidBUI = new EnigmaButtonUI();
         voidBUI.setAllBorders(null,null,null);
         voidBUI.setAllBackgrounds(Color.DARK_GRAY,Color.DARK_GRAY,Color.DARK_GRAY);
@@ -62,20 +69,21 @@ class WaitPlayersDisplayManager implements DisplayManager {
         gbc.weightx = 1;
         gbc.weighty = 1;
         gbc.insets = new Insets(inset,inset,inset,inset);
-        EnigmaButton b = new EnigmaButton("Quitter");
+        EnigmaButton b = new EnigmaButton("Lancer la partie");
         b.setComponentUI(bui);
-        b.addActionListener(new Redirect(LaunchGameDisplay.SELECT_GAME));
+        b.addActionListener(new LaunchGame());
         buttonsComponent.add(b,gbc);
 
         gbc.gridy = 2;
         gbc.insets = new Insets(0,inset,inset,inset);
-        EnigmaButton voidButton = new EnigmaButton("nothing");
-        voidButton.setComponentUI(voidBUI);
-        buttonsComponent.add(voidButton,gbc);
+        b = new EnigmaButton("Annuler la partie");
+        b.setComponentUI(bui2);
+        b.addActionListener(new Redirect(LaunchGameDisplay.SELECT_GAME));
+        buttonsComponent.add(b,gbc);
 
         gbc.gridy = 3;
         gbc.insets = new Insets(inset * 2,inset,inset,inset);
-        voidButton = new EnigmaButton("nothing");
+        EnigmaButton voidButton = new EnigmaButton("nothing");
         voidButton.setComponentUI(voidBUI);
         buttonsComponent.add(voidButton,gbc);
 
@@ -192,7 +200,7 @@ class WaitPlayersDisplayManager implements DisplayManager {
         this.rightBar.revalidate();
     }
 
-    public static WaitPlayersDisplayManager getInstance(){
+    public static WaitPlayersLeaderDisplayManager getInstance(){
         return instance;
     }
 

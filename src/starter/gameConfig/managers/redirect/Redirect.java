@@ -1,4 +1,4 @@
-package starter.gameConfig.managers;
+package starter.gameConfig.managers.redirect;
 
 import starter.gameConfig.LaunchGameDisplay;
 

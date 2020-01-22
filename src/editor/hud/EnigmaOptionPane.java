@@ -35,7 +35,7 @@ public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyl
 	 * @param text contenu du bouton
 	 * @return le bouton auquel le style a été appliqué
 	 */
-	private static CustomButton getClassicButton(String text) {
+	public static CustomButton getClassicButton(String text) {
 		boolean[] borders = new boolean[4];
 		borders[DefaultUIValues.BOTTOM_BORDER] = true;
 		Color grey = new Color(100, 100, 100);
@@ -54,7 +54,7 @@ public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyl
 	 *
 	 * @return le champ de saisie auquel le style a été appliqué
 	 */
-	private static EnigmaTextArea getClassicTextArea() {
+	public static EnigmaTextArea getClassicTextArea() {
 		EnigmaTextArea ta = new EnigmaTextArea();
 		boolean[] borders = DefaultUIValues.ALL_BORDER_HIDDEN;
 		borders[DefaultUIValues.BOTTOM_BORDER] = true;

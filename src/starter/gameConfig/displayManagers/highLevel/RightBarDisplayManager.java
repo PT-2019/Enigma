@@ -1,6 +1,8 @@
-package starter.gameConfig;
+package starter.gameConfig.displayManagers.highLevel;
 
 import editor.hud.*;
+import starter.gameConfig.LaunchGameDisplay;
+import starter.gameConfig.displayManagers.lowLevel.*;
 
 import java.awt.*;
 import java.util.HashMap;
@@ -19,11 +21,11 @@ public class RightBarDisplayManager {
         this.panel.setLayout(this.layout);
 
         this.displays = new HashMap<>();
-        this.displays.put(LaunchGameDisplay.SELECT_GAME,SelectGameDisplayManager.getInstance());
-        this.displays.put(LaunchGameDisplay.JOIN_GAME,JoinGameDisplayManager.getInstance());
-        this.displays.put(LaunchGameDisplay.WAIT_PLAYERS,WaitPlayersDisplayManager.getInstance());
-        this.displays.put(LaunchGameDisplay.WAIT_PLAYERS_LEADER,WaitPlayersLeaderDisplayManager.getInstance());
-        this.displays.put(LaunchGameDisplay.CREATE_GAME,CreateGameDisplayManager.getInstance());
+        this.displays.put(LaunchGameDisplay.SELECT_GAME, SelectGameDisplayManager.getInstance());
+        this.displays.put(LaunchGameDisplay.JOIN_GAME, JoinGameDisplayManager.getInstance());
+        this.displays.put(LaunchGameDisplay.WAIT_PLAYERS, WaitPlayersDisplayManager.getInstance());
+        this.displays.put(LaunchGameDisplay.WAIT_PLAYERS_LEADER, WaitPlayersLeaderDisplayManager.getInstance());
+        this.displays.put(LaunchGameDisplay.CREATE_GAME, CreateGameDisplayManager.getInstance());
 
         this.panel.add(SelectGameDisplayManager.getInstance().getRightBar(),LaunchGameDisplay.SELECT_GAME);
         this.panel.add(JoinGameDisplayManager.getInstance().getRightBar(),LaunchGameDisplay.JOIN_GAME);

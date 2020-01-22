@@ -1,6 +1,8 @@
 package starter.gameConfig;
 
 import editor.hud.EnigmaPanel;
+import starter.gameConfig.displayManagers.highLevel.ContentDisplayManager;
+import starter.gameConfig.displayManagers.highLevel.RightBarDisplayManager;
 
 import java.awt.*;
 public class LaunchGameDisplay {

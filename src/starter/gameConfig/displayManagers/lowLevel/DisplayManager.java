@@ -1,4 +1,4 @@
-package starter.gameConfig;
+package starter.gameConfig.displayManagers.lowLevel;
 
 import editor.hud.EnigmaPanel;
 

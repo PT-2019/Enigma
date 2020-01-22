@@ -47,6 +47,10 @@ public class GameConfiguration {
         return this.isMultiPlayer;
     }
 
+    public boolean isFull(){
+        return (this.getTotalPlayers() == this.getMaxGamePlayers());
+    }
+
     public void setMaxGamePlayers(int number){
         if(number > 0 && number <= MAX_PLAYERS)
             this.maxGamePlayers = number;
