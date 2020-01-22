@@ -9,7 +9,9 @@ import editor.hud.EnigmaWindow;
 import editor.screens.EditorScreen;
 import game.EnigmaGame;
 
-import java.awt.BorderLayout;
+import javax.swing.*;
+import java.awt.*;
+import java.util.Arrays;
 
 /**
  * Lanceur de l'éditeur d'escape game
@@ -39,6 +41,21 @@ public class EditorLauncher implements Application {
 		this.window.addWindowListener(new AppClosingManager());
 		this.window.setSize(WindowSize.FULL_SCREEN_SIZE);
 		this.editorScreen = null;
+
+		//
+
+		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		GraphicsDevice[] gs = ge.getScreenDevices();
+
+		for (GraphicsDevice gd : gs) {
+			System.out.println(gd);
+
+			JFrame jFrame = new JFrame(gd.getDefaultConfiguration());
+			jFrame.getGraphicsConfiguration();
+
+
+		}
+
 		//charge entités
 		EntityFactory.loadEntities("assets/rooms.json");
 		EntityFactory.loadEntities("assets/items.json");
