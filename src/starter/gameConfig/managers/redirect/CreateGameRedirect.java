@@ -16,9 +16,9 @@ import java.awt.event.ActionListener;
  * @since 3.0
  */
 public class CreateGameRedirect implements ActionListener {
-    @Override
-    public void actionPerformed(ActionEvent actionEvent) {
-        //TODO: créer une partie selon les valeurs de GameConfiguration
-        LaunchGameDisplay.getInstance().showDisplay(LaunchGameDisplay.SELECT_GAME);
-    }
+	@Override
+	public void actionPerformed(ActionEvent actionEvent) {
+		//TODO: créer une partie selon les valeurs de GameConfiguration
+		LaunchGameDisplay.getInstance().showDisplay(LaunchGameDisplay.SELECT_GAME);
+	}
 }

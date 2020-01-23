@@ -17,13 +17,13 @@ public class MapGame extends AbstractMap {
 		//ICI CODE DE CHARGEMENT D'UNE MAP
 	}
 
-	public static Vector2 posToIndex(float posX, float posY, MapGame map){
+	public static Vector2 posToIndex(float posX, float posY, MapGame map) {
 		//ICI CODER
 		//AbstractMap#swingPosToIndex(float posX, float posY, final AbstractMap map) si besoin
 		throw new UnsupportedOperationException("non codé");
 	}
 
-	public boolean isWalkable(float posX, float posY, GameActor actor){
+	public boolean isWalkable(float posX, float posY, GameActor actor) {
 		//ICI CODER, gameActor est pas obligé, la classe peut être changé (GameActorAnimation..., PlayerGame)...
 		throw new UnsupportedOperationException("non codé");
 	}

@@ -23,6 +23,7 @@ public final class Config {
 
 	/**
 	 * Le chemin relatif des fichiers sauvegardés avec les ressources
+	 *
 	 * @since 5.0
 	 */
 	public static final String MAP_FOLDER_SAV = "../../map/";
@@ -36,12 +37,14 @@ public final class Config {
 
 	/**
 	 * Langue par défaut
+	 *
 	 * @since 5.1
 	 */
 	public static final Language DEFAULT = Language.FRENCH;
 
 	/**
 	 * Couleur des élements affichés dans la console DEBUG
+	 *
 	 * @since 5.1
 	 */
 	public static final AnsiiColor DEBUG_COLOR = AnsiiColor.YELLOW;

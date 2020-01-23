@@ -21,19 +21,19 @@ public class PopButtonListener implements ActionListener {
 
 	private MapTestScreenCell cell;
 
-    private EntityChoseListener observer;
+	private EntityChoseListener observer;
 
-    public PopButtonListener(CasePopUp frame, MapTestScreenCell cell, EntityChoseListener observer){
-        this.frame = frame;
-        this.cell = cell;
-        this.observer = observer;
-    }
+	public PopButtonListener(CasePopUp frame, MapTestScreenCell cell, EntityChoseListener observer) {
+		this.frame = frame;
+		this.cell = cell;
+		this.observer = observer;
+	}
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        frame.setVisible(false);
-        EnigmaView enigmaView = new EnigmaView(frame,cell,observer);
-        enigmaView.setVisible(true);
-        enigmaView.addWindowListener(new EnigmaWindowListener(frame));
-    }
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		frame.setVisible(false);
+		EnigmaView enigmaView = new EnigmaView(frame, cell, observer);
+		enigmaView.setVisible(true);
+		enigmaView.addWindowListener(new EnigmaWindowListener(frame));
+	}
 }

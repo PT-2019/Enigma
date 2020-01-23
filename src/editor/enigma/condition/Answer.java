@@ -4,7 +4,6 @@ import api.entity.Entity;
 import api.entity.types.Content;
 import editor.entity.Player;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -21,7 +20,7 @@ import java.util.Map;
 public class Answer extends Condition {
 
 	public Answer(Content ent) {
-		super((Entity)ent);
+		super((Entity) ent);
 	}
 
 	/**

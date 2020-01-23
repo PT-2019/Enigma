@@ -1,13 +1,11 @@
 package game.entity.map;
 
 import api.utils.Bounds;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Group;
-import editor.entity.EntitySerializable;
 
 /**
  * Représentation d'une map
@@ -16,7 +14,6 @@ import editor.entity.EntitySerializable;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 4.0
  * @since 3.0
  */
@@ -24,7 +21,8 @@ public abstract class AbstractMap extends Group {
 
 	/**
 	 * Le seul constructeur possible d'une map, ne fait rien
-	 * @param path chemin d'une map
+	 *
+	 * @param path      chemin d'une map
 	 * @param unitScale taux de distortion
 	 */
 	AbstractMap(String path, float unitScale) {
@@ -41,8 +39,8 @@ public abstract class AbstractMap extends Group {
 	 * @param map  la map
 	 * @return la case (indices) dans la map depuis une positon x,y dans l'espace.
 	 * @since 3.0 14 décembre 2019
-	 *
-	 *
+	 * <p>
+	 * <p>
 	 * VERSION SWING TO LIBGDX
 	 */
 	@SuppressWarnings("WeakerAccess")
@@ -67,42 +65,49 @@ public abstract class AbstractMap extends Group {
 
 	/**
 	 * Affiche la grille de la map
+	 *
 	 * @param show affiche la grille de la map
 	 */
 	public abstract void showGrid(boolean show);
 
 	/**
 	 * Renvoi la hauteur de la map
+	 *
 	 * @return la hauteur de la map
 	 */
 	public abstract float getMapHeight();
 
 	/**
 	 * Renvoi la largeur de la map
+	 *
 	 * @return la largeur de la map
 	 */
 	public abstract float getMapWidth();
 
 	/**
 	 * Retourne le taux de distorsion de la taille d'un tile
+	 *
 	 * @return le taux de distorsion de la taille d'un tile
 	 */
 	public abstract float getUnitScale();
 
 	/**
 	 * Retourne la largeur d'un tile
+	 *
 	 * @return la largeur d'un tile
 	 */
 	public abstract int getTileWidth();
 
 	/**
 	 * Retourne la hauteur d'un tile
+	 *
 	 * @return la hauteur d'un tile
 	 */
 	public abstract int getTileHeight();
 
 	/**
 	 * Retourne la map tiled
+	 *
 	 * @return la map tiled
 	 */
 	public abstract TiledMap getTiledMap();

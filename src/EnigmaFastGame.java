@@ -60,6 +60,14 @@ public class EnigmaFastGame implements Application {
 		return launcher;
 	}
 
+	public static void main(String[] args) {
+		//appelle après initialisation de la libgdx, l'éditeur
+		SwingUtilities.invokeLater(() -> {
+			LoadGameLibgdxApplication.setGame(EnigmaGame.getInstance());
+			EnigmaFastGame.getInstance().start();
+		});
+	}
+
 	/**
 	 * Lance le jeu dans une nouvelle fenêtre
 	 *
@@ -90,13 +98,5 @@ public class EnigmaFastGame implements Application {
 	 */
 	public CustomWindow getWindow() {
 		return window;
-	}
-
-	public static void main(String[] args) {
-		//appelle après initialisation de la libgdx, l'éditeur
-		SwingUtilities.invokeLater(() -> {
-			LoadGameLibgdxApplication.setGame(EnigmaGame.getInstance());
-			EnigmaFastGame.getInstance().start();
-		});
 	}
 }

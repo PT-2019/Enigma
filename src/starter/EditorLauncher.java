@@ -10,9 +10,7 @@ import editor.hud.EnigmaWindow;
 import editor.screens.EditorScreen;
 import game.EnigmaGame;
 
-import javax.swing.*;
-import java.awt.*;
-import java.util.Arrays;
+import java.awt.BorderLayout;
 
 /**
  * Lanceur de l'éditeur d'escape game
@@ -38,7 +36,7 @@ public class EditorLauncher implements Application {
 	 * Construit l'éditeur d'escape game
 	 */
 	private EditorLauncher(EnigmaWindow launcher) {
-		if(launcher != null) {
+		if (launcher != null) {
 			this.window = new EnigmaWindow(Utility.getMonitorOf(launcher));
 		} else {
 			this.window = new EnigmaWindow();
@@ -101,7 +99,7 @@ public class EditorLauncher implements Application {
 		return editor;
 	}
 
-	public static EditorLauncher setEditor(EnigmaWindow window){
+	public static EditorLauncher setEditor(EnigmaWindow window) {
 		if (editor == null) {
 			editor = new EditorLauncher(window);
 		}

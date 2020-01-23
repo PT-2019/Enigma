@@ -1,17 +1,14 @@
 package api.utils;
 
-import api.entity.GameObject;
 import api.utils.annotations.ConvenienceClass;
 import api.utils.annotations.ConvenienceMethod;
 import api.utils.annotations.NeedPatch;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Array;
 import editor.hud.EnigmaWindow;
 
-import javax.swing.JFrame;
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
@@ -279,10 +276,11 @@ public class Utility implements Serializable {
 
 	/**
 	 * Retourne la configuration de l'écran dans lequel est la fenêtre
+	 *
 	 * @param window fenêtre
 	 * @return configuration de l'écran dans lequel est la fenêtre
-	 * @since 5.1
 	 * @throws IllegalArgumentException si moniteur pas trouvé
+	 * @since 5.1
 	 */
 	public static GraphicsConfiguration getMonitorOf(EnigmaWindow window) {
 		GraphicsDevice monitor = window.getGraphicsConfiguration().getDevice();
@@ -291,7 +289,7 @@ public class Utility implements Serializable {
 
 		//regarde si le moniteur fenêtre est l'object 'x' des moniteurs disponibles
 		for (GraphicsDevice aMonitor : monitors) {
-			if(aMonitor.equals(monitor)){
+			if (aMonitor.equals(monitor)) {
 				return aMonitor.getDefaultConfiguration();
 			}
 		}
@@ -300,17 +298,18 @@ public class Utility implements Serializable {
 	}
 
 	public static Object getKeyFromValue(HashMap<?, ?> map, Object value) {
-		for (Map.Entry<?, ?> mapEntry:map.entrySet()){
-			if(mapEntry.getValue().equals(value))
+		for (Map.Entry<?, ?> mapEntry : map.entrySet()) {
+			if (mapEntry.getValue().equals(value))
 				return mapEntry.getKey();
 		}
-		throw new IllegalArgumentException("There is not such value in the map.("+value+")");
+		throw new IllegalArgumentException("There is not such value in the map.(" + value + ")");
 	}
 
 	/**
 	 * Affichage de message concernant le débuggage
+	 *
 	 * @param className nom de la classe
-	 * @param message message
+	 * @param message   message
 	 */
 	public static void printDebug(String className, String message) {
 		/*if(Gdx.app != null){
@@ -319,7 +318,7 @@ public class Utility implements Serializable {
 		} else {
 			PrintColor.println(className+":"+message, DEBUG_COLOR);
 		}*/
-		PrintColor.println(className+":"+message, DEBUG_COLOR);
+		PrintColor.println(className + ":" + message, DEBUG_COLOR);
 	}
 }
 

@@ -7,7 +7,6 @@ package editor.utils.lang;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 4.0 22/01/2020
  * @since 4.0 22/01/2020
  */

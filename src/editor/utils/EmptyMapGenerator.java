@@ -4,7 +4,6 @@ import api.entity.GameObject;
 import api.entity.types.EnigmaContainer;
 import api.utils.Utility;
 import api.utils.annotations.ConvenienceMethod;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
 import editor.enigma.Enigma;
@@ -115,7 +114,7 @@ public class EmptyMapGenerator {
 		ArrayList<Enigma> enigmas;
 		ArrayList<Enigma> copy = new ArrayList<>();
 		path = path.substring(0, path.length() - 4) + ".json"; //retire l'extension tmx
-		Utility.printDebug("EmptyMapGenerator#load",path);
+		Utility.printDebug("EmptyMapGenerator#load", path);
 		int id;
 		try {
 			enigmas = EnigmaJsonReader.readEnigmas(path);

@@ -15,7 +15,6 @@ import java.util.HashMap;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 4.0 22/01/2020
  * @since 4.0 22/01/2020
  */
@@ -24,12 +23,13 @@ public class GameLanguage {
 	/**
 	 * Variable globale a utiliser pour demander la valeur
 	 * d'un FIELD
+	 *
 	 * @see Field
 	 * @see editor.utils.lang.fields.GameFields
 	 * @see editor.utils.lang.fields.HUDFields
-	 *
+	 * <p>
 	 * Doit être initialisé ({@link #init()}.
-	 *
+	 * <p>
 	 * Globale et public pour éviter de devoir écrire trop de syntaxe
 	 * car très très souvent utilisée.
 	 */
@@ -69,6 +69,7 @@ public class GameLanguage {
 
 	/**
 	 * Retourne le langage actuel
+	 *
 	 * @return le langage actuel
 	 */
 	public Language getLanguage() {
@@ -77,6 +78,7 @@ public class GameLanguage {
 
 	/**
 	 * Change le language
+	 *
 	 * @param language un language
 	 */
 	public void setLanguage(Language language) {
@@ -95,6 +97,7 @@ public class GameLanguage {
 
 	/**
 	 * Retourne la valeur d'un champ dans la langue actuelle
+	 *
 	 * @param field un champ
 	 * @return la valeur d'un champ dans la langue actuelle
 	 */

@@ -14,8 +14,8 @@ import java.awt.event.ActionListener;
  * @since 3.0
  */
 public class DeleteGameRedirect implements ActionListener {
-    @Override
-    public void actionPerformed(ActionEvent actionEvent) {
-        //TODO: supprimer la partie sélectionnée (aux dernières nouvelles, c'est celle contenue dans GameConfiguration)
-    }
+	@Override
+	public void actionPerformed(ActionEvent actionEvent) {
+		//TODO: supprimer la partie sélectionnée (aux dernières nouvelles, c'est celle contenue dans GameConfiguration)
+	}
 }

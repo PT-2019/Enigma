@@ -1,10 +1,15 @@
 package starter.gameConfig.displayManagers.highLevel;
 
-import editor.hud.*;
+import editor.hud.EnigmaPanel;
 import starter.gameConfig.LaunchGameDisplay;
-import starter.gameConfig.displayManagers.lowLevel.*;
+import starter.gameConfig.displayManagers.lowLevel.CreateGameDisplayManager;
+import starter.gameConfig.displayManagers.lowLevel.DisplayManager;
+import starter.gameConfig.displayManagers.lowLevel.JoinGameDisplayManager;
+import starter.gameConfig.displayManagers.lowLevel.SelectGameDisplayManager;
+import starter.gameConfig.displayManagers.lowLevel.WaitPlayersDisplayManager;
+import starter.gameConfig.displayManagers.lowLevel.WaitPlayersLeaderDisplayManager;
 
-import java.awt.*;
+import java.awt.CardLayout;
 import java.util.HashMap;
 
 /**
@@ -19,90 +24,94 @@ import java.util.HashMap;
  */
 public class RightBarDisplayManager {
 
-    /**
-     * Instance
-     */
-    private final static RightBarDisplayManager instance = new RightBarDisplayManager();
+	/**
+	 * Instance
+	 */
+	private final static RightBarDisplayManager instance = new RightBarDisplayManager();
 
-    /**
-     * Contenu
-     */
-    private EnigmaPanel panel;
+	/**
+	 * Contenu
+	 */
+	private EnigmaPanel panel;
 
-    /**
-     * Disposition
-     */
-    private CardLayout layout;
+	/**
+	 * Disposition
+	 */
+	private CardLayout layout;
 
-    /**
-     * Liste des affichages
-     */
-    private HashMap<String,DisplayManager> displays;
+	/**
+	 * Liste des affichages
+	 */
+	private HashMap<String, DisplayManager> displays;
 
-    /**
-     * Affichage actuel
-     */
-    private String currentDisplay;
+	/**
+	 * Affichage actuel
+	 */
+	private String currentDisplay;
 
-    private RightBarDisplayManager(){
-        this.layout = new CardLayout();
-        this.panel = new EnigmaPanel();
-        this.panel.setLayout(this.layout);
+	private RightBarDisplayManager() {
+		this.layout = new CardLayout();
+		this.panel = new EnigmaPanel();
+		this.panel.setLayout(this.layout);
 
-        this.displays = new HashMap<>();
-        this.displays.put(LaunchGameDisplay.SELECT_GAME, SelectGameDisplayManager.getInstance());
-        this.displays.put(LaunchGameDisplay.JOIN_GAME, JoinGameDisplayManager.getInstance());
-        this.displays.put(LaunchGameDisplay.WAIT_PLAYERS, WaitPlayersDisplayManager.getInstance());
-        this.displays.put(LaunchGameDisplay.WAIT_PLAYERS_LEADER, WaitPlayersLeaderDisplayManager.getInstance());
-        this.displays.put(LaunchGameDisplay.CREATE_GAME, CreateGameDisplayManager.getInstance());
+		this.displays = new HashMap<>();
+		this.displays.put(LaunchGameDisplay.SELECT_GAME, SelectGameDisplayManager.getInstance());
+		this.displays.put(LaunchGameDisplay.JOIN_GAME, JoinGameDisplayManager.getInstance());
+		this.displays.put(LaunchGameDisplay.WAIT_PLAYERS, WaitPlayersDisplayManager.getInstance());
+		this.displays.put(LaunchGameDisplay.WAIT_PLAYERS_LEADER, WaitPlayersLeaderDisplayManager.getInstance());
+		this.displays.put(LaunchGameDisplay.CREATE_GAME, CreateGameDisplayManager.getInstance());
 
-        this.panel.add(SelectGameDisplayManager.getInstance().getRightBar(),LaunchGameDisplay.SELECT_GAME);
-        this.panel.add(JoinGameDisplayManager.getInstance().getRightBar(),LaunchGameDisplay.JOIN_GAME);
-        this.panel.add(WaitPlayersDisplayManager.getInstance().getRightBar(),LaunchGameDisplay.WAIT_PLAYERS);
-        this.panel.add(WaitPlayersLeaderDisplayManager.getInstance().getRightBar(),LaunchGameDisplay.WAIT_PLAYERS_LEADER);
-        this.panel.add(CreateGameDisplayManager.getInstance().getRightBar(),LaunchGameDisplay.CREATE_GAME);
+		this.panel.add(SelectGameDisplayManager.getInstance().getRightBar(), LaunchGameDisplay.SELECT_GAME);
+		this.panel.add(JoinGameDisplayManager.getInstance().getRightBar(), LaunchGameDisplay.JOIN_GAME);
+		this.panel.add(WaitPlayersDisplayManager.getInstance().getRightBar(), LaunchGameDisplay.WAIT_PLAYERS);
+		this.panel.add(WaitPlayersLeaderDisplayManager.getInstance().getRightBar(), LaunchGameDisplay.WAIT_PLAYERS_LEADER);
+		this.panel.add(CreateGameDisplayManager.getInstance().getRightBar(), LaunchGameDisplay.CREATE_GAME);
 
-        this.currentDisplay = LaunchGameDisplay.SELECT_GAME;
-    }
+		this.currentDisplay = LaunchGameDisplay.SELECT_GAME;
+	}
 
-    /**
-     * Change l'affichage
-     * @param displayName Affichage
-     */
-    public void showDisplay(String displayName){
-        this.layout.show(this.panel,displayName);
-        this.displays.get(displayName).refreshAll();
-        this.currentDisplay = displayName;
-    }
+	/**
+	 * Obtenir l'instance
+	 *
+	 * @return L'instance
+	 */
+	public static RightBarDisplayManager getInstance() {
+		return instance;
+	}
 
-    /**
-     * Obtenir l'instance
-     * @return L'instance
-     */
-    public static RightBarDisplayManager getInstance(){
-        return instance;
-    }
+	/**
+	 * Change l'affichage
+	 *
+	 * @param displayName Affichage
+	 */
+	public void showDisplay(String displayName) {
+		this.layout.show(this.panel, displayName);
+		this.displays.get(displayName).refreshAll();
+		this.currentDisplay = displayName;
+	}
 
-    /**
-     * Obtenir le contenu
-     * @return Le contenu
-     */
-    public EnigmaPanel getPanel(){
-        return this.panel;
-    }
+	/**
+	 * Obtenir le contenu
+	 *
+	 * @return Le contenu
+	 */
+	public EnigmaPanel getPanel() {
+		return this.panel;
+	}
 
-    /**
-     * Obtenir l'affichage actuel
-     * @return Affichage actuel
-     */
-    public String getCurrentDisplay(){
-        return this.currentDisplay;
-    }
+	/**
+	 * Obtenir l'affichage actuel
+	 *
+	 * @return Affichage actuel
+	 */
+	public String getCurrentDisplay() {
+		return this.currentDisplay;
+	}
 
-    /**
-     * Rafraichi l'affichage actuel
-     */
-    public void refreshCurrentDisplay() {
-        this.displays.get(this.currentDisplay).refreshAll();
-    }
+	/**
+	 * Rafraichi l'affichage actuel
+	 */
+	public void refreshCurrentDisplay() {
+		this.displays.get(this.currentDisplay).refreshAll();
+	}
 }

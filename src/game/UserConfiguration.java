@@ -14,33 +14,34 @@ import editor.entity.Player;
  */
 public class UserConfiguration {
 
-    /**
-     * Utilisateur
-     */
-    private Player user;
+	/**
+	 * Instance
+	 */
+	private final static UserConfiguration instance = new UserConfiguration();
+	/**
+	 * Utilisateur
+	 */
+	private Player user;
 
-    /**
-     * Instance
-     */
-    private final static UserConfiguration instance = new UserConfiguration();
+	private UserConfiguration() {
+		this.user = new Player("nom pour l'instant");
+	}
 
-    private UserConfiguration(){
-        this.user = new Player("nom pour l'instant");
-    }
+	/**
+	 * Obtenir l'instance
+	 *
+	 * @return L'instance
+	 */
+	public static UserConfiguration getInstance() {
+		return instance;
+	}
 
-    /**
-     * Obtenir l'instance
-     * @return L'instance
-     */
-    public static UserConfiguration getInstance() {
-        return instance;
-    }
-
-    /**
-     * Obtenir l'utilisateur
-     * @return Un objet Player de l'utilisateur
-     */
-    public Player getUser() {
-        return this.user;
-    }
+	/**
+	 * Obtenir l'utilisateur
+	 *
+	 * @return Un objet Player de l'utilisateur
+	 */
+	public Player getUser() {
+		return this.user;
+	}
 }

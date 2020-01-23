@@ -18,15 +18,15 @@ import java.awt.event.ActionListener;
  */
 public class StartGameRedirect implements ActionListener {
 
-    @Override
-    public void actionPerformed(ActionEvent actionEvent) {
-        if(!GameConfiguration.getInstance().isMultiPlayer()){
-            //TODO: lancer la bonne partie en fonction de GameConfiguration (solo)
-        }else if(!GameConfiguration.getInstance().isFull()) {
-            //TODO: lancer un serveur
-            LaunchGameDisplay.getInstance().showDisplay(LaunchGameDisplay.WAIT_PLAYERS_LEADER);
-        }else{
-            //TODO: lancer la bonne partie en fonction de GameConfiguration (multi)
-        }
-    }
+	@Override
+	public void actionPerformed(ActionEvent actionEvent) {
+		if (!GameConfiguration.getInstance().isMultiPlayer()) {
+			//TODO: lancer la bonne partie en fonction de GameConfiguration (solo)
+		} else if (!GameConfiguration.getInstance().isFull()) {
+			//TODO: lancer un serveur
+			LaunchGameDisplay.getInstance().showDisplay(LaunchGameDisplay.WAIT_PLAYERS_LEADER);
+		} else {
+			//TODO: lancer la bonne partie en fonction de GameConfiguration (multi)
+		}
+	}
 }

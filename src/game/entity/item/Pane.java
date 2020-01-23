@@ -17,7 +17,7 @@ import java.util.EnumMap;
  * @author Quentin RAMSAMY-AGEORGES
  * @version 4.0
  * @see api.entity.Item
- * @see api.entity.interfaces.Content
+ * @see api.entity.types.Content
  * @see AbstractItem
  * @since 2.0
  */

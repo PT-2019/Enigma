@@ -77,7 +77,7 @@ public class Player extends GameActorTextured implements Entity, Living {
 	}
 
 	/**
-	 * @param id ID
+	 * @param id   ID
 	 * @param name Nom du joueur
 	 */
 	public Player(int id, String name) {

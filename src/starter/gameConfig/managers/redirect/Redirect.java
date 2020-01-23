@@ -16,14 +16,14 @@ import java.awt.event.ActionListener;
  * @since 3.0
  */
 public class Redirect implements ActionListener {
-    private String redirect;
+	private String redirect;
 
-    public Redirect(String redirect){
-        this.redirect = redirect;
-    }
+	public Redirect(String redirect) {
+		this.redirect = redirect;
+	}
 
-    @Override
-    public void actionPerformed(ActionEvent actionEvent) {
-        LaunchGameDisplay.getInstance().showDisplay(this.redirect);
-    }
+	@Override
+	public void actionPerformed(ActionEvent actionEvent) {
+		LaunchGameDisplay.getInstance().showDisplay(this.redirect);
+	}
 }

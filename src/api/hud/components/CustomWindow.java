@@ -92,6 +92,7 @@ public class CustomWindow extends JFrame implements AbstractWindow {
 
 	/**
 	 * Crée une fenêtre dans un écran
+	 *
 	 * @param monitor l'écran
 	 * @since 5.0
 	 */

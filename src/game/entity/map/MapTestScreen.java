@@ -158,18 +158,18 @@ public class MapTestScreen extends AbstractMap {
 		int width, height;
 		String className;
 		EntitySerializable e;
-		for (MapProperties prop :entities) {
+		for (MapProperties prop : entities) {
 			width = Math.round(prop.get("width", Float.class));
-			height =  Math.round(prop.get("height", Float.class));
-			className =  prop.get("className", String.class);
-			x =  prop.get("x", Float.class);
+			height = Math.round(prop.get("height", Float.class));
+			className = prop.get("className", String.class);
+			x = prop.get("x", Float.class);
 			//obligé de faire ce truc sale y2 car y renvoi truc bizarres y=789 renvoi y=0...
-			y =  Float.parseFloat(prop.get("y2", String.class));
-			Vector2 start = new Vector2(x,y);
+			y = Float.parseFloat(prop.get("y2", String.class));
+			Vector2 start = new Vector2(x, y);
 			e = new EntitySerializable(width, height, className);
-			GameObject object = EntityFactory.createEntity(e,this.added.size(), start);
+			GameObject object = EntityFactory.createEntity(e, this.added.size(), start);
 
-			Utility.printDebug("MapTestScreen#initEntities",object+" "+start);
+			Utility.printDebug("MapTestScreen#initEntities", object + " " + start);
 
 			//ajout à la liste des entités de la map
 			this.added.put(start, object);
@@ -200,7 +200,7 @@ public class MapTestScreen extends AbstractMap {
 			for (int i = (int) start.y - 1, index = 0; i >= (start.y - entity.getGameObjectHeight()); i--) {
 				for (int j = (int) start.x; j < start.x + entity.getGameObjectWidth(); j++, index++) {
 					MapTestScreenCell c = (MapTestScreenCell) tileLayer.getCell(j, i);
-					if(c == null) continue;
+					if (c == null) continue;
 					c.setEntity(entity);
 					tileLayer.setCell(j, i, c);
 				}
@@ -210,10 +210,11 @@ public class MapTestScreen extends AbstractMap {
 
 	/**
 	 * Retourne une liste des propriétés contenant name
+	 *
 	 * @param name un name (tag name d'une property d'un .tmx)
 	 * @return une liste des propriétés contenant name
 	 */
-	private ArrayList<MapProperties> getProperty(String name){
+	private ArrayList<MapProperties> getProperty(String name) {
 		ArrayList<MapProperties> props = new ArrayList<>();
 		for (MapLayer layer : this.map.getMap().getLayers()) {
 			for (MapObject mapObject : layer.getObjects()) {
@@ -268,7 +269,7 @@ public class MapTestScreen extends AbstractMap {
 
 		//instancie l'entité
 		GameObject object = EntityFactory.createEntity(entity, this.added.size(), start);
-		Utility.printDebug("loadEntity", object.toString()+" "+object.getID());
+		Utility.printDebug("loadEntity", object.toString() + " " + object.getID());
 
 		//ajout à la liste des entités de la map
 		this.added.put(start, object);
@@ -334,7 +335,7 @@ public class MapTestScreen extends AbstractMap {
 			Array<Float> entities = entity.getTiles(Utility.stringToEnum(tileLayer.getName(), Layer.values()));
 
 			//si pas de tiles a mettre sur ce layer, on passe au suivant
-			if (entities == null){
+			if (entities == null) {
 				//TODO: fix car entités sav n'ont pas de tiles, comment les supprimer ?
 				for (int i = (int) start.y - 1, index = 0; i >= (start.y - entity.getGameObjectHeight()); i--) {
 					for (int j = (int) start.x; j < start.x + entity.getGameObjectWidth(); j++, index++) {
@@ -429,12 +430,13 @@ public class MapTestScreen extends AbstractMap {
 
 	/**
 	 * Supprime une entité de la map
+	 *
 	 * @param entity l'entité
 	 * @return true si entité supprimée sinon false
 	 * @since 5.0
 	 */
-	public boolean removeEntity(GameObject entity){
-		if(added.containsValue(entity)){//peut la supprimer
+	public boolean removeEntity(GameObject entity) {
+		if (added.containsValue(entity)) {//peut la supprimer
 			Vector2 pos = (Vector2) Utility.getKeyFromValue(added, entity);
 			added.remove(pos);
 			delete(entity, pos);
@@ -509,6 +511,7 @@ public class MapTestScreen extends AbstractMap {
 
 	/**
 	 * Affiche la grille de la map
+	 *
 	 * @param show affiche la grille de la map
 	 */
 	@Override

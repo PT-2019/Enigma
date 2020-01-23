@@ -18,7 +18,6 @@ import static editor.utils.lang.GameLanguage.gl;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 4.0
  * @since 3.0
  */
@@ -60,8 +59,9 @@ public enum Outil {
 
 	/**
 	 * Créé outil
-	 * @param name nom
-	 * @param icon icône
+	 *
+	 * @param name           nom
+	 * @param icon           icône
 	 * @param actionListener listener
 	 */
 	Outil(String name, ImageIcon icon, Class<? extends ActionListener> actionListener) {
@@ -70,9 +70,10 @@ public enum Outil {
 
 	/**
 	 * Créé outil
-	 * @param name nom
-	 * @param icon icône
-	 * @param glue true = suivie d'une séparateur
+	 *
+	 * @param name           nom
+	 * @param icon           icône
+	 * @param glue           true = suivie d'une séparateur
 	 * @param actionListener listener
 	 */
 	Outil(String name, ImageIcon icon, boolean glue, Class<? extends ActionListener> actionListener) {

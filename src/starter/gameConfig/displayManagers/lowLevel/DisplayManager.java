@@ -13,30 +13,32 @@ import editor.hud.EnigmaPanel;
  * @since 3.0
  */
 public interface DisplayManager {
-    /**
-     * Rafraichir le contenu
-     */
-    void refreshContent();
+	/**
+	 * Rafraichir le contenu
+	 */
+	void refreshContent();
 
-    /**
-     * Rafraichir la barre de menu
-     */
-    void refreshRightBar();
+	/**
+	 * Rafraichir la barre de menu
+	 */
+	void refreshRightBar();
 
-    /**
-     * Tout rafraichir
-     */
-    void refreshAll();
+	/**
+	 * Tout rafraichir
+	 */
+	void refreshAll();
 
-    /**
-     * Obtenir le contenu
-     * @return Le contenu
-     */
-    EnigmaPanel getContent();
+	/**
+	 * Obtenir le contenu
+	 *
+	 * @return Le contenu
+	 */
+	EnigmaPanel getContent();
 
-    /**
-     * Obtenir la barre de menu
-     * @return La barre de menu
-     */
-    EnigmaPanel getRightBar();
+	/**
+	 * Obtenir la barre de menu
+	 *
+	 * @return La barre de menu
+	 */
+	EnigmaPanel getRightBar();
 }

@@ -17,16 +17,16 @@ import java.awt.event.ActionListener;
  * @since 3.0
  */
 public class JoinGameRedirect implements ActionListener {
-    private CustomTextArea textArea;
+	private CustomTextArea textArea;
 
-    public JoinGameRedirect(CustomTextArea textArea){
-        this.textArea = textArea;
-    }
+	public JoinGameRedirect(CustomTextArea textArea) {
+		this.textArea = textArea;
+	}
 
-    @Override
-    public void actionPerformed(ActionEvent actionEvent) {
-        System.out.println("ip = "+textArea.getText());
-        //TODO: se connecter et modifier GameConfiguration en conséquence
-        LaunchGameDisplay.getInstance().showDisplay(LaunchGameDisplay.WAIT_PLAYERS);
-    }
+	@Override
+	public void actionPerformed(ActionEvent actionEvent) {
+		System.out.println("ip = " + textArea.getText());
+		//TODO: se connecter et modifier GameConfiguration en conséquence
+		LaunchGameDisplay.getInstance().showDisplay(LaunchGameDisplay.WAIT_PLAYERS);
+	}
 }

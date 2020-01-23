@@ -30,7 +30,8 @@ public class EnigmaWindow extends CustomWindow {
 
 	/**
 	 * Crée une fenêtre enigma
-	 * @param width largeur
+	 *
+	 * @param width  largeur
 	 * @param height hauteur
 	 * @since 4.0
 	 */
@@ -40,6 +41,7 @@ public class EnigmaWindow extends CustomWindow {
 
 	/**
 	 * Crée une fenêtre dans un écran
+	 *
 	 * @param monitor l'écran
 	 * @since 5.0
 	 */

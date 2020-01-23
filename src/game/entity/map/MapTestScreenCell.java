@@ -2,7 +2,6 @@ package game.entity.map;
 
 import api.entity.GameObject;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import editor.enigma.Enigma;
 import game.EnigmaGame;
 import game.screen.TestScreen;
 

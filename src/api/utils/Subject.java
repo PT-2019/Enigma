@@ -4,9 +4,9 @@ import api.entity.GameObject;
 
 public interface Subject {
 
-    void addObserveur(Observer obs);
+	void addObserveur(Observer obs);
 
-    void removeObserveur(Observer obs);
+	void removeObserveur(Observer obs);
 
-    void updateObserveur(GameObject object);
+	void updateObserveur(GameObject object);
 }

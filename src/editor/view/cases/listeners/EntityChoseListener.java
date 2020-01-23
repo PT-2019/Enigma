@@ -9,26 +9,26 @@ import java.util.ArrayList;
 
 public class EntityChoseListener implements Subject {
 
-    private ArrayList<Observer> obsList;
+	private ArrayList<Observer> obsList;
 
-    public EntityChoseListener(){
-        obsList = new ArrayList<>();
-    }
+	public EntityChoseListener() {
+		obsList = new ArrayList<>();
+	}
 
-    @Override
-    public void addObserveur(Observer obs) {
-        obsList.add(obs);
-    }
+	@Override
+	public void addObserveur(Observer obs) {
+		obsList.add(obs);
+	}
 
-    @Override
-    public void removeObserveur(Observer obs) {
-        obsList.remove(obs);
-    }
+	@Override
+	public void removeObserveur(Observer obs) {
+		obsList.remove(obs);
+	}
 
-    @Override
-    public void updateObserveur(GameObject object) {
-        for (Observer obs:obsList) {
-            obs.update(object);
-        }
-    }
+	@Override
+	public void updateObserveur(GameObject object) {
+		for (Observer obs : obsList) {
+			obs.update(object);
+		}
+	}
 }

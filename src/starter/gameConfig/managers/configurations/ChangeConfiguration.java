@@ -13,8 +13,8 @@ import java.awt.event.MouseListener;
  * @since 3.0
  */
 public interface ChangeConfiguration extends MouseListener {
-    /**
-     * Si on souhaite changer
-     */
-    void onChange();
+	/**
+	 * Si on souhaite changer
+	 */
+	void onChange();
 }

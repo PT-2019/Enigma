@@ -29,8 +29,9 @@ public class EnigmaLanguageJson {
 
 	/**
 	 * Retourne la valeur dans la HashMap correspond a ce field
+	 *
 	 * @param field field
-	 * @return  la valeur dans la HashMap correspond a ce field
+	 * @return la valeur dans la HashMap correspond a ce field
 	 */
 	public String get(Field field) {
 		return this.values.get(field.toString());

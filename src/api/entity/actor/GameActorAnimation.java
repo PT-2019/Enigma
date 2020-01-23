@@ -30,6 +30,7 @@ public class GameActorAnimation extends GameActor {
 
 	/**
 	 * Animation
+	 *
 	 * @see Animation
 	 */
 	private Animation<TextureRegion> animation;
@@ -47,13 +48,13 @@ public class GameActorAnimation extends GameActor {
 	/**
 	 * Définit l'animation
 	 *
-	 * @param texture chemin texture
-	 * @param nbCol nombre de colonnes d'une image
-	 * @param nbRow nombre de lignes d'une image
+	 * @param texture      chemin texture
+	 * @param nbCol        nombre de colonnes d'une image
+	 * @param nbRow        nombre de lignes d'une image
 	 * @param timePerFrame nombre de secondes par image, 0.3f par exemple est une bonne valeur
-	 * @param colPerImage nombre de colonnes totales de l'image
-	 * @param rowPerImage nombre de lignes totales de l'image
-	 * @param index index, commence à zéro représentant la position de la sous-image dans l'atlas
+	 * @param colPerImage  nombre de colonnes totales de l'image
+	 * @param rowPerImage  nombre de lignes totales de l'image
+	 * @param index        index, commence à zéro représentant la position de la sous-image dans l'atlas
 	 */
 	protected void setAnimation(String texture, int nbCol, int nbRow, float timePerFrame,
 	                            int colPerImage, int rowPerImage, int index) {
@@ -90,6 +91,7 @@ public class GameActorAnimation extends GameActor {
 
 	/**
 	 * L'animation boucle ?
+	 *
 	 * @param loop true oui, false non
 	 */
 	protected void setAnimationLooping(boolean loop) {
@@ -120,6 +122,7 @@ public class GameActorAnimation extends GameActor {
 
 	/**
 	 * L'animation correspond a index est lancée
+	 *
 	 * @param index commence à zéro, sous-image dans la sous-image de la texture-atlas
 	 */
 	private void setKeyFrame(int index) {
@@ -132,6 +135,7 @@ public class GameActorAnimation extends GameActor {
 
 	/**
 	 * Retourne l'animation correspond a index est lancée
+	 *
 	 * @return index commence à zéro, sous-image dans la sous-image de la texture-atlas
 	 */
 	private int getKeyFrameIndex() {

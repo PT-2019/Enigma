@@ -91,7 +91,7 @@ public interface GameObject extends IDInterface {
 	/**
 	 * Renvoi les différentes classes implémenté par l'entité
 	 *
-	 * @return EnumMap<TypeEntite, Boolean>
+	 * @return EnumMap&lt;TypeEntite, Boolean&gt;
 	 * @since 4.0
 	 */
 	EnumMap<TypeEntite, Boolean> getImplements();

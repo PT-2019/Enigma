@@ -19,41 +19,41 @@ import java.awt.event.MouseEvent;
  */
 public class ChangeMap implements ChangeConfiguration {
 
-    /**
-     * Si on souhaite changer
-     */
-    @Override
-    public void onChange() {
-        String value = EnigmaOptionPane.showInputDialog(EnigmaGameLauncher.getInstance().getWindow(),"Choisir une nouvelle map :");
+	/**
+	 * Si on souhaite changer
+	 */
+	@Override
+	public void onChange() {
+		String value = EnigmaOptionPane.showInputDialog(EnigmaGameLauncher.getInstance().getWindow(), "Choisir une nouvelle map :");
 
-        if(!value.equals(EnigmaOptionPane.CANCEL)) {
-            GameConfiguration.getInstance().setMap(value);
-            LaunchGameDisplay.getInstance().refreshCurrentDisplay();
-        }
-    }
+		if (!value.equals(EnigmaOptionPane.CANCEL)) {
+			GameConfiguration.getInstance().setMap(value);
+			LaunchGameDisplay.getInstance().refreshCurrentDisplay();
+		}
+	}
 
-    @Override
-    public void mouseClicked(MouseEvent mouseEvent) {
-        this.onChange();
-    }
+	@Override
+	public void mouseClicked(MouseEvent mouseEvent) {
+		this.onChange();
+	}
 
-    @Override
-    public void mousePressed(MouseEvent mouseEvent) {
+	@Override
+	public void mousePressed(MouseEvent mouseEvent) {
 
-    }
+	}
 
-    @Override
-    public void mouseReleased(MouseEvent mouseEvent) {
+	@Override
+	public void mouseReleased(MouseEvent mouseEvent) {
 
-    }
+	}
 
-    @Override
-    public void mouseEntered(MouseEvent mouseEvent) {
+	@Override
+	public void mouseEntered(MouseEvent mouseEvent) {
 
-    }
+	}
 
-    @Override
-    public void mouseExited(MouseEvent mouseEvent) {
+	@Override
+	public void mouseExited(MouseEvent mouseEvent) {
 
-    }
+	}
 }
