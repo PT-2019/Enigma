@@ -39,7 +39,6 @@ import javax.swing.JComponent;
 import java.awt.Container;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 
 import static api.MapsNameUtils.HEIGHT_P;
 import static api.MapsNameUtils.TILE_HEIGHT_P;
@@ -227,21 +226,14 @@ public class MapTestScreen extends AbstractMap {
 		return props;
 	}
 
-	@Override
-	@MagicConstant
-	protected void updateMapBounds(int zoom) {
-		float left = this.mapBounds.left, right = this.mapBounds.right;
-		float top = this.mapBounds.top, bot = this.mapBounds.bot;
-
-		left -= zoom * 27;
-		right += zoom * 27;
-		top -= zoom * 18;
-		bot += zoom * 18;
-
-		this.mapBounds = new Bounds(left, right, top, bot);
-	}
-
-	@Override
+	/**
+	 * Charge une entité sur la map a un position si elle est sur la map
+	 *
+	 * @param entity l'entité à charger
+	 * @param pos    la position o&#249; charger
+	 * @return true si l'entité a étée chargée
+	 * @since 3.0
+	 */
 	public boolean loadEntity(EntitySerializable entity, Vector2 pos) {
 		//calcules les 4 coins de la map
 		Rectangle bounds = this.getMapSize();
@@ -264,7 +256,7 @@ public class MapTestScreen extends AbstractMap {
 		pos.y -= this.mapBounds.bot;
 
 		//obtient le coin supérieur gauche ou commencer a placer des tiles
-		Vector2 start = posToIndex(pos.x, pos.y, this);
+		Vector2 start = swingPosToIndex(pos.x, pos.y, this);
 
 		if (entity.getCategory().name.equals(EntitiesCategories.ACTIONS.name)) {
 			// TODO: ajout des actions doit créer une énigme ou pas. (dépends de l'action)
@@ -473,7 +465,11 @@ public class MapTestScreen extends AbstractMap {
 			this.border.draw();
 	}
 
-	@Override
+	/**
+	 * Définit les bounds de la map
+	 *
+	 * @since 3.0
+	 */
 	protected void setMapBounds() {
 		float left = Gdx.graphics.getWidth() / 2f - this.getMapWidth() / 2;
 		float right = Gdx.graphics.getWidth() / 2f + this.getMapWidth() / 2;
@@ -511,6 +507,10 @@ public class MapTestScreen extends AbstractMap {
 		return this.map.getMap();
 	}
 
+	/**
+	 * Affiche la grille de la map
+	 * @param show affiche la grille de la map
+	 */
 	@Override
 	public void showGrid(boolean show) {
 		this.showGrid = show;
@@ -541,7 +541,6 @@ public class MapTestScreen extends AbstractMap {
 		return tileHeight;
 	}
 
-	@Override
 	public OrthographicCamera getCamera() {
 		return camera;
 	}
@@ -562,5 +561,26 @@ public class MapTestScreen extends AbstractMap {
 
 	public OrthogonalTiledMapRenderer getMap() {
 		return map;
+	}
+
+	/**
+	 * Met a jour les bounds de la map selon zoom
+	 *
+	 * @param zoom de combien le zoom est augmenté ou diminué
+	 * @since 3.0
+	 * @deprecated since 4.0
+	 */
+	@Deprecated
+	@MagicConstant
+	protected void updateMapBounds(int zoom) {
+		float left = this.mapBounds.left, right = this.mapBounds.right;
+		float top = this.mapBounds.top, bot = this.mapBounds.bot;
+
+		left -= zoom * 27;
+		right += zoom * 27;
+		top -= zoom * 18;
+		bot += zoom * 18;
+
+		this.mapBounds = new Bounds(left, right, top, bot);
 	}
 }

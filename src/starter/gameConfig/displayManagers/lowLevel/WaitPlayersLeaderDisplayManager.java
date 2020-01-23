@@ -185,7 +185,12 @@ public class WaitPlayersLeaderDisplayManager implements DisplayManager {
         String[] infos = new String[infoCount];
         infos[0] = "Partie : " + gameConfig.getName();
         infos[1] = "Description : " + gameConfig.getDescription();
-        infos[2] = "Chef de groupe : " + gameConfig.getOwner().getName();
+        Player owner = gameConfig.getOwner();
+        //TODO: hum ???????????????, owner est null????
+        if(owner == null)
+            infos[2] = "Chef de groupe : NULL";
+        else
+            infos[2] = "Chef de groupe : "+owner.getName();
         infos[3] = "Map : " + gameConfig.getMap();
         infos[4] = "Durée : " + gameConfig.getDuration() + " min";
         infos[5] = "Nombre de joueurs : " + gameConfig.getTotalPlayers() + "/" + gameConfig.getMaxGamePlayers();
