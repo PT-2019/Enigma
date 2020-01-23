@@ -1,5 +1,6 @@
 package editor.view.listeners;
 
+import api.enums.EditorState;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -16,10 +17,19 @@ import editor.view.cases.CaseView;
 import editor.view.cases.SpecialPopUp;
 import editor.view.cases.listeners.CasePopWindowListener;
 import game.entity.map.MapTestScreenCell;
+import game.screen.TestScreen;
 
 /**
  * Cette classe permet d'écouter les cliques de la souris sur les cases
  * de la map.
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ *
+ * @version 5.0
+ * @since 3.0
  */
 public class CaseListener extends ClickListener {
 
@@ -41,6 +51,9 @@ public class CaseListener extends ClickListener {
 
 	@Override
 	public void clicked(InputEvent event, float x, float y) {
+		//on ne peut cliquer que si l'état est normal
+		if(!TestScreen.isState(EditorState.NORMAL)) return;
+
 		CaseView actor = (CaseView) event.getTarget();
 		MapTestScreenCell cell = actor.getCell();
 

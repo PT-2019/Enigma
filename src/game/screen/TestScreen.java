@@ -1,6 +1,7 @@
 package game.screen;
 
 import api.LibgdxScreen;
+import api.enums.EditorState;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
@@ -23,6 +24,12 @@ public class TestScreen extends LibgdxScreen {
 
 	//si tu veux charger une map c'est ici sans passer par le launcher
 	private static String MAP_PATH = "assets/map/map_system/EmptyMap.tmx";
+
+	/**
+	 * L'état de l'éditeur
+	 */
+	private static EditorState state;
+
 	/**
 	 * Stage de la map et du jeu
 	 */
@@ -151,7 +158,6 @@ public class TestScreen extends LibgdxScreen {
 
 	@Override
 	public void display(boolean display) {
-
 	}
 
 	/**
@@ -175,5 +181,17 @@ public class TestScreen extends LibgdxScreen {
 	 */
 	public MapTestScreen getMap() {
 		return map;
+	}
+
+	public static EditorState getState() {
+		return TestScreen.state;
+	}
+
+	public static boolean isState(EditorState state){
+		return state.equals(TestScreen.state);
+	}
+
+	public static void setState(EditorState state) {
+		TestScreen.state = state;
 	}
 }

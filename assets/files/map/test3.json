@@ -7,31 +7,39 @@
                               {
                                    "editor.enigma.operation.Unlock": [
                                         {
-                                             "entities": "-1"
+                                             "entities": "3"
+                                        }
+                                   ]
+                              },
+
+                              {
+                                   "editor.enigma.operation.Unlock": [
+                                        {
+                                             "entities": "4"
                                         }
                                    ]
                               }
                          ],
                          "known": "false",
-                         "currentAdviceIndex": "-1",
-                         "description": "Porte Fermée",
+                         "currentAdviceIndex": "0",
+                         "description": "La porte est fermée",
                          "advices": [
                               {
                                    "editor.enigma.Advice": [
                                         {
-                                             "delay": "1",
+                                             "delay": "2",
                                              "advice": "Cherchez une clef"
                                         }
                                    ]
                               }
                          ],
                          "id": "4",
-                         "title": "Fermée",
+                         "title": "Porte closed",
                          "conditions": [
                               {
                                    "editor.enigma.condition.HaveInHands": [
                                         {
-                                             "entities": "-1"
+                                             "entities": "5"
                                         }
                                    ]
                               }

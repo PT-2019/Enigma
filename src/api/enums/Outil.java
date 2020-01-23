@@ -1,6 +1,10 @@
 package api.enums;
 
+import api.utils.annotations.Temporary;
+import editor.screens.menus.listeners.BrushListener;
 import editor.screens.menus.listeners.CreateListener;
+import editor.screens.menus.listeners.EraserListener;
+import editor.screens.menus.listeners.MoveListener;
 import editor.screens.menus.listeners.OpenListener;
 import editor.screens.menus.listeners.SaveListener;
 import editor.utils.lang.fields.HUDFields;
@@ -18,7 +22,7 @@ import static editor.utils.lang.GameLanguage.gl;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 4.0
+ * @version 5.0
  * @since 3.0
  */
 public enum Outil {
@@ -27,9 +31,10 @@ public enum Outil {
 	SAVE(gl.get(HUDFields.SAVE), new ImageIcon("assets/icon/save.png"), true, SaveListener.class),
 	UNDO(gl.get(HUDFields.UNDO), new ImageIcon("assets/icon/noUndo.png"), null),
 	REDO(gl.get(HUDFields.REDO), new ImageIcon("assets/icon/noRedo.png"), true, null),
-	SOURIS(gl.get(HUDFields.BRUSH), new ImageIcon("assets/icon/brush.png"), null),
-	GOMME(gl.get(HUDFields.ERASER), new ImageIcon("assets/icon/eraser.png"), null),
-	MOVE(gl.get(HUDFields.MOVE), new ImageIcon("assets/icon/move.png"), true, null);
+	BRUSH(gl.get(HUDFields.BRUSH), new ImageIcon("assets/icon/brush.png"), BrushListener.class),
+	GOMME(gl.get(HUDFields.ERASER), new ImageIcon("assets/icon/eraser.png"), EraserListener.class),
+	@Temporary(reason = "true normalement mais zoom désactivé")
+	MOVE(gl.get(HUDFields.MOVE), new ImageIcon("assets/icon/move.png"), false, MoveListener.class);
 
 	public static ImageIcon SEPARATOR = new ImageIcon("assets/icon/sep.png");
 	public static ImageIcon REDO_OK = new ImageIcon("assets/icon/undo.png");

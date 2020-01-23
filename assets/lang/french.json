@@ -11,9 +11,9 @@
     save:Sauvegarder
     undo:Annuler
     redo:Refaire
-    brush:Pinceau
+    brush:Normal
     eraser:Gomme
-    move:Déplacer
+    move:Déplacer entités
 
     file:Fichier
     edit:Edition

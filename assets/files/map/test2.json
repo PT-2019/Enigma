@@ -7,7 +7,7 @@
                               {
                                    "editor.enigma.operation.Unlock": [
                                         {
-                                             "entities": "-1"
+                                             "entities": "3"
                                         }
                                    ]
                               },
@@ -15,31 +15,31 @@
                               {
                                    "editor.enigma.operation.Unlock": [
                                         {
-                                             "entities": "-1"
+                                             "entities": "4"
                                         }
                                    ]
                               }
                          ],
                          "known": "false",
-                         "currentAdviceIndex": "-1",
-                         "description": "porte fermée si pas clef",
+                         "currentAdviceIndex": "0",
+                         "description": "La porte est fermée",
                          "advices": [
                               {
                                    "editor.enigma.Advice": [
                                         {
                                              "delay": "2",
-                                             "advice": "baka euh nan baca euh nah"
+                                             "advice": "Cherchez une clef"
                                         }
                                    ]
                               }
                          ],
                          "id": "4",
-                         "title": "porte fermée",
+                         "title": "Porte closed",
                          "conditions": [
                               {
                                    "editor.enigma.condition.HaveInHands": [
                                         {
-                                             "entities": "-1"
+                                             "entities": "5"
                                         }
                                    ]
                               }

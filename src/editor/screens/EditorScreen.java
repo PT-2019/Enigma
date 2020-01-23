@@ -161,9 +161,9 @@ public class EditorScreen extends JPanel {
 			}
 		}
 
-		outilBar.add(zoom);
-		outilBar.add(fit);
-		outilBar.add(inGame);
+		//outilBar.add(zoom);
+		//outilBar.add(fit);
+		//outilBar.add(inGame);
 
 		return outilBar;
 	}

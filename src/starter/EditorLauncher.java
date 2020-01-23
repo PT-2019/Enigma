@@ -1,6 +1,7 @@
 package starter;
 
 import api.Application;
+import api.enums.EditorState;
 import api.enums.EnigmaScreens;
 import api.hud.WindowSize;
 import api.hud.components.CustomWindow;
@@ -9,8 +10,10 @@ import editor.entity.EntityFactory;
 import editor.hud.EnigmaWindow;
 import editor.screens.EditorScreen;
 import game.EnigmaGame;
+import game.screen.TestScreen;
 
 import java.awt.BorderLayout;
+import java.awt.Cursor;
 
 /**
  * Lanceur de l'éditeur d'escape game
@@ -41,6 +44,9 @@ public class EditorLauncher implements Application {
 		} else {
 			this.window = new EnigmaWindow();
 		}
+
+		TestScreen.setState(EditorState.NORMAL);
+
 		this.window.addWindowListener(new AppClosingManager());
 		this.window.setSize(WindowSize.FULL_SCREEN_SIZE);
 		this.editorScreen = null;
@@ -119,6 +125,14 @@ public class EditorLauncher implements Application {
 			editor = new EditorLauncher(width, height);
 		}
 		return editor;
+	}
+
+	/**
+	 * Définit le cursor de l'application
+	 * @param cursor le cursor
+	 */
+	public static void setCursor(Cursor cursor) {
+		EditorLauncher.getInstance().getWindow().setCursor(cursor);
 	}
 
 	@Override

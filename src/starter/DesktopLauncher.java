@@ -144,6 +144,14 @@ public class DesktopLauncher implements Runnable {
 	}
 
 	/**
+	 * Définit le cursor de l'application
+	 * @param cursor le cursor
+	 */
+	public static void setCursor(Cursor cursor) {
+		DesktopLauncher.getInstance().getWindow().setCursor(cursor);
+	}
+
+	/**
 	 * Lance le lanceur de la version pc de l'application
 	 *
 	 * @since 1.0

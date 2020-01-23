@@ -1,6 +1,7 @@
 package game.utils;
 
 import api.entity.actor.GameActorUtilities;
+import api.enums.EditorState;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Group;
@@ -59,7 +60,7 @@ public class DragAndDrop extends InputListener {
 	// Drag Strart
 	@Override
 	public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-		if (this.dragged.isDraggable()) {
+		if (this.dragged.isDraggable() && TestScreen.isState(EditorState.NORMAL)) {
 			//cursor de drag
 			EditorLauncher.getInstance().getWindow().setCursor(new Cursor(Cursor.HAND_CURSOR));
 

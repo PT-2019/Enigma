@@ -46,7 +46,7 @@ public class ConditionPanel extends EnigmaPanel implements Observer {
 	 */
 	private JLabel entityName;
 
-	public ConditionPanel(editor.enigma.create.enigma.EnigmaView parent) {
+	public ConditionPanel(EnigmaView parent) {
 		this.setLayout(new GridBagLayout());
 		this.gbc = new GridBagConstraints();
 		MenuPanel menu = new MenuPanel("\nAjouter une Condition \n à l'énigme", "zeafazefzfae", parent);
@@ -156,6 +156,7 @@ public class ConditionPanel extends EnigmaPanel implements Observer {
 	@Override
 	public void update(GameObject g) {
 		listener.setGameObject(g);
+		//TODO: entityName est null
 		entityName.setText(g.toString());
 	}
 }
