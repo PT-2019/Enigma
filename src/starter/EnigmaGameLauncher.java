@@ -7,6 +7,7 @@ import api.utils.LoadGameLibgdxApplication;
 import api.utils.annotations.NeedPatch;
 import editor.hud.EnigmaWindow;
 import game.EnigmaGame;
+import starter.gameConfig.LaunchGameDisplay;
 
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
@@ -35,7 +36,7 @@ public class EnigmaGameLauncher implements Application {
 		this.window = new EnigmaWindow();
 		this.window.setLayout(new BorderLayout());
 		this.window.addWindowListener(new AppClosingManager());
-		this.gameScreen = null;
+		this.gameScreen = LaunchGameDisplay.getInstance().getPanel();
 	}
 
 	/**
