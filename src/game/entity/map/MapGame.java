@@ -1,9 +1,11 @@
 package game.entity.map;
 
+import api.entity.actor.GameActor;
 import api.utils.Bounds;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 
 public class MapGame extends AbstractMap {
 
@@ -14,6 +16,19 @@ public class MapGame extends AbstractMap {
 
 		//ICI CODE DE CHARGEMENT D'UNE MAP
 	}
+
+	public static Vector2 posToIndex(float posX, float posY, MapGame map){
+		//ICI CODER
+		//AbstractMap#swingPosToIndex(float posX, float posY, final AbstractMap map) si besoin
+		throw new UnsupportedOperationException("non codé");
+	}
+
+	public boolean isWalkable(float posX, float posY, GameActor actor){
+		//ICI CODER, gameActor est pas obligé, la classe peut être changé (GameActorAnimation..., PlayerGame)...
+		throw new UnsupportedOperationException("non codé");
+	}
+
+	//boolean doAction(float posX, float posY, GameActor actor, ???  action)
 
 	@Override
 	public void act(float delta) {
