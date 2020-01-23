@@ -5,18 +5,43 @@ import editor.hud.ui.EnigmaButtonUI;
 import editor.hud.ui.EnigmaLabelUI;
 import game.GameConfiguration;
 import starter.gameConfig.LaunchGameDisplay;
-import starter.gameConfig.managers.redirect.CreateGame;
+import starter.gameConfig.managers.redirect.CreateGameRedirect;
 import starter.gameConfig.managers.redirect.Redirect;
 import starter.gameConfig.managers.configurations.*;
 
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Gère l'affichage de création de parties
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 3.0
+ * @since 3.0
+ */
 public class CreateGameDisplayManager implements DisplayManager {
 
+    /**
+     * Instance
+     */
     private final static CreateGameDisplayManager instance = new CreateGameDisplayManager();
+
+    /**
+     * Contenu
+     */
     private EnigmaPanel content;
+
+    /**
+     * Barre de menu
+     */
     private EnigmaPanel rightBar;
+
+    /**
+     * Conteneur des caractéristiques de la partie
+     */
     private EnigmaPanel gameConfig;
 
     private CreateGameDisplayManager(){
@@ -26,6 +51,9 @@ public class CreateGameDisplayManager implements DisplayManager {
         this.refreshAll();
     }
 
+    /**
+     * Initialisation de la barre de menu
+     */
     private void initRightBar(){
         Color grey = new Color(100,100,100);
         Color lighterGrey = new Color(150,150,150);
@@ -69,7 +97,7 @@ public class CreateGameDisplayManager implements DisplayManager {
         gbc.insets = new Insets(inset,inset,inset,inset);
         EnigmaButton b = new EnigmaButton("Créer");
         b.setComponentUI(bui);
-        b.addActionListener(new CreateGame());
+        b.addActionListener(new CreateGameRedirect());
         buttonsComponent.add(b,gbc);
 
         gbc.gridy = 2;
@@ -89,6 +117,9 @@ public class CreateGameDisplayManager implements DisplayManager {
         this.rightBar.add(filtersComponent);
     }
 
+    /**
+     * Initialisation du contenu
+     */
     private void initContent(){
         int infoCount = 6;
         int inset = 50;
@@ -106,6 +137,7 @@ public class CreateGameDisplayManager implements DisplayManager {
 
         this.gameConfig.getComponentUI().setAllBackgrounds(Color.WHITE,Color.WHITE,Color.WHITE);
         this.content.getComponentUI().setAllBackgrounds(Color.WHITE,Color.WHITE,Color.WHITE);
+        content.getComponentUI().setAllBackgrounds(Color.WHITE,Color.WHITE,Color.WHITE);
 
         gbc2.gridx = 1;
         gbc2.gridy = 1;
@@ -136,6 +168,9 @@ public class CreateGameDisplayManager implements DisplayManager {
         this.content.add(content,gbc);
     }
 
+    /**
+     * Rafraichir le contenu
+     */
     @Override
     public void refreshContent() {
         this.gameConfig.removeAll();
@@ -189,9 +224,15 @@ public class CreateGameDisplayManager implements DisplayManager {
         }
     }
 
+    /**
+     * Rafraichir la barre de menu
+     */
     @Override
     public void refreshRightBar(){}
 
+    /**
+     * Tout rafraichir
+     */
     @Override
     public void refreshAll(){
         this.refreshContent();
@@ -200,15 +241,27 @@ public class CreateGameDisplayManager implements DisplayManager {
         this.rightBar.revalidate();
     }
 
+    /**
+     * Obtenir l'instance
+     * @return L'instance
+     */
     public static CreateGameDisplayManager getInstance(){
         return instance;
     }
 
+    /**
+     * Obtenir le contenu
+     * @return Le contenu
+     */
     @Override
     public EnigmaPanel getContent(){
         return this.content;
     }
 
+    /**
+     * Obtenir la barre de menu
+     * @return La barre de menu
+     */
     @Override
     public EnigmaPanel getRightBar(){
         return this.rightBar;

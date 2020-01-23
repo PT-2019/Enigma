@@ -9,7 +9,21 @@ import starter.gameConfig.LaunchGameDisplay;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
+/**
+ * Gère l'action de changer le nombre de joueurs maximum de la partie
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 3.0
+ * @since 3.0
+ */
 public class ChangeMaxPlayers implements ChangeConfiguration {
+
+    /**
+     * Si on souhaite changer
+     */
     @Override
     public void onChange() {
         if(GameConfiguration.getInstance().isMultiPlayer()) {

@@ -2,16 +2,37 @@ package starter.gameConfig.displayManagers.lowLevel;
 
 import editor.hud.*;
 import starter.gameConfig.LaunchGameDisplay;
-import starter.gameConfig.managers.redirect.JoinGame;
+import starter.gameConfig.managers.redirect.JoinGameRedirect;
 import starter.gameConfig.managers.redirect.Redirect;
 
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Gère l'affichage pour rejoindre une partie
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 3.0
+ * @since 3.0
+ */
 public class JoinGameDisplayManager implements DisplayManager {
 
+    /**
+     * Instance
+     */
     private final static JoinGameDisplayManager instance = new JoinGameDisplayManager();
+
+    /**
+     * Contenu
+     */
     private EnigmaPanel content;
+
+    /**
+     * Barre de menu
+     */
     private EnigmaPanel rightBar;
 
     private JoinGameDisplayManager(){
@@ -21,6 +42,9 @@ public class JoinGameDisplayManager implements DisplayManager {
         this.refreshAll();
     }
 
+    /**
+     * Initialisation de la barre de menu
+     */
     private void initRightBar(){
         boolean[] borders = new boolean[4];
         borders[EnigmaUIValues.LEFT_BORDER] = EnigmaUIValues.SHOWED_BORDER;
@@ -31,6 +55,9 @@ public class JoinGameDisplayManager implements DisplayManager {
         this.rightBar.getComponentUI().setAllShowedBorders(borders,borders,borders);
     }
 
+    /**
+     * Initialisation du contenu
+     */
     private void initContent(){
         Color grey = new Color(100,100,100);
         Color lighterGrey = new Color(150,150,150);
@@ -99,7 +126,7 @@ public class JoinGameDisplayManager implements DisplayManager {
         confirm.getComponentUI().setAllBackgrounds(grey,lighterGrey,lighterGrey);
         confirm.getComponentUI().setAllForegrounds(Color.WHITE,Color.WHITE,Color.WHITE);
         confirm.getComponentUI().setAllBorders(null,null,null);
-        confirm.addActionListener(new JoinGame(input));
+        confirm.addActionListener(new JoinGameRedirect(input));
         confirmComponent.add(confirm);
         joinComponent.add(confirmComponent);
 
@@ -116,12 +143,21 @@ public class JoinGameDisplayManager implements DisplayManager {
         this.content.add(content,gbc);
     }
 
+    /**
+     * Rafraichir le contenu
+     */
     @Override
     public void refreshContent(){}
 
+    /**
+     * Rafraichir la barre de menu
+     */
     @Override
     public void refreshRightBar(){}
 
+    /**
+     * Tout rafraichir
+     */
     @Override
     public void refreshAll(){
         this.refreshContent();
@@ -130,15 +166,27 @@ public class JoinGameDisplayManager implements DisplayManager {
         this.rightBar.revalidate();
     }
 
+    /**
+     * Obtenir l'instance
+     * @return L'instance
+     */
     public static JoinGameDisplayManager getInstance(){
         return instance;
     }
 
+    /**
+     * Obtenir le contenu
+     * @return Le contenu
+     */
     @Override
     public EnigmaPanel getContent(){
         return this.content;
     }
 
+    /**
+     * Obtenir la barre de menu
+     * @return La barre de menu
+     */
     @Override
     public EnigmaPanel getRightBar(){
         return this.rightBar;

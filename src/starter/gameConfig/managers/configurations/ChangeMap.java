@@ -7,7 +7,21 @@ import starter.gameConfig.LaunchGameDisplay;
 
 import java.awt.event.MouseEvent;
 
+/**
+ * Gère l'action de changer la map de la partie
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 3.0
+ * @since 3.0
+ */
 public class ChangeMap implements ChangeConfiguration {
+
+    /**
+     * Si on souhaite changer
+     */
     @Override
     public void onChange() {
         String value = EnigmaOptionPane.showInputDialog(EnigmaGameLauncher.getInstance().getWindow(),"Choisir une nouvelle map :");

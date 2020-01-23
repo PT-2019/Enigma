@@ -5,14 +5,51 @@ import starter.gameConfig.displayManagers.highLevel.ContentDisplayManager;
 import starter.gameConfig.displayManagers.highLevel.RightBarDisplayManager;
 
 import java.awt.*;
+
+/**
+ * Gère l'affichage pour sélectionner, créer, configurer, rejoindre, une partie
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 3.0
+ * @since 3.0
+ */
 public class LaunchGameDisplay {
+    /**
+     * Instance
+     */
     private final static LaunchGameDisplay instance = new LaunchGameDisplay();
+
+    /**
+     * Contenu
+     */
     private EnigmaPanel panel;
 
+    /**
+     * Affichage pour choisir une partie a lancer
+     */
     public static final String SELECT_GAME = "select game";
+
+    /**
+     * Affichage pour rejoindre une partie
+     */
     public static final String JOIN_GAME = "join game";
+
+    /**
+     * Affichage pour créer une partie
+     */
     public static final String CREATE_GAME = "create game";
+
+    /**
+     * Affichage pour attendre le début de la partie côté chef de la partie
+     */
     public static final String WAIT_PLAYERS_LEADER = "wait players leader";
+
+    /**
+     * Affichage pour attendre le début de la partie
+     */
     public static final String WAIT_PLAYERS = "wait players";
 
     private LaunchGameDisplay(){
@@ -40,19 +77,34 @@ public class LaunchGameDisplay {
         this.showDisplay(CREATE_GAME);
     }
 
+    /**
+     * Montre l'affichage désigné
+     * @param displayName Affichage
+     */
     public void showDisplay(String displayName){
         ContentDisplayManager.getInstance().showDisplay(displayName);
         RightBarDisplayManager.getInstance().showDisplay(displayName);
     }
 
+    /**
+     * Obtenir l'instance
+     * @return L'instance
+     */
     public static LaunchGameDisplay getInstance(){
         return instance;
     }
 
+    /**
+     * Obtenir le contenu
+     * @return Le contenu
+     */
     public EnigmaPanel getPanel(){
         return this.panel;
     }
 
+    /**
+     * Rafraîchi l'écran actuel
+     */
     public void refreshCurrentDisplay() {
         ContentDisplayManager.getInstance().refreshCurrentDisplay();
         RightBarDisplayManager.getInstance().refreshCurrentDisplay();

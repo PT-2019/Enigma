@@ -12,12 +12,41 @@ import starter.gameConfig.managers.redirect.Redirect;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Gère l'affichage de l'attente du commencement de la partie
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 3.0
+ * @since 3.0
+ */
 public class WaitPlayersDisplayManager implements DisplayManager {
 
+    /**
+     * Instance
+     */
     private final static WaitPlayersDisplayManager instance = new WaitPlayersDisplayManager();
+
+    /**
+     * Contenu
+     */
     private EnigmaPanel content;
+
+    /**
+     * Barre de menu
+     */
     private EnigmaPanel rightBar;
+
+    /**
+     * Conteneur des caractéristiques de la partie
+     */
     private EnigmaPanel gameInfo;
+
+    /**
+     * Conteneur de la liste des joueurs
+     */
     private EnigmaPanel players;
 
     private WaitPlayersDisplayManager(){
@@ -26,6 +55,9 @@ public class WaitPlayersDisplayManager implements DisplayManager {
         this.refreshAll();
     }
 
+    /**
+     * Initialisation de la barre de menu
+     */
     private void initRightBar(){
         Color darkRed = new Color(150,0,0);
         Color lighterDarkRed = new Color(200,0,0);
@@ -84,6 +116,9 @@ public class WaitPlayersDisplayManager implements DisplayManager {
         this.rightBar.add(filtersComponent);
     }
 
+    /**
+     * Initialisation du contenu
+     */
     private void initContent(){
         int infoCount = 6;
 
@@ -124,6 +159,9 @@ public class WaitPlayersDisplayManager implements DisplayManager {
         this.content.add(content,gbc);
     }
 
+    /**
+     * Rafraichir le contenu
+     */
     @Override
     public void refreshContent(){
         this.gameInfo.removeAll();
@@ -182,9 +220,15 @@ public class WaitPlayersDisplayManager implements DisplayManager {
         }
     }
 
+    /**
+     * Rafraichir la barre de menu
+     */
     @Override
     public void refreshRightBar(){}
 
+    /**
+     * Tout rafraichir
+     */
     @Override
     public void refreshAll(){
         this.refreshContent();
@@ -193,15 +237,27 @@ public class WaitPlayersDisplayManager implements DisplayManager {
         this.rightBar.revalidate();
     }
 
+    /**
+     * Obtenir l'instance
+     * @return L'instance
+     */
     public static WaitPlayersDisplayManager getInstance(){
         return instance;
     }
 
+    /**
+     * Obtenir le contenu
+     * @return Le contenu
+     */
     @Override
     public EnigmaPanel getContent(){
         return this.content;
     }
 
+    /**
+     * Obtenir la barre de menu
+     * @return La barre de menu
+     */
     @Override
     public EnigmaPanel getRightBar(){
         return this.rightBar;

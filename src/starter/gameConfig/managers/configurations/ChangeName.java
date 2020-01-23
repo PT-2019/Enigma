@@ -8,7 +8,21 @@ import starter.gameConfig.LaunchGameDisplay;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
+/**
+ * Gère l'action de changer le nom de la partie
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 3.0
+ * @since 3.0
+ */
 public class ChangeName implements ChangeConfiguration {
+
+    /**
+     * Si on souhaite changer
+     */
     @Override
     public void onChange() {
         String value = EnigmaOptionPane.showInputDialog(EnigmaGameLauncher.getInstance().getWindow(),"Nouveau nom de la partie :");

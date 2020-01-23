@@ -8,7 +8,21 @@ import starter.gameConfig.LaunchGameDisplay;
 
 import java.awt.event.MouseEvent;
 
+/**
+ * Gère l'action de changer le type de la partie (solo ou multijoueurs)
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 3.0
+ * @since 3.0
+ */
 public class ChangeType implements ChangeConfiguration {
+
+    /**
+     * Si on souhaite changer
+     */
     @Override
     public void onChange() {
         String yes = "Oui";

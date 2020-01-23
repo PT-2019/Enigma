@@ -7,12 +7,41 @@ import starter.gameConfig.displayManagers.lowLevel.*;
 import java.awt.*;
 import java.util.HashMap;
 
+/**
+ * Gère la barre de menu des l'affichages
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 3.0
+ * @since 3.0
+ */
 public class RightBarDisplayManager {
 
+    /**
+     * Instance
+     */
     private final static RightBarDisplayManager instance = new RightBarDisplayManager();
+
+    /**
+     * Contenu
+     */
     private EnigmaPanel panel;
+
+    /**
+     * Disposition
+     */
     private CardLayout layout;
+
+    /**
+     * Liste des affichages
+     */
     private HashMap<String,DisplayManager> displays;
+
+    /**
+     * Affichage actuel
+     */
     private String currentDisplay;
 
     private RightBarDisplayManager(){
@@ -36,24 +65,43 @@ public class RightBarDisplayManager {
         this.currentDisplay = LaunchGameDisplay.SELECT_GAME;
     }
 
+    /**
+     * Change l'affichage
+     * @param displayName Affichage
+     */
     public void showDisplay(String displayName){
         this.layout.show(this.panel,displayName);
         this.displays.get(displayName).refreshAll();
         this.currentDisplay = displayName;
     }
 
+    /**
+     * Obtenir l'instance
+     * @return L'instance
+     */
     public static RightBarDisplayManager getInstance(){
         return instance;
     }
 
+    /**
+     * Obtenir le contenu
+     * @return Le contenu
+     */
     public EnigmaPanel getPanel(){
         return this.panel;
     }
 
+    /**
+     * Obtenir l'affichage actuel
+     * @return Affichage actuel
+     */
     public String getCurrentDisplay(){
         return this.currentDisplay;
     }
 
+    /**
+     * Rafraichi l'affichage actuel
+     */
     public void refreshCurrentDisplay() {
         this.displays.get(this.currentDisplay).refreshAll();
     }

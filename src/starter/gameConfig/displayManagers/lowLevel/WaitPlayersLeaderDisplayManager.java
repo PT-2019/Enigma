@@ -7,18 +7,47 @@ import editor.hud.ui.EnigmaLabelUI;
 import game.GameConfiguration;
 import game.UserConfiguration;
 import starter.gameConfig.LaunchGameDisplay;
-import starter.gameConfig.managers.redirect.LaunchGame;
+import starter.gameConfig.managers.redirect.StartGameRedirect;
 import starter.gameConfig.managers.redirect.Redirect;
 
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Gère l'affichage de l'attente du commencement de la partie, côté chef de la partie
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 3.0
+ * @since 3.0
+ */
 public class WaitPlayersLeaderDisplayManager implements DisplayManager {
 
+    /**
+     * Instance
+     */
     private final static WaitPlayersLeaderDisplayManager instance = new WaitPlayersLeaderDisplayManager();
+
+    /**
+     * Contenu
+     */
     private EnigmaPanel content;
+
+    /**
+     * Barre de menu
+     */
     private EnigmaPanel rightBar;
+
+    /**
+     * Conteneur des informations de la partie
+     */
     private EnigmaPanel gameInfo;
+
+    /**
+     * Conteneur de la liste des joueurs
+     */
     private EnigmaPanel players;
 
     private WaitPlayersLeaderDisplayManager(){
@@ -28,6 +57,9 @@ public class WaitPlayersLeaderDisplayManager implements DisplayManager {
         this.refreshAll();
     }
 
+    /**
+     * Initialisation de la barre de menu
+     */
     private void initRightBar(){
         Color grey = new Color(100,100,100);
         Color lighterGrey = new Color(150,150,150);
@@ -71,7 +103,7 @@ public class WaitPlayersLeaderDisplayManager implements DisplayManager {
         gbc.insets = new Insets(inset,inset,inset,inset);
         EnigmaButton b = new EnigmaButton("Lancer la partie");
         b.setComponentUI(bui);
-        b.addActionListener(new LaunchGame());
+        b.addActionListener(new StartGameRedirect());
         buttonsComponent.add(b,gbc);
 
         gbc.gridy = 2;
@@ -91,6 +123,9 @@ public class WaitPlayersLeaderDisplayManager implements DisplayManager {
         this.rightBar.add(filtersComponent);
     }
 
+    /**
+     * Initialisation du contenu
+     */
     private void initContent(){
         int infoCount = 6;
 
@@ -131,6 +166,9 @@ public class WaitPlayersLeaderDisplayManager implements DisplayManager {
         this.content.add(content,gbc);
     }
 
+    /**
+     * Rafraichir le contenu
+     */
     @Override
     public void refreshContent(){
         this.gameInfo.removeAll();
@@ -189,9 +227,15 @@ public class WaitPlayersLeaderDisplayManager implements DisplayManager {
         }
     }
 
+    /**
+     * Rafraichir la barre de menu
+     */
     @Override
     public void refreshRightBar(){}
 
+    /**
+     * Tout rafraichir
+     */
     @Override
     public void refreshAll(){
         this.refreshContent();
@@ -200,15 +244,27 @@ public class WaitPlayersLeaderDisplayManager implements DisplayManager {
         this.rightBar.revalidate();
     }
 
+    /**
+     * Obtenir l'instance
+     * @return L'instance
+     */
     public static WaitPlayersLeaderDisplayManager getInstance(){
         return instance;
     }
 
+    /**
+     * Obtenir le contenu
+     * @return Le contenu
+     */
     @Override
     public EnigmaPanel getContent(){
         return this.content;
     }
 
+    /**
+     * Obtenir la barre de menu
+     * @return La barre de menu
+     */
     @Override
     public EnigmaPanel getRightBar(){
         return this.rightBar;

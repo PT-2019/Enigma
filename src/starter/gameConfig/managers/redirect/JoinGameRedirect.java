@@ -6,10 +6,20 @@ import starter.gameConfig.LaunchGameDisplay;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class JoinGame implements ActionListener {
+/**
+ * Gère l'action de rejoindre une partie
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 3.0
+ * @since 3.0
+ */
+public class JoinGameRedirect implements ActionListener {
     private CustomTextArea textArea;
 
-    public JoinGame(CustomTextArea textArea){
+    public JoinGameRedirect(CustomTextArea textArea){
         this.textArea = textArea;
     }
 

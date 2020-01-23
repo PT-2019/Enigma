@@ -4,17 +4,38 @@ import api.hud.manager.choices.CheckBoxManager;
 import editor.hud.*;
 import editor.hud.ui.EnigmaButtonUI;
 import starter.gameConfig.LaunchGameDisplay;
-import starter.gameConfig.managers.redirect.DeleteGame;
-import starter.gameConfig.managers.redirect.LaunchGame;
+import starter.gameConfig.managers.redirect.DeleteGameRedirect;
+import starter.gameConfig.managers.redirect.StartGameRedirect;
 import starter.gameConfig.managers.redirect.Redirect;
 
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Gère l'affichage pour choisir une partie à lancer
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 3.0
+ * @since 3.0
+ */
 public class SelectGameDisplayManager implements DisplayManager {
 
+    /**
+     * Instance
+     */
     private final static SelectGameDisplayManager instance = new SelectGameDisplayManager();
+
+    /**
+     * Contenu
+     */
     private EnigmaPanel content;
+
+    /**
+     * Barre de menu
+     */
     private EnigmaPanel rightBar;
     private EnigmaPanel gameList;
 
@@ -25,6 +46,9 @@ public class SelectGameDisplayManager implements DisplayManager {
         this.refreshAll();
     }
 
+    /**
+     * Initialisation de la barre de menu
+     */
     private void initRightBar(){
         Color grey = new Color(100,100,100);
         Color lighterGrey = new Color(150,150,150);
@@ -65,14 +89,14 @@ public class SelectGameDisplayManager implements DisplayManager {
         gbc.insets = new Insets(inset,inset,inset,inset);
         EnigmaButton b = new EnigmaButton("Jouer");
         b.setComponentUI(bui);
-        b.addActionListener(new LaunchGame());
+        b.addActionListener(new StartGameRedirect());
         buttonsComponent.add(b,gbc);
 
         gbc.gridy = 2;
         gbc.insets = new Insets(0,inset,inset,inset);
         b = new EnigmaButton("Supprimer");
         b.setComponentUI(bui2);
-        b.addActionListener(new DeleteGame());
+        b.addActionListener(new DeleteGameRedirect());
         buttonsComponent.add(b,gbc);
 
         gbc.gridy = 3;
@@ -128,6 +152,9 @@ public class SelectGameDisplayManager implements DisplayManager {
         this.rightBar.add(filtersComponent);
     }
 
+    /**
+     * Initialisation du contenu
+     */
     private void initContent(){
         this.content = new EnigmaPanel();
         EnigmaPanel navBar = new EnigmaPanel();
@@ -175,14 +202,23 @@ public class SelectGameDisplayManager implements DisplayManager {
         this.content.add(scrollContent,gbc);
     }
 
+    /**
+     * Rafraichir le contenu
+     */
     @Override
     public void refreshContent(){
         // TODO: 01/01/2020 afficher dans gameList, une liste des maps en local
     }
 
+    /**
+     * Rafraichir la barre de menu
+     */
     @Override
     public void refreshRightBar(){}
 
+    /**
+     * Tout rafraichir
+     */
     @Override
     public void refreshAll(){
         this.refreshContent();
@@ -191,15 +227,27 @@ public class SelectGameDisplayManager implements DisplayManager {
         this.rightBar.revalidate();
     }
 
+    /**
+     * Obtenir l'instance
+     * @return L'instance
+     */
     public static SelectGameDisplayManager getInstance(){
         return instance;
     }
 
+    /**
+     * Obtenir le contenu
+     * @return Le contenu
+     */
     @Override
     public EnigmaPanel getContent(){
         return this.content;
     }
 
+    /**
+     * Obtenir la barre de menu
+     * @return La barre de menu
+     */
     @Override
     public EnigmaPanel getRightBar(){
         return this.rightBar;
