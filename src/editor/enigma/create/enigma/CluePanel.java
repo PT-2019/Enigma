@@ -1,22 +1,21 @@
 package editor.enigma.create.enigma;
 
 import api.entity.GameObject;
-import editor.enigma.Advice;
+
+import api.utils.Observer;
 import editor.enigma.create.listeners.ClueListener;
 import editor.view.cases.panel.MenuPanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Iterator;
+
 
 /**
  * Interface graphique permettant d'ajouter des indices
  */
-public class CluePanel extends EnigmaPanel {
+public class CluePanel extends EnigmaPanel implements Observer {
 
-    public CluePanel(EnigmaView parent){
+    public CluePanel(editor.enigma.create.enigma.EnigmaView parent){
         this.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         MenuPanel menu = new MenuPanel("\nAjouter une Condition \n à l'énigme","zeafazefzfae",parent);

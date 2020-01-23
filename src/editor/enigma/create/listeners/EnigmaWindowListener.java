@@ -1,4 +1,4 @@
-package editor.enigma.create;
+package editor.enigma.create.listeners;
 
 import editor.view.cases.CasePopUp;
 
@@ -8,8 +8,6 @@ import java.awt.event.WindowListener;
 
 /**
  * Controlleur de EnigmaView
- *
- * @see EnigmaView
  */
 public class EnigmaWindowListener implements WindowListener {
 

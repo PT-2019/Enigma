@@ -1,8 +1,8 @@
 package editor.enigma.create.enigma;
 
 
-import api.entity.Entity;
 import api.entity.GameObject;
+import api.utils.Observer;
 import editor.enigma.create.listeners.ConditionListener;
 import editor.view.cases.panel.MenuPanel;
 
@@ -12,15 +12,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.Insets;
+import java.awt.*;
 
 /**
  * Panneau qui affiche le menu pour créer une condition
  */
-public class ConditionPanel extends EnigmaPanel {
+public class ConditionPanel extends EnigmaPanel implements Observer {
 
 	/**
 	 * boolean pour savoir si on a afficher le panneau
@@ -45,7 +42,7 @@ public class ConditionPanel extends EnigmaPanel {
      */
     private JLabel entityName;
 
-    public ConditionPanel(EnigmaView parent){
+    public ConditionPanel(editor.enigma.create.enigma.EnigmaView parent){
         this.setLayout(new GridBagLayout());
         this.gbc = new GridBagConstraints();
         MenuPanel menu = new MenuPanel("\nAjouter une Condition \n à l'énigme","zeafazefzfae",parent);

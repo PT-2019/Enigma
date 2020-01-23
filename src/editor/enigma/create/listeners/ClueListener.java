@@ -2,7 +2,7 @@ package editor.enigma.create.listeners;
 
 import api.enums.Attributes;
 import editor.enigma.Advice;
-import editor.enigma.create.EnigmaView;
+import editor.enigma.create.enigma.EnigmaView;
 
 import javax.swing.*;
 import java.awt.*;

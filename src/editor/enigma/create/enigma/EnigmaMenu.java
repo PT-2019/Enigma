@@ -79,9 +79,4 @@ public class EnigmaMenu extends EnigmaPanel {
         this.add(submit,gbc);
         this.parent = parent;
     }
-
-    @Override
-    public void update(GameObject object) {
-
-    }
 }

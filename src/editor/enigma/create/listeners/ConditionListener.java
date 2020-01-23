@@ -1,16 +1,10 @@
 package editor.enigma.create.listeners;
 
-import api.entity.Entity;
 import api.entity.GameObject;
 import api.entity.Item;
 import api.entity.types.Content;
 import api.entity.utils.Activatable;
-import api.enums.TypeEntite;
 import editor.enigma.condition.*;
-import editor.enigma.create.ConditionPanel;
-import editor.enigma.create.EnigmaView;
-import javax.swing.*;
-import java.awt.*;
 import editor.enigma.condition.Activated;
 import editor.enigma.condition.Condition;
 import editor.enigma.condition.HaveInHands;

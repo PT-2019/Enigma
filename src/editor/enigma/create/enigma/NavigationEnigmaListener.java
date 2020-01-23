@@ -1,4 +1,4 @@
-package editor.enigma.create;
+package editor.enigma.create.enigma;
 
 import api.entity.types.EnigmaContainer;
 import editor.enigma.Enigma;

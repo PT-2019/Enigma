@@ -1,6 +1,6 @@
 package editor.view.cases.panel;
 
-import editor.enigma.create.EnigmaView;
+import editor.enigma.create.enigma.EnigmaView;
 import editor.enigma.create.listeners.ListenerMenu;
 
 import javax.swing.ImageIcon;

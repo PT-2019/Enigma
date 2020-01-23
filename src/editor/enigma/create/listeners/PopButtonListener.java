@@ -1,8 +1,7 @@
 package editor.enigma.create.listeners;
 
 
-import editor.enigma.create.EnigmaView;
-import editor.enigma.create.EnigmaWindowListener;
+import editor.enigma.create.enigma.EnigmaView;
 import editor.view.cases.CasePopUp;
 import editor.view.cases.listeners.EntityChoseListener;
 import game.entity.map.MapTestScreenCell;

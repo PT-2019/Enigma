@@ -3,12 +3,9 @@ package editor.enigma.create.listeners;
 import api.entity.GameObject;
 import api.entity.Item;
 import api.entity.types.Lockable;
-import api.enums.TypeEntite;
-import editor.enigma.create.EnigmaView;
-import editor.enigma.create.OperationPanel;
+import editor.enigma.create.enigma.EnigmaView;
 import editor.enigma.operation.Give;
 import editor.enigma.operation.Operation;
-import editor.enigma.operation.Summon;
 import editor.enigma.operation.Unlock;
 
 import javax.swing.JRadioButton;

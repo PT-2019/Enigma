@@ -1,6 +1,7 @@
 package editor.enigma.create.enigma;
 
 import api.entity.GameObject;
+import api.utils.Observer;
 import editor.enigma.create.listeners.OperationListener;
 import editor.view.cases.panel.MenuPanel;
 
@@ -17,7 +18,7 @@ import java.awt.Insets;
 /**
  * Interface graphique de la création des opérations
  */
-public class OperationPanel extends EnigmaPanel {
+public class OperationPanel extends EnigmaPanel implements Observer {
 
 	/**
 	 * Groupes de bouton
