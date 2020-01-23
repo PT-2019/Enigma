@@ -9,9 +9,26 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import editor.entity.EntitySerializable;
 
+/**
+ * Représentation d'une map
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ *
+ * @version 4.0
+ * @since 3.0
+ */
 public abstract class AbstractMap extends Group {
 
+	/**
+	 * Le seul constructeur possible d'une map, ne fait rien
+	 * @param path chemin d'une map
+	 * @param unitScale taux de distortion
+	 */
 	AbstractMap(String path, float unitScale) {
+		//do nothing
 	}
 
 	/**
@@ -24,9 +41,12 @@ public abstract class AbstractMap extends Group {
 	 * @param map  la map
 	 * @return la case (indices) dans la map depuis une positon x,y dans l'espace.
 	 * @since 3.0 14 décembre 2019
+	 *
+	 *
+	 * VERSION SWING TO LIBGDX
 	 */
 	@SuppressWarnings("WeakerAccess")
-	public static Vector2 posToIndex(float posX, float posY, final AbstractMap map) {
+	public static Vector2 swingPosToIndex(float posX, float posY, final AbstractMap map) {
 		Vector2 index = new Vector2();
 
 		posX /= map.getUnitScale();
@@ -41,50 +61,49 @@ public abstract class AbstractMap extends Group {
 		return index;
 	}
 
-	/**
-	 * Charge une entité sur la map a un position si elle est sur la map
-	 *
-	 * @param entity l'entité à charger
-	 * @param pos    la position o&#249; charger
-	 * @return true si l'entité a étée chargée
-	 * @since 3.0
-	 */
-	public abstract boolean loadEntity(EntitySerializable entity, Vector2 pos);
-
-	/**
-	 * Définit les bounds de la map
-	 *
-	 * @since 3.0
-	 */
-	protected abstract void setMapBounds();
-
 	protected abstract Bounds getMapBounds();
 
 	protected abstract Rectangle getMapSize();
 
-	public abstract void showGrid(boolean b);
-
-	public abstract float getMapHeight();
-
-	public abstract float getMapWidth();
-
-	public abstract float getUnitScale();
-
-	public abstract int getTileWidth();
-
-	public abstract int getTileHeight();
-
-	public abstract OrthographicCamera getCamera();
-
-	public abstract TiledMap getTiledMap();
+	/**
+	 * Affiche la grille de la map
+	 * @param show affiche la grille de la map
+	 */
+	public abstract void showGrid(boolean show);
 
 	/**
-	 * Met a jour les bounds de la map selon zoom
-	 *
-	 * @param zoom de combien le zoom est augmenté ou diminué
-	 * @since 3.0
-	 * @deprecated since 4.0
+	 * Renvoi la hauteur de la map
+	 * @return la hauteur de la map
 	 */
-	@Deprecated
-	protected abstract void updateMapBounds(int zoom);
+	public abstract float getMapHeight();
+
+	/**
+	 * Renvoi la largeur de la map
+	 * @return la largeur de la map
+	 */
+	public abstract float getMapWidth();
+
+	/**
+	 * Retourne le taux de distorsion de la taille d'un tile
+	 * @return le taux de distorsion de la taille d'un tile
+	 */
+	public abstract float getUnitScale();
+
+	/**
+	 * Retourne la largeur d'un tile
+	 * @return la largeur d'un tile
+	 */
+	public abstract int getTileWidth();
+
+	/**
+	 * Retourne la hauteur d'un tile
+	 * @return la hauteur d'un tile
+	 */
+	public abstract int getTileHeight();
+
+	/**
+	 * Retourne la map tiled
+	 * @return la map tiled
+	 */
+	public abstract TiledMap getTiledMap();
 }

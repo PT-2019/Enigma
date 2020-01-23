@@ -1,8 +1,6 @@
 package starter.gameConfig.displayManagers.highLevel;
 
-import editor.entity.Player;
 import editor.hud.*;
-import game.GameConfiguration;
 import starter.gameConfig.LaunchGameDisplay;
 import starter.gameConfig.displayManagers.lowLevel.*;
 

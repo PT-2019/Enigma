@@ -55,10 +55,12 @@ public class TestScreen extends LibgdxScreen {
 	@Override
 	public void init() {
 		try {
+			//Colorie l'écran en blanc
 			Gdx.gl.glClearColor(255, 255, 255, 255);
 
 			boolean noMap = false;
 
+			//Regarde si on a une map
 			if (MAP_PATH == null || MAP_PATH.length() == 0)
 				noMap = true;
 
@@ -67,6 +69,7 @@ public class TestScreen extends LibgdxScreen {
 			if (!noMap) {
 				this.map = new MapTestScreen(MAP_PATH, 1f);
 				this.map.showGrid(true);
+				//ajout au stage
 				this.main.addActor(this.map);
 			}
 
@@ -89,6 +92,7 @@ public class TestScreen extends LibgdxScreen {
 			}
 
 			//écoute inputProcessors
+			//leurs listeners seront appelés...
 			this.listen(this.dnd);
 			this.listen(this.hud);
 			this.listen(this.main);
