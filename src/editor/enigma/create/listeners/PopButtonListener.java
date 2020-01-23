@@ -1,9 +1,10 @@
 package editor.enigma.create.listeners;
 
 
-import editor.enigma.create.enigma.EnigmaView;
-import editor.enigma.create.enigma.EnigmaWindowListener;
+import editor.enigma.create.EnigmaView;
+import editor.enigma.create.EnigmaWindowListener;
 import editor.view.cases.CasePopUp;
+import editor.view.cases.listeners.EntityChoseListener;
 import game.entity.map.MapTestScreenCell;
 
 import java.awt.event.ActionEvent;
@@ -21,16 +22,19 @@ public class PopButtonListener implements ActionListener {
 
 	private MapTestScreenCell cell;
 
-	public PopButtonListener(CasePopUp frame, MapTestScreenCell cell) {
-		this.frame = frame;
-		this.cell = cell;
-	}
+    private EntityChoseListener observer;
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		frame.setVisible(false);
-		EnigmaView enigmaView = new EnigmaView(frame, cell);
-		enigmaView.setVisible(true);
-		enigmaView.addWindowListener(new EnigmaWindowListener(frame));
-	}
+    public PopButtonListener(CasePopUp frame, MapTestScreenCell cell, EntityChoseListener observer){
+        this.frame = frame;
+        this.cell = cell;
+        this.observer = observer;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        frame.setVisible(false);
+        EnigmaView enigmaView = new EnigmaView(frame,cell,observer);
+        enigmaView.setVisible(true);
+        enigmaView.addWindowListener(new EnigmaWindowListener(frame));
+    }
 }

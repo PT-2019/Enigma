@@ -11,6 +11,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import editor.enigma.Enigma;
 import editor.enigma.create.listeners.PopButtonListener;
 import editor.view.cases.listeners.CaseDelete;
+import editor.view.cases.listeners.EntityChoseListener;
 import editor.view.cases.panel.NavigationPanel;
 import editor.view.listeners.PopItemListener;
 import game.entity.map.MapTestScreenCell;
@@ -44,17 +45,11 @@ public class CasePopUp extends AbstractPopUp {
 
 	private Checkbox walkable = new Checkbox("Case bloquante");
 
-	/**
-	 * L'entité actuelle choisi par l'utilisateur
-	 */
-	private GameObject enigmaCurrent;
-
-	/**
-	 * Affiche la gestion de contenu pour les entités. //TODO ce fameux menu de gestion
-	 *
-	 * @see api.entity.types.Content
-	 */
-	private JButton contentButton = new JButton("Dialogue de l'objet");
+    /**
+     * Affiche la gestion de contenu pour les entités. //TODO ce fameux menu de gestion
+     * @see api.entity.types.Content
+     */
+    private JButton contentButton = new JButton("Dialogue de l'objet");
 
 	/**
 	 * Affiche la gestion de dialogue //TODO ce fameux menu de gestion de dialogue
@@ -69,17 +64,20 @@ public class CasePopUp extends AbstractPopUp {
 
 	private JComponent component;
 
-	public CasePopUp(JComponent component, TiledMap tiledMap) {
-		super((JFrame) component.getRootPane().getParent(), "", false);
-		this.component = component;
-		this.setSize(400, 200);
-		this.setLocation(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
-		this.setResizable(false);
-		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		this.tileMap = tiledMap;
-		this.setLayout(new GridLayout(2, 1));
-		this.initComponent();
-	}
+    private EntityChoseListener observer;
+
+    public CasePopUp(JComponent component, TiledMap tiledMap){
+        super((JFrame)component.getRootPane().getParent(),"",false);
+        this.component = component;
+        this.observer = new EntityChoseListener();
+        this.setSize(400,200);
+        this.setLocation(Gdx.graphics.getWidth()/2,Gdx.graphics.getHeight()/2);
+        this.setResizable(false);
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        this.tileMap = tiledMap;
+        this.setLayout(new GridLayout(2,1));
+        this.initComponent();
+    }
 
 	private void initComponent() {
 		navigation = new NavigationPanel(this);
@@ -165,23 +163,23 @@ public class CasePopUp extends AbstractPopUp {
 		walkable.addItemListener(new PopItemListener(tileMap, cell));
 		extra.add(del);
 
-		if (iscontent) {
-			extra.add(contentButton);
-		}
-		if (isEntity) {
-			extra.add(entityButton);
-		}
-		if (isenigma) {
-			extra.add(eng);
-			eng.addActionListener(new PopButtonListener(this, cell));
-		}
-		if (isPassage) {
-			//TODO un listener pour ces 2 composants
-			passage.add(hideLeft);
-			passage.add(hideRigth);
-			extra.add(passage);
-		}
-		del.addActionListener(new CaseDelete(cell, layer, navigation.getInfo()));
+        if (iscontent){
+            extra.add(contentButton);
+        }
+        if (isEntity){
+            extra.add(entityButton);
+        }
+        if (isenigma){
+            extra.add(eng);
+            eng.addActionListener(new PopButtonListener(this,cell,observer));
+        }
+        if (isPassage){
+            //TODO un listener pour ces 2 composants
+            passage.add(hideLeft);
+            passage.add(hideRigth);
+            extra.add(passage);
+        }
+        del.addActionListener(new CaseDelete(cell,layer,navigation.getInfo()));
 
 		this.add(navigation);
 		this.add(extra);
@@ -217,11 +215,7 @@ public class CasePopUp extends AbstractPopUp {
 		return this.component;
 	}
 
-	public GameObject getEnigmaCurrent() {
-		return enigmaCurrent;
-	}
-
-	public void setEnigmaCurrent(GameObject enigmaCurrent) {
-		this.enigmaCurrent = enigmaCurrent;
-	}
+    public EntityChoseListener getObserver() {
+        return observer;
+    }
 }
