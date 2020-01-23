@@ -44,7 +44,6 @@ public class ConditionListener implements ActionListener, ItemListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        EnumMap<TypeEntite,Boolean> map = object.getImplements();
         Condition cond = null;
 
         if(currentButton == null){

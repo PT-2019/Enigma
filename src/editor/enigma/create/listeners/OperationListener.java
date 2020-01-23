@@ -38,7 +38,6 @@ public class OperationListener implements ActionListener, ItemListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        EnumMap<TypeEntite,Boolean> map = object.getImplements();
         Operation ope = null;
 
         if(currentButton == null){
@@ -47,27 +46,13 @@ public class OperationListener implements ActionListener, ItemListener {
         }
 
         if(currentButton.getText().equals("Give")){
-            if(map.get(TypeEntite.item)){
-                Class c = object.getClass();
-                try {
-                    Item tmp =(Item) c.newInstance();
-                    ope = new Give(tmp);
-                } catch (InstantiationException | IllegalAccessException ex) {
-                    ex.printStackTrace();
-                }
-            }
+            if(object instanceof Item)
+            ope = new Give((Item)object);
         }else if(currentButton.getText().equals("Summon")){
             System.out.println("pas implémenter");
         }else if(currentButton.getText().equals("Unlock")){
-            if(map.get(TypeEntite.lockable)){
-                Class c = object.getClass();
-                try {
-                    Lockable tmp =(Lockable) c.newInstance();
-                    ope = new Unlock(tmp);
-                } catch (InstantiationException | IllegalAccessException ex) {
-                    ex.printStackTrace();
-                }
-            }
+            if (object instanceof Lockable)
+            ope = new Unlock((Lockable)object);
         }
 
         parent.getEnigma().addOperation(ope);
