@@ -53,39 +53,19 @@ public class ConditionListener implements ActionListener, ItemListener {
         }
         //en fonction du bouton radio actionné on choisi différente opération
         if(currentButton.getText().equals("Activé")){
-            if(map.get(TypeEntite.activatable)){
-                Class c = object.getClass();
-                try {
-                    Activatable tmp =(Activatable) c.newInstance();
-                    cond = new Activated(tmp);
-                } catch (InstantiationException | IllegalAccessException ex) {
-                    ex.printStackTrace();
-                }
-            }
+            if(object instanceof Activatable)
+                cond = new Activated((Activatable)object);
+
         }else if(currentButton.getText().equals("Réponse")){
-            Class c = object.getClass();
-            try {
-                Content tmp =(Content) c.newInstance();
-                cond = new Answer((Entity) tmp,"string");
-            } catch (InstantiationException | IllegalAccessException ex) {
-                ex.printStackTrace();
-            }
+            if (object instanceof Content)
+                cond = new Answer((Content)object);
+
         }else if(currentButton.getText().equals("Posseder dans la main")){
-            Class c = object.getClass();
-            try {
-                Item tmp =(Item) c.newInstance();
-                cond = new HaveInHands(tmp);
-            } catch (InstantiationException | IllegalAccessException ex) {
-                ex.printStackTrace();
-            }
+            if (object instanceof Item)
+            cond = new HaveInHands((Item)object);
         }else{
-            Class c = object.getClass();
-            try {
-                Item tmp =(Item) c.newInstance();
-                cond = new HaveInInventory(tmp);
-            } catch (InstantiationException | IllegalAccessException ex) {
-                ex.printStackTrace();
-            }
+            if (object instanceof Item)
+            cond = new HaveInInventory((Item)object);
         }
 
         if (cond == null){

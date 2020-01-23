@@ -18,13 +18,10 @@ import java.util.Map;
  * @see editor.enigma.condition.Condition
  * @since 2.0
  */
-public class Answer extends Condition implements Content {
+public class Answer extends Condition {
 
-	private String content;
-
-	public Answer(Entity ent,String content) {
-		super(ent);
-		this.content = content;
+	public Answer(Content ent) {
+		super((Entity)ent);
 	}
 
 	/**
@@ -67,13 +64,7 @@ public class Answer extends Condition implements Content {
 		return "[Answer]";
 	}
 
-	@Override
-	public void addContent(String content) {
-		this.content = content;
-	}
-
-	@Override
 	public String getContent() {
-		return content;
+		return ((Content) entity).getContent();
 	}
 }
