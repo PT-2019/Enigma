@@ -8,7 +8,7 @@ import editor.utils.lang.Language;
  * Fichier des configurations de l'application
  *
  * @author Quentin RAMSAMY-AGEORGES
- * @version 5.0
+ * @version 5.1
  * @since 4.0
  */
 public final class Config {
@@ -20,6 +20,12 @@ public final class Config {
 	 * @see #MAP_FOLDER_SAV
 	 */
 	public static final String MAP_FOLDER = "assets/files/map/";
+
+	/**
+	 * Le chemin pour trouver le fichier DTD depuis {@link #MAP_FOLDER}
+	 * @since 5.1
+	 */
+	public static final String DTD_FOLDER_RELATIVE_TO_MAP = "../../assets/map/mapDtd.dtd";
 
 	/**
 	 * Le chemin relatif des fichiers sauvegardés avec les ressources

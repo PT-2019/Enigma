@@ -1,12 +1,15 @@
 package game.entity.map;
 
 import api.entity.GameObject;
+import api.entity.types.NeedContainer;
 import api.enums.AnsiiColor;
 import api.enums.EntitiesCategories;
 import api.enums.Layer;
+import api.enums.TmxProperties;
 import api.hud.components.CustomWindow;
 import api.utils.Bounds;
 import api.utils.PrintColor;
+import api.utils.SortEntitiesPropertiesById;
 import api.utils.Utility;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
@@ -38,7 +41,9 @@ import starter.EditorLauncher;
 import javax.swing.JComponent;
 import java.awt.Container;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
 
 import static api.MapsNameUtils.HEIGHT_P;
 import static api.MapsNameUtils.TILE_HEIGHT_P;
@@ -153,21 +158,35 @@ public class MapTestScreen extends AbstractMap {
 	}
 
 	private void initEntities() {
-		ArrayList<MapProperties> entities = getProperty("entity");
+		ArrayList<MapProperties> entities = getProperty(TmxProperties.TMX_PROP_ENTITY);
 		float x, y;
-		int width, height;
+		Integer width, height, id;
 		String className;
 		EntitySerializable e;
 		for (MapProperties prop : entities) {
-			width = Math.round(prop.get("width", Float.class));
-			height = Math.round(prop.get("height", Float.class));
-			className = prop.get("className", String.class);
-			x = prop.get("x", Float.class);
-			//obligé de faire ce truc sale y2 car y renvoi truc bizarres y=789 renvoi y=0...
-			y = Float.parseFloat(prop.get("y2", String.class));
+			//PROPRIETES
+			width = Math.round(prop.get(TmxProperties.TMX_WIDTH, Float.class));
+			height = Math.round(prop.get(TmxProperties.TMX_HEIGHT, Float.class));
+			className = prop.get(TmxProperties.TMX_PROP_ENTITY_CLASS, String.class);
+			x = prop.get(TmxProperties.TMX_X, Float.class);
+			y = Float.parseFloat(prop.get(TmxProperties.TMX_Y, String.class));
+			id = prop.get(TmxProperties.TMX_ID, Integer.class);
+			if(id == null) id = 0;
 			Vector2 start = new Vector2(x, y);
-			e = new EntitySerializable(width, height, className);
-			GameObject object = EntityFactory.createEntity(e, this.added.size(), start);
+			//TILES
+			HashMap<String, Array<Float>> tiles = new HashMap<>();
+			for (Layer layer:Layer.values()) {
+				String sizeS = prop.get(layer.toString(), String.class);
+				if(sizeS == null || sizeS.length()==0) continue;
+				int size = Integer.parseInt(sizeS);
+				Array<Float> tile = new Array<>();
+				for (int i = 0; i < size; i++) {
+					tile.add(0f);
+				}
+				tiles.put(layer.toString(), tile);
+			}
+			e = new EntitySerializable(width, height, className, tiles);
+			GameObject object = EntityFactory.createEntity(e, id, start);
 
 			Utility.printDebug("MapTestScreen#initEntities", object + " " + start);
 
@@ -187,6 +206,8 @@ public class MapTestScreen extends AbstractMap {
 	 * @since 4.0
 	 */
 	private void setFromSave(GameObject entity, Vector2 start) {
+		boolean noForce =  (entity instanceof api.entity.types.Container);
+
 		//on parcours toutes les niveaux de la map et on y ajoute les tiles de l'entité
 		for (MapLayer mapLayer : this.map.getMap().getLayers()) {
 			//c'est un layer de tiles ?
@@ -194,13 +215,20 @@ public class MapTestScreen extends AbstractMap {
 
 			TiledMapTileLayer tileLayer = (TiledMapTileLayer) mapLayer;
 
+			//récupère les tiles de l'entités pour ce niveau
+			Array<Float> entities = entity.getTiles(Utility.stringToEnum(tileLayer.getName(), Layer.values()));
+
+			//si pas de tiles a mettre sur ce layer, on passe au suivant
+			if (entities == null) continue;
+
 			//calcul pour placer les tiles depuis x et y
 			//sachant que y est inversé, on part de la dernière tile et on remonte
 			//pas de problème pour x
 			for (int i = (int) start.y - 1, index = 0; i >= (start.y - entity.getGameObjectHeight()); i--) {
-				for (int j = (int) start.x; j < start.x + entity.getGameObjectWidth(); j++, index++) {
+				for (int j = (int) start.x; j < start.x + entity.getGameObjectWidth() && index < entities.size; j++, index++) {
 					MapTestScreenCell c = (MapTestScreenCell) tileLayer.getCell(j, i);
 					if (c == null) continue;
+					if(noForce && c.getEntity() instanceof NeedContainer) continue;
 					c.setEntity(entity);
 					tileLayer.setCell(j, i, c);
 				}
@@ -317,6 +345,23 @@ public class MapTestScreen extends AbstractMap {
 	}
 
 	/**
+	 * Supprime une entité de la map
+	 *
+	 * @param entity l'entité
+	 * @return true si entité supprimée sinon false
+	 * @since 5.0
+	 */
+	public boolean removeEntity(GameObject entity) {
+		if (this.added.containsValue(entity)) {//peut la supprimer
+			Vector2 pos = (Vector2) Utility.getKeyFromValue(this.added, entity);
+			this.added.remove(pos);
+			delete(entity, pos);
+			return true;
+		}
+		return false;
+	}
+
+	/**
 	 * Place une entité
 	 *
 	 * @param entity l'entité à charger
@@ -324,40 +369,80 @@ public class MapTestScreen extends AbstractMap {
 	 * @since 4.0
 	 */
 	private void delete(GameObject entity, Vector2 start) {
-		//on parcours toutes les niveaux de la map et on y ajoute les tiles de l'entité
-		for (MapLayer mapLayer : this.map.getMap().getLayers()) {
-			//c'est un layer de tiles ?
-			if (!(mapLayer instanceof TiledMapTileLayer)) continue;
+		GameObject parent =  this.getParentObject(start, entity);
 
-			TiledMapTileLayer tileLayer = (TiledMapTileLayer) mapLayer;
+		//TODO: opti
 
-			//récupère les tiles de l'entités pour ce niveau
-			Array<Float> entities = entity.getTiles(Utility.stringToEnum(tileLayer.getName(), Layer.values()));
+		if(parent == null){
+			//on parcours toutes les niveaux de la map et on y ajoute les tiles de l'entité
+			for (MapLayer mapLayer : this.map.getMap().getLayers()) {
+				//c'est un layer de tiles ?
+				if (!(mapLayer instanceof TiledMapTileLayer)) continue;
 
-			//si pas de tiles a mettre sur ce layer, on passe au suivant
-			if (entities == null) {
-				//TODO: fix car entités sav n'ont pas de tiles, comment les supprimer ?
+				TiledMapTileLayer tileLayer = (TiledMapTileLayer) mapLayer;
+
+				//récupère les tiles de l'entités pour ce niveau
+				Array<Float> ent = entity.getTiles(Utility.stringToEnum(tileLayer.getName(), Layer.values()));
+
+				//si pas de tiles a mettre sur ce layer, on passe au suivant
+				if (ent == null) continue;
+
+				//calcul pour placer les tiles depuis x et y
+				//sachant que y est inversé, on part de la dernière tile et on remonte
+				//pas de problème pour x
 				for (int i = (int) start.y - 1, index = 0; i >= (start.y - entity.getGameObjectHeight()); i--) {
-					for (int j = (int) start.x; j < start.x + entity.getGameObjectWidth(); j++, index++) {
+					for (int j = (int) start.x; j < start.x + entity.getGameObjectWidth() && index < ent.size; j++, index++) {
 						MapTestScreenCell c = (MapTestScreenCell) tileLayer.getCell(j, i);
 						c.setTile(this.map.getMap().getTileSets().getTile(0));
 						tileLayer.setCell(j, i, c);
 					}
 				}
-				continue;
 			}
+		} else {
+			//on parcours toutes les niveaux de la map et on y ajoute les tiles de l'entité
+			for (MapLayer mapLayer : this.map.getMap().getLayers()) {
+				//c'est un layer de tiles ?
+				if (!(mapLayer instanceof TiledMapTileLayer)) continue;
 
-			//calcul pour placer les tiles depuis x et y
-			//sachant que y est inversé, on part de la dernière tile et on remonte
-			//pas de problème pour x
-			for (int i = (int) start.y - 1, index = 0; i >= (start.y - entity.getGameObjectHeight()); i--) {
-				for (int j = (int) start.x; j < start.x + entity.getGameObjectWidth() && index < entities.size; j++, index++) {
-					MapTestScreenCell c = (MapTestScreenCell) tileLayer.getCell(j, i);
-					c.setTile(this.map.getMap().getTileSets().getTile(0));
-					tileLayer.setCell(j, i, c);
+				TiledMapTileLayer tileLayer = (TiledMapTileLayer) mapLayer;
+
+				//récupère les tiles de l'entités pour ce niveau
+				Array<Float> ent = entity.getTiles(Utility.stringToEnum(tileLayer.getName(), Layer.values()));
+				Array<Float> entities = parent.getTiles(Utility.stringToEnum(tileLayer.getName(), Layer.values()));
+
+				//si pas de tiles a mettre sur ce layer, on passe au suivant
+				if (ent == null) continue;
+
+				//calcul pour placer les tiles depuis x et y
+				//sachant que y est inversé, on part de la dernière tile et on remonte
+				//pas de problème pour x
+				for (int i = (int) start.y - 1, index = 0; i >= (start.y - entity.getGameObjectHeight()); i--) {
+					for (int j = (int) start.x; j < start.x + entity.getGameObjectWidth() && index < ent.size; j++, index++) {
+						MapTestScreenCell c = (MapTestScreenCell) tileLayer.getCell(j, i);
+						int ind = 0;
+						c.setEntity(null);
+						if(index < entities.size) {
+							ind = MathUtils.ceil(entities.get(index));
+							c.setEntity(parent);
+						}
+						c.setTile(this.map.getMap().getTileSets().getTile(ind));
+						tileLayer.setCell(j, i, c);
+					}
 				}
 			}
 		}
+	}
+
+	private GameObject getParentObject(Vector2 start, GameObject entity) {
+		Rectangle ent = new Rectangle(start.x, start.y, entity.getGameObjectWidth(), entity.getGameObjectHeight());
+		for (Map.Entry<Vector2, GameObject> item :getEntities().entrySet()) {
+			Rectangle other = new Rectangle(item.getKey().x, item.getKey().y, item.getValue().getGameObjectWidth(), item.getValue().getGameObjectHeight());
+			if (ent.overlaps(other)){
+				Utility.printDebug("DeleteGetParent", item.toString());
+				return item.getValue();
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -426,23 +511,6 @@ public class MapTestScreen extends AbstractMap {
 
 		//update borders
 		this.border.setProjectionMatrix(this.camera.combined);
-	}
-
-	/**
-	 * Supprime une entité de la map
-	 *
-	 * @param entity l'entité
-	 * @return true si entité supprimée sinon false
-	 * @since 5.0
-	 */
-	public boolean removeEntity(GameObject entity) {
-		if (added.containsValue(entity)) {//peut la supprimer
-			Vector2 pos = (Vector2) Utility.getKeyFromValue(added, entity);
-			added.remove(pos);
-			delete(entity, pos);
-			return true;
-		}
-		return false;
 	}
 
 	/**

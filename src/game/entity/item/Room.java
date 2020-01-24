@@ -1,6 +1,7 @@
 package game.entity.item;
 
 import api.entity.AbstractGameObject;
+import api.entity.types.Container;
 import api.enums.TypeEntite;
 import editor.utils.lang.GameLanguage;
 import editor.utils.lang.fields.GameFields;
@@ -17,7 +18,7 @@ import java.util.EnumMap;
  * @version 4.0 24/12/2019
  * @since 4.0 24/12/2019
  */
-public class Room extends AbstractGameObject {
+public class Room extends AbstractGameObject implements Container {
 
 	/**
 	 * Crée une pièce

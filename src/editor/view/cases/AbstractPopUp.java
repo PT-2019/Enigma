@@ -1,7 +1,9 @@
 package editor.view.cases;
 
+import api.utils.Utility;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import game.entity.map.MapTestScreenCell;
+import starter.EditorLauncher;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -19,7 +21,7 @@ public abstract class AbstractPopUp extends JDialog {
 	protected TiledMap tileMap;
 
 	public AbstractPopUp(JFrame frame, String title, boolean modal) {
-		super(frame, title, modal);
+		super(frame, title, modal, Utility.getMonitorOf(EditorLauncher.getInstance().getWindow()));
 	}
 
 	public MapTestScreenCell getCell() {

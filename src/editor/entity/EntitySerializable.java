@@ -61,10 +61,11 @@ public class EntitySerializable {
 	 * @param className chemin classe entité
 	 * @since 5.0
 	 */
-	public EntitySerializable(int width, int height, String className) {
+	public EntitySerializable(int width, int height, String className, HashMap<String, Array<Float>> tiles) {
 		this.width = width;
 		this.height = height;
 		this.className = className;
+		this.tiles = tiles;
 	}
 
 	/**

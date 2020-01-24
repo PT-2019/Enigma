@@ -1,5 +1,6 @@
 package api.entity;
 
+import api.entity.types.NeedContainer;
 import api.utils.annotations.ConvenienceClass;
 import editor.enigma.Enigma;
 import editor.entity.Player;
@@ -22,7 +23,7 @@ import java.util.Iterator;
  * @since 4.0 24/12/2019
  */
 @ConvenienceClass
-public abstract class AbstractItem extends AbstractGameObject implements Item {
+public abstract class AbstractItem extends AbstractGameObject implements Item, NeedContainer {
 
 	/**
 	 * Enigmes données à l'objet

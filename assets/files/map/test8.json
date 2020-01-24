@@ -1,0 +1,51 @@
+{
+     "Enigmas": [
+          {
+               "editor.enigma.Enigma": [
+                    {
+                         "operations": [
+                              {
+                                   "editor.enigma.operation.Unlock": [
+                                        {
+                                             "entities": "5"
+                                        }
+                                   ]
+                              },
+
+                              {
+                                   "editor.enigma.operation.Unlock": [
+                                        {
+                                             "entities": "4"
+                                        }
+                                   ]
+                              }
+                         ],
+                         "known": "false",
+                         "currentAdviceIndex": "0",
+                         "description": "fcefe",
+                         "advices": [
+                              {
+                                   "editor.enigma.Advice": [
+                                        {
+                                             "delay": "2",
+                                             "advice": "test"
+                                        }
+                                   ]
+                              }
+                         ],
+                         "id": "5",
+                         "title": "popa",
+                         "conditions": [
+                              {
+                                   "editor.enigma.condition.Activated": [
+                                        {
+                                             "entities": "8"
+                                        }
+                                   ]
+                              }
+                         ]
+                    }
+               ]
+          }
+     ]
+}

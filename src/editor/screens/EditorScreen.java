@@ -155,7 +155,9 @@ public class EditorScreen extends JPanel {
 			outilBar.add(a);
 			if (o.glue) {
 				EnigmaButton sep = new EnigmaButton();
-				sep.setUI(ui);
+				EnigmaButtonUI ui2 = (EnigmaButtonUI) ui.duplicate();
+				ui2.setAllShowedBorders(EnigmaUIValues.ALL_BORDER_HIDDEN, EnigmaUIValues.ALL_BORDER_HIDDEN, EnigmaUIValues.ALL_BORDER_HIDDEN);
+				sep.setUI(ui2);
 				sep.setIcon(Outil.SEPARATOR);
 				outilBar.add(sep);
 			}

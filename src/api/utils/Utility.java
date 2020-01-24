@@ -9,9 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Array;
 import editor.hud.EnigmaWindow;
 
-import java.awt.GraphicsConfiguration;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -282,7 +280,7 @@ public class Utility implements Serializable {
 	 * @throws IllegalArgumentException si moniteur pas trouvé
 	 * @since 5.1
 	 */
-	public static GraphicsConfiguration getMonitorOf(EnigmaWindow window) {
+	public static GraphicsConfiguration getMonitorOf(Window window) {
 		GraphicsDevice monitor = window.getGraphicsConfiguration().getDevice();
 		GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		GraphicsDevice[] monitors = env.getScreenDevices();
