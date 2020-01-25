@@ -1,9 +1,12 @@
 package game.screen;
 
 import api.LibgdxScreen;
+import api.entity.actor.GameActorAnimation;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import editor.entity.Player;
 import game.EnigmaGame;
+import game.entity.PlayerGame;
 
 public class GameScreen extends LibgdxScreen {
 	/**
@@ -15,6 +18,11 @@ public class GameScreen extends LibgdxScreen {
 	 */
 	private Stage hud;
 
+	/**
+	 * Joueur
+	 */
+	private PlayerGame player;
+
 
 	@Override
 	public void init() {
@@ -22,9 +30,11 @@ public class GameScreen extends LibgdxScreen {
 		this.hud = new Stage();
 
 		//compléter ici
+		player = new PlayerGame();
 
 		//écoute des inputProcessor et des listeners
 		this.listen(this.hud);
+		this.listen(player);
 		this.listen(this.main);
 	}
 
@@ -42,12 +52,14 @@ public class GameScreen extends LibgdxScreen {
 	@Override
 	public void update(float dt) {
 		this.hud.act(dt);
+		this.player.act(dt);
 		this.main.act(dt);
 	}
 
 	@Override
 	public void render() {
 		this.main.draw();
+
 		this.hud.draw();
 	}
 
@@ -74,6 +86,4 @@ public class GameScreen extends LibgdxScreen {
 	public void display(boolean display) {
 
 	}
-
-
 }
