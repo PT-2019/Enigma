@@ -2,11 +2,13 @@ package game.screen;
 
 import api.LibgdxScreen;
 import api.entity.actor.GameActorAnimation;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import editor.entity.Player;
 import game.EnigmaGame;
 import game.entity.PlayerGame;
+import game.entity.map.MapGame;
 
 public class GameScreen extends LibgdxScreen {
 	/**
@@ -30,7 +32,8 @@ public class GameScreen extends LibgdxScreen {
 		this.hud = new Stage();
 
 		//compléter ici
-		player = new PlayerGame();
+		player = new PlayerGame(new MapGame("",45));
+		main.addActor(player);
 
 		//écoute des inputProcessor et des listeners
 		this.listen(this.hud);

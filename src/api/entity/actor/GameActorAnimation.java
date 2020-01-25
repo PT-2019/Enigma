@@ -1,10 +1,12 @@
 package api.entity.actor;
 
+import api.enums.Direction;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
+import editor.enigma.condition.Answer;
 
 /**
  * Crée un acteur avec une animation
@@ -35,6 +37,8 @@ public class GameActorAnimation extends GameActor {
 	 */
 	private Animation<TextureRegion> animation;
 
+	private Direction facedDirection;
+
 	/**
 	 * Creates an Actor witch is able to have
 	 * an animation and move
@@ -58,7 +62,7 @@ public class GameActorAnimation extends GameActor {
 	 */
 	protected void setAnimation(String texture, int nbCol, int nbRow, float timePerFrame,
 	                            int colPerImage, int rowPerImage, int index) {
-		int row = index / (nbCol / colPerImage), col = index % (nbCol / colPerImage);
+		int row = index / (rowPerImage /nbRow ), col = index % (colPerImage / nbCol);
 		row *= rowPerImage;
 		col *= colPerImage;
 
@@ -75,6 +79,7 @@ public class GameActorAnimation extends GameActor {
 
 		for (int i = row; i < row + rowPerImage; i++) {
 			for (int j = col; j < col + colPerImage; j++) {
+
 				listeAnim.add(regions[i][j]);
 			}
 		}
@@ -103,6 +108,35 @@ public class GameActorAnimation extends GameActor {
 	public void act(float delta) {
 		super.act(delta);
 
+
+		if (this.facedDirection == Direction.LEFT){
+			if (this.getKeyFrameIndex() > 4){
+				this.setKeyFrame(4);
+				this.setAnimationPaused(true);
+			}
+		}
+
+		if (this.facedDirection == Direction.RIGHT){
+			if (this.getKeyFrameIndex() > 7){
+				this.setKeyFrame(7);
+				this.setAnimationPaused(true);
+			}
+		}
+
+		if (this.facedDirection == Direction.FRONT){
+			if (this.getKeyFrameIndex() > 1){
+				this.setKeyFrame(1);
+				this.setAnimationPaused(true);
+			}
+		}
+
+		if(this.facedDirection == Direction.BACK){
+			if ( this.getKeyFrameIndex() > 10){
+				this.setKeyFrame(10);
+				this.setAnimationPaused(true);
+			}
+		}
+
 		if (!isAnimationPaused()) {//stop avancement delta
 			this.animationElapsedTime += delta;
 		}
@@ -110,6 +144,7 @@ public class GameActorAnimation extends GameActor {
 
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
+
 		//render actor
 		if (isVisible() && this.animation != null) {
 			//trouve automatique l'animation a dessiner
@@ -125,7 +160,7 @@ public class GameActorAnimation extends GameActor {
 	 *
 	 * @param index commence à zéro, sous-image dans la sous-image de la texture-atlas
 	 */
-	private void setKeyFrame(int index) {
+	protected void setKeyFrame(int index) {
 		if (index < 0) throw new IllegalArgumentException("Index must be positive!");
 		int count = (int) (this.animation.getAnimationDuration() / this.animation.getFrameDuration());
 		if (index >= count)
@@ -138,7 +173,7 @@ public class GameActorAnimation extends GameActor {
 	 *
 	 * @return index commence à zéro, sous-image dans la sous-image de la texture-atlas
 	 */
-	private int getKeyFrameIndex() {
+	protected int getKeyFrameIndex() {
 		float elapsed = this.animationElapsedTime;
 		float duration = this.animation.getFrameDuration();
 		int index = 0;
@@ -146,6 +181,7 @@ public class GameActorAnimation extends GameActor {
 			elapsed -= duration;
 			index++;
 		}
+
 		return index;
 	}
 
@@ -155,5 +191,9 @@ public class GameActorAnimation extends GameActor {
 
 	protected void setAnimationPaused(boolean pause) {
 		this.animationPaused = pause;
+	}
+
+	public void setFacedDirection(Direction facedDirection) {
+		this.facedDirection = facedDirection;
 	}
 }
