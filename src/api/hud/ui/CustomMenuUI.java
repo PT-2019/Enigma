@@ -21,8 +21,6 @@ import java.lang.reflect.InvocationTargetException;
 
 /**
  * Style d'un menu customizable
- * TODO: finir les commentaires, j'ai la f . l . e . m . m . e
- * (pas les override)
  *
  * @author Jorys-Micke ALAÏS
  * @author Louka DOZ
@@ -154,39 +152,88 @@ public class CustomMenuUI extends BasicMenuUI implements CustomUI<CustomMenuUI>,
 		this.hoveredBackground = hoveredBackground;
 	}
 
+	/**
+	 * Retourne fond (premier plan) survol
+	 * @return fond (premier plan) survol
+	 */
 	public Color getHoveredForeground() {
 		return hoveredForeground;
 	}
 
+	/**
+	 * Définit fond (premier plan) survol
+	 * @param hoveredForeground fond (premier plan) survol
+	 */
 	public void setHoveredForeground(Color hoveredForeground) {
 		if (hoveredForeground == null) throw new NullPointerException("L'argument ne peut pas être null");
 		this.hoveredForeground = hoveredForeground;
 	}
 
+	/**
+	 * Retourne fond popup du menu
+	 * @return fond popup du menu
+	 */
 	public Color getPopupBackground() {
 		return popupBackground;
 	}
 
+	/**
+	 * Définit fond popup du menu
+	 * @param popupBackground fond popup du menu
+	 */
 	public void setPopupBackground(Color popupBackground) {
 		this.popupBackground = popupBackground;
 	}
 
+	/**
+	 * Retourne taille popup du menu
+	 * @return taille popup du menu
+	 */
 	public int getPopupBorderSize() {
 		return popupBorderSize;
 	}
 
+	/**
+	 * Définit taille popup du menu
+	 * @param popupBorderSize taille popup du menu
+	 */
 	public void setPopupBorderSize(int popupBorderSize) {
 		this.popupBorderSize = popupBorderSize;
 	}
 
+	/**
+	 * Retourne les bordures à afficher
+	 *
+	 * @return les bordures à afficher, tableau de 4, true pour affiché
+	 * @throws IllegalArgumentException si la taille d'un tableau est différente de 4
+	 * @see DefaultUIValues#TOP_BORDER
+	 * @see DefaultUIValues#RIGHT_BORDER
+	 * @see DefaultUIValues#LEFT_BORDER
+	 * @see DefaultUIValues#BOTTOM_BORDER
+	 */
 	public boolean[] getShowedPopupBorders() {
 		return showedPopupBorders;
 	}
 
+	/**
+	 * Définit les bordures à afficher
+	 *
+	 * @param showedPopupBorders  les bordures à afficher, tableau de 4, true pour affiché
+	 * @throws IllegalArgumentException si la taille d'un tableau est différente de 4
+	 * @see DefaultUIValues#TOP_BORDER
+	 * @see DefaultUIValues#RIGHT_BORDER
+	 * @see DefaultUIValues#LEFT_BORDER
+	 * @see DefaultUIValues#BOTTOM_BORDER
+	 */
 	public void setShowedPopupBorders(boolean[] showedPopupBorders) {
 		this.showedPopupBorders = showedPopupBorders;
 	}
 
+	/**
+	 * Définit tous les fond
+	 * @param background fond normal
+	 * @param hoveredBackground fond survol
+	 */
 	public void setAllBackgrounds(Color background, Color hoveredBackground) {
 		if (background == null || hoveredBackground == null)
 			throw new NullPointerException("Les arguments ne peuvent pas être null");
@@ -194,6 +241,11 @@ public class CustomMenuUI extends BasicMenuUI implements CustomUI<CustomMenuUI>,
 		this.hoveredBackground = hoveredBackground;
 	}
 
+	/**
+	 * Définit tous les fond (premier plan)
+	 * @param foreground fond normal
+	 * @param hoveredForeground fond survol
+	 */
 	public void setAllForegrounds(Color foreground, Color hoveredForeground) {
 		if (foreground == null || hoveredForeground == null)
 			throw new NullPointerException("Les arguments ne peuvent pas être null");

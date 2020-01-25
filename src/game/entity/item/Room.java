@@ -43,10 +43,8 @@ public class Room extends AbstractGameObject implements Container {
 
 	@Override
 	public EnumMap<TypeEntite, Boolean> getImplements() {
-		EnumMap<TypeEntite, Boolean> imp = new EnumMap<>(TypeEntite.class);
-		imp.put(TypeEntite.item, false);
-		imp.put(TypeEntite.lockable, false);
-		imp.put(TypeEntite.passage, false);
+		EnumMap<TypeEntite, Boolean> imp = TypeEntite.emptyMap();
+		imp.put(TypeEntite.ROOM, true);
 		return imp;
 	}
 

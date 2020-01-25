@@ -2,6 +2,7 @@ package api.hud.ui;
 
 import api.hud.DefaultUIValues;
 import api.hud.ui.base.CustomUIFont;
+import api.hud.ui.base.CustomUIForeground;
 import api.hud.ui.base.states.CustomUIHoverAndPressed;
 
 import javax.swing.ImageIcon;
@@ -18,8 +19,6 @@ import java.lang.reflect.InvocationTargetException;
 
 /**
  * Style d'un label de base
- * TODO: finir les commentaires, j'ai la f . l . e . m . m . e
- * (pas les override)
  *
  * @author Jorys-Micke ALAÏS
  * @author Louka DOZ
@@ -28,7 +27,7 @@ import java.lang.reflect.InvocationTargetException;
  * @version 4.0 28/12/2019
  * @since 4.0 28/12/2019
  */
-public class CustomLabelUI extends BasicLabelUI implements CustomUIHoverAndPressed<CustomLabelUI>, CustomUIFont {
+public class CustomLabelUI extends BasicLabelUI implements CustomUIHoverAndPressed<CustomLabelUI>, CustomUIFont, CustomUIForeground {
 
 	protected Color background, foreground;
 	protected Color hoveredBackground, hoveredForeground;
@@ -207,60 +206,82 @@ public class CustomLabelUI extends BasicLabelUI implements CustomUIHoverAndPress
 
 	//ses méthodes
 
-	public boolean[] getShowedBorders() {
-		return this.showedBorders;
-	}
-
-	@Override
-	public void setShowedBorders(boolean[] showedBorders) {
-		if (showedBorders.length != 4) throw new IllegalArgumentException("Le tableau doit être de 4 éléments");
-		this.showedBorders = showedBorders;
-	}
-
+	/**
+	 * Définit si appuyé
+	 * @param isPressed true si appuyé
+	 */
 	public void setIsPressed(boolean isPressed) {
 		this.pressed = isPressed;
 	}
 
+	/**
+	 * retourne si appuyé
+	 * @return true si appuyé
+	 */
 	public boolean isPressed() {
 		return pressed;
 	}
 
-	public Color getForeground() {
-		return foreground;
-	}
 
-	public void setForeground(Color foreground) {
-		if (foreground == null) throw new NullPointerException("L'argument ne peut pas être null");
-		this.foreground = foreground;
-	}
-
+	/**
+	 * Retourne fond (premier plan) survol
+	 * @return fond (premier plan) survol
+	 */
 	public Color getHoveredForeground() {
 		return hoveredForeground;
 	}
 
+	/**
+	 * Définit fond (premier plan) survol
+	 * @param hoveredForeground fond (premier plan) survol
+	 */
 	public void setHoveredForeground(Color hoveredForeground) {
 		if (hoveredForeground == null) throw new NullPointerException("L'argument ne peut pas être null");
 		this.hoveredForeground = hoveredForeground;
 	}
 
+	/**
+	 * Retourne fond (premier plan) appui
+	 * @return fond (premier plan) appui
+	 */
 	public Color getPressedForeground() {
 		return pressedForeground;
 	}
 
+	/**
+	 * Définit fond (premier plan) appui
+	 * @param pressedForeground fond (premier plan) appui
+	 */
 	public void setPressedForeground(Color pressedForeground) {
 		if (pressedForeground == null) throw new NullPointerException("L'argument ne peut pas être null");
 		this.pressedForeground = pressedForeground;
 	}
 
-
-	// implements
-
+	/**
+	 * Définit tous les fonds (premier plan)
+	 * @param foreground normal
+	 * @param hoveredForeground survol
+	 * @param pressedForeground appui
+	 */
 	public void setAllForegrounds(Color foreground, Color hoveredForeground, Color pressedForeground) {
 		if (foreground == null || hoveredForeground == null || pressedForeground == null)
 			throw new NullPointerException("Les arguments ne peuvent pas être null");
 		this.foreground = foreground;
 		this.hoveredForeground = hoveredForeground;
 		this.pressedForeground = pressedForeground;
+	}
+
+	// implements
+
+	@Override
+	public Color getForeground() {
+		return foreground;
+	}
+
+	@Override
+	public void setForeground(Color foreground) {
+		if (foreground == null) throw new NullPointerException("L'argument ne peut pas être null");
+		this.foreground = foreground;
 	}
 
 	@Override
@@ -381,6 +402,17 @@ public class CustomLabelUI extends BasicLabelUI implements CustomUIHoverAndPress
 		this.showedBorders = showedBorders;
 		this.hoveredShowedBorders = hoveredShowedBorders;
 		this.pressedShowedBorders = pressedShowedBorders;
+	}
+
+	@Override
+	public boolean[] getShowedBorders() {
+		return this.showedBorders;
+	}
+
+	@Override
+	public void setShowedBorders(boolean[] showedBorders) {
+		if (showedBorders.length != 4) throw new IllegalArgumentException("Le tableau doit être de 4 éléments");
+		this.showedBorders = showedBorders;
 	}
 
 	@Override

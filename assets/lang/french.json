@@ -42,5 +42,8 @@
     pressurePlate: Plaque de pression
     player: Héros
     library: Bibliothèque
+
+    npc: Personne
+    monster: Monstre
   }
 }

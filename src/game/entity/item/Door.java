@@ -113,11 +113,13 @@ public class Door extends AbstractItem implements Passage, Lockable {
 
 	@Override
 	public EnumMap<TypeEntite, Boolean> getImplements() {
-		EnumMap<TypeEntite, Boolean> imp = new EnumMap<>(TypeEntite.class);
-		imp.put(TypeEntite.item, true);
-		imp.put(TypeEntite.lockable, true);
-		imp.put(TypeEntite.passage, true);
-		imp.put(TypeEntite.activatable, false);
+		EnumMap<TypeEntite, Boolean> imp = TypeEntite.emptyMap();
+		imp.put(TypeEntite.LOCKABLE, true);
+		imp.put(TypeEntite.PASSAGE, true);
+
+		imp.put(TypeEntite.ITEM, true);
+		imp.put(TypeEntite.NEED_CONTAINER, true);
+		imp.put(TypeEntite.ENIGMA_CONTAINER, true);
 		return imp;
 	}
 

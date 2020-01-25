@@ -357,7 +357,7 @@ public class MapTestScreen extends AbstractMap {
 		Utility.printDebug("Delete ?", entity.getReadableName()+" "+
 				entity.getGameObjectWidth()+" "+entity.getGameObjectHeight()
 		);
-		System.out.println(this.added);
+		//System.out.println(this.added);
 		if (this.added.containsValue(entity)) {//peut la supprimer
 			Vector2 pos = (Vector2) Utility.getKeyFromValue(this.added, entity);
 			this.added.remove(pos);
@@ -386,13 +386,6 @@ public class MapTestScreen extends AbstractMap {
 			entities = new Array<>();
 		}
 
-		/*GameObject parent = null;
-		Vector2 parentPos = null;
-		if(parentObj != null && parentObj.getValue().getID() != entity.getID()) {
-			parent = parentObj.getValue();
-			parentPos = parentObj.getKey();
-		}*/
-
 		//on parcours toutes les niveaux de la map et on y ajoute les tiles de l'entité
 		for (MapLayer mapLayer : this.map.getMap().getLayers()) {
 			//c'est un layer de tiles ?
@@ -409,9 +402,6 @@ public class MapTestScreen extends AbstractMap {
 					entities.add(o.getTiles(Utility.stringToEnum(tileLayer.getName(), Layer.values())));
 				}
 			}
-			//if(parent != null) entities = parent.getTiles(Utility.stringToEnum(tileLayer.getName(), Layer.values()));
-			/*if(entities == null)
-				entities = new Array<>();*/
 
 			//si pas de tiles a mettre sur ce layer, on passe au suivant
 			if (ent == null) continue;
@@ -419,24 +409,32 @@ public class MapTestScreen extends AbstractMap {
 			//calcul pour placer les tiles depuis x et y
 			//sachant que y est inversé, on part de la dernière tile et on remonte
 			//pas de problème pour x
-			//TODO: index commence pas a zéro
 			for (int i = (int) start.y - 1, index = 0; i >= (start.y - entity.getGameObjectHeight()); i--) {
 				for (int j = (int) start.x; j < start.x + entity.getGameObjectWidth() && index < ent.size; j++, index++) {
 					MapTestScreenCell c = (MapTestScreenCell) tileLayer.getCell(j, i);
 					int ind = 0;
 					c.setEntity(null);
+					//si on a des tiles a mettre
 					if(entities != null) {
+						//regarde parmi tous les objets depuis lequels on peut prendre des tiles
 						for (Array<Float> entitiesArray : new Array.ArrayIterator<>(entities)) {
-							if (index < entitiesArray.size && parents != null) {
+							//si possible
+							if (entitiesArray != null && index < entitiesArray.size) {
+								//Parcours de toutes les entités ...
 								for (Map.Entry<Vector2, GameObject> entry : parents.entrySet()) {
+									//... et regarde quelle entité on prends les tiles
 									if (Utility.containsBottomLeftOrigin(entry.getValue(), entry.getKey(), j, i)) {
-										if (tileLayer.getName().equals(Layer.FLOOR1.name()))
-											//System.out.println("pos:"+new Vector2(j,i).add(parentPos.cpy().scl(-1,1)));
-											ind = MathUtils.ceil(entitiesArray.get(index));
-										Utility.printDebug("",
-												entry.getValue().getGameObjectWidth() + " " +
-														entry.getValue().getGameObjectHeight()
-										);
+										int indexR = Utility.calculatesOffset(new Vector2(j, i+1),
+												entry.getKey(), entry.getValue());
+										/*if(Layer.FLOOR1.name().equals(tileLayer.getName())){
+											Utility.printDebug("Ré-ajoutTiles",
+													index+" "
+													+new Vector2(j,i+1)
+													+entry.getKey()
+													+"id="+indexR
+													);
+										}*/
+										ind = MathUtils.ceil(entitiesArray.get(indexR));
 										c.setEntity(entry.getValue());
 										break;
 									}
@@ -444,17 +442,6 @@ public class MapTestScreen extends AbstractMap {
 							}
 						}
 					}
-					/*if (index < entities.size && parentPos != null) {
-						if(Utility.containsBottomLeftOrigin(parent, parentPos, j, i)) {
-							if(tileLayer.getName().equals(Layer.FLOOR1.name()))
-							//System.out.println("pos:"+new Vector2(j,i).add(parentPos.cpy().scl(-1,1)));
-							ind = MathUtils.ceil(entities.get(index));
-							Utility.printDebug("",
-									parent.getGameObjectWidth()+" "+parent.getGameObjectHeight()
-							);
-							c.setEntity(parent);
-						}
-					}*/
 					c.setTile(this.map.getMap().getTileSets().getTile(ind));
 					tileLayer.setCell(j, i, c);
 				}

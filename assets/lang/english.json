@@ -40,5 +40,8 @@
     pressurePlate: Pressure Plate
     player: Hero
     library: Library
+
+    npc: NPC
+    monster: Monster
   }
 }

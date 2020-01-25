@@ -37,7 +37,7 @@ public class CaseDelete implements ActionListener {
 		if (current.getEntity() != null) {
 			//current.setEntity(null);
 			//current.setTile(null);
-			current.clear();
+			current.removeEntity();
 			layer.setCell(current.getIndex() % layer.getWidth(), current.getIndex() / layer.getWidth(), current);
 			label.setText("Aucune entité");
 		}

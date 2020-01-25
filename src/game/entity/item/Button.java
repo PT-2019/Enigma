@@ -48,11 +48,12 @@ public class Button extends Activatable {
 
 	@Override
 	public EnumMap<TypeEntite, Boolean> getImplements() {
-		EnumMap<TypeEntite, Boolean> imp = new EnumMap<>(TypeEntite.class);
-		imp.put(TypeEntite.activatable, true);
-		imp.put(TypeEntite.item, true);
-		imp.put(TypeEntite.lockable, false);
-		imp.put(TypeEntite.passage, false);
+		EnumMap<TypeEntite, Boolean> imp = TypeEntite.emptyMap();
+		imp.put(TypeEntite.ACTIVATABLE, true);
+
+		imp.put(TypeEntite.ITEM, true);
+		imp.put(TypeEntite.NEED_CONTAINER, true);
+		imp.put(TypeEntite.ENIGMA_CONTAINER, true);
 		return imp;
 	}
 

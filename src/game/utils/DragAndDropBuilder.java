@@ -8,6 +8,9 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import game.entity.DraggedEntity;
 import game.entity.EntityContainer;
 import game.screen.TestScreen;
+import starter.EditorLauncher;
+
+import java.awt.Cursor;
 
 /**
  * Constructeur d'objects drag and drop. Si on clique sur une entité, alors
@@ -45,7 +48,11 @@ public class DragAndDropBuilder extends InputListener {
 
 	@Override
 	public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-		if(!TestScreen.isState(EditorState.NORMAL)) return false;
+		if(!TestScreen.isState(EditorState.NORMAL)){
+			//POUR LE CONFORT, ON FORCE LE PASSAGE EN NORMAL
+			TestScreen.setState(EditorState.NORMAL);
+			EditorLauncher.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+		}
 		//Crée une copie de l'entité
 		DraggedEntity draggedEntity = new DraggedEntity(this.container);
 		Vector2 v = this.container.getAbsolutePosition();

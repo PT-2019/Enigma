@@ -6,6 +6,7 @@ import api.utils.annotations.ConvenienceMethod;
 import api.utils.annotations.NeedPatch;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -364,6 +365,12 @@ public class Utility implements Serializable {
 			}
 		}
 		return false;
+	}
+
+	public static int calculatesOffset(Vector2 vector1, Vector2 vector2, GameObject value) {
+		if(vector1.equals(vector2)) return 0;
+		float x = (vector1.x - vector2.x), y= (vector2.y - vector1.y);
+		return MathUtils.ceil(y*value.getGameObjectWidth()+x);
 	}
 }
 

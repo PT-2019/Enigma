@@ -15,25 +15,24 @@ import java.util.EnumMap;
 import java.util.HashMap;
 
 /**
- * Définie un personnage contrôlable : un joueur
+ * Un personnage non joueur (NPC)
  *
  * @author Jorys-Micke ALAÏS
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 2.0
- * @see Entity
- * @see Living
- * @since 2.0
+ *
+ * @version 5.0 25/01/2020
+ * @since 5.0 25/01/2020
  */
-public class Player extends GameActorTextured implements Entity, Living {
+public class NPC extends GameActorTextured implements Entity, Living {
 
 	/**
 	 * Points de vie maximaux du joueur
 	 */
-	public final int MAX_PLAYER_PV = 100;
+	public final int MAX_NPC_PV = 10000;
 	/**
-	 * Point de vie du joueur
+	 * Point de vie du NPC
 	 */
 	private int pv;
 	/**
@@ -50,18 +49,18 @@ public class Player extends GameActorTextured implements Entity, Living {
 	private Rectangle bounds;
 
 	/**
-	 * Nom du joueur
+	 * Nom du npc
 	 */
 	private String name;
 
-	public Player() {
+	public NPC() {
 		this(-1);
 	}
 
 	/**
-	 * @param name Nom du joueur
+	 * @param name Nom du npc
 	 */
-	public Player(String name) {
+	public NPC(String name) {
 		this(-1);
 		this.name = name;
 	}
@@ -69,8 +68,8 @@ public class Player extends GameActorTextured implements Entity, Living {
 	/**
 	 * @param id ID
 	 */
-	public Player(int id) {
-		this.pv = MAX_PLAYER_PV;
+	public NPC(int id) {
+		this.pv = MAX_NPC_PV;
 		this.id = id;
 		this.bounds = new Rectangle();
 		this.tiles = new HashMap<>();
@@ -80,8 +79,8 @@ public class Player extends GameActorTextured implements Entity, Living {
 	 * @param id   ID
 	 * @param name Nom du joueur
 	 */
-	public Player(int id, String name) {
-		this.pv = MAX_PLAYER_PV;
+	public NPC(int id, String name) {
+		this.pv = MAX_NPC_PV;
 		this.id = id;
 		this.bounds = new Rectangle();
 		this.tiles = new HashMap<>();
@@ -90,7 +89,7 @@ public class Player extends GameActorTextured implements Entity, Living {
 
 	@Override
 	public void interactsWith(Player p) {
-		throw new UnsupportedOperationException("node codé. InteractWidth Player");
+		throw new UnsupportedOperationException("node codé. InteractWidth NPC");
 	}
 
 	@Override
@@ -142,7 +141,7 @@ public class Player extends GameActorTextured implements Entity, Living {
 	@Override
 	public EnumMap<TypeEntite, Boolean> getImplements() {
 		EnumMap<TypeEntite, Boolean> imp = TypeEntite.emptyMap();
-		imp.put(TypeEntite.PLAYER, true);
+		imp.put(TypeEntite.NPC, true);
 
 		imp.put(TypeEntite.LIVING, true);
 		imp.put(TypeEntite.NEED_CONTAINER, true);
@@ -175,12 +174,13 @@ public class Player extends GameActorTextured implements Entity, Living {
 
 	@Override
 	public String toString() {
-		return "Player{" + "MAX_PLAYER_PV=" + MAX_PLAYER_PV + ", pv=" + pv + ", id=" + id +
+		return "Player{" + "MAX_PLAYER_PV=" + MAX_NPC_PV + ", pv=" + pv + ", id=" + id +
 				", tiles=" + tiles + ", bounds=" + bounds + '}';
 	}
 
 	@Override
 	public String getReadableName() {
-		return GameLanguage.gl.get(GameFields.PLAYER);
+		return GameLanguage.gl.get(GameFields.NPC);
 	}
+
 }

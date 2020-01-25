@@ -1,7 +1,7 @@
 {
   content: [
     {
-      className: editor.entity.Player
+      className: editor.entity.NPC
       path: assets/map/datas/players/player1.png
       category: ENTITIES
       width: 2
@@ -16,7 +16,7 @@
       }
     }
     {
-      className: editor.entity.Player
+      className: editor.entity.NPC
       path: assets/map/datas/players/player2.png
       category: ENTITIES
       width: 2
@@ -31,7 +31,7 @@
       }
     }
     {
-      className: editor.entity.Player
+      className: editor.entity.NPC
       path: assets/map/datas/players/player3.png
       category: ENTITIES
       width: 2
@@ -46,8 +46,8 @@
       }
     }
     {
-      className: editor.entity.Player
-      path: assets/map/datas/players/player4.png
+      className: editor.entity.Monster
+      path: assets/map/datas/players/mob1.png
       category: ENTITIES
       width: 2
       height: 2
@@ -61,8 +61,8 @@
       }
     }
     {
-      className: editor.entity.Player
-      path: assets/map/datas/players/player5.png
+      className: editor.entity.Monster
+      path: assets/map/datas/players/mob2.png
       category: ENTITIES
       width: 2
       height: 2

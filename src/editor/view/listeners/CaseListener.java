@@ -52,45 +52,50 @@ public class CaseListener extends ClickListener {
 	@Override
 	public void clicked(InputEvent event, float x, float y) {
 		//on ne peut cliquer que si l'état est normal
-		if(!TestScreen.isState(EditorState.NORMAL)) return;
+		if(TestScreen.isState(EditorState.NORMAL)) {
 
-		CaseView actor = (CaseView) event.getTarget();
-		MapTestScreenCell cell = actor.getCell();
+			CaseView actor = (CaseView) event.getTarget();
+			MapTestScreenCell cell = actor.getCell();
 
-		//on parcours tout les layers à la recherche d'une entité
-		// pour afficher le panneau avec l'entité en premier
-		if (actor.getCell().getEntity() == null) {
-			TiledMap map = popUp.getTileMap();
-			MapLayers layers = map.getLayers();
-			MapTestScreenCell tmp;
+			//on parcours tout les layers à la recherche d'une entité
+			// pour afficher le panneau avec l'entité en premier
+			if (actor.getCell().getEntity() == null) {
+				TiledMap map = popUp.getTileMap();
+				MapLayers layers = map.getLayers();
+				MapTestScreenCell tmp;
 
-			for (int i = 0; i < 4; i++) {
-				TiledMapTileLayer layer = (TiledMapTileLayer) layers.get(i);
-				tmp = (MapTestScreenCell) layer.getCell(cell.getIndex() % layer.getWidth(), cell.getIndex() / layer.getWidth());
-				if (tmp.getEntity() != null) {
-					cell = tmp;
+				for (int i = 0; i < 4; i++) {
+					TiledMapTileLayer layer = (TiledMapTileLayer) layers.get(i);
+					tmp = (MapTestScreenCell) layer.getCell(cell.getIndex() % layer.getWidth(), cell.getIndex() / layer.getWidth());
+					if (tmp.getEntity() != null) {
+						cell = tmp;
+					}
 				}
 			}
-		}
 
-		if (enigmacreate) {
-			SpecialPopUp pop = new SpecialPopUp(popUp.getComponent(), popUp.getTileMap(), popUp);
-			pop.setCell(cell);
-			pop.display();
-			pop.setVisible(true);
-		} else {
-			popUp.setCell(cell);
-			Group g = actor.getParent();
-			//on récupère tout les actors
-			SnapshotArray<Actor> arr = g.getChildren();
+			if (enigmacreate) {
+				SpecialPopUp pop = new SpecialPopUp(popUp.getComponent(), popUp.getTileMap(), popUp);
+				pop.setCell(cell);
+				pop.display();
+				pop.setVisible(true);
+			} else {
+				popUp.setCell(cell);
+				Group g = actor.getParent();
+				//on récupère tout les actors
+				SnapshotArray<Actor> arr = g.getChildren();
 
-			//on passe dans le mode enigmacreate
-			for (Actor act : arr) {
-				Array<EventListener> listeners = act.getListeners();
-				((CaseListener) listeners.get(0)).setEnigmacreate(true);
+				//on passe dans le mode enigmacreate
+				for (Actor act : arr) {
+					Array<EventListener> listeners = act.getListeners();
+					((CaseListener) listeners.get(0)).setEnigmacreate(true);
+				}
+				popUp.addWindowListener(new CasePopWindowListener(popUp, g));
+				popUp.display();
 			}
-			popUp.addWindowListener(new CasePopWindowListener(popUp, g));
-			popUp.display();
+		} else if(TestScreen.isState(EditorState.ERASE)){
+			CaseView actor = (CaseView) event.getTarget();
+			MapTestScreenCell cell = actor.getCell();
+			cell.removeEntity();
 		}
 	}
 

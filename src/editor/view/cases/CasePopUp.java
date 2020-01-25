@@ -122,7 +122,7 @@ public class CasePopUp extends AbstractPopUp {
 
 			EnumMap<TypeEntite, Boolean> tmp = cell.getEntity().getImplements();
 
-			if (tmp.get(TypeEntite.item)) {
+			if (tmp.get(TypeEntite.ITEM)) {
 				isenigma = true;
 			}
 
