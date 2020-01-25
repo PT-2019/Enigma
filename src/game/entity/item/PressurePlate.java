@@ -1,7 +1,7 @@
 package game.entity.item;
 
 import api.entity.utils.Activatable;
-import api.enums.TypeEntite;
+import api.enums.TypeEntity;
 import editor.enigma.Enigma;
 import editor.entity.Player;
 import editor.utils.lang.GameLanguage;
@@ -157,8 +157,8 @@ public class PressurePlate extends Activatable {
 	}
 
 	@Override
-	public EnumMap<TypeEntite, Boolean> getImplements() {
-		return TypeEntite.emptyMap();
+	public EnumMap<TypeEntity, Boolean> getImplements() {
+		return TypeEntity.emptyMap();
 	}
 
 	@Override

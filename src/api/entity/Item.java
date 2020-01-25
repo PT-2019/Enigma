@@ -1,6 +1,7 @@
 package api.entity;
 
 import api.entity.types.EnigmaContainer;
+import api.entity.types.NeedContainerManager;
 import editor.entity.Player;
 
 /**
@@ -16,7 +17,7 @@ import editor.entity.Player;
  * @see Entity
  * @since 2.0
  */
-public interface Item extends EnigmaContainer, Entity {
+public interface Item extends EnigmaContainer, Entity, NeedContainerManager {
 
 	/**
 	 * Est appelé quand un joueur intéragit avec l'objet

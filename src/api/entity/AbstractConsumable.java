@@ -11,7 +11,7 @@ import java.util.Iterator;
 /**
  * Ce classe ne doit pas se retrouver ailleurs que dans un extends
  * <p>
- * Abstraction d'un Item.
+ * Abstraction d'un Consommable.
  * <p>
  * Toutes les méthodes sont implémentées.
  *
@@ -23,7 +23,7 @@ import java.util.Iterator;
  * @since 4.0 24/12/2019
  */
 @ConvenienceClass
-public abstract class AbstractItem extends AbstractGameObject implements Item {
+public abstract class AbstractConsumable extends AbstractGameObject implements Consumable {
 
 	/**
 	 * Enigmes données à l'objet
@@ -35,20 +35,20 @@ public abstract class AbstractItem extends AbstractGameObject implements Item {
 	/**
 	 * Ce classe ne doit pas se retrouver ailleurs que dans un extends
 	 * <p>
-	 * Abstraction d'un Item.
+	 * Abstraction d'un Consommable.
 	 */
-	protected AbstractItem() {
+	protected AbstractConsumable() {
 		this(-1);
 	}
 
 	/**
 	 * Ce classe ne doit pas se retrouver ailleurs que dans un extends
 	 * <p>
-	 * Abstraction d'un Item.
+	 * Abstraction d'un Consommable.
 	 *
 	 * @param id id unique de l'object pour les énigmes
 	 */
-	protected AbstractItem(int id) {
+	protected AbstractConsumable(int id) {
 		super(id);
 		this.enigmas = new ArrayList<Enigma>();
 	}

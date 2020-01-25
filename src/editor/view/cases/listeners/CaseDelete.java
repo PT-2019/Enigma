@@ -1,6 +1,8 @@
 package editor.view.cases.listeners;
 
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import editor.hud.EnigmaPanel;
+import editor.view.cases.CasePopUp;
 import game.entity.map.MapTestScreenCell;
 
 import javax.swing.JLabel;
@@ -26,20 +28,34 @@ public class CaseDelete implements ActionListener {
 	 */
 	private JLabel label;
 
-	public CaseDelete(MapTestScreenCell current, TiledMapTileLayer layer, JLabel label) {
+	/**
+	 * Parent
+	 */
+	private final CasePopUp parent;
+
+	public CaseDelete(MapTestScreenCell current, TiledMapTileLayer layer, JLabel label, CasePopUp parent) {
 		this.current = current;
 		this.layer = layer;
 		this.label = label;
+		this.parent = parent;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (current.getEntity() != null) {
-			//current.setEntity(null);
-			//current.setTile(null);
-			current.removeEntity();
-			layer.setCell(current.getIndex() % layer.getWidth(), current.getIndex() / layer.getWidth(), current);
-			label.setText("Aucune entité");
+		if (this.current.getEntity() != null) {
+			System.out.println("remove"+this.current.getEntity());
+			this.current.removeEntity();
+			this.layer.setCell(
+					this.current.getIndex() % this.layer.getWidth(),
+					this.current.getIndex() / this.layer.getWidth(), this.current
+			);
+			if(this.current.getEntity() == null) label.setText("Aucune entité");
+			else this.label.setText(this.current.getEntity().getReadableName());
+			//supprime les infos de l'ancienne
+			//EnigmaPanel panel = this.parent.getPanel();
+			//panel.removeAll();
+			//rebuild le panneau
+			//this.parent.fillPanel();
 		}
 	}
 }

@@ -1,7 +1,10 @@
 package game.entity.map;
 
 import api.entity.GameObject;
+import api.entity.types.ContainersManager;
+import api.entity.types.Living;
 import api.entity.types.NeedContainer;
+import api.entity.types.NeedContainerManager;
 import api.enums.AnsiiColor;
 import api.enums.EntitiesCategories;
 import api.enums.Layer;
@@ -229,7 +232,10 @@ public class MapTestScreen extends AbstractMap {
 				for (int j = (int) start.x; j < start.x + entity.getGameObjectWidth() && index < entities.size; j++, index++) {
 					MapTestScreenCell c = (MapTestScreenCell) tileLayer.getCell(j, i);
 					if (c == null) continue;
-					if(noForce && c.getEntity() instanceof NeedContainer) continue;
+					if(noForce && c.getEntity() instanceof NeedContainerManager) continue;
+					if(c.getEntity() != null){
+						//System.out.println("écrasé"+c.getEntity()+" par "+entity);
+					}
 					c.setEntity(entity);
 					tileLayer.setCell(j, i, c);
 				}
@@ -354,8 +360,8 @@ public class MapTestScreen extends AbstractMap {
 	 * @since 5.0
 	 */
 	public boolean removeEntity(GameObject entity) {
-		Utility.printDebug("Delete ?", entity.getReadableName()+" "+
-				entity.getGameObjectWidth()+" "+entity.getGameObjectHeight()
+		Utility.printDebug("deleteEntity", entity+" ("+
+				entity.getGameObjectWidth()+" "+entity.getGameObjectHeight()+")"
 		);
 		//System.out.println(this.added);
 		if (this.added.containsValue(entity)) {//peut la supprimer
@@ -459,9 +465,9 @@ public class MapTestScreen extends AbstractMap {
 			//check collision
 			if (Utility.overlapsBottomLeftOrigin(ent,other)){
 				//si c'est un conteneur
-				if(entity instanceof api.entity.types.Container){
+				if(entity instanceof ContainersManager){
 					//si item est un conteneur, alors on va le reconstruire ses tiles après suppression
-					if(item.getValue() instanceof api.entity.types.Container){
+					if(item.getValue() instanceof ContainersManager){
 						obj.put(item.getKey(), item.getValue());
 					}
 					//sinon on supprime le contenu

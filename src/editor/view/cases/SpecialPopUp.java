@@ -66,6 +66,11 @@ public class SpecialPopUp extends AbstractPopUp {
 	}
 
 	@Override
+	public void initComponent() {
+
+	}
+
+	@Override
 	public void clean() {
 		this.remove(navigation);
 		this.remove(button);

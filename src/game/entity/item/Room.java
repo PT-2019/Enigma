@@ -2,7 +2,8 @@ package game.entity.item;
 
 import api.entity.AbstractGameObject;
 import api.entity.types.Container;
-import api.enums.TypeEntite;
+import api.entity.types.ContainersManager;
+import api.enums.TypeEntity;
 import editor.utils.lang.GameLanguage;
 import editor.utils.lang.fields.GameFields;
 
@@ -18,7 +19,7 @@ import java.util.EnumMap;
  * @version 4.0 24/12/2019
  * @since 4.0 24/12/2019
  */
-public class Room extends AbstractGameObject implements Container {
+public class Room extends AbstractGameObject implements ContainersManager, Container {
 
 	/**
 	 * Crée une pièce
@@ -42,9 +43,10 @@ public class Room extends AbstractGameObject implements Container {
 	}
 
 	@Override
-	public EnumMap<TypeEntite, Boolean> getImplements() {
-		EnumMap<TypeEntite, Boolean> imp = TypeEntite.emptyMap();
-		imp.put(TypeEntite.ROOM, true);
+	public EnumMap<TypeEntity, Boolean> getImplements() {
+		EnumMap<TypeEntity, Boolean> imp = TypeEntity.emptyMap();
+		imp.put(TypeEntity.CONTAINER, true);
+		imp.put(TypeEntity.CONTAINER_MANAGER, true);
 		return imp;
 	}
 

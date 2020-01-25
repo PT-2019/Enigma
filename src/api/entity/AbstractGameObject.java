@@ -1,5 +1,6 @@
 package api.entity;
 
+import api.entity.actor.GameActorAnimation;
 import api.entity.actor.GameActorTextured;
 import api.enums.Layer;
 import api.utils.annotations.ConvenienceClass;
@@ -24,7 +25,7 @@ import java.util.HashMap;
  * @since 4.0 25/12/2019
  */
 @ConvenienceClass
-public abstract class AbstractGameObject extends GameActorTextured implements GameObject {
+public abstract class AbstractGameObject extends GameActorAnimation implements GameObject {
 
 	/**
 	 * les tiles (a convertir en int)

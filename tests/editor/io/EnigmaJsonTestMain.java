@@ -54,7 +54,7 @@ public class EnigmaJsonTestMain {
 		e.addAdvice(new Advice("advice2"));
 		e.addCondition(new HaveInHands(s1));
 		e.addCondition(new Activated(s2));
-		e.addOperation(new Summon(p2,c1));
+		//e.addOperation(new Summon(p2,c1));
 		e.addOperation(new Unlock(d1));
 
 		Enigma e2 = new Enigma("enigme2","oui c'est une énigme");

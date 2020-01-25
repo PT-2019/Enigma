@@ -4,7 +4,7 @@ import api.entity.Entity;
 import api.entity.actor.GameActorTextured;
 import api.entity.types.Living;
 import api.enums.Layer;
-import api.enums.TypeEntite;
+import api.enums.TypeEntity;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
@@ -140,12 +140,12 @@ public class Player extends GameActorTextured implements Entity, Living {
 	}
 
 	@Override
-	public EnumMap<TypeEntite, Boolean> getImplements() {
-		EnumMap<TypeEntite, Boolean> imp = TypeEntite.emptyMap();
-		imp.put(TypeEntite.PLAYER, true);
+	public EnumMap<TypeEntity, Boolean> getImplements() {
+		EnumMap<TypeEntity, Boolean> imp = TypeEntity.emptyMap();
+		imp.put(TypeEntity.PLAYER, true);
 
-		imp.put(TypeEntite.LIVING, true);
-		imp.put(TypeEntite.NEED_CONTAINER, true);
+		imp.put(TypeEntity.LIVING, true);
+		imp.put(TypeEntity.NEED_CONTAINER_MANAGER, true);
 		return imp;
 	}
 

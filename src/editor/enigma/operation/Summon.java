@@ -3,9 +3,9 @@ package editor.enigma.operation;
 
 import api.entity.Entity;
 import api.enums.Attributes;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import editor.entity.IDFactory;
 import editor.entity.Player;
-import editor.utils.map.Case;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,13 +26,13 @@ public class Summon extends Operation {
 	/**
 	 * Case où doit apparaître l'entité
 	 */
-	private Case spawn;
+	private TiledMapTileLayer.Cell spawn;
 
 	/**
 	 * @param e     Entité concernée par l'opération
 	 * @param spawn Case où doit apparaître l'entité
 	 */
-	public Summon(Entity e, Case spawn) {
+	public Summon(Entity e, TiledMapTileLayer.Cell spawn) {
 		super(e);
 		this.spawn = spawn;
 	}
@@ -45,7 +45,7 @@ public class Summon extends Operation {
 		super(attributes);
 		IDFactory idFactory = IDFactory.getInstance();
 		if (attributes.containsKey(Attributes.SPAWN))
-			this.spawn = (Case) idFactory.getObject(Integer.parseInt((String) attributes.get(Attributes.SPAWN)));
+			this.spawn = (TiledMapTileLayer.Cell) idFactory.getObject(Integer.parseInt((String) attributes.get(Attributes.SPAWN)));
 		else throw new IllegalArgumentException("Attribut \"spawn\" abscent");
 	}
 
@@ -71,7 +71,7 @@ public class Summon extends Operation {
 		HashMap<String, Object> object = new HashMap<>();
 		object.put(Attributes.PATH, this.getClass().getName());
 		object.put(Attributes.ENTITY, this.entity.getID() + "");
-		object.put(Attributes.SPAWN, this.spawn.getID() + "");
+		object.put(Attributes.SPAWN, this.entity.getID() + "");//TODO: spawn
 		return object;
 	}
 

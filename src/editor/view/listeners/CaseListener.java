@@ -1,6 +1,8 @@
 package editor.view.listeners;
 
+import api.entity.GameObject;
 import api.enums.EditorState;
+import api.enums.TypeEntity;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -59,7 +61,8 @@ public class CaseListener extends ClickListener {
 
 			//on parcours tout les layers à la recherche d'une entité
 			// pour afficher le panneau avec l'entité en premier
-			if (actor.getCell().getEntity() == null) {
+			GameObject entity = actor.getCell().getEntity();
+			if (entity == null) {
 				TiledMap map = popUp.getTileMap();
 				MapLayers layers = map.getLayers();
 				MapTestScreenCell tmp;
@@ -68,6 +71,19 @@ public class CaseListener extends ClickListener {
 					TiledMapTileLayer layer = (TiledMapTileLayer) layers.get(i);
 					tmp = (MapTestScreenCell) layer.getCell(cell.getIndex() % layer.getWidth(), cell.getIndex() / layer.getWidth());
 					if (tmp.getEntity() != null) {
+						cell = tmp;
+					}
+				}
+				//si ya déjà une entité mais c'est une pièce
+			} else if(entity.getImplements().get(TypeEntity.CONTAINER_MANAGER)) {//on regarde si on a quelque chose de mieux
+				TiledMap map = popUp.getTileMap();
+				MapLayers layers = map.getLayers();
+				MapTestScreenCell tmp;
+
+				for (int i = 0; i < 4; i++) {
+					TiledMapTileLayer layer = (TiledMapTileLayer) layers.get(i);
+					tmp = (MapTestScreenCell) layer.getCell(cell.getIndex() % layer.getWidth(), cell.getIndex() / layer.getWidth());
+					if (tmp.getEntity() != null && !tmp.getEntity().getImplements().get(TypeEntity.CONTAINER_MANAGER)) {
 						cell = tmp;
 					}
 				}

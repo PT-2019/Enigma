@@ -17,11 +17,11 @@ public class PopItemListener implements ItemListener {
 	/**
 	 * Tile qui représente une case bloquante
 	 */
-	private final int TILEBLOC = 2041;
+	private static final int TILE_BLOC = 2041;
 	/**
 	 * Tile qui représente une case non bloquante
 	 */
-	private final int TILEVOID = 2041;
+	private static final int TILE_VOID = 0;
 	private TiledMap map;
 	private MapTestScreenCell cell;
 
@@ -38,9 +38,9 @@ public class PopItemListener implements ItemListener {
 
 
 		if (e.getStateChange() == ItemEvent.SELECTED) {
-			tmp.setTile(map.getTileSets().getTile(this.TILEBLOC));
+			tmp.setTile(map.getTileSets().getTile(TILE_BLOC));
 		} else {
-			tmp.setTile(map.getTileSets().getTile(this.TILEVOID));
+			tmp.setTile(map.getTileSets().getTile(TILE_VOID));
 		}
 	}
 }

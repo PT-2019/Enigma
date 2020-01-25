@@ -173,22 +173,26 @@ public class EnigmaJsonReader {
 		String read;
 		int startingClassBracket = bracketCount;
 		int startingClassBrace = -1;
+		boolean first = true;
 
 		while ((read = reader.readLine()) != null) {
 			read = read.trim();
 			line++;
 
 			if (read.contains(NEW_OBJECT_SYNTAX)) {
+				first = false;
 				braceCount++;
 				if (startingClassBrace < 0) startingClassBrace = braceCount;
 			}
 
 			if (read.contains(NEW_CLASS_TAB_SYNTAX)) {
+				first = false;
 				bracketCount++;
 				objects.add(readObject(reader, extractBefore(read, NEW_CLASS_TAB_SYNTAX), line, braceCount, bracketCount));
 			}
 
 			if (read.contains(END_OBJECT_SYNTAX)) {
+				first = false;
 				if (braceCount == startingClassBrace) {
 					if (read.contains(END_OBJECT_SYNTAX + ",")) startingClassBrace = -1;
 					else break;
@@ -201,7 +205,10 @@ public class EnigmaJsonReader {
 					bracketCount--;
 					break;
 				}
-				bracketCount--;
+				if(!first) {
+					bracketCount--;
+				}
+				first = false;
 			}
 		}
 

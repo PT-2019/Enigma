@@ -5,6 +5,7 @@ import editor.enigma.Enigma;
 import editor.view.cases.CasePopUp;
 import editor.view.cases.listeners.EntityChoseListener;
 import game.entity.map.MapTestScreenCell;
+import starter.EditorLauncher;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -17,6 +18,9 @@ import java.awt.CardLayout;
  * @see CasePopUp
  */
 public class EnigmaView extends JDialog {
+
+	public static final int WIDTH = 700, HEIGHT = 300;
+
 	/**
 	 * Enigme que l'utilisateur va créer
 	 */
@@ -34,10 +38,9 @@ public class EnigmaView extends JDialog {
 	private MapTestScreenCell cell;
 
 	public EnigmaView(CasePopUp popUp, MapTestScreenCell cell, EntityChoseListener observer) {
-		super((JFrame) popUp.getComponent().getRootPane().getParent(), "Créer une enigme", false);
-		this.setSize(300, 700);
-		this.setLocation(0, 0);
-		this.setLocation(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
+		super(EditorLauncher.getInstance().getWindow(), "Créer une enigme", false);
+		this.setSize(WIDTH, HEIGHT);
+		this.setLocation(Gdx.graphics.getWidth() / 2 - WIDTH/2, Gdx.graphics.getHeight() / 2 - HEIGHT/2);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		this.layout = new CardLayout();
@@ -51,10 +54,10 @@ public class EnigmaView extends JDialog {
 		OperationPanel operation = new OperationPanel(this);
 		observer.addObserveur(operation);
 		CluePanel clue = new CluePanel(this);
+		panel.add(operation, "operation");
 		panel.add(new EnigmaMenu(this), "menu");
 		panel.add(clue, "clue");
 		panel.add(condition, "condition");
-		panel.add(operation, "operation");
 		enigma = new Enigma();
 		this.cell = cell;
 	}

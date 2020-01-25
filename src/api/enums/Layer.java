@@ -1,5 +1,10 @@
 package api.enums;
 
+import editor.utils.lang.GameLanguage;
+import editor.utils.lang.fields.HUDFields;
+
+import static editor.utils.lang.GameLanguage.gl;
+
 /**
  * Nom des couches pour l'affichage de la map
  *
@@ -18,26 +23,32 @@ public enum Layer {
 	/**
 	 * Première couche de sol
 	 */
-	FLOOR1,
+	FLOOR1(gl.get(HUDFields.FIRST_LAYER)+" 0"),
 
 	/**
 	 * Seconde couche de sol
 	 */
-	FLOOR2,
+	FLOOR2(gl.get(HUDFields.LAYER)+" 1"),
 
 	/**
 	 * Première couche de décoration
 	 */
-	DECORATIONS1,
+	DECORATIONS1(gl.get(HUDFields.LAYER)+" 2"),
 
 	/**
 	 * Seconde couche de décoration
 	 */
-	DECORATIONS2,
+	DECORATIONS2(gl.get(HUDFields.LAYER)+" 3"),
 
 	/**
 	 * Couche de collision
 	 */
-	COLLISION
+	COLLISION("Accessible");
+
+	public final String name;
+
+	Layer(String name) {
+		this.name = name;
+	}
 }
 

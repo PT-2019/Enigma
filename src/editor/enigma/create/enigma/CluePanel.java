@@ -1,6 +1,7 @@
 package editor.enigma.create.enigma;
 
 import api.entity.GameObject;
+import api.hud.ResetComponent;
 import api.utils.Observer;
 import editor.enigma.create.listeners.ClueListener;
 import editor.view.cases.panel.MenuPanel;
@@ -17,12 +18,13 @@ import java.awt.Insets;
 /**
  * Interface graphique permettant d'ajouter des indices
  */
-public class CluePanel extends EnigmaPanel implements Observer {
+public class CluePanel extends EnigmaViewPanel implements Observer, ResetComponent {
 
-	public CluePanel(editor.enigma.create.enigma.EnigmaView parent) {
+	public CluePanel(EnigmaView parent) {
+		super(parent);
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
-		MenuPanel menu = new MenuPanel("\nAjouter une Condition \n à l'énigme", "zeafazefzfae", parent);
+		MenuPanel menu = new MenuPanel("\nAjouter une Condition \n à l'énigme", "zeafazefzfae", parent, this);
 
 		JLabel clue = new JLabel("Indice :");
 		JTextArea cluefield = new JTextArea();
@@ -77,5 +79,15 @@ public class CluePanel extends EnigmaPanel implements Observer {
 
 	@Override
 	public void update(GameObject object) {
+	}
+
+	@Override
+	public void clean() {
+
+	}
+
+	@Override
+	public void initComponent() {
+
 	}
 }

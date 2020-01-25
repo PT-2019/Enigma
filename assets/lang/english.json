@@ -29,6 +29,12 @@
     characters: Characters
     actions: Actions
 
+    layer: Layer
+    firstlayer: Ground Floor
+    ok: Yes
+    cancel: No
+    leave: Are you leaving ?
+
     //game
     room: Room
     chest: Chest
@@ -37,7 +43,7 @@
     button: Button
     book: Book
     door: Door
-    pressurePlate: Pressure Plate
+    pressureplate: Pressure Plate
     player: Hero
     library: Library
 

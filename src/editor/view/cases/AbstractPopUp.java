@@ -1,5 +1,6 @@
 package editor.view.cases;
 
+import api.hud.ResetComponent;
 import api.utils.Utility;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import game.entity.map.MapTestScreenCell;
@@ -14,7 +15,7 @@ import javax.swing.JFrame;
  * @see MapTestScreenCell
  * @see TiledMap
  */
-public abstract class AbstractPopUp extends JDialog {
+public abstract class AbstractPopUp extends JDialog implements ResetComponent {
 
 	protected MapTestScreenCell cell;
 
@@ -22,6 +23,7 @@ public abstract class AbstractPopUp extends JDialog {
 
 	public AbstractPopUp(JFrame frame, String title, boolean modal) {
 		super(frame, title, modal, Utility.getMonitorOf(EditorLauncher.getInstance().getWindow()));
+		this.setIconImage(EditorLauncher.getInstance().getWindow().getIconImage());
 	}
 
 	public MapTestScreenCell getCell() {
@@ -32,6 +34,7 @@ public abstract class AbstractPopUp extends JDialog {
 		this.cell = cell;
 	}
 
+	@Override
 	public abstract void clean();
 
 	public abstract void display();

@@ -1,8 +1,9 @@
 package game.entity.item;
 
+import api.entity.AbstractConsumable;
 import api.entity.AbstractItem;
 import api.entity.types.NeedContainer;
-import api.enums.TypeEntite;
+import api.enums.TypeEntity;
 import editor.utils.lang.GameLanguage;
 import editor.utils.lang.fields.GameFields;
 
@@ -18,7 +19,7 @@ import java.util.EnumMap;
  * @version 4.0 24/12/2019
  * @since 4.0 24/12/2019
  */
-public class Key extends AbstractItem implements NeedContainer {
+public class Key extends AbstractConsumable implements NeedContainer {
 
 	/**
 	 * Crée un clef
@@ -47,11 +48,12 @@ public class Key extends AbstractItem implements NeedContainer {
 	}
 
 	@Override
-	public EnumMap<TypeEntite, Boolean> getImplements() {
-		EnumMap<TypeEntite, Boolean> imp = TypeEntite.emptyMap();
-		imp.put(TypeEntite.ITEM, true);
-		imp.put(TypeEntite.NEED_CONTAINER, true);
-		imp.put(TypeEntite.ENIGMA_CONTAINER, true);
+	public EnumMap<TypeEntity, Boolean> getImplements() {
+		EnumMap<TypeEntity, Boolean> imp = TypeEntity.emptyMap();
+		imp.put(TypeEntity.CONSUMABLE, true);
+		imp.put(TypeEntity.NEED_CONTAINER, true);
+		imp.put(TypeEntity.NEED_CONTAINER_MANAGER, true);
+		imp.put(TypeEntity.ENIGMA_CONTAINER, true);
 		return imp;
 	}
 

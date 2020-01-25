@@ -2,7 +2,7 @@ package game.entity.item;
 
 import api.entity.AbstractItem;
 import api.entity.types.Content;
-import api.enums.TypeEntite;
+import api.enums.TypeEntity;
 import editor.utils.lang.GameLanguage;
 import editor.utils.lang.fields.GameFields;
 
@@ -70,13 +70,13 @@ public class Pane extends AbstractItem implements Content {
 	}
 
 	@Override
-	public EnumMap<TypeEntite, Boolean> getImplements() {
-		EnumMap<TypeEntite, Boolean> imp = TypeEntite.emptyMap();
-		imp.put(TypeEntite.CONTENT, true);
+	public EnumMap<TypeEntity, Boolean> getImplements() {
+		EnumMap<TypeEntity, Boolean> imp = TypeEntity.emptyMap();
+		imp.put(TypeEntity.CONTENT, true);
 
-		imp.put(TypeEntite.ITEM, true);
-		imp.put(TypeEntite.NEED_CONTAINER, true);
-		imp.put(TypeEntite.ENIGMA_CONTAINER, true);
+		imp.put(TypeEntity.ITEM, true);
+		imp.put(TypeEntity.NEED_CONTAINER_MANAGER, true);
+		imp.put(TypeEntity.ENIGMA_CONTAINER, true);
 		return imp;
 	}
 

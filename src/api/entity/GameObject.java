@@ -2,7 +2,7 @@ package api.entity;
 
 import api.entity.utils.IDInterface;
 import api.enums.Layer;
-import api.enums.TypeEntite;
+import api.enums.TypeEntity;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
@@ -94,7 +94,7 @@ public interface GameObject extends IDInterface {
 	 * @return EnumMap&lt;TypeEntite, Boolean&gt;
 	 * @since 4.0
 	 */
-	EnumMap<TypeEntite, Boolean> getImplements();
+	EnumMap<TypeEntity, Boolean> getImplements();
 
 	/**
 	 * Retourne le nom de l'entité

@@ -4,6 +4,8 @@ import api.hud.manager.window.Exit;
 import api.utils.CloseWindowLibgdxApplication;
 import editor.hud.EnigmaOptionPane;
 import editor.hud.EnigmaWindow;
+import editor.utils.lang.GameLanguage;
+import editor.utils.lang.fields.HUDFields;
 import starter.DesktopLauncher;
 
 import java.awt.Dimension;
@@ -42,7 +44,7 @@ public class EnigmaExitListener extends Exit {
 
 		if (this.window.willAskBeforeClosing()) {
 			close = EnigmaOptionPane.showConfirmDialog(this.window, new Dimension(300, 200),
-					"Voulez vous vraiment quittez?");
+					GameLanguage.gl.get(HUDFields.LEAVE));
 		} else {
 			//détruire la fenêtre manuellement
 		}

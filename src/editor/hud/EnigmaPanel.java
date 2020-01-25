@@ -3,6 +3,8 @@ package editor.hud;
 import api.hud.components.CustomPanel;
 import editor.hud.ui.EnigmaPanelUI;
 
+import java.awt.LayoutManager;
+
 /**
  * Un panneau de l'application enigma
  *
@@ -10,13 +12,23 @@ import editor.hud.ui.EnigmaPanelUI;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 3.0
+ * @version 5.0
  * @since 3.0
  */
 public class EnigmaPanel extends CustomPanel {
 
 	public EnigmaPanel() {
 		super();
+		this.setComponentUI(new EnigmaPanelUI());
+	}
+
+	/**
+	 * Un JPanel customizable
+	 * @param manager Layout
+	 * @since 5.0
+	 */
+	public EnigmaPanel(LayoutManager manager){
+		super(manager);
 		this.setComponentUI(new EnigmaPanelUI());
 	}
 

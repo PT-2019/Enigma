@@ -1,189 +1,125 @@
 package editor.view.cases;
 
-import api.entity.types.EnigmaContainer;
+import api.enums.AvailablePopUpOption;
 import api.enums.Layer;
-import api.enums.TypeEntite;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.maps.MapLayers;
+import api.utils.Utility;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import editor.enigma.Enigma;
-import editor.enigma.create.listeners.PopButtonListener;
-import editor.view.cases.listeners.CaseDelete;
+import editor.hud.EnigmaPanel;
 import editor.view.cases.listeners.EntityChoseListener;
 import editor.view.cases.panel.NavigationPanel;
-import editor.view.listeners.PopItemListener;
+import editor.view.listeners.AvailableOptionRunnable;
 import game.entity.map.MapTestScreenCell;
+import starter.EditorLauncher;
 
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import java.awt.Checkbox;
 import java.awt.GridLayout;
+import java.awt.Rectangle;
 import java.util.EnumMap;
-import java.util.Iterator;
 
 /**
  * Fenetre qui est afficher lorsqu'on clique sur une case
  */
 public class CasePopUp extends AbstractPopUp {
+
+	/**
+	 * Largeur, hauteur de la dialog.
+	 * Nombre de lignes et colonnes du contenu.
+	 */
+	private static final int WIDTH = 500, HEIGHT = 200, COL = 1, ROW = 2;
+
 	/**
 	 * Panneau qui gère la navigation entre les différentes entités
+	 * et les différents niveaux
 	 */
 	private NavigationPanel navigation;
 
-	private JPanel extra = new JPanel();
-
-	private TiledMap tileMap;
-
-	private JButton eng = new JButton("Gérer les énigmes");
-
-	private JButton del = new JButton("Supprimer");
-
-	private Checkbox walkable = new Checkbox("Case bloquante");
+	/**
+	 * Panneau des informations de l'entitée
+	 */
+	private EnigmaPanel extra = new EnigmaPanel();
 
 	/**
-	 * Affiche la gestion de contenu pour les entités. //TODO ce fameux menu de gestion
-	 *
-	 * @see api.entity.types.Content
+	 * Contient un Runnable pour chaque option disponible
 	 */
-	private JButton contentButton = new JButton("Dialogue de l'objet");
+	private EnumMap<AvailablePopUpOption, AvailableOptionRunnable> runnables;
 
 	/**
-	 * Affiche la gestion de dialogue //TODO ce fameux menu de gestion de dialogue
+	 * Tiled Map
 	 */
-	private JButton entityButton = new JButton("Gérer le dialogue");
+	private final TiledMap tileMap;
 
-	private JPanel passage = new JPanel();
+	/**
+	 * Composant swing
+	 */
+	private final JComponent component;
 
-	private JCheckBox hideRigth = new JCheckBox("Cacher room à droite");
-
-	private JCheckBox hideLeft = new JCheckBox("Cacher room à gauche");
-
-	private JComponent component;
-
-	private EntityChoseListener observer;
+	/**
+	 * ???
+	 */
+	private final EntityChoseListener observer;
 
 	public CasePopUp(JComponent component, TiledMap tiledMap) {
 		super((JFrame) component.getRootPane().getParent(), "", false);
 		this.component = component;
 		this.observer = new EntityChoseListener();
-		this.setSize(400, 200);
-		this.setLocation(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
+		this.tileMap = tiledMap;
+		this.runnables = new EnumMap<>(AvailablePopUpOption.class);
+
+		Rectangle bounds = Utility.getMonitorOf(EditorLauncher.getInstance().getWindow()).getBounds();
+		this.setLocation(bounds.width / 2 - WIDTH/2, bounds.height / 2 - HEIGHT/2);
+		this.setSize(WIDTH, HEIGHT);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		this.tileMap = tiledMap;
-		this.setLayout(new GridLayout(2, 1));
+		this.setLayout(new GridLayout(ROW, COL));
 		this.initComponent();
 	}
 
-	private void initComponent() {
-		navigation = new NavigationPanel(this);
-		extra = new JPanel();
-
-		eng = new JButton("Gérer les énigmes");
-		del = new JButton("Supprimer");
-		walkable = new Checkbox("Case bloquante");
-		passage.setLayout(new GridLayout(2, 1));
-		navigation.setLayout(new GridLayout(1, 3));
-		extra.setLayout(new GridLayout(2, 3));
+	@Override
+	public void initComponent() {
+		this.navigation = new NavigationPanel(this);
+		this.extra = new EnigmaPanel();
+		for (Class c : AvailableOptionRunnable.classes) {
+			AvailableOptionRunnable runnable = (AvailableOptionRunnable) Utility.instance(c, this);
+			runnables.put(runnable.getOption(), runnable);
+		}
+		this.navigation.setLayout(new GridLayout(1, 3));
+		this.extra.setLayout(new GridLayout(2, 3));
 	}
 
+	/**
+	 * Méthode appelée à l'affichage du popup
+	 */
 	public void display() {
-		TiledMapTileLayer l = cell.getLayer();
-		MapLayers layers = tileMap.getLayers();
-		int index = layers.getIndex(l.getName());
-		TiledMapTileLayer layer;
-		TiledMapTileLayer collision = (TiledMapTileLayer) tileMap.getLayers().get(Layer.COLLISION.name());
+		TiledMapTileLayer currentLayer = cell.getLayer();
+		this.setTitle(Layer.valueOf(currentLayer.getName()).name);
 
-		if (cell.getEntity() instanceof EnigmaContainer) {
-			EnigmaContainer eni = (EnigmaContainer) cell.getEntity();
-			if (eni != null) {
-				Iterator<Enigma> it = eni.getAllEnigmas();
-
-				while (it.hasNext()) {
-					System.out.println(it.next());
-				}
-			}
-		}
-
-		//si il y a un objet content, ou si c'est une entitée
-		boolean iscontent = false, isEntity = false, isPassage = false, isenigma = false;
-
-		this.setTitle(l.getName());
-
-		if (cell.getEntity() == null) {
-			navigation.setText("Aucune entité");
+		if (this.cell.getEntity() == null) {
+			this.navigation.setText("Aucune entité");
 		} else {
-			System.out.println(cell.getEntity().getClass());
-			String className = cell.getEntity().getClass().getName();
-
-			EnumMap<TypeEntite, Boolean> tmp = cell.getEntity().getImplements();
-
-			if (tmp.get(TypeEntite.ITEM)) {
-				isenigma = true;
-			}
-
-			//on regarde les interfaces implémenter par l'entité
-			try {
-				Class c = Class.forName(className);
-				Class[] interfaces = c.getInterfaces();
-
-				for (int i = 0; i < interfaces.length; i++) {
-					if (interfaces[i].getName().equals("api.entity.interfaces.Content")) {
-						iscontent = true;
-					}
-
-					if (interfaces[i].getName().equals("api.entity.interfaces.Entity")) {
-						isEntity = true;
-					}
-
-					if (interfaces[i].getName().equals("api.entity.interfaces.Passage")) {
-						isPassage = true;
-					}
-					System.out.println(interfaces[i]);
-				}
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-			//j'ai changé pour qu'une entité retourne direct le nom a afficher (selon langue jeu)
-			navigation.setClassText(cell.getEntity().getReadableName());
+			this.navigation.setText(this.cell.getEntity().getReadableName());
+			fillPanel();
 		}
-
-		navigation.displayNavBouton(index, layers);
-
-		layer = (TiledMapTileLayer) layers.get(index);
-		TiledMapTileLayer.Cell cellTmp = collision.getCell(cell.getIndex() % layer.getWidth(), cell.getIndex() / layer.getWidth());
-		if (cellTmp.getTile() != null) {
-			walkable.setState(true);
-		}
-		extra.add(walkable);
-		walkable.addItemListener(new PopItemListener(tileMap, cell));
-		extra.add(del);
-
-		if (iscontent) {
-			extra.add(contentButton);
-		}
-		if (isEntity) {
-			extra.add(entityButton);
-		}
-		if (isenigma) {
-			extra.add(eng);
-			eng.addActionListener(new PopButtonListener(this, cell, observer));
-		}
-		if (isPassage) {
-			//TODO un listener pour ces 2 composants
-			passage.add(hideLeft);
-			passage.add(hideRigth);
-			extra.add(passage);
-		}
-		del.addActionListener(new CaseDelete(cell, layer, navigation.getInfo()));
-
+		int index = this.tileMap.getLayers().getIndex(currentLayer.getName());
+		this.navigation.displayNavBouton(index, this.tileMap.getLayers());
 		this.add(navigation);
 		this.add(extra);
 		this.setVisible(true);
+	}
+
+	/**
+	 * Rempli les options liées a l'entité sur la case
+	 */
+	public void fillPanel(){
+		if(this.cell != null && this.cell.getEntity() != null) {
+			for (AvailablePopUpOption option : AvailablePopUpOption.values()) {
+				if (AvailablePopUpOption.isAvailable(option, this.cell.getEntity())) {
+					Runnable runnable = runnables.get(option);
+					if (runnable != null) runnable.run();
+				}
+			}
+		}
 	}
 
 	public void setCell(MapTestScreenCell cell) {
@@ -193,18 +129,17 @@ public class CasePopUp extends AbstractPopUp {
 	/**
 	 * On élimine tout les composants de la fenetre puis on en créer de nouveau
 	 */
-	//TODO essayer d'optimiser tout ça
+	@Override
 	public void clean() {
-		extra.remove(eng);
-		extra.remove(del);
-		extra.remove(walkable);
-		extra.remove(passage);
-		passage.remove(hideLeft);
-		passage.remove(hideRigth);
-		extra.remove(contentButton);
+		this.extra.removeAll();
 		this.remove(navigation);
 		this.remove(extra);
 		initComponent();
+	}
+
+	@Override
+	public MapTestScreenCell getCell() {
+		return super.getCell();
 	}
 
 	public TiledMap getTileMap() {
@@ -217,5 +152,13 @@ public class CasePopUp extends AbstractPopUp {
 
 	public EntityChoseListener getObserver() {
 		return observer;
+	}
+
+	public EnigmaPanel getPanel() {
+		return this.extra;
+	}
+
+	public NavigationPanel getNavigation() {
+		return navigation;
 	}
 }

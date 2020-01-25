@@ -9,6 +9,7 @@ import editor.view.TestMapControl;
 import game.EnigmaGame;
 import game.entity.map.MapTestScreen;
 import game.hud.CategoriesMenu;
+import starter.Config;
 
 /**
  * TestScreen de la libgdx dans l'éditeur
@@ -23,7 +24,8 @@ import game.hud.CategoriesMenu;
 public class TestScreen extends LibgdxScreen {
 
 	//si tu veux charger une map c'est ici sans passer par le launcher
-	private static String MAP_PATH = "assets/map/map_system/EmptyMap.tmx";
+	//private static String MAP_PATH = "assets/map/map_system/EmptyMap.tmx";
+	private static String MAP_PATH = Config.MAP_FOLDER+"test1.tmx";
 
 	/**
 	 * L'état de l'éditeur

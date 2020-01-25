@@ -10,7 +10,7 @@ package api.entity.types;
  * @version 5.0
  * @since 2.0
  */
-public interface Living {
+public interface Living extends NeedContainerManager {
 
 	/**
 	 * Obtenir les points de vie de l'entité

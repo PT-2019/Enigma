@@ -4,7 +4,7 @@ import api.entity.Entity;
 import api.entity.actor.GameActorTextured;
 import api.entity.types.Living;
 import api.enums.Layer;
-import api.enums.TypeEntite;
+import api.enums.TypeEntity;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
@@ -52,6 +52,11 @@ public class NPC extends GameActorTextured implements Entity, Living {
 	 * Nom du npc
 	 */
 	private String name;
+
+	/**
+	 * True si c'est un héro possible
+	 */
+	private boolean hero;
 
 	public NPC() {
 		this(-1);
@@ -139,12 +144,12 @@ public class NPC extends GameActorTextured implements Entity, Living {
 	}
 
 	@Override
-	public EnumMap<TypeEntite, Boolean> getImplements() {
-		EnumMap<TypeEntite, Boolean> imp = TypeEntite.emptyMap();
-		imp.put(TypeEntite.NPC, true);
+	public EnumMap<TypeEntity, Boolean> getImplements() {
+		EnumMap<TypeEntity, Boolean> imp = TypeEntity.emptyMap();
+		imp.put(TypeEntity.NPC, true);
 
-		imp.put(TypeEntite.LIVING, true);
-		imp.put(TypeEntite.NEED_CONTAINER, true);
+		imp.put(TypeEntity.LIVING, true);
+		imp.put(TypeEntity.NEED_CONTAINER_MANAGER, true);
 		return imp;
 	}
 
@@ -170,12 +175,20 @@ public class NPC extends GameActorTextured implements Entity, Living {
 		this.name = name;
 	}
 
+	public boolean isHero(){
+		return hero;
+	}
+
+	public void setHero(boolean hero){
+		this.hero = hero;
+	}
+
 	//toString
 
 	@Override
 	public String toString() {
-		return "Player{" + "MAX_PLAYER_PV=" + MAX_NPC_PV + ", pv=" + pv + ", id=" + id +
-				", tiles=" + tiles + ", bounds=" + bounds + '}';
+		return "NPC{" + "MAX_NPC_PV=" + MAX_NPC_PV + ", pv=" + pv + ", id=" + id +
+				", tiles=" + tiles + ", bounds=" + bounds + ", name='" + name + '\'' + ", hero=" + hero + '}';
 	}
 
 	@Override

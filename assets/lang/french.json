@@ -31,6 +31,12 @@
     characters: Personnages
     actions: Actions
 
+    layer: Étage
+    firstlayer: Niveau
+    ok: Confirmer
+    cancel: Annuler
+    leave: Voulez vous vraiment quittez?
+
     //game
     room: Salle
     chest: Coffre
@@ -39,7 +45,7 @@
     button: Bouton
     book: Livre
     door: Porte
-    pressurePlate: Plaque de pression
+    pressureplate: Plaque de pression
     player: Héros
     library: Bibliothèque
 

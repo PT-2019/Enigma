@@ -2,6 +2,7 @@ package editor.enigma.create.enigma;
 
 
 import api.entity.GameObject;
+import api.hud.ResetComponent;
 import api.utils.Observer;
 import editor.enigma.create.listeners.ConditionListener;
 import editor.view.cases.panel.MenuPanel;
@@ -21,7 +22,7 @@ import java.awt.Insets;
 /**
  * Panneau qui affiche le menu pour créer une condition
  */
-public class ConditionPanel extends EnigmaPanel implements Observer {
+public class ConditionPanel extends EnigmaViewPanel implements Observer, ResetComponent {
 
 	/**
 	 * boolean pour savoir si on a afficher le panneau
@@ -47,9 +48,10 @@ public class ConditionPanel extends EnigmaPanel implements Observer {
 	private JLabel entityName;
 
 	public ConditionPanel(EnigmaView parent) {
+		super(parent);
 		this.setLayout(new GridBagLayout());
 		this.gbc = new GridBagConstraints();
-		MenuPanel menu = new MenuPanel("\nAjouter une Condition \n à l'énigme", "zeafazefzfae", parent);
+		MenuPanel menu = new MenuPanel("\nAjouter une Condition \n à l'énigme", "zeafazefzfae", parent, this);
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.weightx = 0;
@@ -103,6 +105,10 @@ public class ConditionPanel extends EnigmaPanel implements Observer {
 		gbc.fill = GridBagConstraints.BOTH;
 		this.add(submit, gbc);
 		activateSearchItem = false;
+		entityName = new JLabel("");
+		optionPanel = new JPanel();
+		optionPanel.setLayout(new BorderLayout());
+		optionPanel.add(entityName, BorderLayout.SOUTH);
 	}
 
 	/**
@@ -156,7 +162,17 @@ public class ConditionPanel extends EnigmaPanel implements Observer {
 	@Override
 	public void update(GameObject g) {
 		listener.setGameObject(g);
-		//TODO: entityName est null
-		entityName.setText(g.toString());
+		if(g == null) entityName.setText("Vous n'avez pas encore choisi d'entité");
+		else entityName.setText(g.toString());
+	}
+
+	@Override
+	public void clean() {
+
+	}
+
+	@Override
+	public void initComponent() {
+
 	}
 }

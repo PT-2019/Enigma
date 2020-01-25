@@ -5,6 +5,7 @@ import api.hud.ui.CustomPanelUI;
 
 import javax.swing.JPanel;
 import java.awt.Graphics;
+import java.awt.LayoutManager;
 
 /**
  * Un JPanel customizable
@@ -13,7 +14,7 @@ import java.awt.Graphics;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 4.0 27/12/2019
+ * @version 5.0
  * @since 4.0 27/12/2019
  */
 public class CustomPanel extends JPanel implements CustomComponent<CustomPanelUI> {
@@ -25,6 +26,18 @@ public class CustomPanel extends JPanel implements CustomComponent<CustomPanelUI
 	 */
 	public CustomPanel() {
 		super();
+		this.addMouseListener(new CustomPanelManager(this));
+		this.setOpaque(true);
+		this.setComponentUI(new CustomPanelUI());
+	}
+
+	/**
+	 * Un JPanel customizable
+	 * @param manager Layout
+	 * @since 5.0
+	 */
+	public CustomPanel(LayoutManager manager) {
+		super(manager);
 		this.addMouseListener(new CustomPanelManager(this));
 		this.setOpaque(true);
 		this.setComponentUI(new CustomPanelUI());
