@@ -1,15 +1,20 @@
 package api.utils;
 
+import api.entity.GameObject;
 import api.utils.annotations.ConvenienceClass;
 import api.utils.annotations.ConvenienceMethod;
 import api.utils.annotations.NeedPatch;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Array;
-import editor.hud.EnigmaWindow;
 
-import java.awt.*;
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.Window;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -31,7 +36,7 @@ import static starter.Config.DEBUG_COLOR;
  * Tout un paquet de méthodes utiles
  *
  * @author Quentin RAMSAMY-AGEORGES
- * @version 5.1
+ * @version 5.3
  * @since 2.0 27 novembre 2019
  */
 @ConvenienceClass
@@ -247,7 +252,7 @@ public class Utility implements Serializable {
 		try {
 			return instance(Class.forName(aClass));
 		} catch (ClassNotFoundException e) {
-			throw new IllegalStateException("EntityFactory create instance failed" + e);
+			throw new IllegalStateException("Utility. Create instance failed" + e);
 		}
 	}
 
@@ -295,7 +300,14 @@ public class Utility implements Serializable {
 		throw new IllegalArgumentException("monitor non trouvé!");
 	}
 
-	public static Object getKeyFromValue(HashMap<?, ?> map, Object value) {
+	/**
+	 * Renvoi la clef d'une valeur d'une HashMap
+	 * @param map une map
+	 * @param value valeur
+	 * @return la clef correspond a la valeur
+	 * @since 5.2
+	 */
+	public static Object getKeyFromValue(Map<?, ?> map, Object value) {
 		for (Map.Entry<?, ?> mapEntry : map.entrySet()) {
 			if (mapEntry.getValue().equals(value))
 				return mapEntry.getKey();
@@ -308,6 +320,8 @@ public class Utility implements Serializable {
 	 *
 	 * @param className nom de la classe
 	 * @param message   message
+	 *
+	 * @since 5.2
 	 */
 	public static void printDebug(String className, String message) {
 		/*if(Gdx.app != null){
@@ -317,6 +331,39 @@ public class Utility implements Serializable {
 			PrintColor.println(className+":"+message, DEBUG_COLOR);
 		}*/
 		PrintColor.println(className + ":" + message, DEBUG_COLOR);
+	}
+
+	/**
+	 * Regarde s'il y a collision entre deux rectangle, dans un repère orthonormé  bas gauche
+	 * @param rect1 un rect
+	 * @param rect2 un rect
+	 * @return true s'il y a collision
+	 */
+	public static boolean overlapsBottomLeftOrigin(Rectangle rect1, Rectangle rect2){
+		if(rect2.x+rect2.width > rect1.x && rect2.x < rect1.x + rect1.width){
+			if(rect2.y-rect2.height < rect1.y && rect2.y > rect1.y - rect1.height){
+				return true;
+			}
+		}
+		return false;
+	}
+
+
+	/**
+	 * Regarde si un point est dans une entité, dans un repère orthonormé  bas gauche
+	 * @param parent objet parent
+	 * @param parentPos et sa position
+	 * @param x position x a tester
+	 * @param y position y a tester
+	 * @return true si l'object contient le point x,y
+	 */
+	public static boolean containsBottomLeftOrigin(GameObject parent, Vector2 parentPos, int x, int y) {
+		if(x >= parentPos.x && x < parentPos.x + parent.getGameObjectWidth()){
+			if(y < parentPos.y && y >= parentPos.y - parent.getGameObjectHeight()){
+				return true;
+			}
+		}
+		return false;
 	}
 }
 

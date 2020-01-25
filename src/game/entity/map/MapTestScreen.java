@@ -160,7 +160,8 @@ public class MapTestScreen extends AbstractMap {
 	private void initEntities() {
 		ArrayList<MapProperties> entities = getProperty(TmxProperties.TMX_PROP_ENTITY);
 		float x, y;
-		Integer width, height, id;
+		int width, height;
+		Integer id;
 		String className;
 		EntitySerializable e;
 		for (MapProperties prop : entities) {
@@ -270,7 +271,7 @@ public class MapTestScreen extends AbstractMap {
 				(Gdx.graphics.getHeight() / 2f - camera.position.y) * 1);
 		this.mapBounds = new Bounds(bounds);
 
-		Utility.printDebug("MapLibgdx - placement", mapBounds + " pos=" + pos + " " + mapBounds.contains(pos));
+		//Utility.printDebug("MapLibgdx - placement", mapBounds + " pos=" + pos + " " + mapBounds.contains(pos));
 
 		//si pas dans la map
 		if (!mapBounds.contains(pos)) return false;
@@ -316,6 +317,7 @@ public class MapTestScreen extends AbstractMap {
 	 * @since 4.0
 	 */
 	private void set(GameObject entity, Vector2 start) {
+		//TODO : interdire si pas big boss ou si déjà big boss pour big boss
 		//on parcours toutes les niveaux de la map et on y ajoute les tiles de l'entité
 		for (MapLayer mapLayer : this.map.getMap().getLayers()) {
 			//c'est un layer de tiles ?
@@ -352,98 +354,150 @@ public class MapTestScreen extends AbstractMap {
 	 * @since 5.0
 	 */
 	public boolean removeEntity(GameObject entity) {
+		Utility.printDebug("Delete ?", entity.getReadableName()+" "+
+				entity.getGameObjectWidth()+" "+entity.getGameObjectHeight()
+		);
+		System.out.println(this.added);
 		if (this.added.containsValue(entity)) {//peut la supprimer
 			Vector2 pos = (Vector2) Utility.getKeyFromValue(this.added, entity);
 			this.added.remove(pos);
-			delete(entity, pos);
+			this.delete(entity, pos);
 			return true;
 		}
 		return false;
 	}
 
 	/**
-	 * Place une entité
+	 * Supprime une entité
 	 *
-	 * @param entity l'entité à charger
-	 * @param start  le coin supérieur gauche ou commencer a placer des tiles
+	 * @param entity l'entité à supprimé
+	 * @param start  sa position
 	 * @since 4.0
 	 */
 	private void delete(GameObject entity, Vector2 start) {
-		GameObject parent =  this.getParentObject(start, entity);
+		HashMap<Vector2, GameObject> parents = this.getParentObject(start, entity);
+		Array<Array<Float>> entities = null;
+		Array<GameObject> objects = null;
+		if(parents != null && !parents.isEmpty()) {
+			objects = new Array<>();
+			for (GameObject obj :parents.values()) {
+				objects.add(obj);
+			}
+			entities = new Array<>();
+		}
 
-		//TODO: opti
+		/*GameObject parent = null;
+		Vector2 parentPos = null;
+		if(parentObj != null && parentObj.getValue().getID() != entity.getID()) {
+			parent = parentObj.getValue();
+			parentPos = parentObj.getKey();
+		}*/
 
-		if(parent == null){
-			//on parcours toutes les niveaux de la map et on y ajoute les tiles de l'entité
-			for (MapLayer mapLayer : this.map.getMap().getLayers()) {
-				//c'est un layer de tiles ?
-				if (!(mapLayer instanceof TiledMapTileLayer)) continue;
+		//on parcours toutes les niveaux de la map et on y ajoute les tiles de l'entité
+		for (MapLayer mapLayer : this.map.getMap().getLayers()) {
+			//c'est un layer de tiles ?
+			if (!(mapLayer instanceof TiledMapTileLayer)) continue;
 
-				TiledMapTileLayer tileLayer = (TiledMapTileLayer) mapLayer;
+			TiledMapTileLayer tileLayer = (TiledMapTileLayer) mapLayer;
 
-				//récupère les tiles de l'entités pour ce niveau
-				Array<Float> ent = entity.getTiles(Utility.stringToEnum(tileLayer.getName(), Layer.values()));
-
-				//si pas de tiles a mettre sur ce layer, on passe au suivant
-				if (ent == null) continue;
-
-				//calcul pour placer les tiles depuis x et y
-				//sachant que y est inversé, on part de la dernière tile et on remonte
-				//pas de problème pour x
-				for (int i = (int) start.y - 1, index = 0; i >= (start.y - entity.getGameObjectHeight()); i--) {
-					for (int j = (int) start.x; j < start.x + entity.getGameObjectWidth() && index < ent.size; j++, index++) {
-						MapTestScreenCell c = (MapTestScreenCell) tileLayer.getCell(j, i);
-						c.setTile(this.map.getMap().getTileSets().getTile(0));
-						tileLayer.setCell(j, i, c);
-					}
+			//récupère les tiles de l'entités pour ce niveau
+			Array<Float> ent = entity.getTiles(Utility.stringToEnum(tileLayer.getName(), Layer.values()));
+			//Array<Float> entities = new Array<>();
+			if(objects != null) {
+				entities.clear();
+				for (GameObject o : new Array.ArrayIterator<>(objects)) {
+					entities.add(o.getTiles(Utility.stringToEnum(tileLayer.getName(), Layer.values())));
 				}
 			}
-		} else {
-			//on parcours toutes les niveaux de la map et on y ajoute les tiles de l'entité
-			for (MapLayer mapLayer : this.map.getMap().getLayers()) {
-				//c'est un layer de tiles ?
-				if (!(mapLayer instanceof TiledMapTileLayer)) continue;
+			//if(parent != null) entities = parent.getTiles(Utility.stringToEnum(tileLayer.getName(), Layer.values()));
+			/*if(entities == null)
+				entities = new Array<>();*/
 
-				TiledMapTileLayer tileLayer = (TiledMapTileLayer) mapLayer;
+			//si pas de tiles a mettre sur ce layer, on passe au suivant
+			if (ent == null) continue;
 
-				//récupère les tiles de l'entités pour ce niveau
-				Array<Float> ent = entity.getTiles(Utility.stringToEnum(tileLayer.getName(), Layer.values()));
-				Array<Float> entities = parent.getTiles(Utility.stringToEnum(tileLayer.getName(), Layer.values()));
-
-				//si pas de tiles a mettre sur ce layer, on passe au suivant
-				if (ent == null) continue;
-
-				//calcul pour placer les tiles depuis x et y
-				//sachant que y est inversé, on part de la dernière tile et on remonte
-				//pas de problème pour x
-				for (int i = (int) start.y - 1, index = 0; i >= (start.y - entity.getGameObjectHeight()); i--) {
-					for (int j = (int) start.x; j < start.x + entity.getGameObjectWidth() && index < ent.size; j++, index++) {
-						MapTestScreenCell c = (MapTestScreenCell) tileLayer.getCell(j, i);
-						int ind = 0;
-						c.setEntity(null);
-						if(index < entities.size) {
+			//calcul pour placer les tiles depuis x et y
+			//sachant que y est inversé, on part de la dernière tile et on remonte
+			//pas de problème pour x
+			//TODO: index commence pas a zéro
+			for (int i = (int) start.y - 1, index = 0; i >= (start.y - entity.getGameObjectHeight()); i--) {
+				for (int j = (int) start.x; j < start.x + entity.getGameObjectWidth() && index < ent.size; j++, index++) {
+					MapTestScreenCell c = (MapTestScreenCell) tileLayer.getCell(j, i);
+					int ind = 0;
+					c.setEntity(null);
+					if(entities != null) {
+						for (Array<Float> entitiesArray : new Array.ArrayIterator<>(entities)) {
+							if (index < entitiesArray.size && parents != null) {
+								for (Map.Entry<Vector2, GameObject> entry : parents.entrySet()) {
+									if (Utility.containsBottomLeftOrigin(entry.getValue(), entry.getKey(), j, i)) {
+										if (tileLayer.getName().equals(Layer.FLOOR1.name()))
+											//System.out.println("pos:"+new Vector2(j,i).add(parentPos.cpy().scl(-1,1)));
+											ind = MathUtils.ceil(entitiesArray.get(index));
+										Utility.printDebug("",
+												entry.getValue().getGameObjectWidth() + " " +
+														entry.getValue().getGameObjectHeight()
+										);
+										c.setEntity(entry.getValue());
+										break;
+									}
+								}
+							}
+						}
+					}
+					/*if (index < entities.size && parentPos != null) {
+						if(Utility.containsBottomLeftOrigin(parent, parentPos, j, i)) {
+							if(tileLayer.getName().equals(Layer.FLOOR1.name()))
+							//System.out.println("pos:"+new Vector2(j,i).add(parentPos.cpy().scl(-1,1)));
 							ind = MathUtils.ceil(entities.get(index));
+							Utility.printDebug("",
+									parent.getGameObjectWidth()+" "+parent.getGameObjectHeight()
+							);
 							c.setEntity(parent);
 						}
-						c.setTile(this.map.getMap().getTileSets().getTile(ind));
-						tileLayer.setCell(j, i, c);
-					}
+					}*/
+					c.setTile(this.map.getMap().getTileSets().getTile(ind));
+					tileLayer.setCell(j, i, c);
 				}
 			}
 		}
+
 	}
 
-	private GameObject getParentObject(Vector2 start, GameObject entity) {
+	private HashMap<Vector2, GameObject> getParentObject(Vector2 start, GameObject entity) {
+		ArrayList<Vector2> delete = new ArrayList<>();
+		HashMap<Vector2, GameObject> obj = new HashMap<>();
 		Rectangle ent = new Rectangle(start.x, start.y, entity.getGameObjectWidth(), entity.getGameObjectHeight());
 		for (Map.Entry<Vector2, GameObject> item :getEntities().entrySet()) {
 			Rectangle other = new Rectangle(item.getKey().x, item.getKey().y, item.getValue().getGameObjectWidth(), item.getValue().getGameObjectHeight());
-			if (ent.overlaps(other)){
-				Utility.printDebug("DeleteGetParent", item.toString());
-				return item.getValue();
+			//check collision
+			if (Utility.overlapsBottomLeftOrigin(ent,other)){
+				//si c'est un conteneur
+				if(entity instanceof api.entity.types.Container){
+					//si item est un conteneur, alors on va le reconstruire ses tiles après suppression
+					if(item.getValue() instanceof api.entity.types.Container){
+						obj.put(item.getKey(), item.getValue());
+					}
+					//sinon on supprime le contenu
+					else {
+						delete.add(item.getKey());
+					}
+				} else {
+					//sinon on renvoi le conteneur
+					Utility.printDebug("DeleteGetParent", item.toString()+"("+ent+" overlaps "+other+")");
+					obj.put(item.getKey(), item.getValue());
+					return obj;
+				}
 			}
 		}
-		return null;
+
+		//suppression des contenus
+		for (Vector2 v : delete) {
+			added.remove(v);
+		}
+
+		return obj;
 	}
+
 
 	/**
 	 * Cette méthode transforme toutes les cellules de la map en MapLibgdxCell
