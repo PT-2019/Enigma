@@ -4,7 +4,10 @@ import api.LibgdxScreen;
 import api.entity.actor.GameActorAnimation;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import editor.entity.Player;
 import game.EnigmaGame;
 import game.entity.PlayerGame;
@@ -55,7 +58,6 @@ public class GameScreen extends LibgdxScreen {
 	@Override
 	public void update(float dt) {
 		this.hud.act(dt);
-		this.player.act(dt);
 		this.main.act(dt);
 	}
 

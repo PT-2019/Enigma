@@ -62,24 +62,41 @@ public class GameActorAnimation extends GameActor {
 	 */
 	protected void setAnimation(String texture, int nbCol, int nbRow, float timePerFrame,
 	                            int colPerImage, int rowPerImage, int index) {
-		int row = index / (rowPerImage /nbRow ), col = index % (colPerImage / nbCol);
-		row *= rowPerImage;
-		col *= colPerImage;
+		int col = (index % colPerImage) / nbCol, row = index / (colPerImage * nbRow);
+		int nbimgCol = colPerImage/nbCol;
+		int nbimgRow = rowPerImage/nbRow;
 
 		Array<TextureRegion> listeAnim = new Array<>();
 
 		//load the texture witch contains the animation
 		Texture animation = new Texture(texture);
 		animation.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
-		nbCol = animation.getWidth() / nbCol;
-		nbRow = animation.getHeight() / nbRow;
+		int sizeCol = animation.getWidth() / nbimgCol;
+		int sizeRow = animation.getHeight() / nbimgRow;
 
 		//put all the animations in an array
-		TextureRegion[][] regions = new TextureRegion(animation).split(nbCol, nbRow);
+		TextureRegion[][] regions = new TextureRegion(animation).split(sizeCol, sizeRow);
 
-		for (int i = row; i < row + rowPerImage; i++) {
-			for (int j = col; j < col + colPerImage; j++) {
+		TextureRegion playerRegion = regions[row][col];
 
+		sizeCol = playerRegion.getRegionWidth() / nbCol;
+		sizeRow = playerRegion.getRegionHeight() / nbRow;
+
+		regions = playerRegion.split(sizeCol,sizeRow);
+
+		//on permute les derniers sprites pour que l'animation se termine sur le sprite fixe
+		for (int i = 0; i < nbRow; i++) {
+			for (int j = 0; j < nbCol-1; j++) {
+				if (j == nbCol-2){
+					playerRegion = regions[i][j];
+					regions[i][j] = regions[i][j+1];
+					regions[i][j+1] = playerRegion;
+				}
+			}
+		}
+
+		for (int i = 0; i < nbRow; i++) {
+			for (int j = 0; j < nbCol; j++) {
 				listeAnim.add(regions[i][j]);
 			}
 		}
@@ -108,31 +125,26 @@ public class GameActorAnimation extends GameActor {
 	public void act(float delta) {
 		super.act(delta);
 
-
 		if (this.facedDirection == Direction.LEFT){
 			if (this.getKeyFrameIndex() > 4){
-				this.setKeyFrame(4);
 				this.setAnimationPaused(true);
 			}
 		}
 
 		if (this.facedDirection == Direction.RIGHT){
 			if (this.getKeyFrameIndex() > 7){
-				this.setKeyFrame(7);
 				this.setAnimationPaused(true);
 			}
 		}
 
 		if (this.facedDirection == Direction.FRONT){
 			if (this.getKeyFrameIndex() > 1){
-				this.setKeyFrame(1);
 				this.setAnimationPaused(true);
 			}
 		}
 
 		if(this.facedDirection == Direction.BACK){
-			if ( this.getKeyFrameIndex() > 10){
-				this.setKeyFrame(10);
+			if ( this.getKeyFrameIndex() > 11){
 				this.setAnimationPaused(true);
 			}
 		}
