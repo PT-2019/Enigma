@@ -6,7 +6,7 @@ public enum HUDFields implements Field {
 	FILE, EDIT, RUN, HELP,
 	EXPORT, DOC, SUPPORT, START, STOP,
 	ROOMS, DECORS, OBJECTS, CHARACTERS, ACTIONS,
-	LAYER, FIRST_LAYER, OK, CANCEL, LEAVE;
+	LAYER, FIRST_LAYER, OK, CANCEL, LEAVE, GAME_EXIT;
 
 	@Override
 	public String toString() {

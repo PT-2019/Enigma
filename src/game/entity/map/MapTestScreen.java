@@ -32,6 +32,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import editor.entity.EntityFactory;
 import editor.entity.EntitySerializable;
+import editor.entity.actions.GameExit;
 import editor.view.cases.CasePopUp;
 import editor.view.cases.CaseView;
 import editor.view.listeners.CaseListener;
@@ -61,7 +62,7 @@ import static api.MapsNameUtils.WIDTH_P;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 5.0
+ * @version 5.5
  * @since 2.0 5 décembre 2019
  */
 public class MapTestScreen extends AbstractMap {
@@ -105,6 +106,12 @@ public class MapTestScreen extends AbstractMap {
 	private HashMap<Vector2, GameObject> added;
 
 	private boolean showGrid;
+
+	/**
+	 * Indique si une sortie est présente
+	 * @since 5.5
+	 */
+	private boolean hasExit;
 
 	/**
 	 * Crée une map depuis un fichier tmx
@@ -161,6 +168,10 @@ public class MapTestScreen extends AbstractMap {
 		this.initEntities();
 	}
 
+	/**
+	 * Re-instancie les entités
+	 * @since 5.3
+	 */
 	private void initEntities() {
 		ArrayList<MapProperties> entities = getProperty(TmxProperties.TMX_PROP_ENTITY);
 		float x, y;
@@ -219,7 +230,7 @@ public class MapTestScreen extends AbstractMap {
 	 *
 	 * @param entity l'entité à charger
 	 * @param start  le coin supérieur gauche ou commencer a placer des tiles
-	 * @since 4.0
+	 * @since 5.3
 	 */
 	private void setFromSave(GameObject entity, Vector2 start) {
 		boolean noForce =  (entity instanceof api.entity.types.Container);
@@ -260,6 +271,8 @@ public class MapTestScreen extends AbstractMap {
 	 *
 	 * @param name un name (tag name d'une property d'un .tmx)
 	 * @return une liste des propriétés contenant name
+	 *
+	 * @since 5.0
 	 */
 	private ArrayList<MapProperties> getProperty(String name) {
 		ArrayList<MapProperties> props = new ArrayList<>();
@@ -311,11 +324,19 @@ public class MapTestScreen extends AbstractMap {
 		}
 
 		if (entity.getCategory().name.equals(EntitiesCategories.ACTIONS.name)) {
-			// TODO: ajout des actions doit créer une énigme ou pas. (dépends de l'action)
-			//  en l'occurence start, exit doivent juste être ajoutés dans la sauvegarde.
-			//  une exit, [1 à x] start.
-			PrintColor.println("Ajout des actions non codé", AnsiiColor.YELLOW);
-			return null;
+			if(entity.getClassName() == null) {
+				// TODO: ajout des actions doit créer une énigme ou pas. (dépends de l'action)
+				//  en l'occurence start, exit doivent juste être ajoutés dans la sauvegarde.
+				//  une exit, [1 à x] start.
+				//PrintColor.println("Ajout des actions non codé", AnsiiColor.YELLOW);
+				return null;
+			} else if(entity.getClassName().equals(GameExit.class.getName())) {
+				if(hasExit){
+					return null;
+				} else {
+					this.hasExit = true;
+				}
+			}
 		}
 
 		GameObject object;
@@ -390,7 +411,7 @@ public class MapTestScreen extends AbstractMap {
 	 *
 	 * @param entity l'entité
 	 * @return true si entité supprimée sinon false
-	 * @since 5.0
+	 * @since 5.1
 	 */
 	public boolean removeEntity(GameObject entity) {
 		Utility.printDebug("deleteEntity", entity+" ("+
@@ -401,6 +422,7 @@ public class MapTestScreen extends AbstractMap {
 			Vector2 pos = (Vector2) Utility.getKeyFromValue(this.added, entity);
 			this.added.remove(pos);
 			if(pos.x >= 0 && pos.y >= 0) this.delete(entity, pos);
+			if(entity instanceof GameExit) hasExit = false;
 			return true;
 		}
 		return false;
@@ -411,7 +433,7 @@ public class MapTestScreen extends AbstractMap {
 	 *
 	 * @param entity l'entité à supprimé
 	 * @param start  sa position
-	 * @since 4.0
+	 * @since 5.1
 	 */
 	private void delete(GameObject entity, Vector2 start) {
 		HashMap<Vector2, GameObject> parents = this.getParentObject(start, entity);
@@ -489,6 +511,10 @@ public class MapTestScreen extends AbstractMap {
 
 	}
 
+	/**
+	 * Re-instancie les entités
+	 * @since 5.2
+	 */
 	private HashMap<Vector2, GameObject> getParentObject(Vector2 start, GameObject entity) {
 		ArrayList<Vector2> delete = new ArrayList<>();
 		HashMap<Vector2, GameObject> obj = new HashMap<>();

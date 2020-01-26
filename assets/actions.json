@@ -1,14 +1,24 @@
 {
   content: [
-    {
+    /*{
       path: assets/map/datas/actions/start.png
       hover: emplacement début partie joueurs
       category: ACTIONS
-    },
+    },*/
     {
+      className: editor.entity.actions.GameExit
       path: assets/map/datas/actions/exit.png
       hover: emplacement fin partie joueurs
+      height: 2
+      width: 2
       category: ACTIONS
+      tiles: {
+        DECORATIONS2:
+        [
+          2427, 2428
+          2507, 2508,
+        ]
+      }
     }
   ]
 }

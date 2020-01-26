@@ -47,9 +47,13 @@
     book: Livre
     door: Porte
     pressureplate: Plaque de pression
-    player: Héros
     library: Bibliothèque
 
+    //actions
+    gameexit: sortie
+
+    //entities
+    player: Héros
     npc: Personne
     monster: Monstre
   }

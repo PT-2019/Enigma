@@ -50,6 +50,8 @@ import static starter.Config.DTD_FOLDER_RELATIVE_TO_MAP;
  */
 public class SaveMap {
 
+	public static final float COLLISION_OPACITY = 0.3f;
+
 	/**
 	 * Map à sauvegarder.
 	 */
@@ -160,6 +162,9 @@ public class SaveMap {
 				layers.setAttribute("name", String.valueOf(type));
 				layers.setAttribute("width", String.valueOf(map.getCol()));
 				layers.setAttribute("height", String.valueOf(map.getRow()));
+				if(type.equals(Layer.COLLISION)){
+					layers.setAttribute("opacity", String.valueOf(COLLISION_OPACITY));
+				}
 				mapHeader.appendChild(layers);
 
 				datas = document.createElement("data");
@@ -311,6 +316,9 @@ public class SaveMap {
 				layers.setAttribute("name", tileLayer.getName());
 				layers.setAttribute("width", String.valueOf(tileLayer.getWidth()));
 				layers.setAttribute("height", String.valueOf(tileLayer.getHeight()));
+				if(layer.getName().equals(Layer.COLLISION.name())){
+					layers.setAttribute("opacity", String.valueOf(COLLISION_OPACITY));
+				}
 				map.appendChild(layers);
 
 				datas = document.createElement("data");
