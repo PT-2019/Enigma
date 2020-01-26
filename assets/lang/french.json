@@ -40,6 +40,7 @@
     //game
     room: Salle
     chest: Coffre
+    key: Clef
     pane: Panneau
     switch: Commutateur
     button: Bouton

@@ -1,12 +1,19 @@
 package game.utils;
 
+import api.entity.GameObject;
 import api.enums.EditorState;
+import api.utils.Observer;
+import api.utils.Utility;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import editor.enigma.create.enigma.OperationPanel;
+import editor.entity.EntityFactory;
+import game.EnigmaGame;
 import game.entity.DraggedEntity;
 import game.entity.EntityContainer;
+import game.entity.map.MapTestScreen;
 import game.screen.TestScreen;
 import starter.EditorLauncher;
 
@@ -20,18 +27,26 @@ import java.awt.Cursor;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 4.3 24/12/2019
+ * @version 5.0
  * @see DragAndDrop
  * @since 4.0 20/12/2019
  */
 public class DragAndDropBuilder extends InputListener {
 
 	/**
+	 * Si le déplacement est bloqué et le popup récupère le clic
+	 * @since 5.0
+	 */
+	private static Observer forPopup = null;
+
+	/**
 	 * entity qui sera déplaçable
+	 * @since 4.0
 	 */
 	private final EntityContainer container;
 	/**
 	 * le stage du drag and drop
+	 * @since 4.2
 	 */
 	private final Stage dnd;
 
@@ -40,11 +55,23 @@ public class DragAndDropBuilder extends InputListener {
 	 *
 	 * @param container entity qui sera déplaçable
 	 * @param dnd       le stage du drag and drop
+	 *
+	 * @since 4.0
 	 */
 	public DragAndDropBuilder(EntityContainer container, Stage dnd) {
 		this.container = container;
 		this.dnd = dnd;
 	}
+
+	/**
+	 * Si le déplacement est bloqué et le popup récupère le clic
+	 * @since 5.0
+	 * @param forPopup true si on bloque sinon false
+	 */
+	public static void setForPopup(Observer forPopup) {
+		DragAndDropBuilder.forPopup = forPopup;
+	}
+
 
 	@Override
 	public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -52,6 +79,12 @@ public class DragAndDropBuilder extends InputListener {
 			//POUR LE CONFORT, ON FORCE LE PASSAGE EN NORMAL
 			TestScreen.setState(EditorState.NORMAL);
 			EditorLauncher.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+		} else if(forPopup != null){
+			Utility.printDebug("DnDBuilder", "Déplacement bloqué. Sélection.");
+			MapTestScreen map = ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap();
+			GameObject obj =  map.loadEntity(this.container.getEntity(), null);
+			forPopup.update(obj);
+			return true;
 		}
 		//Crée une copie de l'entité
 		DraggedEntity draggedEntity = new DraggedEntity(this.container);

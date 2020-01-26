@@ -130,13 +130,13 @@ public class Utility implements Serializable {
 	}
 
 	/**
-	 * Affiche une hashMap
+	 * Affiche une Map
 	 *
 	 * @param hashMap la hashMap
 	 * @since 2.0
 	 */
 	@ConvenienceMethod
-	public static void printHashMap(HashMap<?, ?> hashMap) {
+	public static void printHashMap(Map<?, ?> hashMap) {
 		for (Map.Entry<?, ?> entry : hashMap.entrySet()) {
 			System.out.println(entry.getKey() + "->");
 			Object value = entry.getValue();
@@ -213,7 +213,7 @@ public class Utility implements Serializable {
 			object = declaredConstructor.newInstance();
 		} catch (IllegalAccessException | InstantiationException | NoSuchMethodException
 				| InvocationTargetException e) {
-			throw new IllegalStateException("EntityFactory create instance failed" + e);
+			throw new IllegalStateException("create instance failed" + e);
 		}
 		return object;
 	}

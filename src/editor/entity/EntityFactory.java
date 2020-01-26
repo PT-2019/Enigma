@@ -21,7 +21,7 @@ import java.util.Map;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 4.0 23 décembre 2019
+ * @version 5.0
  * @since 3.0 14 décembre 2019
  */
 public class EntityFactory {
@@ -56,10 +56,53 @@ public class EntityFactory {
 	 */
 	public static void loadEntities(String path) {
 		Json j = new Json();
-		EntityFactory entityFactory = j.fromJson(EntityFactory.class, Utility.loadFile(path));
+		Array<? extends EntitySerializable> content = j.fromJson(EntityFactory.class, Utility.loadFile(path)).content;
 
 		//ajout a la factory des entités chargés
-		for (EntitySerializable entity : new Array.ArrayIterator<>(entityFactory.content)) {
+		for (EntitySerializable entity : new Array.ArrayIterator<>(content)) {
+			String key = entity.getClassName();//className
+			if (loaded.containsKey(key))
+				loaded.get(key).addAll(entity);
+			else {
+				Array<EntitySerializable> array = new Array<>();
+				array.addAll(entity);
+				loaded.put(key, array);
+			}
+		}
+	}
+
+	private static final class PlayerFactory {
+		/**
+		 * hashmap locale des entités chargés pour {@link Json#fromJson(Class, String)}
+		 **/
+		private Array<PlayerSerializable> content = new Array<>();
+
+		/**
+		 * constructeur par défaut pour new Instance de {@link Json#fromJson(Class, String)}
+		 **/
+		PlayerFactory() {
+		}
+	}
+
+	/**
+	 * Charge les entités depuis un fichier json et le sauvegarde dans la classe.
+	 * <p>
+	 * On peut les récupérer avec {@link #getEntitiesByCategory(EntitiesCategories)}
+	 *
+	 * @param path chemin du json
+	 * @since 5.0
+	 */
+	public static void loadEntities(String path, boolean players) {
+		Json j = new Json();
+		Array<? extends EntitySerializable> content;
+		if(players){
+			content = j.fromJson(PlayerFactory.class, Utility.loadFile(path)).content;
+		} else {
+			content = j.fromJson(EntityFactory.class, Utility.loadFile(path)).content;
+		}
+
+		//ajout a la factory des entités chargés
+		for (EntitySerializable entity : new Array.ArrayIterator<>(content)) {
 			String key = entity.getClassName();//className
 			if (loaded.containsKey(key))
 				loaded.get(key).addAll(entity);

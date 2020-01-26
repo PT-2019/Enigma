@@ -43,7 +43,7 @@ public class CaseDelete implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (this.current.getEntity() != null) {
-			System.out.println("remove"+this.current.getEntity());
+			//System.out.println("remove"+this.current.getEntity());
 			this.current.removeEntity();
 			this.layer.setCell(
 					this.current.getIndex() % this.layer.getWidth(),
@@ -52,10 +52,11 @@ public class CaseDelete implements ActionListener {
 			if(this.current.getEntity() == null) label.setText("Aucune entité");
 			else this.label.setText(this.current.getEntity().getReadableName());
 			//supprime les infos de l'ancienne
-			//EnigmaPanel panel = this.parent.getPanel();
-			//panel.removeAll();
+			EnigmaPanel panel = this.parent.getPanel();
+			panel.removeAll();
+			panel.revalidate();
 			//rebuild le panneau
-			//this.parent.fillPanel();
+			this.parent.fillPanel();
 		}
 	}
 }

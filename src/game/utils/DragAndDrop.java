@@ -89,7 +89,7 @@ public class DragAndDrop extends InputListener {
 		if (retour) {//si pas caché
 			MapTestScreen map = ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap();
 			//on regarde si on l'a mis sur la map
-			retour = map.loadEntity(dragged.getEntity(), pos);
+			retour = map.loadEntity(dragged.getEntity(), pos) != null;
 		} else {
 			Gdx.app.debug("DragAndDrop", "dans le menu");
 		}

@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.SnapshotArray;
+import editor.enigma.create.enigma.EnigmaView;
 import editor.view.cases.CasePopUp;
 import editor.view.cases.CaseView;
 import editor.view.cases.SpecialPopUp;
@@ -55,6 +56,20 @@ public class CaseListener extends ClickListener {
 	public void clicked(InputEvent event, float x, float y) {
 		//on ne peut cliquer que si l'état est normal
 		if(TestScreen.isState(EditorState.NORMAL)) {
+
+			if(enigmacreate){ //une popup est ouverte
+				//on doit être dans un menu qui nécessite une deuxième popup
+				if(EnigmaView.getAvailable() != null){
+					//deuxième fenêtre ok on ne quitte pas
+				} else {
+					//on met la window au premier plan
+					popUp.setAlwaysOnTop(true);
+					popUp.revalidate();
+					popUp.setAlwaysOnTop(false);
+					//équivalent d'un focus mais en mode bizarre
+					return;
+				}
+			}
 
 			CaseView actor = (CaseView) event.getTarget();
 			MapTestScreenCell cell = actor.getCell();

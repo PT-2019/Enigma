@@ -1,16 +1,20 @@
 package editor.enigma.create.enigma;
 
+import api.utils.Observer;
 import com.badlogic.gdx.Gdx;
 import editor.enigma.Enigma;
 import editor.view.cases.CasePopUp;
 import editor.view.cases.listeners.EntityChoseListener;
 import game.entity.map.MapTestScreenCell;
+import game.utils.DragAndDropBuilder;
 import starter.EditorLauncher;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.CardLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 /**
  * Element principal dans la création de l'enigme, contient toute les informations nécessaire
@@ -20,6 +24,8 @@ import java.awt.CardLayout;
 public class EnigmaView extends JDialog {
 
 	public static final int WIDTH = 700, HEIGHT = 300;
+
+	private static Observer available = null;
 
 	/**
 	 * Enigme que l'utilisateur va créer
@@ -43,6 +49,7 @@ public class EnigmaView extends JDialog {
 		this.setLocation(Gdx.graphics.getWidth() / 2 - WIDTH/2, Gdx.graphics.getHeight() / 2 - HEIGHT/2);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		this.addWindowListener(new Close());
 		this.layout = new CardLayout();
 		panel = new JPanel();
 		panel.setLayout(this.layout);
@@ -54,9 +61,9 @@ public class EnigmaView extends JDialog {
 		OperationPanel operation = new OperationPanel(this);
 		observer.addObserveur(operation);
 		CluePanel clue = new CluePanel(this);
-		panel.add(operation, "operation");
 		panel.add(new EnigmaMenu(this), "menu");
 		panel.add(clue, "clue");
+		panel.add(operation, "operation");
 		panel.add(condition, "condition");
 		enigma = new Enigma();
 		this.cell = cell;
@@ -80,5 +87,36 @@ public class EnigmaView extends JDialog {
 
 	public MapTestScreenCell getCell() {
 		return cell;
+	}
+
+	/**
+	 * Reset l'éditor dans son état avant ouverture
+	 *
+	 * @author Jorys-Micke ALAÏS
+	 * @author Louka DOZ
+	 * @author Loic SENECAT
+	 * @author Quentin RAMSAMY-AGEORGES
+	 *
+	 * @version 5.0 26/01/2020
+	 * @since 5.0 26/01/2020
+	 */
+	private static final class Close extends WindowAdapter {
+		@Override
+		public void windowClosing(WindowEvent e) {
+			DragAndDropBuilder.setForPopup(null);
+		}
+	}
+
+	public static void setAvailable(Observer available) {
+		EnigmaView.available = available;
+	}
+
+	public static Observer getAvailable() {
+		return available;
+	}
+
+	public static boolean isAvailable(Observer observer) {
+		if(available == null) return false;
+		return available.equals(observer);
 	}
 }

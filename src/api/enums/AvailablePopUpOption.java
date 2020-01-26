@@ -49,6 +49,14 @@ public enum AvailablePopUpOption {
 	 * des objets de type passage
 	 */
 	SET_PASSAGE_ROOM_HIDDEN(),
+	/**
+	 * Checkbox qui définit si l'entité est verrouillée ou non
+	 */
+	SET_LOCKED(TypeEntity.LOCKABLE),
+	/**
+	 * Checkbox qui définit si l'entité est activée ou non
+	 */
+	SET_ACTIVATED(TypeEntity.ACTIVATABLE),
 	DEFINE_AS_HERO(TypeEntity.NPC),
 	DEFINE_AS_NPC(TypeEntity.PLAYER),
 	;

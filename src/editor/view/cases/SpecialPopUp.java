@@ -1,22 +1,35 @@
 package editor.view.cases;
 
+import api.enums.Layer;
+import api.utils.Utility;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import editor.hud.EnigmaButton;
+import editor.hud.EnigmaPanel;
 import editor.view.cases.listeners.SpecialPopListener;
 import editor.view.cases.panel.NavigationPanel;
 import game.entity.map.MapTestScreenCell;
+import starter.EditorLauncher;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import java.awt.GridLayout;
+import java.awt.Rectangle;
 
 /**
  * PopUp qui permet de se déplacer uniquement entre les entités
  */
 public class SpecialPopUp extends AbstractPopUp {
+
+	/**
+	 * Largeur, hauteur de la dialog.
+	 * Nombre de lignes et colonnes du contenu.
+	 */
+	private static final int WIDTH = 400, HEIGHT = 130, COL = 1, ROW = 2;
+
 	/**
 	 * Panneau de navigation pour passer d'une entité à une autre
 	 */
@@ -27,37 +40,38 @@ public class SpecialPopUp extends AbstractPopUp {
 	 */
 	private CasePopUp popUp;
 
-	private JButton button;
+	private EnigmaPanel panel;
+
+	private EnigmaButton button;
 
 	public SpecialPopUp(JComponent component, TiledMap tiledMap, CasePopUp popUp) {
 		super((JFrame) component.getRootPane().getParent(), "", false);
+		this.tileMap = tiledMap;
+		this.popUp = popUp;
 
-		this.setSize(400, 200);
-		this.setLocation(Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
+		Rectangle bounds = Utility.getMonitorOf(EditorLauncher.getInstance().getWindow()).getBounds();
+		this.setLocation(bounds.width / 2 - WIDTH/2, bounds.height / 2 - HEIGHT/2);
+		this.setSize(WIDTH, HEIGHT);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		this.tileMap = tiledMap;
-		this.setLayout(new GridLayout(2, 1));
-		this.popUp = popUp;
+		this.setLayout(new GridLayout(ROW, COL));
 	}
 
 	public void display() {
-		navigation = new NavigationPanel(this);
-		button = new JButton("Utiliser cette entité");
-		button.addActionListener(new SpecialPopListener(this, popUp, cell.getEntity()));
-		TiledMapTileLayer l = cell.getLayer();
-		MapLayers layers = tileMap.getLayers();
-		int index = layers.getIndex(l.getName());
+		this.initComponent();
+		TiledMapTileLayer currentLayer = cell.getLayer();
+		this.setTitle(Layer.valueOf(currentLayer.getName()).name);
 
-		if (cell.getEntity() == null) {
-			navigation.setText("Aucune entité");
+		if (this.cell.getEntity() == null) {
+			this.navigation.setText("Aucune entité");
 		} else {
-			String className = cell.getEntity().getClass().getName();
-			navigation.setClassText(className);
+			this.navigation.setText(this.cell.getEntity().getReadableName());
+			//fillPanel();
 		}
-		navigation.displayNavBouton(index, layers);
+		int index = this.tileMap.getLayers().getIndex(currentLayer.getName());
+		this.navigation.displayNavBouton(index, this.tileMap.getLayers());
 		this.add(navigation);
-		this.add(button);
+		this.add(panel);
 		this.revalidate();
 	}
 
@@ -67,12 +81,18 @@ public class SpecialPopUp extends AbstractPopUp {
 
 	@Override
 	public void initComponent() {
-
+		this.navigation = new NavigationPanel(this);
+		this.navigation.setLayout(new GridLayout(1, 3));
+		button = new EnigmaButton("Utiliser cette entité");
+		button.addActionListener(new SpecialPopListener(this, popUp, cell.getEntity()));
+		panel = new EnigmaPanel();
+		panel.add(button);
 	}
 
 	@Override
 	public void clean() {
 		this.remove(navigation);
-		this.remove(button);
+		panel.removeAll();
+		this.remove(panel);
 	}
 }

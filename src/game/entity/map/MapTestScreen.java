@@ -39,6 +39,7 @@ import game.hud.Border;
 import game.hud.CategoriesMenu;
 import org.intellij.lang.annotations.MagicConstant;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import starter.EditorLauncher;
 
 import javax.swing.JComponent;
@@ -177,28 +178,39 @@ public class MapTestScreen extends AbstractMap {
 			id = prop.get(TmxProperties.TMX_ID, Integer.class);
 			if(id == null) id = 0;
 			Vector2 start = new Vector2(x, y);
-			//TILES
-			HashMap<String, Array<Float>> tiles = new HashMap<>();
-			for (Layer layer:Layer.values()) {
-				String sizeS = prop.get(layer.toString(), String.class);
-				if(sizeS == null || sizeS.length()==0) continue;
-				int size = Integer.parseInt(sizeS);
-				Array<Float> tile = new Array<>();
-				for (int i = 0; i < size; i++) {
-					tile.add(0f);
+			if(start.x >= 0 && start.y >= 0) {
+				//TILES
+				HashMap<String, Array<Float>> tiles = new HashMap<>();
+				for (Layer layer : Layer.values()) {
+					String sizeS = prop.get(layer.toString(), String.class);
+					if (sizeS == null || sizeS.length() == 0) continue;
+					int size = Integer.parseInt(sizeS);
+					Array<Float> tile = new Array<>();
+					for (int i = 0; i < size; i++) {
+						tile.add(0f);
+					}
+					tiles.put(layer.toString(), tile);
 				}
-				tiles.put(layer.toString(), tile);
+				e = new EntitySerializable(width, height, className, tiles);
+				GameObject object = EntityFactory.createEntity(e, id, start);
+
+				Utility.printDebug("MapTestScreen#initEntities", object + " " + start);
+
+				//ajout à la liste des entités de la map
+				this.added.put(start, object);
+
+				// on place les tiles
+				this.setFromSave(object, start);
+			} else {
+				//entitée temporaire, pas sur la map
+				e = new EntitySerializable(width, height, className, new HashMap<>());
+				GameObject object = EntityFactory.createEntity(e, id, start);
+
+				//ajout à la liste des entités de la map
+				this.added.put(start, object);
+
+				Utility.printDebug("(tmp) MapTestScreen#initEntities", object + " " + start);
 			}
-			e = new EntitySerializable(width, height, className, tiles);
-			GameObject object = EntityFactory.createEntity(e, id, start);
-
-			Utility.printDebug("MapTestScreen#initEntities", object + " " + start);
-
-			//ajout à la liste des entités de la map
-			this.added.put(start, object);
-
-			// on place les tiles
-			this.setFromSave(object, start);
 		}
 	}
 
@@ -270,17 +282,20 @@ public class MapTestScreen extends AbstractMap {
 	 * @return true si l'entité a étée chargée
 	 * @since 3.0
 	 */
-	public boolean loadEntity(EntitySerializable entity, Vector2 pos) {
-		//calcules les 4 coins de la map
-		Rectangle bounds = this.getMapSize();
-		bounds.setPosition((Gdx.graphics.getWidth() / 2f - camera.position.x) * 1,
-				(Gdx.graphics.getHeight() / 2f - camera.position.y) * 1);
-		this.mapBounds = new Bounds(bounds);
+	public GameObject loadEntity(EntitySerializable entity, @Nullable Vector2 pos) {
+		Vector2 start = null;
+		//récupère la position sur la map depuis pos, s'il y a une pos
+		if(pos != null) {//TODO: CALCUL ULTRA FOIREUX SI ZOOM CHANGE !!
+			//calcules les 4 coins de la map
+			Rectangle bounds = this.getMapSize();
+			bounds.setPosition((Gdx.graphics.getWidth() / 2f - camera.position.x) * 1,
+					(Gdx.graphics.getHeight() / 2f - camera.position.y) * 1);
+			this.mapBounds = new Bounds(bounds);
 
-		//Utility.printDebug("MapLibgdx - placement", mapBounds + " pos=" + pos + " " + mapBounds.contains(pos));
+			//Utility.printDebug("MapLibgdx - placement", mapBounds + " pos=" + pos + " " + mapBounds.contains(pos));
 
-		//si pas dans la map
-		if (!mapBounds.contains(pos)) return false;
+			//si pas dans la map
+			if (!mapBounds.contains(pos)) return null;
 
         /*
             retire l'offset de l'espace
@@ -288,31 +303,49 @@ public class MapTestScreen extends AbstractMap {
             la position x commence du clic est à 350 et la map à 300
             donc on x=50
          */
-		pos.x -= this.mapBounds.left;
-		pos.y -= this.mapBounds.bot;
+			pos.x -= this.mapBounds.left;
+			pos.y -= this.mapBounds.bot;
 
-		//obtient le coin supérieur gauche ou commencer a placer des tiles
-		Vector2 start = swingPosToIndex(pos.x, pos.y, this);
+			//obtient le coin supérieur gauche ou commencer a placer des tiles
+			start = swingPosToIndex(pos.x, pos.y, this);
+		}
 
 		if (entity.getCategory().name.equals(EntitiesCategories.ACTIONS.name)) {
 			// TODO: ajout des actions doit créer une énigme ou pas. (dépends de l'action)
 			//  en l'occurence start, exit doivent juste être ajoutés dans la sauvegarde.
 			//  une exit, [1 à x] start.
 			PrintColor.println("Ajout des actions non codé", AnsiiColor.YELLOW);
-			return false;
+			return null;
 		}
 
-		//instancie l'entité
-		GameObject object = EntityFactory.createEntity(entity, this.added.size(), start);
-		Utility.printDebug("loadEntity", object.toString() + " " + object.getID());
+		GameObject object;
 
-		//ajout à la liste des entités de la map
-		this.added.put(start, object);
+		//si l'entité doit être placée sur la map
+		if(start != null) {
+			//instancie l'entité
+			object = EntityFactory.createEntity(entity, this.added.size(), start);
+			Utility.printDebug("loadEntity", object.toString() + " " + object.getID());
 
-		// on place les tiles
-		this.set(object, start);
+			//ajout à la liste des entités de la map
+			this.added.put(start, object);
 
-		return true;
+			// on place les tiles
+			this.set(object, start);
+		} else {
+			//sinon c'est une entitée dite temporaire donc pas sur la map mais que l'on garde
+			//par exemple pour les énigmes, on peut sélectionner des entitées depuis le menu
+			int id = this.added.size();
+			start = new Vector2(-1*id,-1*id);
+
+			//instancie l'entité
+			object = EntityFactory.createEntity(entity, id, start);
+			Utility.printDebug("loadEntity", object.toString() + " " + object.getID());
+
+			//ajout à la liste des entités de la map
+			this.added.put(start, object);
+		}
+
+		return object;
 	}
 
 	/**
@@ -367,7 +400,7 @@ public class MapTestScreen extends AbstractMap {
 		if (this.added.containsValue(entity)) {//peut la supprimer
 			Vector2 pos = (Vector2) Utility.getKeyFromValue(this.added, entity);
 			this.added.remove(pos);
-			this.delete(entity, pos);
+			if(pos.x >= 0 && pos.y >= 0) this.delete(entity, pos);
 			return true;
 		}
 		return false;

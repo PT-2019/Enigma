@@ -30,16 +30,17 @@ public class EnigmaMenu extends EnigmaViewPanel {
 	private static final String DESC = "Description : ";
 	public static final String SAVE = "Sauvegarder Enigme";
 	public static final String ADD_CLUE = "Ajouter un indice";
-	public static final String ADD_STEP = "Ajouter une condition";
+	public static final String ADD_COND = "Ajouter une condition";
 	public static final String ADD_OP = "Ajouter une conséquence";
 	private static final int INSET_VALUE = 10, COL = 2, ROW = 1;
 	private static final int CLUE_POS = 0, STEP_POS = 1, OP_POS = 2, SAVE_POS = 3;
+	private final EnigmaLabel titl;
 
 	public EnigmaMenu(EnigmaView parent) {
 		super(parent);
 
 		//title
-		EnigmaLabel titl = new EnigmaLabel(TITLE);
+		titl = new EnigmaLabel(TITLE);
 		JTextField title = new JTextField();
 		title.setFont(EnigmaUIValues.ENIGMA_FONT);
 		//desc
@@ -51,7 +52,7 @@ public class EnigmaMenu extends EnigmaViewPanel {
 		//buttons
 		EnigmaButton submit = new EnigmaButton(SAVE);
 		EnigmaButton clue = new EnigmaButton(ADD_CLUE);
-		EnigmaButton condition = new EnigmaButton(ADD_STEP);
+		EnigmaButton condition = new EnigmaButton(ADD_COND);
 		EnigmaButton operation = new EnigmaButton(ADD_OP);
 
 		//add
@@ -99,11 +100,24 @@ public class EnigmaMenu extends EnigmaViewPanel {
 
 		//listeners
 
-		NavigationEnigmaListener buttonListener = new NavigationEnigmaListener(title, description, parent);
+		NavigationEnigmaListener buttonListener = new NavigationEnigmaListener(title, description, parent, this);
 		clue.addActionListener(buttonListener);
 		condition.addActionListener(buttonListener);
 		operation.addActionListener(buttonListener);
 		submit.addActionListener(buttonListener);
+	}
+
+	public void setTitleInvalid(boolean invalid, String vide) {
+		if(invalid){
+			titl.getComponentUI().setAllForegrounds(Color.YELLOW,Color.YELLOW,Color.YELLOW);
+			titl.setText(TITLE+" ("+vide+")");
+		} else {
+			titl.getComponentUI().setAllForegrounds(EnigmaUIValues.ENIGMA_LABEL_FOREGROUND,
+					EnigmaUIValues.ENIGMA_LABEL_FOREGROUND, EnigmaUIValues.ENIGMA_LABEL_FOREGROUND);
+			titl.setText(TITLE);
+		}
+		titl.invalidate();
+		titl.revalidate();
 	}
 
 	/**

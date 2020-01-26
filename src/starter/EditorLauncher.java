@@ -55,7 +55,7 @@ public class EditorLauncher implements Application {
 		EntityFactory.loadEntities("assets/rooms.json");
 		EntityFactory.loadEntities("assets/items.json");
 		EntityFactory.loadEntities("assets/decors.json");
-		EntityFactory.loadEntities("assets/entities.json");
+		EntityFactory.loadEntities("assets/entities.json", true);
 		EntityFactory.loadEntities("assets/actions.json");
 	}
 
