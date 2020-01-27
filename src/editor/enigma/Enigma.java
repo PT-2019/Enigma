@@ -5,7 +5,7 @@ import api.enums.Attributes;
 import editor.enigma.condition.Condition;
 import editor.enigma.operation.Operation;
 import editor.entity.Player;
-import game.utils.OperationEventEnum;
+import game.utils.TileEventEnum;
 
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;
@@ -23,7 +23,7 @@ import java.util.Map;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 5.0
+ * @version 5.1
  * @see editor.enigma.condition.Condition
  * @see editor.enigma.operation.Operation
  * @see editor.enigma.Advice
@@ -50,7 +50,7 @@ public class Enigma implements ActionListener, IDInterface {
 	/**
 	 * Type
 	 */
-	private OperationEventEnum type;
+	private TileEventEnum type;
 	/**
 	 * Conditions
 	 */
@@ -90,7 +90,7 @@ public class Enigma implements ActionListener, IDInterface {
 		this.operations = new ArrayList<Operation>();
 		this.advices = new ArrayList<Advice>();
 		this.id = -1;
-		this.type = OperationEventEnum.ON_USE;
+		this.type = TileEventEnum.ON_USE;
 	}
 
 	/**
@@ -107,7 +107,7 @@ public class Enigma implements ActionListener, IDInterface {
 		this.operations = new ArrayList<Operation>();
 		this.advices = new ArrayList<Advice>();
 		this.id = -1;
-		this.type = OperationEventEnum.ON_USE;
+		this.type = TileEventEnum.ON_USE;
 	}
 
 	/**
@@ -141,7 +141,7 @@ public class Enigma implements ActionListener, IDInterface {
 		}
 		else throw new IllegalArgumentException("Attribut \"id\" abscent");
 		if (attributes.containsKey(Attributes.TYPE)) {
-			this.type = Integer.parseInt((String) attributes.get(Attributes.TYPE));
+			this.type = TileEventEnum.valueOf((String) attributes.get(Attributes.TYPE));
 		}
 		else throw new IllegalArgumentException("Attribut \"id\" abscent");
 
@@ -171,6 +171,26 @@ public class Enigma implements ActionListener, IDInterface {
 		for (Operation operation : this.operations) {
 			operation.doOperation(p);
 		}
+	}
+
+	/**
+	 * Obtenir le type de l'énigme
+	 *
+	 * @see TileEventEnum
+	 * @return Le type de l'énigme
+	 */
+	public TileEventEnum getType() {
+		return type;
+	}
+
+	/**
+	 * Définir le type de l'énigme
+	 *
+	 * @see TileEventEnum
+	 * @param type Type de l'énigme
+	 */
+	public void setType(TileEventEnum type) {
+		this.type = type;
 	}
 
 	/**
@@ -399,6 +419,7 @@ public class Enigma implements ActionListener, IDInterface {
 		object.put(Attributes.KNOWN, this.known + "");
 		object.put(Attributes.CURRENT_ADVICE_INDEX, this.currentAdvice + "");
 		object.put(Attributes.ID, String.valueOf(id));
+		object.put(Attributes.TYPE, this.type.toString());
 
 		ArrayList<HashMap<String, Object>> advices = new ArrayList<>();
 		for (Advice a : this.advices) {
@@ -462,7 +483,7 @@ public class Enigma implements ActionListener, IDInterface {
 	 */
 	@Override
 	public String toString() {
-		return "[Enigma  : title = \"" + this.title + "\", descrption = \"" + this.description + "\", isKnown = " + this.isKnown() + ", currentAdviceIndex = " + this.currentAdvice + ", currentAdvice = " + this.getAdvice() + ", currentTextAdvice = \"" + this.getTextAdvice() + "\"]";
+		return "[Enigma  : title = \"" + this.title + "\", descrption = \"" + this.description + "\", type = \"" + this.type + "\", isKnown = " + this.isKnown() + ", currentAdviceIndex = " + this.currentAdvice + ", currentAdvice = " + this.getAdvice() + ", currentTextAdvice = \"" + this.getTextAdvice() + "\"]";
 	}
 
 	/**
@@ -471,7 +492,7 @@ public class Enigma implements ActionListener, IDInterface {
 	 * @return Texte représentant l'énigme
 	 */
 	public String toLongString() {
-		StringBuilder s = new StringBuilder("[Enigma  : title = \"" + this.title + "\", descrption = \"" + this.description + "\", isKnown = " + this.isKnown() + ", currentAdviceIndex = " + this.currentAdvice + ", currentAdvice = " + this.getAdvice() + ", currentTextAdvice = \"" + this.getTextAdvice() + "\", allAdvices = {");
+		StringBuilder s = new StringBuilder("[Enigma  : title = \"" + this.title + "\", descrption = \"" + this.description + "\", type = \"" + this.type + "\", isKnown = " + this.isKnown() + ", currentAdviceIndex = " + this.currentAdvice + ", currentAdvice = " + this.getAdvice() + ", currentTextAdvice = \"" + this.getTextAdvice() + "\", allAdvices = {");
 		int sizeA = this.advices.size() - 1;
 		int sizeC = this.conditions.size() - 1;
 		int sizeO = this.operations.size() - 1;

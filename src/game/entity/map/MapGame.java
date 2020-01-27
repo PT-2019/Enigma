@@ -1,11 +1,14 @@
 package game.entity.map;
 
+import api.entity.GameObject;
 import api.entity.actor.GameActor;
 import api.utils.Bounds;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+
+import java.util.HashMap;
 
 public class MapGame extends AbstractMap {
 

@@ -1,27 +1,27 @@
 package game.utils;
 
+import api.entity.Entity;
 import api.entity.GameObject;
 import api.entity.types.EnigmaContainer;
 import api.utils.Utility;
-import api.utils.annotations.ConvenienceMethod;
-import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
 import editor.enigma.Enigma;
+import editor.enigma.condition.Answer;
+import editor.enigma.condition.Condition;
+import editor.enigma.operation.Operation;
+import editor.enigma.operation.Summon;
 import editor.utils.json.EnigmaJsonReader;
-import editor.utils.json.EnigmaJsonWriter;
-import editor.utils.save.SaveMap;
-import editor.utils.textures.TextureProxy;
+import editor.utils.map.Case;
 import game.EnigmaGame;
 import game.entity.map.MapTestScreen;
+import game.event.TileEvent;
 import game.screen.TestScreen;
-import starter.Config;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 
 /**
  * Une classe qui génère une map vide
@@ -78,13 +78,39 @@ public class LoadGame {
             System.err.println(e.toString());
         }
 
-        for (Map.Entry<Vector2, GameObject> entry : entities.entrySet()) {
-            Vector2 key = entry.getKey();
-            GameObject value = entry.getValue();
+        for (GameObject value : entities.values()) {
             if(value instanceof EnigmaContainer){
-                for (Iterator<Enigma> it = ((EnigmaContainer) value).getAllEnigmas(); it.hasNext(); ) {
-                    Enigma e = it.next();
+                TileEvent ope = new TileEvent();
+                for (Iterator<Enigma> ite = ((EnigmaContainer) value).getAllEnigmas(); ite.hasNext(); ) {
+                    Enigma e = ite.next();
+                    ope.add(e);
 
+                    for (Iterator<Condition> itc = e.getAllConditions(); itc.hasNext(); ) {
+                        Condition c = itc.next();
+                        if(!(c instanceof Answer)) {
+                            for (GameObject go : entities.values()) {
+                                if (c.getEntity().getID() == go.getID())
+                                    c.setEntity((Entity) go);
+                            }
+                        }
+                    }
+
+                    for (Iterator<Operation> ito = e.getAllOperations(); ito.hasNext(); ) {
+                        Operation o = ito.next();
+                        if(!(o instanceof Summon)) {
+                            for (GameObject go : entities.values()) {
+                                if (o.getEntity().getID() == go.getID())
+                                    o.setEntity((Entity) go);
+                            }
+                        } else {
+                            for (GameObject go : entities.values()) {
+                                if (o.getEntity().getID() == go.getID())
+                                    o.setEntity((Entity) go);
+                                else if(((Summon) o).getSpawn().getID() == go.getID())
+                                    ((Summon) o).setSpawn((Case) go);
+                            }
+                        }
+                    }
                 }
             }
         }

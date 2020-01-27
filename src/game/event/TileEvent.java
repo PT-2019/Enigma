@@ -2,6 +2,7 @@ package game.event;
 
 import editor.enigma.Enigma;
 import editor.entity.Player;
+import game.utils.TileEventEnum;
 
 import java.util.ArrayList;
 
@@ -15,20 +16,39 @@ import java.util.ArrayList;
  * @version 5.0
  * @since 5.0
  */
-public class OperationEvent {
+public class TileEvent {
 
+    /**
+     * Liste des énigme à lancer à l'entrée sur la tile
+     */
     private ArrayList<Enigma> onEnter;
+    /**
+     * Liste des énigme à lancer à la de la tile
+     */
     private ArrayList<Enigma> onExit;
+    /**
+     * Liste des énigme à lancer lors de l'intercation avec la tile
+     */
     private ArrayList<Enigma> onUse;
 
-    public OperationEvent(){
+    public TileEvent(){
         this.onEnter = new ArrayList<>();
         this.onExit = new ArrayList<>();
         this.onUse = new ArrayList<>();
     }
 
     /**
+     * Ajoute une énigme en fonction de son type
+     * @param enigma Enigma à ajouter
+     */
+    public void add(Enigma enigma){
+        if(enigma.getType().equals(TileEventEnum.ON_ENTER))
+            this.addOnEnter(enigma);
+    }
+
+    /**
      * Ajoute l'énigme à l'entrée sur la tile
+     * @param onEnter Enigma à ajouter
      */
     public void addOnEnter(Enigma onEnter){
         this.onEnter.add(onEnter);
@@ -36,6 +56,7 @@ public class OperationEvent {
 
     /**
      * Ajoute l'énigme lors de la sortie de la tile
+     * @param onExit Enigma à ajouter
      */
     public void addOnExit(Enigma onExit){
         this.onExit.add(onExit);
@@ -43,6 +64,7 @@ public class OperationEvent {
 
     /**
      * Ajoute l'énigme lors d'interaction avec la tile
+     * @param onUse Enigma à ajouter
      */
     public void addOnUse(Enigma onUse){
         this.onUse.add(onUse);
@@ -50,6 +72,7 @@ public class OperationEvent {
 
     /**
      * A l'entrée sur la tile
+     * @param player Joueur concerné
      */
     public void onEnter(Player player){
         for(Enigma e : this.onEnter)
@@ -58,6 +81,7 @@ public class OperationEvent {
 
     /**
      * Lors de la sortie de la tile
+     * @param player Joueur concerné
      */
     public void onExit(Player player){
         for(Enigma e : this.onExit)
@@ -66,6 +90,7 @@ public class OperationEvent {
 
     /**
      * Lors d'interaction avec la tile
+     * @param player Joueur concerné
      */
     public void onUse(Player player){
         for(Enigma e : this.onUse)

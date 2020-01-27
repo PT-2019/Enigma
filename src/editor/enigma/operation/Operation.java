@@ -16,7 +16,7 @@ import java.util.Map;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 2.2
+ * @version 5.0
  * @see editor.enigma.Enigma
  * @since 2.0
  */
@@ -63,6 +63,24 @@ public abstract class Operation {
 		object.put(Attributes.PATH, this.getClass().getName());
 		object.put(Attributes.ENTITY, this.entity.getID() + "");
 		return object;
+	}
+
+	/**
+	 * Obtenir l'entité consernée par la condition
+	 *
+	 * @return L'entité, null sinon
+	 */
+	public Entity getEntity() {
+		return this.entity;
+	}
+
+	/**
+	 * Indiquer l'entité consernée par la condition
+	 *
+	 * @param e Entité
+	 */
+	public void setEntity(Entity e) {
+		this.entity = e;
 	}
 
 	/**

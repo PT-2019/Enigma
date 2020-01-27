@@ -59,6 +59,24 @@ public class Summon extends Operation {
 		//faire apparaitre this.entity sur this.spawn
 	}
 
+	/**
+	 * Obtenir la case ou l'entitée va apparaitre
+	 *
+	 * @return La case, null sinon
+	 */
+	public Case getSpawn() {
+		return this.spawn;
+	}
+
+	/**
+	 * Indiquer la case ou l'entitée va apparaitre
+	 *
+	 * @param c Case
+	 */
+	public void setSpawn(Case c) {
+		this.spawn = c;
+	}
+
 
 	/**
 	 * Obtenir un EnumMap de l'objet avec ses attributs et leur état
