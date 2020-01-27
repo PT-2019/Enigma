@@ -220,18 +220,23 @@
             <properties>
                 <property name="className" value="editor.entity.Monster"/>
                 <property name="y2" value="-27.0"/>
+                <property name="FLOOR2" value="4"/>
             </properties>
         </object>
         <object height="1.0" id="28" name="entity" width="1.0" x="-28.0" y="-28.0">
             <properties>
                 <property name="className" value="game.entity.item.Key"/>
                 <property name="y2" value="-28.0"/>
+                <property name="FLOOR2" value="1"/>
+                <property name="COLLISION" value="1"/>
             </properties>
         </object>
         <object height="1.0" id="29" name="entity" width="1.0" x="-29.0" y="-29.0">
             <properties>
                 <property name="className" value="game.entity.item.Key"/>
                 <property name="y2" value="-29.0"/>
+                <property name="FLOOR2" value="1"/>
+                <property name="COLLISION" value="1"/>
             </properties>
         </object>
         <object height="12.0" id="4" name="entity" width="8.0" x="35.0" y="26.0">
@@ -302,10 +307,10 @@
                 <property name="y2" value="11.0"/>
                 <property name="FLOOR2" value="4"/>
                 <property name="HERO" value="true"/>
-                <property name="INVENTORY" value="null"/>
-                <property name="NAME" value=""/>
                 <property name="KEY" value=""/>
+                <property name="INVENTORY" value="null"/>
                 <property name="JSON" value=""/>
+                <property name="NAME" value=""/>
             </properties>
         </object>
         <object height="1.0" id="9" name="entity" width="1.0" x="37.0" y="23.0">
@@ -375,10 +380,10 @@
                 <property name="y2" value="13.0"/>
                 <property name="FLOOR2" value="4"/>
                 <property name="HERO" value="true"/>
-                <property name="INVENTORY" value="null"/>
-                <property name="NAME" value=""/>
                 <property name="KEY" value=""/>
+                <property name="INVENTORY" value="null"/>
                 <property name="JSON" value=""/>
+                <property name="NAME" value=""/>
             </properties>
         </object>
         <object height="2.0" id="12" name="entity" width="1.0" x="27.0" y="17.0">
@@ -395,10 +400,10 @@
                 <property name="y2" value="11.0"/>
                 <property name="FLOOR2" value="4"/>
                 <property name="HERO" value="true"/>
-                <property name="INVENTORY" value="null"/>
-                <property name="NAME" value=""/>
                 <property name="KEY" value=""/>
+                <property name="INVENTORY" value="null"/>
                 <property name="JSON" value=""/>
+                <property name="NAME" value=""/>
             </properties>
         </object>
         <object height="2.0" id="22" name="entity" width="2.0" x="7.0" y="26.0">

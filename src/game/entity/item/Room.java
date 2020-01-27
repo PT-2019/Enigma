@@ -19,7 +19,7 @@ import java.util.EnumMap;
  * @version 4.0 24/12/2019
  * @since 4.0 24/12/2019
  */
-public class Room extends AbstractGameObject implements ContainersManager, Container {
+public class Room extends AbstractGameObject implements ContainersManager {
 
 	/**
 	 * Crée une pièce

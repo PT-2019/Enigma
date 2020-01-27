@@ -1,8 +1,10 @@
 package editor.view.listeners.available;
 
 import api.enums.AvailablePopUpOption;
+import editor.hud.EnigmaPanel;
 import editor.view.cases.CasePopUp;
 import editor.view.listeners.AvailableOptionRunnable;
+import editor.view.listeners.available.view.AbstractPopUpView;
 
 /**
  * Définit l'entité actuelle comme étant un NPC
@@ -38,6 +40,11 @@ public class DefineAsNpc implements AvailableOptionRunnable {
 
 	@Override
 	public void run() {
+
+	}
+
+	@Override
+	public void run(AbstractPopUpView view, EnigmaPanel panel) {
 
 	}
 }

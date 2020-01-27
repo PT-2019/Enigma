@@ -204,6 +204,7 @@ public class MapTestScreen extends AbstractMap {
 				}
 				e = new EntitySerializable(width, height, className, tiles);
 				GameObject object = EntityFactory.createEntity(e, id, start);
+				object.load(prop);
 
 				Utility.printDebug("MapTestScreen#initEntities", object + " " + start);
 

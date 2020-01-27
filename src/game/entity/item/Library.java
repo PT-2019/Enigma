@@ -1,6 +1,7 @@
 package game.entity.item;
 
 import api.entity.AbstractItem;
+import api.entity.Item;
 import api.entity.types.Container;
 import api.entity.types.Lockable;
 import api.entity.types.NeedContainerManager;
@@ -8,6 +9,7 @@ import api.enums.TypeEntity;
 import editor.utils.lang.GameLanguage;
 import editor.utils.lang.fields.GameFields;
 
+import java.util.ArrayList;
 import java.util.EnumMap;
 
 /**
@@ -27,6 +29,8 @@ public class Library extends AbstractItem implements Container, Lockable {
 	 */
 	private boolean locked;
 
+	private ArrayList<Item> items;
+
 	/**
 	 * Crée une bibliothèque
 	 *
@@ -34,6 +38,7 @@ public class Library extends AbstractItem implements Container, Lockable {
 	 */
 	public Library() {
 		this(-1);
+		this.items = new ArrayList<>();
 	}
 
 	/**
@@ -44,6 +49,7 @@ public class Library extends AbstractItem implements Container, Lockable {
 	 */
 	public Library(int id) {
 		super(id);
+		this.items = new ArrayList<>();
 	}
 
 	//lock
@@ -85,5 +91,20 @@ public class Library extends AbstractItem implements Container, Lockable {
 	@Override
 	public String getReadableName() {
 		return GameLanguage.gl.get(GameFields.LIBRARY);
+	}
+
+	@Override
+	public boolean addItem(Item item) {
+		return this.items.add(item);
+	}
+
+	@Override
+	public boolean removeItem(Item item) {
+		return this.items.remove(item);
+	}
+
+	@Override
+	public ArrayList<Item> getItems() {
+		return this.items;
 	}
 }

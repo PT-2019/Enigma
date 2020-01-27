@@ -2,9 +2,11 @@ package editor.view.listeners.available;
 
 import api.enums.AvailablePopUpOption;
 import editor.entity.NPC;
+import editor.hud.EnigmaPanel;
 import editor.hud.ui.EnigmaJCheckBoxUI;
 import editor.view.cases.CasePopUp;
 import editor.view.listeners.AvailableOptionRunnable;
+import editor.view.listeners.available.view.AbstractPopUpView;
 import game.entity.map.MapTestScreenCell;
 
 import javax.swing.JCheckBox;
@@ -52,6 +54,15 @@ public class DefineAsHero implements AvailableOptionRunnable {
 		hero.setSelected(((NPC)parent.getCell().getEntity()).isHero());
 		hero.addItemListener(new CheckHeroBox(this.parent.getCell()));
 		this.parent.getPanel().add(hero);
+	}
+
+	@Override
+	public void run(AbstractPopUpView view, EnigmaPanel panel) {
+		JCheckBox hero = new JCheckBox(HERO);
+		hero.setUI(EnigmaJCheckBoxUI.createUI(hero));
+		hero.setSelected(((NPC)parent.getCell().getEntity()).isHero());
+		hero.addItemListener(new CheckHeroBox(this.parent.getCell()));
+		panel.add(hero);
 	}
 
 	/**

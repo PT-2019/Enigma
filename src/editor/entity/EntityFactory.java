@@ -127,7 +127,7 @@ public class EntityFactory {
 		for (Map.Entry<String, Array<EntitySerializable>> classes : loaded.entrySet()) {
 			for (EntitySerializable entity : new Array.ArrayIterator<>(classes.getValue())) {
 				if (categories.equals(entity.getCategory())) {
-					entityGraphics.add(new EntitySerializable(entity));
+					entityGraphics.add(entity.duplicates());
 				}
 			}
 		}
@@ -155,6 +155,16 @@ public class EntityFactory {
 			object.setID(id);
 			//location
 			object.setDimension(entity.getWidth(), entity.getHeight());
+
+			//pas top, ajoute les informations en plus
+			//on devrait faire une méthode qui demande a l'entité s'il elle veut
+			//ajouter des infos et une interface plutôt que donner direct NPC
+			//mais j'ai flemme et manque de temps là ~#rush
+			if(entity instanceof PlayerSerializable && object instanceof NPC){
+				PlayerSerializable player = ((PlayerSerializable) entity);
+				((NPC) object).setJson(player.getJson(), player.getKey());
+				Utility.printDebug("EntityFactory", "PlayerSerializable loaded.");
+			}
 
 			if (pos != null)
 				object.setGameObjectPosition(pos);

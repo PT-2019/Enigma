@@ -1,6 +1,7 @@
 package game.entity.item;
 
 import api.entity.AbstractItem;
+import api.entity.Item;
 import api.entity.types.Container;
 import api.entity.types.Lockable;
 import api.entity.types.NeedContainerManager;
@@ -8,6 +9,8 @@ import api.enums.TypeEntity;
 import editor.utils.lang.GameLanguage;
 import editor.utils.lang.fields.GameFields;
 
+import java.awt.Rectangle;
+import java.util.ArrayList;
 import java.util.EnumMap;
 
 /**
@@ -28,6 +31,7 @@ public class Chest extends AbstractItem implements Lockable, Container {
 	 * Indique si l'objet est verrouillé
 	 */
 	private boolean locked;
+	private ArrayList<Item> items;
 
 	/**
 	 * Un coffre
@@ -47,6 +51,7 @@ public class Chest extends AbstractItem implements Lockable, Container {
 	public Chest(int id) {
 		super(id);
 		this.locked = false;
+		this.items = new ArrayList<>();
 	}
 
 	/**
@@ -55,6 +60,7 @@ public class Chest extends AbstractItem implements Lockable, Container {
 	public Chest(boolean locked) {
 		this(-1);
 		this.locked = locked;
+		this.items = new ArrayList<>();
 	}
 
 	/**
@@ -64,6 +70,7 @@ public class Chest extends AbstractItem implements Lockable, Container {
 	public Chest(boolean locked, int id) {
 		this(id);
 		this.locked = locked;
+		this.items = new ArrayList<>();
 	}
 
 	//lock
@@ -105,5 +112,20 @@ public class Chest extends AbstractItem implements Lockable, Container {
 	@Override
 	public String getReadableName() {
 		return GameLanguage.gl.get(GameFields.CHEST);
+	}
+
+	@Override
+	public boolean addItem(Item item) {
+		return this.items.add(item);
+	}
+
+	@Override
+	public boolean removeItem(Item item) {
+		return this.items.remove(item);
+	}
+
+	@Override
+	public ArrayList<Item> getItems() {
+		return this.items;
 	}
 }

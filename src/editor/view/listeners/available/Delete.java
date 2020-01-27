@@ -3,9 +3,11 @@ package editor.view.listeners.available;
 import api.enums.AvailablePopUpOption;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import editor.hud.EnigmaButton;
+import editor.hud.EnigmaPanel;
 import editor.view.cases.CasePopUp;
 import editor.view.cases.listeners.CaseDelete;
 import editor.view.listeners.AvailableOptionRunnable;
+import editor.view.listeners.available.view.AbstractPopUpView;
 
 /**
  * Suppression d'une entité
@@ -42,5 +44,16 @@ public class Delete implements AvailableOptionRunnable {
 				(TiledMapTileLayer)this.parent.getTileMap().getLayers().get(this.parent.getCell().getLayer().getName()),
 				this.parent.getNavigation().getInfo(), this.parent)
 		);
+	}
+
+	@Override
+	public void run(AbstractPopUpView view, EnigmaPanel panel) {
+		//ajoute le bouton
+		panel.add(this.del);
+		/*this.del.addActionListener(new CaseDelete(this.parent.getCell(),
+				//récupère le niveau de l'entité a supprimer
+				(TiledMapTileLayer)this.parent.getTileMap().getLayers().get(this.parent.getCell().getLayer().getName()),
+				this.parent.getNavigation().getInfo(), this.parent)
+		);*/
 	}
 }

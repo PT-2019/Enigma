@@ -2,8 +2,10 @@ package editor.view.listeners.available;
 
 import api.enums.AvailablePopUpOption;
 import editor.hud.EnigmaButton;
+import editor.hud.EnigmaPanel;
 import editor.view.cases.CasePopUp;
 import editor.view.listeners.AvailableOptionRunnable;
+import editor.view.listeners.available.view.AbstractPopUpView;
 
 /**
  * Permet de changer la propriété d'accès (collision)
@@ -41,5 +43,10 @@ public class SetContent implements AvailableOptionRunnable {
 	@Override
 	public void run() {
 		this.parent.getPanel().add(this.contentButton);
+	}
+
+	@Override
+	public void run(AbstractPopUpView view, EnigmaPanel panel) {
+		panel.add(this.contentButton);
 	}
 }

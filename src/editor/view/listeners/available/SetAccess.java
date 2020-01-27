@@ -9,6 +9,7 @@ import editor.hud.ui.EnigmaJCheckBoxUI;
 import editor.view.cases.CasePopUp;
 import editor.view.listeners.AvailableOptionRunnable;
 import editor.view.listeners.PopItemListener;
+import editor.view.listeners.available.view.AbstractPopUpView;
 import game.entity.map.MapTestScreenCell;
 
 import javax.swing.JCheckBox;
@@ -47,6 +48,27 @@ public class SetAccess implements AvailableOptionRunnable {
 		TiledMap tileMap = parent.getTileMap();
 		MapTestScreenCell cell = parent.getCell();
 		EnigmaPanel panel = parent.getPanel();
+		JCheckBox walkable = new JCheckBox(VALUE);
+		walkable.setUI(EnigmaJCheckBoxUI.createUI(walkable));
+
+		TiledMapTileLayer collision = (TiledMapTileLayer) tileMap.getLayers().get(Layer.COLLISION.name());
+		TiledMapTileLayer layer = (TiledMapTileLayer) tileMap.getLayers().get(cell.getLayer().getName());
+		//Récupère la case du niveau collision
+		TiledMapTileLayer.Cell cellTmp = collision.getCell(
+				cell.getIndex() % layer.getWidth(),
+				cell.getIndex() / layer.getWidth());
+		//si ya une case, alors on coche "bloquante"
+		if (cellTmp.getTile() != null) {
+			walkable.setSelected(true);
+		}
+		walkable.addItemListener(new PopItemListener(tileMap, cell));
+		panel.add(walkable);
+	}
+
+	@Override
+	public void run(AbstractPopUpView view, EnigmaPanel panel) {
+		TiledMap tileMap = parent.getTileMap();
+		MapTestScreenCell cell = parent.getCell();
 		JCheckBox walkable = new JCheckBox(VALUE);
 		walkable.setUI(EnigmaJCheckBoxUI.createUI(walkable));
 

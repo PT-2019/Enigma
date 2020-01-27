@@ -1,9 +1,13 @@
 package editor.view.listeners.available;
 
 import api.enums.AvailablePopUpOption;
+import editor.enigma.create.listeners.EnigmaWindowListener;
 import editor.hud.EnigmaButton;
+import editor.hud.EnigmaPanel;
 import editor.view.cases.CasePopUp;
 import editor.view.listeners.AvailableOptionRunnable;
+import editor.view.listeners.available.view.AbstractPopUpView;
+import editor.view.listeners.available.view.item.AddItemView;
 
 /**
  * Permet d'ajouter des objets a un conteneur.
@@ -43,5 +47,22 @@ public class AddItems implements AvailableOptionRunnable {
 	@Override
 	public void run() {
 		this.parent.getPanel().add(this.addItems);
+		this.addItems.addActionListener((e) -> {
+			this.parent.setVisible(false);
+			AddItemView addItemView = new AddItemView(this.parent);
+			addItemView.setVisible(true);
+			addItemView.addWindowListener(new EnigmaWindowListener(this.parent));
+		});
+	}
+
+	@Override
+	public void run(AbstractPopUpView view, EnigmaPanel panel) {
+		panel.add(this.addItems);
+		this.addItems.addActionListener((e) -> {
+			this.parent.setVisible(false);
+			AddItemView addItemView = new AddItemView(this.parent);
+			addItemView.setVisible(true);
+			addItemView.addWindowListener(new EnigmaWindowListener(this.parent));
+		});
 	}
 }

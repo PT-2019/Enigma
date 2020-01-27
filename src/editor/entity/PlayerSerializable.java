@@ -49,7 +49,7 @@ public class PlayerSerializable extends EntitySerializable {
 	 *
 	 * @param entity l'entité a copier
 	 */
-	public PlayerSerializable(PlayerSerializable entity) {
+	private PlayerSerializable(PlayerSerializable entity) {
 		super(entity);
 		this.json = entity.json;
 		this.key = entity.key;
@@ -69,5 +69,10 @@ public class PlayerSerializable extends EntitySerializable {
 	 */
 	public String getKey() {
 		return key;
+	}
+
+	@Override
+	protected EntitySerializable duplicates() {
+		return new PlayerSerializable(this);
 	}
 }

@@ -1,0 +1,101 @@
+{
+     "Enigmas": [
+          {
+               "editor.enigma.Enigma": [
+                    {
+                         "operations": [
+                              {
+                                   "editor.enigma.operation.Summon": [
+                                        {
+                                             "spawn": "27",
+                                             "entities": "27"
+                                        }
+                                   ]
+                              }
+                         ],
+                         "known": "false",
+                         "currentAdviceIndex": "-1",
+                         "description": "Si tu ouvres l'armoir sans activer le bouton alors tu va le payer.",
+                         "advices": [
+                         ],
+                         "id": "26",
+                         "title": "ArmoirePiège",
+                         "conditions": [
+                              {
+                                   "editor.enigma.condition.Activated": [
+                                        {
+                                             "entities": "15"
+                                        }
+                                   ]
+                              }
+                         ]
+                    }
+               ]
+          },
+
+          {
+               "editor.enigma.Enigma": [
+                    {
+                         "operations": [
+                              {
+                                   "editor.enigma.operation.Unlock": [
+                                        {
+                                             "entities": "8"
+                                        }
+                                   ]
+                              },
+
+                              {
+                                   "editor.enigma.operation.Unlock": [
+                                        {
+                                             "entities": "7"
+                                        }
+                                   ]
+                              }
+                         ],
+                         "known": "false",
+                         "currentAdviceIndex": "-1",
+                         "description": "Ouvre Porte",
+                         "advices": [
+                         ],
+                         "id": "8",
+                         "title": "Ouvrir porte",
+                         "conditions": [
+                              {
+                                   "editor.enigma.condition.HaveInHands": [
+                                        {
+                                             "entities": "29"
+                                        }
+                                   ]
+                              }
+                         ]
+                    }
+               ]
+          },
+
+          {
+               "editor.enigma.Enigma": [
+                    {
+                         "operations": [
+                              {
+                                   "editor.enigma.operation.Give": [
+                                        {
+                                             "entities": "28"
+                                        }
+                                   ]
+                              }
+                         ],
+                         "known": "false",
+                         "currentAdviceIndex": "-1",
+                         "description": "Donne une clef",
+                         "advices": [
+                         ],
+                         "id": "12",
+                         "title": "Clef",
+                         "conditions": [
+                         ]
+                    }
+               ]
+          }
+     ]
+}

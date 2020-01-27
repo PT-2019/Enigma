@@ -145,6 +145,7 @@ public class Player extends GameActorTextured implements Entity, Living {
 		imp.put(TypeEntity.PLAYER, true);
 
 		imp.put(TypeEntity.LIVING, true);
+		imp.put(TypeEntity.CONTAINER, true);
 		imp.put(TypeEntity.NEED_CONTAINER_MANAGER, true);
 		return imp;
 	}

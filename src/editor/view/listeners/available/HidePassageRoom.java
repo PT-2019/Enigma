@@ -1,8 +1,10 @@
 package editor.view.listeners.available;
 
 import api.enums.AvailablePopUpOption;
+import editor.hud.EnigmaPanel;
 import editor.view.cases.CasePopUp;
 import editor.view.listeners.AvailableOptionRunnable;
+import editor.view.listeners.available.view.AbstractPopUpView;
 
 /**
  * Ouvre un menu permettant de cacher l'un des deux salles
@@ -53,6 +55,11 @@ public class HidePassageRoom implements AvailableOptionRunnable {
 		passage.remove(hideLeft);
 		passage.remove(hideRigth);
 		*/
+	}
+
+	@Override
+	public void run(AbstractPopUpView view, EnigmaPanel panel) {
+
 	}
 }
 

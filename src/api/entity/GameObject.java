@@ -1,12 +1,15 @@
 package api.entity;
 
 import api.entity.utils.IDInterface;
+import api.entity.utils.SaveKey;
 import api.enums.Layer;
 import api.enums.TypeEntity;
+import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
 import java.util.EnumMap;
+import java.util.HashMap;
 
 /**
  * Un object du jeu
@@ -15,7 +18,7 @@ import java.util.EnumMap;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 4.0 23/12/2019
+ * @version 5.0
  * @see api.entity.Entity
  * @see game.entity.item.Room
  * @since 4.0 23/12/2019
@@ -83,16 +86,11 @@ public interface GameObject extends IDInterface {
 	 */
 	void setTiles(Array<Float> texture, Layer layer);
 
-	@Deprecated
-	default String getClassName() {
-		return "";
-	}
-
 	/**
 	 * Renvoi les différentes classes implémenté par l'entité
 	 *
 	 * @return EnumMap&lt;TypeEntite, Boolean&gt;
-	 * @since 4.0
+	 * @since 4.1
 	 */
 	EnumMap<TypeEntity, Boolean> getImplements();
 
@@ -100,6 +98,28 @@ public interface GameObject extends IDInterface {
 	 * Retourne le nom de l'entité
 	 *
 	 * @return le nom de l'entité
+	 * @since 4.2
 	 */
 	String getReadableName();
+
+	/**
+	 * Retourne les données additionnelles a sauvegarder pour une entitée,
+	 * par exemple dans le .tmx
+	 * @return map des données additionnelles
+	 * @see SaveKey
+	 * @since 5.0
+	 */
+	default HashMap<SaveKey, String> getSave(){
+		return new HashMap<>();
+	}
+
+	/**
+	 * Charge les données additionnelles sauvegardées par une entitée,
+	 * par exemple dans un .tmx
+	 * @param data données sauvegardées
+	 * @see SaveKey
+	 * @since 5.0
+	 */
+	default void load(MapProperties data){
+	}
 }

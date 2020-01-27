@@ -73,7 +73,7 @@ public class EntitySerializable {
 	 *
 	 * @param entity l'entité a copier
 	 */
-	public EntitySerializable(EntitySerializable entity) {
+	protected EntitySerializable(EntitySerializable entity) {
 		super();
 		this.className = entity.className;
 		this.path = entity.path;
@@ -155,5 +155,14 @@ public class EntitySerializable {
 	 */
 	public String getHover() {
 		return hover;
+	}
+
+	/**
+	 * Crée une copie
+	 * @return une copie
+	 * @since 5.0
+	 */
+	protected EntitySerializable duplicates() {
+		return new EntitySerializable(this);
 	}
 }

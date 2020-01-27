@@ -89,37 +89,7 @@ public class CaseListener extends ClickListener {
 			}
 
 			CaseView actor = (CaseView) event.getTarget();
-			MapTestScreenCell cell = actor.getCell();
-
-			//on parcours tout les layers à la recherche d'une entité
-			// pour afficher le panneau avec l'entité en premier
-			GameObject entity = actor.getCell().getEntity();
-			if (entity == null) {
-				TiledMap map = popUp.getTileMap();
-				MapLayers layers = map.getLayers();
-				MapTestScreenCell tmp;
-
-				for (int i = 0; i < 4; i++) {
-					TiledMapTileLayer layer = (TiledMapTileLayer) layers.get(i);
-					tmp = (MapTestScreenCell) layer.getCell(cell.getIndex() % layer.getWidth(), cell.getIndex() / layer.getWidth());
-					if (tmp.getEntity() != null) {
-						cell = tmp;
-					}
-				}
-				//si ya déjà une entité mais c'est une pièce
-			} else if(entity.getImplements().get(TypeEntity.CONTAINER_MANAGER)) {//on regarde si on a quelque chose de mieux
-				TiledMap map = popUp.getTileMap();
-				MapLayers layers = map.getLayers();
-				MapTestScreenCell tmp;
-
-				for (int i = 0; i < 4; i++) {
-					TiledMapTileLayer layer = (TiledMapTileLayer) layers.get(i);
-					tmp = (MapTestScreenCell) layer.getCell(cell.getIndex() % layer.getWidth(), cell.getIndex() / layer.getWidth());
-					if (tmp.getEntity() != null && !tmp.getEntity().getImplements().get(TypeEntity.CONTAINER_MANAGER)) {
-						cell = tmp;
-					}
-				}
-			}
+			MapTestScreenCell cell = getRevelantEntity(actor);
 
 			if (enigmacreate) {
 				pop = new SpecialPopUp(popUp.getComponent(), popUp.getTileMap(), popUp, this);
@@ -148,8 +118,8 @@ public class CaseListener extends ClickListener {
 			}
 		} else if(TestScreen.isState(EditorState.ERASE)){
 			CaseView actor = (CaseView) event.getTarget();
-			MapTestScreenCell cell = actor.getCell();
-			cell.removeEntity();
+			MapTestScreenCell cell = getRevelantEntity(actor);
+			if(cell != null && cell.getEntity() != null) cell.removeEntity();
 		}
 	}
 
@@ -159,5 +129,41 @@ public class CaseListener extends ClickListener {
 
 	public void setPop(SpecialPopUp pop) {
 		this.pop = pop;
+	}
+
+	private MapTestScreenCell getRevelantEntity(CaseView actor) {
+		MapTestScreenCell cell = actor.getCell();
+
+		//on parcours tout les layers à la recherche d'une entité
+		// pour afficher le panneau avec l'entité en premier
+		GameObject entity = actor.getCell().getEntity();
+		if (entity == null) {
+			TiledMap map = popUp.getTileMap();
+			MapLayers layers = map.getLayers();
+			MapTestScreenCell tmp;
+
+			for (int i = 0; i < 4; i++) {
+				TiledMapTileLayer layer = (TiledMapTileLayer) layers.get(i);
+				tmp = (MapTestScreenCell) layer.getCell(cell.getIndex() % layer.getWidth(), cell.getIndex() / layer.getWidth());
+				if (tmp.getEntity() != null) {
+					cell = tmp;
+				}
+			}
+			//si ya déjà une entité mais c'est une pièce
+		} else if(entity.getImplements().get(TypeEntity.CONTAINER_MANAGER)) {//on regarde si on a quelque chose de mieux
+			TiledMap map = popUp.getTileMap();
+			MapLayers layers = map.getLayers();
+			MapTestScreenCell tmp;
+
+			for (int i = 0; i < 4; i++) {
+				TiledMapTileLayer layer = (TiledMapTileLayer) layers.get(i);
+				tmp = (MapTestScreenCell) layer.getCell(cell.getIndex() % layer.getWidth(), cell.getIndex() / layer.getWidth());
+				if (tmp.getEntity() != null && !tmp.getEntity().getImplements().get(TypeEntity.CONTAINER_MANAGER)) {
+					cell = tmp;
+				}
+			}
+		}
+
+		return cell;
 	}
 }

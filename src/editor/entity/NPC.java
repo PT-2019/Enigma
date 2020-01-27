@@ -1,16 +1,23 @@
 package editor.entity;
 
 import api.entity.Entity;
+import api.entity.Item;
 import api.entity.actor.GameActorTextured;
+import api.entity.types.Container;
 import api.entity.types.Living;
+import api.entity.utils.SaveKey;
 import api.enums.Layer;
 import api.enums.TypeEntity;
+import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+import editor.entity.save.PlayerSave;
 import editor.utils.lang.GameLanguage;
 import editor.utils.lang.fields.GameFields;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.HashMap;
 
@@ -25,7 +32,7 @@ import java.util.HashMap;
  * @version 5.0 25/01/2020
  * @since 5.0 25/01/2020
  */
-public class NPC extends GameActorTextured implements Entity, Living {
+public class NPC extends GameActorTextured implements Entity, Living, Container {
 
 	/**
 	 * Points de vie maximaux du joueur
@@ -53,10 +60,14 @@ public class NPC extends GameActorTextured implements Entity, Living {
 	 */
 	private String name;
 
+	private String json, key;
+
 	/**
 	 * True si c'est un héro possible
 	 */
 	private boolean hero;
+
+	private ArrayList<Item> items;
 
 	public NPC() {
 		this(-1);
@@ -68,6 +79,7 @@ public class NPC extends GameActorTextured implements Entity, Living {
 	public NPC(String name) {
 		this(-1);
 		this.name = name;
+		this.items = new ArrayList<>();
 	}
 
 	/**
@@ -78,6 +90,7 @@ public class NPC extends GameActorTextured implements Entity, Living {
 		this.id = id;
 		this.bounds = new Rectangle();
 		this.tiles = new HashMap<>();
+		this.items = new ArrayList<>();
 	}
 
 	/**
@@ -90,6 +103,7 @@ public class NPC extends GameActorTextured implements Entity, Living {
 		this.bounds = new Rectangle();
 		this.tiles = new HashMap<>();
 		this.name = name;
+		this.items = new ArrayList<>();
 	}
 
 	@Override
@@ -149,6 +163,7 @@ public class NPC extends GameActorTextured implements Entity, Living {
 		imp.put(TypeEntity.NPC, true);
 
 		imp.put(TypeEntity.LIVING, true);
+		imp.put(TypeEntity.CONTAINER, true);
 		imp.put(TypeEntity.NEED_CONTAINER_MANAGER, true);
 		return imp;
 	}
@@ -196,4 +211,48 @@ public class NPC extends GameActorTextured implements Entity, Living {
 		return GameLanguage.gl.get(GameFields.NPC);
 	}
 
+	@Override
+	public HashMap<SaveKey, String> getSave() {
+		HashMap<SaveKey, String> save = new HashMap<>();
+		save.put(PlayerSave.KEY, this.key);
+		save.put(PlayerSave.JSON, this.json);
+		save.put(PlayerSave.HERO, String.valueOf(this.hero));
+		save.put(PlayerSave.INVENTORY, this.items.toString());
+		save.put(PlayerSave.NAME, this.name);
+		return save;
+	}
+
+	@Override
+	public void load(MapProperties data) {
+		this.key = data.get(PlayerSave.KEY.getKey(), String.class);
+		this.json = data.get(PlayerSave.JSON.getKey(), String.class);
+		this.hero = Boolean.valueOf(data.get(PlayerSave.HERO.getKey(), String.class));
+		String list = data.get(PlayerSave.INVENTORY.getKey(), String.class);
+		this.name = data.get(PlayerSave.NAME.getKey(), String.class);
+	}
+
+	/**
+	 * Définit les valeurs du json (+clef)
+	 * @param json json
+	 * @param key clef pour retrouver l'entitée dans le json
+	 */
+	public void setJson(String json, String key) {
+		this.json = json;
+		this.key = key;
+	}
+
+	@Override
+	public boolean addItem(Item item) {
+		return this.items.add(item);
+	}
+
+	@Override
+	public boolean removeItem(Item item) {
+		return this.items.remove(item);
+	}
+
+	@Override
+	public ArrayList<Item> getItems() {
+		return this.items;
+	}
 }

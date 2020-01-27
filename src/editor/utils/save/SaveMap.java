@@ -1,6 +1,7 @@
 package editor.utils.save;
 
 import api.entity.GameObject;
+import api.entity.utils.SaveKey;
 import api.enums.Layer;
 import api.enums.TmxProperties;
 import api.enums.TmxTags;
@@ -393,6 +394,15 @@ public class SaveMap {
 						tilesTag.setAttribute(TmxProperties.TMX_VALUE, String.valueOf(tiles.size));
 						properties.appendChild(tilesTag);
 					}
+
+					//ajout des propriétés propres à l'object
+					for (java.util.Map.Entry<SaveKey, String> entry : entity.getSave().entrySet()) {
+						Element custom = document.createElement(TmxTags.TMX_PROPERTY);
+						custom.setAttribute(TmxProperties.TMX_NAME, entry.getKey().toString());
+						custom.setAttribute(TmxProperties.TMX_VALUE, entry.getValue());
+						properties.appendChild(custom);
+					}
+
 					object.appendChild(properties);
 					objetGroup.appendChild(object);
 				}

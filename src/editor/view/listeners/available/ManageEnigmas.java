@@ -3,8 +3,10 @@ package editor.view.listeners.available;
 import api.enums.AvailablePopUpOption;
 import editor.enigma.create.listeners.PopButtonListener;
 import editor.hud.EnigmaButton;
+import editor.hud.EnigmaPanel;
 import editor.view.cases.CasePopUp;
 import editor.view.listeners.AvailableOptionRunnable;
+import editor.view.listeners.available.view.AbstractPopUpView;
 
 /**
  * Permet de gérer les énigmes
@@ -43,6 +45,12 @@ public class ManageEnigmas implements AvailableOptionRunnable {
 	@Override
 	public void run() {
 		this.parent.getPanel().add(this.eng);
+		this.eng.addActionListener(new PopButtonListener(this.parent, this.parent.getCell(), this.parent.getObserver()));
+	}
+
+	@Override
+	public void run(AbstractPopUpView view, EnigmaPanel panel) {
+		panel.add(this.eng);
 		this.eng.addActionListener(new PopButtonListener(this.parent, this.parent.getCell(), this.parent.getObserver()));
 	}
 }

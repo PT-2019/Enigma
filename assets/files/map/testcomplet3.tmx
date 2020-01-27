@@ -184,7 +184,7 @@
 </data>
     </layer>
     <objectgroup id="6">
-        <object height="2.0" id="10" name="entity" width="1.0" x="25.0" y="17.0">
+        <object height="2.0" id="30" name="entity" width="1.0" x="25.0" y="17.0">
             <properties>
                 <property name="className" value="game.entity.item.Library"/>
                 <property name="y2" value="17.0"/>
@@ -301,11 +301,11 @@
                 <property name="className" value="editor.entity.NPC"/>
                 <property name="y2" value="11.0"/>
                 <property name="FLOOR2" value="4"/>
-                <property name="HERO" value="true"/>
-                <property name="INVENTORY" value="null"/>
-                <property name="NAME" value=""/>
-                <property name="KEY" value=""/>
                 <property name="JSON" value=""/>
+                <property name="KEY" value=""/>
+                <property name="HERO" value="true"/>
+                <property name="INVENTORY" value="[]"/>
+                <property name="NAME" value=""/>
             </properties>
         </object>
         <object height="1.0" id="9" name="entity" width="1.0" x="37.0" y="23.0">
@@ -374,11 +374,11 @@
                 <property name="className" value="editor.entity.NPC"/>
                 <property name="y2" value="13.0"/>
                 <property name="FLOOR2" value="4"/>
-                <property name="HERO" value="true"/>
-                <property name="INVENTORY" value="null"/>
-                <property name="NAME" value=""/>
-                <property name="KEY" value=""/>
                 <property name="JSON" value=""/>
+                <property name="KEY" value=""/>
+                <property name="HERO" value="true"/>
+                <property name="INVENTORY" value="[]"/>
+                <property name="NAME" value=""/>
             </properties>
         </object>
         <object height="2.0" id="12" name="entity" width="1.0" x="27.0" y="17.0">
@@ -394,11 +394,11 @@
                 <property name="className" value="editor.entity.NPC"/>
                 <property name="y2" value="11.0"/>
                 <property name="FLOOR2" value="4"/>
-                <property name="HERO" value="true"/>
-                <property name="INVENTORY" value="null"/>
-                <property name="NAME" value=""/>
-                <property name="KEY" value=""/>
                 <property name="JSON" value=""/>
+                <property name="KEY" value=""/>
+                <property name="HERO" value="true"/>
+                <property name="INVENTORY" value="[]"/>
+                <property name="NAME" value=""/>
             </properties>
         </object>
         <object height="2.0" id="22" name="entity" width="2.0" x="7.0" y="26.0">
