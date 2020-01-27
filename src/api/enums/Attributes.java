@@ -100,4 +100,10 @@ public interface Attributes {
 	 * Id associé à une entité pour la sauvegarde
 	 */
 	String ID = "id";
+
+	/**
+	 * Type associé à une énigme pour la sauvegarde
+	 * @see editor.enigma.Enigma
+	 */
+	String TYPE = "type";
 }

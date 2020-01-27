@@ -5,6 +5,7 @@ import api.enums.Attributes;
 import editor.enigma.condition.Condition;
 import editor.enigma.operation.Operation;
 import editor.entity.Player;
+import game.utils.OperationEventEnum;
 
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;
@@ -47,6 +48,10 @@ public class Enigma implements ActionListener, IDInterface {
 	 */
 	private String description;
 	/**
+	 * Type
+	 */
+	private OperationEventEnum type;
+	/**
 	 * Conditions
 	 */
 	private ArrayList<Condition> conditions;
@@ -85,6 +90,7 @@ public class Enigma implements ActionListener, IDInterface {
 		this.operations = new ArrayList<Operation>();
 		this.advices = new ArrayList<Advice>();
 		this.id = -1;
+		this.type = OperationEventEnum.ON_USE;
 	}
 
 	/**
@@ -101,6 +107,7 @@ public class Enigma implements ActionListener, IDInterface {
 		this.operations = new ArrayList<Operation>();
 		this.advices = new ArrayList<Advice>();
 		this.id = -1;
+		this.type = OperationEventEnum.ON_USE;
 	}
 
 	/**
@@ -132,6 +139,11 @@ public class Enigma implements ActionListener, IDInterface {
 		if (attributes.containsKey(Attributes.ID)) {
 			this.id = Integer.parseInt((String) attributes.get(Attributes.ID));
 		}
+		else throw new IllegalArgumentException("Attribut \"id\" abscent");
+		if (attributes.containsKey(Attributes.TYPE)) {
+			this.type = Integer.parseInt((String) attributes.get(Attributes.TYPE));
+		}
+		else throw new IllegalArgumentException("Attribut \"id\" abscent");
 
 		this.timer = new Timer(0, this);
 		if (this.known && this.currentAdvice + 1 < this.advices.size()) {
