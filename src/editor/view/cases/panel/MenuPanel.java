@@ -36,6 +36,7 @@ public class MenuPanel extends EnigmaPanel {
 				reset.clean();
 				CardLayout layout = parent.getCardLayout();
 				layout.show(parent.getPanel(), "menu");
+				EnigmaView.setAvailable(null);
 			}
 		});
 

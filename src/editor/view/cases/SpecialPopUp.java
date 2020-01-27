@@ -10,6 +10,7 @@ import editor.hud.EnigmaButton;
 import editor.hud.EnigmaPanel;
 import editor.view.cases.listeners.SpecialPopListener;
 import editor.view.cases.panel.NavigationPanel;
+import editor.view.listeners.CaseListener;
 import game.entity.map.MapTestScreenCell;
 import starter.EditorLauncher;
 
@@ -29,6 +30,7 @@ public class SpecialPopUp extends AbstractPopUp {
 	 * Nombre de lignes et colonnes du contenu.
 	 */
 	private static final int WIDTH = 400, HEIGHT = 130, COL = 1, ROW = 2;
+	private final CaseListener caseListener;
 
 	/**
 	 * Panneau de navigation pour passer d'une entité à une autre
@@ -44,8 +46,9 @@ public class SpecialPopUp extends AbstractPopUp {
 
 	private EnigmaButton button;
 
-	public SpecialPopUp(JComponent component, TiledMap tiledMap, CasePopUp popUp) {
+	public SpecialPopUp(JComponent component, TiledMap tiledMap, CasePopUp popUp, CaseListener caseListener) {
 		super((JFrame) component.getRootPane().getParent(), "", false);
+		this.caseListener = caseListener;
 		this.tileMap = tiledMap;
 		this.popUp = popUp;
 
@@ -94,5 +97,9 @@ public class SpecialPopUp extends AbstractPopUp {
 		this.remove(navigation);
 		panel.removeAll();
 		this.remove(panel);
+	}
+
+	public CaseListener getCaseListener() {
+		return caseListener;
 	}
 }

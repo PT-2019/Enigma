@@ -22,6 +22,9 @@ import editor.view.cases.listeners.CasePopWindowListener;
 import game.entity.map.MapTestScreenCell;
 import game.screen.TestScreen;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 /**
  * Cette classe permet d'écouter les cliques de la souris sur les cases
  * de la map.
@@ -45,27 +48,41 @@ public class CaseListener extends ClickListener {
 	 * boolean qui dit si nous sommes entrain de créer une enigme ou pas.
 	 */
 	private boolean enigmacreate;
+	private SpecialPopUp pop;
 
 	public CaseListener(CasePopUp pop) {
 		super(Input.Buttons.LEFT);
 		popUp = pop;
 		enigmacreate = false;
+		pop = null;
 	}
 
 	@Override
 	public void clicked(InputEvent event, float x, float y) {
 		//on ne peut cliquer que si l'état est normal
 		if(TestScreen.isState(EditorState.NORMAL)) {
-
 			if(enigmacreate){ //une popup est ouverte
 				//on doit être dans un menu qui nécessite une deuxième popup
 				if(EnigmaView.getAvailable() != null){
 					//deuxième fenêtre ok on ne quitte pas
+					System.out.println(pop);
+					if(pop != null){
+						pop.setAlwaysOnTop(true);
+						pop.revalidate();
+						pop.setAlwaysOnTop(false);
+						return;
+					}
 				} else {
-					//on met la window au premier plan
-					popUp.setAlwaysOnTop(true);
-					popUp.revalidate();
-					popUp.setAlwaysOnTop(false);
+					if(pop == null) {
+						//on met la window au premier plan
+						popUp.setAlwaysOnTop(true);
+						popUp.revalidate();
+						popUp.setAlwaysOnTop(false);
+					} else {
+						pop.setAlwaysOnTop(true);
+						pop.revalidate();
+						pop.setAlwaysOnTop(false);
+					}
 					//équivalent d'un focus mais en mode bizarre
 					return;
 				}
@@ -105,10 +122,16 @@ public class CaseListener extends ClickListener {
 			}
 
 			if (enigmacreate) {
-				SpecialPopUp pop = new SpecialPopUp(popUp.getComponent(), popUp.getTileMap(), popUp);
+				pop = new SpecialPopUp(popUp.getComponent(), popUp.getTileMap(), popUp, this);
 				pop.setCell(cell);
 				pop.display();
 				pop.setVisible(true);
+				pop.addWindowListener(new WindowAdapter() {
+					@Override
+					public void windowClosing(WindowEvent e) {
+						pop = null;
+					}
+				});
 			} else {
 				popUp.setCell(cell);
 				Group g = actor.getParent();
@@ -132,5 +155,9 @@ public class CaseListener extends ClickListener {
 
 	public void setEnigmacreate(boolean b) {
 		this.enigmacreate = b;
+	}
+
+	public void setPop(SpecialPopUp pop) {
+		this.pop = pop;
 	}
 }

@@ -487,14 +487,6 @@ public class MapTestScreen extends AbstractMap {
 									if (Utility.containsBottomLeftOrigin(entry.getValue(), entry.getKey(), j, i)) {
 										int indexR = Utility.calculatesOffset(new Vector2(j, i+1),
 												entry.getKey(), entry.getValue());
-										/*if(Layer.FLOOR1.name().equals(tileLayer.getName())){
-											Utility.printDebug("Ré-ajoutTiles",
-													index+" "
-													+new Vector2(j,i+1)
-													+entry.getKey()
-													+"id="+indexR
-													);
-										}*/
 										ind = MathUtils.ceil(entitiesArray.get(indexR));
 										c.setEntity(entry.getValue());
 										break;

@@ -80,7 +80,7 @@ public class CasePopUp extends AbstractPopUp {
 	public void initComponent() {
 		this.navigation = new NavigationPanel(this);
 		this.extra = new EnigmaPanel();
-		for (Class c : AvailableOptionRunnable.classes) {
+		for (Class<?> c : AvailableOptionRunnable.classes) {
 			AvailableOptionRunnable runnable = (AvailableOptionRunnable) Utility.instance(c, this);
 			runnables.put(runnable.getOption(), runnable);
 		}

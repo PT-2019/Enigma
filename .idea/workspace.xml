@@ -5,23 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ae09cfc3-8c68-40f7-a6e1-cb32552840e9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/assets/actions.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/actions.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/files/map/test1.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/map/test1.tmx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/files/map/test2.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/map/test2.tmx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/lang/french.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/lang/french.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/map/Entities.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/map/Entities.tmx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/map/Player.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/map/Player.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/map/map_system/EmptyMap.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/map/map_system/EmptyMap.tmx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/map/map_system/Player.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/map/map_system/Player.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/map/map_system/Player.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/map/map_system/Player.tmx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/utils/lang/fields/HUDFields.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/utils/lang/fields/HUDFields.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/utils/save/SaveMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/utils/save/SaveMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/view/cases/CasePopUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/view/cases/CasePopUp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/view/cases/SpecialPopUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/view/cases/SpecialPopUp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/view/cases/listeners/SpecialPopListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/view/cases/listeners/SpecialPopListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/view/cases/panel/MenuPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/view/cases/panel/MenuPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/view/listeners/CaseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/view/listeners/CaseListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game/entity/map/MapTestScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/entity/map/MapTestScreen.java" afterDir="false" />
     </list>
-    <ignored path="$PROJECT_DIR$/out/" />
-    <ignored path="$PROJECT_DIR$/libs/packer/" />
-    <ignored path="$PROJECT_DIR$/src/item/" />
-    <ignored path="$PROJECT_DIR$/build/" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -44,9 +37,6 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
-  <component name="FileEditorManager">
-    <leaf />
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -57,43 +47,6 @@
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>???</find>
-      <find>instanceof</find>
-      <find>deleteEntity</find>
-      <find>&quot;operation&quot;</find>
-      <find>&quot;condition&quot;</find>
-      <find>&quot;menu&quot;</find>
-      <find>setText(</find>
-      <find>getText</find>
-      <find>MapTestSc</find>
-      <find>Key</find>
-      <find>start</find>
-      <find>tmp</find>
-      <find>loadE</find>
-      <find>removeEntity</find>
-      <find>Sauvegarder</find>
-      <find>-</find>
-      <find>11</find>
-      <find>Operations</find>
-      <find>INSET_VALUE</find>
-      <find>clue</find>
-      <find>parent</find>
-      <find>Ajouter une cond</find>
-      <find>utilise</find>
-      <find>Utilise</find>
-      <find>ConditionLis</find>
-      <find>deuxiè</find>
-      <find>Invalid</find>
-      <find>title.getText()</find>
-      <find>delete</find>
-      <find>opacit</find>
-    </findStrings>
-    <dirStrings>
-      <dir>C:\Users\Quentin Ra\Desktop\Enigma\src\game\entity</dir>
-    </dirStrings>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -102,152 +55,7 @@
       </map>
     </option>
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/src/api/entity/Consumable.java" />
-        <option value="$PROJECT_DIR$/src/api/entity/AbstractConsumable.java" />
-        <option value="$PROJECT_DIR$/src/game/entity/item/Pane.java" />
-        <option value="$PROJECT_DIR$/src/game/entity/item/Button.java" />
-        <option value="$PROJECT_DIR$/src/game/entity/item/Door.java" />
-        <option value="$PROJECT_DIR$/src/game/entity/item/Switch.java" />
-        <option value="$PROJECT_DIR$/src/game/entity/item/Key.java" />
-        <option value="$PROJECT_DIR$/src/game/entity/item/Book.java" />
-        <option value="$PROJECT_DIR$/src/game/entity/item/Library.java" />
-        <option value="$PROJECT_DIR$/src/api/entity/Item.java" />
-        <option value="$PROJECT_DIR$/src/editor/utils/EmptyMapGenerator.java" />
-        <option value="$PROJECT_DIR$/src/game/entity/item/Room.java" />
-        <option value="$PROJECT_DIR$/src/api/entity/AbstractItem.java" />
-        <option value="$PROJECT_DIR$/src/game/entity/item/Chest.java" />
-        <option value="$PROJECT_DIR$/src/game/screen/TestScreen.java" />
-        <option value="$PROJECT_DIR$/src/api/entity/types/Living.java" />
-        <option value="$PROJECT_DIR$/src/editor/view/listeners/available/Delete.java" />
-        <option value="$PROJECT_DIR$/src/editor/view/cases/CasePopUp.java" />
-        <option value="$PROJECT_DIR$/src/editor/enigma/operation/Summon.java" />
-        <option value="$PROJECT_DIR$/tests/editor/io/EnigmaJsonTestMain.java" />
-        <option value="$PROJECT_DIR$/src/editor/view/cases/panel/MenuPanel.java" />
-        <option value="$PROJECT_DIR$/src/editor/view/cases/listeners/CaseDelete.java" />
-        <option value="$PROJECT_DIR$/src/game/utils/DragAndDrop.java" />
-        <option value="$PROJECT_DIR$/src/editor/enigma/create/enigma/Operations.java" />
-        <option value="$PROJECT_DIR$/src/game/utils/DragAndDropBuilder.java" />
-        <option value="$PROJECT_DIR$/src/api/utils/Utility.java" />
-        <option value="$PROJECT_DIR$/src/editor/enigma/create/enigma/Conditions.java" />
-        <option value="$PROJECT_DIR$/src/api/enums/AvailablePopUpOption.java" />
-        <option value="$PROJECT_DIR$/src/editor/enigma/create/listeners/ClueListener.java" />
-        <option value="$PROJECT_DIR$/src/editor/view/cases/SpecialPopUp.java" />
-        <option value="$PROJECT_DIR$/src/editor/enigma/create/enigma/ConditionPanel.java" />
-        <option value="$PROJECT_DIR$/src/editor/enigma/create/enigma/OperationPanel.java" />
-        <option value="$PROJECT_DIR$/src/editor/enigma/create/listeners/OperationListener.java" />
-        <option value="$PROJECT_DIR$/src/editor/enigma/create/listeners/ConditionListener.java" />
-        <option value="$PROJECT_DIR$/src/editor/view/listeners/CaseListener.java" />
-        <option value="$PROJECT_DIR$/src/editor/enigma/create/enigma/EnigmaView.java" />
-        <option value="$PROJECT_DIR$/src/editor/enigma/create/enigma/EnigmaMenu.java" />
-        <option value="$PROJECT_DIR$/src/editor/enigma/create/enigma/CluePanel.java" />
-        <option value="$PROJECT_DIR$/src/editor/enigma/create/enigma/NavigationEnigmaListener.java" />
-        <option value="$PROJECT_DIR$/assets/entities/datas/players.json" />
-        <option value="$PROJECT_DIR$/src/starter/EditorLauncher.java" />
-        <option value="$PROJECT_DIR$/src/editor/entity/PlayerSerializable.java" />
-        <option value="$PROJECT_DIR$/src/editor/entity/EntityFactory.java" />
-        <option value="$PROJECT_DIR$/assets/entities.json" />
-        <option value="$PROJECT_DIR$/assets/lang/french.json" />
-        <option value="$PROJECT_DIR$/src/editor/entity/actions/GameExit.java" />
-        <option value="$PROJECT_DIR$/assets/actions.json" />
-        <option value="$PROJECT_DIR$/src/game/entity/map/MapTestScreen.java" />
-        <option value="$PROJECT_DIR$/assets/map/map_system/EmptyMap.tmx" />
-        <option value="$PROJECT_DIR$/assets/files/map/test1.tmx" />
-        <option value="$PROJECT_DIR$/src/editor/utils/save/SaveMap.java" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1300" />
-    <option name="height" value="876" />
-  </component>
   <component name="ProjectId" id="1T4PWZYsjf2nuTU9Vgk0aB5pF47" />
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="files" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="files" type="462c0819:PsiDirectoryNode" />
-              <item name="map" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="map" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="map" type="462c0819:PsiDirectoryNode" />
-              <item name="map_system" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="editor" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="editor" type="462c0819:PsiDirectoryNode" />
-              <item name="entity" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="game" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="game" type="462c0819:PsiDirectoryNode" />
-              <item name="entity" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-    </panes>
-  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -306,18 +114,6 @@
       <recent name="editor.entity.view" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="EnigmaFastGame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="EnigmaFastGame" />
@@ -341,13 +137,30 @@
         <option name="com.soywiz.korge.intellij.UpdateResourceBeforeRunTask" enabled="false" />
       </method>
     </configuration>
+    <configuration name="MapTestMain" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Enigma" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="editor.map.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="editor.map" />
+      <option name="MAIN_CLASS_NAME" value="editor.map.MapTestMain" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.EnigmaFastGame" />
+      <item itemvalue="JUnit.MapTestMain" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.MapTestMain" />
         <item itemvalue="Application.EnigmaFastGame" />
       </list>
     </recent_temporary>
@@ -381,40 +194,10 @@
       <workItem from="1579701797672" duration="402000" />
       <workItem from="1579860107588" duration="1856000" />
       <workItem from="1579864991065" duration="3837000" />
+      <workItem from="1580126298840" duration="2749000" />
+      <workItem from="1580133900889" duration="3422000" />
     </task>
     <servers />
-  </component>
-  <component name="TestHistory">
-    <history-entry file="TestMap - 2019.11.11 at 19h 45m 59s.xml">
-      <configuration name="TestMap" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestMap - 2019.11.11 at 19h 46m 18s.xml">
-      <configuration name="TestMap" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestMap - 2019.11.11 at 19h 46m 39s.xml">
-      <configuration name="TestMap" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestMap - 2019.11.11 at 19h 47m 01s.xml">
-      <configuration name="TestMap" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestMap - 2019.11.11 at 19h 49m 39s.xml">
-      <configuration name="TestMap" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestMap - 2019.11.11 at 19h 50m 28s.xml">
-      <configuration name="TestMap" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestMap - 2019.11.11 at 19h 50m 56s.xml">
-      <configuration name="TestMap" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestMap - 2019.11.11 at 19h 51m 34s.xml">
-      <configuration name="TestMap" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestMap - 2019.11.11 at 19h 52m 10s.xml">
-      <configuration name="TestMap" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MapTestMain_testMapStructureWork - 2019.12.05 at 22h 18m 16s.xml">
-      <configuration name="MapTestMain.testMapStructureWork" configurationId="JUnit" />
-    </history-entry>
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -425,69 +208,6 @@
       <is-autoscroll-to-source value="true" />
     </todo-panel>
   </component>
-  <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
-    <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26618123" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Designer" order="2" />
-      <window_info id="Image Layers" order="3" />
-      <window_info id="Capture Tool" order="4" />
-      <window_info id="UI Designer" order="5" />
-      <window_info id="Learn" order="6" weight="0.32928804" />
-      <window_info id="Favorites" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32949308" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3813364" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32949308" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32949308" />
-      <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.32949308" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Maven" order="4" />
-      <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="right" id="make" order="6" />
-      <window_info anchor="right" id="Capture Analysis" order="7" />
-      <window_info anchor="right" id="Palette&#9;" order="8" />
-    </layout>
-    <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25809062" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Designer" order="2" />
-      <window_info id="Image Layers" order="3" />
-      <window_info id="Capture Tool" order="4" />
-      <window_info id="UI Designer" order="5" />
-      <window_info id="Learn" order="6" />
-      <window_info id="Favorites" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32949308" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3813364" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32949308" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32949308" />
-      <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.32949308" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Maven" order="4" />
-      <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="right" id="make" order="6" />
-      <window_info anchor="right" id="Capture Analysis" order="7" />
-      <window_info anchor="right" id="Palette&#9;" order="8" />
-    </layout-to-restore>
-  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
@@ -497,12 +217,6 @@
         <entry key="MAIN">
           <value>
             <State>
-              <option name="RECENTLY_FILTERED_USER_GROUPS">
-                <collection />
-              </option>
-              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-                <collection />
-              </option>
               <option name="COLUMN_ORDER" />
             </State>
           </value>
@@ -527,495 +241,68 @@
   <component name="WindowStateProjectService">
     <state x="2218" y="184" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1579852963378" />
     <state x="2218" y="184" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1579852963378" />
-    <state x="766" y="244" width="380" height="577" key="#com.intellij.ide.util.MemberChooser" timestamp="1579858663417">
+    <state x="766" y="244" width="380" height="577" key="#com.intellij.ide.util.MemberChooser" timestamp="1580134686019">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="766" y="244" width="380" height="577" key="#com.intellij.ide.util.MemberChooser/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1579858663417" />
+    <state x="766" y="244" width="380" height="577" key="#com.intellij.ide.util.MemberChooser/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1580134686019" />
     <state x="691" y="310" width="530" height="445" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1579858629570">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="691" y="310" width="530" height="445" key="#com.intellij.ide.util.PackageChooserDialog/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1579858629570" />
-    <state width="1638" height="293" key="GridCell.Tab.0.bottom" timestamp="1579868830284">
-      <screen x="1920" y="0" width="1680" height="1050" />
+    <state width="1878" height="275" key="GridCell.Tab.0.bottom" timestamp="1580138050912">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1868" height="275" key="GridCell.Tab.0.bottom/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" timestamp="1579862646524" />
-    <state width="1638" height="293" key="GridCell.Tab.0.bottom/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1579868830284" />
-    <state width="1868" height="276" key="GridCell.Tab.0.bottom/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1579859968937" />
+    <state width="1638" height="293" key="GridCell.Tab.0.bottom/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1580129064875" />
+    <state width="1878" height="275" key="GridCell.Tab.0.bottom/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1580138050912" />
     <state width="1638" height="278" key="GridCell.Tab.0.bottom/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1579852963378" />
-    <state width="1638" height="293" key="GridCell.Tab.0.center" timestamp="1579868830284">
-      <screen x="1920" y="0" width="1680" height="1050" />
+    <state width="1878" height="275" key="GridCell.Tab.0.center" timestamp="1580138050912">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1868" height="275" key="GridCell.Tab.0.center/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" timestamp="1579862646523" />
-    <state width="1638" height="293" key="GridCell.Tab.0.center/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1579868830284" />
-    <state width="1868" height="276" key="GridCell.Tab.0.center/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1579859968937" />
+    <state width="1638" height="293" key="GridCell.Tab.0.center/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1580129064875" />
+    <state width="1878" height="275" key="GridCell.Tab.0.center/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1580138050912" />
     <state width="1638" height="278" key="GridCell.Tab.0.center/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1579852963378" />
-    <state width="1638" height="293" key="GridCell.Tab.0.left" timestamp="1579868830284">
-      <screen x="1920" y="0" width="1680" height="1050" />
+    <state width="1878" height="275" key="GridCell.Tab.0.left" timestamp="1580138050912">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1868" height="275" key="GridCell.Tab.0.left/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" timestamp="1579862646523" />
-    <state width="1638" height="293" key="GridCell.Tab.0.left/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1579868830284" />
-    <state width="1868" height="276" key="GridCell.Tab.0.left/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1579859968937" />
+    <state width="1638" height="293" key="GridCell.Tab.0.left/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1580129064875" />
+    <state width="1878" height="275" key="GridCell.Tab.0.left/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1580138050912" />
     <state width="1638" height="278" key="GridCell.Tab.0.left/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1579852963378" />
-    <state width="1638" height="293" key="GridCell.Tab.0.right" timestamp="1579868830284">
-      <screen x="1920" y="0" width="1680" height="1050" />
+    <state width="1878" height="275" key="GridCell.Tab.0.right" timestamp="1580138050912">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state width="1868" height="275" key="GridCell.Tab.0.right/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" timestamp="1579862646523" />
-    <state width="1638" height="293" key="GridCell.Tab.0.right/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1579868830284" />
-    <state width="1868" height="276" key="GridCell.Tab.0.right/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1579859968937" />
+    <state width="1638" height="293" key="GridCell.Tab.0.right/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1580129064875" />
+    <state width="1878" height="275" key="GridCell.Tab.0.right/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1580138050912" />
     <state width="1638" height="278" key="GridCell.Tab.0.right/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1579852963378" />
     <state x="2243" y="104" width="1030" height="847" key="SettingsEditor" timestamp="1579852963378" />
     <state x="2243" y="104" width="1030" height="847" key="SettingsEditor/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1579852963378" />
     <state x="2243" y="104" key="SettingsEditor/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1579852963378" />
-    <state x="626" y="358" key="com.intellij.ide.util.TipDialog" timestamp="1579865283221">
-      <screen x="0" y="31" width="1920" height="1000" />
-    </state>
-    <state x="626" y="358" key="com.intellij.ide.util.TipDialog/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" timestamp="1579865283221" />
-    <state x="626" y="358" key="com.intellij.ide.util.TipDialog/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1579852963378" />
-    <state x="626" y="358" key="com.intellij.ide.util.TipDialog/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1579852963378" />
-    <state x="2530" y="232" width="455" height="591" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1579852963378" />
-    <state x="2530" y="232" width="455" height="591" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1579852963378" />
-    <state x="680" y="180" width="692" height="780" key="find.popup" timestamp="1579854732278">
+    <state x="626" y="358" key="com.intellij.ide.util.TipDialog" timestamp="1580133910138">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="680" y="180" width="692" height="780" key="find.popup/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1579854732278" />
+    <state x="626" y="358" key="com.intellij.ide.util.TipDialog/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" timestamp="1579865283221" />
+    <state x="2468" y="343" key="com.intellij.ide.util.TipDialog/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1580126298948" />
+    <state x="626" y="358" key="com.intellij.ide.util.TipDialog/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1579852963378" />
+    <state x="626" y="358" key="com.intellij.ide.util.TipDialog/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1580133910138" />
+    <state x="2530" y="232" width="455" height="591" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1579852963378" />
+    <state x="2530" y="232" width="455" height="591" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1579852963378" />
+    <state x="680" y="180" width="692" height="780" key="find.popup" timestamp="1580137587202">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="680" y="180" width="692" height="780" key="find.popup/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1580137587202" />
     <state x="2414" y="136" width="692" height="780" key="find.popup/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1579852963378" />
     <state x="619" y="242" width="672" height="677" key="run.anything.popup" timestamp="1579853958861">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="619" y="242" width="672" height="677" key="run.anything.popup/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1579853958861" />
-    <state x="619" y="177" width="672" height="676" key="search.everywhere.popup" timestamp="1579853968618">
+    <state x="619" y="177" width="672" height="676" key="search.everywhere.popup" timestamp="1580136660359">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="619" y="177" width="672" height="676" key="search.everywhere.popup/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1579853968618" />
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/game/utils/DragAndDropBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
-          <folding>
-            <element signature="e#1796#1797#0" expanded="true" />
-            <element signature="e#1841#1842#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/enigma/create/enigma/Operations.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="20" column="76" selection-start-line="20" selection-start-column="44" selection-end-line="20" selection-end-column="76" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/enigma/create/enigma/Conditions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-95">
-          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/utils/Utility.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="107" column="37" selection-start-line="107" selection-start-column="37" selection-end-line="107" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/enums/AvailablePopUpOption.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="52" column="55" selection-start-line="52" selection-start-column="55" selection-end-line="52" selection-end-column="55" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/enigma/Advice.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="62" selection-start-line="62" selection-end-line="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/enigma/create/listeners/ClueListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-55">
-          <caret line="60" column="44" selection-start-line="60" selection-start-column="44" selection-end-line="60" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/enigma/create/enigma/EnigmaViewPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="22" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/view/cases/panel/MenuPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="23" column="11" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/view/cases/listeners/EntityChoseListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="9" column="18" lean-forward="true" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/utils/Observer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/view/cases/CaseView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/view/cases/listeners/CasePopWindowListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="47" column="46" selection-start-line="47" selection-start-column="46" selection-end-line="47" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/enigma/create/enigma/ConditionPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="182" column="22" selection-start-line="182" selection-start-column="12" selection-end-line="182" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/view/cases/CasePopUp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="88" column="5" lean-forward="true" selection-start-line="88" selection-start-column="5" selection-end-line="88" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3880#3881#0" expanded="true" />
-            <element signature="e#3909#3910#0" expanded="true" />
-            <element signature="e#3942#3943#0" expanded="true" />
-            <element signature="e#3963#3964#0" expanded="true" />
-            <element signature="e#4000#4001#0" expanded="true" />
-            <element signature="e#4028#4029#0" expanded="true" />
-            <element signature="e#4073#4074#0" expanded="true" />
-            <element signature="e#4095#4096#0" expanded="true" />
-            <element signature="e#4129#4130#0" expanded="true" />
-            <element signature="e#4153#4154#0" expanded="true" />
-            <element signature="e#4196#4197#0" expanded="true" />
-            <element signature="e#4220#4221#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/view/cases/SpecialPopUp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="24" column="21" selection-start-line="24" selection-start-column="21" selection-end-line="24" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/view/listeners/CaseListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-418">
-          <caret line="68" column="64" selection-start-line="68" selection-start-column="64" selection-end-line="68" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/enigma/create/listeners/ConditionListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="102" column="26" selection-start-line="102" selection-start-column="26" selection-end-line="102" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/enigma/create/listeners/OperationListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1143">
-          <caret line="106" column="5" lean-forward="true" selection-start-line="106" selection-start-column="5" selection-end-line="106" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/enigma/create/enigma/OperationPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="144" column="16" selection-start-line="144" selection-start-column="16" selection-end-line="144" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/enigma/create/enigma/EnigmaView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="63" column="27" selection-start-line="63" selection-start-column="27" selection-end-line="63" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/enigma/create/enigma/CluePanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="131" column="5" selection-start-line="131" selection-start-column="5" selection-end-line="131" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/files/map/testEnigmas.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="33" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/files/map/testEnigmas.tmx">
-      <provider selected="true" editor-type-id="text-editor" />
-      <provider editor-type-id="com.soywiz.korge.intellij.editor.KorgeBothFileEditorProvider" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/enigma/create/enigma/NavigationEnigmaListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="64" column="62" selection-start-line="64" selection-start-column="62" selection-end-line="64" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/enigma/create/enigma/EnigmaMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="112" column="41" selection-start-line="112" selection-start-column="41" selection-end-line="112" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/entities/datas/players.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="26" column="16" selection-start-line="26" selection-start-column="16" selection-end-line="26" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/starter/EditorLauncher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="57" column="63" selection-start-line="57" selection-start-column="63" selection-end-line="57" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/entities/players/players.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/entity/EntityFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="571">
-          <caret line="102" lean-forward="true" selection-start-line="102" selection-end-line="102" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/entity/PlayerSerializable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1239#1240#0" expanded="true" />
-            <element signature="e#1257#1258#0" expanded="true" />
-            <element signature="e#1355#1356#0" expanded="true" />
-            <element signature="e#1372#1373#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/entities.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="153" column="21" lean-forward="true" selection-start-line="153" selection-start-column="21" selection-end-line="153" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/entity/NPC.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-153">
-          <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/utils/lang/fields/HUDFields.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="43" selection-start-line="8" selection-start-column="43" selection-end-line="8" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/entity/AbstractItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="25" column="51" lean-forward="true" selection-start-line="25" selection-start-column="51" selection-end-line="25" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/lang/french.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="565">
-          <caret line="50" lean-forward="true" selection-start-line="50" selection-end-line="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/entity/EntitySerializable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="40" column="28" selection-start-line="40" selection-start-column="19" selection-end-line="40" selection-end-column="28" />
-          <folding>
-            <element signature="e#3022#3023#0" expanded="true" />
-            <element signature="e#3064#3065#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/game/entity/item/Book.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="49" column="5" lean-forward="true" selection-start-line="31" selection-start-column="4" selection-end-line="49" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/entity/AbstractGameObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="27" column="22" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/decors.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="7" lean-forward="true" selection-start-line="9" selection-start-column="6" selection-end-line="20" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/entity/actions/GameExit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="44" column="5" lean-forward="true" selection-start-line="44" selection-start-column="5" selection-end-line="44" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#675#676#0" expanded="true" />
-            <element signature="e#691#692#0" expanded="true" />
-            <element signature="e#731#732#0" expanded="true" />
-            <element signature="e#775#776#0" expanded="true" />
-            <element signature="e#373#374#0" expanded="true" />
-            <element signature="e#391#392#0" expanded="true" />
-            <element signature="e#438#439#0" expanded="true" />
-            <element signature="e#456#457#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/actions.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="8" lean-forward="true" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/map/Entities.tmx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="29" column="20" selection-start-line="29" selection-start-column="10" selection-end-line="29" selection-end-column="20" />
-        </state>
-      </provider>
-      <provider editor-type-id="com.soywiz.korge.intellij.editor.KorgeBothFileEditorProvider" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/map/Licht.tmx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="375" column="68" lean-forward="true" selection-start-line="375" selection-start-column="55" selection-end-line="375" selection-end-column="68" />
-        </state>
-      </provider>
-      <provider editor-type-id="com.soywiz.korge.intellij.editor.KorgeBothFileEditorProvider" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/files/map/testEnigmeMenu.tmx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3629" />
-      </provider>
-      <provider editor-type-id="com.soywiz.korge.intellij.editor.KorgeBothFileEditorProvider" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/files/map/test1.tmx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="231" column="70" selection-start-line="231" selection-start-column="70" selection-end-line="231" selection-end-column="70" />
-        </state>
-      </provider>
-      <provider editor-type-id="com.soywiz.korge.intellij.editor.KorgeBothFileEditorProvider" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/map/mapDtd.dtd">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="33" column="30" selection-start-line="33" selection-start-column="24" selection-end-line="33" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/files/map/test2.tmx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3649" />
-      </provider>
-      <provider editor-type-id="com.soywiz.korge.intellij.editor.KorgeBothFileEditorProvider" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/map/map_system/EmptyMap.tmx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3927">
-          <caret line="231" column="57" selection-start-line="231" selection-start-column="57" selection-end-line="231" selection-end-column="57" />
-        </state>
-      </provider>
-      <provider editor-type-id="com.soywiz.korge.intellij.editor.KorgeBothFileEditorProvider" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/utils/save/SaveMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-685">
-          <caret line="166" column="17" selection-start-line="166" selection-start-column="17" selection-end-line="166" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/game/entity/map/MapTestScreen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3149">
-          <caret line="424" column="59" selection-start-line="424" selection-start-column="59" selection-end-line="424" selection-end-column="59" />
-          <folding>
-            <element signature="e#21304#21305#0" expanded="true" />
-            <element signature="e#21471#21472#0" expanded="true" />
-            <element signature="e#21537#21538#0" expanded="true" />
-            <element signature="e#21601#21602#0" expanded="true" />
-            <element signature="e#21681#21682#0" expanded="true" />
-            <element signature="e#21745#21746#0" expanded="true" />
-            <element signature="e#21811#21812#0" expanded="true" />
-            <element signature="e#21873#21874#0" expanded="true" />
-            <element signature="e#21940#21941#0" expanded="true" />
-            <element signature="e#22130#22131#0" expanded="true" />
-            <element signature="e#22194#22195#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <state x="2462" y="172" width="672" height="658" key="search.everywhere.popup/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1580128993511" />
+    <state x="619" y="177" width="672" height="676" key="search.everywhere.popup/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1580136660359" />
   </component>
   <component name="masterDetails">
     <states>
