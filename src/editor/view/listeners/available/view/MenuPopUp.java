@@ -16,6 +16,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 /**
  * Cette classe représente un Menu lors de la création d'enigme
  */
@@ -34,10 +35,12 @@ public class MenuPopUp extends EnigmaPanel {
 			prev.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent actionEvent) {
+					System.out.println("retour?");
 					reset.clean();
 					CardLayout layout = parent.getCardLayout();
-					layout.show(parent.getPanel(), "menu");
+					System.out.println("retour?");
 					EnigmaView.setAvailable(null);
+					layout.show(parent.getPanel(), "menu");
 				}
 			});
 		} else {

@@ -9,6 +9,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 /**
  * Une vue du cardLayout de la vue d'un popup
@@ -26,6 +28,7 @@ public abstract class AbstractSubPopUpView extends EnigmaPanel implements Observ
 	protected final EnigmaLabel infoLabel;
 	protected final EnigmaPanel footer;
 	protected final EnigmaPanel content;
+	protected final AbstractPopUpView parent;
 
 	public AbstractSubPopUpView(String title, AbstractPopUpView parent) {
 		this(title, parent, true);
@@ -33,7 +36,19 @@ public abstract class AbstractSubPopUpView extends EnigmaPanel implements Observ
 
 	public AbstractSubPopUpView(String title, AbstractPopUpView parent, boolean showBack) {
 		super();
+		this.parent = parent;
 		this.content = new EnigmaPanel(new BorderLayout());
+
+		this.addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentHidden(ComponentEvent evt) {
+				onShow();
+			}
+			@Override
+			public void componentShown(ComponentEvent evt) {
+				onHide();
+			}
+		});
 
 		footer = new EnigmaPanel();
 		footer.setLayout(new GridBagLayout());
@@ -55,6 +70,10 @@ public abstract class AbstractSubPopUpView extends EnigmaPanel implements Observ
 		this.add(content, BorderLayout.CENTER);
 		this.add(footer, BorderLayout.SOUTH);
 	}
+
+	public abstract void onShow();
+
+	public abstract void onHide();
 
 	public EnigmaLabel getInfoLabel() {
 		return this.infoLabel;

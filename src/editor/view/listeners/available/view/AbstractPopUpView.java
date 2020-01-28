@@ -1,5 +1,6 @@
 package editor.view.listeners.available.view;
 
+import api.utils.Observer;
 import com.badlogic.gdx.Gdx;
 import editor.hud.EnigmaPanel;
 import editor.view.cases.CasePopUp;
@@ -53,7 +54,7 @@ public abstract class AbstractPopUpView extends JDialog {
 		this.setLocation(Gdx.graphics.getWidth() / 2 - WIDTH/2, Gdx.graphics.getHeight() / 2 - HEIGHT/2);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		this.addWindowListener(new Close());
+		this.addWindowListener(new Close(this));
 		this.layout = new CardLayout();
 		this.panel = new EnigmaPanel();
 		this.panel.setLayout(this.layout);
@@ -85,6 +86,8 @@ public abstract class AbstractPopUpView extends JDialog {
 		return popUp;
 	}
 
+	public abstract void clean();
+
 
 	/**
 	 * Reset l'éditor dans son état avant ouverture
@@ -98,8 +101,16 @@ public abstract class AbstractPopUpView extends JDialog {
 	 * @since 5.0 26/01/2020
 	 */
 	private static final class Close extends WindowAdapter {
+
+		private final AbstractPopUpView parent;
+
+		public Close(AbstractPopUpView parent){
+			this.parent = parent;
+		}
+
 		@Override
 		public void windowClosing(WindowEvent e) {
+			this.parent.clean();
 			DragAndDropBuilder.setForPopup(null);
 		}
 	}

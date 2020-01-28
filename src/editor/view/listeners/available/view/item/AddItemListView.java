@@ -48,6 +48,7 @@ public class AddItemListView extends AbstractSubPopUpView {
 		this.footer.add(see, gbc);
 		add = new EnigmaButton(ADD_ENTITY);
 		add.addActionListener(new ShowCardLayout(AddItemView.ADD, parent));
+		add.addActionListener(e -> {DragAndDropBuilder.setForPopup(((AddItemView)parent).getAddItemAddView());});
 		gbc.gridx = 1;
 		gbc.gridy = 0;
 		gbc.weightx = 1;
@@ -56,11 +57,37 @@ public class AddItemListView extends AbstractSubPopUpView {
 		gbc.insets = new Insets(10, 0, 0, 0);
 		this.footer.add(add, gbc);
 
-		Container container = (Container) parent.getPopUp().getCell().getEntity();
+		this.initComponent();
+	}
+
+	@Override
+	public void onHide() {
+	}
+
+	@Override
+	public void onShow() {
+		this.clean();
+		this.initComponent();
+	}
+
+	@Override
+	public void update(GameObject object) {
+	}
+
+	@Override
+	public void clean() {
+		this.content.removeAll();
+		this.infoLabel.setText("");
+		this.groups.clearSelection();
+	}
+
+	@Override
+	public void initComponent() {
+		Container container = (Container) this.parent.getPopUp().getCell().getEntity();
 		ArrayList<Item> items = container.getItems();
 		EnigmaPanel panel = new EnigmaPanel(new GridLayout(items.size(),1));
 		for (Item item : items) {
-			JCheckBox r = new JCheckBox(item.getReadableName()+" ("+item.getID()+")");
+			JCheckBox r = new JCheckBox(item.getReadableName()+" (id="+item.getID()+")");
 			//on ajoute les boutons au groupe
 			r.setToolTipText(item.getReadableName());
 			groups.add(r);
@@ -83,23 +110,6 @@ public class AddItemListView extends AbstractSubPopUpView {
 		panelS.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 
 		this.content.add(panelS, BorderLayout.CENTER);
-	}
-
-	@Override
-	public void update(GameObject object) {
-
-	}
-
-	@Override
-	public void clean() {
-		this.infoLabel.setText("");
-		//TODO:this.listener.clean();
-		this.groups.clearSelection();
-		DragAndDropBuilder.setForPopup(null);
-	}
-
-	@Override
-	public void initComponent() {
 	}
 
 	public EnigmaLabel getInfoLabel() {
