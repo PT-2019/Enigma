@@ -18,7 +18,7 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
         this.setAnimation("assets/entities/players/players.png",3,4,(float)0.2,12,8,4);
         camKey = CameraKeys.values();
         this.setKeyFrame(2);
-        this.setAnimationPaused(true);
+        this.setAnimationLooping(true);
         this.map = map;
     }
 
@@ -36,18 +36,18 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
         float x = this.getX();
         float y = this.getY();
 
-        if(this.isAnimationPaused()){
-            if (camKey[0].isKey(i)){
+        //if(this.isAnimationPaused()){
+            if (CameraKeys.CAMERA_LEFT.isKey(i)){
                 this.setFacedDirection(Direction.LEFT);
                 if(map.isWalkable(x - 15,y,this)){
                     this.setPosition(x - 15 ,y);
                     this.setKeyFrame(3);
                     this.setAnimationPaused(false);
                 }
-            }else if (camKey[1].isKey(i)){
+            }else if (CameraKeys.CAMERA_RIGHT.isKey(i)){
                 this.setFacedDirection(Direction.RIGHT);
-                if(map.isWalkable(x + 15,y,this)){
-                    this.setPosition(x + 15 ,y);
+                if(map.isWalkable(x + 5,y,this)){
+                    this.setPosition(x + 5 ,y);
                     this.setKeyFrame(6);
                     this.setAnimationPaused(false);
                 }
@@ -66,12 +66,41 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
                     this.setAnimationPaused(false);
                 }
             }
-        }
+        //}
         if (Input.Keys.E == i || Input.Keys.ENTER == i){
             //interaction
             System.out.println("interact");
         }
         return false;
+    }
+
+    @Override
+    public void act(float delta){
+        super.act(delta);
+
+        if (this.facedDirection == Direction.LEFT){
+            if (this.getKeyFrameIndex() > 5){
+                this.setKeyFrame(4);
+            }
+        }
+
+        if (this.facedDirection == Direction.RIGHT){
+            if (this.getKeyFrameIndex() > 7){
+                this.setKeyFrame(6);
+            }
+        }
+
+        if (this.facedDirection == Direction.FRONT){
+            if (this.getKeyFrameIndex() > 1){
+                this.setKeyFrame(0);
+            }
+        }
+
+        if(this.facedDirection == Direction.BACK){
+            if ( this.getKeyFrameIndex() > 11){
+                this.setKeyFrame(9);
+            }
+        }
     }
 
     @Override

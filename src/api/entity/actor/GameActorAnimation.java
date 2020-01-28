@@ -37,7 +37,7 @@ public class GameActorAnimation extends GameActor {
 	 */
 	private Animation<TextureRegion> animation;
 
-	private Direction facedDirection;
+	protected Direction facedDirection;
 
 	/**
 	 * Creates an Actor witch is able to have
@@ -124,30 +124,6 @@ public class GameActorAnimation extends GameActor {
 	@Override
 	public void act(float delta) {
 		super.act(delta);
-
-		if (this.facedDirection == Direction.LEFT){
-			if (this.getKeyFrameIndex() > 4){
-				this.setAnimationPaused(true);
-			}
-		}
-
-		if (this.facedDirection == Direction.RIGHT){
-			if (this.getKeyFrameIndex() > 7){
-				this.setAnimationPaused(true);
-			}
-		}
-
-		if (this.facedDirection == Direction.FRONT){
-			if (this.getKeyFrameIndex() > 1){
-				this.setAnimationPaused(true);
-			}
-		}
-
-		if(this.facedDirection == Direction.BACK){
-			if ( this.getKeyFrameIndex() > 11){
-				this.setAnimationPaused(true);
-			}
-		}
 
 		if (!isAnimationPaused()) {//stop avancement delta
 			this.animationElapsedTime += delta;
