@@ -20,6 +20,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 
 
@@ -32,12 +34,26 @@ public class AddItemListView extends AbstractSubPopUpView {
 
 	private final EnigmaButton see, add;
 	private ButtonGroup groups;
+	private ItemListener listener;
 
-	public AddItemListView(AbstractPopUpView parent) {
+	public AddItemListView(AbstractPopUpView parent, AddItemSeeView seeView) {
 		super(TITLE, parent, false);
 		this.groups = new ButtonGroup();
+		this.listener = new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				Container container = (Container) parent.getPopUp().getCell().getEntity();
+				for (Item item :  container.getItems()) {
+					if(item.getID() == Integer.parseInt(((JCheckBox)e.getSource()).getName())){
+						seeView.setChecked(item);
+						break;
+					}
+				}
+			}
+		};
 
 		see = new EnigmaButton(SEE_ENTITY);
+		see.addActionListener(new ShowCardLayout(AddItemView.SEE, parent));
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridx = 0;
 		gbc.gridy = 0;
@@ -66,8 +82,8 @@ public class AddItemListView extends AbstractSubPopUpView {
 
 	@Override
 	public void onShow() {
-		this.clean();
-		this.initComponent();
+		//this.clean();
+		//this.initComponent();
 	}
 
 	@Override
@@ -86,15 +102,21 @@ public class AddItemListView extends AbstractSubPopUpView {
 		Container container = (Container) this.parent.getPopUp().getCell().getEntity();
 		ArrayList<Item> items = container.getItems();
 		EnigmaPanel panel = new EnigmaPanel(new GridLayout(items.size(),1));
+		boolean first = true;
 		for (Item item : items) {
 			JCheckBox r = new JCheckBox(item.getReadableName()+" (id="+item.getID()+")");
 			//on ajoute les boutons au groupe
 			r.setToolTipText(item.getReadableName());
 			groups.add(r);
+			r.setName(item.getID()+"");
 			//ajoute les boutons au panneau
 			panel.add(r);
 			//listener pour les boutons
-			//r.addItemListener(this.listener);
+			r.addItemListener(this.listener);
+			if(first){
+				r.setSelected(true);
+				first=false;
+			}
 		}
 
 		if(items.size() == 0){
@@ -103,6 +125,8 @@ public class AddItemListView extends AbstractSubPopUpView {
 			empty.getComponentUI().setAllForegrounds(Color.YELLOW, Color.YELLOW, Color.YELLOW);
 			panel.add(empty);
 			see.setVisible(false);
+		} else {
+			see.setVisible(true);
 		}
 
 		JScrollPane panelS = new JScrollPane(panel);
@@ -112,7 +136,7 @@ public class AddItemListView extends AbstractSubPopUpView {
 		this.content.add(panelS, BorderLayout.CENTER);
 	}
 
-	public EnigmaLabel getInfoLabel() {
-		return this.infoLabel;
+	public ButtonGroup getGroup() {
+		return groups;
 	}
 }

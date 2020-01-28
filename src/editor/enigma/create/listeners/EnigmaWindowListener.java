@@ -1,7 +1,5 @@
 package editor.enigma.create.listeners;
 
-import editor.view.cases.CasePopUp;
-
 import javax.swing.JDialog;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -11,9 +9,9 @@ import java.awt.event.WindowListener;
  */
 public class EnigmaWindowListener implements WindowListener {
 
-	private CasePopUp popUp;
+	private JDialog popUp;
 
-	public EnigmaWindowListener(CasePopUp popUp) {
+	public EnigmaWindowListener(JDialog popUp) {
 		this.popUp = popUp;
 	}
 

@@ -22,7 +22,7 @@ public enum AvailablePopUpOption {
 	/**
 	 * Activer ou non la collision
 	 */
-	SET_ACCESS(TypeEntity.ITEM),
+	SET_ACCESS(TypeEntity.ITEM, null, TypeEntity.PASSAGE),
 	/**
 	 * Leur donner un nom
 	 */

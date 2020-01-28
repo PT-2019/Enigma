@@ -310,6 +310,8 @@ public class MapTestScreen extends AbstractMap {
 
 			//si pas dans la map
 			if (!mapBounds.contains(pos)) return null;
+			if(!mapBounds.contains(new Vector2(pos).add(entity.getWidth()*tileWidth,0))) return null;
+			if(!mapBounds.contains(new Vector2(pos).add(0,-entity.getHeight()*tileHeight))) return null;
 
         /*
             retire l'offset de l'espace
@@ -346,6 +348,25 @@ public class MapTestScreen extends AbstractMap {
 		if(start != null) {
 			//instancie l'entité
 			object = EntityFactory.createEntity(entity, this.added.size(), start);
+			//s'il y a des conditions pour placer l'item
+			boolean needManager = object instanceof NeedContainerManager;
+			boolean needContainer = object instanceof NeedContainer;
+			if(needContainer || needManager) {
+				HashMap<Vector2, GameObject> parentObject = getParentObject(start, object);
+				//pas de parent, placement raté
+				if(parentObject == null || parentObject.isEmpty()) return null;
+
+				for (Map.Entry<Vector2, GameObject> entries : parentObject.entrySet()) {
+					//ok
+					if(needContainer && entries.getValue() instanceof api.entity.types.Container)
+						break;
+					//ok
+					if(needManager && entries.getValue() instanceof ContainersManager)
+						break;
+				}
+			}
+
+
 			Utility.printDebug("loadEntity", object.toString() + " " + object.getID());
 
 			//ajout à la liste des entités de la map

@@ -35,10 +35,9 @@ public class MenuPopUp extends EnigmaPanel {
 			prev.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent actionEvent) {
-					System.out.println("retour?");
 					reset.clean();
 					CardLayout layout = parent.getCardLayout();
-					System.out.println("retour?");
+					System.out.println("retour");
 					EnigmaView.setAvailable(null);
 					layout.show(parent.getPanel(), "menu");
 				}
