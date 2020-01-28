@@ -12,18 +12,20 @@ import java.util.HashMap;
 
 public class MapGame extends AbstractMap {
 
-	public MapGame(String path, float unitScale) {
+	private HashMap<Vector2, GameObject> gameObjects;
+
+	public MapGame() {
 		//CE CONSTRUCTEUR NE FAIT RIEN
 		//c'est uniquement pour que votre constructeur soit de cette forme
-		super(path, unitScale);
+		super("path", (float) 1.0);
 
 		//ICI CODE DE CHARGEMENT D'UNE MAP
+		this.gameObjects = new HashMap<>();
 	}
 
-	public static Vector2 posToIndex(float posX, float posY, MapGame map) {
-		//ICI CODER
-		//AbstractMap#swingPosToIndex(float posX, float posY, final AbstractMap map) si besoin
-		throw new UnsupportedOperationException("non codé");
+	@SuppressWarnings("unchecked")
+	public HashMap<Vector2, GameObject> getGameObjects(){
+		return (HashMap<Vector2, GameObject>) this.gameObjects.clone();
 	}
 
 	public boolean isWalkable(float posX, float posY, GameActor actor) {

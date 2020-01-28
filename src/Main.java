@@ -1,6 +1,5 @@
-import api.enums.Attributes;
 import api.utils.annotations.Temporary;
-import game.utils.TileEventEnum;
+import editor.enigma.Enigma;
 import starter.DesktopLauncher;
 import starter.EditorLauncher;
 

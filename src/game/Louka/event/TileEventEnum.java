@@ -1,4 +1,4 @@
-package game.utils;
+package game.Louka.event;
 
 public enum TileEventEnum {
 

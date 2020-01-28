@@ -1,8 +1,7 @@
-package game.event;
+package game.Louka.event;
 
 import editor.enigma.Enigma;
 import editor.entity.Player;
-import game.utils.TileEventEnum;
 
 import java.util.ArrayList;
 

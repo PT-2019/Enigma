@@ -27,11 +27,25 @@ public interface Attributes {
 	String ENTITY = "entities";
 
 	/**
-	 * Case d'apparition
+	 * Cordonnée x d'apparition
 	 *
 	 * @see editor.enigma.operation.Summon
 	 */
-	String SPAWN = "spawn";
+	String SPAWN_X = "x";
+
+	/**
+	 * Cordonnée y d'apparition
+	 *
+	 * @see editor.enigma.operation.Summon
+	 */
+	String SPAWN_Y = "y";
+
+	/**
+	 * Couche
+	 *
+	 * @see editor.enigma.operation.Summon
+	 */
+	String LAYER = "layer";
 
 	/**
 	 * Délai

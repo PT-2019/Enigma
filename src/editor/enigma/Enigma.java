@@ -5,7 +5,7 @@ import api.enums.Attributes;
 import editor.enigma.condition.Condition;
 import editor.enigma.operation.Operation;
 import editor.entity.Player;
-import game.utils.TileEventEnum;
+import game.Louka.event.TileEventEnum;
 
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;

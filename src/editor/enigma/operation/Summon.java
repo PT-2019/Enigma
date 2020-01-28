@@ -3,9 +3,11 @@ package editor.enigma.operation;
 
 import api.entity.Entity;
 import api.enums.Attributes;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import editor.entity.IDFactory;
 import editor.entity.Player;
-import editor.utils.map.Case;
+import game.entity.map.MapTestScreen;
+import game.entity.map.MapTestScreenCell;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,13 +28,13 @@ public class Summon extends Operation {
 	/**
 	 * Case où doit apparaître l'entité
 	 */
-	private Case spawn;
+	private MapTestScreenCell spawn;
 
 	/**
 	 * @param e     Entité concernée par l'opération
 	 * @param spawn Case où doit apparaître l'entité
 	 */
-	public Summon(Entity e, Case spawn) {
+	public Summon(Entity e, MapTestScreenCell spawn) {
 		super(e);
 		this.spawn = spawn;
 	}
@@ -43,10 +45,19 @@ public class Summon extends Operation {
 	 */
 	public Summon(Map<String, Object> attributes) {
 		super(attributes);
-		IDFactory idFactory = IDFactory.getInstance();
-		if (attributes.containsKey(Attributes.SPAWN))
-			this.spawn = (Case) idFactory.getObject(Integer.parseInt((String) attributes.get(Attributes.SPAWN)));
-		else throw new IllegalArgumentException("Attribut \"spawn\" abscent");
+		this.spawn = new MapTestScreenCell(new TiledMapTileLayer(0,0,0,0),0);
+		float spawnX;
+		float spawnY;
+		String spawnLayer;
+		if (attributes.containsKey(Attributes.SPAWN_X))
+			spawnX = Float.parseFloat((String) attributes.get(Attributes.SPAWN_X));
+		else throw new IllegalArgumentException("Attribut \"spawnX\" abscent");
+		if (attributes.containsKey(Attributes.SPAWN_Y))
+			spawnY = Float.parseFloat((String) attributes.get(Attributes.SPAWN_Y));
+		else throw new IllegalArgumentException("Attribut \"spawnY\" abscent");
+		if (attributes.containsKey(Attributes.LAYER))
+			spawnLayer = (String) attributes.get(Attributes.LAYER);
+		else throw new IllegalArgumentException("Attribut \"layer\" abscent");
 	}
 
 	/**
@@ -60,21 +71,19 @@ public class Summon extends Operation {
 	}
 
 	/**
-	 * Obtenir la case ou l'entitée va apparaitre
-	 *
-	 * @return La case, null sinon
+	 * Obtenir la cellule d'apparition
+	 * @return Cellule de d'apparition
 	 */
-	public Case getSpawn() {
+	public MapTestScreenCell getSpawn(){
 		return this.spawn;
 	}
 
 	/**
-	 * Indiquer la case ou l'entitée va apparaitre
-	 *
-	 * @param c Case
+	 * Définir la cellule d'apparition
+	 * @param spawn Cellule d'apparition
 	 */
-	public void setSpawn(Case c) {
-		this.spawn = c;
+	public void setSpawn(MapTestScreenCell spawn){
+		this.spawn = spawn;
 	}
 
 
@@ -89,7 +98,13 @@ public class Summon extends Operation {
 		HashMap<String, Object> object = new HashMap<>();
 		object.put(Attributes.PATH, this.getClass().getName());
 		object.put(Attributes.ENTITY, this.entity.getID() + "");
-		object.put(Attributes.SPAWN, this.spawn.getID() + "");
+		TiledMapTileLayer layer = this.spawn.getLayer();
+		int x, y, index = this.spawn.getIndex();
+		x = index%layer.getWidth();
+		y = index/layer.getWidth();
+		object.put(Attributes.SPAWN_X, x + "");
+		object.put(Attributes.SPAWN_Y, y + "");
+		object.put(Attributes.LAYER, layer.getName() + "");
 		return object;
 	}
 
