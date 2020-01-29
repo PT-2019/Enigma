@@ -1,27 +1,15 @@
 package game.Louka;
 
-import api.entity.Entity;
 import api.entity.GameObject;
 import api.entity.types.EnigmaContainer;
 import api.utils.Bounds;
-import api.utils.Utility;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapTile;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import editor.enigma.Enigma;
-import editor.enigma.operation.Give;
-import editor.enigma.operation.Summon;
-import editor.entity.Player;
 import editor.utils.json.EnigmaJsonReader;
-import editor.utils.json.EnigmaJsonWriter;
-import game.entity.item.Book;
-import game.entity.map.MapTestScreenCell;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -50,82 +38,6 @@ public abstract class AbstractMap extends Group {
 
     public String getName(){
         return this.name;
-    }
-
-    public static void main(String[] args) throws IOException, ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
-        ArrayList<Enigma> e = new ArrayList<>();
-        Enigma eee = new Enigma("dd","f");
-        eee.setID(2);
-        eee.addOperation(new Give(new Book(4)));
-        e.add(eee);
-        MapTestScreenCell cell = new MapTestScreenCell(new TiledMapTileLayer(10, 10, 0, 0),9);
-        cell.setTile(new TiledMapTile() {
-            @Override
-            public int getId() {
-                return 0;
-            }
-
-            @Override
-            public void setId(int i) {
-
-            }
-
-            @Override
-            public BlendMode getBlendMode() {
-                return null;
-            }
-
-            @Override
-            public void setBlendMode(BlendMode blendMode) {
-
-            }
-
-            @Override
-            public TextureRegion getTextureRegion() {
-                return null;
-            }
-
-            @Override
-            public void setTextureRegion(TextureRegion textureRegion) {
-
-            }
-
-            @Override
-            public float getOffsetX() {
-                return 0;
-            }
-
-            @Override
-            public void setOffsetX(float v) {
-            }
-
-            @Override
-            public float getOffsetY() {
-                return 0;
-            }
-
-            @Override
-            public void setOffsetY(float v) {
-
-            }
-
-            @Override
-            public MapProperties getProperties() {
-                return null;
-            }
-        });
-        Enigma ee = new Enigma();
-        ee.setID(1);
-        ee.addOperation(new Summon(new Player(5), cell));
-        e.add(ee);
-        EnigmaJsonWriter.writeEnigmas("assets/files/enigma/test.json",e);
-        GameMap g = new GameMap("test");
-        g.getObjects().put(new Vector2(),new Player(5));
-        g.getObjects().put(new Vector2(),new Book(4));
-        ArrayList<Enigma> t = EnigmaJsonReader.readEnigmas("assets/files/enigma/test.json");
-        for(Enigma r : t)
-            System.out.println(r.toString());
-        //g.loadEnigmas();
     }
 
     protected void loadEnigmas(){

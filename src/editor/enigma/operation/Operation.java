@@ -64,7 +64,7 @@ public abstract class Operation {
 	 *
 	 * @param p Joueur ayant mené à l'appel de cette méthode
 	 */
-	public abstract void doOperation(Player p);
+	public abstract void run(Player p);
 
 	/**
 	 * Obtenir un EnumMap de l'objet avec ses attributs et leur état

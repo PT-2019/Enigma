@@ -23,7 +23,7 @@ import java.util.Map;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 2.2
+ * @version 5.0
  * @see editor.enigma.operation.Operation
  * @since 2.0
  */
@@ -140,8 +140,8 @@ public class Summon extends Operation {
 	 * @param p Joueur ayant mené à l'appel de cette méthode
 	 */
 	@Override
-	public void doOperation(Player p) {
-		//faire apparaitre this.entity sur this.spawn
+	public void run(Player p) {
+		this.spawn.setEntity(this.entity);
 	}
 
 	/**

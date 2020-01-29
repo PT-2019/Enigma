@@ -18,7 +18,7 @@ import java.util.Map;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 2.1
+ * @version 5.0
  * @see editor.enigma.Enigma
  * @since 2.0
  */

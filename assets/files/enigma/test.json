@@ -1,11 +1,11 @@
 {
      "Enigmas": [
           {
-               "~editor.enigma.Enigma": [
+               "editor.enigma.Enigma": [
                     {
                          "operations": [
                               {
-                                   "~editor.enigma.operation.Give": [
+                                   "editor.enigma.operation.Give": [
                                         {
                                              "entities": "4"
                                         }
@@ -27,11 +27,11 @@
           },
 
           {
-               "~editor.enigma.Enigma": [
+               "editor.enigma.Enigma": [
                     {
                          "operations": [
                               {
-                                   "~editor.enigma.operation.Summon": [
+                                   "editor.enigma.operation.Summon": [
                                         {
                                              "entities": "5",
                                              "spawn_layer": "",

@@ -25,7 +25,7 @@ public class EnigmaGame extends LibgdxGame {
 	private AbstractMap currentMap;
 
 	//instance unique
-	private static EnigmaGame enigmaGame = new EnigmaGame();
+	private static EnigmaGame enigmaGame;
 	/**
 	 * Le screen a lancer au début du jeu
 	 */
@@ -44,6 +44,8 @@ public class EnigmaGame extends LibgdxGame {
 	 * @return l'instance unique du jeu
 	 */
 	public static EnigmaGame getInstance() {
+		if(enigmaGame == null)
+			enigmaGame = new EnigmaGame();
 		return enigmaGame;
 	}
 

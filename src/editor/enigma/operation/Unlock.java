@@ -13,7 +13,7 @@ import java.util.Map;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 2.2
+ * @version 5.0
  * @see editor.enigma.operation.Operation
  * @since 2.0
  */
@@ -40,7 +40,7 @@ public class Unlock extends Operation {
 	 * @param p Joueur ayant mené à l'appel de cette méthode
 	 */
 	@Override
-	public void doOperation(Player p) {
+	public void run(Player p) {
 		Lockable l = (Lockable) this.entity;
 		l.unlock();
 	}

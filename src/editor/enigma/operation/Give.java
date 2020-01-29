@@ -13,7 +13,7 @@ import java.util.Map;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 2.2
+ * @version 5.0
  * @see editor.enigma.operation.Operation
  * @since 2.0
  */
@@ -40,9 +40,12 @@ public class Give extends Operation {
 	 * @param p Joueur ayant mené à l'appel de cette méthode
 	 */
 	@Override
-	public void doOperation(Player p) {
+	public void run(Player p) {
 		Item i = (Item) this.entity;
-		//Donner i à p
+		if(p.holdSomething())
+			p.getInventory().add(i);
+		else
+			p.setItemInHand(i);
 	}
 
 	/**
