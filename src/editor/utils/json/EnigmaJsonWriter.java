@@ -48,6 +48,11 @@ public class EnigmaJsonWriter {
 	private final static String CLASSIC_ATTRIBUTE_SYNTAX = ": ";
 
 	/**
+	 * Syntaxe d'un chemin vers une classe
+	 */
+	private final static String PATH_SYNTAX = "~";
+
+	/**
 	 * Ecrit des énigmes dans un fichier
 	 *
 	 * @param filePath Chemin vers le fichier
@@ -133,7 +138,7 @@ public class EnigmaJsonWriter {
 			object.remove("path");
 
 			writer.newLine();
-			writer.write(getIndentationToString(indentation) + "\"" + className + "\"" + NEW_CLASS_TAB_SYNTAX);
+			writer.write(getIndentationToString(indentation) + "\"" + PATH_SYNTAX + className + "\"" + NEW_CLASS_TAB_SYNTAX);
 			indentation++;
 
 			writer.newLine();

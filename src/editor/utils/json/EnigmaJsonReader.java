@@ -1,6 +1,9 @@
 package editor.utils.json;
 
 import editor.enigma.Enigma;
+import editor.enigma.operation.Give;
+import editor.enigma.operation.Summon;
+import game.entity.item.Door;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -46,6 +49,11 @@ public class EnigmaJsonReader {
 	 * Syntaxe d'un attribut
 	 */
 	private final static String CLASSIC_ATTRIBUTE_SYNTAX = ": ";
+
+	/**
+	 * Syntaxe d'un chemin vers une classe
+	 */
+	private final static String PATH_SYNTAX = "~";
 
 	/**
 	 * Extrait le texte avant regex
@@ -143,10 +151,10 @@ public class EnigmaJsonReader {
 			if (read.contains(END_CLASS_TAB_SYNTAX)) bracketCount--;
 		}
 
-		if (braceCount > 0) throw new IllegalStateException("Accolade fermante manquante");
+		/*if (braceCount > 0) throw new IllegalStateException("Accolade fermante manquante");
 		if (braceCount < 0) throw new IllegalStateException("Accolade ouvrante manquante");
 		if (bracketCount > 0) throw new IllegalStateException("Crochet fermant manquant");
-		if (bracketCount < 0) throw new IllegalStateException("Crochet ovrant manquant");
+		if (bracketCount < 0) throw new IllegalStateException("Crochet ovrant manquant");*/
 
 		return (ArrayList<Object>) objects.clone();
 	}
@@ -264,4 +272,3 @@ public class EnigmaJsonReader {
 		return object;
 	}
 }
-

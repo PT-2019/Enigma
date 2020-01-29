@@ -5,6 +5,7 @@ import api.enums.Attributes;
 import editor.entity.IDFactory;
 import editor.entity.Player;
 import game.EnigmaGame;
+import game.Louka.GameMap;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,19 +42,21 @@ public abstract class Operation {
 	 * @throws IllegalArgumentException Si un attribut est manquant
 	 */
 	public Operation(Map<String, Object> attributes) {
-		ArrayList<String> error = new ArrayList<>();
-		if (attributes.containsKey(Attributes.ENTITY)){
-			int id = Integer.parseInt((String) attributes.get(Attributes.ENTITY));
-			if(id != -1)
-				this.entity = (Entity) EnigmaGame.getInstance().getCurrentMap().getObjects().getObjectByID(id);
-		}else
-			error.add(Attributes.ENTITY);
+		ArrayList<String> attr = new ArrayList<>();
+		attr.add(Attributes.ENTITY);
 
-		StringBuilder attr = new StringBuilder();
-		for(String s : error)
-			attr.append(" \"").append(s).append("\" ");
+		for(String a : attr){
+			if(!attributes.containsKey(a))
+				throw new IllegalArgumentException("Attribut \"" + a + "\" abscent");
 
-		throw new IllegalArgumentException("Attributs " + attr + " abscents");
+			Object get = attributes.get(a);
+
+			switch(a){
+				case Attributes.ENTITY:
+					this.entity = (Entity) EnigmaGame.getInstance().getCurrentMap().getObjects().getObjectByID(Integer.parseInt((String) get));
+					break;
+			}
+		}
 	}
 
 	/**

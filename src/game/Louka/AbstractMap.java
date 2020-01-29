@@ -15,22 +15,18 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import editor.enigma.Enigma;
-import editor.enigma.condition.Answer;
-import editor.enigma.condition.Condition;
-import editor.enigma.operation.Operation;
+import editor.enigma.operation.Give;
 import editor.enigma.operation.Summon;
 import editor.entity.Player;
 import editor.utils.json.EnigmaJsonReader;
 import editor.utils.json.EnigmaJsonWriter;
-import editor.utils.map.Case;
-import game.Louka.event.TileEvent;
+import game.entity.item.Book;
 import game.entity.map.MapTestScreenCell;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 
 public abstract class AbstractMap extends Group {
     protected MapObjects objects;
@@ -56,10 +52,12 @@ public abstract class AbstractMap extends Group {
         return this.name;
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException, NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
         ArrayList<Enigma> e = new ArrayList<>();
-        Enigma ee = new Enigma();
-        ee.setID(1);
+        Enigma eee = new Enigma("dd","f");
+        eee.setID(2);
+        eee.addOperation(new Give(new Book(4)));
+        e.add(eee);
         MapTestScreenCell cell = new MapTestScreenCell(new TiledMapTileLayer(10, 10, 0, 0),9);
         cell.setTile(new TiledMapTile() {
             @Override
@@ -116,15 +114,18 @@ public abstract class AbstractMap extends Group {
                 return null;
             }
         });
+        Enigma ee = new Enigma();
+        ee.setID(1);
         ee.addOperation(new Summon(new Player(5), cell));
         e.add(ee);
-        Enigma eee = new Enigma();
-        eee.setID(2);
-        e.add(eee);
         EnigmaJsonWriter.writeEnigmas("assets/files/enigma/test.json",e);
-        GameMap g = new GameMap("assets/files/enigma/test");
+        GameMap g = new GameMap("test");
         g.getObjects().put(new Vector2(),new Player(5));
-        g.loadEnigmas();
+        g.getObjects().put(new Vector2(),new Book(4));
+        ArrayList<Enigma> t = EnigmaJsonReader.readEnigmas("assets/files/enigma/test.json");
+        for(Enigma r : t)
+            System.out.println(r.toString());
+        //g.loadEnigmas();
     }
 
     protected void loadEnigmas(){
@@ -132,7 +133,7 @@ public abstract class AbstractMap extends Group {
         ArrayList<Enigma> copy = new ArrayList<>();
         int id;
         try {
-            ArrayList<Enigma> enigmas = EnigmaJsonReader.readEnigmas(/*Path +*/ this.name + ".json");
+            ArrayList<Enigma> enigmas = EnigmaJsonReader.readEnigmas("assets/files/enigma/" + this.name + ".json");
             for (ArrayList<GameObject> oList : entities.values()) {
                 for(GameObject obj : oList) {
                     if (!(obj instanceof EnigmaContainer)) continue;
@@ -155,35 +156,6 @@ public abstract class AbstractMap extends Group {
                 InstantiationException | IllegalAccessException ignore) {
         } catch (IllegalStateException e) {
             System.err.println(e.toString());
-        }
-
-        for (ArrayList<GameObject> oList : entities.values()) {
-            for (GameObject obj : oList) {
-                if (obj instanceof EnigmaContainer) {
-                    TileEvent ope = new TileEvent();
-                    for (Iterator<Enigma> ite = ((EnigmaContainer) obj).getAllEnigmas(); ite.hasNext(); ) {
-                        Enigma e = ite.next();
-                        ope.add(e);
-
-                        for (Iterator<Condition> itc = e.getAllConditions(); itc.hasNext(); ) {
-                            Condition c = itc.next();
-                            if (!(c instanceof Answer) && c.getEntity().getID() != -1) {
-                                c.setEntity((Entity) this.objects.getObjectByID(c.getEntity().getID()));
-                            }
-                        }
-
-                        for (Iterator<Operation> ito = e.getAllOperations(); ito.hasNext(); ) {
-                            Operation o = ito.next();
-
-                            if(o.getEntity().getID() != -1)
-                                o.setEntity((Entity) this.objects.getObjectByID(o.getEntity().getID()));
-
-                            if(o instanceof Summon) {
-                            }
-                        }
-                    }
-                }
-            }
         }
     }
 

@@ -1,16 +1,42 @@
 {
      "Enigmas": [
           {
-               "editor.enigma.Enigma": [
+               "~editor.enigma.Enigma": [
                     {
                          "operations": [
                               {
-                                   "editor.enigma.operation.Summon": [
+                                   "~editor.enigma.operation.Give": [
+                                        {
+                                             "entities": "4"
+                                        }
+                                   ]
+                              }
+                         ],
+                         "known": "false",
+                         "currentAdviceIndex": "-1",
+                         "description": "f",
+                         "advices": [
+                         ],
+                         "id": "2",
+                         "title": "dd",
+                         "type": "ON_USE",
+                         "conditions": [
+                         ]
+                    }
+               ]
+          },
+
+          {
+               "~editor.enigma.Enigma": [
+                    {
+                         "operations": [
+                              {
+                                   "~editor.enigma.operation.Summon": [
                                         {
                                              "entities": "5",
-                                             "x": "9",
-                                             "y": "0",
-                                             "layer": ""
+                                             "spawn_layer": "",
+                                             "spawn_x": "9",
+                                             "spawn_y": "0"
                                         }
                                    ]
                               }
@@ -21,25 +47,6 @@
                          "advices": [
                          ],
                          "id": "1",
-                         "title": "",
-                         "type": "ON_USE",
-                         "conditions": [
-                         ]
-                    }
-               ]
-          },
-
-          {
-               "editor.enigma.Enigma": [
-                    {
-                         "operations": [
-                         ],
-                         "known": "false",
-                         "currentAdviceIndex": "-1",
-                         "description": "",
-                         "advices": [
-                         ],
-                         "id": "2",
                          "title": "",
                          "type": "ON_USE",
                          "conditions": [

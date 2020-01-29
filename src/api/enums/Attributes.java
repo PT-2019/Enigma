@@ -31,21 +31,21 @@ public interface Attributes {
 	 *
 	 * @see editor.enigma.operation.Summon
 	 */
-	String SPAWN_X = "x";
+	String SPAWN_X = "spawn_x";
 
 	/**
 	 * Cordonnée y d'apparition
 	 *
 	 * @see editor.enigma.operation.Summon
 	 */
-	String SPAWN_Y = "y";
+	String SPAWN_Y = "spawn_y";
 
 	/**
 	 * Couche
 	 *
 	 * @see editor.enigma.operation.Summon
 	 */
-	String LAYER = "layer";
+	String SPAWN_LAYER = "spawn_layer";
 
 	/**
 	 * Délai

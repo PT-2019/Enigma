@@ -3,10 +3,12 @@ package editor.enigma.operation;
 
 import api.entity.Entity;
 import api.enums.Attributes;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.MapProperties;
+import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import editor.entity.IDFactory;
 import editor.entity.Player;
-import game.EnigmaGame;
+import game.entity.map.MapGame;
 import game.entity.map.MapTestScreen;
 import game.entity.map.MapTestScreenCell;
 
@@ -47,32 +49,89 @@ public class Summon extends Operation {
 	 */
 	public Summon(Map<String, Object> attributes) {
 		super(attributes);
-		this.spawn = new MapTestScreenCell(new TiledMapTileLayer(0,0,0,0),0);
+		this.spawn = new MapTestScreenCell(new TiledMapTileLayer(10,10,0,0),0);
+		this.spawn.setTile(new TiledMapTile() {
+			@Override
+			public int getId() {
+				return 0;
+			}
+
+			@Override
+			public void setId(int i) {
+
+			}
+
+			@Override
+			public BlendMode getBlendMode() {
+				return null;
+			}
+
+			@Override
+			public void setBlendMode(BlendMode blendMode) {
+
+			}
+
+			@Override
+			public TextureRegion getTextureRegion() {
+				return null;
+			}
+
+			@Override
+			public void setTextureRegion(TextureRegion textureRegion) {
+
+			}
+
+			@Override
+			public float getOffsetX() {
+				return 0;
+			}
+
+			@Override
+			public void setOffsetX(float v) {
+			}
+
+			@Override
+			public float getOffsetY() {
+				return 0;
+			}
+
+			@Override
+			public void setOffsetY(float v) {
+
+			}
+
+			@Override
+			public MapProperties getProperties() {
+				return null;
+			}
+		});
 		float spawnX;
 		float spawnY;
 		String spawnLayer;
-		ArrayList<String> error = new ArrayList<>();
 
-		if (attributes.containsKey(Attributes.SPAWN_X)){
-			spawnX = Float.parseFloat((String) attributes.get(Attributes.SPAWN_X));
-		}else
-			error.add(Attributes.SPAWN_X);
+		ArrayList<String> attr = new ArrayList<>();
+		attr.add(Attributes.SPAWN_X);
+		attr.add(Attributes.SPAWN_Y);
+		attr.add(Attributes.SPAWN_LAYER);
 
-		if (attributes.containsKey(Attributes.SPAWN_Y)){
-			spawnY = Float.parseFloat((String) attributes.get(Attributes.SPAWN_Y));
-		}else
-			error.add(Attributes.SPAWN_Y);
+		for(String a : attr){
+			if(!attributes.containsKey(a))
+				throw new IllegalArgumentException("Attribut \"" + a + "\" abscent");
 
-		if (attributes.containsKey(Attributes.LAYER)){
-			spawnLayer = (String) attributes.get(Attributes.LAYER);
-		}else
-			error.add(Attributes.LAYER);
+			Object get = attributes.get(a);
 
-		StringBuilder attr = new StringBuilder();
-		for(String s : error)
-			attr.append(" \"").append(s).append("\" ");
-
-		throw new IllegalArgumentException("Attributs " + attr + " abscents");
+			switch(a){
+				case Attributes.SPAWN_X:
+					spawnX = Float.parseFloat((String) get);
+					break;
+				case Attributes.SPAWN_Y:
+					spawnY = Float.parseFloat((String) get);
+					break;
+				case Attributes.SPAWN_LAYER:
+					spawnLayer = (String) get;
+					break;
+			}
+		}
 	}
 
 	/**
@@ -119,7 +178,7 @@ public class Summon extends Operation {
 		y = index/layer.getWidth();
 		object.put(Attributes.SPAWN_X, x + "");
 		object.put(Attributes.SPAWN_Y, y + "");
-		object.put(Attributes.LAYER, layer.getName() + "");
+		object.put(Attributes.SPAWN_LAYER, layer.getName() + "");
 		return object;
 	}
 
