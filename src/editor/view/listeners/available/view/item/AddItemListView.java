@@ -27,7 +27,7 @@ import java.util.ArrayList;
 
 public class AddItemListView extends AbstractSubPopUpView {
 
-	private static final String TITLE = "Liste des objects";
+	private static final String TITLE = "Liste des objets";
 	private static final String SEE_ENTITY = "Voir entité sélectionnée";
 	private static final String ADD_ENTITY = "Ajouter entité";
 	private static final String NO_ITEMS = "Aucun item";

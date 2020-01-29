@@ -31,7 +31,7 @@ import java.awt.Insets;
 /**
  * Interface graphique permettant d'ajouter des indices
  */
-public class CluePanel extends EnigmaViewPanel implements Observer, ResetComponent {
+public class CluePanel extends EnigmaViewPanel implements Observer<GameObject>, ResetComponent {
 
 	private static final String TITLE = "Ajouter un indice";
 	private static final String TIME = "Temps (minutes) avant activation de l'indice :";

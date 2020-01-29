@@ -6,6 +6,7 @@ import api.utils.annotations.ConvenienceMethod;
 import com.badlogic.gdx.math.Vector2;
 import editor.utils.map.Map;
 import editor.utils.save.MapLoader;
+import editor.utils.textures.Texture;
 
 /**
  * Cette classe ne doit pas être utilisée dans le code.
@@ -66,12 +67,15 @@ class FromTmxToJson {
 		for (Layer layer : Layer.values()) {
 			sb.append("   ");
 			sb.append(layer.name());
+			System.out.println(layer.name+" "+layer.name());
 			sb.append(": [\n");
 
 			//values
 			for (int i = 0; i < m.getRow(); i++) {
 				for (int j = 0; j < m.getCol(); j++) {
-					sb.append(m.getCase(i * m.getCol() + j).getEntity(layer).getPosition());
+					Texture entity = m.getCase(i * m.getCol() + j).getEntity(layer);
+					System.out.println(entity);
+					sb.append(entity.getPosition());
 					sb.append(',');
 				}
 				sb.append('\n');
@@ -178,11 +182,11 @@ class FromTmxToJson {
 		 * @since 4.1
 		 */
 		public static void main(String[] ignore) {
-			System.out.println(fromRoomToJson("assets/map/Room1.tmx", "Room1"));
-			System.out.println(fromRoomToJson("assets/map/Room2.tmx", "Room2"));
-			System.out.println(fromRoomToJson("assets/map/Room3.tmx", "Room3"));
-			System.out.println(fromRoomToJson("assets/map/Room4.tmx", "Room4"));
-			System.out.println(fromRoomToJson("assets/map/Room5.tmx", "Room5"));
+			System.out.println(fromRoomToJson("assets/map/map_system/Room1.tmx", "Room1"));
+			System.out.println(fromRoomToJson("assets/map/map_system/Room2.tmx", "Room2"));
+			System.out.println(fromRoomToJson("assets/map/map_system/Room3.tmx", "Room3"));
+			System.out.println(fromRoomToJson("assets/map/map_system/Room4.tmx", "Room4"));
+			System.out.println(fromRoomToJson("assets/map/map_system/Room5.tmx", "Room5"));
 		}
 	}
 

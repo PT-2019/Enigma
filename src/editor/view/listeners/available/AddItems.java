@@ -1,5 +1,6 @@
 package editor.view.listeners.available;
 
+import api.entity.GameObject;
 import api.enums.AvailablePopUpOption;
 import editor.enigma.create.listeners.EnigmaWindowListener;
 import editor.hud.EnigmaButton;
@@ -56,7 +57,7 @@ public class AddItems implements AvailableOptionRunnable {
 	}
 
 	@Override
-	public void run(AbstractPopUpView view, EnigmaPanel panel) {
+	public void run(AbstractPopUpView view, EnigmaPanel panel, GameObject object) {
 		panel.add(this.addItems);
 		this.addItems.addActionListener((e) -> {
 			this.parent.setVisible(false);

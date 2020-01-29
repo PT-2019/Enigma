@@ -367,6 +367,13 @@ public class Utility implements Serializable {
 		return false;
 	}
 
+	/**
+	 * Calcule l'offset entre deux vecteur, avec value un object ayant une taille
+	 * @param vector1 vec1
+	 * @param vector2 vec2
+	 * @param value object avec une taille
+	 * @return le décalage (indice tableau une dimension) entre les deux vecteurs.
+	 */
 	public static int calculatesOffset(Vector2 vector1, Vector2 vector2, GameObject value) {
 		if(vector1.equals(vector2)) return 0;
 		float x = (vector1.x - vector2.x), y= (vector2.y - vector1.y);

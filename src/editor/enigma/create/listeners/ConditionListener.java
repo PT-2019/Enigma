@@ -102,7 +102,7 @@ public class ConditionListener implements ActionListener, ItemListener {
 			} else {
 				EnigmaView.setAvailable(this.panel);
 				this.panel.update(this.object);
-				DragAndDropBuilder.setForPopup(this.panel);
+				//DragAndDropBuilder.setForPopup(this.panel);
 			}
 		}
 	}

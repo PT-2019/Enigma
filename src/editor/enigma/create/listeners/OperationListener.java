@@ -102,7 +102,7 @@ public class OperationListener implements ActionListener, ItemListener {
 			this.currentButton = (JRadioButton) e.getItem();
 			EnigmaView.setAvailable(this.operationPanel);
 			this.operationPanel.update(this.object);
-			DragAndDropBuilder.setForPopup(this.operationPanel);
+			//DragAndDropBuilder.setForPopup(this.operationPanel);
 		}
 	}
 

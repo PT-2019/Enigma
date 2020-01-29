@@ -4,8 +4,6 @@ import api.entity.Consumable;
 import api.entity.GameObject;
 import api.entity.Item;
 import api.entity.types.Container;
-import api.enums.AnsiiColor;
-import api.utils.PrintColor;
 import editor.hud.EnigmaButton;
 import editor.hud.EnigmaLabel;
 import editor.hud.EnigmaPanel;
@@ -24,7 +22,7 @@ import java.awt.event.ActionListener;
 
 public class AddItemAddView extends AbstractSubPopUpView {
 
-	private static final String TITLE = "Ajouter un object";
+	private static final String TITLE = "Ajouter un objet";
 	private static final String NO_ITEMS = "Veuillez sélectionner un objet (menu)";
 	private static final String INVALID = "Entité Invalide. Objets Uniquement (livre, ...)";
 	private static final String SUMBIT = "Confimer";
@@ -70,7 +68,7 @@ public class AddItemAddView extends AbstractSubPopUpView {
 			map.removeEntity(object);
 			//System.out.println("#"+map.getEntities().size());
 		} else {
-			System.out.println("#item:"+item);
+			//System.out.println("#item:"+item);
 			if(this.item != null){
 				//System.out.println("JE TOUCHE AUX IDS"+this.item.getID()+" "+object.getID());
 				//supprime l'ancien

@@ -1,5 +1,6 @@
 package editor.view.listeners.available;
 
+import api.entity.GameObject;
 import api.enums.AvailablePopUpOption;
 import api.enums.Layer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -66,7 +67,7 @@ public class SetAccess implements AvailableOptionRunnable {
 	}
 
 	@Override
-	public void run(AbstractPopUpView view, EnigmaPanel panel) {
+	public void run(AbstractPopUpView view, EnigmaPanel panel, GameObject object) {
 		TiledMap tileMap = parent.getTileMap();
 		MapTestScreenCell cell = parent.getCell();
 		JCheckBox walkable = new JCheckBox(VALUE);

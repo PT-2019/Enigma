@@ -1,5 +1,6 @@
 package editor.view.listeners.available.view;
 
+import api.entity.GameObject;
 import api.hud.ResetComponent;
 import api.utils.Observer;
 import editor.hud.EnigmaLabel;
@@ -23,7 +24,7 @@ import java.awt.event.ComponentEvent;
  * @version 5.0 27/01/2020
  * @since 5.0 27/01/2020
  */
-public abstract class AbstractSubPopUpView extends EnigmaPanel implements Observer, ResetComponent {
+public abstract class AbstractSubPopUpView extends EnigmaPanel implements Observer<GameObject>, ResetComponent {
 
 	protected final EnigmaLabel infoLabel;
 	protected final EnigmaPanel footer;

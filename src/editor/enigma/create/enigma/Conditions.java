@@ -17,7 +17,7 @@ import api.entity.utils.Activatable;
  */
 public enum Conditions {
 	ACTIVATED("Un object doit être activé", "Seulement un objet activable.", null),
-	ANSWER("Réponse", "", null),
+	ANSWER("Demander au joueur une réponse", "", null),
 	HAVE_IN_HANDS( "Avoir l'objet dans ses mains", "Objects uniquement (clef, livre, ...)", null),
 	HAVE_IN_INVENTORY( "Avoir l'objet dans l'inventaire", "Objects uniquement (clef, livre, ...)", null),
 	;

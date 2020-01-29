@@ -1,5 +1,6 @@
 package editor.view.listeners;
 
+import api.entity.GameObject;
 import api.enums.AvailablePopUpOption;
 import editor.hud.EnigmaPanel;
 import editor.view.listeners.available.AddItems;
@@ -48,5 +49,5 @@ public interface AvailableOptionRunnable {
 	/**
 	 * Lance le code pour ajouter l'option
 	 */
-	void run(AbstractPopUpView view, EnigmaPanel panel);
+	void run(AbstractPopUpView view, EnigmaPanel panel, GameObject object);
 }

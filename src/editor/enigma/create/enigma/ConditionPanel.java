@@ -26,10 +26,10 @@ import java.awt.Insets;
 /**
  * Panneau qui affiche le menu pour créer une condition
  */
-public class ConditionPanel extends EnigmaViewPanel implements Observer, ResetComponent {
+public class ConditionPanel extends EnigmaViewPanel implements Observer<GameObject>, ResetComponent {
 
 	public static final String NOT_AVAILABLE_OPERATION = "Opération non disponible";
-	public static final String ASK_SELECT = "Veuillez sélectionner un objet (carte ou menu)";
+	public static final String ASK_SELECT = "Veuillez sélectionner un objet (carte uniquement)";
 	private static final String TITLE = "Ajouter une Condition à l'énigme";
 	public static final String ASK_COND = "Veuillez sélectionner une condition.";
 	public static final String NOT_AVAILABLE_CONDITION = "Opération non disponible";

@@ -14,10 +14,11 @@ public class AddItemView extends AbstractPopUpView {
 	public static final String MENU = "menu";
 	public static final String ADD = "add";
 	public static final String SEE = "see";
+	private static final String TITLE = "Gérer les objets";
 	private final AddItemAddView addItemAddView;
 
 	public AddItemView(CasePopUp popUp) {
-		super("Gérer les objets", popUp);
+		super(TITLE, popUp);
 
 		AddItemSeeView addItemSeeView = new AddItemSeeView(this);
 		AddItemListView addItemListView = new AddItemListView(this, addItemSeeView);

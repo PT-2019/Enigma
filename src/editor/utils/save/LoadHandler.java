@@ -1,6 +1,7 @@
 package editor.utils.save;
 
 import api.enums.Layer;
+import api.utils.Utility;
 import editor.utils.map.Case;
 import editor.utils.map.Map;
 import editor.utils.map.Room;
@@ -10,6 +11,8 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
+
+import java.util.Arrays;
 
 /**
  * Cette classe va activé certaine de ses méthodes lors du parcours d'un
@@ -129,7 +132,7 @@ public class LoadHandler extends DefaultHandler {
 						loadMap.setCase(indice, tmpCase);
 					}
 					//si c'est une collision on applique une méthode différente
-					if (currentLayer.equals("Colision")) {
+					if (currentLayer.equals(Layer.COLLISION.name)) {
 						if (num == 1) {
 							tmpCase.setWalkable(true);
 						}

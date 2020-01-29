@@ -235,6 +235,8 @@ public class MapTestScreen extends AbstractMap {
 	 */
 	private void setFromSave(GameObject entity, Vector2 start) {
 		boolean noForce =  (entity instanceof api.entity.types.Container);
+		//un manager ne peut pas être déposé sauf s'il l'emplacement est vide.
+		boolean manager = entity instanceof ContainersManager;
 
 		//on parcours toutes les niveaux de la map et on y ajoute les tiles de l'entité
 		for (MapLayer mapLayer : this.map.getMap().getLayers()) {
@@ -256,12 +258,14 @@ public class MapTestScreen extends AbstractMap {
 				for (int j = (int) start.x; j < start.x + entity.getGameObjectWidth() && index < entities.size; j++, index++) {
 					MapTestScreenCell c = (MapTestScreenCell) tileLayer.getCell(j, i);
 					if (c == null) continue;
-					if(noForce && c.getEntity() instanceof NeedContainerManager) continue;
-					if(c.getEntity() != null){
-						//System.out.println("écrasé"+c.getEntity()+" par "+entity);
+					//si l'entité contient une salle
+					GameObject ent = c.getEntity();
+					if(ent == null  //vide : je peux placer sans problèmes
+							|| !manager){//sinon cela dépends de ce que je veux placer
+						c.setEntity(entity);
+						tileLayer.setCell(j, i, c);
+						//PrintColor.println("Placement de "+entity+" sur "+ent, AnsiiColor.CYAN);
 					}
-					c.setEntity(entity);
-					tileLayer.setCell(j, i, c);
 				}
 			}
 		}
@@ -334,7 +338,7 @@ public class MapTestScreen extends AbstractMap {
 				//PrintColor.println("Ajout des actions non codé", AnsiiColor.YELLOW);
 				return null;
 			} else if(entity.getClassName().equals(GameExit.class.getName())) {
-				if(hasExit){
+				if(this.hasExit){
 					return null;
 				} else {
 					this.hasExit = true;
@@ -364,8 +368,9 @@ public class MapTestScreen extends AbstractMap {
 					if(needManager && entries.getValue() instanceof ContainersManager)
 						break;
 				}
-			}
 
+				//TODO: faire une save des tiles si valeur == 0 mais ya entité
+			}
 
 			Utility.printDebug("loadEntity", object.toString() + " " + object.getID());
 
@@ -444,7 +449,7 @@ public class MapTestScreen extends AbstractMap {
 			Vector2 pos = (Vector2) Utility.getKeyFromValue(this.added, entity);
 			this.added.remove(pos);
 			if(pos.x >= 0 && pos.y >= 0) this.delete(entity, pos);
-			if(entity instanceof GameExit) hasExit = false;
+			if(entity instanceof GameExit) this.hasExit = false;
 			return true;
 		}
 		return false;
@@ -509,7 +514,7 @@ public class MapTestScreen extends AbstractMap {
 									if (Utility.containsBottomLeftOrigin(entry.getValue(), entry.getKey(), j, i)) {
 										int indexR = Utility.calculatesOffset(new Vector2(j, i+1),
 												entry.getKey(), entry.getValue());
-										ind = MathUtils.ceil(entitiesArray.get(indexR));
+										ind =  MathUtils.ceil(entitiesArray.get(indexR));
 										c.setEntity(entry.getValue());
 										break;
 									}
@@ -522,7 +527,6 @@ public class MapTestScreen extends AbstractMap {
 				}
 			}
 		}
-
 	}
 
 	/**
@@ -541,6 +545,7 @@ public class MapTestScreen extends AbstractMap {
 				if(entity instanceof ContainersManager){
 					//si item est un conteneur, alors on va le reconstruire ses tiles après suppression
 					if(item.getValue() instanceof ContainersManager){
+						System.out.println("je garde une salle");
 						obj.put(item.getKey(), item.getValue());
 					}
 					//sinon on supprime le contenu
@@ -558,7 +563,7 @@ public class MapTestScreen extends AbstractMap {
 
 		//suppression des contenus
 		for (Vector2 v : delete) {
-			added.remove(v);
+			this.added.remove(v);
 		}
 
 		return obj;
@@ -571,7 +576,7 @@ public class MapTestScreen extends AbstractMap {
 	 * @see MapTestScreenCell
 	 */
 	private void init() {
-		MapLayers layers = map.getMap().getLayers();
+		MapLayers layers = this.map.getMap().getLayers();
 		for (int i = 0; i < 5; i++) {
 			TiledMapTileLayer layer = (TiledMapTileLayer) layers.get(i);
 			for (int y = 0; y < layer.getHeight(); y++) {
@@ -598,7 +603,7 @@ public class MapTestScreen extends AbstractMap {
 		JComponent jcomponent = (JComponent) component;
 		CasePopUp popUp = new CasePopUp(jcomponent, this.map.getMap());
 		CaseListener listenerCase = new CaseListener(popUp);
-		MapLayers layers = map.getMap().getLayers();
+		MapLayers layers = this.map.getMap().getLayers();
 
 		TiledMapTileLayer layer = (TiledMapTileLayer) layers.get(0);
 		for (int y = 0; y < layer.getHeight(); y++) {
@@ -678,11 +683,11 @@ public class MapTestScreen extends AbstractMap {
 
             zoom contient l'inverse : 1.05 contient une plus grande map, 0.95 une plus petite
          */
-		float zoom = camera.zoom;
+		float zoom = this. camera.zoom;
 		if (zoom < 1) {
-			zoom = 1 + (1 - camera.zoom);
+			zoom = 1 + (1 - this.camera.zoom);
 		} else if (zoom > 1) {
-			zoom = 1 + (1 - camera.zoom);
+			zoom = 1 + (1 - this.camera.zoom);
 		}
 
 		//mapSize according to zoom
@@ -709,12 +714,12 @@ public class MapTestScreen extends AbstractMap {
 
 	@Override
 	public float getMapHeight() {
-		return mapHeight;
+		return this.mapHeight;
 	}
 
 	@Override
 	public float getMapWidth() {
-		return mapWidth;
+		return this.mapWidth;
 	}
 
 	@Override
@@ -724,21 +729,21 @@ public class MapTestScreen extends AbstractMap {
 
 	@Override
 	public int getTileWidth() {
-		return tileWidth;
+		return this.tileWidth;
 	}
 
 	@Override
 	public int getTileHeight() {
-		return tileHeight;
+		return this.tileHeight;
 	}
 
 	public OrthographicCamera getCamera() {
-		return camera;
+		return this.camera;
 	}
 
 	@Override
 	public Bounds getMapBounds() {
-		return mapBounds;
+		return this.mapBounds;
 	}
 
 	/**
@@ -747,11 +752,11 @@ public class MapTestScreen extends AbstractMap {
 	 * @return les entités de la map et leur position
 	 */
 	public HashMap<Vector2, GameObject> getEntities() {
-		return added;
+		return this.added;
 	}
 
 	public OrthogonalTiledMapRenderer getMap() {
-		return map;
+		return this.map;
 	}
 
 	/**

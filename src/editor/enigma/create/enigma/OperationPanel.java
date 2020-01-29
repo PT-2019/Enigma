@@ -34,10 +34,10 @@ import java.awt.Insets;
  * @version 5.0
  * @since 4.0
  */
-public class OperationPanel extends EnigmaViewPanel implements Observer, ResetComponent {
+public class OperationPanel extends EnigmaViewPanel implements Observer<GameObject>, ResetComponent {
 
 	public static final String NOT_SELECTED = "Vous n'avez pas encore choisi d'entité";
-	public static final String ASK_SELECT = "Veuillez sélectionner un objet (carte ou menu)";
+	public static final String ASK_SELECT = "Veuillez sélectionner un objet (carte uniquement)";
 	public static final String ASK_OP = "Veuillez sélectionner une opération.";
 	private static final String INVALID_ENTITY = "Entité Invalide. ";
 	private static final String TITLE = "Ajouter une Opération à l'énigme";

@@ -1,5 +1,6 @@
 package editor.view.listeners.available;
 
+import api.entity.GameObject;
 import api.enums.AvailablePopUpOption;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import editor.hud.EnigmaButton;
@@ -47,7 +48,7 @@ public class Delete implements AvailableOptionRunnable {
 	}
 
 	@Override
-	public void run(AbstractPopUpView view, EnigmaPanel panel) {
+	public void run(AbstractPopUpView view, EnigmaPanel panel, GameObject object) {
 		//ajoute le bouton
 		panel.add(this.del);
 		/*this.del.addActionListener(new CaseDelete(this.parent.getCell(),

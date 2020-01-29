@@ -16,7 +16,7 @@ import java.util.EnumMap;
 
 public class AddItemSeeView extends AbstractSubPopUpView {
 
-	private static final String TITLE = "Consulter les informations de l'object";
+	private static final String TITLE = "Consulter les informations de l'objet";
 	private static final String SUMBIT = "Supprimer";
 
 	private EnumMap<AvailablePopUpOption, AvailableOptionRunnable> runnables;
@@ -66,7 +66,7 @@ public class AddItemSeeView extends AbstractSubPopUpView {
 			if (AvailablePopUpOption.isAvailable(option, checked )) {
 				AvailableOptionRunnable runnable = runnables.get(option);
 				if (runnable != null){
-					runnable.run(parent, extra);
+					runnable.run(parent, extra, checked);
 				}
 			}
 		}

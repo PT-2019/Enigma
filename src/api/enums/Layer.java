@@ -1,6 +1,6 @@
 package api.enums;
 
-import editor.utils.lang.GameLanguage;
+import editor.utils.lang.fields.Field;
 import editor.utils.lang.fields.HUDFields;
 
 import static editor.utils.lang.GameLanguage.gl;
@@ -23,32 +23,36 @@ public enum Layer {
 	/**
 	 * Première couche de sol
 	 */
-	FLOOR1(gl.get(HUDFields.FIRST_LAYER)+" 0"),
+	FLOOR1(HUDFields.FIRST_LAYER," 0"),
 
 	/**
 	 * Seconde couche de sol
 	 */
-	FLOOR2(gl.get(HUDFields.LAYER)+" 1"),
+	FLOOR2(HUDFields.LAYER," 1"),
 
 	/**
 	 * Première couche de décoration
 	 */
-	DECORATIONS1(gl.get(HUDFields.LAYER)+" 2"),
+	DECORATIONS1(HUDFields.LAYER," 2"),
 
 	/**
 	 * Seconde couche de décoration
 	 */
-	DECORATIONS2(gl.get(HUDFields.LAYER)+" 3"),
+	DECORATIONS2(HUDFields.LAYER," 3"),
 
 	/**
 	 * Couche de collision
 	 */
-	COLLISION("Accessible");
+	COLLISION(null,"Accessible");
 
 	public final String name;
 
-	Layer(String name) {
-		this.name = name;
+	Layer(Field field, String comp) {
+		if(gl != null && field != null){
+			this.name = gl.get(field)+comp;
+		} else {
+			this.name = this.name();
+		}
 	}
 }
 
