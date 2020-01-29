@@ -1,15 +1,72 @@
 package game.entity.map;
 
+import api.entity.GameObject;
 import api.entity.actor.GameActor;
+import api.hud.components.CustomWindow;
 import api.utils.Bounds;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import game.hud.Border;
 
+import java.util.HashMap;
+
+/**
+ * Map de la libgdx
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 5.0
+ * @since 2.0 5 décembre 2019
+ */
 public class MapGame extends AbstractMap {
+    /**
+     * Dimension d'un tile
+     */
+    private final int tileWidth, tileHeight;
+    /**
+     * Dessinateur de la map
+     */
+    private final OrthogonalTiledMapRenderer map;
+    /**
+     * Caméra de la map
+     */
+    private final OrthographicCamera camera;
 
-	public MapGame(String path, float unitScale) {
+    /**
+     * Fenetre parent qui contient la map
+     */
+    private final CustomWindow window;
+
+    /**
+     * Bordure des cases de la map
+     */
+    private final Border border;
+    /**
+     * Dimension de la map
+     */
+    private int mapWidth, mapHeight;
+    /**
+     * Les limites de la map dans l'espace
+     *
+     * @since 3.0
+     */
+    private Bounds mapBounds;
+
+    /**
+     * Les entités de la maps
+     */
+    private HashMap<Vector2, GameObject> added;
+
+    private boolean showGrid;
+
+
+    public MapGame(String path, float unitScale) {
 		//CE CONSTRUCTEUR NE FAIT RIEN
 		//c'est uniquement pour que votre constructeur soit de cette forme
 		super(path, unitScale);
@@ -60,17 +117,17 @@ public class MapGame extends AbstractMap {
 
 	@Override
 	public void showGrid(boolean show) {
-
+        this.showGrid= show;
 	}
 
 	@Override
 	public float getMapHeight() {
-		return 0;
+		return mapHeight;
 	}
 
 	@Override
 	public float getMapWidth() {
-		return 0;
+		return mapWidth;
 	}
 
 	@Override
@@ -80,17 +137,17 @@ public class MapGame extends AbstractMap {
 
 	@Override
 	public int getTileWidth() {
-		return 0;
+		return tileWidth;
 	}
 
 	@Override
 	public int getTileHeight() {
-		return 0;
+		return tileHeight;
 	}
 
 	@Override
 	public TiledMap getTiledMap() {
-		return null;
+		return this.map.getMap();
 	}
 
 }
