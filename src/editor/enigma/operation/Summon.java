@@ -6,9 +6,11 @@ import api.enums.Attributes;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import editor.entity.IDFactory;
 import editor.entity.Player;
+import game.EnigmaGame;
 import game.entity.map.MapTestScreen;
 import game.entity.map.MapTestScreenCell;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,15 +51,28 @@ public class Summon extends Operation {
 		float spawnX;
 		float spawnY;
 		String spawnLayer;
-		if (attributes.containsKey(Attributes.SPAWN_X))
+		ArrayList<String> error = new ArrayList<>();
+
+		if (attributes.containsKey(Attributes.SPAWN_X)){
 			spawnX = Float.parseFloat((String) attributes.get(Attributes.SPAWN_X));
-		else throw new IllegalArgumentException("Attribut \"spawnX\" abscent");
-		if (attributes.containsKey(Attributes.SPAWN_Y))
+		}else
+			error.add(Attributes.SPAWN_X);
+
+		if (attributes.containsKey(Attributes.SPAWN_Y)){
 			spawnY = Float.parseFloat((String) attributes.get(Attributes.SPAWN_Y));
-		else throw new IllegalArgumentException("Attribut \"spawnY\" abscent");
-		if (attributes.containsKey(Attributes.LAYER))
+		}else
+			error.add(Attributes.SPAWN_Y);
+
+		if (attributes.containsKey(Attributes.LAYER)){
 			spawnLayer = (String) attributes.get(Attributes.LAYER);
-		else throw new IllegalArgumentException("Attribut \"layer\" abscent");
+		}else
+			error.add(Attributes.LAYER);
+
+		StringBuilder attr = new StringBuilder();
+		for(String s : error)
+			attr.append(" \"").append(s).append("\" ");
+
+		throw new IllegalArgumentException("Attributs " + attr + " abscents");
 	}
 
 	/**

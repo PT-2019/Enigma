@@ -5,6 +5,8 @@ import api.enums.EnigmaScreens;
 import api.utils.annotations.NeedPatch;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
+import game.Louka.AbstractMap;
+import game.Louka.GameMap;
 import game.screen.GameScreen;
 import game.screen.TestScreen;
 
@@ -20,6 +22,8 @@ import game.screen.TestScreen;
  */
 public class EnigmaGame extends LibgdxGame {
 
+	private AbstractMap currentMap;
+
 	//instance unique
 	private static EnigmaGame enigmaGame;
 	/**
@@ -31,7 +35,7 @@ public class EnigmaGame extends LibgdxGame {
 	//....
 
 	private EnigmaGame() {
-
+		this.currentMap = new GameMap("test");
 	}
 
 	/**
@@ -44,6 +48,10 @@ public class EnigmaGame extends LibgdxGame {
 			enigmaGame = new EnigmaGame();
 		}
 		return enigmaGame;
+	}
+
+	public AbstractMap getCurrentMap(){
+		return this.currentMap;
 	}
 
 	public static void setStartScreen(EnigmaScreens screen) {

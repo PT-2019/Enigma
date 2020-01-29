@@ -116,11 +116,7 @@ public class Enigma implements ActionListener, IDInterface {
 	 */
 	@SuppressWarnings("unchecked")
 	public Enigma(Map<String, Object> attributes) {
-		if (attributes.containsKey(Attributes.TITLE)) this.title = (String) attributes.get(Attributes.TITLE);
-		else throw new IllegalArgumentException("Attribut \"title\" abscent");
-		if (attributes.containsKey(Attributes.DESCRIPTION))
-			this.description = (String) attributes.get(Attributes.DESCRIPTION);
-		else throw new IllegalArgumentException("Attribut \"description\" abscent");
+		ArrayList<String> error = new ArrayList<>();
 		if (attributes.containsKey(Attributes.KNOWN))
 			this.known = Boolean.parseBoolean((String) attributes.get(Attributes.KNOWN));
 		else throw new IllegalArgumentException("Attribut \"known\" abscent");
@@ -144,6 +140,57 @@ public class Enigma implements ActionListener, IDInterface {
 			this.type = TileEventEnum.valueOf((String) attributes.get(Attributes.TYPE));
 		}
 		else throw new IllegalArgumentException("Attribut \"id\" abscent");
+
+		if (attributes.containsKey(Attributes.TITLE)){
+			this.title = (String) attributes.get(Attributes.TITLE);
+		}else
+			error.add(Attributes.TITLE);
+
+		if (attributes.containsKey(Attributes.DESCRIPTION)){
+			this.description = (String) attributes.get(Attributes.DESCRIPTION);
+		}else
+			error.add(Attributes.DESCRIPTION);
+
+		if (attributes.containsKey(Attributes.TITLE)){
+			this.title = (String) attributes.get(Attributes.TITLE);
+		}else
+			error.add(Attributes.TITLE);
+
+		if (attributes.containsKey(Attributes.TITLE)){
+			this.title = (String) attributes.get(Attributes.TITLE);
+		}else
+			error.add(Attributes.TITLE);
+
+		if (attributes.containsKey(Attributes.TITLE)){
+			this.title = (String) attributes.get(Attributes.TITLE);
+		}else
+			error.add(Attributes.TITLE);
+
+		if (attributes.containsKey(Attributes.TITLE)){
+			this.title = (String) attributes.get(Attributes.TITLE);
+		}else
+			error.add(Attributes.TITLE);
+
+		if (attributes.containsKey(Attributes.TITLE)){
+			this.title = (String) attributes.get(Attributes.TITLE);
+		}else
+			error.add(Attributes.TITLE);
+
+		if (attributes.containsKey(Attributes.TITLE)){
+			this.title = (String) attributes.get(Attributes.TITLE);
+		}else
+			error.add(Attributes.TITLE);
+
+		if (attributes.containsKey(Attributes.TITLE)){
+			this.title = (String) attributes.get(Attributes.TITLE);
+		}else
+			error.add(Attributes.TITLE);
+
+		StringBuilder attr = new StringBuilder();
+		for(String s : error)
+			attr.append(" \"").append(s).append("\" ");
+
+		throw new IllegalArgumentException("Attributs " + attr + " abscents");
 
 		this.timer = new Timer(0, this);
 		if (this.known && this.currentAdvice + 1 < this.advices.size()) {
