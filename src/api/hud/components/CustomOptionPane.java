@@ -873,8 +873,14 @@ public class CustomOptionPane implements OptionPaneStyle {
 	 */
 	public void answer(String answer) {
 		if (this.input != null) this.answer = this.input.getText();
-		else if(this.rbm != null) this.answer = this.rbm.getSelectedButton().getText();
-		else this.answer = answer;
+		else if(this.rbm != null){
+
+			if(this.rbm.getSelectedButton() != null)
+				this.answer = this.rbm.getSelectedButton().getText();
+			else
+				this.answer = CANCEL;
+		} else
+			this.answer = answer;
 		this.close();
 	}
 
