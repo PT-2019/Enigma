@@ -5,10 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ae09cfc3-8c68-40f7-a6e1-cb32552840e9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/event/OperationEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/event/TileEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/enigma/Enigma.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/enigma/Enigma.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/enigma/condition/Condition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/enigma/condition/Condition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/enigma/create/listeners/ConditionListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/enigma/create/listeners/ConditionListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/enigma/operation/Give.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/enigma/operation/Give.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/enigma/operation/Operation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/enigma/operation/Operation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/enigma/operation/Summon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/enigma/operation/Summon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/enigma/operation/Unlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/enigma/operation/Unlock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Louka/AbstractMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Louka/AbstractMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Louka/GameMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Louka/GameMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Louka/MapObjects.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Louka/MapObjects.java" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -27,18 +36,6 @@
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>print</find>
-      <find>System.out.println</find>
-      <find>Sauvegarder</find>
-      <find>EnigmaGame.getInstance()</find>
-      <find>Unlock</find>
-      <find>newInstance</find>
-      <find>getOwner</find>
-      <find>zoku3</find>
-    </findStrings>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
@@ -47,12 +44,6 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="MERGE" />
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1300" />
-    <option name="height" value="876" />
   </component>
   <component name="ProjectId" id="1T4PWZYsjf2nuTU9Vgk0aB5pF47" />
   <component name="ProjectViewState">
@@ -113,7 +104,45 @@
       <recent name="com.enigma.game" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.EnigmaFastGame">
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.ConditionsOperationsTest">
+    <configuration name="AbstractMap" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="game.Louka.AbstractMap" />
+      <module name="Enigma" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="game.Louka.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ConditionsOperationsTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="editor.enigma.ConditionsOperationsTest" />
+      <module name="Enigma" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="editor.enigma.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="EnigmaFastGame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="EnigmaFastGame" />
       <module name="Enigma" />
@@ -128,36 +157,42 @@
         <option name="com.soywiz.korge.intellij.UpdateResourceBeforeRunTask" enabled="false" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
+    <configuration name="EnigmaJsonTestMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="editor.io.EnigmaJsonTestMain" />
+      <module name="Enigma" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="editor.io.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main$MainFast" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main$MainFast" />
       <module name="Enigma" />
       <method v="2">
         <option name="Make" enabled="true" />
-        <option name="com.soywiz.korge.intellij.UpdateResourceBeforeRunTask" enabled="false" />
       </method>
     </configuration>
     <list>
       <item itemvalue="Application.EnigmaFastGame" />
-      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.Main$MainFast" />
+      <item itemvalue="Application.AbstractMap" />
+      <item itemvalue="Application.EnigmaJsonTestMain" />
+      <item itemvalue="Application.ConditionsOperationsTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ConditionsOperationsTest" />
+        <item itemvalue="Application.Main$MainFast" />
+        <item itemvalue="Application.AbstractMap" />
+        <item itemvalue="Application.EnigmaJsonTestMain" />
         <item itemvalue="Application.EnigmaFastGame" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
   </component>
   <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="1" Folder0="C:\Users\Quentin Ra\Desktop\Enigma\libs" CustomDictionaries="1" CustomDictionary0="C:\Users\Quentin Ra\Desktop\Enigma\libs\fr.dic" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="project-level" UseSingleDictionary="true" />
   <component name="SvnConfiguration">

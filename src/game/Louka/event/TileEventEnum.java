@@ -1,5 +1,16 @@
 package game.Louka.event;
 
+/**
+ * Types d'événements d'une tile
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 5.0
+ * @see game.Louka.event.TileEvent
+ * @since 5.0
+ */
 public enum TileEventEnum {
 
     /**
