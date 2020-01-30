@@ -30,6 +30,7 @@ import editor.entity.EntitySerializable;
 import editor.view.cases.CasePopUp;
 import editor.view.cases.CaseView;
 import editor.view.listeners.CaseListener;
+import game.entity.PlayerGame;
 import game.hud.Border;
 import game.hud.CategoriesMenu;
 import org.jetbrains.annotations.NotNull;
@@ -128,17 +129,12 @@ public class MapGame extends AbstractMap {
 		if (collision != null)
 			collision.setVisible(false);
 
-		//setup camera
 		this.camera = new OrthographicCamera();
 		this.camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		this.camera.position.set(
-				Gdx.graphics.getWidth() / 2f - this.mapWidth / 2f - CategoriesMenu.WIDTH,
-				Gdx.graphics.getHeight() / 2f - this.mapHeight / 2f, -1);
-		this.camera.update();
 
 		this.window = EditorLauncher.getInstance().getWindow();
 
-		init();
+		//init();
 		//createCell(this.window.getContentPane());
 
 		this.added = new HashMap<>();
@@ -370,7 +366,7 @@ public class MapGame extends AbstractMap {
 
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
-		super.draw(batch, parentAlpha);//cette ligne dessine les composant ajoutés à la map
+		//super.draw(batch, parentAlpha);//cette ligne dessine les composant ajoutés à la map
 
 		//dessin de la map
 		//....
@@ -383,13 +379,16 @@ public class MapGame extends AbstractMap {
 			}
 			for (GameActor entite : this.entities) {
 				if (entite.getLayer() == layer){
-					entite.draw(batch,parentAlpha);
+					batch.end();
+					batch.begin();
+					entite.draw(batch, parentAlpha);
+					batch.end();
+					batch.begin();
 				}
 			}
 			//render map
 			this.map.render(new int[]{layer.ordinal()});
 		}
-
 
 		//render borders
 		if (this.showGrid)
@@ -401,14 +400,15 @@ public class MapGame extends AbstractMap {
 	 *  Ajoute une entité à l'array d'entités
 	 * @param actor entité à ajouter
 	 */
-	void addEntity(@NotNull GameActor actor){
+	public void addEntity(@NotNull GameActor actor){
+		if(actor instanceof PlayerGame) this.addActor(actor);
 		this.entities.add(actor);
 	}
 	/**
 	 *  Supprime une entité de l'array d'entités
 	 * @param actor entité à supprimer
 	 */
-	void removeEntity(@NotNull GameActor actor){
+	public void removeEntity(@NotNull GameActor actor){
 		if(this.entities.contains(actor)){
 			this.entities.remove(actor);
 		}

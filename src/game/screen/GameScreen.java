@@ -2,6 +2,7 @@ package game.screen;
 
 import api.LibgdxScreen;
 import api.entity.actor.GameActorAnimation;
+import api.enums.Layer;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
@@ -19,6 +20,8 @@ import game.entity.map.MapGame;
 import game.entity.map.MapGame;
 import game.entity.map.MapTestScreen;
 import game.hud.CategoriesMenu;
+
+import java.awt.*;
 
 public class GameScreen extends LibgdxScreen {
 	/**
@@ -38,27 +41,34 @@ public class GameScreen extends LibgdxScreen {
 	/**
 	 * La map libgdx
 	 */
-	private MapGame map;
+	private MapGame  map;
 
 	private static String MAP_PATH = "assets/map/Licht.tmx" ;
 	@Override
 	public void init() {
-		this.main = new Stage();
-		this.hud = new Stage();
+		try {
+			this.main = new Stage();
+			this.hud = new Stage();
 
-        this.map = new MapGame(MAP_PATH, 1f);
-        //ajout au stage
-        this.main.addActor(this.map);
-        this.map.showGrid(false);
+			this.map = new MapGame(MAP_PATH, 2.5f);
+			//ajout au stage
+			this.main.addActor(this.map);
+			this.map.showGrid(false);
 
-		//compléter ici
-		player = PlayerFactory.createPlayerGame("Blonde","assets/entities/players/players.json",new MapGame("",45));
-		main.addActor(player);
+			//compléter ici
+			player = PlayerFactory.createPlayerGame("Blonde","assets/entities/players/players.json", this.map);
+			player.setLayer(Layer.FLOOR2);
+			//main.addActor(player);
 
-		//écoute des inputProcessor et des listeners
-		this.listen(this.hud);
-		this.listen(player);
-		this.listen(this.main);
+			this.map.addEntity(player);
+
+			//écoute des inputProcessor et des listeners
+			this.listen(this.hud);
+			this.listen(player);
+			this.listen(this.main);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override//géré par input processor
