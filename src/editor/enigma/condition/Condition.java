@@ -2,7 +2,6 @@ package editor.enigma.condition;
 
 import api.entity.Entity;
 import api.enums.Attributes;
-import editor.entity.IDFactory;
 import editor.entity.Player;
 import game.EnigmaGame;
 
@@ -52,7 +51,7 @@ public abstract class Condition {
 
 			switch(a){
 				case Attributes.ENTITY:
-					this.entity = (Entity) EnigmaGame.getInstance().getCurrentMap().getObjects().getObjectByID(Integer.parseInt((String) get));
+					this.entity = (Entity) EnigmaGame.getInstance().getCurrentMap().getEntities().getObjectByID(Integer.parseInt((String) get));
 					break;
 			}
 		}

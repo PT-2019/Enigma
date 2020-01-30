@@ -188,7 +188,7 @@ public class Enigma implements ActionListener, IDInterface {
 
 		//On lance toutes les opérations de l'enigme
 		for (Operation operation : this.operations) {
-			operation.doOperation(p);
+			operation.run(p);
 		}
 	}
 

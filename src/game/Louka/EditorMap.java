@@ -4,26 +4,38 @@ import api.utils.Bounds;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
 
-public class GameMap extends AbstractMap {
+public class EditorMap extends AbstractMap {
 
-    private final static float zoom = (float) 2.5;
-
-    public GameMap(String mapName){
-        super(mapName,zoom);
-    }
-
-    public GameMap(String mapName, MapObjects mo){
-        super(mapName,zoom,mo);
+    public EditorMap(String mapName, float unitScale) {
+        super(mapName, unitScale);
     }
 
     @Override
     protected Bounds getMapBounds() {
-        return null;
+        return mapBounds;
     }
 
     @Override
     protected Rectangle getMapSize() {
-        return null;
+        Rectangle r = new Rectangle();
+		/*
+            Inverse le zoom, avant avec un zoom de 0.95 la map était plus grande et 1.05
+            donnait une map plus petite
+
+            zoom contient l'inverse : 1.05 contient une plus grande map, 0.95 une plus petite
+         */
+        float zoom = camera.zoom;
+        if (zoom < 1) {
+            zoom = 1 + (1 - camera.zoom);
+        } else if (zoom > 1) {
+            zoom = 1 + (1 - camera.zoom);
+        }
+
+        //mapSize according to zoom
+        r.width = Math.round(this.getMapWidth() * zoom);
+        r.height = Math.round(this.getMapHeight() * zoom);
+
+        return r;
     }
 
     /**
@@ -33,7 +45,7 @@ public class GameMap extends AbstractMap {
      */
     @Override
     public void showGrid(boolean show) {
-
+        this.showGrid = show;
     }
 
     /**
@@ -43,7 +55,7 @@ public class GameMap extends AbstractMap {
      */
     @Override
     public float getMapHeight() {
-        return 0;
+        return mapHeight;
     }
 
     /**
@@ -53,7 +65,7 @@ public class GameMap extends AbstractMap {
      */
     @Override
     public float getMapWidth() {
-        return 0;
+        return mapWidth;
     }
 
     /**
@@ -63,7 +75,7 @@ public class GameMap extends AbstractMap {
      */
     @Override
     public float getUnitScale() {
-        return 0;
+        return this.map.getUnitScale();
     }
 
     /**
@@ -73,7 +85,7 @@ public class GameMap extends AbstractMap {
      */
     @Override
     public int getTileWidth() {
-        return 0;
+        return tileWidth;
     }
 
     /**
@@ -83,7 +95,7 @@ public class GameMap extends AbstractMap {
      */
     @Override
     public int getTileHeight() {
-        return 0;
+        return tileHeight;
     }
 
     /**
@@ -93,6 +105,6 @@ public class GameMap extends AbstractMap {
      */
     @Override
     public TiledMap getTiledMap() {
-        return null;
+        return this.map.getMap();
     }
 }

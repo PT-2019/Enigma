@@ -60,7 +60,7 @@ public class ConditionListener implements ActionListener, ItemListener {
 
 		} else if (currentButton.getText().equals("Réponse")) {
 			if (object instanceof Content)
-				cond = new Answer((Content) object);
+				cond = new Answer((Content) object,"");
 
 		} else if (currentButton.getText().equals("Posseder dans la main")) {
 			if (object instanceof Item)

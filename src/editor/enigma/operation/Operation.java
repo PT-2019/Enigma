@@ -2,10 +2,8 @@ package editor.enigma.operation;
 
 import api.entity.Entity;
 import api.enums.Attributes;
-import editor.entity.IDFactory;
 import editor.entity.Player;
 import game.EnigmaGame;
-import game.Louka.GameMap;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,11 +51,19 @@ public abstract class Operation {
 
 			switch(a){
 				case Attributes.ENTITY:
-					this.entity = (Entity) EnigmaGame.getInstance().getCurrentMap().getObjects().getObjectByID(Integer.parseInt((String) get));
+					this.entity = (Entity) EnigmaGame.getInstance().getCurrentMap().getEntities().getObjectByID(Integer.parseInt((String) get));
 					break;
 			}
 		}
 	}
+
+	/**
+	 * Effectue l'action
+	 *
+	 * @param p Joueur ayant mené à l'appel de cette méthode
+	 */
+	@Deprecated
+	public abstract void doOperation(Player p);
 
 	/**
 	 * Effectue l'action

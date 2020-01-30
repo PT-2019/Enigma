@@ -39,6 +39,14 @@ public class MapObjects {
         this.objects.get(v).remove(go);
     }
 
+    public boolean contains(GameObject go){
+        return (this.getVectorByObject(go) != null);
+    }
+
+    public int size(){
+        return this.objects.size();
+    }
+
     @SuppressWarnings("unchecked")
     public HashMap<Vector2, ArrayList<GameObject>> getAll(){
         return (HashMap<Vector2, ArrayList<GameObject>>) this.objects.clone();

@@ -3,13 +3,11 @@ package editor.enigma.operation;
 
 import api.entity.Entity;
 import api.enums.Attributes;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.maps.MapProperties;
-import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.math.Vector2;
 import editor.entity.Player;
-import game.entity.map.MapGame;
-import game.entity.map.MapTestScreen;
+import game.EnigmaGame;
+import game.Louka.AbstractMap;
 import game.entity.map.MapTestScreenCell;
 
 import java.util.ArrayList;
@@ -49,65 +47,9 @@ public class Summon extends Operation {
 	 */
 	public Summon(Map<String, Object> attributes) {
 		super(attributes);
-		this.spawn = new MapTestScreenCell(new TiledMapTileLayer(10,10,0,0),0);
-		this.spawn.setTile(new TiledMapTile() {
-			@Override
-			public int getId() {
-				return 0;
-			}
-
-			@Override
-			public void setId(int i) {
-
-			}
-
-			@Override
-			public BlendMode getBlendMode() {
-				return null;
-			}
-
-			@Override
-			public void setBlendMode(BlendMode blendMode) {
-
-			}
-
-			@Override
-			public TextureRegion getTextureRegion() {
-				return null;
-			}
-
-			@Override
-			public void setTextureRegion(TextureRegion textureRegion) {
-
-			}
-
-			@Override
-			public float getOffsetX() {
-				return 0;
-			}
-
-			@Override
-			public void setOffsetX(float v) {
-			}
-
-			@Override
-			public float getOffsetY() {
-				return 0;
-			}
-
-			@Override
-			public void setOffsetY(float v) {
-
-			}
-
-			@Override
-			public MapProperties getProperties() {
-				return null;
-			}
-		});
-		float spawnX;
-		float spawnY;
-		String spawnLayer;
+		float spawnX = (float) -1.0;
+		float spawnY = (float) -1.0;
+		String spawnLayer = "null";
 
 		ArrayList<String> attr = new ArrayList<>();
 		attr.add(Attributes.SPAWN_X);
@@ -132,6 +74,23 @@ public class Summon extends Operation {
 					break;
 			}
 		}
+
+		if(spawnX != -1.0 && spawnY != -1.0 && !spawnLayer.equals("null")){
+			AbstractMap map = EnigmaGame.getInstance().getCurrentMap();
+			TiledMapTileLayer sLayer = (TiledMapTileLayer) map.getMap().getMap().getLayers().get(spawnLayer);
+			this.spawn = (MapTestScreenCell) sLayer.getCell((int) spawnX, (int) spawnY);
+		}
+	}
+
+	/**
+	 * Effectue l'action
+	 *
+	 * @param p Joueur ayant mené à l'appel de cette méthode
+	 */
+	@Override
+	@Deprecated
+	public void doOperation(Player p) {
+		this.run(p);
 	}
 
 	/**
