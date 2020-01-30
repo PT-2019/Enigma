@@ -1,28 +1,25 @@
 package game.screens;
 
-import api.LibgdxScreen;
-import api.entity.actor.GameActorAnimation;
-import api.enums.Layer;
-import com.badlogic.gdx.Game;
+import api.libgdx.LibgdxScreen;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.Json;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
-import editor.entity.Player;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import editor.view.TestMapControl;
+import datas.Layer;
 import game.EnigmaGame;
-import game.entity.PlayerFactory;
-import game.entity.PlayerGame;
-import game.entity.map.MapGame;
-import game.entity.map.MapGame;
-import game.entity.map.MapTestScreen;
-import game.hud.CategoriesMenu;
+import general.entities.players.PlayerGame;
+import general.entities.serialization.PlayerFactory;
+import general.map.MapGame;
 
-import java.awt.*;
-
+/**
+ * Ecran du jeu
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ *
+ * @version 5.0 31/01/2020
+ * @since 5.0 31/01/2020
+ */
 public class GameScreen extends LibgdxScreen {
 	/**
 	 * Stage de la map et du jeu
@@ -41,7 +38,7 @@ public class GameScreen extends LibgdxScreen {
 	/**
 	 * La map libgdx
 	 */
-	private MapGame  map;
+	private MapGame map;
 
 	private static String MAP_PATH = "assets/map/Licht.tmx" ;
 	@Override

@@ -1,12 +1,10 @@
 package general.map;
 
-import api.entity.GameObject;
-import api.entity.actor.GameActor;
-import api.enums.AnsiiColor;
-import api.enums.EntitiesCategories;
-import api.enums.Layer;
-import api.hud.components.CustomWindow;
-import api.utils.Bounds;
+import api.hud.CustomWindow;
+import api.libgdx.actor.GameActor;
+import api.libgdx.utils.Border;
+import api.libgdx.utils.Bounds;
+import api.utils.AsciiColor;
 import api.utils.PrintColor;
 import api.utils.Utility;
 import com.badlogic.gdx.Gdx;
@@ -25,25 +23,22 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-import editor.entity.EntityFactory;
-import editor.entity.EntitySerializable;
-import editor.view.cases.CasePopUp;
-import editor.view.cases.CaseView;
-import editor.view.listeners.CaseListener;
-import game.entity.PlayerGame;
-import game.hud.Border;
-import game.hud.CategoriesMenu;
+import datas.EntitiesCategories;
+import datas.Layer;
+import editor.EditorLauncher;
+import general.entities.GameObject;
+import general.entities.players.PlayerGame;
+import general.entities.serialization.EntityFactory;
+import general.entities.serialization.EntitySerializable;
 import org.jetbrains.annotations.NotNull;
-import starter.EditorLauncher;
 
-import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
-import static api.MapsNameUtils.*;
-import static api.MapsNameUtils.HEIGHT_P;
+import static general.save.MapsNameUtils.HEIGHT_P;
+import static general.save.MapsNameUtils.TILE_HEIGHT_P;
+import static general.save.MapsNameUtils.TILE_WIDTH_P;
+import static general.save.MapsNameUtils.WIDTH_P;
 
 /**
  * Map de la libgdx
@@ -218,7 +213,7 @@ public class MapGame extends AbstractMap {
 			//obligé de faire ce truc sale y2 car y renvoi truc bizarres y=789 renvoi y=0...
 			y = Float.parseFloat(prop.get("y2", String.class));
 			Vector2 start = new Vector2(x, y);
-			e = new EntitySerializable(width, height, className);
+			e = new EntitySerializable(width, height, className, new HashMap<>());
 			GameObject object = EntityFactory.createEntity(e, this.added.size(), start);
 
 			Utility.printDebug("GameScreen#initEntities", object + " " + start);
@@ -297,7 +292,7 @@ public class MapGame extends AbstractMap {
 			// TODO: ajout des actions doit créer une énigme ou pas. (dépends de l'action)
 			//  en l'occurence start, exit doivent juste être ajoutés dans la sauvegarde.
 			//  une exit, [1 à x] start.
-			PrintColor.println("Ajout des actions non codé", AnsiiColor.YELLOW);
+			PrintColor.println("Ajout des actions non codé", AsciiColor.YELLOW);
 			return false;
 		}
 

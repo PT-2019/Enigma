@@ -1,12 +1,12 @@
 package api.libgdx.actor;
 
-import api.enums.Layer;
 import api.utils.annotations.ConvenienceMethod;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import datas.Layer;
 
 /**
  * Crée un acteur basique qui peut gérer la collision.

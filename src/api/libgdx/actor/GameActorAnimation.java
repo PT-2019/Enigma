@@ -1,12 +1,11 @@
 package api.libgdx.actor;
 
-import api.enums.Direction;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
-import editor.enigma.condition.Answer;
+import datas.Direction;
 
 /**
  * Crée un acteur avec une animation

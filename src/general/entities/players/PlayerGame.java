@@ -1,12 +1,11 @@
-package game.entity;
+package general.entities.players;
 
-import api.entity.actor.GameActorAnimation;
-import api.enums.Direction;
-import api.enums.keys.CameraKeys;
+import api.libgdx.actor.GameActorAnimation;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.graphics.Camera;
-import game.entity.map.MapGame;
+import datas.Direction;
+import datas.keys.CameraKeys;
+import general.map.MapGame;
 
 public class PlayerGame extends GameActorAnimation implements InputProcessor {
 

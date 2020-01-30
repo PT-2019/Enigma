@@ -44,7 +44,7 @@ public class NavigationEnigmaListener implements ActionListener {
 			layout.next(view.getPanel());
 		} else if (tmp.equals(EnigmaMenu.SAVE)) {
 			String title = this.title.getText();
-			if (title.isEmpty() || title.isBlank()) {
+			if (title.isEmpty()) {
 				menu.setTitleInvalid(true, "vide");
 				return;
 			}

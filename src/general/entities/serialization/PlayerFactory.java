@@ -1,8 +1,9 @@
-package game.entity;
+package general.entities.serialization;
 
 import api.utils.Utility;
 import com.badlogic.gdx.utils.Json;
-import game.entity.map.MapGame;
+import general.entities.players.PlayerGame;
+import general.map.MapGame;
 
 import java.util.ArrayList;
 

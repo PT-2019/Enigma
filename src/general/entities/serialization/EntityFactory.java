@@ -148,8 +148,8 @@ public class EntityFactory {
 			//on devrait faire une méthode qui demande a l'entité s'il elle veut
 			//ajouter des infos et une interface plutôt que donner direct NPC
 			//mais j'ai flemme et manque de temps là ~#rush
-			if (entity instanceof PlayerSerializable && object instanceof NPC) {
-				PlayerSerializable player = ((PlayerSerializable) entity);
+			if (entity instanceof PlayerSerializableToJson && object instanceof NPC) {
+				PlayerSerializableToJson player = ((PlayerSerializableToJson) entity);
 				((NPC) object).setJson(player.getJson(), player.getKey());
 				Utility.printDebug("EntityFactory", "PlayerSerializable loaded.");
 			}
@@ -178,7 +178,7 @@ public class EntityFactory {
 		/**
 		 * hashmap locale des entités chargés pour {@link Json#fromJson(Class, String)}
 		 **/
-		private Array<PlayerSerializable> content = new Array<>();
+		private Array<PlayerSerializableToJson> content = new Array<>();
 
 		/**
 		 * constructeur par défaut pour new Instance de {@link Json#fromJson(Class, String)}
