@@ -1,4 +1,6 @@
 import api.utils.annotations.Temporary;
+import editor.hud.EnigmaOptionPane;
+import editor.hud.EnigmaWindow;
 import starter.DesktopLauncher;
 import starter.EditorLauncher;
 
@@ -32,6 +34,7 @@ public class Main {
 		 */
 		public static void main(String[] ignore) {
 			//appelle après initialisation de la libgdx, l'éditeur
+			System.out.println(EnigmaOptionPane.showMapChoiceDialog(new EnigmaWindow()));
 			SwingUtilities.invokeLater(new EditorFastLuncher());
 		}
 

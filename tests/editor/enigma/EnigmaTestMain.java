@@ -3,6 +3,8 @@ package editor.enigma;
 import editor.enigma.condition.Activated;
 import editor.enigma.operation.Unlock;
 import editor.entity.Player;
+import editor.hud.EnigmaOptionPane;
+import editor.hud.EnigmaWindow;
 import game.entity.item.Door;
 import game.entity.item.Switch;
 

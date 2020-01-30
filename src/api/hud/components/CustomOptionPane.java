@@ -3,14 +3,18 @@ package api.hud.components;
 import api.hud.DefaultUIValues;
 import api.hud.manager.CustomOptionPaneButtonManager;
 import api.hud.manager.CustomOptionPaneWindowManager;
+import api.hud.manager.choices.RadioButtonManager;
 import api.hud.ui.CustomButtonUI;
 import api.hud.ui.CustomTextAreaUI;
+import api.utils.Utility;
+import editor.hud.EnigmaButton;
 import editor.hud.EnigmaLabel;
 import editor.hud.EnigmaTextArea;
+import editor.hud.ui.EnigmaButtonUI;
+import org.lwjgl.openal.Util;
 
-import javax.swing.Box;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+import javax.crypto.Cipher;
+import javax.swing.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -27,7 +31,7 @@ import java.util.Arrays;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 4.2
+ * @version 5.0
  * @since 4.0 28/12/2019
  */
 public class CustomOptionPane implements OptionPaneStyle {
@@ -54,12 +58,16 @@ public class CustomOptionPane implements OptionPaneStyle {
 	private CustomWindow parent;
 	private String answer;
 	private CustomTextArea input;
+	private RadioButtonManager rbm;
 
 	/**
 	 * Crée un optionPane avec le style de base
 	 */
 	private CustomOptionPane() {
-		this(new CustomAlert(), null, null);
+		this.window = new CustomAlert();
+		this.parent = null;
+		this.input = null;
+		this.answer = CANCEL;
 	}
 
 	/**
@@ -68,7 +76,10 @@ public class CustomOptionPane implements OptionPaneStyle {
 	 * @param alert l'alert
 	 */
 	protected CustomOptionPane(CustomAlert alert) {
-		this(alert, null, null);
+		this.window = alert;
+		this.parent = null;
+		this.input = null;
+		this.answer = CANCEL;
 	}
 
 	/**
@@ -78,7 +89,10 @@ public class CustomOptionPane implements OptionPaneStyle {
 	 * @param parent parent
 	 */
 	private CustomOptionPane(CustomAlert window, CustomWindow parent) {
-		this(window, parent, null);
+		this.window = window;
+		this.parent = parent;
+		this.input = null;
+		this.answer = CANCEL;
 	}
 
 	/**
@@ -92,6 +106,20 @@ public class CustomOptionPane implements OptionPaneStyle {
 		this.window = window;
 		this.parent = parent;
 		this.input = input;
+		this.answer = CANCEL;
+	}
+
+	/**
+	 * Crée un optinoPane
+	 *
+	 * @param window fenêtre
+	 * @param parent parent
+	 * @param rbm gestionnaire de radio boutons
+	 */
+	public CustomOptionPane(CustomAlert window, CustomWindow parent, RadioButtonManager rbm) {
+		this.window = window;
+		this.parent = parent;
+		this.rbm = rbm;
 		this.answer = CANCEL;
 	}
 
@@ -361,6 +389,78 @@ public class CustomOptionPane implements OptionPaneStyle {
 	}
 
 	/**
+	 * Crée un popup de choix de map
+	 *
+	 * @param parent  parent
+	 * @param style   style
+	 * @return le nom de la map séléctionnée
+	 * @since 5.0
+	 */
+	protected static String showMapChoiceDialog(CustomWindow parent, OptionPaneStyle style) {
+		CustomAlert window = style.getWindow();
+		CustomLabel titleComponent = style.getLabelStyle("Choisissez une map");
+		CustomPanel confirmComponent = style.getPanelStyle();
+		CustomButton confirm = style.getButtonStyle(CONFIRM);
+		CustomPanel mapsComponent = style.getPanelStyle();
+		JScrollPane scroll = new JScrollPane(mapsComponent);
+		RadioButtonManager rbm = new RadioButtonManager();
+		CustomOptionPane optionPane = new CustomOptionPane(window, parent, rbm);
+		GridBagConstraints gbc = new GridBagConstraints();
+
+		confirm.addActionListener(new CustomOptionPaneButtonManager(optionPane));
+		confirmComponent.add(confirm);
+
+		parent.setAlwaysOnTop(true);
+		window.setAlwaysOnTop(true);
+		window.setMinimumSize(BASIC_DIMENSION);
+		window.setSize(BASIC_DIMENSION);
+		window.setLocation(CustomAlert.CENTER);
+		window.setWindowBackground(Color.DARK_GRAY);
+		window.showBorder(Color.WHITE, 1);
+		window.addWindowListener(new CustomOptionPaneWindowManager(optionPane));
+
+		scroll.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+		EnigmaButtonUI bui = new EnigmaButtonUI();
+		bui.setAllSelectedBackgrounds(Color.LIGHT_GRAY,Color.LIGHT_GRAY,Color.LIGHT_GRAY);
+		bui.setAllBackgrounds(bui.getBackground(),Color.LIGHT_GRAY,Color.LIGHT_GRAY);
+		bui.setAllBorders(null,null,null);
+		bui.setAllSelectedBorders(null,null,null);
+		bui.setAllForegrounds(Color.WHITE,Color.BLACK,Color.BLACK);
+		bui.setAllSelectedForegrounds(Color.BLACK,Color.BLACK,Color.BLACK);
+
+		gbc.gridx = 1;
+		gbc.gridy = 1;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 1;
+		gbc.fill = GridBagConstraints.NONE;
+		gbc.weightx = 1;
+		gbc.weighty = 0;
+
+		mapsComponent.setLayout(new GridLayout(30,1));
+		for(String s : Utility.getAllMapName()){
+			EnigmaButton b = new EnigmaButton(s);
+			b.setComponentUI(bui);
+			mapsComponent.add(b);
+			rbm.add(b);
+		}
+
+		window.getContentSpace().setLayout(new GridBagLayout());
+		window.getContentSpace().add(titleComponent,gbc);
+		gbc.gridy = 2;
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.weighty = 1;
+		window.getContentSpace().add(scroll,gbc);
+		gbc.gridy = 3;
+		gbc.fill = GridBagConstraints.NONE;
+		gbc.weighty = 0;
+		window.getContentSpace().add(confirmComponent,gbc);
+		window.setModal(true);
+
+		optionPane.start();
+		return optionPane.getAnswer();
+	}
+
+	/**
 	 * Affiche un popup
 	 *
 	 * @param parent  parent
@@ -513,6 +613,79 @@ public class CustomOptionPane implements OptionPaneStyle {
 	 */
 	public static void showAlert(CustomWindow parent, Dimension size, String message) {
 		showAlert(parent, size, message, new CustomOptionPane());
+	}
+
+	/**
+	 * Crée un popup de choix de map
+	 *
+	 * @param parent  parent
+	 * @param size taille
+	 * @param style   style
+	 * @return le nom de la map séléctionnée
+	 * @since 5.0
+	 */
+	protected static String showMapChoiceDialog(CustomWindow parent, Dimension size, OptionPaneStyle style) {
+		CustomAlert window = style.getWindow();
+		CustomLabel titleComponent = style.getLabelStyle("Choisissez une map");
+		CustomPanel confirmComponent = style.getPanelStyle();
+		CustomButton confirm = style.getButtonStyle(CONFIRM);
+		CustomPanel mapsComponent = style.getPanelStyle();
+		JScrollPane scroll = new JScrollPane(mapsComponent);
+		RadioButtonManager rbm = new RadioButtonManager();
+		CustomOptionPane optionPane = new CustomOptionPane(window, parent, rbm);
+		GridBagConstraints gbc = new GridBagConstraints();
+
+		confirm.addActionListener(new CustomOptionPaneButtonManager(optionPane));
+		confirmComponent.add(confirm);
+
+		parent.setAlwaysOnTop(true);
+		window.setAlwaysOnTop(true);
+		window.setMinimumSize(size);
+		window.setSize(size);
+		window.setLocation(CustomAlert.CENTER);
+		window.setWindowBackground(Color.DARK_GRAY);
+		window.showBorder(Color.WHITE, 1);
+		window.addWindowListener(new CustomOptionPaneWindowManager(optionPane));
+
+		scroll.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+		EnigmaButtonUI bui = new EnigmaButtonUI();
+		bui.setAllSelectedBackgrounds(Color.LIGHT_GRAY,Color.LIGHT_GRAY,Color.LIGHT_GRAY);
+		bui.setAllBackgrounds(bui.getBackground(),Color.LIGHT_GRAY,Color.LIGHT_GRAY);
+		bui.setAllBorders(null,null,null);
+		bui.setAllSelectedBorders(null,null,null);
+		bui.setAllForegrounds(Color.WHITE,Color.BLACK,Color.BLACK);
+		bui.setAllSelectedForegrounds(Color.BLACK,Color.BLACK,Color.BLACK);
+
+		gbc.gridx = 1;
+		gbc.gridy = 1;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 1;
+		gbc.fill = GridBagConstraints.NONE;
+		gbc.weightx = 1;
+		gbc.weighty = 0;
+
+		mapsComponent.setLayout(new GridLayout(30,1));
+		for(String s : Utility.getAllMapName()){
+			EnigmaButton b = new EnigmaButton(s);
+			b.setComponentUI(bui);
+			mapsComponent.add(b);
+			rbm.add(b);
+		}
+
+		window.getContentSpace().setLayout(new GridBagLayout());
+		window.getContentSpace().add(titleComponent,gbc);
+		gbc.gridy = 2;
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.weighty = 1;
+		window.getContentSpace().add(scroll,gbc);
+		gbc.gridy = 3;
+		gbc.fill = GridBagConstraints.NONE;
+		gbc.weighty = 0;
+		window.getContentSpace().add(confirmComponent,gbc);
+		window.setModal(true);
+
+		optionPane.start();
+		return optionPane.getAnswer();
 	}
 
 	/**
@@ -700,6 +873,7 @@ public class CustomOptionPane implements OptionPaneStyle {
 	 */
 	public void answer(String answer) {
 		if (this.input != null) this.answer = this.input.getText();
+		else if(this.rbm != null) this.answer = this.rbm.getSelectedButton().getText();
 		else this.answer = answer;
 		this.close();
 	}

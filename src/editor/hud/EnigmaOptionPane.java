@@ -117,6 +117,17 @@ public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyl
 		return showInputDialog(parent, message, new EnigmaOptionPane());
 	}
 
+	/**
+	 * Crée un popup de choix de map
+	 *
+	 * @param parent  parent
+	 * @return le nom de la map séléctionnée
+	 * @since 5.0
+	 */
+	public static String showMapChoiceDialog(CustomWindow parent) {
+		return showMapChoiceDialog(parent, new EnigmaOptionPane());
+	}
+
 	// réécriture des méthodes static avec le bon style
 
 	/**
@@ -168,6 +179,18 @@ public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyl
 	 */
 	public static String showInputDialog(CustomWindow parent, Dimension size, String message) {
 		return showInputDialog(parent, size, message, new EnigmaOptionPane());
+	}
+
+	/**
+	 * Crée un popup de choix de map
+	 *
+	 * @param parent  parent
+	 * @param size taille
+	 * @return le nom de la map séléctionnée
+	 * @since 5.0
+	 */
+	public static String showMapChoiceDialog(CustomWindow parent, Dimension size) {
+		return showMapChoiceDialog(parent, size, new EnigmaOptionPane());
 	}
 
 	/**
