@@ -317,7 +317,7 @@ public class MapTestScreen extends AbstractMap {
 	}
 
 	/**
-	 * Place une entité
+	 * Supprime une entité
 	 *
 	 * @param entity l'entité à charger
 	 * @param start  le coin supérieur gauche ou commencer a placer des tiles

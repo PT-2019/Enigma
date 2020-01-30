@@ -21,9 +21,9 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
      * Méthode qui permet de centrer la caméra sur le joueur
      */
     public void center(){
-        Camera cam = this.getStage().getCamera();
+        /*Camera cam = this.getStage().getCamera();
         cam.position.x = this.getX();
-        cam.position.y = this.getY();
+        cam.position.y = this.getY();*/
     }
 
     @Override

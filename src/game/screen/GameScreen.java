@@ -2,6 +2,7 @@ package game.screen;
 
 import api.LibgdxScreen;
 import api.entity.actor.GameActorAnimation;
+import api.enums.Layer;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
@@ -10,10 +11,17 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import editor.entity.Player;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import editor.view.TestMapControl;
 import game.EnigmaGame;
 import game.entity.PlayerFactory;
 import game.entity.PlayerGame;
 import game.entity.map.MapGame;
+import game.entity.map.MapGame;
+import game.entity.map.MapTestScreen;
+import game.hud.CategoriesMenu;
+
+import java.awt.*;
 
 public class GameScreen extends LibgdxScreen {
 	/**
@@ -30,27 +38,37 @@ public class GameScreen extends LibgdxScreen {
 	 */
 	private PlayerGame player;
 
+	/**
+	 * La map libgdx
+	 */
+	private MapGame  map;
 
+	private static String MAP_PATH = "assets/map/Licht.tmx" ;
 	@Override
 	public void init() {
-		this.main = new Stage();
-		this.hud = new Stage();
+		try {
+			this.main = new Stage();
+			this.hud = new Stage();
 
-		//compléter ici
-		player = PlayerFactory.createPlayerGame("Blonde","assets/entities/players/players.json",new MapGame("",45));
-		main.addActor(player);
+			this.map = new MapGame(MAP_PATH, 2.5f);
+			//ajout au stage
+			this.main.addActor(this.map);
+			this.map.showGrid(false);
 
-		//écoute des inputProcessor et des listeners
-		this.listen(this.hud);
-		this.listen(player);
-		this.listen(this.main);
-	}
+			//compléter ici
+			player = PlayerFactory.createPlayerGame("Blonde","assets/entities/players/players.json", this.map);
+			player.setLayer(Layer.FLOOR2);
+			//main.addActor(player);
 
-	@Override
-	public void show() {
-		super.show();
-		//Met l'écran en rouge, utilisé juste pour voir que c'est l'écran de jeu
-		Gdx.gl.glClearColor(255, 0, 0, 255);
+			this.map.addEntity(player);
+
+			//écoute des inputProcessor et des listeners
+			this.listen(this.hud);
+			this.listen(player);
+			this.listen(this.main);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override//géré par input processor
@@ -66,7 +84,6 @@ public class GameScreen extends LibgdxScreen {
 	@Override
 	public void render() {
 		this.main.draw();
-
 		this.hud.draw();
 	}
 
@@ -85,7 +102,7 @@ public class GameScreen extends LibgdxScreen {
 			this.main.dispose();
 			this.hud.dispose();
 		} catch (Exception e) {
-			Gdx.app.error("TestScreen", "dispose failed");
+			Gdx.app.error("GameScreen", "dispose failed");
 		}
 	}
 
