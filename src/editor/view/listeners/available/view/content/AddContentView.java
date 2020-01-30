@@ -9,7 +9,7 @@ import editor.hud.EnigmaTextArea;
 import editor.view.cases.CasePopUp;
 import editor.view.listeners.available.view.AbstractPopUpView;
 
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -85,7 +85,9 @@ public class AddContentView extends AbstractPopUpView {
 
 		//addToContainer
 		back.add(input, BorderLayout.NORTH);
-		back.add(field.setScrollBar(), BorderLayout.CENTER);
+		JScrollPane jScrollPane = field.setScrollBar();
+		jScrollPane.setBorder(new EmptyBorder(0,PADDING,0,PADDING));
+		back.add(jScrollPane, BorderLayout.CENTER);
 		back.add(tmp, BorderLayout.SOUTH);
 
 		this.add(back);
