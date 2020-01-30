@@ -112,5 +112,4 @@ public abstract class AbstractGameObject extends GameActorAnimation implements G
 	public void setID(int id) {
 		this.id = id;
 	}
-
 }

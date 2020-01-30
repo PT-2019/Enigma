@@ -1,0 +1,42 @@
+[
+  {
+    name: Jean,
+    path: "assets/entities/players/players.png"
+    cols: 3
+    rows: 4
+    colPerImage: 12
+    rowPerImage: 8
+    index: 0
+    duration: 0.3f
+  },
+  {
+    name: Blonde,
+    path: "assets/entities/players/players.png",
+    cols: 3
+    rows: 4
+    colPerImage: 12
+    rowPerImage: 8,
+    index: 3
+    duration: 0.3f
+  },
+  {
+    name: Jordan,
+    path: "assets/entities/players/players.png",
+    cols: 3
+    rows: 4
+    colPerImage: 12
+    rowPerImage: 8,
+    index: 6
+    duration: 0.3f
+  },
+  {
+  name: Rousse,
+  path: "assets/entities/players/players.png",
+  cols: 3
+  rows: 4
+  colPerImage: 12
+  rowPerImage: 8,
+  index: 9
+  duration: 0.3f
+  }
+]

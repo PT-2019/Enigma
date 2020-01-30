@@ -1,10 +1,12 @@
 package api.libgdx.actor;
 
+import api.enums.Direction;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
+import editor.enigma.condition.Answer;
 
 /**
  * Crée un acteur avec une animation
@@ -35,6 +37,8 @@ public class GameActorAnimation extends GameActor {
 	 */
 	private Animation<TextureRegion> animation;
 
+	protected Direction facedDirection;
+
 	/**
 	 * Creates an Actor witch is able to have
 	 * an animation and move
@@ -56,25 +60,44 @@ public class GameActorAnimation extends GameActor {
 	 * @param rowPerImage  nombre de lignes totales de l'image
 	 * @param index        index, commence à zéro représentant la position de la sous-image dans l'atlas
 	 */
-	protected void setAnimation(String texture, int nbCol, int nbRow, float timePerFrame,
+	public void setAnimation(String texture, int nbCol, int nbRow, float timePerFrame,
 	                            int colPerImage, int rowPerImage, int index) {
-		int row = index / (nbCol / colPerImage), col = index % (nbCol / colPerImage);
-		row *= rowPerImage;
-		col *= colPerImage;
+		int col = (index % colPerImage) / nbCol, row = index / (colPerImage * nbRow);
+		int nbimgCol = colPerImage/nbCol;
+		int nbimgRow = rowPerImage/nbRow;
 
 		Array<TextureRegion> listeAnim = new Array<>();
 
 		//load the texture witch contains the animation
 		Texture animation = new Texture(texture);
+
 		animation.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
-		nbCol = animation.getWidth() / nbCol;
-		nbRow = animation.getHeight() / nbRow;
+		int sizeCol = animation.getWidth() / nbimgCol;
+		int sizeRow = animation.getHeight() / nbimgRow;
 
 		//put all the animations in an array
-		TextureRegion[][] regions = new TextureRegion(animation).split(nbCol, nbRow);
+		TextureRegion[][] regions = new TextureRegion(animation).split(sizeCol, sizeRow);
 
-		for (int i = row; i < row + rowPerImage; i++) {
-			for (int j = col; j < col + colPerImage; j++) {
+		TextureRegion playerRegion = regions[row][col];
+
+		sizeCol = playerRegion.getRegionWidth() / nbCol;
+		sizeRow = playerRegion.getRegionHeight() / nbRow;
+
+		regions = playerRegion.split(sizeCol,sizeRow);
+
+		//on permute les derniers sprites pour que l'animation se termine sur le sprite fixe
+		for (int i = 0; i < nbRow; i++) {
+			for (int j = 0; j < nbCol-1; j++) {
+				if (j == nbCol-2){
+					playerRegion = regions[i][j];
+					regions[i][j] = regions[i][j+1];
+					regions[i][j+1] = playerRegion;
+				}
+			}
+		}
+
+		for (int i = 0; i < nbRow; i++) {
+			for (int j = 0; j < nbCol; j++) {
 				listeAnim.add(regions[i][j]);
 			}
 		}
@@ -87,6 +110,8 @@ public class GameActorAnimation extends GameActor {
 		float width = textureRegion.getRegionWidth(), height = textureRegion.getRegionHeight();
 		this.setSize(width, height);
 		this.setOrigin(width / 2, height / 2);
+		this.setKeyFrame(2);
+		System.out.println(texture);
 	}
 
 	/**
@@ -110,6 +135,7 @@ public class GameActorAnimation extends GameActor {
 
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
+
 		//render actor
 		if (isVisible() && this.animation != null) {
 			//trouve automatique l'animation a dessiner
@@ -125,7 +151,7 @@ public class GameActorAnimation extends GameActor {
 	 *
 	 * @param index commence à zéro, sous-image dans la sous-image de la texture-atlas
 	 */
-	private void setKeyFrame(int index) {
+	protected void setKeyFrame(int index) {
 		if (index < 0) throw new IllegalArgumentException("Index must be positive!");
 		int count = (int) (this.animation.getAnimationDuration() / this.animation.getFrameDuration());
 		if (index >= count)
@@ -138,7 +164,7 @@ public class GameActorAnimation extends GameActor {
 	 *
 	 * @return index commence à zéro, sous-image dans la sous-image de la texture-atlas
 	 */
-	private int getKeyFrameIndex() {
+	protected int getKeyFrameIndex() {
 		float elapsed = this.animationElapsedTime;
 		float duration = this.animation.getFrameDuration();
 		int index = 0;
@@ -146,6 +172,7 @@ public class GameActorAnimation extends GameActor {
 			elapsed -= duration;
 			index++;
 		}
+
 		return index;
 	}
 
@@ -155,5 +182,9 @@ public class GameActorAnimation extends GameActor {
 
 	protected void setAnimationPaused(boolean pause) {
 		this.animationPaused = pause;
+	}
+
+	public void setFacedDirection(Direction facedDirection) {
+		this.facedDirection = facedDirection;
 	}
 }
