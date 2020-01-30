@@ -1,6 +1,6 @@
 package api.hud.ui;
 
-import api.hud.DefaultUIValues;
+import api.hud.base.DefaultUIValues;
 import api.hud.ui.base.CustomUIFont;
 import api.hud.ui.base.states.CustomUIHoverAndPressed;
 
@@ -789,5 +789,12 @@ public class CustomButtonUI extends BasicButtonUI implements CustomUIHoverAndPre
 		this.border = border;
 		this.hoveredBorder = hoveredBorder;
 		this.pressedBorder = pressedBorder;
+	}
+
+	@Override
+	public void setAllBorders(Color border) {
+		this.border = border;
+		this.hoveredBorder = border;
+		this.pressedBorder = border;
 	}
 }

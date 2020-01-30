@@ -1,7 +1,7 @@
 package api.hud.manager.window;
 
-import api.hud.WindowSize;
-import api.hud.components.CustomWindow;
+import api.hud.CustomWindow;
+import api.hud.base.WindowSize;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

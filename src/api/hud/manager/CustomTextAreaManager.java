@@ -1,6 +1,6 @@
 package api.hud.manager;
 
-import api.hud.components.CustomTextArea;
+import api.hud.CustomTextArea;
 
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;

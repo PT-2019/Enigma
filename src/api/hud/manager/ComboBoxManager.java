@@ -1,7 +1,7 @@
 package api.hud.manager;
 
-import api.hud.components.CustomComboBox;
-import api.hud.components.CustomPopupMenu;
+import api.hud.CustomComboBox;
+import api.hud.CustomPopupMenu;
 import api.utils.annotations.NeedPatch;
 
 import java.awt.event.MouseAdapter;

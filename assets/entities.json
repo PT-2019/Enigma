@@ -1,7 +1,7 @@
 {
   content: [
     {
-      className: editor.entity.NPC
+      className: general.entities.players.NPC
       path: assets/map/datas/players/p2.png
       json: assets/entities/datas/players.json
       key: Gold
@@ -18,7 +18,7 @@
       }
     }
     {
-      className: editor.entity.NPC
+      className: general.entities.players.NPC
       path: assets/map/datas/players/p7.png
       json: assets/entities/datas/players.json
       key: Anna
@@ -35,7 +35,7 @@
       }
     }
     {
-      className: editor.entity.NPC
+      className: general.entities.players.NPC
       path: assets/map/datas/players/p10.png
       json: assets/entities/datas/players.json
       key: Jordan
@@ -52,7 +52,7 @@
       }
     }
     {
-      className: editor.entity.NPC
+      className: general.entities.players.NPC
       path: assets/map/datas/players/p3.png
       category: ENTITIES
       width: 2
@@ -65,7 +65,7 @@
       }
     }
     {
-      className: editor.entity.NPC
+      className: general.entities.players.NPC
       path: assets/map/datas/players/p4.png
       category: ENTITIES
       width: 2
@@ -78,7 +78,7 @@
       }
     }
     {
-      className: editor.entity.NPC
+      className: general.entities.players.NPC
       path: assets/map/datas/players/p5.png
       category: ENTITIES
       width: 2
@@ -91,7 +91,7 @@
       }
     }
     {
-      className: editor.entity.NPC
+      className: general.entities.players.NPC
       path: assets/map/datas/players/p6.png
       category: ENTITIES
       width: 2
@@ -104,7 +104,7 @@
       }
     }
     {
-      className: editor.entity.NPC
+      className: general.entities.players.NPC
       path: assets/map/datas/players/p8.png
       category: ENTITIES
       width: 2
@@ -117,7 +117,7 @@
       }
     }
     {
-      className: editor.entity.NPC
+      className: general.entities.players.NPC
       path: assets/map/datas/players/p9.png
       category: ENTITIES
       width: 2
@@ -130,7 +130,7 @@
       }
     }
     {
-      className: editor.entity.NPC
+      className: general.entities.players.NPC
       path: assets/map/datas/players/p12.png
       category: ENTITIES
       width: 2
@@ -143,7 +143,7 @@
       }
     }
     {
-      className: editor.entity.Monster
+      className: general.entities.players.Monster
       path: assets/map/datas/players/mob1.png
       category: ENTITIES
       width: 2
@@ -156,7 +156,7 @@
       }
     }
     {
-      className: editor.entity.Monster
+      className: general.entities.players.Monster
       path: assets/map/datas/players/mob2.png
       category: ENTITIES
       width: 2

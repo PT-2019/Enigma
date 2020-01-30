@@ -3,8 +3,8 @@
 
     //hud
     play:Jouer
-    editor:Lancer l'éditeur de maps
-    running:Une application est déjà en cours d'execution
+    editor:Éditeur
+    running:Application lancée
 
     create:Nouveau
     open:Ouvrir

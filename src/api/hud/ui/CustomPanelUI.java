@@ -1,6 +1,6 @@
 package api.hud.ui;
 
-import api.hud.DefaultUIValues;
+import api.hud.base.DefaultUIValues;
 import api.hud.ui.base.states.CustomUIHoverAndPressed;
 
 import javax.swing.ImageIcon;
@@ -460,5 +460,12 @@ public class CustomPanelUI extends BasicPanelUI implements CustomUIHoverAndPress
 		this.border = border;
 		this.hoveredBorder = hoveredBorder;
 		this.pressedBorder = pressedBorder;
+	}
+
+	@Override
+	public void setAllBorders(Color border) {
+		this.border = border;
+		this.hoveredBorder = border;
+		this.pressedBorder = border;
 	}
 }

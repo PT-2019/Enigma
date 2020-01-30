@@ -1,6 +1,6 @@
 package api.hud.ui;
 
-import api.hud.DefaultUIValues;
+import api.hud.base.DefaultUIValues;
 import api.hud.ui.base.CustomUI;
 import api.hud.ui.base.CustomUIBackground;
 import api.hud.ui.base.CustomUICursor;
@@ -154,6 +154,7 @@ public class CustomMenuUI extends BasicMenuUI implements CustomUI<CustomMenuUI>,
 
 	/**
 	 * Retourne fond (premier plan) survol
+	 *
 	 * @return fond (premier plan) survol
 	 */
 	public Color getHoveredForeground() {
@@ -162,6 +163,7 @@ public class CustomMenuUI extends BasicMenuUI implements CustomUI<CustomMenuUI>,
 
 	/**
 	 * Définit fond (premier plan) survol
+	 *
 	 * @param hoveredForeground fond (premier plan) survol
 	 */
 	public void setHoveredForeground(Color hoveredForeground) {
@@ -171,6 +173,7 @@ public class CustomMenuUI extends BasicMenuUI implements CustomUI<CustomMenuUI>,
 
 	/**
 	 * Retourne fond popup du menu
+	 *
 	 * @return fond popup du menu
 	 */
 	public Color getPopupBackground() {
@@ -179,6 +182,7 @@ public class CustomMenuUI extends BasicMenuUI implements CustomUI<CustomMenuUI>,
 
 	/**
 	 * Définit fond popup du menu
+	 *
 	 * @param popupBackground fond popup du menu
 	 */
 	public void setPopupBackground(Color popupBackground) {
@@ -187,6 +191,7 @@ public class CustomMenuUI extends BasicMenuUI implements CustomUI<CustomMenuUI>,
 
 	/**
 	 * Retourne taille popup du menu
+	 *
 	 * @return taille popup du menu
 	 */
 	public int getPopupBorderSize() {
@@ -195,6 +200,7 @@ public class CustomMenuUI extends BasicMenuUI implements CustomUI<CustomMenuUI>,
 
 	/**
 	 * Définit taille popup du menu
+	 *
 	 * @param popupBorderSize taille popup du menu
 	 */
 	public void setPopupBorderSize(int popupBorderSize) {
@@ -218,7 +224,7 @@ public class CustomMenuUI extends BasicMenuUI implements CustomUI<CustomMenuUI>,
 	/**
 	 * Définit les bordures à afficher
 	 *
-	 * @param showedPopupBorders  les bordures à afficher, tableau de 4, true pour affiché
+	 * @param showedPopupBorders les bordures à afficher, tableau de 4, true pour affiché
 	 * @throws IllegalArgumentException si la taille d'un tableau est différente de 4
 	 * @see DefaultUIValues#TOP_BORDER
 	 * @see DefaultUIValues#RIGHT_BORDER
@@ -231,7 +237,8 @@ public class CustomMenuUI extends BasicMenuUI implements CustomUI<CustomMenuUI>,
 
 	/**
 	 * Définit tous les fond
-	 * @param background fond normal
+	 *
+	 * @param background        fond normal
 	 * @param hoveredBackground fond survol
 	 */
 	public void setAllBackgrounds(Color background, Color hoveredBackground) {
@@ -243,7 +250,8 @@ public class CustomMenuUI extends BasicMenuUI implements CustomUI<CustomMenuUI>,
 
 	/**
 	 * Définit tous les fond (premier plan)
-	 * @param foreground fond normal
+	 *
+	 * @param foreground        fond normal
 	 * @param hoveredForeground fond survol
 	 */
 	public void setAllForegrounds(Color foreground, Color hoveredForeground) {

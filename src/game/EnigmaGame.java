@@ -1,12 +1,13 @@
 package game;
 
-import api.LibgdxGame;
-import api.enums.EnigmaScreens;
+import api.hud.CustomWindow;
+import api.libgdx.LibgdxGame;
 import api.utils.annotations.NeedPatch;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
-import game.screen.GameScreen;
-import game.screen.TestScreen;
+import datas.EnigmaScreens;
+import game.screens.GameScreen;
+import game.screens.TestScreen;
 
 /**
  * Lanceur du jeu
@@ -76,5 +77,10 @@ public class EnigmaGame extends LibgdxGame {
 	@Override
 	public void free() {
 
+	}
+
+	@Override
+	public CustomWindow getWindow() {
+		return null;
 	}
 }

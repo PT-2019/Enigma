@@ -1,6 +1,6 @@
 package api.hud.ui;
 
-import api.hud.DefaultUIValues;
+import api.hud.base.DefaultUIValues;
 import api.hud.ui.base.CustomUIFont;
 import api.hud.ui.base.CustomUIForeground;
 import api.hud.ui.base.states.CustomUIHoverAndPressed;
@@ -208,6 +208,7 @@ public class CustomLabelUI extends BasicLabelUI implements CustomUIHoverAndPress
 
 	/**
 	 * Définit si appuyé
+	 *
 	 * @param isPressed true si appuyé
 	 */
 	public void setIsPressed(boolean isPressed) {
@@ -216,6 +217,7 @@ public class CustomLabelUI extends BasicLabelUI implements CustomUIHoverAndPress
 
 	/**
 	 * retourne si appuyé
+	 *
 	 * @return true si appuyé
 	 */
 	public boolean isPressed() {
@@ -225,6 +227,7 @@ public class CustomLabelUI extends BasicLabelUI implements CustomUIHoverAndPress
 
 	/**
 	 * Retourne fond (premier plan) survol
+	 *
 	 * @return fond (premier plan) survol
 	 */
 	public Color getHoveredForeground() {
@@ -233,6 +236,7 @@ public class CustomLabelUI extends BasicLabelUI implements CustomUIHoverAndPress
 
 	/**
 	 * Définit fond (premier plan) survol
+	 *
 	 * @param hoveredForeground fond (premier plan) survol
 	 */
 	public void setHoveredForeground(Color hoveredForeground) {
@@ -242,6 +246,7 @@ public class CustomLabelUI extends BasicLabelUI implements CustomUIHoverAndPress
 
 	/**
 	 * Retourne fond (premier plan) appui
+	 *
 	 * @return fond (premier plan) appui
 	 */
 	public Color getPressedForeground() {
@@ -250,6 +255,7 @@ public class CustomLabelUI extends BasicLabelUI implements CustomUIHoverAndPress
 
 	/**
 	 * Définit fond (premier plan) appui
+	 *
 	 * @param pressedForeground fond (premier plan) appui
 	 */
 	public void setPressedForeground(Color pressedForeground) {
@@ -259,7 +265,8 @@ public class CustomLabelUI extends BasicLabelUI implements CustomUIHoverAndPress
 
 	/**
 	 * Définit tous les fonds (premier plan)
-	 * @param foreground normal
+	 *
+	 * @param foreground        normal
 	 * @param hoveredForeground survol
 	 * @param pressedForeground appui
 	 */
@@ -512,5 +519,12 @@ public class CustomLabelUI extends BasicLabelUI implements CustomUIHoverAndPress
 		this.border = border;
 		this.hoveredBorder = hoveredBorder;
 		this.pressedBorder = pressedBorder;
+	}
+
+	@Override
+	public void setAllBorders(Color border) {
+		this.border = border;
+		this.hoveredBorder = border;
+		this.pressedBorder = border;
 	}
 }

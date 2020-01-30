@@ -1,3 +1,0 @@
-# Game
-
-Le jeu enigma.

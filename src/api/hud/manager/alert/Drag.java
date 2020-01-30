@@ -1,6 +1,6 @@
 package api.hud.manager.alert;
 
-import api.hud.components.CustomAlert;
+import api.hud.CustomAlert;
 
 import java.awt.Point;
 import java.awt.event.MouseAdapter;

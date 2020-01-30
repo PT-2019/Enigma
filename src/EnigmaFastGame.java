@@ -1,11 +1,11 @@
 import api.Application;
-import api.enums.EnigmaScreens;
-import api.hud.components.CustomWindow;
-import api.utils.LoadGameLibgdxApplication;
+import api.hud.CustomWindow;
+import api.libgdx.utils.LoadGameLibgdxApplication;
 import api.utils.annotations.NeedPatch;
-import editor.hud.EnigmaWindow;
+import datas.EnigmaScreens;
 import game.EnigmaGame;
-import starter.gameConfig.LaunchGameDisplay;
+import game.configure.LaunchGameDisplay;
+import general.hud.EnigmaWindow;
 
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
