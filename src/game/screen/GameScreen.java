@@ -1,11 +1,21 @@
 package game.screen;
 
 import api.LibgdxScreen;
+import api.entity.actor.GameActorAnimation;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.Json;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import editor.entity.Player;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import editor.view.TestMapControl;
 import game.EnigmaGame;
+import game.entity.PlayerFactory;
+import game.entity.PlayerGame;
+import game.entity.map.MapGame;
 import game.entity.map.MapGame;
 import game.entity.map.MapTestScreen;
 import game.hud.CategoriesMenu;
@@ -21,6 +31,11 @@ public class GameScreen extends LibgdxScreen {
 	private Stage hud;
 
 	/**
+	 * Joueur
+	 */
+	private PlayerGame player;
+
+	/**
 	 * La map libgdx
 	 */
 	private MapGame map;
@@ -28,52 +43,22 @@ public class GameScreen extends LibgdxScreen {
 	private static String MAP_PATH = "assets/map/Licht.tmx" ;
 	@Override
 	public void init() {
-		try {
-			//Colorie l'écran en blanc
-			Gdx.gl.glClearColor(255, 0, 0, 255);
+		this.main = new Stage();
+		this.hud = new Stage();
 
-			boolean noMap = false;
+        this.map = new MapGame(MAP_PATH, 1f);
+        //ajout au stage
+        this.main.addActor(this.map);
+        this.map.showGrid(false);
 
-			//Regarde si on a une map
-			if (MAP_PATH == null || MAP_PATH.length() == 0)
-				noMap = true;
+		//compléter ici
+		player = PlayerFactory.createPlayerGame("Blonde","assets/entities/players/players.json",new MapGame("",45));
+		main.addActor(player);
 
-			this.main = new Stage();
-			if (!noMap) {
-				this.map = new MapGame(MAP_PATH, 1f);
-				this.map.showGrid(true);
-				//ajout au stage
-				this.main.addActor(this.map);
-			}
-
-			this.hud = new Stage();
-
-			//cameras
-			if (!noMap) {
-				this.main.setViewport(new ScreenViewport());
-				//centre map dans l'écran
-				this.main.getViewport().setCamera(this.map.getCamera());
-				this.main.getCamera().position.set(
-						map.getMapWidth() /2 - CategoriesMenu.WIDTH / 2f,
-						map.getMapHeight() /2, 0
-				);
-			}
-
-			//écoute des inputProcessor et des listeners
-			this.listen(this.hud);
-			this.listen(this.main);
-
-		} catch (Exception e) {
-			System.err.println("échec création GameScreen");
-			e.printStackTrace();
-		}
-	}
-
-	@Override
-	public void show() {
-		super.show();
-		//Met l'écran en rouge, utilisé juste pour voir que c'est l'écran de jeu
-		Gdx.gl.glClearColor(255, 255, 255, 255);
+		//écoute des inputProcessor et des listeners
+		this.listen(this.hud);
+		this.listen(player);
+		this.listen(this.main);
 	}
 
 	@Override//géré par input processor
@@ -84,14 +69,12 @@ public class GameScreen extends LibgdxScreen {
 	public void update(float dt) {
 		this.hud.act(dt);
 		this.main.act(dt);
-
 	}
 
 	@Override
 	public void render() {
 		this.main.draw();
 		this.hud.draw();
-		this.map.showGrid(false);
 	}
 
 	@Override
@@ -117,6 +100,4 @@ public class GameScreen extends LibgdxScreen {
 	public void display(boolean display) {
 
 	}
-
-
 }

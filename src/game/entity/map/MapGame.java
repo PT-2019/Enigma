@@ -170,7 +170,8 @@ public class MapGame extends AbstractMap {
 
 	public boolean isWalkable(float posX, float posY, GameActor actor) {
 		//ICI CODER, gameActor est pas obligé, la classe peut être changé (GameActorAnimation..., PlayerGame)...
-		throw new UnsupportedOperationException("non codé");
+		//throw new UnsupportedOperationException("non codé");
+		return true;
 	}
 
 	//boolean doAction(float posX, float posY, GameActor actor, ???  action)
