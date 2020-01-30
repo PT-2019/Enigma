@@ -12,6 +12,8 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
 
     private MapGame map;
 
+    public static final int SPEED = 10;
+
     public PlayerGame(MapGame map){
         this.setAnimationPaused(true);
         this.map = map;
@@ -32,43 +34,43 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
         float y = this.getY();
 
         if (CameraKeys.CAMERA_LEFT.isKey(i)){
-            this.setFacedDirection(Direction.LEFT);
-            if(map.isWalkable(x - 15,y,this)){
-                this.setPosition(x - 15 ,y);
+            if(map.isWalkable(x - PlayerGame.SPEED,y,this)){
+                this.setPosition(x - PlayerGame.SPEED ,y);
 
-                if(isAnimationPaused()){
+                if(isAnimationPaused() || this.facedDirection != Direction.LEFT){
                     this.setKeyFrame(3);
                 }
+                this.setFacedDirection(Direction.LEFT);
                 this.setAnimationPaused(false);
                 this.setAnimationLooping(true);
             }
         }else if (CameraKeys.CAMERA_RIGHT.isKey(i)){
-            this.setFacedDirection(Direction.RIGHT);
-            if(map.isWalkable(x + 5,y,this)){
-                this.setPosition(x + 5 ,y);
-                if(isAnimationPaused()){
+            if(map.isWalkable(x + PlayerGame.SPEED,y,this)){
+                this.setPosition(x + PlayerGame.SPEED ,y);
+                if(isAnimationPaused()|| this.facedDirection != Direction.RIGHT){
                     this.setKeyFrame(6);
                 }
+                this.setFacedDirection(Direction.RIGHT);
                 this.setAnimationPaused(false);
                 this.setAnimationLooping(true);
             }
         }else if (CameraKeys.CAMERA_UP.isKey(i)){
-            this.setFacedDirection(Direction.TOP);
-            if (map.isWalkable(x,y + 15,this)){
-                this.setPosition(x ,y + 15);
-                if(isAnimationPaused()){
+            if (map.isWalkable(x,y + PlayerGame.SPEED,this)){
+                this.setPosition(x ,y + PlayerGame.SPEED);
+                if(isAnimationPaused() || this.facedDirection != Direction.TOP){
                     this.setKeyFrame(9);
                 }
+                this.setFacedDirection(Direction.TOP);
                 this.setAnimationPaused(false);
                 this.setAnimationLooping(true);
             }
         }else if (CameraKeys.CAMERA_DOWN.isKey(i)){
-            this.setFacedDirection(Direction.BOTTOM);
-            if (map.isWalkable(x,y - 15,this)){
-                this.setPosition(x ,y - 15);
-                if(isAnimationPaused()){
+            if (map.isWalkable(x,y - PlayerGame.SPEED,this)){
+                this.setPosition(x ,y - PlayerGame.SPEED);
+                if(isAnimationPaused() || this.facedDirection != Direction.BOTTOM){
                     this.setKeyFrame(0);
                 }
+                this.setFacedDirection(Direction.BOTTOM);
                 this.setAnimationPaused(false);
                 this.setAnimationLooping(true);
             }
@@ -116,7 +118,7 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
         }
 
         if(this.facedDirection == Direction.TOP){
-            if ( this.getKeyFrameIndex() > 11){
+            if ( this.getKeyFrameIndex() > 10){
                 this.setKeyFrame(9);
                 this.setAnimationPaused(true);
             }

@@ -111,7 +111,6 @@ public class GameActorAnimation extends GameActor {
 		this.setSize(width, height);
 		this.setOrigin(width / 2, height / 2);
 		this.setKeyFrame(2);
-		System.out.println(texture);
 	}
 
 	/**

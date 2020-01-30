@@ -57,9 +57,6 @@ public class GameScreen extends LibgdxScreen {
 
 			//compléter ici
 			player = PlayerFactory.createPlayerGame("Blonde","assets/entities/players/players.json", this.map);
-			player.setLayer(Layer.FLOOR2);
-			//main.addActor(player);
-
 			this.map.addEntity(player);
 
 			//écoute des inputProcessor et des listeners
