@@ -25,7 +25,6 @@ import java.util.HashMap;
  */
 @ConvenienceClass
 public abstract class AbstractGameObject extends GameActorTextured implements GameObject {
-
 	/**
 	 * les tiles (a convertir en int)
 	 */
@@ -111,5 +110,4 @@ public abstract class AbstractGameObject extends GameActorTextured implements Ga
 	public void setID(int id) {
 		this.id = id;
 	}
-
 }

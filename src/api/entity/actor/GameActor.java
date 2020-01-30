@@ -1,5 +1,6 @@
 package api.entity.actor;
 
+import api.enums.Layer;
 import api.utils.annotations.ConvenienceMethod;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Polygon;
@@ -21,7 +22,10 @@ import com.badlogic.gdx.scenes.scene2d.Group;
  * @since 4.0 20/12/2019
  */
 public class GameActor extends Group {
-
+	/**
+	 * Layer
+	 */
+	private Layer layer;
 	/**
 	 * Recouvrement du GameActor
 	 */
@@ -112,5 +116,20 @@ public class GameActor extends Group {
 		}
 
 		this.bounds = new Polygon(points);
+	}
+
+	/**
+	 *  Retourne le niveau auquel l'entité sera dessiné
+	 * @return le niveau
+	 */
+	public Layer getLayer() {
+		return this.layer;
+	}
+	/**
+	 *  Définit le niveau auquel l'entité sera dessiné
+	 * @param l niveau
+	 */
+	public void setLayer(Layer l) {
+		this.layer = l;
 	}
 }
