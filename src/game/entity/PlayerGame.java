@@ -10,14 +10,9 @@ import game.entity.map.MapGame;
 
 public class PlayerGame extends GameActorAnimation implements InputProcessor {
 
-    private CameraKeys[] camKey;
-
     private MapGame map;
 
     public PlayerGame(MapGame map){
-        this.setAnimation("assets/entities/players/players.png",3,4,(float)0.2,12,8,4);
-        camKey = CameraKeys.values();
-        this.setKeyFrame(2);
         this.setAnimationPaused(true);
         this.map = map;
     }
@@ -57,8 +52,8 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
                 this.setAnimationPaused(false);
                 this.setAnimationLooping(true);
             }
-        }else if (camKey[2].isKey(i)){
-            this.setFacedDirection(Direction.BACK);
+        }else if (CameraKeys.CAMERA_UP.isKey(i)){
+            this.setFacedDirection(Direction.TOP);
             if (map.isWalkable(x,y + 15,this)){
                 this.setPosition(x ,y + 15);
                 if(isAnimationPaused()){
@@ -67,8 +62,8 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
                 this.setAnimationPaused(false);
                 this.setAnimationLooping(true);
             }
-        }else if (camKey[3].isKey(i)){
-            this.setFacedDirection(Direction.FRONT);
+        }else if (CameraKeys.CAMERA_DOWN.isKey(i)){
+            this.setFacedDirection(Direction.BOTTOM);
             if (map.isWalkable(x,y - 15,this)){
                 this.setPosition(x ,y - 15);
                 if(isAnimationPaused()){
@@ -110,7 +105,7 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
             }
         }
 
-        if (this.facedDirection == Direction.FRONT){
+        if (this.facedDirection == Direction.BOTTOM){
             if (this.getKeyFrameIndex() > 1){
                 this.setKeyFrame(0);
                 this.setAnimationPaused(true);
@@ -120,7 +115,7 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
             }
         }
 
-        if(this.facedDirection == Direction.BACK){
+        if(this.facedDirection == Direction.TOP){
             if ( this.getKeyFrameIndex() > 11){
                 this.setKeyFrame(9);
                 this.setAnimationPaused(true);

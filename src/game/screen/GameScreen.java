@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import editor.entity.Player;
 import game.EnigmaGame;
+import game.entity.PlayerFactory;
 import game.entity.PlayerGame;
 import game.entity.map.MapGame;
 
@@ -36,7 +37,7 @@ public class GameScreen extends LibgdxScreen {
 		this.hud = new Stage();
 
 		//compléter ici
-		player = new PlayerGame(new MapGame("",45));
+		player = PlayerFactory.createPlayerGame("Blonde","assets/entities/players/players.json",new MapGame("",45));
 		main.addActor(player);
 
 		//écoute des inputProcessor et des listeners

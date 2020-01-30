@@ -1,8 +1,8 @@
 package api.enums;
 
 public enum Direction {
-    FRONT,
-    BACK,
+    TOP,
+    BOTTOM,
     LEFT,
     RIGHT,
     FEET

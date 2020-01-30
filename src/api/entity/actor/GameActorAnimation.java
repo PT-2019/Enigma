@@ -60,7 +60,7 @@ public class GameActorAnimation extends GameActor {
 	 * @param rowPerImage  nombre de lignes totales de l'image
 	 * @param index        index, commence à zéro représentant la position de la sous-image dans l'atlas
 	 */
-	protected void setAnimation(String texture, int nbCol, int nbRow, float timePerFrame,
+	public void setAnimation(String texture, int nbCol, int nbRow, float timePerFrame,
 	                            int colPerImage, int rowPerImage, int index) {
 		int col = (index % colPerImage) / nbCol, row = index / (colPerImage * nbRow);
 		int nbimgCol = colPerImage/nbCol;
@@ -70,6 +70,7 @@ public class GameActorAnimation extends GameActor {
 
 		//load the texture witch contains the animation
 		Texture animation = new Texture(texture);
+
 		animation.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 		int sizeCol = animation.getWidth() / nbimgCol;
 		int sizeRow = animation.getHeight() / nbimgRow;
@@ -109,6 +110,8 @@ public class GameActorAnimation extends GameActor {
 		float width = textureRegion.getRegionWidth(), height = textureRegion.getRegionHeight();
 		this.setSize(width, height);
 		this.setOrigin(width / 2, height / 2);
+		this.setKeyFrame(2);
+		System.out.println(texture);
 	}
 
 	/**
