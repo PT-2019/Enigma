@@ -38,7 +38,10 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
      */
     public void center(){
         Camera cam = this.getStage().getCamera();
-        cam.translate(-cam.position.x,-cam.position.y,0);
+        //pour éviter un bug graphique on créer 2 variables
+        int posy =(int) cam.position.y;
+        int posx = (int) cam.position.x;
+        cam.translate(-posx,-posy,0);
     }
 
     /**
