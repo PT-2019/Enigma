@@ -3,11 +3,11 @@ package game.screens;
 import api.libgdx.LibgdxScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import datas.Layer;
 import game.EnigmaGame;
 import general.entities.players.PlayerGame;
 import general.entities.serialization.PlayerFactory;
-import general.map.MapGame;
+import general.map.AbstractMap;
+import general.map.GameMap;
 
 /**
  * Ecran du jeu
@@ -38,7 +38,7 @@ public class GameScreen extends LibgdxScreen {
 	/**
 	 * La map libgdx
 	 */
-	private MapGame map;
+	private GameMap map;
 
 	private static String MAP_PATH = "assets/map/Licht.tmx" ;
 	@Override
@@ -47,7 +47,7 @@ public class GameScreen extends LibgdxScreen {
 			this.main = new Stage();
 			this.hud = new Stage();
 
-			this.map = new MapGame(MAP_PATH, 2.5f);
+			this.map = new GameMap(MAP_PATH, 2.5f);
 			//ajout au stage
 			this.main.addActor(this.map);
 			this.map.showGrid(false);
@@ -104,5 +104,9 @@ public class GameScreen extends LibgdxScreen {
 	@Override
 	public void display(boolean display) {
 
+	}
+
+	public AbstractMap getMap() {
+		return this.map;
 	}
 }

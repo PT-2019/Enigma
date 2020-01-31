@@ -1,5 +1,6 @@
 package general.enigmas.operation;
 
+import game.EnigmaGame;
 import general.entities.Entity;
 import general.entities.players.Player;
 import general.save.enigmas.EnigmaAttributes;
@@ -42,7 +43,7 @@ public abstract class Operation {
 	 */
 	public Operation(Map<String, Object> attributes) {
 		ArrayList<String> attr = new ArrayList<>();
-		attr.add(Attributes.ENTITY);
+		attr.add(EnigmaAttributes.ENTITY);
 
 		for(String a : attr){
 			if(!attributes.containsKey(a))
@@ -51,8 +52,8 @@ public abstract class Operation {
 			Object get = attributes.get(a);
 
 			switch(a){
-				case Attributes.ENTITY:
-					this.entity = (Entity) EnigmaGame.getInstance().getCurrentMap().getEntities().getObjectByID(Integer.parseInt((String) get));
+				case EnigmaAttributes.ENTITY:
+					this.entity = (Entity) EnigmaGame.getCurrentScreen().getMap().getEntitiesObjects().getObjectByID(Integer.parseInt((String) get));
 					break;
 			}
 		}

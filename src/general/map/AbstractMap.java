@@ -20,6 +20,15 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 public abstract class AbstractMap extends Group {
 
 	/**
+	 * objects
+	 */
+	protected MapObjects objects;
+	/**
+	 * nom map
+	 */
+	protected String name;
+
+	/**
 	 * Le seul constructeur possible d'une map, ne fait rien
 	 *
 	 * @param path      chemin d'une map
@@ -27,6 +36,8 @@ public abstract class AbstractMap extends Group {
 	 */
 	AbstractMap(String path, float unitScale) {
 		//do nothing
+		this.objects = new MapObjects();
+		this.name = path;
 	}
 
 	/**
@@ -111,4 +122,10 @@ public abstract class AbstractMap extends Group {
 	 * @return la map tiled
 	 */
 	public abstract TiledMap getTiledMap();
+
+	/**
+	 * Retourne les entités de la map
+	 * @return les entités de la map
+	 */
+	public MapObjects getEntitiesObjects(){ throw new UnsupportedOperationException(""); }
 }

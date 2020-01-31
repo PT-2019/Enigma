@@ -7,8 +7,28 @@
     <list default="true" id="0d43d868-60f6-424c-8fd5-45c65ab0347a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Enigma.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Enigma.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/libgdx/LibgdxScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/libgdx/LibgdxScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/menus/enimas/listeners/ConditionListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/menus/enimas/listeners/ConditionListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/EnigmaGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/EnigmaGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Louka/AbstractMap.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Louka/EditorMap.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Louka/GameMap.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Louka/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/entities/special/Inventory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Louka/MapObjects.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/map/MapObjects.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Louka/event/TileEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/enigmas/TileEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/Louka/event/TileEventEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/enigmas/TileEventEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/screens/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/screens/GameScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/enigmas/condition/Answer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/enigmas/condition/Answer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/enigmas/condition/Condition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/enigmas/condition/Condition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/enigmas/operation/Operation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/enigmas/operation/Operation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/enigmas/operation/Summon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/enigmas/operation/Summon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/entities/players/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/entities/players/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/general/entities/players/PlayerGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/entities/players/PlayerGame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/general/entities/serialization/PlayerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/entities/serialization/PlayerFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/map/AbstractMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/map/AbstractMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/map/MapGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/map/GameMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/save/MapsNameUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/save/MapsNameUtils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,35 +62,6 @@
         <option value="Class" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>retour</find>
-      <find>JE</find>
-      <find>System.out.println(checked+&quot; llll checked&quot;);</find>
-      <find>Library</find>
-      <find>true</find>
-      <find>#item</find>
-      <find>WHITE</find>
-      <find>object</find>
-      <find>gl.get(</find>
-      <find>carte ou</find>
-      <find>setFor</find>
-      <find>setForPopup</find>
-      <find>&quot;Veuillez sélectionner un objet (carte</find>
-      <find>System.out.println</find>
-      <find>import editor.hud.EnigmaUIValues;</find>
-      <find>RED</find>
-      <find>E</find>
-      <find>logo</find>
-      <find>Attributes</find>
-      <find>editor.enigma</find>
-      <find>game.entity.item.</find>
-      <find>Book</find>
-      <find>editor.entity.</find>
-      <find>game.entity.item.</find>
-      <find>game.entity.item.Room</find>
-    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -110,11 +101,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/general/map" />
+      <recent name="$PROJECT_DIR$/src/game" />
+      <recent name="$PROJECT_DIR$/src/general/entities/special" />
+      <recent name="$PROJECT_DIR$/src/general/enigmas" />
       <recent name="C:\Users\Quentin Ra\Desktop\EnigmaReal\src\general\hud" />
-      <recent name="C:\Users\Quentin Ra\Desktop\EnigmaReal\src\start" />
-      <recent name="C:\Users\Quentin Ra\Desktop\EnigmaReal\src\api\hud\base" />
-      <recent name="C:\Users\Quentin Ra\Desktop\EnigmaReal" />
-      <recent name="C:\Users\Quentin Ra\Desktop\Enigma\assets\files\enigma" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
@@ -199,6 +190,7 @@
       <workItem from="1580393807503" duration="3292000" />
       <workItem from="1580472075687" duration="371000" />
       <workItem from="1580472740048" duration="107000" />
+      <workItem from="1580483527254" duration="2495000" />
     </task>
     <servers />
   </component>
@@ -241,6 +233,10 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Fix commit Loïc" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix commit Loïc" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="2218" y="184" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1580472074271" />
     <state x="2218" y="184" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" timestamp="1580472074272" />
@@ -250,51 +246,67 @@
     <state x="766" y="244" width="380" height="577" key="#com.intellij.ide.util.MemberChooser/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1580472074272" />
     <state x="691" y="310" width="530" height="445" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1580472074272" />
     <state x="691" y="310" width="530" height="445" key="#com.intellij.ide.util.PackageChooserDialog/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1580472074272" />
-    <state width="1878" height="340" key="GridCell.Tab.0.bottom" timestamp="1580472074272" />
+    <state width="1878" height="339" key="GridCell.Tab.0.bottom" timestamp="1580486753441">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
     <state width="1878" height="306" key="GridCell.Tab.0.bottom/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" timestamp="1580472074272" />
     <state width="1638" height="306" key="GridCell.Tab.0.bottom/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1580472074272" />
-    <state width="1878" height="340" key="GridCell.Tab.0.bottom/1920.0.1280.1024/0.0.1920.1080@0.0.1920.1080" timestamp="1580472074272" />
+    <state width="1638" height="327" key="GridCell.Tab.0.bottom/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" timestamp="1580474477147" />
+    <state width="1878" height="339" key="GridCell.Tab.0.bottom/1920.0.1280.1024/0.0.1920.1080@0.0.1920.1080" timestamp="1580486753441" />
     <state width="1878" height="306" key="GridCell.Tab.0.bottom/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1580472074272" />
     <state width="1638" height="278" key="GridCell.Tab.0.bottom/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1580472074272" />
-    <state width="1878" height="340" key="GridCell.Tab.0.center" timestamp="1580472074272" />
+    <state width="1878" height="339" key="GridCell.Tab.0.center" timestamp="1580486753440">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
     <state width="1878" height="306" key="GridCell.Tab.0.center/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" timestamp="1580472074272" />
     <state width="1638" height="306" key="GridCell.Tab.0.center/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1580472074272" />
-    <state width="1878" height="340" key="GridCell.Tab.0.center/1920.0.1280.1024/0.0.1920.1080@0.0.1920.1080" timestamp="1580472074272" />
+    <state width="1638" height="327" key="GridCell.Tab.0.center/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" timestamp="1580474477147" />
+    <state width="1878" height="339" key="GridCell.Tab.0.center/1920.0.1280.1024/0.0.1920.1080@0.0.1920.1080" timestamp="1580486753440" />
     <state width="1878" height="306" key="GridCell.Tab.0.center/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1580472074272" />
     <state width="1638" height="278" key="GridCell.Tab.0.center/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1580472074272" />
-    <state width="1878" height="340" key="GridCell.Tab.0.left" timestamp="1580472074272" />
+    <state width="1878" height="339" key="GridCell.Tab.0.left" timestamp="1580486753440">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
     <state width="1878" height="306" key="GridCell.Tab.0.left/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" timestamp="1580472074272" />
     <state width="1638" height="306" key="GridCell.Tab.0.left/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1580472074272" />
-    <state width="1878" height="340" key="GridCell.Tab.0.left/1920.0.1280.1024/0.0.1920.1080@0.0.1920.1080" timestamp="1580472074272" />
+    <state width="1638" height="327" key="GridCell.Tab.0.left/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" timestamp="1580474477147" />
+    <state width="1878" height="339" key="GridCell.Tab.0.left/1920.0.1280.1024/0.0.1920.1080@0.0.1920.1080" timestamp="1580486753440" />
     <state width="1878" height="306" key="GridCell.Tab.0.left/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1580472074272" />
     <state width="1638" height="278" key="GridCell.Tab.0.left/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1580472074272" />
-    <state width="1878" height="340" key="GridCell.Tab.0.right" timestamp="1580472074272" />
+    <state width="1878" height="339" key="GridCell.Tab.0.right" timestamp="1580486753440">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
     <state width="1878" height="306" key="GridCell.Tab.0.right/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" timestamp="1580472074272" />
     <state width="1638" height="306" key="GridCell.Tab.0.right/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1580472074272" />
-    <state width="1878" height="340" key="GridCell.Tab.0.right/1920.0.1280.1024/0.0.1920.1080@0.0.1920.1080" timestamp="1580472074272" />
+    <state width="1638" height="327" key="GridCell.Tab.0.right/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" timestamp="1580474477147" />
+    <state width="1878" height="339" key="GridCell.Tab.0.right/1920.0.1280.1024/0.0.1920.1080@0.0.1920.1080" timestamp="1580486753440" />
     <state width="1878" height="306" key="GridCell.Tab.0.right/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1580472074272" />
     <state width="1638" height="278" key="GridCell.Tab.0.right/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1580472074272" />
-    <state x="321" y="94" width="1030" height="851" key="MergeDialog" timestamp="1580472807366">
+    <state x="321" y="94" width="1030" height="851" key="MergeDialog" timestamp="1580473917709">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="321" y="94" width="1030" height="851" key="MergeDialog/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" timestamp="1580472807366" />
-    <state x="547" y="236" width="582" height="565" key="MultipleFileMergeDialog" timestamp="1580472807370">
+    <state x="321" y="94" width="1030" height="851" key="MergeDialog/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" timestamp="1580473917709" />
+    <state x="547" y="236" width="582" height="565" key="MultipleFileMergeDialog" timestamp="1580473917711">
       <screen x="0" y="0" width="1680" height="1050" />
     </state>
-    <state x="547" y="236" width="582" height="565" key="MultipleFileMergeDialog/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" timestamp="1580472807370" />
-    <state x="1930" y="104" width="1030" height="847" key="SettingsEditor" timestamp="1580472749221">
+    <state x="547" y="236" width="582" height="565" key="MultipleFileMergeDialog/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" timestamp="1580473917711" />
+    <state x="1926" y="104" width="1030" height="847" key="SettingsEditor" timestamp="1580473934434">
       <screen x="1680" y="0" width="1280" height="1024" />
     </state>
     <state x="2243" y="104" width="1030" height="847" key="SettingsEditor/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1580472074272" />
-    <state x="1930" y="104" key="SettingsEditor/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" timestamp="1580472749221" />
+    <state x="1926" y="104" width="1030" height="847" key="SettingsEditor/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" timestamp="1580473934434" />
     <state x="2243" y="104" key="SettingsEditor/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1580472074272" />
-    <state x="626" y="353" key="com.intellij.ide.util.TipDialog" timestamp="1580472743773">
+    <state width="498" height="445" key="SwitcherDM" timestamp="1580474405831">
       <screen x="0" y="0" width="1680" height="1050" />
+    </state>
+    <state width="498" height="445" key="SwitcherDM/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" timestamp="1580474405831" />
+    <state x="626" y="353" key="com.intellij.ide.util.TipDialog" timestamp="1580483647902">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="626" y="358" key="com.intellij.ide.util.TipDialog/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" timestamp="1580472074272" />
     <state x="2468" y="343" key="com.intellij.ide.util.TipDialog/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1580472074272" />
     <state x="626" y="353" key="com.intellij.ide.util.TipDialog/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" timestamp="1580472743773" />
-    <state x="626" y="353" key="com.intellij.ide.util.TipDialog/1920.0.1280.1024/0.0.1920.1080@0.0.1920.1080" timestamp="1580472074272" />
+    <state x="626" y="353" key="com.intellij.ide.util.TipDialog/1920.0.1280.1024/0.0.1920.1080@0.0.1920.1080" timestamp="1580483647902" />
     <state x="626" y="358" key="com.intellij.ide.util.TipDialog/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1580472074272" />
     <state x="626" y="358" key="com.intellij.ide.util.TipDialog/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1580472074272" />
     <state x="2530" y="232" width="455" height="591" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1580472074272" />

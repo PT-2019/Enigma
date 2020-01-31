@@ -1,12 +1,14 @@
 package general.save;
 
+import general.map.GameMap;
+
 /**
  * Toutes les constantes pouvant être utilisés par la map de l'éditeur
  * et reconnues par la map libgdx.
  *
  * @author Quentin RAMSAMY-AGEORGES
  * @version 1.0 03 december 2019
- * @see general.map.MapGame
+ * @see GameMap
  * @see general.map.MapTestScreen
  * @since 1.0 03 december 2019
  */

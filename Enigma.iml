@@ -8,6 +8,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/assets" type="java-resource" />
       <excludeFolder url="file://$MODULE_DIR$/libs/packer" />
+      <excludeFolder url="file://$MODULE_DIR$/src/game/Louka" />
       <excludeFolder url="file://$MODULE_DIR$/src/item" />
       <excludeFolder url="file://$MODULE_DIR$/src/start" />
       <excludeFolder url="file://$MODULE_DIR$/tests" />

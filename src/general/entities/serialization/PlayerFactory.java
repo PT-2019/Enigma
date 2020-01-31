@@ -4,7 +4,7 @@ import api.utils.Utility;
 import com.badlogic.gdx.utils.Json;
 import datas.Layer;
 import general.entities.players.PlayerGame;
-import general.map.MapGame;
+import general.map.GameMap;
 
 import java.util.ArrayList;
 
@@ -28,7 +28,7 @@ public class PlayerFactory {
      * @param map
      * @return un playerGame du Json
      */
-    public static PlayerGame createPlayerGame(String name, String path, MapGame map){
+    public static PlayerGame createPlayerGame(String name, String path, GameMap map){
         PlayerGame game = new PlayerGame(map);
         Json json = new Json();
         PlayerSerializable playerInfo = null;

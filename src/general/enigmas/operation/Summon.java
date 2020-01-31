@@ -1,8 +1,14 @@
 package general.enigmas.operation;
 
+import api.libgdx.LibgdxScreen;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import game.EnigmaGame;
+import game.screens.GameScreen;
+import game.screens.TestScreen;
 import general.entities.Entity;
 import general.entities.players.Player;
+import general.map.AbstractMap;
+import general.map.MapTestScreenCell;
 import general.save.enigmas.EnigmaAttributes;
 import general.utils.IDFactory;
 
@@ -48,9 +54,9 @@ public class Summon extends Operation {
 		String spawnLayer = "null";
 
 		ArrayList<String> attr = new ArrayList<>();
-		attr.add(Attributes.SPAWN_X);
-		attr.add(Attributes.SPAWN_Y);
-		attr.add(Attributes.SPAWN_LAYER);
+		attr.add(EnigmaAttributes.SPAWN_X);
+		attr.add(EnigmaAttributes.SPAWN_Y);
+		attr.add(EnigmaAttributes.SPAWN_LAYER);
 
 		for(String a : attr){
 			if(!attributes.containsKey(a))
@@ -59,21 +65,29 @@ public class Summon extends Operation {
 			Object get = attributes.get(a);
 
 			switch(a){
-				case Attributes.SPAWN_X:
+				case EnigmaAttributes.SPAWN_X:
 					spawnX = Float.parseFloat((String) get);
 					break;
-				case Attributes.SPAWN_Y:
+				case EnigmaAttributes.SPAWN_Y:
 					spawnY = Float.parseFloat((String) get);
 					break;
-				case Attributes.SPAWN_LAYER:
+				case EnigmaAttributes.SPAWN_LAYER:
 					spawnLayer = (String) get;
 					break;
 			}
 		}
 
 		if(spawnX != -1.0 && spawnY != -1.0 && !spawnLayer.equals("null")){
-			AbstractMap map = EnigmaGame.getInstance().getCurrentMap();
-			TiledMapTileLayer sLayer = (TiledMapTileLayer) map.getMap().getMap().getLayers().get(spawnLayer);
+			LibgdxScreen screen = EnigmaGame.getCurrentScreen();
+			AbstractMap map = null;
+			//TODO: truc null !!!!!!!!!!!!! temporaire
+			if(screen instanceof TestScreen)
+				map = ((TestScreen) screen).getMap();
+			else if(screen instanceof GameScreen)
+				map = ((GameScreen) screen).getMap();
+			else return;
+
+			TiledMapTileLayer sLayer = (TiledMapTileLayer) map.getTiledMap().getLayers().get(spawnLayer);
 			this.spawn = (MapTestScreenCell) sLayer.getCell((int) spawnX, (int) spawnY);
 		}
 	}
@@ -125,15 +139,15 @@ public class Summon extends Operation {
 	@Override
 	public HashMap<String, Object> objectToMap() {
 		HashMap<String, Object> object = new HashMap<>();
-		object.put(Attributes.PATH, this.getClass().getName());
-		object.put(Attributes.ENTITY, this.entity.getID() + "");
+		object.put(EnigmaAttributes.PATH, this.getClass().getName());
+		object.put(EnigmaAttributes.ENTITY, this.entity.getID() + "");
 		TiledMapTileLayer layer = this.spawn.getLayer();
 		int x, y, index = this.spawn.getIndex();
 		x = index%layer.getWidth();
 		y = index/layer.getWidth();
-		object.put(Attributes.SPAWN_X, x + "");
-		object.put(Attributes.SPAWN_Y, y + "");
-		object.put(Attributes.SPAWN_LAYER, layer.getName() + "");
+		object.put(EnigmaAttributes.SPAWN_X, x + "");
+		object.put(EnigmaAttributes.SPAWN_Y, y + "");
+		object.put(EnigmaAttributes.SPAWN_LAYER, layer.getName() + "");
 		return object;
 	}
 

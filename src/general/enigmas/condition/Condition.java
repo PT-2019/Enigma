@@ -1,5 +1,6 @@
 package general.enigmas.condition;
 
+import game.EnigmaGame;
 import general.entities.Entity;
 import general.entities.players.Player;
 import general.save.enigmas.EnigmaAttributes;
@@ -50,8 +51,8 @@ public abstract class Condition {
 			Object get = attributes.get(a);
 
 			switch(a){
-				case Attributes.ENTITY:
-					this.entity = (Entity) EnigmaGame.getInstance().getCurrentMap().getEntities().getObjectByID(Integer.parseInt((String) get));
+				case EnigmaAttributes.ENTITY:
+					this.entity = (Entity) EnigmaGame.getCurrentScreen().getMap().getEntitiesObjects().getObjectByID(Integer.parseInt((String) get));
 					break;
 			}
 		}

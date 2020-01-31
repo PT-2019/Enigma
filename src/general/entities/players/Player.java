@@ -7,6 +7,8 @@ import com.badlogic.gdx.utils.Array;
 import datas.Layer;
 import datas.TypeEntity;
 import general.entities.Entity;
+import general.entities.Item;
+import general.entities.special.Inventory;
 import general.entities.types.Living;
 import general.language.GameFields;
 import general.language.GameLanguage;
@@ -104,7 +106,7 @@ public class Player extends GameActorTextured implements Entity, Living {
 	}
 
 	@Override
-	public void interactsWith(editor.entity.Player p) {
+	public void interactsWith(Player p) {
 		throw new UnsupportedOperationException("node codé. InteractWidth Player");
 	}
 

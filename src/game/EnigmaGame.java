@@ -8,6 +8,7 @@ import com.badlogic.gdx.Gdx;
 import datas.EnigmaScreens;
 import game.screens.GameScreen;
 import game.screens.TestScreen;
+import general.map.AbstractMap;
 
 /**
  * Lanceur du jeu
@@ -21,8 +22,6 @@ import game.screens.TestScreen;
  */
 public class EnigmaGame extends LibgdxGame {
 
-	private AbstractMap currentMap;
-
 	//instance unique
 	private static EnigmaGame enigmaGame;
 	/**
@@ -33,10 +32,6 @@ public class EnigmaGame extends LibgdxGame {
 	//on charge ici le joueur et tout ce qui vit indépendamment des écrans
 	//....
 
-	private EnigmaGame() {
-		this.currentMap = new GameMap("test");
-	}
-
 	/**
 	 * Il s'agit d'une singleton.
 	 *
@@ -46,10 +41,6 @@ public class EnigmaGame extends LibgdxGame {
 		if(enigmaGame == null)
 			enigmaGame = new EnigmaGame();
 		return enigmaGame;
-	}
-
-	public AbstractMap getCurrentMap(){
-		return this.currentMap;
 	}
 
 	public static void setStartScreen(EnigmaScreens screen) {

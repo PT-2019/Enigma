@@ -1,4 +1,4 @@
-package game.Louka.event;
+package general.enigmas;
 
 /**
  * Types d'événements d'une tile

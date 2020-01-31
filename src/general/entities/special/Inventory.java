@@ -1,6 +1,6 @@
-package game.Louka;
+package general.entities.special;
 
-import api.entity.Item;
+import general.entities.Item;
 
 import java.util.ArrayList;
 
@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  * @version 5.0
- * @see editor.entity.Player
+ * @see general.entities.players.Player
  * @since 5.0
  */
 public class Inventory {

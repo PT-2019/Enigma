@@ -6,7 +6,7 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Camera;
 import datas.Direction;
 import datas.keys.CameraKeys;
-import general.map.MapGame;
+import general.map.GameMap;
 
 /**
  * Cette classe permet de déplacer le joueur et d'actionner son animation
@@ -17,7 +17,7 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
     /**
      * La map dans la laquelle est placé le joueur
      */
-    private MapGame map;
+    private GameMap map;
 
     /**
      * Vitesse de déplacement du personnage
@@ -28,7 +28,7 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
      *
      * @param map
      */
-    public PlayerGame(MapGame map){
+    public PlayerGame(GameMap map){
         this.setAnimationPaused(true);
         this.map = map;
     }

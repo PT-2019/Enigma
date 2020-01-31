@@ -1,14 +1,14 @@
-package game.Louka;
+package general.map;
 
-import api.entity.GameObject;
 import com.badlogic.gdx.math.Vector2;
+import general.entities.GameObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Stocke des {@link api.entity.GameObject GameObjects} en fonction de leur tile d'appartenance
+ * Stocke des {@link general.entities.GameObject GameObjects} en fonction de leur tile d'appartenance
  *
  * @author Jorys-Micke ALAÏS
  * @author Louka DOZ

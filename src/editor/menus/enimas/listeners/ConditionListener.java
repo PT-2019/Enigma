@@ -79,7 +79,7 @@ public class ConditionListener implements ActionListener, ItemListener {
 				cond = new Activated((Activatable) this.object);
 		} else if (this.currentButton.getName().equals(Conditions.ANSWER.name())) {
 			if (this.object instanceof Content)
-				cond = new Answer((Content) object);
+				cond = new Answer((Content) object, "");
 		} else if (this.currentButton.getName().equals(Conditions.HAVE_IN_HANDS.name())) {
 			if (this.object instanceof Item)
 				cond = new HaveInHands((Item) object);

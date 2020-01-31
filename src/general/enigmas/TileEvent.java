@@ -1,12 +1,11 @@
-package game.Louka.event;
+package general.enigmas;
 
-import editor.enigma.Enigma;
-import editor.entity.Player;
+import general.entities.players.Player;
 
 import java.util.ArrayList;
 
 /**
- * Permet de gérer le lancement d'événements via la vérification d'{@link editor.enigma.Enigma énigmes}
+ * Permet de gérer le lancement d'événements via la vérification d'{@link Enigma énigmes}
  *
  * @author Jorys-Micke ALAÏS
  * @author Louka DOZ

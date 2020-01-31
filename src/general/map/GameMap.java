@@ -50,7 +50,7 @@ import static general.save.MapsNameUtils.WIDTH_P;
  * @version 1.0.0
  * @since 1.0 28 janvier 2019
  */
-public class MapGame extends AbstractMap {
+public class GameMap extends AbstractMap {
 	/**
 	 *  Tableau des entités
 	 */
@@ -96,7 +96,7 @@ public class MapGame extends AbstractMap {
     private boolean showGrid;
 
 
-    public MapGame(final String path, float unitScale) {
+    public GameMap(final String path, float unitScale) {
 		//CE CONSTRUCTEUR NE FAIT RIEN
 		//c'est uniquement pour que votre constructeur soit de cette forme
 		super(path, unitScale);
@@ -141,7 +141,7 @@ public class MapGame extends AbstractMap {
 		this.initEntities();
 	}
 
-	public static Vector2 posToIndex(float posX, float posY, MapGame map) {
+	public static Vector2 posToIndex(float posX, float posY, GameMap map) {
 		//ICI CODER
 		//AbstractMap#swingPosToIndex(float posX, float posY, final AbstractMap map) si besoin
 		//throw new UnsupportedOperationException("non codé");

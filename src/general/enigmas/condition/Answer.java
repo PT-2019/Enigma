@@ -3,6 +3,8 @@ package general.enigmas.condition;
 import general.entities.Entity;
 import general.entities.players.Player;
 import general.entities.types.Content;
+import general.hud.EnigmaOptionPane;
+import general.hud.EnigmaWindow;
 
 import java.util.Map;
 
