@@ -1,8 +1,8 @@
 package general.entities.serialization;
 
-import api.enums.Layer;
 import api.utils.Utility;
 import com.badlogic.gdx.utils.Json;
+import datas.Layer;
 import general.entities.players.PlayerGame;
 import general.map.MapGame;
 
