@@ -1,7 +1,7 @@
 package general.hud.ui;
 
 import api.hud.ui.CustomPopupMenuUI;
-import datas.config.EnigmaUIValues;
+import data.config.EnigmaUIValues;
 
 /**
  * Style d'un popup de menu de l'application enigma

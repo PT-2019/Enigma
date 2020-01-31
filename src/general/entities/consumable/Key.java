@@ -1,6 +1,6 @@
 package general.entities.consumable;
 
-import datas.TypeEntity;
+import data.TypeEntity;
 import general.entities.types.AbstractConsumable;
 import general.entities.types.NeedContainer;
 import general.language.GameFields;

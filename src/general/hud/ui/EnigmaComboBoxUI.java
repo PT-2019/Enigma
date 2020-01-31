@@ -1,7 +1,7 @@
 package general.hud.ui;
 
 import api.hud.ui.CustomComboBoxUI;
-import datas.config.EnigmaUIValues;
+import data.config.EnigmaUIValues;
 
 import java.awt.Color;
 import java.awt.Cursor;

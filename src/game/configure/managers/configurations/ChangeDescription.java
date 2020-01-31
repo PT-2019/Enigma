@@ -1,6 +1,6 @@
 package game.configure.managers.configurations;
 
-import datas.config.GameConfiguration;
+import data.config.GameConfiguration;
 import game.EnigmaGameLauncher;
 import game.configure.LaunchGameDisplay;
 import general.hud.EnigmaOptionPane;

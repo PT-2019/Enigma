@@ -1,7 +1,7 @@
 package editor.menus;
 
 import api.hud.base.ResetComponent;
-import datas.config.EnigmaUIValues;
+import data.config.EnigmaUIValues;
 import editor.menus.enimas.listeners.ListenerMenu;
 import editor.menus.enimas.view.EnigmaView;
 import general.hud.EnigmaButton;

@@ -2,7 +2,7 @@ package general;
 
 import api.Application;
 import api.hud.base.WindowSize;
-import datas.config.EnigmaUIValues;
+import data.config.EnigmaUIValues;
 import editor.EditorLauncher;
 import editor.EditorScreen;
 import game.EnigmaGameLauncher;

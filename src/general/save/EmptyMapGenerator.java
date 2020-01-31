@@ -4,7 +4,7 @@ import api.utils.Utility;
 import api.utils.annotations.ConvenienceMethod;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
-import datas.config.Config;
+import data.config.Config;
 import game.EnigmaGame;
 import game.screens.TestScreen;
 import general.enigmas.Enigma;

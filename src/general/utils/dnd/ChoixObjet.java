@@ -1,6 +1,6 @@
 package general.utils.dnd;
 
-import datas.EntitiesCategories;
+import data.EntitiesCategories;
 import editor.EditorScreen;
 
 import java.awt.event.ActionEvent;

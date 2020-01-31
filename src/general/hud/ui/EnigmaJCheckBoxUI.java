@@ -1,6 +1,6 @@
 package general.hud.ui;
 
-import datas.config.EnigmaUIValues;
+import data.config.EnigmaUIValues;
 
 import javax.swing.JCheckBox;
 import javax.swing.plaf.basic.BasicCheckBoxUI;

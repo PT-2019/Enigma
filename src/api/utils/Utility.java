@@ -3,7 +3,7 @@ package api.utils;
 import api.utils.annotations.ConvenienceClass;
 import api.utils.annotations.ConvenienceMethod;
 import api.utils.annotations.NeedPatch;
-import datas.config.Config;
+import data.config.Config;
 
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsDevice;

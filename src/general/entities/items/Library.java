@@ -1,6 +1,6 @@
 package general.entities.items;
 
-import datas.TypeEntity;
+import data.TypeEntity;
 import general.entities.Item;
 import general.entities.types.AbstractItem;
 import general.entities.types.Container;

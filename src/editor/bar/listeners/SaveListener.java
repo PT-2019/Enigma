@@ -1,6 +1,6 @@
 package editor.bar.listeners;
 
-import datas.config.Config;
+import data.config.Config;
 import game.EnigmaGame;
 import game.screens.TestScreen;
 import general.hud.EnigmaWindow;

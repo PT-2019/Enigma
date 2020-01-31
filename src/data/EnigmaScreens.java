@@ -1,4 +1,4 @@
-package datas;
+package data;
 
 /**
  * Les écrans du jeu

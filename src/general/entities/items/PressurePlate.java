@@ -1,6 +1,6 @@
 package general.entities.items;
 
-import datas.TypeEntity;
+import data.TypeEntity;
 import general.enigmas.Enigma;
 import general.entities.players.Player;
 import general.entities.types.Activatable;

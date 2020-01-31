@@ -1,4 +1,4 @@
-package datas.config;
+package data.config;
 
 import java.awt.Color;
 import java.awt.Font;

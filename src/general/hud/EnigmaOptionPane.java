@@ -6,7 +6,7 @@ import api.hud.CustomPanel;
 import api.hud.CustomWindow;
 import api.hud.base.OptionPaneStyle;
 import api.hud.ui.CustomButtonUI;
-import datas.config.EnigmaUIValues;
+import data.config.EnigmaUIValues;
 import general.hud.ui.EnigmaTextAreaUI;
 
 import java.awt.Color;

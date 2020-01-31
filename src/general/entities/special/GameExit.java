@@ -1,6 +1,6 @@
 package general.entities.special;
 
-import datas.TypeEntity;
+import data.TypeEntity;
 import general.entities.types.AbstractGameObject;
 import general.language.GameLanguage;
 import general.language.HUDFields;

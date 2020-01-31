@@ -1,6 +1,6 @@
 package general.map.model;
 
-import datas.Layer;
+import data.Layer;
 import general.entities.types.IDInterface;
 import general.utils.textures.Texture;
 

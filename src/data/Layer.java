@@ -1,4 +1,4 @@
-package datas;
+package data;
 
 import general.language.Field;
 import general.language.HUDFields;

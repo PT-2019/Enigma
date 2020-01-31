@@ -2,7 +2,7 @@ package general.language;
 
 import api.utils.Utility;
 import com.badlogic.gdx.utils.Json;
-import datas.config.Config;
+import data.config.Config;
 
 import java.util.HashMap;
 

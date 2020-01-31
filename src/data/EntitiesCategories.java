@@ -1,4 +1,4 @@
-package datas;
+package data;
 
 /**
  * Les catégories d'entités

@@ -1,7 +1,7 @@
 package game.configure.displayManagers.lowLevel;
 
-import datas.config.EnigmaUIValues;
-import datas.config.GameConfiguration;
+import data.config.EnigmaUIValues;
+import data.config.GameConfiguration;
 import game.configure.LaunchGameDisplay;
 import game.configure.managers.configurations.ChangeConfiguration;
 import game.configure.managers.configurations.ChangeDescription;

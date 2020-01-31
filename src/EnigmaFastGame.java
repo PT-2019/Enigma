@@ -2,7 +2,7 @@ import api.Application;
 import api.hud.CustomWindow;
 import api.libgdx.utils.LoadGameLibgdxApplication;
 import api.utils.annotations.NeedPatch;
-import datas.EnigmaScreens;
+import data.EnigmaScreens;
 import game.EnigmaGame;
 import game.configure.LaunchGameDisplay;
 import general.hud.EnigmaWindow;
