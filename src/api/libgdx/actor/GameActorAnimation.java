@@ -36,6 +36,9 @@ public class GameActorAnimation extends GameActor {
 	 */
 	private Animation<TextureRegion> animation;
 
+	/**
+	 * Direction de l'acteur dans l'espace 2d
+	 */
 	protected Direction facedDirection;
 
 	/**
@@ -61,7 +64,9 @@ public class GameActorAnimation extends GameActor {
 	 */
 	public void setAnimation(String texture, int nbCol, int nbRow, float timePerFrame,
 	                            int colPerImage, int rowPerImage, int index) {
+		//position des colonne et ligne des sous ensembles de sprite
 		int col = (index % colPerImage) / nbCol, row = index / (colPerImage * nbRow);
+		//nb de sous ensembles de sprites par colonne et image
 		int nbimgCol = colPerImage/nbCol;
 		int nbimgRow = rowPerImage/nbRow;
 
@@ -71,17 +76,20 @@ public class GameActorAnimation extends GameActor {
 		Texture animation = new Texture(texture);
 
 		animation.setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+		//on divise par le nombre de different sprite pour obtenir la taille d'une colonne et ligne
 		int sizeCol = animation.getWidth() / nbimgCol;
 		int sizeRow = animation.getHeight() / nbimgRow;
 
 		//put all the animations in an array
 		TextureRegion[][] regions = new TextureRegion(animation).split(sizeCol, sizeRow);
 
+		//on prends la texture qui nous intéresse
 		TextureRegion playerRegion = regions[row][col];
 
+		//on calcul cette fois la taille d'un sprite
 		sizeCol = playerRegion.getRegionWidth() / nbCol;
 		sizeRow = playerRegion.getRegionHeight() / nbRow;
-
+		//on split pour avoir une nouvelle région
 		regions = playerRegion.split(sizeCol,sizeRow);
 
 		//on permute les derniers sprites pour que l'animation se termine sur le sprite fixe
@@ -95,6 +103,7 @@ public class GameActorAnimation extends GameActor {
 			}
 		}
 
+		//on ajoute tout les sprites
 		for (int i = 0; i < nbRow; i++) {
 			for (int j = 0; j < nbCol; j++) {
 				listeAnim.add(regions[i][j]);
@@ -110,7 +119,6 @@ public class GameActorAnimation extends GameActor {
 		this.setSize(width, height);
 		this.setOrigin(width / 2, height / 2);
 		this.setKeyFrame(2);
-		System.out.println(texture);
 	}
 
 	/**

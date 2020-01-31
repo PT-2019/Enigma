@@ -7,67 +7,96 @@ import datas.Direction;
 import datas.keys.CameraKeys;
 import general.map.MapGame;
 
+/**
+ * Cette classe permet de déplacer le joueur et d'actionner son animation
+ * @see GameActorAnimation
+ */
 public class PlayerGame extends GameActorAnimation implements InputProcessor {
 
+    /**
+     * La map dans la laquelle est placé le joueur
+     */
     private MapGame map;
 
+    /**
+     * Vitesse de déplacement du personnage
+     */
+    public static final int SPEED = 10;
+
+    /**
+     *
+     * @param map
+     */
     public PlayerGame(MapGame map){
         this.setAnimationPaused(true);
         this.map = map;
     }
 
     /**
-     * Méthode qui permet de centrer la caméra sur le joueur
+     * Méthode pour centrer la caméra du stage qui a le player sur le personnage
      */
     public void center(){
-        /*Camera cam = this.getStage().getCamera();
-        cam.position.x = this.getX();
-        cam.position.y = this.getY();*/
+        Camera cam = this.getStage().getCamera();
+        cam.translate(-cam.position.x,-cam.position.y,0);
     }
 
+    /**
+     * Actionné lorsqu'une touche est appuyé
+     * @param i
+     * @return
+     */
     @Override
     public boolean keyDown(int i) {
+        //position actuelle
         float x = this.getX();
         float y = this.getY();
 
         if (CameraKeys.CAMERA_LEFT.isKey(i)){
-            this.setFacedDirection(Direction.LEFT);
-            if(map.isWalkable(x - 15,y,this)){
-                this.setPosition(x - 15 ,y);
-
-                if(isAnimationPaused()){
+            //on vérifie que la case où l'on compte se rendre est disponible
+            if(map.isWalkable(x - PlayerGame.SPEED,y,this)){
+                this.setPosition(x - PlayerGame.SPEED ,y);
+                //pour changer de sprite proprement
+                if(isAnimationPaused() || this.facedDirection != Direction.LEFT){
                     this.setKeyFrame(3);
                 }
+                //pour centrer la caméra sur le personnage
+                this.getStage().getCamera().translate(-10,0,0);
+
+                this.setFacedDirection(Direction.LEFT);
+                //l'animation n'est plus en pause pour la faire tourner
                 this.setAnimationPaused(false);
                 this.setAnimationLooping(true);
             }
         }else if (CameraKeys.CAMERA_RIGHT.isKey(i)){
-            this.setFacedDirection(Direction.RIGHT);
-            if(map.isWalkable(x + 5,y,this)){
-                this.setPosition(x + 5 ,y);
-                if(isAnimationPaused()){
+            if(map.isWalkable(x + PlayerGame.SPEED,y,this)){
+                this.setPosition(x + PlayerGame.SPEED ,y);
+                if(isAnimationPaused()|| this.facedDirection != Direction.RIGHT){
                     this.setKeyFrame(6);
                 }
+                this.getStage().getCamera().translate(10,0,0);
+                this.setFacedDirection(Direction.RIGHT);
                 this.setAnimationPaused(false);
                 this.setAnimationLooping(true);
             }
         }else if (CameraKeys.CAMERA_UP.isKey(i)){
-            this.setFacedDirection(Direction.TOP);
-            if (map.isWalkable(x,y + 15,this)){
-                this.setPosition(x ,y + 15);
-                if(isAnimationPaused()){
+            if (map.isWalkable(x,y + PlayerGame.SPEED,this)){
+                this.setPosition(x ,y + PlayerGame.SPEED);
+                if(isAnimationPaused() || this.facedDirection != Direction.TOP){
                     this.setKeyFrame(9);
                 }
+                this.getStage().getCamera().translate(0,10,0);
+                this.setFacedDirection(Direction.TOP);
                 this.setAnimationPaused(false);
                 this.setAnimationLooping(true);
             }
         }else if (CameraKeys.CAMERA_DOWN.isKey(i)){
-            this.setFacedDirection(Direction.BOTTOM);
-            if (map.isWalkable(x,y - 15,this)){
-                this.setPosition(x ,y - 15);
-                if(isAnimationPaused()){
+            if (map.isWalkable(x,y - PlayerGame.SPEED,this)){
+                this.setPosition(x ,y - PlayerGame.SPEED);
+                if(isAnimationPaused() || this.facedDirection != Direction.BOTTOM){
                     this.setKeyFrame(0);
                 }
+                this.getStage().getCamera().translate(0,-10,0);
+                this.setFacedDirection(Direction.BOTTOM);
                 this.setAnimationPaused(false);
                 this.setAnimationLooping(true);
             }
@@ -80,16 +109,21 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
         return false;
     }
 
+    /**
+     * Méthode qui est appelé par le stage associé, permet d'afficher les animations
+     * @param delta
+     */
     @Override
     public void act(float delta){
         super.act(delta);
 
         if (this.facedDirection == Direction.LEFT){
+            //on controle les sprites affichés
             if (this.getKeyFrameIndex() > 5){
                 this.setKeyFrame(4);
+                //on met en pause
                 this.setAnimationPaused(true);
-            }
-            if (isAnimationPaused()){
+                //on met un sprite immobile
                 this.setKeyFrame(5);
             }
         }
@@ -98,8 +132,6 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
             if (this.getKeyFrameIndex() > 7){
                 this.setKeyFrame(6);
                 this.setAnimationPaused(true);
-            }
-            if (isAnimationPaused()){
                 this.setKeyFrame(8);
             }
         }
@@ -108,18 +140,14 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
             if (this.getKeyFrameIndex() > 1){
                 this.setKeyFrame(0);
                 this.setAnimationPaused(true);
-            }
-            if (isAnimationPaused()){
                 this.setKeyFrame(2);
             }
         }
 
         if(this.facedDirection == Direction.TOP){
-            if ( this.getKeyFrameIndex() > 11){
+            if ( this.getKeyFrameIndex() > 10){
                 this.setKeyFrame(9);
                 this.setAnimationPaused(true);
-            }
-            if (isAnimationPaused()){
                 this.setKeyFrame(11);
             }
         }
