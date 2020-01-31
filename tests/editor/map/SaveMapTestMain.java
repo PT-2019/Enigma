@@ -1,8 +1,8 @@
 package editor.map;
 
-import editor.utils.map.Map;
-import editor.utils.map.Room;
-import editor.utils.textures.TextureProxy;
+import general.map.model.Map;
+import general.map.model.Room;
+import general.utils.textures.TextureProxy;
 
 public class SaveMapTestMain {
 	public static void main(String[] argv) {

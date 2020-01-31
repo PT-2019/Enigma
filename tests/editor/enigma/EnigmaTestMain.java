@@ -1,10 +1,12 @@
 package editor.enigma;
 
-import editor.enigma.condition.Activated;
-import editor.enigma.operation.Unlock;
-import editor.entity.Player;
-import game.entity.item.Door;
-import game.entity.item.Switch;
+import general.enigmas.Advice;
+import general.enigmas.Enigma;
+import general.enigmas.condition.Activated;
+import general.enigmas.operation.Unlock;
+import general.entities.items.Door;
+import general.entities.items.Switch;
+import general.entities.players.Player;
 
 /**
  * Main énigmes

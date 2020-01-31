@@ -5,31 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0d43d868-60f6-424c-8fd5-45c65ab0347a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Enigma.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Enigma.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/libgdx/LibgdxScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/libgdx/LibgdxScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/menus/enimas/listeners/ConditionListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/menus/enimas/listeners/ConditionListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/EnigmaGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/EnigmaGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/Louka/AbstractMap.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/Louka/EditorMap.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/Louka/GameMap.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/Louka/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/entities/special/Inventory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/Louka/MapObjects.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/map/MapObjects.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/Louka/event/TileEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/enigmas/TileEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/Louka/event/TileEventEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/enigmas/TileEventEnum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/screens/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/screens/GameScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/general/enigmas/condition/Answer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/enigmas/condition/Answer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/general/enigmas/condition/Condition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/enigmas/condition/Condition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/general/enigmas/operation/Operation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/enigmas/operation/Operation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/general/enigmas/operation/Summon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/enigmas/operation/Summon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/general/entities/players/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/entities/players/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/general/entities/players/PlayerGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/entities/players/PlayerGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/general/entities/serialization/PlayerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/entities/serialization/PlayerFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/general/map/AbstractMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/map/AbstractMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/general/map/MapGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/map/GameMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/general/save/MapsNameUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/save/MapsNameUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/actions.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/actions.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/editor/enigma/ConditionsOperationsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/editor/enigma/ConditionsOperationsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/editor/enigma/EnigmaTestMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/editor/enigma/EnigmaTestMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/editor/entity/EntityDisplayTestMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/editor/entity/EntityDisplayTestMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/editor/io/EnigmaJsonTestMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/editor/io/EnigmaJsonTestMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/editor/map/MapLoaderTestMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/editor/map/MapLoaderTestMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/editor/map/MapTestMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/editor/map/MapTestMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/editor/map/SaveMapTestMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/editor/map/SaveMapTestMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/editor/textures/JsonReaderTestMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/editor/textures/JsonReaderTestMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/editor/textures/JsonTextureLoaderTestMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/editor/textures/JsonTextureLoaderTestMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/editor/textures/TextureProxyTestMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/editor/textures/TextureProxyTestMain.java" afterDir="false" />
     </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <ignored path="$PROJECT_DIR$/libs/packer/" />
+    <ignored path="$PROJECT_DIR$/src/item/" />
+    <ignored path="$PROJECT_DIR$/build/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -52,6 +45,9 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -67,8 +63,25 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="senecat/playergame" />
+        <entry key="$PROJECT_DIR$" value="QuentinRa/editor" />
       </map>
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/tests/editor/map/MapTestMain.java" />
+        <option value="$PROJECT_DIR$/tests/editor/enigma/ConditionsOperationsTest.java" />
+        <option value="$PROJECT_DIR$/tests/editor/enigma/EnigmaTestMain.java" />
+        <option value="$PROJECT_DIR$/tests/editor/entity/EntityDisplayTestMain.java" />
+        <option value="$PROJECT_DIR$/tests/editor/io/EnigmaJsonTestMain.java" />
+        <option value="$PROJECT_DIR$/tests/editor/map/MapLoaderTestMain.java" />
+        <option value="$PROJECT_DIR$/tests/editor/map/SaveMapTestMain.java" />
+        <option value="$PROJECT_DIR$/tests/editor/textures/JsonReaderTestMain.java" />
+        <option value="$PROJECT_DIR$/tests/editor/textures/JsonTextureLoaderTestMain.java" />
+        <option value="$PROJECT_DIR$/tests/editor/textures/TextureProxyTestMain.java" />
+        <option value="$PROJECT_DIR$/assets/actions.json" />
+      </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
@@ -78,6 +91,36 @@
     <option name="height" value="876" />
   </component>
   <component name="ProjectId" id="1T4PWZYsjf2nuTU9Vgk0aB5pF47" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+    </panes>
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -92,7 +135,7 @@
     <property name="jdk.selected.JAVA_MODULE" value="11" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/editor/entity" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/assets" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
@@ -136,7 +179,33 @@
       <recent name="game.utils" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="EnigmaFastGame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="EnigmaFastGame" />
+      <module name="Enigma" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value=".*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="com.soywiz.korge.intellij.UpdateResourceBeforeRunTask" enabled="false" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="Enigma" />
@@ -145,8 +214,27 @@
         <option name="com.soywiz.korge.intellij.UpdateResourceBeforeRunTask" enabled="false" />
       </method>
     </configuration>
+    <configuration name="MapTestMain" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Enigma" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="editor.map.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="editor.map" />
+      <option name="MAIN_CLASS_NAME" value="editor.map.MapTestMain" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.MapTestMain" />
+        <item itemvalue="Application.EnigmaFastGame" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -203,6 +291,39 @@
       <is-autoscroll-to-source value="true" />
     </todo-panel>
   </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
+    <layout>
+      <window_info id="Favorites" side_tool="true" />
+      <window_info id="Image Layers" />
+      <window_info id="Designer" />
+      <window_info id="UI Designer" />
+      <window_info id="Capture Tool" />
+      <window_info id="Learn" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" weight="0.32949308" />
+      <window_info anchor="bottom" id="Messages" weight="0.32949308" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Palette" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="right" id="Maven" />
+      <window_info anchor="right" id="make" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
@@ -212,6 +333,12 @@
         <entry key="MAIN">
           <value>
             <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
               <option name="COLUMN_ORDER" />
             </State>
           </value>
@@ -238,92 +365,262 @@
     <option name="LAST_COMMIT_MESSAGE" value="Fix commit Loïc" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2218" y="184" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1580472074271" />
-    <state x="2218" y="184" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" timestamp="1580472074272" />
-    <state x="2218" y="184" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1580472074272" />
-    <state x="766" y="244" width="380" height="577" key="#com.intellij.ide.util.MemberChooser" timestamp="1580472074272" />
-    <state x="766" y="244" key="#com.intellij.ide.util.MemberChooser/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" timestamp="1580472074272" />
-    <state x="766" y="244" width="380" height="577" key="#com.intellij.ide.util.MemberChooser/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1580472074272" />
-    <state x="691" y="310" width="530" height="445" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1580472074272" />
-    <state x="691" y="310" width="530" height="445" key="#com.intellij.ide.util.PackageChooserDialog/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1580472074272" />
-    <state width="1878" height="339" key="GridCell.Tab.0.bottom" timestamp="1580486753441">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1878" height="306" key="GridCell.Tab.0.bottom/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" timestamp="1580472074272" />
-    <state width="1638" height="306" key="GridCell.Tab.0.bottom/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1580472074272" />
-    <state width="1638" height="327" key="GridCell.Tab.0.bottom/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" timestamp="1580474477147" />
-    <state width="1878" height="339" key="GridCell.Tab.0.bottom/1920.0.1280.1024/0.0.1920.1080@0.0.1920.1080" timestamp="1580486753441" />
-    <state width="1878" height="306" key="GridCell.Tab.0.bottom/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1580472074272" />
-    <state width="1638" height="278" key="GridCell.Tab.0.bottom/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1580472074272" />
-    <state width="1878" height="339" key="GridCell.Tab.0.center" timestamp="1580486753440">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1878" height="306" key="GridCell.Tab.0.center/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" timestamp="1580472074272" />
-    <state width="1638" height="306" key="GridCell.Tab.0.center/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1580472074272" />
-    <state width="1638" height="327" key="GridCell.Tab.0.center/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" timestamp="1580474477147" />
-    <state width="1878" height="339" key="GridCell.Tab.0.center/1920.0.1280.1024/0.0.1920.1080@0.0.1920.1080" timestamp="1580486753440" />
-    <state width="1878" height="306" key="GridCell.Tab.0.center/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1580472074272" />
-    <state width="1638" height="278" key="GridCell.Tab.0.center/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1580472074272" />
-    <state width="1878" height="339" key="GridCell.Tab.0.left" timestamp="1580486753440">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1878" height="306" key="GridCell.Tab.0.left/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" timestamp="1580472074272" />
-    <state width="1638" height="306" key="GridCell.Tab.0.left/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1580472074272" />
-    <state width="1638" height="327" key="GridCell.Tab.0.left/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" timestamp="1580474477147" />
-    <state width="1878" height="339" key="GridCell.Tab.0.left/1920.0.1280.1024/0.0.1920.1080@0.0.1920.1080" timestamp="1580486753440" />
-    <state width="1878" height="306" key="GridCell.Tab.0.left/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1580472074272" />
-    <state width="1638" height="278" key="GridCell.Tab.0.left/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1580472074272" />
-    <state width="1878" height="339" key="GridCell.Tab.0.right" timestamp="1580486753440">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state width="1878" height="306" key="GridCell.Tab.0.right/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" timestamp="1580472074272" />
-    <state width="1638" height="306" key="GridCell.Tab.0.right/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1580472074272" />
-    <state width="1638" height="327" key="GridCell.Tab.0.right/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" timestamp="1580474477147" />
-    <state width="1878" height="339" key="GridCell.Tab.0.right/1920.0.1280.1024/0.0.1920.1080@0.0.1920.1080" timestamp="1580486753440" />
-    <state width="1878" height="306" key="GridCell.Tab.0.right/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1580472074272" />
-    <state width="1638" height="278" key="GridCell.Tab.0.right/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1580472074272" />
-    <state x="321" y="94" width="1030" height="851" key="MergeDialog" timestamp="1580473917709">
-      <screen x="0" y="0" width="1680" height="1050" />
-    </state>
-    <state x="321" y="94" width="1030" height="851" key="MergeDialog/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" timestamp="1580473917709" />
-    <state x="547" y="236" width="582" height="565" key="MultipleFileMergeDialog" timestamp="1580473917711">
-      <screen x="0" y="0" width="1680" height="1050" />
-    </state>
-    <state x="547" y="236" width="582" height="565" key="MultipleFileMergeDialog/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" timestamp="1580473917711" />
-    <state x="1926" y="104" width="1030" height="847" key="SettingsEditor" timestamp="1580473934434">
-      <screen x="1680" y="0" width="1280" height="1024" />
-    </state>
-    <state x="2243" y="104" width="1030" height="847" key="SettingsEditor/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1580472074272" />
-    <state x="1926" y="104" width="1030" height="847" key="SettingsEditor/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" timestamp="1580473934434" />
-    <state x="2243" y="104" key="SettingsEditor/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1580472074272" />
-    <state width="498" height="445" key="SwitcherDM" timestamp="1580474405831">
-      <screen x="0" y="0" width="1680" height="1050" />
-    </state>
-    <state width="498" height="445" key="SwitcherDM/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" timestamp="1580474405831" />
-    <state x="626" y="353" key="com.intellij.ide.util.TipDialog" timestamp="1580483647902">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="626" y="358" key="com.intellij.ide.util.TipDialog/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" timestamp="1580472074272" />
-    <state x="2468" y="343" key="com.intellij.ide.util.TipDialog/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1580472074272" />
-    <state x="626" y="353" key="com.intellij.ide.util.TipDialog/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" timestamp="1580472743773" />
-    <state x="626" y="353" key="com.intellij.ide.util.TipDialog/1920.0.1280.1024/0.0.1920.1080@0.0.1920.1080" timestamp="1580483647902" />
-    <state x="626" y="358" key="com.intellij.ide.util.TipDialog/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1580472074272" />
-    <state x="626" y="358" key="com.intellij.ide.util.TipDialog/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1580472074272" />
-    <state x="2530" y="232" width="455" height="591" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1580472074272" />
-    <state x="2530" y="232" width="455" height="591" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1580472074272" />
-    <state x="2515" y="156" width="692" height="819" key="find.popup" timestamp="1580472074272" />
-    <state x="680" y="180" width="692" height="780" key="find.popup/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" timestamp="1580472074272" />
-    <state x="2515" y="156" width="692" height="819" key="find.popup/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1580472074272" />
-    <state x="680" y="180" width="692" height="780" key="find.popup/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1580472074272" />
-    <state x="2414" y="136" width="692" height="780" key="find.popup/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1580472074272" />
-    <state x="619" y="242" width="672" height="677" key="run.anything.popup" timestamp="1580472074272" />
-    <state x="619" y="242" width="672" height="677" key="run.anything.popup/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1580472074272" />
-    <state x="2462" y="172" width="672" height="658" key="search.everywhere.popup" timestamp="1580473017265">
-      <screen x="1680" y="0" width="1280" height="1024" />
-    </state>
-    <state x="619" y="195" width="672" height="626" key="search.everywhere.popup/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" timestamp="1580472074272" />
-    <state x="2462" y="172" width="672" height="658" key="search.everywhere.popup/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1580472074272" />
-    <state x="2462" y="172" width="672" height="658" key="search.everywhere.popup/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" timestamp="1580473017265" />
-    <state x="619" y="177" width="672" height="676" key="search.everywhere.popup/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1580472074272" />
+    <state x="2218" y="184" key="#com.intellij.execution.impl.EditConfigurationsDialog" />
+    <state x="2218" y="184" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" />
+    <state x="2218" y="184" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" />
+    <state x="766" y="244" width="380" height="577" key="#com.intellij.ide.util.MemberChooser" />
+    <state x="766" y="244" key="#com.intellij.ide.util.MemberChooser/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" />
+    <state x="766" y="244" width="380" height="577" key="#com.intellij.ide.util.MemberChooser/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" />
+    <state x="691" y="310" width="530" height="445" key="#com.intellij.ide.util.PackageChooserDialog" />
+    <state x="691" y="310" width="530" height="445" key="#com.intellij.ide.util.PackageChooserDialog/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" />
+    <state width="1878" height="339" key="GridCell.Tab.0.bottom" />
+    <state width="1878" height="306" key="GridCell.Tab.0.bottom/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" />
+    <state width="1638" height="306" key="GridCell.Tab.0.bottom/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
+    <state width="1638" height="327" key="GridCell.Tab.0.bottom/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" />
+    <state width="1878" height="339" key="GridCell.Tab.0.bottom/1920.0.1280.1024/0.0.1920.1080@0.0.1920.1080" />
+    <state width="1878" height="306" key="GridCell.Tab.0.bottom/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" />
+    <state width="1638" height="278" key="GridCell.Tab.0.bottom/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" />
+    <state width="1878" height="339" key="GridCell.Tab.0.center" />
+    <state width="1878" height="306" key="GridCell.Tab.0.center/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" />
+    <state width="1638" height="306" key="GridCell.Tab.0.center/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
+    <state width="1638" height="327" key="GridCell.Tab.0.center/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" />
+    <state width="1878" height="339" key="GridCell.Tab.0.center/1920.0.1280.1024/0.0.1920.1080@0.0.1920.1080" />
+    <state width="1878" height="306" key="GridCell.Tab.0.center/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" />
+    <state width="1638" height="278" key="GridCell.Tab.0.center/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" />
+    <state width="1878" height="339" key="GridCell.Tab.0.left" />
+    <state width="1878" height="306" key="GridCell.Tab.0.left/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" />
+    <state width="1638" height="306" key="GridCell.Tab.0.left/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
+    <state width="1638" height="327" key="GridCell.Tab.0.left/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" />
+    <state width="1878" height="339" key="GridCell.Tab.0.left/1920.0.1280.1024/0.0.1920.1080@0.0.1920.1080" />
+    <state width="1878" height="306" key="GridCell.Tab.0.left/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" />
+    <state width="1638" height="278" key="GridCell.Tab.0.left/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" />
+    <state width="1878" height="339" key="GridCell.Tab.0.right" />
+    <state width="1878" height="306" key="GridCell.Tab.0.right/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" />
+    <state width="1638" height="306" key="GridCell.Tab.0.right/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
+    <state width="1638" height="327" key="GridCell.Tab.0.right/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" />
+    <state width="1878" height="339" key="GridCell.Tab.0.right/1920.0.1280.1024/0.0.1920.1080@0.0.1920.1080" />
+    <state width="1878" height="306" key="GridCell.Tab.0.right/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" />
+    <state width="1638" height="278" key="GridCell.Tab.0.right/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" />
+    <state x="321" y="94" width="1030" height="851" key="MergeDialog" />
+    <state x="321" y="94" width="1030" height="851" key="MergeDialog/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" />
+    <state x="547" y="236" width="582" height="565" key="MultipleFileMergeDialog" />
+    <state x="547" y="236" width="582" height="565" key="MultipleFileMergeDialog/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" />
+    <state x="1926" y="104" width="1030" height="847" key="SettingsEditor" />
+    <state x="2243" y="104" width="1030" height="847" key="SettingsEditor/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
+    <state x="1926" y="104" width="1030" height="847" key="SettingsEditor/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" />
+    <state x="2243" y="104" key="SettingsEditor/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" />
+    <state width="498" height="445" key="SwitcherDM" />
+    <state width="498" height="445" key="SwitcherDM/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" />
+    <state x="626" y="353" key="com.intellij.ide.util.TipDialog" />
+    <state x="626" y="358" key="com.intellij.ide.util.TipDialog/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" />
+    <state x="2468" y="343" key="com.intellij.ide.util.TipDialog/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
+    <state x="626" y="353" key="com.intellij.ide.util.TipDialog/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" />
+    <state x="626" y="353" key="com.intellij.ide.util.TipDialog/1920.0.1280.1024/0.0.1920.1080@0.0.1920.1080" />
+    <state x="626" y="358" key="com.intellij.ide.util.TipDialog/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" />
+    <state x="626" y="358" key="com.intellij.ide.util.TipDialog/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" />
+    <state x="2530" y="232" width="455" height="591" key="com.intellij.testIntegration.createTest.CreateTestDialog" />
+    <state x="2530" y="232" width="455" height="591" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
+    <state x="2515" y="156" width="692" height="819" key="find.popup" />
+    <state x="680" y="180" width="692" height="780" key="find.popup/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" />
+    <state x="2515" y="156" width="692" height="819" key="find.popup/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
+    <state x="680" y="180" width="692" height="780" key="find.popup/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" />
+    <state x="2414" y="136" width="692" height="780" key="find.popup/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" />
+    <state x="619" y="242" width="672" height="677" key="run.anything.popup" />
+    <state x="619" y="242" width="672" height="677" key="run.anything.popup/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" />
+    <state x="2462" y="172" width="672" height="658" key="search.everywhere.popup" />
+    <state x="619" y="195" width="672" height="626" key="search.everywhere.popup/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" />
+    <state x="2462" y="172" width="672" height="658" key="search.everywhere.popup/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
+    <state x="2462" y="172" width="672" height="658" key="search.everywhere.popup/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" />
+    <state x="619" y="177" width="672" height="676" key="search.everywhere.popup/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/tests/editor/map/MapTestMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="9" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/editor/enigma/EnigmaTestMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/editor/entity/EntityDisplayTestMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="11" lean-forward="true" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/editor/enigma/ConditionsOperationsTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="31" lean-forward="true" selection-start-line="29" selection-start-column="31" selection-end-line="29" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/editor/io/EnigmaJsonTestMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="114" column="27" selection-start-line="114" selection-start-column="27" selection-end-line="114" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1176#1184#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/editor/map/MapLoaderTestMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/editor/map/SaveMapTestMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" column="8" lean-forward="true" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/editor/textures/JsonReaderTestMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/editor/textures/JsonTextureLoaderTestMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="42" lean-forward="true" selection-start-line="20" selection-start-column="42" selection-end-line="20" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/editor/textures/Panneau.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="16" column="12" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/editor/textures/TextureProxyTestMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="9" lean-forward="true" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/actions.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="12" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/entities.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>Enigma</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>

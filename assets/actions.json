@@ -1,10 +1,5 @@
 {
   content: [
-    /*{
-      path: assets/map/datas/actions/start.png
-      hover: emplacement début partie joueurs
-      category: ACTIONS
-    },*/
     {
       className: general.entities.special.GameExit
       path: assets/map/datas/actions/exit.png
