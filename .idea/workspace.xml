@@ -4,31 +4,112 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0d43d868-60f6-424c-8fd5-45c65ab0347a" name="Default Changelist" comment="">
+    <list default="true" id="ae09cfc3-8c68-40f7-a6e1-cb32552840e9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Enigma.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Enigma.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/libgdx/LibgdxScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/libgdx/LibgdxScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/menus/enimas/listeners/ConditionListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/menus/enimas/listeners/ConditionListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/EnigmaFastGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/EnigmaFastGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/libgdx/actor/GameActor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/libgdx/actor/GameActor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/libgdx/actor/GameActorAnimation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/libgdx/actor/GameActorAnimation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/utils/Utility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/utils/Utility.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datas/Direction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/Direction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datas/EditorState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/EditorState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datas/EnigmaScreens.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/EnigmaScreens.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datas/EntitiesCategories.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/EntitiesCategories.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datas/Layer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/Layer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datas/Orientation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/Orientation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datas/TypeEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/TypeEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datas/config/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/config/Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datas/config/EnigmaUIValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/config/EnigmaUIValues.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datas/config/GameConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/config/GameConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datas/config/UserConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/config/UserConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datas/keys/CameraKeys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/keys/CameraKeys.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datas/keys/EnigmaKeys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/keys/EnigmaKeys.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/datas/keys/Readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/keys/Readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/EditorLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/EditorLauncher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/EditorScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/EditorScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/bar/BarMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/BarMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/bar/listeners/BrushListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/listeners/BrushListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/bar/listeners/CreateListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/listeners/CreateListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/bar/listeners/EraserListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/listeners/EraserListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/bar/listeners/MoveListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/listeners/MoveListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/bar/listeners/OpenListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/listeners/OpenListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/bar/listeners/SaveListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/listeners/SaveListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/menus/AvailablePopUpOption.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/menus/AvailablePopUpOption.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/menus/MenuPopUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/menus/MenuPopUp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/menus/enimas/view/CluePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/menus/enimas/view/CluePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/menus/enimas/view/EnigmaMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/menus/enimas/view/EnigmaMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/menus/others/SetAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/menus/others/SetAccess.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/popup/PopMenuListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/popup/PopMenuListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/popup/cases/CasePopUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/popup/cases/CasePopUp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/popup/cases/SpecialPopUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/popup/cases/SpecialPopUp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/popup/cases/panel/NavigationPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/popup/cases/panel/NavigationPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/popup/listeners/CaseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/popup/listeners/CaseListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/popup/listeners/PopItemListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/popup/listeners/PopItemListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game/EnigmaGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/EnigmaGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/Louka/AbstractMap.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/Louka/EditorMap.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/Louka/GameMap.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/Louka/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/entities/special/Inventory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/Louka/MapObjects.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/map/MapObjects.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/Louka/event/TileEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/enigmas/TileEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/Louka/event/TileEventEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/enigmas/TileEventEnum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/screens/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/screens/GameScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/general/enigmas/condition/Answer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/enigmas/condition/Answer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/general/enigmas/condition/Condition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/enigmas/condition/Condition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/general/enigmas/operation/Operation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/enigmas/operation/Operation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/general/enigmas/operation/Summon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/enigmas/operation/Summon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/EnigmaGameLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/EnigmaGameLauncher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/configure/displayManagers/lowLevel/CreateGameDisplayManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/configure/displayManagers/lowLevel/CreateGameDisplayManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/configure/displayManagers/lowLevel/JoinGameDisplayManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/configure/displayManagers/lowLevel/JoinGameDisplayManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/configure/displayManagers/lowLevel/SelectGameDisplayManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/configure/displayManagers/lowLevel/SelectGameDisplayManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/configure/displayManagers/lowLevel/WaitPlayersDisplayManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/configure/displayManagers/lowLevel/WaitPlayersDisplayManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/configure/displayManagers/lowLevel/WaitPlayersLeaderDisplayManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/configure/displayManagers/lowLevel/WaitPlayersLeaderDisplayManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/configure/managers/configurations/ChangeDescription.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/configure/managers/configurations/ChangeDescription.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/configure/managers/configurations/ChangeDuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/configure/managers/configurations/ChangeDuration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/configure/managers/configurations/ChangeMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/configure/managers/configurations/ChangeMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/configure/managers/configurations/ChangeMaxPlayers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/configure/managers/configurations/ChangeMaxPlayers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/configure/managers/configurations/ChangeName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/configure/managers/configurations/ChangeName.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/configure/managers/configurations/ChangeType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/configure/managers/configurations/ChangeType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/configure/managers/redirect/StartGameRedirect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/configure/managers/redirect/StartGameRedirect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/dnd/DragAndDrop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/dnd/DragAndDrop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/dnd/DragAndDropBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/dnd/DragAndDropBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/gui/CategoriesMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/gui/CategoriesMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/screens/TestScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/screens/TestScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/DesktopLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/DesktopLauncher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/entities/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/entities/GameObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/entities/consumable/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/entities/consumable/Book.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/entities/consumable/Key.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/entities/consumable/Key.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/entities/items/Button.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/entities/items/Button.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/entities/items/Chest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/entities/items/Chest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/entities/items/Door.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/entities/items/Door.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/entities/items/Floor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/entities/items/Floor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/entities/items/Library.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/entities/items/Library.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/entities/items/Pane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/entities/items/Pane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/entities/items/PressurePlate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/entities/items/PressurePlate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/entities/items/Switch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/entities/items/Switch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/entities/players/Monster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/entities/players/Monster.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/entities/players/NPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/entities/players/NPC.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/general/entities/players/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/entities/players/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/general/entities/players/PlayerGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/entities/players/PlayerGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/entities/serialization/EntityFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/entities/serialization/EntityFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/entities/serialization/EntitySerializable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/entities/serialization/EntitySerializable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/general/entities/serialization/PlayerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/entities/serialization/PlayerFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/general/map/AbstractMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/map/AbstractMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/general/map/MapGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/map/GameMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/general/save/MapsNameUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/save/MapsNameUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/entities/special/GameExit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/entities/special/GameExit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/entities/special/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/entities/special/Room.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/entities/types/AbstractGameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/entities/types/AbstractGameObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/hud/EnigmaAlert.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/hud/EnigmaAlert.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/hud/EnigmaOptionPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/hud/EnigmaOptionPane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/hud/EnigmaWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/hud/EnigmaWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/hud/ui/EnigmaButtonUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/hud/ui/EnigmaButtonUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/hud/ui/EnigmaComboBoxUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/hud/ui/EnigmaComboBoxUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/hud/ui/EnigmaJCheckBoxUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/hud/ui/EnigmaJCheckBoxUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/hud/ui/EnigmaJComboBoxUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/hud/ui/EnigmaJComboBoxUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/hud/ui/EnigmaLabelUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/hud/ui/EnigmaLabelUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/hud/ui/EnigmaMenuBarUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/hud/ui/EnigmaMenuBarUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/hud/ui/EnigmaMenuItemUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/hud/ui/EnigmaMenuItemUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/hud/ui/EnigmaMenuUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/hud/ui/EnigmaMenuUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/hud/ui/EnigmaPanelUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/hud/ui/EnigmaPanelUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/hud/ui/EnigmaPopupMenuUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/hud/ui/EnigmaPopupMenuUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/hud/ui/EnigmaTextAreaUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/hud/ui/EnigmaTextAreaUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/language/GameLanguage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/language/GameLanguage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/map/GameMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/map/GameMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/map/MapTestScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/map/MapTestScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/map/model/Case.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/map/model/Case.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/map/model/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/map/model/Map.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/map/model/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/map/model/Room.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/save/EmptyMapGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/save/EmptyMapGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/save/LoadHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/save/LoadHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/save/SaveMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/save/SaveMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/utils/FromTmxToJson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/utils/FromTmxToJson.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/general/utils/dnd/ChoixObjet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/general/utils/dnd/ChoixObjet.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,18 +145,12 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="senecat/playergame" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1300" />
-    <option name="height" value="876" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1T4PWZYsjf2nuTU9Vgk0aB5pF47" />
   <component name="ProjectViewState">
@@ -147,6 +222,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -246,38 +322,38 @@
     <state x="766" y="244" width="380" height="577" key="#com.intellij.ide.util.MemberChooser/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1580472074272" />
     <state x="691" y="310" width="530" height="445" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1580472074272" />
     <state x="691" y="310" width="530" height="445" key="#com.intellij.ide.util.PackageChooserDialog/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1580472074272" />
-    <state width="1878" height="339" key="GridCell.Tab.0.bottom" timestamp="1580486753441">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state width="1638" height="339" key="GridCell.Tab.0.bottom" timestamp="1580492373149">
+      <screen x="1920" y="0" width="1680" height="1050" />
     </state>
     <state width="1878" height="306" key="GridCell.Tab.0.bottom/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" timestamp="1580472074272" />
-    <state width="1638" height="306" key="GridCell.Tab.0.bottom/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1580472074272" />
+    <state width="1638" height="339" key="GridCell.Tab.0.bottom/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1580492373149" />
     <state width="1638" height="327" key="GridCell.Tab.0.bottom/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" timestamp="1580474477147" />
     <state width="1878" height="339" key="GridCell.Tab.0.bottom/1920.0.1280.1024/0.0.1920.1080@0.0.1920.1080" timestamp="1580486753441" />
     <state width="1878" height="306" key="GridCell.Tab.0.bottom/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1580472074272" />
     <state width="1638" height="278" key="GridCell.Tab.0.bottom/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1580472074272" />
-    <state width="1878" height="339" key="GridCell.Tab.0.center" timestamp="1580486753440">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state width="1638" height="339" key="GridCell.Tab.0.center" timestamp="1580492373149">
+      <screen x="1920" y="0" width="1680" height="1050" />
     </state>
     <state width="1878" height="306" key="GridCell.Tab.0.center/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" timestamp="1580472074272" />
-    <state width="1638" height="306" key="GridCell.Tab.0.center/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1580472074272" />
+    <state width="1638" height="339" key="GridCell.Tab.0.center/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1580492373149" />
     <state width="1638" height="327" key="GridCell.Tab.0.center/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" timestamp="1580474477147" />
     <state width="1878" height="339" key="GridCell.Tab.0.center/1920.0.1280.1024/0.0.1920.1080@0.0.1920.1080" timestamp="1580486753440" />
     <state width="1878" height="306" key="GridCell.Tab.0.center/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1580472074272" />
     <state width="1638" height="278" key="GridCell.Tab.0.center/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1580472074272" />
-    <state width="1878" height="339" key="GridCell.Tab.0.left" timestamp="1580486753440">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state width="1638" height="339" key="GridCell.Tab.0.left" timestamp="1580492373149">
+      <screen x="1920" y="0" width="1680" height="1050" />
     </state>
     <state width="1878" height="306" key="GridCell.Tab.0.left/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" timestamp="1580472074272" />
-    <state width="1638" height="306" key="GridCell.Tab.0.left/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1580472074272" />
+    <state width="1638" height="339" key="GridCell.Tab.0.left/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1580492373149" />
     <state width="1638" height="327" key="GridCell.Tab.0.left/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" timestamp="1580474477147" />
     <state width="1878" height="339" key="GridCell.Tab.0.left/1920.0.1280.1024/0.0.1920.1080@0.0.1920.1080" timestamp="1580486753440" />
     <state width="1878" height="306" key="GridCell.Tab.0.left/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1580472074272" />
     <state width="1638" height="278" key="GridCell.Tab.0.left/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1580472074272" />
-    <state width="1878" height="339" key="GridCell.Tab.0.right" timestamp="1580486753440">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state width="1638" height="339" key="GridCell.Tab.0.right" timestamp="1580492373149">
+      <screen x="1920" y="0" width="1680" height="1050" />
     </state>
     <state width="1878" height="306" key="GridCell.Tab.0.right/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" timestamp="1580472074272" />
-    <state width="1638" height="306" key="GridCell.Tab.0.right/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1580472074272" />
+    <state width="1638" height="339" key="GridCell.Tab.0.right/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1580492373149" />
     <state width="1638" height="327" key="GridCell.Tab.0.right/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" timestamp="1580474477147" />
     <state width="1878" height="339" key="GridCell.Tab.0.right/1920.0.1280.1024/0.0.1920.1080@0.0.1920.1080" timestamp="1580486753440" />
     <state width="1878" height="306" key="GridCell.Tab.0.right/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1580472074272" />

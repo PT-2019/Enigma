@@ -1,8 +1,8 @@
 package game.configure.displayManagers.lowLevel;
 
-import datas.config.EnigmaUIValues;
-import datas.config.GameConfiguration;
-import datas.config.UserConfiguration;
+import data.config.EnigmaUIValues;
+import data.config.GameConfiguration;
+import data.config.UserConfiguration;
 import game.configure.LaunchGameDisplay;
 import game.configure.managers.redirect.Redirect;
 import general.entities.players.Player;

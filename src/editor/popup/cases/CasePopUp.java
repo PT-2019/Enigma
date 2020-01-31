@@ -3,7 +3,7 @@ package editor.popup.cases;
 import api.utils.Utility;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import datas.Layer;
+import data.Layer;
 import editor.EditorLauncher;
 import editor.menus.AvailableOptionRunnable;
 import editor.menus.AvailablePopUpOption;

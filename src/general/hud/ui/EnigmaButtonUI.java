@@ -1,7 +1,7 @@
 package general.hud.ui;
 
 import api.hud.ui.CustomButtonUI;
-import datas.config.EnigmaUIValues;
+import data.config.EnigmaUIValues;
 
 import java.awt.Cursor;
 

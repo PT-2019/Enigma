@@ -2,7 +2,7 @@ package game;
 
 import api.Application;
 import api.hud.CustomWindow;
-import datas.EnigmaScreens;
+import data.EnigmaScreens;
 import game.configure.LaunchGameDisplay;
 import general.hud.EnigmaWindow;
 

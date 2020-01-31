@@ -1,7 +1,7 @@
 package game.configure.displayManagers.lowLevel;
 
 import api.hud.manager.CheckBoxManager;
-import datas.config.EnigmaUIValues;
+import data.config.EnigmaUIValues;
 import game.configure.LaunchGameDisplay;
 import game.configure.managers.redirect.DeleteGameRedirect;
 import game.configure.managers.redirect.Redirect;

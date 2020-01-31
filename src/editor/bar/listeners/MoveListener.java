@@ -1,6 +1,6 @@
 package editor.bar.listeners;
 
-import datas.EditorState;
+import data.EditorState;
 import editor.EditorLauncher;
 import game.screens.TestScreen;
 import general.hud.EnigmaWindow;

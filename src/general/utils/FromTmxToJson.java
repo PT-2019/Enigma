@@ -3,7 +3,7 @@ package general.utils;
 import api.utils.annotations.ConvenienceClass;
 import api.utils.annotations.ConvenienceMethod;
 import com.badlogic.gdx.math.Vector2;
-import datas.Layer;
+import data.Layer;
 import general.map.model.Map;
 import general.save.MapLoader;
 import general.utils.textures.Texture;

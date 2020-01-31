@@ -2,8 +2,8 @@ package general.entities.serialization;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-import datas.EntitiesCategories;
-import datas.Layer;
+import data.EntitiesCategories;
+import data.Layer;
 
 import java.util.HashMap;
 
@@ -130,7 +130,7 @@ public class EntitySerializable {
 	 *
 	 * @param layer le niveau
 	 * @return Retourne un tableau de tiles TILED représentant l'entité
-	 * @see datas.Layer
+	 * @see data.Layer
 	 * @since 3.0
 	 */
 	public Array<Float> getTiles(Layer layer) {

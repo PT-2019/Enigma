@@ -1,7 +1,7 @@
 package editor.bar;
 
 import com.badlogic.gdx.Gdx;
-import datas.EnigmaScreens;
+import data.EnigmaScreens;
 import editor.bar.listeners.CreateListener;
 import editor.bar.listeners.OpenListener;
 import game.EnigmaGame;

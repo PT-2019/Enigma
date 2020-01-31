@@ -2,8 +2,8 @@ package editor.bar.listeners;
 
 import api.utils.Utility;
 import com.badlogic.gdx.Gdx;
-import datas.EnigmaScreens;
-import datas.config.Config;
+import data.EnigmaScreens;
+import data.config.Config;
 import game.EnigmaGame;
 import game.screens.TestScreen;
 import general.hud.EnigmaLabel;

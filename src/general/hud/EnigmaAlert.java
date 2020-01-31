@@ -3,7 +3,7 @@ package general.hud;
 import api.hud.CustomAlert;
 import api.hud.CustomMenuBar;
 import api.hud.ui.CustomMenuBarUI;
-import datas.config.Config;
+import data.config.Config;
 
 import javax.swing.ImageIcon;
 

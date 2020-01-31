@@ -1,8 +1,8 @@
 package editor.bar.listeners;
 
 import com.badlogic.gdx.Gdx;
-import datas.EnigmaScreens;
-import datas.config.Config;
+import data.EnigmaScreens;
+import data.config.Config;
 import game.EnigmaGame;
 import general.hud.EnigmaWindow;
 import general.save.EmptyMapGenerator;

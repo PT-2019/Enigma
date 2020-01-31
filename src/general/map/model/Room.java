@@ -1,7 +1,7 @@
 package general.map.model;
 
-import datas.Direction;
-import datas.Layer;
+import data.Direction;
+import data.Layer;
 import general.entities.types.IDInterface;
 import general.utils.textures.Texture;
 

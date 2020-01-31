@@ -5,10 +5,9 @@ import api.libgdx.LibgdxGame;
 import api.utils.annotations.NeedPatch;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
-import datas.EnigmaScreens;
+import data.EnigmaScreens;
 import game.screens.GameScreen;
 import game.screens.TestScreen;
-import general.map.AbstractMap;
 
 /**
  * Lanceur du jeu

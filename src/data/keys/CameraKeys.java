@@ -1,4 +1,4 @@
-package datas.keys;
+package data.keys;
 
 import com.badlogic.gdx.Input.Keys;
 

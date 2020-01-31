@@ -5,7 +5,7 @@ import api.utils.annotations.ConvenienceClass;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-import datas.Layer;
+import data.Layer;
 import general.entities.GameObject;
 
 import java.util.HashMap;

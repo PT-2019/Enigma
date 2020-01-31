@@ -1,4 +1,4 @@
-package datas.config;
+package data.config;
 
 import general.entities.players.Player;
 

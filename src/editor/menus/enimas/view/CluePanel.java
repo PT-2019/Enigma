@@ -2,7 +2,7 @@ package editor.menus.enimas.view;
 
 import api.hud.base.ResetComponent;
 import api.utils.Observer;
-import datas.config.EnigmaUIValues;
+import data.config.EnigmaUIValues;
 import editor.menus.enimas.listeners.ClueListener;
 import editor.popup.cases.panel.MenuPanel;
 import general.entities.GameObject;

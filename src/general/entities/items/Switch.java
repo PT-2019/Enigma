@@ -1,6 +1,6 @@
 package general.entities.items;
 
-import datas.TypeEntity;
+import data.TypeEntity;
 import general.entities.types.Activatable;
 import general.language.GameFields;
 import general.language.GameLanguage;

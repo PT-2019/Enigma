@@ -1,4 +1,4 @@
-package datas.keys;
+package data.keys;
 
 /**
  * Interface qui représente les touches du jeu

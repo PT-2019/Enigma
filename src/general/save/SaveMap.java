@@ -12,7 +12,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.maps.tiled.TiledMapTileSets;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-import datas.Layer;
+import data.Layer;
 import general.entities.GameObject;
 import general.map.model.Case;
 import general.map.model.Map;
@@ -34,7 +34,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static datas.config.Config.DTD_FOLDER_RELATIVE_TO_MAP;
+import static data.config.Config.DTD_FOLDER_RELATIVE_TO_MAP;
 
 /**
  * Sauvegarde une map et les textures associés.

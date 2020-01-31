@@ -4,8 +4,8 @@ import api.libgdx.actor.GameActorAnimation;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Camera;
-import datas.Direction;
-import datas.keys.CameraKeys;
+import data.Direction;
+import data.keys.CameraKeys;
 import general.map.GameMap;
 
 /**

@@ -1,6 +1,6 @@
 package editor.menus;
 
-import datas.TypeEntity;
+import data.TypeEntity;
 import general.entities.GameObject;
 
 import java.util.ArrayList;

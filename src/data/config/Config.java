@@ -1,4 +1,4 @@
-package datas.config;
+package data.config;
 
 import api.utils.AsciiColor;
 import api.utils.annotations.NeedPatch;

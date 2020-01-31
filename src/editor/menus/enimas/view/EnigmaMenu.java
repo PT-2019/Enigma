@@ -1,6 +1,6 @@
 package editor.menus.enimas.view;
 
-import datas.config.EnigmaUIValues;
+import data.config.EnigmaUIValues;
 import general.hud.EnigmaButton;
 import general.hud.EnigmaLabel;
 import general.hud.EnigmaPanel;

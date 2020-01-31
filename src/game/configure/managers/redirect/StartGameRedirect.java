@@ -1,6 +1,6 @@
 package game.configure.managers.redirect;
 
-import datas.config.GameConfiguration;
+import data.config.GameConfiguration;
 import game.configure.LaunchGameDisplay;
 
 import java.awt.event.ActionEvent;

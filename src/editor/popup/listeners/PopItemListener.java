@@ -2,7 +2,7 @@ package editor.popup.listeners;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import datas.Layer;
+import data.Layer;
 import general.map.MapTestScreenCell;
 
 import java.awt.event.ItemEvent;
