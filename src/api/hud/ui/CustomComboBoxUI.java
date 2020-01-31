@@ -1,6 +1,6 @@
 package api.hud.ui;
 
-import api.hud.DefaultUIValues;
+import api.hud.base.DefaultUIValues;
 import api.hud.ui.base.CustomUI;
 import api.hud.ui.base.CustomUIBorder;
 import api.hud.ui.base.CustomUICursor;

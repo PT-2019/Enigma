@@ -1,6 +1,7 @@
-import api.utils.annotations.Temporary;
-import starter.DesktopLauncher;
-import starter.EditorLauncher;
+import api.libgdx.utils.LoadGameLibgdxApplication;
+import game.EnigmaGame;
+import general.DesktopLauncher;
+import general.language.GameLanguage;
 
 import javax.swing.SwingUtilities;
 
@@ -16,31 +17,19 @@ import javax.swing.SwingUtilities;
  */
 public class Main {
 
-	public static void main(String[] args) {
-		//appelle après initialisation de la libgdx, l'éditeur
+	/**
+	 * Lance l'application
+	 *
+	 * @param ignore ignore
+	 */
+	public static void main(String[] ignore) {
+		//init de la langue
+		GameLanguage.init();
+
+		//définit le jeu
+		LoadGameLibgdxApplication.setGame(EnigmaGame.getInstance());
+
+		//lancement dans le thread des événements
 		SwingUtilities.invokeLater(DesktopLauncher.getInstance());
-	}
-
-	@Temporary(reason = "lancer l'éditeur rapidement", since = 4.1f)
-	@Deprecated
-	public static final class MainFast {
-
-		/**
-		 * Lance l'éditeur rapidement plutôt que de passer par le menu
-		 *
-		 * @param ignore ignore
-		 */
-		public static void main(String[] ignore) {
-			//appelle après initialisation de la libgdx, l'éditeur
-			SwingUtilities.invokeLater(new EditorFastLuncher());
-		}
-
-		private static class EditorFastLuncher implements Runnable {
-			@Override
-			public void run() {
-				EditorLauncher.setEditor(1200, 800);
-				EditorLauncher.getInstance().start();
-			}
-		}
 	}
 }

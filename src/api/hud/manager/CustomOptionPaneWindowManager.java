@@ -1,6 +1,6 @@
 package api.hud.manager;
 
-import api.hud.components.CustomOptionPane;
+import api.hud.CustomOptionPane;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;

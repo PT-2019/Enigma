@@ -1,6 +1,6 @@
 package api.hud.manager;
 
-import api.hud.components.CustomPanel;
+import api.hud.CustomPanel;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;

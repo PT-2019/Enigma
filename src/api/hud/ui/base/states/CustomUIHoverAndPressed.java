@@ -1,6 +1,6 @@
 package api.hud.ui.base.states;
 
-import api.hud.DefaultUIValues;
+import api.hud.base.DefaultUIValues;
 import api.hud.ui.base.CustomUI;
 import api.hud.ui.base.CustomUIBackground;
 
@@ -60,6 +60,13 @@ public interface CustomUIHoverAndPressed<T extends CustomUI> extends CustomUIPre
 	 * @param pressedBorder couleur clic
 	 */
 	void setAllBorders(Color border, Color hoveredBorder, Color pressedBorder);
+
+	/**
+	 * Définit les couleurs de toutes les bordures
+	 *
+	 * @param border couleur normale
+	 */
+	void setAllBorders(Color border);
 
 	/**
 	 * Définit les images de tous les fonds

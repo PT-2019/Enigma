@@ -1,6 +1,6 @@
 package api.hud.ui.base.states;
 
-import api.hud.DefaultUIValues;
+import api.hud.base.DefaultUIValues;
 
 import java.awt.Color;
 

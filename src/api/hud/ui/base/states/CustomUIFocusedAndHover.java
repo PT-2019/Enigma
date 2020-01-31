@@ -1,6 +1,6 @@
 package api.hud.ui.base.states;
 
-import api.hud.DefaultUIValues;
+import api.hud.base.DefaultUIValues;
 import api.hud.ui.base.CustomUI;
 import api.hud.ui.base.CustomUIBackground;
 

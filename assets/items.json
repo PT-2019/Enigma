@@ -2,7 +2,7 @@
   content: [
     //livres
     {
-      className: game.entity.item.Book
+      className: general.entities.consumable.Book
       path: assets/map/datas/bookBlue.png
       hover: un livre bleu
       category: ITEMS
@@ -16,7 +16,7 @@
       }
     }
     {
-      className: game.entity.item.Book
+      className: general.entities.consumable.Book
       path: assets/map/datas/bookBlue1.png
       hover: un livre bleu ouvert
       category: ITEMS
@@ -30,7 +30,7 @@
       }
     }
     {
-      className: game.entity.item.Book
+      className: general.entities.consumable.Book
       path: assets/map/datas/bookRed.png
       hover: un livre rouge
       category: ITEMS
@@ -44,7 +44,7 @@
       }
     }
     {
-      className: game.entity.item.Book
+      className: general.entities.consumable.Book
       path: assets/map/datas/bookRed1.png
       hover: un livre rouge ouvert
       category: ITEMS
@@ -58,7 +58,7 @@
       }
     }
     {
-      className: game.entity.item.Book
+      className: general.entities.consumable.Book
       path: assets/map/datas/bookGreen.png
       hover: un livre vert
       category: ITEMS
@@ -72,7 +72,7 @@
       }
     }
     {
-      className: game.entity.item.Book
+      className: general.entities.consumable.Book
       path: assets/map/datas/bookGreen1.png
       hover: un livre vert ouvert
       category: ITEMS
@@ -86,7 +86,7 @@
       }
     }
     {
-      className: game.entity.item.Book
+      className: general.entities.consumable.Book
       path: assets/map/datas/bookBlack.png
       hover: un livre noir
       category: ITEMS
@@ -100,7 +100,7 @@
       }
     }
     {
-      className: game.entity.item.Book
+      className: general.entities.consumable.Book
       path: assets/map/datas/bookBlack1.png
       hover: un livre noir ouvert
       category: ITEMS
@@ -116,7 +116,7 @@
 
     //clefs
     {
-      className: game.entity.item.Key
+      className: general.entities.consumable.Key
       path: assets/map/datas/key.png
       hover: une clef
       category: ITEMS

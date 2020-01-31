@@ -1,6 +1,6 @@
 package api.hud.manager.window;
 
-import api.hud.components.CustomWindow;
+import api.hud.CustomWindow;
 
 import javax.swing.JFrame;
 import java.awt.event.ActionEvent;

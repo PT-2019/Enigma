@@ -1,5 +1,9 @@
 package editor.io;
 
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.MapProperties;
+import com.badlogic.gdx.maps.tiled.TiledMapTile;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import editor.enigma.Advice;
 import editor.enigma.Enigma;
 import editor.enigma.condition.Activated;
@@ -13,6 +17,7 @@ import editor.utils.json.EnigmaJsonWriter;
 import editor.utils.map.Case;
 import game.entity.item.Door;
 import game.entity.item.Switch;
+import game.entity.map.MapTestScreenCell;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -37,6 +42,62 @@ public class EnigmaJsonTestMain {
 		Player p1 = new Player();
 		Player p2 = new Player();
 		Case c1 = new Case();
+		MapTestScreenCell cell = new MapTestScreenCell(new TiledMapTileLayer(10, 10, 0, 0),9);
+		cell.setTile(new TiledMapTile() {
+			@Override
+			public int getId() {
+				return 0;
+			}
+
+			@Override
+			public void setId(int i) {
+
+			}
+
+			@Override
+			public BlendMode getBlendMode() {
+				return null;
+			}
+
+			@Override
+			public void setBlendMode(BlendMode blendMode) {
+
+			}
+
+			@Override
+			public TextureRegion getTextureRegion() {
+				return null;
+			}
+
+			@Override
+			public void setTextureRegion(TextureRegion textureRegion) {
+
+			}
+
+			@Override
+			public float getOffsetX() {
+				return 0;
+			}
+
+			@Override
+			public void setOffsetX(float v) {
+			}
+
+			@Override
+			public float getOffsetY() {
+				return 0;
+			}
+
+			@Override
+			public void setOffsetY(float v) {
+
+			}
+
+			@Override
+			public MapProperties getProperties() {
+				return null;
+			}
+		});
 
 		s1.setID(idf.newID(s1));
 		s2.setID(idf.newID(s2));
@@ -54,8 +115,8 @@ public class EnigmaJsonTestMain {
 		e.addAdvice(new Advice("advice2"));
 		e.addCondition(new HaveInHands(s1));
 		e.addCondition(new Activated(s2));
-		e.addOperation(new Summon(p2,c1));
 		e.addOperation(new Unlock(d1));
+		e.addOperation(new Summon(d1,cell));
 
 		Enigma e2 = new Enigma("enigme2","oui c'est une énigme");
 		e2.addAdvice(new Advice("advice3"));

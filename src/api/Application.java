@@ -1,12 +1,12 @@
 package api;
 
+import api.hud.CustomWindow;
+
 /**
  * Représentation d'une application
  *
  * @author Quentin RAMSAMY-AGEORGES
- * @version 4.0
- * @see game.EnigmaGame
- * @see starter.EditorLauncher
+ * @version 5.0
  * @since 1.0
  */
 public interface Application {
@@ -25,4 +25,11 @@ public interface Application {
 	 */
 	void stop();
 
+	/**
+	 * Retourne la fenêtre de l'application
+	 *
+	 * @return la fenêtre de l'application
+	 * @since 5.0
+	 */
+	CustomWindow getWindow();
 }

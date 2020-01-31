@@ -1,6 +1,6 @@
 package api.hud.manager;
 
-import api.hud.components.CustomLabel;
+import api.hud.CustomLabel;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;

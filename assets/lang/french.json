@@ -3,17 +3,17 @@
 
     //hud
     play:Jouer
-    editor:Lancer l'éditeur de maps
-    running:Une application est déjà en cours d'execution
+    editor:Éditeur
+    running:Application lancée
 
     create:Nouveau
     open:Ouvrir
     save:Sauvegarder
     undo:Annuler
     redo:Refaire
-    brush:Pinceau
+    brush:Normal
     eraser:Gomme
-    move:Déplacer
+    move:Déplacer entités
 
     file:Fichier
     edit:Edition
@@ -31,16 +31,30 @@
     characters: Personnages
     actions: Actions
 
+    layer: Étage
+    firstlayer: Niveau
+    ok: Confirmer
+    cancel: Annuler
+    leave: Voulez vous vraiment quittez?
+
     //game
     room: Salle
     chest: Coffre
+    key: Clef
     pane: Panneau
     switch: Commutateur
     button: Bouton
     book: Livre
     door: Porte
-    pressurePlate: Plaque de pression
-    player: Héros
+    pressureplate: Plaque de pression
     library: Bibliothèque
+
+    //actions
+    gameexit: Sortie
+
+    //entities
+    player: Héros
+    npc: Personne
+    monster: Monstre
   }
 }

@@ -3,15 +3,12 @@ package api.utils;
 import api.utils.annotations.ConvenienceClass;
 import api.utils.annotations.ConvenienceMethod;
 import api.utils.annotations.NeedPatch;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.utils.Array;
-import editor.hud.EnigmaWindow;
+import datas.config.Config;
 
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
+import java.awt.Window;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -24,16 +21,13 @@ import java.lang.reflect.Method;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
-
-import static starter.Config.DEBUG_COLOR;
 
 /**
  * Tout un paquet de méthodes utiles
  *
  * @author Quentin RAMSAMY-AGEORGES
- * @version 5.1
+ * @version 5.3
  * @since 2.0 27 novembre 2019
  */
 @ConvenienceClass
@@ -126,37 +120,24 @@ public class Utility implements Serializable {
 	}
 
 	/**
-	 * Affiche une hashMap
+	 * Affiche une Map
 	 *
 	 * @param hashMap la hashMap
 	 * @since 2.0
 	 */
 	@ConvenienceMethod
-	public static void printHashMap(HashMap<?, ?> hashMap) {
+	public static void printHashMap(Map<?, ?> hashMap) {
 		for (Map.Entry<?, ?> entry : hashMap.entrySet()) {
 			System.out.println(entry.getKey() + "->");
 			Object value = entry.getValue();
 			if (value instanceof ArrayList) {
 				System.out.println(Arrays.toString(((ArrayList) value).toArray()));
-			} else if (value instanceof Array) {
-				System.out.println(Arrays.toString(((Array) value).toArray()));
+			} else if (value.getClass().isArray()) {
+				System.out.println(Arrays.toString((Object[]) value));
 			} else {
 				System.out.println(value);
 			}
 		}
-	}
-
-	/**
-	 * Retourne un skin depuis json et un atlas
-	 *
-	 * @param json  fichier json
-	 * @param atlas fichier atlas
-	 * @return le fichier skin
-	 * @since 4.0
-	 */
-	@ConvenienceMethod
-	public static Skin loadSkin(String json, String atlas) {
-		return new Skin(Gdx.files.internal(json), new TextureAtlas(atlas));
 	}
 
 	/**
@@ -209,7 +190,7 @@ public class Utility implements Serializable {
 			object = declaredConstructor.newInstance();
 		} catch (IllegalAccessException | InstantiationException | NoSuchMethodException
 				| InvocationTargetException e) {
-			throw new IllegalStateException("EntityFactory create instance failed" + e);
+			throw new IllegalStateException("create instance failed" + e);
 		}
 		return object;
 	}
@@ -249,7 +230,7 @@ public class Utility implements Serializable {
 		try {
 			return instance(Class.forName(aClass));
 		} catch (ClassNotFoundException e) {
-			throw new IllegalStateException("EntityFactory create instance failed" + e);
+			throw new IllegalStateException("Utility. Create instance failed" + e);
 		}
 	}
 
@@ -282,7 +263,7 @@ public class Utility implements Serializable {
 	 * @throws IllegalArgumentException si moniteur pas trouvé
 	 * @since 5.1
 	 */
-	public static GraphicsConfiguration getMonitorOf(EnigmaWindow window) {
+	public static GraphicsConfiguration getMonitorOf(Window window) {
 		GraphicsDevice monitor = window.getGraphicsConfiguration().getDevice();
 		GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		GraphicsDevice[] monitors = env.getScreenDevices();
@@ -297,7 +278,15 @@ public class Utility implements Serializable {
 		throw new IllegalArgumentException("monitor non trouvé!");
 	}
 
-	public static Object getKeyFromValue(HashMap<?, ?> map, Object value) {
+	/**
+	 * Renvoi la clef d'une valeur d'une HashMap
+	 *
+	 * @param map   une map
+	 * @param value valeur
+	 * @return la clef correspond a la valeur
+	 * @since 5.2
+	 */
+	public static Object getKeyFromValue(Map<?, ?> map, Object value) {
 		for (Map.Entry<?, ?> mapEntry : map.entrySet()) {
 			if (mapEntry.getValue().equals(value))
 				return mapEntry.getKey();
@@ -310,6 +299,7 @@ public class Utility implements Serializable {
 	 *
 	 * @param className nom de la classe
 	 * @param message   message
+	 * @since 5.2
 	 */
 	public static void printDebug(String className, String message) {
 		/*if(Gdx.app != null){
@@ -318,7 +308,7 @@ public class Utility implements Serializable {
 		} else {
 			PrintColor.println(className+":"+message, DEBUG_COLOR);
 		}*/
-		PrintColor.println(className + ":" + message, DEBUG_COLOR);
+		PrintColor.println(className + ":" + message, Config.DEBUG_COLOR);
 	}
 }
 

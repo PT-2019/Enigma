@@ -1,7 +1,7 @@
 package api.hud.manager;
 
-import api.hud.components.CustomComboBox;
-import api.hud.components.CustomMenuItem;
+import api.hud.CustomComboBox;
+import api.hud.CustomMenuItem;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

@@ -1,8 +1,10 @@
 {
   content: [
     {
-      className: editor.entity.Player
-      path: assets/map/datas/players/player1.png
+      className: general.entities.players.NPC
+      path: assets/map/datas/players/p2.png
+      json: assets/entities/datas/players.json
+      key: Gold
       category: ENTITIES
       width: 2
       height: 2
@@ -16,8 +18,10 @@
       }
     }
     {
-      className: editor.entity.Player
-      path: assets/map/datas/players/player2.png
+      className: general.entities.players.NPC
+      path: assets/map/datas/players/p7.png
+      json: assets/entities/datas/players.json
+      key: Anna
       category: ENTITIES
       width: 2
       height: 2
@@ -31,8 +35,10 @@
       }
     }
     {
-      className: editor.entity.Player
-      path: assets/map/datas/players/player3.png
+      className: general.entities.players.NPC
+      path: assets/map/datas/players/p10.png
+      json: assets/entities/datas/players.json
+      key: Jordan
       category: ENTITIES
       width: 2
       height: 2
@@ -46,23 +52,112 @@
       }
     }
     {
-      className: editor.entity.Player
-      path: assets/map/datas/players/player4.png
+      className: general.entities.players.NPC
+      path: assets/map/datas/players/p3.png
       category: ENTITIES
       width: 2
       height: 2
       tiles: {
         FLOOR2: [
-          2111,
-          2112,
-          2191,
-          2192,
+          2271,2272
+          2351,2352
         ]
       }
     }
     {
-      className: editor.entity.Player
-      path: assets/map/datas/players/player5.png
+      className: general.entities.players.NPC
+      path: assets/map/datas/players/p4.png
+      category: ENTITIES
+      width: 2
+      height: 2
+      tiles: {
+        FLOOR2: [
+          2273,2274
+          2353,2354
+        ]
+      }
+    }
+    {
+      className: general.entities.players.NPC
+      path: assets/map/datas/players/p5.png
+      category: ENTITIES
+      width: 2
+      height: 2
+      tiles: {
+        FLOOR2: [
+          2115,2116
+          2195,2196,
+        ]
+      }
+    }
+    {
+      className: general.entities.players.NPC
+      path: assets/map/datas/players/p6.png
+      category: ENTITIES
+      width: 2
+      height: 2
+      tiles: {
+        FLOOR2: [
+          2275,2276,
+          2355,2356,
+        ]
+      }
+    }
+    {
+      className: general.entities.players.NPC
+      path: assets/map/datas/players/p8.png
+      category: ENTITIES
+      width: 2
+      height: 2
+      tiles: {
+        FLOOR2: [
+          2121,2122,
+          2201,2202,
+        ]
+      }
+    }
+    {
+      className: general.entities.players.NPC
+      path: assets/map/datas/players/p9.png
+      category: ENTITIES
+      width: 2
+      height: 2
+      tiles: {
+        FLOOR2: [
+          2119,2120,
+          2199,2200,
+        ]
+      }
+    }
+    {
+      className: general.entities.players.NPC
+      path: assets/map/datas/players/p12.png
+      category: ENTITIES
+      width: 2
+      height: 2
+      tiles: {
+        FLOOR2: [
+          2279,2280,
+          2359,2360,
+        ]
+      }
+    }
+    {
+      className: general.entities.players.Monster
+      path: assets/map/datas/players/mob1.png
+      category: ENTITIES
+      width: 2
+      height: 2
+      tiles: {
+        FLOOR2: [
+          2111, 2112,
+          2191, 2192,
+        ]
+      }
+    }
+    {
+      className: general.entities.players.Monster
+      path: assets/map/datas/players/mob2.png
       category: ENTITIES
       width: 2
       height: 2

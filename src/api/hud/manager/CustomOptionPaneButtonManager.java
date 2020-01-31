@@ -1,7 +1,7 @@
 package api.hud.manager;
 
-import api.hud.components.CustomButton;
-import api.hud.components.CustomOptionPane;
+import api.hud.CustomButton;
+import api.hud.CustomOptionPane;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
