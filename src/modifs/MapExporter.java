@@ -1,6 +1,7 @@
-package editor.utils.save;
+package modifs;
 
 import java.io.*;
+import java.util.HashMap;
 
 public class MapExporter {
 
@@ -54,6 +55,7 @@ public class MapExporter {
     }
 
     public static void main(String[] args) throws IOException {
+        MapData d = new MapData();
         MapExporter.encode("test","assets/files/exports/");
     }
 }
