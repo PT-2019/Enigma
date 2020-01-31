@@ -12,7 +12,7 @@ import java.util.Map;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 2.2
+ * @version 5.0
  * @see Condition
  * @since 2.0
  */
@@ -42,8 +42,7 @@ public class HaveInInventory extends Condition {
 	@Override
 	public boolean verify(Player p) {
 		Item i = (Item) this.entity;
-		//TODO: tester si p a i dans son inventaire
-		return false;
+		return p.getInventory().contains(i);
 	}
 
 	/**

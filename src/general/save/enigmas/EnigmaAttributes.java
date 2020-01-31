@@ -27,11 +27,25 @@ public interface EnigmaAttributes {
 	String ENTITY = "entities";
 
 	/**
-	 * Case d'apparition
+	 * Cordonnée x d'apparition
 	 *
 	 * @see editor.enigma.operation.Summon
 	 */
-	String SPAWN = "spawn";
+	String SPAWN_X = "spawn_x";
+
+	/**
+	 * Cordonnée y d'apparition
+	 *
+	 * @see editor.enigma.operation.Summon
+	 */
+	String SPAWN_Y = "spawn_y";
+
+	/**
+	 * Couche
+	 *
+	 * @see editor.enigma.operation.Summon
+	 */
+	String SPAWN_LAYER = "spawn_layer";
 
 	/**
 	 * Délai
@@ -100,4 +114,10 @@ public interface EnigmaAttributes {
 	 * Id associé à une entité pour la sauvegarde
 	 */
 	String ID = "id";
+
+	/**
+	 * Type associé à une énigme pour la sauvegarde
+	 * @see editor.enigma.Enigma
+	 */
+	String TYPE = "type";
 }

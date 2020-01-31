@@ -6,6 +6,7 @@ import general.entities.players.Player;
 import general.save.enigmas.EnigmaAttributes;
 import general.utils.IDFactory;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,7 +17,7 @@ import java.util.Map;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 2.2
+ * @version 5.0
  * @see Operation
  * @since 2.0
  */
@@ -25,13 +26,13 @@ public class Summon extends Operation {
 	/**
 	 * Case où doit apparaître l'entité
 	 */
-	private TiledMapTileLayer.Cell spawn;
+	private MapTestScreenCell spawn;
 
 	/**
 	 * @param e     Entité concernée par l'opération
 	 * @param spawn Case où doit apparaître l'entité
 	 */
-	public Summon(Entity e, TiledMapTileLayer.Cell spawn) {
+	public Summon(Entity e, MapTestScreenCell spawn) {
 		super(e);
 		this.spawn = spawn;
 	}
@@ -42,11 +43,39 @@ public class Summon extends Operation {
 	 */
 	public Summon(Map<String, Object> attributes) {
 		super(attributes);
-		IDFactory idFactory = IDFactory.getInstance();
-		if (attributes.containsKey(EnigmaAttributes.SPAWN))
-			this.spawn = (TiledMapTileLayer.Cell) idFactory.getObject(Integer.parseInt((String)
-					attributes.get(EnigmaAttributes.SPAWN)));
-		else throw new IllegalArgumentException("Attribut \"spawn\" abscent");
+		float spawnX = (float) -1.0;
+		float spawnY = (float) -1.0;
+		String spawnLayer = "null";
+
+		ArrayList<String> attr = new ArrayList<>();
+		attr.add(Attributes.SPAWN_X);
+		attr.add(Attributes.SPAWN_Y);
+		attr.add(Attributes.SPAWN_LAYER);
+
+		for(String a : attr){
+			if(!attributes.containsKey(a))
+				throw new IllegalArgumentException("Attribut \"" + a + "\" abscent");
+
+			Object get = attributes.get(a);
+
+			switch(a){
+				case Attributes.SPAWN_X:
+					spawnX = Float.parseFloat((String) get);
+					break;
+				case Attributes.SPAWN_Y:
+					spawnY = Float.parseFloat((String) get);
+					break;
+				case Attributes.SPAWN_LAYER:
+					spawnLayer = (String) get;
+					break;
+			}
+		}
+
+		if(spawnX != -1.0 && spawnY != -1.0 && !spawnLayer.equals("null")){
+			AbstractMap map = EnigmaGame.getInstance().getCurrentMap();
+			TiledMapTileLayer sLayer = (TiledMapTileLayer) map.getMap().getMap().getLayers().get(spawnLayer);
+			this.spawn = (MapTestScreenCell) sLayer.getCell((int) spawnX, (int) spawnY);
+		}
 	}
 
 	/**
@@ -55,8 +84,35 @@ public class Summon extends Operation {
 	 * @param p Joueur ayant mené à l'appel de cette méthode
 	 */
 	@Override
+	@Deprecated
 	public void doOperation(Player p) {
-		//faire apparaitre this.entity sur this.spawn
+		this.run(p);
+	}
+
+	/**
+	 * Effectue l'action
+	 *
+	 * @param p Joueur ayant mené à l'appel de cette méthode
+	 */
+	@Override
+	public void run(Player p) {
+		this.spawn.setEntity(this.entity);
+	}
+
+	/**
+	 * Obtenir la cellule d'apparition
+	 * @return Cellule de d'apparition
+	 */
+	public MapTestScreenCell getSpawn(){
+		return this.spawn;
+	}
+
+	/**
+	 * Définir la cellule d'apparition
+	 * @param spawn Cellule d'apparition
+	 */
+	public void setSpawn(MapTestScreenCell spawn){
+		this.spawn = spawn;
 	}
 
 
@@ -69,9 +125,15 @@ public class Summon extends Operation {
 	@Override
 	public HashMap<String, Object> objectToMap() {
 		HashMap<String, Object> object = new HashMap<>();
-		object.put(EnigmaAttributes.PATH, this.getClass().getName());
-		object.put(EnigmaAttributes.ENTITY, this.entity.getID() + "");
-		object.put(EnigmaAttributes.SPAWN, this.entity.getID() + "");//TODO: spawn
+		object.put(Attributes.PATH, this.getClass().getName());
+		object.put(Attributes.ENTITY, this.entity.getID() + "");
+		TiledMapTileLayer layer = this.spawn.getLayer();
+		int x, y, index = this.spawn.getIndex();
+		x = index%layer.getWidth();
+		y = index/layer.getWidth();
+		object.put(Attributes.SPAWN_X, x + "");
+		object.put(Attributes.SPAWN_Y, y + "");
+		object.put(Attributes.SPAWN_LAYER, layer.getName() + "");
 		return object;
 	}
 

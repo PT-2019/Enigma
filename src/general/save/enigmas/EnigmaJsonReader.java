@@ -48,6 +48,16 @@ public class EnigmaJsonReader {
 	private final static String CLASSIC_ATTRIBUTE_SYNTAX = ": ";
 
 	/**
+	 * Index des crochets
+	 */
+	private final static int BRACKETS = 0;
+
+	/**
+	 * Index des accolades
+	 */
+	private final static int BRACES = 1;
+
+	/**
 	 * Extrait le texte avant regex
 	 * Efface : tous les guillemets, tous les espaces vides avant le texte
 	 *
@@ -121,32 +131,33 @@ public class EnigmaJsonReader {
 		BufferedReader reader = new BufferedReader(new FileReader(filePath));
 		String read;
 		int line = 0;
-		int braceCount = 0;
-		int bracketCount = 0;
+		int[] count = new int[2];
+		count[BRACKETS] = 0;
+		count[BRACES] = 0;
 
 		while ((read = reader.readLine()) != null) {
 			read = read.trim();
 			line++;
 
-			if (read.contains(NEW_OBJECT_SYNTAX)) braceCount++;
+			if (read.contains(NEW_OBJECT_SYNTAX)) count[BRACES]++;
 
 			if (read.contains(NEW_CLASS_TAB_SYNTAX)) {
-				bracketCount++;
+				count[BRACKETS]++;
 
 				if (extractBefore(read, NEW_CLASS_TAB_SYNTAX).contains("."))
-					objects.add(readObject(reader, extractBefore(read, NEW_CLASS_TAB_SYNTAX), line, braceCount, bracketCount));
-				else objects.addAll(readList(reader, line, braceCount, bracketCount));
+					objects.add(readObject(reader, extractBefore(read, NEW_CLASS_TAB_SYNTAX), line, count));
+				else objects.addAll(readList(reader, line, count));
 			}
 
-			if (read.contains(END_OBJECT_SYNTAX)) braceCount--;
+			if (read.contains(END_OBJECT_SYNTAX)) count[BRACES]--;
 
-			if (read.contains(END_CLASS_TAB_SYNTAX)) bracketCount--;
+			if (read.contains(END_CLASS_TAB_SYNTAX)) count[BRACKETS]--;
 		}
 
-		if (braceCount > 0) throw new IllegalStateException("Accolade fermante manquante");
-		if (braceCount < 0) throw new IllegalStateException("Accolade ouvrante manquante");
-		if (bracketCount > 0) throw new IllegalStateException("Crochet fermant manquant");
-		if (bracketCount < 0) throw new IllegalStateException("Crochet ovrant manquant");
+		if (count[BRACES] > 0) throw new IllegalStateException("Accolade fermante manquante");
+		if (count[BRACES] < 0) throw new IllegalStateException("Accolade ouvrante manquante");
+		if (count[BRACKETS] > 0) throw new IllegalStateException("Crochet fermant manquant");
+		if (count[BRACKETS] < 0) throw new IllegalStateException("Crochet ovrant manquant");
 
 		return (ArrayList<Object>) objects.clone();
 	}
@@ -156,8 +167,7 @@ public class EnigmaJsonReader {
 	 *
 	 * @param reader       Lecteur
 	 * @param line         Numéro de ligne actuel
-	 * @param braceCount   Nombre d'accolades overtes actuellement
-	 * @param bracketCount Nombre de crochets ouverts actuellement
+	 * @param count   Nombre d'accolades et crochets ouverts actuellement
 	 * @return Liste des objets lus et instanciés
 	 * @throws IOException               En cas d'erreur de lecture
 	 * @throws ClassNotFoundException    Si le classPath est incorrect
@@ -167,48 +177,40 @@ public class EnigmaJsonReader {
 	 * @throws InstantiationException    En cas de problème d'instanciation
 	 */
 	@SuppressWarnings("unchecked")
-	public static ArrayList<Object> readList(BufferedReader reader, int line, int braceCount, int bracketCount) throws IOException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+	public static ArrayList<Object> readList(BufferedReader reader, int line, int[] count) throws IOException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
 
 		ArrayList<Object> objects = new ArrayList<>();
 		String read;
-		int startingClassBracket = bracketCount;
+		int startingClassBracket = count[BRACKETS];
 		int startingClassBrace = -1;
-		boolean first = true;
 
 		while ((read = reader.readLine()) != null) {
 			read = read.trim();
 			line++;
 
 			if (read.contains(NEW_OBJECT_SYNTAX)) {
-				first = false;
-				braceCount++;
-				if (startingClassBrace < 0) startingClassBrace = braceCount;
+				count[BRACES]++;
+				if (startingClassBrace < 0) startingClassBrace = count[BRACES];
 			}
 
 			if (read.contains(NEW_CLASS_TAB_SYNTAX)) {
-				first = false;
-				bracketCount++;
-				objects.add(readObject(reader, extractBefore(read, NEW_CLASS_TAB_SYNTAX), line, braceCount, bracketCount));
+				count[BRACKETS]++;
+				objects.add(readObject(reader, extractBefore(read, NEW_CLASS_TAB_SYNTAX), line, count));
 			}
 
 			if (read.contains(END_OBJECT_SYNTAX)) {
-				first = false;
-				if (braceCount == startingClassBrace) {
+				if (count[BRACES] == startingClassBrace) {
 					if (read.contains(END_OBJECT_SYNTAX + ",")) startingClassBrace = -1;
-					else break;
 				}
-				braceCount--;
+				count[BRACES]--;
 			}
 
 			if (read.contains(END_CLASS_TAB_SYNTAX)) {
-				if (bracketCount == startingClassBracket) {
-					bracketCount--;
+				if (count[BRACKETS] == startingClassBracket) {
+					count[BRACKETS]--;
 					break;
 				}
-				if (!first) {
-					bracketCount--;
-				}
-				first = false;
+				count[BRACKETS]--;
 			}
 		}
 
@@ -221,8 +223,7 @@ public class EnigmaJsonReader {
 	 * @param reader       Lecteur
 	 * @param classPath    Nom (chemin) complet de la classe
 	 * @param line         Numéro de ligne actuel
-	 * @param braceCount   Nombre d'accolades overtes actuellement
-	 * @param bracketCount Nombre de crochets ouverts actuellement
+	 * @param count   Nombre d'accolades et crochets ouverts actuellement
 	 * @return L'objet lu et instancié
 	 * @throws IOException               En cas d'erreur de lecture
 	 * @throws ClassNotFoundException    Si le classPath est incorrect
@@ -232,35 +233,35 @@ public class EnigmaJsonReader {
 	 * @throws InstantiationException    En cas de problème d'instanciation
 	 */
 	@SuppressWarnings("unchecked")
-	public static Object readObject(BufferedReader reader, String classPath, int line, int braceCount, int bracketCount) throws IOException, ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+	public static Object readObject(BufferedReader reader, String classPath, int line, int[] count) throws IOException, ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
 
 		Object object;
 		HashMap<String, Object> attributes = new HashMap<>();
 		String read;
-		int startingClassBracket = bracketCount;
+		int startingClassBracket = count[BRACKETS];
 
 		while ((read = reader.readLine()) != null) {
 			read = read.trim();
 			line++;
 
-			if (read.contains(NEW_OBJECT_SYNTAX)) braceCount++;
+			if (read.contains(NEW_OBJECT_SYNTAX)) count[BRACES]++;
 
 			if (read.contains(NEW_CLASS_TAB_SYNTAX)) {
-				bracketCount++;
-				attributes.put(extractBefore(read, NEW_CLASS_TAB_SYNTAX), readList(reader, line, braceCount, bracketCount));
+				count[BRACKETS]++;
+				attributes.put(extractBefore(read, NEW_CLASS_TAB_SYNTAX), readList(reader, line, count));
 
 			} else if (read.contains(CLASSIC_ATTRIBUTE_SYNTAX)) {
 				attributes.put(extractBefore(read, CLASSIC_ATTRIBUTE_SYNTAX), extractAfter(read, CLASSIC_ATTRIBUTE_SYNTAX));
 			}
 
-			if (read.contains(END_OBJECT_SYNTAX)) braceCount--;
+			if (read.contains(END_OBJECT_SYNTAX)) count[BRACES]--;
 
 			if (read.contains(END_CLASS_TAB_SYNTAX)) {
-				if (bracketCount == startingClassBracket) {
-					bracketCount--;
+				if (count[BRACKETS] == startingClassBracket) {
+					count[BRACKETS]--;
 					break;
 				}
-				bracketCount--;
+				count[BRACKETS]--;
 			}
 		}
 
@@ -271,4 +272,3 @@ public class EnigmaJsonReader {
 		return object;
 	}
 }
-

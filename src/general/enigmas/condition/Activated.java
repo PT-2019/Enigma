@@ -12,7 +12,7 @@ import java.util.Map;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 2.1
+ * @version 5.0
  * @see general.enigmas.condition.Condition
  * @since 2.0
  */
@@ -42,7 +42,6 @@ public class Activated extends Condition {
 	@Override
 	public boolean verify(Player p) {
 		Activatable a = (Activatable) this.entity;
-		System.out.println("La porte est dévérouillée");
 		return a.isActivated();
 	}
 

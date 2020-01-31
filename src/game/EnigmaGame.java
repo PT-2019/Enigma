@@ -21,6 +21,8 @@ import game.screens.TestScreen;
  */
 public class EnigmaGame extends LibgdxGame {
 
+	private AbstractMap currentMap;
+
 	//instance unique
 	private static EnigmaGame enigmaGame;
 	/**
@@ -32,7 +34,7 @@ public class EnigmaGame extends LibgdxGame {
 	//....
 
 	private EnigmaGame() {
-
+		this.currentMap = new GameMap("test");
 	}
 
 	/**
@@ -41,10 +43,13 @@ public class EnigmaGame extends LibgdxGame {
 	 * @return l'instance unique du jeu
 	 */
 	public static EnigmaGame getInstance() {
-		if (enigmaGame == null) {
+		if(enigmaGame == null)
 			enigmaGame = new EnigmaGame();
-		}
 		return enigmaGame;
+	}
+
+	public AbstractMap getCurrentMap(){
+		return this.currentMap;
 	}
 
 	public static void setStartScreen(EnigmaScreens screen) {

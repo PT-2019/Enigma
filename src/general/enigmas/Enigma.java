@@ -23,7 +23,7 @@ import java.util.Map;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 5.0
+ * @version 5.1
  * @see general.enigmas.condition.Condition
  * @see general.enigmas.operation.Operation
  * @see general.enigmas.Advice
@@ -47,6 +47,10 @@ public class Enigma implements ActionListener, IDInterface {
 	 * Description
 	 */
 	private String description;
+	/**
+	 * Type
+	 */
+	private TileEventEnum type;
 	/**
 	 * Conditions
 	 */
@@ -86,6 +90,7 @@ public class Enigma implements ActionListener, IDInterface {
 		this.operations = new ArrayList<Operation>();
 		this.advices = new ArrayList<Advice>();
 		this.id = -1;
+		this.type = TileEventEnum.ON_USE;
 	}
 
 	/**
@@ -102,6 +107,7 @@ public class Enigma implements ActionListener, IDInterface {
 		this.operations = new ArrayList<Operation>();
 		this.advices = new ArrayList<Advice>();
 		this.id = -1;
+		this.type = TileEventEnum.ON_USE;
 	}
 
 	/**
@@ -110,29 +116,52 @@ public class Enigma implements ActionListener, IDInterface {
 	 */
 	@SuppressWarnings("unchecked")
 	public Enigma(Map<String, Object> attributes) {
-		if (attributes.containsKey(EnigmaAttributes.TITLE))
-			this.title = (String) attributes.get(EnigmaAttributes.TITLE);
-		else throw new IllegalArgumentException("Attribut \"title\" abscent");
-		if (attributes.containsKey(EnigmaAttributes.DESCRIPTION))
-			this.description = (String) attributes.get(EnigmaAttributes.DESCRIPTION);
-		else throw new IllegalArgumentException("Attribut \"description\" abscent");
-		if (attributes.containsKey(EnigmaAttributes.KNOWN))
-			this.known = Boolean.parseBoolean((String) attributes.get(EnigmaAttributes.KNOWN));
-		else throw new IllegalArgumentException("Attribut \"known\" abscent");
-		if (attributes.containsKey(EnigmaAttributes.CURRENT_ADVICE_INDEX))
-			this.currentAdvice = Integer.parseInt((String) attributes.get(EnigmaAttributes.CURRENT_ADVICE_INDEX));
-		else throw new IllegalArgumentException("Attribut \"currentAdviceIndex\" abscent");
-		if (attributes.containsKey(EnigmaAttributes.ADVICES))
-			this.advices = (ArrayList<Advice>) attributes.get(EnigmaAttributes.ADVICES);
-		else throw new IllegalArgumentException("Attribut \"advices\" abscent");
-		if (attributes.containsKey(EnigmaAttributes.CONDITIONS))
-			this.conditions = (ArrayList<Condition>) attributes.get(EnigmaAttributes.CONDITIONS);
-		else throw new IllegalArgumentException("Attribut \"conditions\" abscent");
-		if (attributes.containsKey(EnigmaAttributes.OPERATIONS))
-			this.operations = (ArrayList<Operation>) attributes.get(EnigmaAttributes.OPERATIONS);
-		else throw new IllegalArgumentException("Attribut \"operations\" abscent");
-		if (attributes.containsKey(EnigmaAttributes.ID)) {
-			this.id = Integer.parseInt((String) attributes.get(EnigmaAttributes.ID));
+		ArrayList<String> attr = new ArrayList<>();
+		attr.add(EnigmaAttributes.TITLE);
+		attr.add(EnigmaAttributes.DESCRIPTION);
+		attr.add(EnigmaAttributes.KNOWN);
+		attr.add(EnigmaAttributes.CURRENT_ADVICE_INDEX);
+		attr.add(EnigmaAttributes.ADVICES);
+		attr.add(EnigmaAttributes.CONDITIONS);
+		attr.add(EnigmaAttributes.OPERATIONS);
+		attr.add(EnigmaAttributes.ID);
+		attr.add(EnigmaAttributes.TYPE);
+
+		for(String a : attr){
+			if(!attributes.containsKey(a))
+				throw new IllegalArgumentException("Attribut \"" + a + "\" abscent");
+
+			Object get = attributes.get(a);
+
+			switch(a){
+				case EnigmaAttributes.TITLE:
+					this.title = (String) get;
+					break;
+				case EnigmaAttributes.DESCRIPTION:
+					this.description = (String) get;
+					break;
+				case EnigmaAttributes.KNOWN:
+					this.known = Boolean.parseBoolean((String) get);
+					break;
+				case EnigmaAttributes.CURRENT_ADVICE_INDEX:
+					this.currentAdvice = Integer.parseInt((String) get);
+					break;
+				case EnigmaAttributes.ADVICES:
+					this.advices = (ArrayList<Advice>) get;
+					break;
+				case EnigmaAttributes.CONDITIONS:
+					this.conditions = (ArrayList<Condition>) get;
+					break;
+				case EnigmaAttributes.OPERATIONS:
+					this.operations = (ArrayList<Operation>) get;
+					break;
+				case EnigmaAttributes.ID:
+					this.id = Integer.parseInt((String) get);
+					break;
+				case EnigmaAttributes.TYPE:
+					this.type = TileEventEnum.valueOf((String) get);
+					break;
+			}
 		}
 
 		this.timer = new Timer(0, this);
@@ -159,8 +188,28 @@ public class Enigma implements ActionListener, IDInterface {
 
 		//On lance toutes les opérations de l'enigme
 		for (Operation operation : this.operations) {
-			operation.doOperation(p);
+			operation.run(p);
 		}
+	}
+
+	/**
+	 * Obtenir le type de l'énigme
+	 *
+	 * @see TileEventEnum
+	 * @return Le type de l'énigme
+	 */
+	public TileEventEnum getType() {
+		return type;
+	}
+
+	/**
+	 * Définir le type de l'énigme
+	 *
+	 * @see TileEventEnum
+	 * @param type Type de l'énigme
+	 */
+	public void setType(TileEventEnum type) {
+		this.type = type;
 	}
 
 	/**
@@ -389,6 +438,7 @@ public class Enigma implements ActionListener, IDInterface {
 		object.put(EnigmaAttributes.KNOWN, this.known + "");
 		object.put(EnigmaAttributes.CURRENT_ADVICE_INDEX, this.currentAdvice + "");
 		object.put(EnigmaAttributes.ID, String.valueOf(id));
+		object.put(EnigmaAttributes.TYPE, this.type.toString());
 
 		ArrayList<HashMap<String, Object>> advices = new ArrayList<>();
 		for (Advice a : this.advices) {
@@ -452,7 +502,7 @@ public class Enigma implements ActionListener, IDInterface {
 	 */
 	@Override
 	public String toString() {
-		return "[Enigma  : title = \"" + this.title + "\", descrption = \"" + this.description + "\", isKnown = " + this.isKnown() + ", currentAdviceIndex = " + this.currentAdvice + ", currentAdvice = " + this.getAdvice() + ", currentTextAdvice = \"" + this.getTextAdvice() + "\"]";
+		return "[Enigma  : title = \"" + this.title + "\", descrption = \"" + this.description + "\", type = \"" + this.type + "\", isKnown = " + this.isKnown() + ", currentAdviceIndex = " + this.currentAdvice + ", currentAdvice = " + this.getAdvice() + ", currentTextAdvice = \"" + this.getTextAdvice() + "\"]";
 	}
 
 	/**
@@ -461,7 +511,7 @@ public class Enigma implements ActionListener, IDInterface {
 	 * @return Texte représentant l'énigme
 	 */
 	public String toLongString() {
-		StringBuilder s = new StringBuilder("[Enigma  : title = \"" + this.title + "\", descrption = \"" + this.description + "\", isKnown = " + this.isKnown() + ", currentAdviceIndex = " + this.currentAdvice + ", currentAdvice = " + this.getAdvice() + ", currentTextAdvice = \"" + this.getTextAdvice() + "\", allAdvices = {");
+		StringBuilder s = new StringBuilder("[Enigma  : title = \"" + this.title + "\", descrption = \"" + this.description + "\", type = \"" + this.type + "\", isKnown = " + this.isKnown() + ", currentAdviceIndex = " + this.currentAdvice + ", currentAdvice = " + this.getAdvice() + ", currentTextAdvice = \"" + this.getTextAdvice() + "\", allAdvices = {");
 		int sizeA = this.advices.size() - 1;
 		int sizeC = this.conditions.size() - 1;
 		int sizeO = this.operations.size() - 1;

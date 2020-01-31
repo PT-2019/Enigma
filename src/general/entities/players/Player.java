@@ -21,7 +21,7 @@ import java.util.HashMap;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 2.0
+ * @version 5.0
  * @see general.entities.Entity
  * @see general.entities.types.Living
  * @since 2.0
@@ -54,6 +54,16 @@ public class Player extends GameActorTextured implements Entity, Living {
 	 */
 	private String name;
 
+	/**
+	 * Inventaire
+	 */
+	private Inventory inventory;
+
+	/**
+	 * Main
+	 */
+	private Item hand;
+
 	public Player() {
 		this(-1);
 	}
@@ -62,18 +72,20 @@ public class Player extends GameActorTextured implements Entity, Living {
 	 * @param name Nom du joueur
 	 */
 	public Player(String name) {
-		this(-1);
-		this.name = name;
+		this(-1,name);
 	}
 
 	/**
 	 * @param id ID
 	 */
 	public Player(int id) {
+		super();
 		this.pv = MAX_PLAYER_PV;
 		this.id = id;
 		this.bounds = new Rectangle();
 		this.tiles = new HashMap<>();
+		this.inventory = new Inventory();
+		this.hand = null;
 	}
 
 	/**
@@ -81,15 +93,18 @@ public class Player extends GameActorTextured implements Entity, Living {
 	 * @param name Nom du joueur
 	 */
 	public Player(int id, String name) {
+		super();
 		this.pv = MAX_PLAYER_PV;
 		this.id = id;
 		this.bounds = new Rectangle();
 		this.tiles = new HashMap<>();
 		this.name = name;
+		this.inventory = new Inventory();
+		this.hand = null;
 	}
 
 	@Override
-	public void interactsWith(Player p) {
+	public void interactsWith(editor.entity.Player p) {
 		throw new UnsupportedOperationException("node codé. InteractWidth Player");
 	}
 
@@ -183,5 +198,21 @@ public class Player extends GameActorTextured implements Entity, Living {
 	@Override
 	public String getReadableName() {
 		return GameLanguage.gl.get(GameFields.PLAYER);
+	}
+
+	public Item getItemInHand() {
+		return hand;
+	}
+
+	public void setItemInHand(Item hand) {
+		this.hand = hand;
+	}
+
+	public boolean holdSomething(){
+		return (this.hand != null);
+	}
+
+	public Inventory getInventory() {
+		return inventory;
 	}
 }

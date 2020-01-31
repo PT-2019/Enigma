@@ -5,6 +5,7 @@ import general.entities.players.Player;
 import general.save.enigmas.EnigmaAttributes;
 import general.utils.IDFactory;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,7 +18,7 @@ import java.util.Map;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 2.2
+ * @version 5.0
  * @see general.enigmas.Enigma
  * @since 2.0
  */
@@ -40,10 +41,21 @@ public abstract class Operation {
 	 * @throws IllegalArgumentException Si un attribut est manquant
 	 */
 	public Operation(Map<String, Object> attributes) {
-		IDFactory idFactory = IDFactory.getInstance();
-		if (attributes.containsKey(EnigmaAttributes.ENTITY))
-			this.entity = (Entity) idFactory.getObject(Integer.parseInt((String) attributes.get(EnigmaAttributes.ENTITY)));
-		else throw new IllegalArgumentException("Attribut \"entity\" abscent");
+		ArrayList<String> attr = new ArrayList<>();
+		attr.add(Attributes.ENTITY);
+
+		for(String a : attr){
+			if(!attributes.containsKey(a))
+				throw new IllegalArgumentException("Attribut \"" + a + "\" abscent");
+
+			Object get = attributes.get(a);
+
+			switch(a){
+				case Attributes.ENTITY:
+					this.entity = (Entity) EnigmaGame.getInstance().getCurrentMap().getEntities().getObjectByID(Integer.parseInt((String) get));
+					break;
+			}
+		}
 	}
 
 	/**
@@ -51,7 +63,15 @@ public abstract class Operation {
 	 *
 	 * @param p Joueur ayant mené à l'appel de cette méthode
 	 */
+	@Deprecated
 	public abstract void doOperation(Player p);
+
+	/**
+	 * Effectue l'action
+	 *
+	 * @param p Joueur ayant mené à l'appel de cette méthode
+	 */
+	public abstract void run(Player p);
 
 	/**
 	 * Obtenir un EnumMap de l'objet avec ses attributs et leur état
@@ -64,6 +84,24 @@ public abstract class Operation {
 		object.put(EnigmaAttributes.PATH, this.getClass().getName());
 		object.put(EnigmaAttributes.ENTITY, this.entity.getID() + "");
 		return object;
+	}
+
+	/**
+	 * Obtenir l'entité consernée par la condition
+	 *
+	 * @return L'entité, null sinon
+	 */
+	public Entity getEntity() {
+		return this.entity;
+	}
+
+	/**
+	 * Indiquer l'entité consernée par la condition
+	 *
+	 * @param e Entité
+	 */
+	public void setEntity(Entity e) {
+		this.entity = e;
 	}
 
 	/**

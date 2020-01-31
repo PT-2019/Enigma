@@ -12,7 +12,7 @@ import java.util.Map;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 2.2
+ * @version 5.0
  * @see Condition
  * @since 2.0
  */
@@ -42,7 +42,9 @@ public class HaveInHands extends Condition {
 	@Override
 	public boolean verify(Player p) {
 		Item i = (Item) this.entity;
-		//TODO: tester si p a i dans ses mains
+		if(p.holdSomething()){
+			return p.getItemInHand().equals(i);
+		}
 		return false;
 	}
 

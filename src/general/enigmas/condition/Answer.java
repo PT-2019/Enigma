@@ -13,14 +13,24 @@ import java.util.Map;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 2.2
+ * @version 5.0
  * @see Condition
  * @since 2.0
  */
 public class Answer extends Condition {
 
-	public Answer(Content ent) {
+	/**
+	 * Réponse
+	 */
+	private String answer;
+
+	/**
+	 * @param ent Question
+	 * @param answer Réponse
+	 */
+	public Answer(Content ent, String answer) {
 		super((Entity) ent);
+		this.answer = answer;
 	}
 
 	/**
@@ -39,8 +49,9 @@ public class Answer extends Condition {
 	 */
 	@Override
 	public boolean verify(Player p) {
-		//poser la question et tester si la réponse est bonne
-		return false;
+		Content c = (Content) this.entity;
+		String answer = EnigmaOptionPane.showInputDialog(new EnigmaWindow(),c.getContent());
+		return (answer.equals(this.answer));
 	}
 
 	/**

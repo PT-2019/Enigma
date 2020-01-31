@@ -5,6 +5,7 @@ import general.entities.players.Player;
 import general.save.enigmas.EnigmaAttributes;
 import general.utils.IDFactory;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,7 +17,7 @@ import java.util.Map;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 2.1
+ * @version 5.0
  * @see general.enigmas.Enigma
  * @since 2.0
  */
@@ -39,10 +40,21 @@ public abstract class Condition {
 	 * @throws IllegalArgumentException Si un attribut est manquant
 	 */
 	public Condition(Map<String, Object> attributes) {
-		IDFactory idFactory = IDFactory.getInstance();
-		if (attributes.containsKey(EnigmaAttributes.ENTITY))
-			this.entity = (Entity) idFactory.getObject(Integer.parseInt((String) attributes.get(EnigmaAttributes.ENTITY)));
-		else throw new IllegalArgumentException("Attribut \"entity\" abscent");
+		ArrayList<String> attr = new ArrayList<>();
+		attr.add(EnigmaAttributes.ENTITY);
+
+		for(String a : attr){
+			if(!attributes.containsKey(a))
+				throw new IllegalArgumentException("Attribut \"" + a + "\" abscent");
+
+			Object get = attributes.get(a);
+
+			switch(a){
+				case Attributes.ENTITY:
+					this.entity = (Entity) EnigmaGame.getInstance().getCurrentMap().getEntities().getObjectByID(Integer.parseInt((String) get));
+					break;
+			}
+		}
 	}
 
 	/**
