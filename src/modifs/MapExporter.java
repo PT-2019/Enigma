@@ -1,13 +1,13 @@
 package modifs;
 
 import java.io.*;
-import java.util.HashMap;
 
 public class MapExporter {
 
     public static void encode(String mapName, String exportPath) throws IOException {
-        File tmx = new File("assets/files/map/" + mapName + ".tmx");
-        File json = new File("assets/files/map/" + mapName + ".json");
+        File map = new File("assets/files/map/" + mapName + ".tmx");
+        File data = new File("assets/files/data/" + mapName + ".tmx");
+        File enigma = new File("assets/files/map/" + mapName + ".json");
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(exportPath + mapName + ".enigma")));
         BufferedReader reader;
         String read;
@@ -19,19 +19,19 @@ public class MapExporter {
         writer.write(MapExporter.putInSyntax("author",mapName));
         writer.newLine();
 
-        writer.write(MapExporter.putInSyntax("tmx",String.valueOf((dataCount + 1)) ));
+        writer.write(MapExporter.putInSyntax("map",String.valueOf((dataCount + 1)) ));
         writer.newLine();
 
-        writer.write(MapExporter.putInSyntax("json",String.valueOf((dataCount + MapExporter.countLines(tmx)) )));
+        writer.write(MapExporter.putInSyntax("enigma",String.valueOf((dataCount + MapExporter.countLines(map)) )));
         writer.newLine();
 
-        reader = new BufferedReader(new InputStreamReader(new FileInputStream(tmx)));
+        reader = new BufferedReader(new InputStreamReader(new FileInputStream(map)));
         while((read = reader.readLine()) != null) {
             writer.write(read);
             writer.newLine();
         }
 
-        reader = new BufferedReader(new InputStreamReader(new FileInputStream(json)));
+        reader = new BufferedReader(new InputStreamReader(new FileInputStream(enigma)));
         while((read = reader.readLine()) != null) {
             writer.write(read);
             writer.newLine();
@@ -41,7 +41,7 @@ public class MapExporter {
     }
 
     private static String putInSyntax(String data, String value){
-        return "<" + data + ">" + value + "</" + data + ">";
+        return data + ":" + value;
     }
 
     public static int countLines(File input) throws IOException {
