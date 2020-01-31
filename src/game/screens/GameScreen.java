@@ -99,8 +99,9 @@ public class GameScreen extends LibgdxScreen {
 	}
 
 	@Override
-	public void display(boolean display) {
-
+	public void show() {
+		super.show();
+		Gdx.gl20.glClearColor(0.20f,0.20f,0.20f,1.0f);
 	}
 
 	public AbstractMap getMap() {
