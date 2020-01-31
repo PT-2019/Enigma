@@ -2,15 +2,15 @@ package editor.bar.listeners;
 
 import api.utils.Utility;
 import com.badlogic.gdx.Gdx;
+import common.hud.EnigmaLabel;
+import common.hud.EnigmaOptionPane;
+import common.hud.EnigmaTextArea;
+import common.hud.EnigmaWindow;
+import common.save.EmptyMapGenerator;
 import data.EnigmaScreens;
 import data.config.Config;
 import game.EnigmaGame;
 import game.screens.TestScreen;
-import general.hud.EnigmaLabel;
-import general.hud.EnigmaOptionPane;
-import general.hud.EnigmaTextArea;
-import general.hud.EnigmaWindow;
-import general.save.EmptyMapGenerator;
 
 import java.awt.event.ActionEvent;
 

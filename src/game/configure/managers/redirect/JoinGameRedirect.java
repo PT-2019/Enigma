@@ -1,6 +1,6 @@
 package game.configure.managers.redirect;
 
-import api.hud.CustomTextArea;
+import api.ui.CustomTextArea;
 import game.configure.LaunchGameDisplay;
 
 import java.awt.event.ActionEvent;

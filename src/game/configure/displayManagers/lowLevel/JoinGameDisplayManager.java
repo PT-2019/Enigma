@@ -1,13 +1,13 @@
 package game.configure.displayManagers.lowLevel;
 
+import common.hud.EnigmaButton;
+import common.hud.EnigmaLabel;
+import common.hud.EnigmaPanel;
+import common.hud.EnigmaTextArea;
 import data.config.EnigmaUIValues;
 import game.configure.LaunchGameDisplay;
 import game.configure.managers.redirect.JoinGameRedirect;
 import game.configure.managers.redirect.Redirect;
-import general.hud.EnigmaButton;
-import general.hud.EnigmaLabel;
-import general.hud.EnigmaPanel;
-import general.hud.EnigmaTextArea;
 
 import javax.swing.SwingConstants;
 import java.awt.BorderLayout;

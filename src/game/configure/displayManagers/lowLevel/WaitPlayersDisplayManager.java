@@ -1,16 +1,16 @@
 package game.configure.displayManagers.lowLevel;
 
+import common.entities.players.Player;
+import common.hud.EnigmaButton;
+import common.hud.EnigmaLabel;
+import common.hud.EnigmaPanel;
+import common.hud.ui.EnigmaButtonUI;
+import common.hud.ui.EnigmaLabelUI;
 import data.config.EnigmaUIValues;
 import data.config.GameConfiguration;
 import data.config.UserConfiguration;
 import game.configure.LaunchGameDisplay;
 import game.configure.managers.redirect.Redirect;
-import general.entities.players.Player;
-import general.hud.EnigmaButton;
-import general.hud.EnigmaLabel;
-import general.hud.EnigmaPanel;
-import general.hud.ui.EnigmaButtonUI;
-import general.hud.ui.EnigmaLabelUI;
 
 import javax.swing.SwingConstants;
 import java.awt.Color;

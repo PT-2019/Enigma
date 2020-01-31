@@ -1,14 +1,14 @@
 package editor.menus.others;
 
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import common.entities.GameObject;
+import common.hud.EnigmaButton;
+import common.hud.EnigmaPanel;
 import editor.menus.AbstractPopUpView;
 import editor.menus.AvailableOptionRunnable;
 import editor.menus.AvailablePopUpOption;
 import editor.popup.cases.CasePopUp;
 import editor.popup.cases.listeners.CaseDelete;
-import general.entities.GameObject;
-import general.hud.EnigmaButton;
-import general.hud.EnigmaPanel;
 
 /**
  * Suppression d'une entité

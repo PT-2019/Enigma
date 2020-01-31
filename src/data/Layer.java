@@ -1,9 +1,9 @@
 package data;
 
-import general.language.Field;
-import general.language.HUDFields;
+import common.language.Field;
+import common.language.HUDFields;
 
-import static general.language.GameLanguage.gl;
+import static common.language.GameLanguage.gl;
 
 /**
  * Nom des couches pour l'affichage de la map

@@ -1,9 +1,9 @@
 package editor.bar.listeners;
 
+import common.hud.EnigmaWindow;
 import data.EditorState;
 import editor.EditorLauncher;
 import game.screens.TestScreen;
-import general.hud.EnigmaWindow;
 
 import java.awt.Cursor;
 import java.awt.Image;

@@ -1,8 +1,8 @@
 package editor.entity;
 
-import general.entities.Entity;
-import general.entities.consumable.Book;
-import general.utils.textures.Texture;
+import common.entities.Entity;
+import common.entities.consumable.Book;
+import common.utils.textures.Texture;
 
 import javax.swing.*;
 import java.awt.*;

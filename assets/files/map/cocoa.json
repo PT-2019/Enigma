@@ -1,0 +1,44 @@
+{
+     "Enigmas": [
+          {
+               "common.enigmas.Enigma": [
+                    {
+                         "operations": [
+                              {
+                                   "common.enigmas.operation.Unlock": [
+                                        {
+                                             "entities": "41"
+                                        }
+                                   ]
+                              },
+
+                              {
+                                   "common.enigmas.operation.Unlock": [
+                                        {
+                                             "entities": "40"
+                                        }
+                                   ]
+                              }
+                         ],
+                         "known": "false",
+                         "currentAdviceIndex": "-1",
+                         "description": "",
+                         "advices": [
+                         ],
+                         "id": "33",
+                         "title": "key2",
+                         "type": "ON_USE",
+                         "conditions": [
+                              {
+                                   "common.enigmas.condition.Activated": [
+                                        {
+                                             "entities": "31"
+                                        }
+                                   ]
+                              }
+                         ]
+                    }
+               ]
+          }
+     ]
+}

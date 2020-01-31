@@ -7,11 +7,11 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import common.map.MapTestScreen;
 import data.EditorState;
 import editor.EditorLauncher;
 import game.EnigmaGame;
 import game.screens.TestScreen;
-import general.map.MapTestScreen;
 
 import java.awt.Cursor;
 

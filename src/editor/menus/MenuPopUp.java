@@ -1,12 +1,12 @@
 package editor.menus;
 
-import api.hud.base.ResetComponent;
+import api.ui.base.ResetComponent;
+import common.hud.EnigmaButton;
+import common.hud.EnigmaLabel;
+import common.hud.EnigmaPanel;
 import data.config.EnigmaUIValues;
 import editor.menus.enimas.listeners.ListenerMenu;
 import editor.menus.enimas.view.EnigmaView;
-import general.hud.EnigmaButton;
-import general.hud.EnigmaLabel;
-import general.hud.EnigmaPanel;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;

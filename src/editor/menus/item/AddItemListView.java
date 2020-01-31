@@ -1,15 +1,15 @@
 package editor.menus.item;
 
+import common.entities.GameObject;
+import common.entities.Item;
+import common.entities.types.Container;
+import common.hud.EnigmaButton;
+import common.hud.EnigmaLabel;
+import common.hud.EnigmaPanel;
 import editor.menus.AbstractPopUpView;
 import editor.menus.AbstractSubPopUpView;
 import editor.menus.ShowCardLayout;
 import game.dnd.DragAndDropBuilder;
-import general.entities.GameObject;
-import general.entities.Item;
-import general.entities.types.Container;
-import general.hud.EnigmaButton;
-import general.hud.EnigmaLabel;
-import general.hud.EnigmaPanel;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JCheckBox;

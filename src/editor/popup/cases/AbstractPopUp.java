@@ -1,10 +1,10 @@
 package editor.popup.cases;
 
-import api.hud.base.ResetComponent;
+import api.ui.base.ResetComponent;
 import api.utils.Utility;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import common.map.MapTestScreenCell;
 import editor.EditorLauncher;
-import general.map.MapTestScreenCell;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;

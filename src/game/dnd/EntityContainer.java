@@ -2,7 +2,7 @@ package game.dnd;
 
 import api.libgdx.actor.GameActorTextured;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import general.entities.serialization.EntitySerializable;
+import common.save.entities.serialization.EntitySerializable;
 
 /**
  * Une entité a partir de laquelle on crée des {@link DraggedEntity} ie des entités déplaçables.

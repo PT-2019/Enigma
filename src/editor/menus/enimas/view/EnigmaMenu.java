@@ -1,10 +1,10 @@
 package editor.menus.enimas.view;
 
+import common.hud.EnigmaButton;
+import common.hud.EnigmaLabel;
+import common.hud.EnigmaPanel;
+import common.hud.EnigmaTextArea;
 import data.config.EnigmaUIValues;
-import general.hud.EnigmaButton;
-import general.hud.EnigmaLabel;
-import general.hud.EnigmaPanel;
-import general.hud.EnigmaTextArea;
 
 import javax.swing.JTextField;
 import java.awt.Color;

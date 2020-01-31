@@ -1,6 +1,6 @@
 package editor.menus;
 
-import api.hud.base.ResetComponent;
+import api.ui.base.ResetComponent;
 
 import javax.swing.JDialog;
 

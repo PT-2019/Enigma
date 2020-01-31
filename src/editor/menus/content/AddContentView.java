@@ -1,13 +1,13 @@
 package editor.menus.content;
 
+import common.entities.GameObject;
+import common.entities.types.Content;
+import common.hud.EnigmaButton;
+import common.hud.EnigmaLabel;
+import common.hud.EnigmaPanel;
+import common.hud.EnigmaTextArea;
 import editor.menus.AbstractPopUpView;
 import editor.popup.cases.CasePopUp;
-import general.entities.GameObject;
-import general.entities.types.Content;
-import general.hud.EnigmaButton;
-import general.hud.EnigmaLabel;
-import general.hud.EnigmaPanel;
-import general.hud.EnigmaTextArea;
 
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -122,7 +122,7 @@ public class AddContentView extends AbstractPopUpView {
 			//ajout du contenu
 			this.entity.addContent(this.field.getText());
 			this.parent.dispose();//supprime fenêtre
-			//TODo: creates enigma version
+			//TODo: creates enigma version de JOptionPane.showMessageDialog
 			JOptionPane.showMessageDialog(this.parent.popUp, SAVED);
 			this.parent.popUp.setVisible(true);
 		}

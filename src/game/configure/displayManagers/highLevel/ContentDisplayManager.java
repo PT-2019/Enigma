@@ -1,5 +1,6 @@
 package game.configure.displayManagers.highLevel;
 
+import common.hud.EnigmaPanel;
 import game.configure.LaunchGameDisplay;
 import game.configure.displayManagers.lowLevel.CreateGameDisplayManager;
 import game.configure.displayManagers.lowLevel.DisplayManager;
@@ -7,7 +8,6 @@ import game.configure.displayManagers.lowLevel.JoinGameDisplayManager;
 import game.configure.displayManagers.lowLevel.SelectGameDisplayManager;
 import game.configure.displayManagers.lowLevel.WaitPlayersDisplayManager;
 import game.configure.displayManagers.lowLevel.WaitPlayersLeaderDisplayManager;
-import general.hud.EnigmaPanel;
 
 import java.awt.CardLayout;
 import java.awt.Color;

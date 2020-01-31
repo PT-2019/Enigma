@@ -1,7 +1,7 @@
 package editor.menus;
 
+import common.entities.GameObject;
 import data.TypeEntity;
-import general.entities.GameObject;
 
 import java.util.ArrayList;
 import java.util.Map;

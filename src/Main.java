@@ -1,7 +1,7 @@
 import api.libgdx.utils.LoadGameLibgdxApplication;
+import common.DesktopLauncher;
+import common.language.GameLanguage;
 import game.EnigmaGame;
-import general.DesktopLauncher;
-import general.language.GameLanguage;
 
 import javax.swing.SwingUtilities;
 

@@ -1,18 +1,19 @@
 package editor.menus.item;
 
+import common.entities.Consumable;
+import common.entities.GameObject;
+import common.entities.Item;
+import common.entities.types.Container;
+import common.hud.EnigmaButton;
+import common.hud.EnigmaLabel;
+import common.hud.EnigmaPanel;
+import common.map.MapTestScreen;
 import editor.menus.AbstractPopUpView;
 import editor.menus.AbstractSubPopUpView;
+import editor.menus.enimas.view.EnigmaView;
 import game.EnigmaGame;
 import game.dnd.DragAndDropBuilder;
 import game.screens.TestScreen;
-import general.entities.Consumable;
-import general.entities.GameObject;
-import general.entities.Item;
-import general.entities.types.Container;
-import general.hud.EnigmaButton;
-import general.hud.EnigmaLabel;
-import general.hud.EnigmaPanel;
-import general.map.MapTestScreen;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -49,6 +50,7 @@ public class AddItemAddView extends AbstractSubPopUpView {
 
 	@Override
 	public void update(GameObject object) {
+		if (EnigmaView.getAvailable() != null) return;
 		//PrintColor.println("update#"+object, AnsiiColor.CYAN);
 		//Récupération de la map
 		MapTestScreen map = ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap();

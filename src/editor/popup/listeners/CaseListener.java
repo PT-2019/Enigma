@@ -11,6 +11,8 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.SnapshotArray;
+import common.entities.GameObject;
+import common.map.MapTestScreenCell;
 import data.EditorState;
 import data.TypeEntity;
 import editor.menus.enimas.view.EnigmaView;
@@ -19,8 +21,6 @@ import editor.popup.cases.CaseView;
 import editor.popup.cases.SpecialPopUp;
 import editor.popup.cases.listeners.CasePopWindowListener;
 import game.screens.TestScreen;
-import general.entities.GameObject;
-import general.map.MapTestScreenCell;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -64,7 +64,6 @@ public class CaseListener extends ClickListener {
 				//on doit être dans un menu qui nécessite une deuxième popup
 				if (EnigmaView.getAvailable() != null) {
 					//deuxième fenêtre ok on ne quitte pas
-					System.out.println(pop);
 					if (pop != null) {
 						pop.setAlwaysOnTop(true);
 						pop.revalidate();

@@ -1,14 +1,14 @@
 package editor.menus.item;
 
 import api.utils.Utility;
+import common.entities.GameObject;
+import common.entities.Item;
+import common.hud.EnigmaLabel;
+import common.hud.EnigmaPanel;
 import editor.menus.AbstractPopUpView;
 import editor.menus.AbstractSubPopUpView;
 import editor.menus.AvailableOptionRunnable;
 import editor.menus.AvailablePopUpOption;
-import general.entities.GameObject;
-import general.entities.Item;
-import general.hud.EnigmaLabel;
-import general.hud.EnigmaPanel;
 
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;

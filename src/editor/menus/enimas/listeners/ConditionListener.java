@@ -2,21 +2,21 @@ package editor.menus.enimas.listeners;
 
 import api.utils.Utility;
 import com.badlogic.gdx.math.Vector2;
+import common.enigmas.condition.Activated;
+import common.enigmas.condition.Answer;
+import common.enigmas.condition.Condition;
+import common.enigmas.condition.HaveInHands;
+import common.enigmas.condition.HaveInInventory;
+import common.entities.GameObject;
+import common.entities.Item;
+import common.entities.types.Activatable;
+import common.entities.types.Content;
+import common.map.MapTestScreen;
 import editor.menus.enimas.view.ConditionPanel;
 import editor.menus.enimas.view.Conditions;
 import editor.menus.enimas.view.EnigmaView;
 import game.EnigmaGame;
 import game.screens.TestScreen;
-import general.enigmas.condition.Activated;
-import general.enigmas.condition.Answer;
-import general.enigmas.condition.Condition;
-import general.enigmas.condition.HaveInHands;
-import general.enigmas.condition.HaveInInventory;
-import general.entities.GameObject;
-import general.entities.Item;
-import general.entities.types.Activatable;
-import general.entities.types.Content;
-import general.map.MapTestScreen;
 
 import javax.swing.JRadioButton;
 import java.awt.CardLayout;
@@ -109,6 +109,7 @@ public class ConditionListener implements ActionListener, ItemListener {
 				//TODO: saisie réponse
 				this.panel.getEntityName().setText(ConditionPanel.NOT_AVAILABLE_CONDITION);
 			} else {
+				Conditions.lock(Conditions.valueOf(currentButton.getName()), this.panel);
 				EnigmaView.setAvailable(this.panel);
 				this.panel.update(this.object);
 				//DragAndDropBuilder.setForPopup(this.panel);
@@ -139,6 +140,7 @@ public class ConditionListener implements ActionListener, ItemListener {
 
 	public void clean() {
 		this.setGameObject(null);
+		Conditions.unlock(null);
 		this.currentButton = null;
 	}
 }

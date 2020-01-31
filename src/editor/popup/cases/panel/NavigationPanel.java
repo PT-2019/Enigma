@@ -1,14 +1,14 @@
 package editor.popup.cases.panel;
 
-import api.hud.base.ResetComponent;
+import api.ui.base.ResetComponent;
 import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import common.hud.EnigmaButton;
+import common.hud.EnigmaLabel;
+import common.hud.EnigmaPanel;
 import data.Layer;
 import editor.popup.cases.AbstractPopUp;
 import editor.popup.cases.listeners.CasePopListener;
-import general.hud.EnigmaButton;
-import general.hud.EnigmaLabel;
-import general.hud.EnigmaPanel;
 
 import java.awt.GridBagLayout;
 

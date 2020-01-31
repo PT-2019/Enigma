@@ -1,5 +1,10 @@
 package game.configure.displayManagers.lowLevel;
 
+import common.hud.EnigmaButton;
+import common.hud.EnigmaLabel;
+import common.hud.EnigmaPanel;
+import common.hud.ui.EnigmaButtonUI;
+import common.hud.ui.EnigmaLabelUI;
 import data.config.EnigmaUIValues;
 import data.config.GameConfiguration;
 import game.configure.LaunchGameDisplay;
@@ -12,11 +17,6 @@ import game.configure.managers.configurations.ChangeName;
 import game.configure.managers.configurations.ChangeType;
 import game.configure.managers.redirect.CreateGameRedirect;
 import game.configure.managers.redirect.Redirect;
-import general.hud.EnigmaButton;
-import general.hud.EnigmaLabel;
-import general.hud.EnigmaPanel;
-import general.hud.ui.EnigmaButtonUI;
-import general.hud.ui.EnigmaLabelUI;
 
 import javax.swing.SwingConstants;
 import java.awt.Color;

@@ -1,7 +1,7 @@
 package game;
 
-import api.hud.CustomWindow;
 import api.libgdx.LibgdxGame;
+import api.ui.CustomWindow;
 import api.utils.annotations.NeedPatch;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
@@ -37,7 +37,7 @@ public class EnigmaGame extends LibgdxGame {
 	 * @return l'instance unique du jeu
 	 */
 	public static EnigmaGame getInstance() {
-		if(enigmaGame == null)
+		if (enigmaGame == null)
 			enigmaGame = new EnigmaGame();
 		return enigmaGame;
 	}

@@ -4,8 +4,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import common.map.MapTestScreen;
 import editor.EditorLauncher;
-import general.map.MapTestScreen;
 
 import java.awt.Window;
 

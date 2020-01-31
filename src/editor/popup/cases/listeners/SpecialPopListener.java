@@ -1,10 +1,10 @@
 package editor.popup.cases.listeners;
 
+import common.entities.GameObject;
 import editor.menus.enimas.view.EnigmaView;
 import editor.popup.cases.AbstractPopUp;
 import editor.popup.cases.CasePopUp;
 import editor.popup.cases.SpecialPopUp;
-import general.entities.GameObject;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

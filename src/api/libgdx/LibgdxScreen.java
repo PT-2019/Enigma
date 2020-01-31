@@ -9,8 +9,7 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.utils.Array;
-import general.map.AbstractMap;
-import general.map.MapTestScreen;
+import common.map.AbstractMap;
 
 import java.util.Iterator;
 
@@ -122,5 +121,5 @@ public abstract class LibgdxScreen implements Screen, InputAdapter, IGameLogic {
 	public void resume() {
 	}
 
-    public abstract AbstractMap getMap();
+	public abstract AbstractMap getMap();
 }

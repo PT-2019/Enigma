@@ -1,6 +1,6 @@
 package editor.textures;
 
-import general.utils.textures.TextureProxy;
+import common.utils.textures.TextureProxy;
 
 import javax.swing.*;
 import java.awt.*;

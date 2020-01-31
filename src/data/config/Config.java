@@ -2,7 +2,7 @@ package data.config;
 
 import api.utils.AsciiColor;
 import api.utils.annotations.NeedPatch;
-import general.language.Language;
+import common.language.Language;
 
 /**
  * Fichier des configurations de l'application

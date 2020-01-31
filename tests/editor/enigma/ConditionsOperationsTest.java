@@ -1,16 +1,16 @@
 package editor.enigma;
 
-import general.enigmas.Enigma;
-import general.enigmas.condition.Activated;
-import general.enigmas.condition.Answer;
-import general.enigmas.condition.HaveInHands;
-import general.enigmas.condition.HaveInInventory;
-import general.enigmas.operation.Give;
-import general.enigmas.operation.Unlock;
-import general.entities.consumable.Book;
-import general.entities.items.Button;
-import general.entities.items.Door;
-import general.entities.players.Player;
+import common.enigmas.Enigma;
+import common.enigmas.condition.Activated;
+import common.enigmas.condition.Answer;
+import common.enigmas.condition.HaveInHands;
+import common.enigmas.condition.HaveInInventory;
+import common.enigmas.operation.Give;
+import common.enigmas.operation.Unlock;
+import common.entities.consumable.Book;
+import common.entities.items.Button;
+import common.entities.items.Door;
+import common.entities.players.Player;
 
 public class ConditionsOperationsTest {
     public static void main(String[] args){

@@ -1,6 +1,6 @@
 package editor.map;
 
-import general.save.MapLoader;
+import common.save.MapLoader;
 
 /**
  * Utilisation de la méthode DOM car on veut utilisé de nombreuse données du

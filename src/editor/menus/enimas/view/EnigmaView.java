@@ -2,12 +2,12 @@ package editor.menus.enimas.view;
 
 import api.utils.Observer;
 import com.badlogic.gdx.Gdx;
+import common.enigmas.Enigma;
+import common.map.MapTestScreenCell;
 import editor.EditorLauncher;
 import editor.popup.cases.CasePopUp;
 import editor.popup.cases.listeners.EntityChoseListener;
 import game.dnd.DragAndDropBuilder;
-import general.enigmas.Enigma;
-import general.map.MapTestScreenCell;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;

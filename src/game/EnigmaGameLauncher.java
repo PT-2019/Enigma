@@ -1,10 +1,10 @@
 package game;
 
 import api.Application;
-import api.hud.CustomWindow;
+import api.ui.CustomWindow;
+import common.hud.EnigmaWindow;
 import data.EnigmaScreens;
 import game.configure.LaunchGameDisplay;
-import general.hud.EnigmaWindow;
 
 import javax.swing.JPanel;
 import java.awt.BorderLayout;

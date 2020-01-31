@@ -1,16 +1,16 @@
 package game.configure.displayManagers.lowLevel;
 
-import api.hud.manager.CheckBoxManager;
+import api.ui.manager.CheckBoxManager;
+import common.hud.EnigmaButton;
+import common.hud.EnigmaLabel;
+import common.hud.EnigmaPanel;
+import common.hud.EnigmaTextArea;
+import common.hud.ui.EnigmaButtonUI;
 import data.config.EnigmaUIValues;
 import game.configure.LaunchGameDisplay;
 import game.configure.managers.redirect.DeleteGameRedirect;
 import game.configure.managers.redirect.Redirect;
 import game.configure.managers.redirect.StartGameRedirect;
-import general.hud.EnigmaButton;
-import general.hud.EnigmaLabel;
-import general.hud.EnigmaPanel;
-import general.hud.EnigmaTextArea;
-import general.hud.ui.EnigmaButtonUI;
 
 import javax.swing.BorderFactory;
 import javax.swing.JScrollPane;

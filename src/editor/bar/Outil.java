@@ -1,19 +1,19 @@
 package editor.bar;
 
 import api.utils.annotations.Temporary;
+import common.language.HUDFields;
 import editor.bar.listeners.BrushListener;
 import editor.bar.listeners.CreateListener;
 import editor.bar.listeners.EraserListener;
 import editor.bar.listeners.MoveListener;
 import editor.bar.listeners.OpenListener;
 import editor.bar.listeners.SaveListener;
-import general.language.HUDFields;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 
-import static general.language.GameLanguage.gl;
+import static common.language.GameLanguage.gl;
 
 /**
  * Outils (barre de menu, d'outils)

@@ -1,7 +1,7 @@
 package editor.popup;
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import general.map.model.Room;
+import common.map.model.Room;
 
 import java.awt.Point;
 import java.util.Map;

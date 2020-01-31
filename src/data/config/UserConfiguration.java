@@ -1,6 +1,6 @@
 package data.config;
 
-import general.entities.players.Player;
+import common.entities.players.Player;
 
 /**
  * Défini les configurations et informations de l'utilisateur

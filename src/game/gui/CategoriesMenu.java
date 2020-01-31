@@ -15,10 +15,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
+import common.save.entities.serialization.EntityFactory;
+import common.save.entities.serialization.EntitySerializable;
 import data.EntitiesCategories;
 import game.dnd.EntityContainer;
-import general.entities.serialization.EntityFactory;
-import general.entities.serialization.EntitySerializable;
 
 /**
  * Le menu libgdx des entités par catégorie

@@ -4,12 +4,12 @@ import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import common.map.MapTestScreenCell;
+import common.map.model.Case;
+import common.map.model.Map;
 import editor.popup.cases.CasePopUp;
 import editor.popup.cases.CaseView;
 import editor.popup.listeners.CaseListener;
-import general.map.MapTestScreenCell;
-import general.map.model.Case;
-import general.map.model.Map;
 
 import javax.swing.JComponent;
 

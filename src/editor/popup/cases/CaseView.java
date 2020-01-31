@@ -1,7 +1,7 @@
 package editor.popup.cases;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import general.map.MapTestScreenCell;
+import common.map.MapTestScreenCell;
 
 /**
  * Case qui permet de réalisé des actions sur la cell

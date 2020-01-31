@@ -1,8 +1,8 @@
 package editor.menus.enimas.view;
 
 import api.utils.Utility;
-import general.enigmas.Enigma;
-import general.entities.types.EnigmaContainer;
+import common.enigmas.Enigma;
+import common.entities.types.EnigmaContainer;
 
 import javax.swing.JTextArea;
 import javax.swing.JTextField;

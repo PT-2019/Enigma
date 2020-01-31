@@ -20,26 +20,23 @@ import data.Direction;
 public class GameActorAnimation extends GameActor {
 
 	/**
+	 * Direction de l'acteur dans l'espace 2d
+	 */
+	protected Direction facedDirection;
+	/**
 	 * Valeur qui représente l'écoulement du temps
 	 */
 	private float animationElapsedTime;
-
 	/**
 	 * boolean qui indique si l'animation est en pause
 	 */
 	private boolean animationPaused;
-
 	/**
 	 * Animation
 	 *
 	 * @see Animation
 	 */
 	private Animation<TextureRegion> animation;
-
-	/**
-	 * Direction de l'acteur dans l'espace 2d
-	 */
-	protected Direction facedDirection;
 
 	/**
 	 * Creates an Actor witch is able to have
@@ -63,12 +60,13 @@ public class GameActorAnimation extends GameActor {
 	 * @param index        index, commence à zéro représentant la position de la sous-image dans l'atlas
 	 */
 	public void setAnimation(String texture, int nbCol, int nbRow, float timePerFrame,
-	                            int colPerImage, int rowPerImage, int index) {
+	                         int colPerImage, int rowPerImage, int index) {
 		//position des colonne et ligne des sous ensembles de sprite
-		int col = (index % colPerImage) / nbCol, row = index / (colPerImage * nbRow);
+		int colPerLine = colPerImage / nbCol; //calcul de la largeur sinon ça indexe nbCol par nbCol...
+		int row = index / colPerLine, col = index % colPerLine;
 		//nb de sous ensembles de sprites par colonne et image
-		int nbimgCol = colPerImage/nbCol;
-		int nbimgRow = rowPerImage/nbRow;
+		int nbimgCol = colPerImage / nbCol;
+		int nbimgRow = rowPerImage / nbRow;
 
 		Array<TextureRegion> listeAnim = new Array<>();
 
@@ -90,15 +88,15 @@ public class GameActorAnimation extends GameActor {
 		sizeCol = playerRegion.getRegionWidth() / nbCol;
 		sizeRow = playerRegion.getRegionHeight() / nbRow;
 		//on split pour avoir une nouvelle région
-		regions = playerRegion.split(sizeCol,sizeRow);
+		regions = playerRegion.split(sizeCol, sizeRow);
 
 		//on permute les derniers sprites pour que l'animation se termine sur le sprite fixe
 		for (int i = 0; i < nbRow; i++) {
-			for (int j = 0; j < nbCol-1; j++) {
-				if (j == nbCol-2){
+			for (int j = 0; j < nbCol - 1; j++) {
+				if (j == nbCol - 2) {
 					playerRegion = regions[i][j];
-					regions[i][j] = regions[i][j+1];
-					regions[i][j+1] = playerRegion;
+					regions[i][j] = regions[i][j + 1];
+					regions[i][j + 1] = playerRegion;
 				}
 			}
 		}

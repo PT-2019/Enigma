@@ -1,6 +1,6 @@
 package api;
 
-import api.hud.CustomWindow;
+import api.ui.CustomWindow;
 
 /**
  * Représentation d'une application

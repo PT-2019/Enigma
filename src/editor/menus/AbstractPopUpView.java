@@ -1,10 +1,10 @@
 package editor.menus;
 
 import com.badlogic.gdx.Gdx;
+import common.hud.EnigmaPanel;
 import editor.EditorLauncher;
 import editor.popup.cases.CasePopUp;
 import game.dnd.DragAndDropBuilder;
-import general.hud.EnigmaPanel;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;

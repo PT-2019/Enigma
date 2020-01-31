@@ -1,14 +1,14 @@
 package editor.menus.others;
 
+import common.entities.GameObject;
+import common.entities.players.NPC;
+import common.hud.EnigmaPanel;
+import common.hud.ui.EnigmaJCheckBoxUI;
+import common.map.MapTestScreenCell;
 import editor.menus.AbstractPopUpView;
 import editor.menus.AvailableOptionRunnable;
 import editor.menus.AvailablePopUpOption;
 import editor.popup.cases.CasePopUp;
-import general.entities.GameObject;
-import general.entities.players.NPC;
-import general.hud.EnigmaPanel;
-import general.hud.ui.EnigmaJCheckBoxUI;
-import general.map.MapTestScreenCell;
 
 import javax.swing.JCheckBox;
 import java.awt.event.ItemEvent;

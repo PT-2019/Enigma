@@ -1,6 +1,6 @@
 package editor.bar.listeners;
 
-import general.hud.EnigmaWindow;
+import common.hud.EnigmaWindow;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

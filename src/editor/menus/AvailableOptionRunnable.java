@@ -1,5 +1,7 @@
 package editor.menus;
 
+import common.entities.GameObject;
+import common.hud.EnigmaPanel;
 import editor.menus.content.SetContent;
 import editor.menus.item.AddItems;
 import editor.menus.others.DefineAsHero;
@@ -7,8 +9,6 @@ import editor.menus.others.DefineAsNpc;
 import editor.menus.others.Delete;
 import editor.menus.others.ManageEnigmas;
 import editor.menus.others.SetAccess;
-import general.entities.GameObject;
-import general.hud.EnigmaPanel;
 
 /**
  * Les runnables pour ajouter les options au popup

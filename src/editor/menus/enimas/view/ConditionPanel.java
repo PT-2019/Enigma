@@ -1,15 +1,15 @@
 package editor.menus.enimas.view;
 
-import api.hud.base.ResetComponent;
+import api.ui.base.ResetComponent;
 import api.utils.Observer;
 import api.utils.Utility;
+import common.entities.GameObject;
+import common.hud.EnigmaButton;
+import common.hud.EnigmaLabel;
+import common.hud.EnigmaPanel;
 import editor.menus.enimas.listeners.ConditionListener;
 import editor.popup.cases.panel.MenuPanel;
 import game.dnd.DragAndDropBuilder;
-import general.entities.GameObject;
-import general.hud.EnigmaButton;
-import general.hud.EnigmaLabel;
-import general.hud.EnigmaPanel;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JRadioButton;
@@ -28,7 +28,7 @@ import java.awt.Insets;
 public class ConditionPanel extends EnigmaViewPanel implements Observer<GameObject>, ResetComponent {
 
 	public static final String NOT_AVAILABLE_OPERATION = "Opération non disponible";
-	public static final String ASK_SELECT = "Veuillez sélectionner un objet (carte uniquement)";
+	public static final String ASK_SELECT = "Veuillez sélectionner un objet ";
 	public static final String ASK_COND = "Veuillez sélectionner une condition.";
 	public static final String NOT_AVAILABLE_CONDITION = "Opération non disponible";
 	private static final String TITLE = "Ajouter une Condition à l'énigme";
@@ -204,7 +204,7 @@ public class ConditionPanel extends EnigmaViewPanel implements Observer<GameObje
 			msg += operations.restrict;
 			this.entityName.setText(msg);
 		} else if (object == null && operations != null) {
-			this.entityName.setText(ASK_SELECT);
+			this.entityName.setText(ASK_SELECT + "(" + operations.menuDrag.msg + ")");
 		} else if (object != null) {
 			msg += object.getReadableName() + " (id=" + object.getID() + ")";
 			this.entityName.setText(msg);
@@ -220,6 +220,7 @@ public class ConditionPanel extends EnigmaViewPanel implements Observer<GameObje
 		this.listener.clean();
 		this.groups.clearSelection();
 		DragAndDropBuilder.setForPopup(null);
+		//EnigmaView.setAvailable(null);
 	}
 
 	@Override

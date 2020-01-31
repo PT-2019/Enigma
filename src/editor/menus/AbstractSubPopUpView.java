@@ -1,10 +1,10 @@
 package editor.menus;
 
-import api.hud.base.ResetComponent;
+import api.ui.base.ResetComponent;
 import api.utils.Observer;
-import general.entities.GameObject;
-import general.hud.EnigmaLabel;
-import general.hud.EnigmaPanel;
+import common.entities.GameObject;
+import common.hud.EnigmaLabel;
+import common.hud.EnigmaPanel;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

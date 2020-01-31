@@ -29,7 +29,7 @@ public class GameActorUtilities {
 	public static Vector2 getAbsolutePosition(Actor actor) {
 		Actor a = actor.getParent();
 		Vector2 coords = new Vector2(actor.getX(), actor.getY());
-		while (a != null && a.getParent() != null) {//itère tous sauf dernier parent //TODO: bug ?
+		while (a != null && a.getParent() != null) {//itère tous sauf dernier parent
 			a.localToParentCoordinates(coords);
 			a = a.getParent();
 		}

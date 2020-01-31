@@ -1,11 +1,11 @@
 package editor.bar.listeners;
 
+import common.hud.EnigmaWindow;
+import common.map.MapTestScreen;
+import common.save.EmptyMapGenerator;
 import data.config.Config;
 import game.EnigmaGame;
 import game.screens.TestScreen;
-import general.hud.EnigmaWindow;
-import general.map.MapTestScreen;
-import general.save.EmptyMapGenerator;
 
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;

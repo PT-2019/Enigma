@@ -1,11 +1,11 @@
 package editor.menus.enimas.listeners;
 
 import api.utils.Utility;
+import common.enigmas.Advice;
+import common.hud.EnigmaTextArea;
+import common.save.enigmas.EnigmaAttributes;
 import editor.menus.enimas.view.CluePanel;
 import editor.menus.enimas.view.EnigmaView;
-import general.enigmas.Advice;
-import general.hud.EnigmaTextArea;
-import general.save.enigmas.EnigmaAttributes;
 
 import javax.swing.JSpinner;
 import java.awt.CardLayout;

@@ -1,13 +1,13 @@
 package editor.menus.others;
 
+import common.entities.GameObject;
+import common.hud.EnigmaButton;
+import common.hud.EnigmaPanel;
 import editor.menus.AbstractPopUpView;
 import editor.menus.AvailableOptionRunnable;
 import editor.menus.AvailablePopUpOption;
 import editor.menus.enimas.listeners.PopButtonListener;
 import editor.popup.cases.CasePopUp;
-import general.entities.GameObject;
-import general.hud.EnigmaButton;
-import general.hud.EnigmaPanel;
 
 /**
  * Permet de gérer les énigmes
@@ -27,7 +27,7 @@ public class ManageEnigmas implements AvailableOptionRunnable {
 	 * Affiche la gestion de contenu pour les entités.
 	 * /TOD ce fameux menu de gestion
 	 *
-	 * @see general.entities.types.Content
+	 * @see common.entities.types.Content
 	 */
 	private EnigmaButton eng;
 

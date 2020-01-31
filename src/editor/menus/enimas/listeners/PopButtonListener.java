@@ -1,9 +1,9 @@
 package editor.menus.enimas.listeners;
 
+import common.map.MapTestScreenCell;
 import editor.menus.enimas.view.EnigmaView;
 import editor.popup.cases.CasePopUp;
 import editor.popup.cases.listeners.EntityChoseListener;
-import general.map.MapTestScreenCell;
 
 import javax.swing.JDialog;
 import java.awt.event.ActionEvent;

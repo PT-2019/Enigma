@@ -1,6 +1,6 @@
 package editor.textures;
 
-import general.utils.textures.AtlasReader;
+import common.utils.textures.AtlasReader;
 import org.jetbrains.annotations.TestOnly;
 
 public class JsonReaderTestMain {

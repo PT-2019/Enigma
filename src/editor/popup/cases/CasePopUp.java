@@ -3,14 +3,14 @@ package editor.popup.cases;
 import api.utils.Utility;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import common.hud.EnigmaPanel;
+import common.map.MapTestScreenCell;
 import data.Layer;
 import editor.EditorLauncher;
 import editor.menus.AvailableOptionRunnable;
 import editor.menus.AvailablePopUpOption;
 import editor.popup.cases.listeners.EntityChoseListener;
 import editor.popup.cases.panel.NavigationPanel;
-import general.hud.EnigmaPanel;
-import general.map.MapTestScreenCell;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;

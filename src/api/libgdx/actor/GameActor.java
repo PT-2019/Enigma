@@ -119,14 +119,17 @@ public class GameActor extends Group {
 	}
 
 	/**
-	 *  Retourne le niveau auquel l'entité sera dessiné
+	 * Retourne le niveau auquel l'entité sera dessiné
+	 *
 	 * @return le niveau
 	 */
 	public Layer getLayer() {
 		return this.layer;
 	}
+
 	/**
-	 *  Définit le niveau auquel l'entité sera dessiné
+	 * Définit le niveau auquel l'entité sera dessiné
+	 *
 	 * @param l niveau
 	 */
 	public void setLayer(Layer l) {

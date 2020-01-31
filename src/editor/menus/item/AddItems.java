@@ -1,13 +1,13 @@
 package editor.menus.item;
 
+import common.entities.GameObject;
+import common.hud.EnigmaButton;
+import common.hud.EnigmaPanel;
 import editor.menus.AbstractPopUpView;
 import editor.menus.AvailableOptionRunnable;
 import editor.menus.AvailablePopUpOption;
 import editor.menus.enimas.listeners.EnigmaWindowListener;
 import editor.popup.cases.CasePopUp;
-import general.entities.GameObject;
-import general.hud.EnigmaButton;
-import general.hud.EnigmaPanel;
 
 /**
  * Permet d'ajouter des objets a un conteneur.

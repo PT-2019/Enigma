@@ -2,7 +2,7 @@ package editor.popup.cases.listeners;
 
 import api.utils.Observer;
 import api.utils.Subject;
-import general.entities.GameObject;
+import common.entities.GameObject;
 
 import java.util.ArrayList;
 

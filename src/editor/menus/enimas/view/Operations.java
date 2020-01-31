@@ -1,10 +1,15 @@
 package editor.menus.enimas.view;
 
-import general.entities.GameObject;
-import general.entities.players.NPC;
-import general.entities.types.Living;
-import general.entities.types.Lockable;
-import general.entities.types.NeedContainer;
+import api.utils.Observer;
+import common.entities.GameObject;
+import common.entities.players.NPC;
+import common.entities.types.Living;
+import common.entities.types.Lockable;
+import common.entities.types.NeedContainer;
+import editor.menus.SelectionsModes;
+import game.dnd.DragAndDropBuilder;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Opérations disponibles
@@ -17,13 +22,15 @@ import general.entities.types.NeedContainer;
  * @since 5.0 25/01/2020
  */
 public enum Operations {
-	GIVE("Donne un object à l'utilisateur", "Objects uniquement (livre...).", null),
-	SUMMON("Invoque une entité", "Seulement des personnages, pas de héros.", null),
-
-	//TODO: IMPOSSIBLE UNLOCK ENTITES MENU
-	UNLOCK("Dévérouille un object", "Seulement un object \"Décors\" fermable.", null),
+	GIVE("Donne un object à l'utilisateur", "Objects uniquement (livre...).", null, SelectionsModes.MENU_AND_POPUP),
+	SUMMON("Invoque une entité", "Seulement des personnages, pas de héros.", null, SelectionsModes.MAP_AND_MENU),
+	UNLOCK("Dévérouille un object", "Seulement un object \"Décors\" fermable.", null, SelectionsModes.MAP),
 	;
 
+	/**
+	 * La condition qui verrouille actuellement l'état
+	 */
+	private static Operations locked = null;
 	public final String value;
 	/**
 	 * Le nom d'une classe dont la méthode run crée.
@@ -44,12 +51,64 @@ public enum Operations {
 	 * Message si la condition n'est pas respectée
 	 */
 	public final String restrict;
+	/**
+	 * Possible de sélectionner depuis le menu
+	 */
+	public final SelectionsModes menuDrag;
 
-	Operations(String value, String restrict, Class<? extends Runnable> initClass) {
+	Operations(String value, String restrict, Class<? extends Runnable> initClass, SelectionsModes menuDrag) {
 		this.value = value;
 		this.initClass = initClass;
 		this.tooltip = "";
 		this.restrict = restrict;
+		this.menuDrag = menuDrag;
+	}
+
+	/**
+	 * Dévérouille la condition actuelle. L'éditor est débloqué.
+	 * Par exemple le drag and drop depuis le menu peu être désactivé.
+	 *
+	 * @param operations l'opération
+	 */
+	public static void unlock(@Nullable Operations operations) {
+		if (operations != null) {
+			operations.unlock();
+		}
+	}
+
+	/**
+	 * Vérouille la condition actuelle. L'éditor est bloqué.
+	 * Par exemple le drag and drop depuis le menu peu être désactivé.
+	 * <p>
+	 * Auto unlock
+	 *
+	 * @param operations l'opération
+	 * @param observer   observeur
+	 */
+	public static void lock(@NotNull Operations operations, Observer observer) {
+		unlock(locked);
+		locked = operations;
+		locked.lock(observer);
+	}
+
+	/**
+	 * Vérouille la condition actuelle. L'éditor est bloqué.
+	 * Par exemple le drag and drop depuis le menu peu être désactivé.
+	 *
+	 * @param observer observeur
+	 */
+	private void lock(Observer observer) {
+		if (menuDrag.contains(SelectionsModes.MENU)) DragAndDropBuilder.setForPopup(observer);
+		//if(menuDrag.contains(SelectionsModes.MAP)) EnigmaView.setAvailable(observer);
+	}
+
+	/**
+	 * Dévérouille la condition actuelle. L'éditor est débloqué.
+	 * Par exemple le drag and drop depuis le menu peu être désactivé.
+	 */
+	private void unlock() {
+		if (menuDrag.contains(SelectionsModes.MENU)) DragAndDropBuilder.setForPopup(null);
+		//if(menuDrag.contains(SelectionsModes.MAP)) EnigmaView.setAvailable(null);
 	}
 
 	/**

@@ -1,15 +1,15 @@
 package editor.menus.enimas.view;
 
-import api.hud.base.ResetComponent;
+import api.ui.base.ResetComponent;
 import api.utils.Observer;
+import common.entities.GameObject;
+import common.hud.EnigmaButton;
+import common.hud.EnigmaLabel;
+import common.hud.EnigmaPanel;
+import common.hud.EnigmaTextArea;
 import data.config.EnigmaUIValues;
 import editor.menus.enimas.listeners.ClueListener;
 import editor.popup.cases.panel.MenuPanel;
-import general.entities.GameObject;
-import general.hud.EnigmaButton;
-import general.hud.EnigmaLabel;
-import general.hud.EnigmaPanel;
-import general.hud.EnigmaTextArea;
 
 import javax.swing.JSpinner;
 import javax.swing.border.EmptyBorder;

@@ -2,20 +2,20 @@ package editor.menus.enimas.listeners;
 
 import api.utils.Utility;
 import com.badlogic.gdx.math.Vector2;
+import common.enigmas.operation.Give;
+import common.enigmas.operation.Operation;
+import common.enigmas.operation.Summon;
+import common.enigmas.operation.Unlock;
+import common.entities.Entity;
+import common.entities.GameObject;
+import common.entities.Item;
+import common.entities.types.Lockable;
+import common.map.MapTestScreen;
 import editor.menus.enimas.view.EnigmaView;
 import editor.menus.enimas.view.OperationPanel;
 import editor.menus.enimas.view.Operations;
 import game.EnigmaGame;
 import game.screens.TestScreen;
-import general.enigmas.operation.Give;
-import general.enigmas.operation.Operation;
-import general.enigmas.operation.Summon;
-import general.enigmas.operation.Unlock;
-import general.entities.Entity;
-import general.entities.GameObject;
-import general.entities.Item;
-import general.entities.types.Lockable;
-import general.map.MapTestScreen;
 
 import javax.swing.JRadioButton;
 import java.awt.CardLayout;
@@ -108,6 +108,7 @@ public class OperationListener implements ActionListener, ItemListener {
 		if (e.getStateChange() == ItemEvent.SELECTED) {
 			this.currentButton = (JRadioButton) e.getItem();
 			EnigmaView.setAvailable(this.operationPanel);
+			Operations.lock(Operations.valueOf(currentButton.getName()), this.operationPanel);
 			this.operationPanel.update(this.object);
 			//DragAndDropBuilder.setForPopup(this.operationPanel);
 		}
@@ -116,6 +117,7 @@ public class OperationListener implements ActionListener, ItemListener {
 	public void clean() {
 		this.setGameObject(null);
 		this.currentButton = null;
+		Operations.unlock(null);
 	}
 
 	public JRadioButton getCurrentButton() {
@@ -130,6 +132,7 @@ public class OperationListener implements ActionListener, ItemListener {
 			if (pos == null || pos.x < 0 || pos.y < 0) {
 				MapTestScreen map = ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap();
 				//supprime de la map
+				System.out.println("remove");
 				map.removeEntity(this.object);
 				//l'id du temporaire est forcément le dernier donc transfert de l'id si besoin
 				if (object != null && object.getID() > this.object.getID())

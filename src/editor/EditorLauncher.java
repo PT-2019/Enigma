@@ -1,15 +1,15 @@
 package editor;
 
 import api.Application;
-import api.hud.CustomWindow;
-import api.hud.base.WindowSize;
+import api.ui.CustomWindow;
+import api.ui.base.WindowSize;
 import api.utils.Utility;
+import common.hud.EnigmaWindow;
+import common.save.entities.serialization.EntityFactory;
 import data.EditorState;
 import data.EnigmaScreens;
 import game.EnigmaGame;
 import game.screens.TestScreen;
-import general.entities.serialization.EntityFactory;
-import general.hud.EnigmaWindow;
 
 import java.awt.BorderLayout;
 import java.awt.Cursor;

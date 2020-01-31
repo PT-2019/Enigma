@@ -1,6 +1,6 @@
 package game.configure.displayManagers.lowLevel;
 
-import general.hud.EnigmaPanel;
+import common.hud.EnigmaPanel;
 
 /**
  * Gère les affichages

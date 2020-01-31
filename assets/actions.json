@@ -1,7 +1,7 @@
 {
   content: [
     {
-      className: general.entities.special.GameExit
+      className: common.entities.special.GameExit
       path: assets/map/datas/actions/exit.png
       hover: emplacement fin partie joueurs
       height: 2

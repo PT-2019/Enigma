@@ -6,12 +6,12 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import common.entities.GameObject;
+import common.map.MapTestScreen;
 import data.EditorState;
 import editor.EditorLauncher;
 import game.EnigmaGame;
 import game.screens.TestScreen;
-import general.entities.GameObject;
-import general.map.MapTestScreen;
 
 import java.awt.Cursor;
 

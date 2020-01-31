@@ -1,7 +1,7 @@
 package game.dnd;
 
 import api.libgdx.actor.GameActorDragAndDrop;
-import general.entities.serialization.EntitySerializable;
+import common.save.entities.serialization.EntitySerializable;
 
 /**
  * Une entité qui peut être déplacée.

@@ -1,8 +1,8 @@
 package game.configure;
 
+import common.hud.EnigmaPanel;
 import game.configure.displayManagers.highLevel.ContentDisplayManager;
 import game.configure.displayManagers.highLevel.RightBarDisplayManager;
-import general.hud.EnigmaPanel;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;

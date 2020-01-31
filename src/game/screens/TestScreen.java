@@ -4,11 +4,11 @@ import api.libgdx.LibgdxScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import common.map.MapTestScreen;
 import data.EditorState;
 import editor.popup.TestMapControl;
 import game.EnigmaGame;
 import game.gui.CategoriesMenu;
-import general.map.MapTestScreen;
 
 /**
  * TestScreen de la libgdx dans l'éditeur

@@ -1,7 +1,7 @@
 {
   content: [
     {
-      className: general.entities.special.Room
+      className: common.entities.special.Room
       path: assets/map/datas/rooms/Room1.png
       hover: une salle
       category: ROOMS
@@ -383,7 +383,7 @@
     }
 
     {
-      className: general.entities.special.Room
+      className: common.entities.special.Room
       path: assets/map/datas/rooms/Room2.png
       hover: une salle
       category: ROOMS
@@ -1424,7 +1424,7 @@
     }
 
     {
-      className: general.entities.special.Room
+      className: common.entities.special.Room
       path: assets/map/datas/rooms/Room3.png
       hover: une salle
       category: ROOMS
@@ -1925,7 +1925,7 @@
     }
 
     {
-      className: general.entities.special.Room
+      className: common.entities.special.Room
       path: assets/map/datas/rooms/Room4.png
       hover: une salle
       category: ROOMS
@@ -3051,7 +3051,7 @@
     }
 
     {
-      className: general.entities.special.Room
+      className: common.entities.special.Room
       path: assets/map/datas/rooms/Room5.png
       hover: une salle
       category: ROOMS

@@ -1,10 +1,10 @@
 package game.configure.managers.configurations;
 
-import api.hud.CustomButton;
+import api.ui.CustomButton;
+import common.hud.EnigmaOptionPane;
 import data.config.GameConfiguration;
 import game.EnigmaGameLauncher;
 import game.configure.LaunchGameDisplay;
-import general.hud.EnigmaOptionPane;
 
 import java.awt.Dimension;
 import java.awt.event.MouseEvent;

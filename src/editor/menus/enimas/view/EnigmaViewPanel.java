@@ -1,6 +1,6 @@
 package editor.menus.enimas.view;
 
-import general.hud.EnigmaPanel;
+import common.hud.EnigmaPanel;
 
 /**
  * Toute les classes gérant les panneaux de EnigmaView héritent de cette classe.

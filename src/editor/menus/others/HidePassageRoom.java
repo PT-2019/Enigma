@@ -1,11 +1,11 @@
 package editor.menus.others;
 
+import common.entities.GameObject;
+import common.hud.EnigmaPanel;
 import editor.menus.AbstractPopUpView;
 import editor.menus.AvailableOptionRunnable;
 import editor.menus.AvailablePopUpOption;
 import editor.popup.cases.CasePopUp;
-import general.entities.GameObject;
-import general.hud.EnigmaPanel;
 
 /**
  * Ouvre un menu permettant de cacher l'un des deux salles

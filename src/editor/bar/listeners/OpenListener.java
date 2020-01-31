@@ -1,11 +1,11 @@
 package editor.bar.listeners;
 
 import com.badlogic.gdx.Gdx;
+import common.hud.EnigmaWindow;
+import common.save.EmptyMapGenerator;
 import data.EnigmaScreens;
 import data.config.Config;
 import game.EnigmaGame;
-import general.hud.EnigmaWindow;
-import general.save.EmptyMapGenerator;
 
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;

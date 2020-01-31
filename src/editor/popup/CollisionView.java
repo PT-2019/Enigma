@@ -1,7 +1,7 @@
 package editor.popup;
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import general.map.model.Case;
+import common.map.model.Case;
 
 @Deprecated
 public class CollisionView extends ShapeRenderer {

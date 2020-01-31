@@ -1,9 +1,9 @@
 package editor.popup.cases.listeners;
 
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import common.hud.EnigmaPanel;
+import common.map.MapTestScreenCell;
 import editor.popup.cases.CasePopUp;
-import general.hud.EnigmaPanel;
-import general.map.MapTestScreenCell;
 
 import javax.swing.JLabel;
 import java.awt.event.ActionEvent;

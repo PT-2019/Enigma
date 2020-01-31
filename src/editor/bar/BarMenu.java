@@ -1,17 +1,17 @@
 package editor.bar;
 
 import com.badlogic.gdx.Gdx;
+import common.hud.EnigmaMenu;
+import common.hud.EnigmaMenuBar;
+import common.hud.EnigmaMenuItem;
+import common.hud.EnigmaWindow;
+import common.language.HUDFields;
 import data.EnigmaScreens;
 import editor.bar.listeners.CreateListener;
 import editor.bar.listeners.OpenListener;
 import game.EnigmaGame;
-import general.hud.EnigmaMenu;
-import general.hud.EnigmaMenuBar;
-import general.hud.EnigmaMenuItem;
-import general.hud.EnigmaWindow;
-import general.language.HUDFields;
 
-import static general.language.GameLanguage.gl;
+import static common.language.GameLanguage.gl;
 
 /**
  * Barre du menu
