@@ -40,7 +40,7 @@ public class SpecialPopListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		EntityChoseListener obs = popup.getObserver();
-		obs.updateObserveur(objectChose);
+		obs.updateObserver(objectChose);
 		popDispose.dispose();
 		EnigmaView.setAvailable(null);
 

@@ -1,14 +1,16 @@
 package data.config;
 
+import api.Application;
 import api.utils.AsciiColor;
 import api.utils.annotations.NeedPatch;
+import com.badlogic.gdx.Gdx;
 import common.language.Language;
 
 /**
  * Fichier des configurations de l'application
  *
  * @author Quentin RAMSAMY-AGEORGES
- * @version 5.2
+ * @version 6.0
  * @since 4.0
  */
 public final class Config {
@@ -50,16 +52,49 @@ public final class Config {
 	public static final Language DEFAULT = Language.FRENCH;
 
 	/**
-	 * Couleur des élements affichés dans la console DEBUG
+	 * Chemin du logo
+	 *
+	 * @since 5.2
+	 */
+	public static final String LOGO = "assets/logo.jpg";
+
+	/**
+	 * Nombre maximum de undo
+	 * Reset a chaque sauvegarde
+	 * @since 6.0
+	 */
+	public static final int MAX_OF_UNDO = 20;
+
+	/**
+	 * Nombre maximum de redo
+	 * Reset a chaque sauvegarde
+	 * @since 6.0
+	 */
+	public static final int MAX_OF_REDO = 20;
+
+	/**
+	 * Le type de logs qui doivent être affichés
+	 *
+	 * @see Application#LOG_DEBUG
+	 * @see Application#LOG_ERROR
+	 * @see Application#LOG_INFO
+	 * @see Application#LOG_NONE
+	 *
+	 * @since 6.0
+	 */
+	public static final int APPLICATION_LOG = Application.LOG_DEBUG|Application.LOG_ERROR;
+
+	/**
+	 * Couleur des éléments affichés en mode DEBUG
 	 *
 	 * @since 5.1
 	 */
 	public static final AsciiColor DEBUG_COLOR = AsciiColor.YELLOW;
 
 	/**
-	 * Chemin du logo
+	 * Couleur des éléments affichés en mode ERROR
 	 *
-	 * @since 5.2
+	 * @since 6.0
 	 */
-	public static final String LOGO = "assets/logo.jpg";
+	public static final AsciiColor ERROR_COLOR = AsciiColor.ORANGE;
 }

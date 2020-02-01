@@ -1,7 +1,7 @@
 package game.dnd;
 
+import common.utils.Logger;
 import api.utils.Observer;
-import api.utils.Utility;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -78,7 +78,7 @@ public class DragAndDropBuilder extends InputListener {
 			TestScreen.setState(EditorState.NORMAL);
 			EditorLauncher.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 		} else if (forPopup != null) {
-			Utility.printDebug("DnDBuilder", "Déplacement bloqué. Sélection.");
+			Logger.printDebug("DnDBuilder", "Déplacement bloqué. Sélection.");
 			MapTestScreen map = ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap();
 			GameObject obj = map.loadEntity(this.container.getEntity(), null);
 			forPopup.update(obj);

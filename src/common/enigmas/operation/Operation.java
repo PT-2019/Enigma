@@ -52,7 +52,7 @@ public abstract class Operation {
 
 			switch (a) {
 				case EnigmaAttributes.ENTITY:
-					this.entity = (Entity) EnigmaGame.getCurrentScreen().getMap().getEntitiesObjects().getObjectByID(Integer.parseInt((String) get));
+					this.entity = (Entity) EnigmaGame.getCurrentScreen().getMap().getEntities().getObjectByID(Integer.parseInt((String) get));
 					break;
 			}
 		}

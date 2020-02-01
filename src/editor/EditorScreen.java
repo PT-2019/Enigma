@@ -17,6 +17,7 @@ import data.EntitiesCategories;
 import data.config.EnigmaUIValues;
 import editor.bar.BarMenu;
 import editor.bar.Outil;
+import editor.bar.listeners.CreateListener;
 import org.intellij.lang.annotations.MagicConstant;
 
 import javax.swing.JButton;
@@ -26,6 +27,7 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.dnd.DnDConstants;
 import java.awt.event.ActionListener;
@@ -151,7 +153,7 @@ public class EditorScreen extends JPanel {
 			a.setIcon(o.icon);
 			a.setUI(ui);
 			c = o.actionListener;
-			if (c != null) a.addActionListener((ActionListener) Utility.instance(c, window));
+			if (c != null) a.addActionListener((ActionListener) Utility.instance(c, window, a));
 			outilBar.add(a);
 			if (o.glue) {
 				EnigmaButton sep = new EnigmaButton();

@@ -57,9 +57,9 @@ public class EnigmaView extends JDialog {
 		this.popUp = popUp;
 
 		ConditionPanel condition = new ConditionPanel(this);
-		observer.addObserveur(condition);
+		observer.addObserver(condition);
 		OperationPanel operation = new OperationPanel(this);
-		observer.addObserveur(operation);
+		observer.addObserver(operation);
 		CluePanel clue = new CluePanel(this);
 		panel.add(new EnigmaMenu(this), "menu");
 		panel.add(clue, "clue");

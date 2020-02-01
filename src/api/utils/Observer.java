@@ -3,7 +3,7 @@ package api.utils;
 /**
  * Un object observé
  *
- * @param <T> le type de l'object transmis par update. {@link Subject#updateObserveur(Object)}
+ * @param <T> le type de l'object transmis par update. {@link Subject#updateObserver(Object)}
  * @author Jorys-Micke ALAÏS
  * @author Louka DOZ
  * @author Loic SENECAT

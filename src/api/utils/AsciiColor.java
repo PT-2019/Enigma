@@ -4,7 +4,7 @@ package api.utils;
  * Couleurs et leur code d'échappement ascii
  *
  * @author Quentin RAMSAMY-AGEORGES
- * @version 4.0 21/01/2020
+ * @version 6.0
  * @since 4.0 21/01/2020
  */
 public enum AsciiColor {
@@ -16,7 +16,8 @@ public enum AsciiColor {
 	BLUE("\u001B[34m"),
 	PURPLE("\u001B[35m"),
 	CYAN("\u001B[36m"),
-	WHITE("\u001B[37m");
+	WHITE("\u001B[37m"),
+	ORANGE("\u001B[38m");
 
 	public final String code;
 

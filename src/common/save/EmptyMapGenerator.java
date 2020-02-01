@@ -1,6 +1,7 @@
 package common.save;
 
-import api.utils.Utility;
+import common.map.MapObjects;
+import common.utils.Logger;
 import api.utils.annotations.ConvenienceMethod;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
@@ -69,7 +70,7 @@ public class EmptyMapGenerator {
 	 * @param game     map tiled
 	 * @param entities liste des entités de la map
 	 */
-	public static void save(String path, TiledMap game, HashMap<Vector2, GameObject> entities) {
+	public static void save(String path, TiledMap game, MapObjects entities) {
 		//----------------- fichier .tmx -----------------
 		SaveMap save = new SaveMap(game, entities);
 		save.saveMap(path + ".tmx", Config.MAP_FOLDER_SAV);
@@ -78,7 +79,7 @@ public class EmptyMapGenerator {
 
 		//Récupère les énigmes
 		ArrayList<Enigma> enigmas = new ArrayList<>();
-		for (GameObject entity : entities.values()) {
+		for (GameObject entity : entities.getAllObjectsByClass(GameObject.class)) {
 			if (entity instanceof EnigmaContainer) {
 				System.out.println(entity);
 				Iterator<Enigma> enigmasRaw = ((EnigmaContainer) entity).getAllEnigmas();
@@ -111,16 +112,16 @@ public class EmptyMapGenerator {
 
 		//------------ charge .json ------------
 		MapTestScreen map = ((TestScreen) EnigmaGame.getCurrentScreen()).getMap();
-		HashMap<Vector2, GameObject> entities = map.getEntities();
+		MapObjects entities = map.getEntities();
 
 		ArrayList<Enigma> enigmas;
 		ArrayList<Enigma> copy = new ArrayList<>();
 		path = path.substring(0, path.length() - 4) + ".json"; //retire l'extension tmx
-		Utility.printDebug("EmptyMapGenerator#load", path);
+		Logger.printDebug("EmptyMapGenerator#load", path);
 		int id;
 		try {
 			enigmas = EnigmaJsonReader.readEnigmas(path);
-			for (GameObject o : entities.values()) {
+			for (GameObject o : entities.getAllObjectsByClass(GameObject.class)) {
 				if (!(o instanceof EnigmaContainer)) continue;
 				//récupère les énigmes de cet object
 				for (Enigma en : enigmas) {

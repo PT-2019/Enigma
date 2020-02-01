@@ -1,6 +1,6 @@
 package editor.menus.enimas.listeners;
 
-import api.utils.Utility;
+import common.utils.Logger;
 import common.enigmas.Advice;
 import common.hud.EnigmaTextArea;
 import common.save.enigmas.EnigmaAttributes;
@@ -81,7 +81,7 @@ public class ClueListener implements ActionListener {
 			Advice advice = new Advice(attribute);
 			parent.getEnigma().addAdvice(advice);
 
-			Utility.printDebug("addClue", advice.toString());
+			Logger.printDebug("addClue", advice.toString());
 
 			//reset
 			timeField.setValue(1);

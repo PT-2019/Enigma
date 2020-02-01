@@ -10,6 +10,8 @@ import java.util.Map;
 /**
  * Stocke des {@link common.entities.GameObject GameObjects} en fonction de leur tile d'appartenance
  *
+ * Patron de conception : Façade.
+ *
  * @author Jorys-Micke ALAÏS
  * @author Louka DOZ
  * @author Loic SENECAT
@@ -20,15 +22,24 @@ import java.util.Map;
 public class MapObjects {
 	/**
 	 * Liste
+	 *
+	 * @since 5.0
 	 */
 	private HashMap<Vector2, ArrayList<GameObject>> objects;
 
+	/**
+	 * Création du stocke, vide de base
+	 *
+	 * @since 5.0
+	 */
 	public MapObjects() {
 		this.objects = new HashMap<>();
 	}
 
 	/**
 	 * @param map Valeurs de départ
+	 *
+	 * @since 5.0
 	 */
 	public MapObjects(Map<Vector2, ArrayList<GameObject>> map) {
 		this.objects = new HashMap<>(map);
@@ -39,6 +50,8 @@ public class MapObjects {
 	 *
 	 * @param v  Vecteur
 	 * @param go Liste d'éléments
+	 *
+	 * @since 5.0
 	 */
 	public void put(Vector2 v, ArrayList<GameObject> go) {
 		this.objects.put(v, go);
@@ -49,6 +62,8 @@ public class MapObjects {
 	 *
 	 * @param v  Vecteur
 	 * @param go Elément
+	 *
+	 * @since 5.0
 	 */
 	public void put(Vector2 v, GameObject go) {
 		if (!objects.containsKey(v)) {
@@ -63,6 +78,8 @@ public class MapObjects {
 	 * Retire tous les éléments à tel vecteur
 	 *
 	 * @param v Vecteur
+	 *
+	 * @since 5.0
 	 */
 	public void remove(Vector2 v) {
 		this.objects.remove(v);
@@ -73,6 +90,8 @@ public class MapObjects {
 	 *
 	 * @param v  Vecteur
 	 * @param go Elément
+	 *
+	 * @since 5.0
 	 */
 	public void remove(Vector2 v, GameObject go) {
 		this.objects.get(v).remove(go);
@@ -83,6 +102,8 @@ public class MapObjects {
 	 *
 	 * @param go Elément
 	 * @return true si l'élément est contenu, false sinon
+	 *
+	 * @since 5.0
 	 */
 	public boolean contains(GameObject go) {
 		return (this.getVectorByObject(go) != null);
@@ -92,6 +113,8 @@ public class MapObjects {
 	 * Obtenir la taille
 	 *
 	 * @return La taille
+	 *
+	 * @since 5.0
 	 */
 	public int size() {
 		return this.objects.size();
@@ -101,6 +124,8 @@ public class MapObjects {
 	 * Obtenir la liste complète
 	 *
 	 * @return Liste complète
+	 *
+	 * @since 5.0
 	 */
 	@SuppressWarnings("unchecked")
 	public HashMap<Vector2, ArrayList<GameObject>> getAll() {
@@ -112,6 +137,8 @@ public class MapObjects {
 	 *
 	 * @param v Vecteur
 	 * @return Les éléments
+	 *
+	 * @since 5.0
 	 */
 	public ArrayList<GameObject> getObjectsByVector(Vector2 v) {
 		return this.objects.get(v);
@@ -122,6 +149,8 @@ public class MapObjects {
 	 *
 	 * @param go Elément
 	 * @return Vecteur, null si l'éléments n'existe pas
+	 *
+	 * @since 5.0
 	 */
 	public Vector2 getVectorByObject(GameObject go) {
 		for (Map.Entry<Vector2, ArrayList<GameObject>> map : this.objects.entrySet()) {
@@ -136,6 +165,8 @@ public class MapObjects {
 	 *
 	 * @param id ID
 	 * @return L'élément, null si aucun élément a cet ID
+	 *
+	 * @since 5.0
 	 */
 	public GameObject getObjectByID(int id) {
 		for (ArrayList<GameObject> list : this.objects.values()) {
@@ -153,6 +184,7 @@ public class MapObjects {
 	 * @param t   Classe
 	 * @param <T> Type de la classe
 	 * @return Les éléments
+	 * @since 5.0
 	 */
 	@SuppressWarnings("unchecked")
 	public <T extends GameObject> ArrayList<T> getAllObjectsByClass(Class<T> t) {
@@ -166,5 +198,49 @@ public class MapObjects {
 		}
 
 		return (ArrayList<T>) obj.clone();
+	}
+
+	/**
+	 * Retourne une mapObject depuis une clef
+	 * @param start une clef
+	 * @return une mapObject depuis une clef
+	 * @since 6.1
+	 */
+	public MapObjects getEntries(Vector2 start) {
+		if(!this.objects.containsKey(start)) return null;
+		MapObjects m = new MapObjects();
+		m.put(start,this.objects.get(start));
+		return m;
+	}
+
+	/**
+	 * Retourne une mapObject depuis une clef
+	 * @param start une clef
+	 * @return une mapObject depuis une clef
+	 * @since 6.1
+	 */
+	public MapObject getFirstEntry(Vector2 start) {
+		if(!this.objects.containsKey(start)) return null;
+		ArrayList<GameObject> gameObjects = this.objects.get(start);
+		if(gameObjects.size() <= 0) return null;
+		return new MapObject(start, gameObjects.get(0));
+	}
+
+	/**
+	 * Retourne un mapObject depuis une valeur
+	 * @param object une valeur
+	 * @return un mapObject depuis une valeur
+	 * @throws IllegalArgumentException si pas dans la map
+	 * @since 6.1
+	 */
+	public MapObject getEntry(GameObject object) {
+		int id = object.getID();
+		for (Map.Entry<Vector2, ArrayList<GameObject>> entry:this.objects.entrySet()){
+			for (GameObject o :entry.getValue()) {
+				if (o.getID() == id)
+					return new MapObject(entry.getKey(), o);
+			}
+		}
+		throw new IllegalArgumentException(object+" n'est pas dans la map");
 	}
 }

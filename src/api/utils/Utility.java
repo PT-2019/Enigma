@@ -3,6 +3,7 @@ package api.utils;
 import api.utils.annotations.ConvenienceClass;
 import api.utils.annotations.ConvenienceMethod;
 import api.utils.annotations.NeedPatch;
+import common.utils.Logger;
 import data.config.Config;
 
 import java.awt.GraphicsConfiguration;
@@ -27,7 +28,7 @@ import java.util.Map;
  * Tout un paquet de méthodes utiles
  *
  * @author Quentin RAMSAMY-AGEORGES
- * @version 5.3
+ * @version 6.0
  * @since 2.0 27 novembre 2019
  */
 @ConvenienceClass
@@ -219,6 +220,67 @@ public class Utility implements Serializable {
 
 	/**
 	 * Retourne une instance d'une classe
+	 * @param aClass une classe avec un constructeur ayant 1 argument
+	 * @param args  les arguments du constructeur
+	 * @return une instance de la classe
+	 *
+	 * @throws IllegalStateException si une erreur survient
+	 * @since 6.0
+	 */
+	@ConvenienceMethod
+	public static Object instance(Class<?> aClass, Object ... args) {
+		Object object;
+		try {
+			//récupération des classes
+			if(args != null && args.length > 0) {
+				//récupération des classes
+				Class<?>[] classes = new Class[args.length];
+				for (int i = 0; i < args.length; i++) {
+					classes[i] = args[i].getClass();
+				}
+
+				Constructor<?> selected = null;
+
+				//Regarde tous les constructeurs
+				boolean valid;
+				for (Constructor<?> constructor : aClass.getDeclaredConstructors()) {
+					Class<?>[] params = constructor.getParameterTypes();
+					//même nombre de paramètres
+					if(params.length != classes.length) continue;
+					valid = false;
+					for (int i = 0; i < params.length; i++) {
+						Class<?> c = classes[i];
+						while(c != null){
+							if(c.getName().equals(params[i].getName())) break;
+							c = c.getSuperclass();
+						}
+						//un paramètre est pas bon
+						if(c == null) break;
+						valid = true;
+					}
+					//si bon, on quitte
+					if(valid){
+						selected = constructor;
+						break;
+					}
+				}
+				if(selected == null) throw  new NoSuchMethodException("<init>: No such constructor.");
+
+				//crée instance
+				object = selected.newInstance(args);
+			} else {
+				Constructor declaredConstructor = aClass.getDeclaredConstructor();
+				object = declaredConstructor.newInstance();
+			}
+		} catch (IllegalAccessException | InstantiationException | NoSuchMethodException
+				| InvocationTargetException e) {
+			throw new IllegalStateException("Utility. create instance failed" + e);
+		}
+		return object;
+	}
+
+	/**
+	 * Retourne une instance d'une classe
 	 *
 	 * @param aClass nom d'une classe avec un constructeur par default
 	 * @return une instance de la classe
@@ -243,6 +305,7 @@ public class Utility implements Serializable {
 	 * @since 5.0
 	 */
 	@ConvenienceMethod
+	@Deprecated
 	public static String getRelativePath(String folder) {
 		StringBuilder path = new StringBuilder();
 
@@ -300,15 +363,12 @@ public class Utility implements Serializable {
 	 * @param className nom de la classe
 	 * @param message   message
 	 * @since 5.2
+	 *
+	 * @deprecated utiliser {@link Logger}
 	 */
+	@Deprecated
 	public static void printDebug(String className, String message) {
-		/*if(Gdx.app != null){
-			PrintColor.println(className+":"+message, DEBUG_COLOR);
-			//Gdx.app.debug(className, message);
-		} else {
-			PrintColor.println(className+":"+message, DEBUG_COLOR);
-		}*/
-		PrintColor.println(className + ":" + message, Config.DEBUG_COLOR);
+		throw new UnsupportedOperationException("disabled");
 	}
 }
 

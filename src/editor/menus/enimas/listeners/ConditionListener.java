@@ -1,6 +1,6 @@
 package editor.menus.enimas.listeners;
 
-import api.utils.Utility;
+import common.utils.Logger;
 import com.badlogic.gdx.math.Vector2;
 import common.enigmas.condition.Activated;
 import common.enigmas.condition.Answer;
@@ -93,7 +93,7 @@ public class ConditionListener implements ActionListener, ItemListener {
 		if (cond == null) return;
 
 		parent.getEnigma().addCondition(cond);
-		Utility.printDebug("ConditionAdded", cond.toLongString());
+		Logger.printDebug("ConditionAdded", cond.toLongString());
 		this.validate = true;
 		this.panel.clean();
 		CardLayout layout = this.parent.getCardLayout();

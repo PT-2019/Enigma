@@ -2,11 +2,12 @@ package editor.bar.listeners;
 
 import common.hud.EnigmaWindow;
 
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Protoyupe de listener du menu
+ * Prototype de listener du menu
  *
  * @author Jorys-Micke ALAÏS
  * @author Louka DOZ
@@ -17,10 +18,17 @@ import java.awt.event.ActionListener;
  */
 public abstract class MenuListener implements ActionListener {
 
-	protected EnigmaWindow window;
+	protected final EnigmaWindow window;
+	protected final Component parent;
 
-	MenuListener(EnigmaWindow window) {
+	/**
+	 * Prototype de listener du menu
+	 * @param window fenêtre
+	 * @param parent parent
+	 */
+	MenuListener(EnigmaWindow window, Component parent) {
 		this.window = window;
+		this.parent = parent;
 	}
 
 	public abstract void actionPerformed(ActionEvent e);

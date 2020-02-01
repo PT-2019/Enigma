@@ -8,6 +8,7 @@ import common.hud.EnigmaWindow;
 import common.save.entities.serialization.EntityFactory;
 import data.EditorState;
 import data.EnigmaScreens;
+import editor.bar.edition.ActionsManager;
 import game.EnigmaGame;
 import game.screens.TestScreen;
 
@@ -137,6 +138,7 @@ public class EditorLauncher implements Application {
 	public void start() {
 		if (this.editorScreen != null)
 			this.window.remove(this.editorScreen);
+		ActionsManager.reset();
 		this.window.setLayout(new BorderLayout());
 		EnigmaGame.setStartScreen(EnigmaScreens.TEST);
 		this.editorScreen = new EditorScreen(this.window);

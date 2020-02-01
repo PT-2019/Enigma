@@ -9,6 +9,8 @@ import common.language.HUDFields;
 import data.EnigmaScreens;
 import editor.bar.listeners.CreateListener;
 import editor.bar.listeners.OpenListener;
+import editor.bar.listeners.RedoListener;
+import editor.bar.listeners.UndoListener;
 import game.EnigmaGame;
 
 import static common.language.GameLanguage.gl;
@@ -49,8 +51,8 @@ public class BarMenu extends EnigmaMenuBar {
 		this.file.add(save);
 		this.file.add(map);
 
-		this.edit.add(redo);
 		this.edit.add(undo);
+		this.edit.add(redo);
 
 		this.run.add(runJeu);
 		this.run.add(finJeu);
@@ -65,9 +67,11 @@ public class BarMenu extends EnigmaMenuBar {
 
 		//listeners
 
-		this.create.addActionListener(new CreateListener(window));
-		this.ouvrir.addActionListener(new OpenListener(window));
-		this.save.addActionListener(new OpenListener(window));
+		this.create.addActionListener(new CreateListener(window, this.create));
+		this.ouvrir.addActionListener(new OpenListener(window, this.ouvrir));
+		this.save.addActionListener(new OpenListener(window, this.save));
+		this.undo.addActionListener(new UndoListener(window, this.undo));
+		this.redo.addActionListener(new RedoListener(window, this.redo));
 
 		this.runJeu.addActionListener((e -> {
 			Gdx.app.postRunnable(() -> EnigmaGame.setScreen(EnigmaScreens.GAME.name()));

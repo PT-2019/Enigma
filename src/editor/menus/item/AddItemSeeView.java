@@ -1,5 +1,6 @@
 package editor.menus.item;
 
+import common.utils.Logger;
 import api.utils.Utility;
 import common.entities.GameObject;
 import common.entities.Item;
@@ -55,7 +56,7 @@ public class AddItemSeeView extends AbstractSubPopUpView {
 	}
 
 	public void setChecked(Item checked) {
-		Utility.printDebug("AddContainer#See", checked + " {state=checked}");
+		Logger.printDebug("AddContainer#See", checked + " {state=checked}");
 
 		content.removeAll();
 		content.setLayout(new GridLayout(2, 1));

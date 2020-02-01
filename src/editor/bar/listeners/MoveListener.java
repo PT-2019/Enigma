@@ -5,6 +5,7 @@ import data.EditorState;
 import editor.EditorLauncher;
 import game.screens.TestScreen;
 
+import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 
@@ -22,8 +23,8 @@ public class MoveListener extends MenuListener {
 
 	private static final Cursor MOVE_CURSOR = new Cursor(Cursor.MOVE_CURSOR);
 
-	public MoveListener(EnigmaWindow window) {
-		super(window);
+	public MoveListener(EnigmaWindow window, Component parent) {
+		super(window, parent);
 	}
 
 	@Override

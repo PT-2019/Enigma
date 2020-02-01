@@ -25,17 +25,17 @@ public class EntityChoseListener implements Subject<GameObject> {
 	}
 
 	@Override
-	public void addObserveur(Observer<GameObject> obs) {
+	public void addObserver(Observer<GameObject> obs) {
 		obsList.add(obs);
 	}
 
 	@Override
-	public void removeObserveur(Observer<GameObject> obs) {
+	public void removeObserver(Observer<GameObject> obs) {
 		obsList.remove(obs);
 	}
 
 	@Override
-	public void updateObserveur(GameObject object) {
+	public void updateObserver(GameObject object) {
 		for (Observer<GameObject> obs : obsList) {
 			obs.update(object);
 		}
