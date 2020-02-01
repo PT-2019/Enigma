@@ -90,7 +90,6 @@ public class GameMap extends AbstractMap {
 
 	private boolean showGrid;
 
-
 	public GameMap(final String path, float unitScale) {
 		//CE CONSTRUCTEUR NE FAIT RIEN
 		//c'est uniquement pour que votre constructeur soit de cette forme
@@ -124,7 +123,7 @@ public class GameMap extends AbstractMap {
 
 		this.window = EditorLauncher.getInstance().getWindow();
 
-		//init();
+		init();
 		//createCell(this.window.getContentPane());
 
 		this.added = new HashMap<>();
