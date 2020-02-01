@@ -241,6 +241,6 @@ public class MapObjects {
 					return new MapObject(entry.getKey(), o);
 			}
 		}
-		throw new IllegalArgumentException(object+" n'est pas dans la map");
+		return null;
 	}
 }

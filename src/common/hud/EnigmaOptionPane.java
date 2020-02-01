@@ -19,7 +19,7 @@ import java.awt.Dimension;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 4.0
+ * @version 6.0
  * @since 3.0
  */
 public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyle {
@@ -222,5 +222,14 @@ public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyl
 	@Override
 	public EnigmaLabel getLabelStyle(String content) {
 		return new EnigmaLabel(content);
+	}
+
+	/**
+	 * Retourne le style de l'enigma option pane
+	 * @return le style de l'enigma option pane
+	 * @since 6.0
+	 */
+	public static OptionPaneStyle getStyle(){
+		return new EnigmaOptionPane();
 	}
 }

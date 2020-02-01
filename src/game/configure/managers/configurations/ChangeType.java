@@ -15,7 +15,7 @@ import java.awt.event.MouseEvent;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 3.0
+ * @version 6.0
  * @since 3.0
  */
 public class ChangeType implements ChangeConfiguration {
@@ -28,8 +28,8 @@ public class ChangeType implements ChangeConfiguration {
 		String yes = "Oui";
 		String no = "Non";
 		CustomButton[] opt = new CustomButton[2];
-		opt[0] = EnigmaOptionPane.getClassicButton(yes);
-		opt[1] = EnigmaOptionPane.getClassicButton(no);
+		opt[0] = EnigmaOptionPane.getStyle().getButtonStyle(yes);
+		opt[1] = EnigmaOptionPane.getStyle().getButtonStyle(no);
 		String value = EnigmaOptionPane.showChoicesDialog(EnigmaGameLauncher.getInstance().getWindow(), "Partie multijoueurs?", opt);
 
 		if (!value.equals(EnigmaOptionPane.CANCEL)) {
