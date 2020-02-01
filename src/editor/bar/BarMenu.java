@@ -1,17 +1,19 @@
 package editor.bar;
 
 import com.badlogic.gdx.Gdx;
-import common.hud.EnigmaMenu;
-import common.hud.EnigmaMenuBar;
-import common.hud.EnigmaMenuItem;
-import common.hud.EnigmaWindow;
+import common.hud.*;
+import common.hud.ui.EnigmaMenuUI;
 import common.language.HUDFields;
 import data.EnigmaScreens;
+import data.config.EnigmaUIValues;
 import editor.bar.listeners.CreateListener;
 import editor.bar.listeners.OpenListener;
 import editor.bar.listeners.RedoListener;
+import editor.bar.listeners.SaveAsListener;
 import editor.bar.listeners.UndoListener;
 import game.EnigmaGame;
+
+import java.awt.*;
 
 import static common.language.GameLanguage.gl;
 
@@ -31,6 +33,7 @@ public class BarMenu extends EnigmaMenuBar {
 	private EnigmaMenuItem create = new EnigmaMenuItem(gl.get(HUDFields.CREATE));
 	private EnigmaMenuItem ouvrir = new EnigmaMenuItem(gl.get(HUDFields.OPEN));
 	private EnigmaMenuItem save = new EnigmaMenuItem(gl.get(HUDFields.SAVE));
+	private EnigmaMenuItem saveAs = new EnigmaMenuItem(gl.get(HUDFields.SAVE_AS));
 	private EnigmaMenuItem map = new EnigmaMenuItem(gl.get(HUDFields.EXPORT));
 	//2eme onglet
 	private EnigmaMenu edit = new EnigmaMenu(gl.get(HUDFields.EDIT));
@@ -46,9 +49,20 @@ public class BarMenu extends EnigmaMenuBar {
 	private EnigmaMenuItem support = new EnigmaMenuItem(gl.get(HUDFields.SUPPORT));
 
 	public BarMenu(EnigmaWindow window) {
+		EnigmaMenuUI mui = new EnigmaMenuUI();
+		mui.setPopupBackground(Color.WHITE);
+		mui.setPopupBorderSize(1);
+		mui.setShowedPopupBorders(EnigmaUIValues.ALL_BORDERS_SHOWED);
+
+		this.file.setComponentUI(mui);
+		this.edit.setComponentUI(mui);
+		this.run.setComponentUI(mui);
+		this.help.setComponentUI(mui);
+
 		this.file.add(create);
 		this.file.add(ouvrir);
 		this.file.add(save);
+		this.file.add(saveAs);
 		this.file.add(map);
 
 		this.edit.add(undo);
@@ -70,6 +84,7 @@ public class BarMenu extends EnigmaMenuBar {
 		this.create.addActionListener(new CreateListener(window, this.create));
 		this.ouvrir.addActionListener(new OpenListener(window, this.ouvrir));
 		this.save.addActionListener(new OpenListener(window, this.save));
+		this.saveAs.addActionListener(new SaveAsListener(window, this.saveAs));
 		this.undo.addActionListener(new UndoListener(window, this.undo));
 		this.redo.addActionListener(new RedoListener(window, this.redo));
 

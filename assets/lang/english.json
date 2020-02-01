@@ -6,7 +6,8 @@
 
     create:new file
     open:open
-    save:save
+    save:save,
+    saveas:save As,
     undo:undo
     redo:redo
     brush:brush
@@ -17,7 +18,7 @@
     edit: Edit
     run: Run
     help: Help
-    export: export map
+    export: export
     doc: documentation
     support: support
     start: start simulation

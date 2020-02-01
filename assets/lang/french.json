@@ -8,7 +8,8 @@
 
     create:Nouveau
     open:Ouvrir
-    save:Sauvegarder
+    save:Enregistrer,
+    saveas:Enregistrer sous,
     undo:Annuler
     redo:Refaire
     brush:Normal
@@ -19,7 +20,7 @@
     edit:Edition
     run:Simulation
     help:Aide
-    export:Exporter la map
+    export:Exporter
     doc:Documentation
     support:Support
     start:Lancer simulation
