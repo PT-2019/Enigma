@@ -1,11 +1,12 @@
 import api.Application;
-import api.enums.EnigmaScreens;
-import api.hud.components.CustomWindow;
-import api.utils.LoadGameLibgdxApplication;
+import api.libgdx.utils.LoadGameLibgdxApplication;
+import api.ui.CustomWindow;
 import api.utils.annotations.NeedPatch;
-import editor.hud.EnigmaWindow;
+import common.hud.EnigmaWindow;
+import common.language.GameLanguage;
+import data.EnigmaScreens;
 import game.EnigmaGame;
-import starter.gameConfig.LaunchGameDisplay;
+import game.configure.LaunchGameDisplay;
 
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -63,7 +64,13 @@ public class EnigmaFastGame implements Application {
 	public static void main(String[] args) {
 		//appelle après initialisation de la libgdx, l'éditeur
 		SwingUtilities.invokeLater(() -> {
+			//init de la langue
+			GameLanguage.init();
+
+			//définit le jeu
 			LoadGameLibgdxApplication.setGame(EnigmaGame.getInstance());
+
+			//start
 			EnigmaFastGame.getInstance().start();
 		});
 	}

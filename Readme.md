@@ -12,3 +12,12 @@ Auteurs
 * Jorys-Micke ALAIS
 
 Crée le 03 octobre 2019
+
+---
+
+L'application comprends :
+* Un éditeur permettant de créer des escapes games puis de les exporter
+* Un lanceur permettant de configurer une partie (solo ou multi-joueur) et
+d'y jouer.
+
+Des détails plus importants se trouvent dans le WIKI.

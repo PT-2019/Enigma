@@ -1,12 +1,13 @@
 package game;
 
-import api.LibgdxGame;
-import api.enums.EnigmaScreens;
+import api.libgdx.LibgdxGame;
+import api.ui.CustomWindow;
 import api.utils.annotations.NeedPatch;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
-import game.screen.GameScreen;
-import game.screen.TestScreen;
+import data.EnigmaScreens;
+import game.screens.GameScreen;
+import game.screens.TestScreen;
 
 /**
  * Lanceur du jeu
@@ -30,19 +31,14 @@ public class EnigmaGame extends LibgdxGame {
 	//on charge ici le joueur et tout ce qui vit indépendamment des écrans
 	//....
 
-	private EnigmaGame() {
-
-	}
-
 	/**
 	 * Il s'agit d'une singleton.
 	 *
 	 * @return l'instance unique du jeu
 	 */
 	public static EnigmaGame getInstance() {
-		if (enigmaGame == null) {
+		if (enigmaGame == null)
 			enigmaGame = new EnigmaGame();
-		}
 		return enigmaGame;
 	}
 
@@ -76,5 +72,10 @@ public class EnigmaGame extends LibgdxGame {
 	@Override
 	public void free() {
 
+	}
+
+	@Override
+	public CustomWindow getWindow() {
+		return null;
 	}
 }

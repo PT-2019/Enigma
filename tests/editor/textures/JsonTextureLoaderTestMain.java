@@ -1,6 +1,6 @@
 package editor.textures;
 
-import editor.utils.json.JsonTextureLoader;
+import common.utils.textures.JsonTextureLoader;
 import org.jetbrains.annotations.TestOnly;
 
 import javax.swing.*;

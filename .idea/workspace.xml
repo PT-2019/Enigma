@@ -4,42 +4,232 @@
     <option name="SCOPE_TYPE" value="3" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ae09cfc3-8c68-40f7-a6e1-cb32552840e9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="8e7723e5-c76a-467e-866a-3c20c5c03f9f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/Louka/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Louka/Inventory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/Louka/MapObjects.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Louka/MapObjects.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/Louka/event/TileEventEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Louka/event/TileEventEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/map/GameMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/map/GameMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/screens/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/screens/GameScreen.java" afterDir="false" />
     </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <ignored path="$PROJECT_DIR$/libs/packer/" />
+    <ignored path="$PROJECT_DIR$/src/item/" />
+    <ignored path="$PROJECT_DIR$/build/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/game/screens/GameScreen.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-153">
+              <caret line="22" column="60" selection-start-line="22" selection-start-column="60" selection-end-line="22" selection-end-column="60" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/common/map/GameMap.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="90" column="29" selection-start-line="90" selection-start-column="29" selection-end-line="90" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="AnnotationType" />
-        <option value="Enum" />
-        <option value="Interface" />
+        <option value="Singleton" />
         <option value="Class" />
+        <option value="Interface" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>editor.enigma.</find>
+      <find>(pas les override)</find>
+      <find>co</find>
+      <find>general.</find>
+      <find>delete</find>
+      <find>System.out.println</find>
+      <find>uniquement</find>
+      <find>...</find>
+      <find>Blonde</find>
+      <find>index</find>
+      <find>PlayerFact</find>
+      <find>Pla</find>
+      <find>glClear</find>
+    </findStrings>
+    <dirStrings>
+      <dir>C:\Users\Quentin Ra\Desktop\Enigma\assets</dir>
+    </dirStrings>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="QuentinRa/editor" />
       </map>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="MERGE" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/data/Readme.md" />
+        <option value="$PROJECT_DIR$/Readme.md" />
+        <option value="$PROJECT_DIR$/src/common/Readme.md" />
+        <option value="$PROJECT_DIR$/src/api/libgdx/actor/GameActorUtilities.java" />
+        <option value="$PROJECT_DIR$/src/api/ui/manager/alert/Drag.java" />
+        <option value="$PROJECT_DIR$/src/api/ui/manager/alert/Exit.java" />
+        <option value="$PROJECT_DIR$/src/api/ui/manager/alert/Resize.java" />
+        <option value="$PROJECT_DIR$/src/api/ui/manager/alert/ResizeBottom.java" />
+        <option value="$PROJECT_DIR$/src/api/ui/manager/alert/ResizeComponent.java" />
+        <option value="$PROJECT_DIR$/src/api/ui/manager/alert/ResizeLeft.java" />
+        <option value="$PROJECT_DIR$/src/api/ui/manager/alert/ResizeRight.java" />
+        <option value="$PROJECT_DIR$/src/api/ui/manager/alert/ResizeTop.java" />
+        <option value="$PROJECT_DIR$/src/api/ui/manager/window/Minimize.java" />
+        <option value="$PROJECT_DIR$/src/api/ui/manager/window/Resize.java" />
+        <option value="$PROJECT_DIR$/src/api/ui/manager/window/ResizeBottom.java" />
+        <option value="$PROJECT_DIR$/src/api/ui/manager/window/ResizeComponent.java" />
+        <option value="$PROJECT_DIR$/src/api/ui/manager/window/ResizeLeft.java" />
+        <option value="$PROJECT_DIR$/src/api/ui/manager/window/ResizeRight.java" />
+        <option value="$PROJECT_DIR$/src/api/ui/manager/window/ResizeTop.java" />
+        <option value="$PROJECT_DIR$/src/api/ui/manager/window/Smaller.java" />
+        <option value="$PROJECT_DIR$/src/api/ui/skin/base/states/CustomUISelected.java" />
+        <option value="$PROJECT_DIR$/src/api/ui/skin/CustomButtonUI.java" />
+        <option value="$PROJECT_DIR$/src/api/ui/CustomComboBox.java" />
+        <option value="$PROJECT_DIR$/src/common/enigmas/operation/Summon.java" />
+        <option value="$PROJECT_DIR$/src/common/map/model/Map.java" />
+        <option value="$PROJECT_DIR$/src/common/map/model/Room.java" />
+        <option value="$PROJECT_DIR$/src/common/map/MapTestScreen.java" />
+        <option value="$PROJECT_DIR$/src/common/save/EmptyMapGenerator.java" />
+        <option value="$PROJECT_DIR$/src/common/utils/textures/AtlasFile.java" />
+        <option value="$PROJECT_DIR$/src/editor/menus/content/AddContentView.java" />
+        <option value="$PROJECT_DIR$/assets/items.json" />
+        <option value="$PROJECT_DIR$/assets/rooms.json" />
+        <option value="$PROJECT_DIR$/assets/decors.json" />
+        <option value="$PROJECT_DIR$/assets/actions.json" />
+        <option value="$PROJECT_DIR$/src/editor/menus/item/AddItemAddView.java" />
+        <option value="$PROJECT_DIR$/src/editor/popup/listeners/CaseListener.java" />
+        <option value="$PROJECT_DIR$/src/editor/menus/enimas/listeners/ConditionListener.java" />
+        <option value="$PROJECT_DIR$/src/editor/menus/enimas/view/Conditions.java" />
+        <option value="$PROJECT_DIR$/src/editor/menus/SelectionsModes.java" />
+        <option value="$PROJECT_DIR$/src/editor/menus/enimas/view/ConditionPanel.java" />
+        <option value="$PROJECT_DIR$/src/editor/menus/enimas/view/OperationPanel.java" />
+        <option value="$PROJECT_DIR$/src/editor/menus/enimas/view/Operations.java" />
+        <option value="$PROJECT_DIR$/src/editor/menus/enimas/listeners/OperationListener.java" />
+        <option value="$PROJECT_DIR$/assets/entities.json" />
+        <option value="$PROJECT_DIR$/assets/entities/players/players.json" />
+        <option value="$PROJECT_DIR$/src/api/libgdx/actor/GameActorAnimation.java" />
+        <option value="$PROJECT_DIR$/src/common/save/entities/serialization/PlayerFactory.java" />
+        <option value="$PROJECT_DIR$/src/common/entities/players/PlayerGame.java" />
+        <option value="$PROJECT_DIR$/src/EnigmaFastGame.java" />
+        <option value="$PROJECT_DIR$/src/game/screens/GameScreen.java" />
+        <option value="$PROJECT_DIR$/src/common/map/GameMap.java" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1300" />
+    <option name="height" value="876" />
   </component>
   <component name="ProjectId" id="1T4PWZYsjf2nuTU9Vgk0aB5pF47" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="files" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="files" type="462c0819:PsiDirectoryNode" />
+              <item name="map" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="map" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="game" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="game" type="462c0819:PsiDirectoryNode" />
+              <item name="screens" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -53,8 +243,8 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="jdk.selected.JAVA_MODULE" value="11" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/editor/entity" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/editor/utils/save/view/cases/CaseListener.java" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
@@ -62,40 +252,40 @@
     <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/src/editor/utils/save/view/cases/CaseListener.java" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Quentin Ra\Desktop\Enigma\tests\tmp" />
-      <recent name="C:\Users\Quentin Ra\Desktop\Enigma\tests\drop" />
-      <recent name="C:\Users\Quentin Ra\Desktop\Enigma\assets" />
-      <recent name="C:\Users\Quentin Ra\Desktop\Enigma\assets\ui" />
-      <recent name="C:\Users\Quentin Ra\Desktop\Enigma\assets\map\tiles" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="api.entity.utils" />
+      <recent name="editor.entity" />
+      <recent name="api.utils" />
+      <recent name="api.enums" />
+      <recent name="game.utils" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
+      <recent name="api.utils" />
       <recent name="editor.hud" />
       <recent name="editor.entity" />
       <recent name="editor" />
-      <recent name="editor.bibliotheque" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Quentin Ra\Desktop\Enigma\src\editor\entity" />
-      <recent name="C:\Users\Quentin Ra\Desktop\Enigma\src\editor\utils" />
-      <recent name="C:\Users\Quentin Ra\Desktop\Enigma\src\game\utils" />
-      <recent name="C:\Users\Quentin Ra\Desktop\Enigma\src\game\entity" />
-      <recent name="C:\Users\Quentin Ra\Desktop\Enigma\src\game\hud" />
+      <recent name="C:\Users\Quentin Ra\Desktop\EnigmaReal\assets" />
+      <recent name="C:\Users\Quentin Ra\Desktop\EnigmaReal" />
+      <recent name="C:\Users\Quentin Ra\Desktop\EnigmaReal\src\datas\keys" />
+      <recent name="C:\Users\Quentin Ra\Desktop\EnigmaReal\src\editor\popup" />
+      <recent name="C:\Users\Quentin Ra\Desktop\EnigmaReal\src\editor" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="editor.utils" />
-      <recent name="api" />
-      <recent name="editor.entity" />
-      <recent name="api.entity.utils" />
-      <recent name="api.entity" />
+      <recent name="" />
+      <recent name="general.entities.special" />
+      <recent name="datas" />
+      <recent name="editor.menus" />
+      <recent name="general.utils" />
     </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="game.utils" />
-      <recent name="editor.entity" />
-      <recent name="editor.entity.view" />
-      <recent name="game.screen" />
-      <recent name="com.enigma.game" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Quentin Ra\Desktop\Enigma\src\api\libgdx\utils" />
+      <recent name="$PROJECT_DIR$/src/general/map" />
+      <recent name="$PROJECT_DIR$/src/game" />
+      <recent name="$PROJECT_DIR$/src/general/entities/special" />
+      <recent name="$PROJECT_DIR$/src/general/enigmas" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -110,34 +300,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.ConditionsOperationsTest">
-    <configuration name="AbstractMap" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="game.Louka.AbstractMap" />
-      <module name="Enigma" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="game.Louka.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ConditionsOperationsTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="editor.enigma.ConditionsOperationsTest" />
-      <module name="Enigma" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="editor.enigma.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="EnigmaFastGame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.EnigmaFastGame">
+    <configuration name="EnigmaFastGame" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="EnigmaFastGame" />
       <module name="Enigma" />
       <extension name="coverage">
@@ -151,50 +315,62 @@
         <option name="com.soywiz.korge.intellij.UpdateResourceBeforeRunTask" enabled="false" />
       </method>
     </configuration>
-    <configuration name="EnigmaJsonTestMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="editor.io.EnigmaJsonTestMain" />
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="Enigma" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="com.soywiz.korge.intellij.UpdateResourceBeforeRunTask" enabled="false" />
+      </method>
+    </configuration>
+    <configuration name="MapTestMain" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Enigma" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="editor.io.*" />
+          <option name="PATTERN" value="editor.map.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Main$MainFast" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main$MainFast" />
-      <module name="Enigma" />
+      <option name="PACKAGE_NAME" value="editor.map" />
+      <option name="MAIN_CLASS_NAME" value="editor.map.MapTestMain" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
       <item itemvalue="Application.EnigmaFastGame" />
-      <item itemvalue="Application.Main$MainFast" />
-      <item itemvalue="Application.AbstractMap" />
-      <item itemvalue="Application.EnigmaJsonTestMain" />
-      <item itemvalue="Application.ConditionsOperationsTest" />
+      <item itemvalue="Application.Main" />
+      <item itemvalue="JUnit.MapTestMain" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ConditionsOperationsTest" />
-        <item itemvalue="Application.EnigmaJsonTestMain" />
-        <item itemvalue="Application.AbstractMap" />
-        <item itemvalue="Application.Main$MainFast" />
-        <item itemvalue="Application.EnigmaFastGame" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.MapTestMain" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="1" Folder0="C:\Users\Quentin Ra\Desktop\Enigma\libs" CustomDictionaries="1" CustomDictionary0="C:\Users\Quentin Ra\Desktop\Enigma\libs\fr.dic" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="project-level" UseSingleDictionary="true" />
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SpellCheckerSettings" BundledDictionaries="0" Folders="1" Folder0="C:\Users\Quentin Ra\Desktop\Enigma\libs" CustomDictionaries="1" CustomDictionary0="C:\Users\Quentin Ra\Desktop\Enigma\libs\fr.dic" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="project-level" UseSingleDictionary="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="ae09cfc3-8c68-40f7-a6e1-cb32552840e9" name="Default Changelist" comment="" />
+      <changelist id="8e7723e5-c76a-467e-866a-3c20c5c03f9f" name="Default Changelist" comment="" />
       <created>1572716426843</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -203,40 +379,21 @@
       <workItem from="1578388437203" duration="1171000" />
       <workItem from="1579696449378" duration="331000" />
       <workItem from="1579701797672" duration="402000" />
+      <workItem from="1579860107588" duration="1856000" />
+      <workItem from="1579864991065" duration="3837000" />
+      <workItem from="1580126298840" duration="2749000" />
+      <workItem from="1580133900889" duration="3422000" />
+      <workItem from="1580202139904" duration="2285000" />
+      <workItem from="1580209350430" duration="570000" />
+      <workItem from="1580212247951" duration="14015000" />
+      <workItem from="1580376138804" duration="2728000" />
+      <workItem from="1580385973467" duration="694000" />
+      <workItem from="1580393807503" duration="3292000" />
+      <workItem from="1580472075687" duration="371000" />
+      <workItem from="1580472740048" duration="107000" />
+      <workItem from="1580483527254" duration="2495000" />
     </task>
     <servers />
-  </component>
-  <component name="TestHistory">
-    <history-entry file="TestMap - 2019.11.11 at 19h 45m 59s.xml">
-      <configuration name="TestMap" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestMap - 2019.11.11 at 19h 46m 18s.xml">
-      <configuration name="TestMap" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestMap - 2019.11.11 at 19h 46m 39s.xml">
-      <configuration name="TestMap" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestMap - 2019.11.11 at 19h 47m 01s.xml">
-      <configuration name="TestMap" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestMap - 2019.11.11 at 19h 49m 39s.xml">
-      <configuration name="TestMap" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestMap - 2019.11.11 at 19h 50m 28s.xml">
-      <configuration name="TestMap" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestMap - 2019.11.11 at 19h 50m 56s.xml">
-      <configuration name="TestMap" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestMap - 2019.11.11 at 19h 51m 34s.xml">
-      <configuration name="TestMap" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TestMap - 2019.11.11 at 19h 52m 10s.xml">
-      <configuration name="TestMap" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="MapTestMain_testMapStructureWork - 2019.12.05 at 22h 18m 16s.xml">
-      <configuration name="MapTestMain.testMapStructureWork" configurationId="JUnit" />
-    </history-entry>
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -247,6 +404,69 @@
       <is-autoscroll-to-source value="true" />
     </todo-panel>
   </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27022654" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Learn" order="6" />
+      <window_info id="Favorites" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32949308" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32949308" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32949308" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32949308" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" weight="0.32949308" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32949308" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Maven" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="make" order="6" />
+      <window_info anchor="right" id="Capture Analysis" order="7" />
+      <window_info anchor="right" id="Palette&#9;" order="8" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2540453" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Learn" order="6" />
+      <window_info id="Favorites" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32949308" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" weight="0.32949308" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32949308" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Maven" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="make" order="6" />
+      <window_info anchor="right" id="Capture Analysis" order="7" />
+      <window_info anchor="right" id="Palette&#9;" order="8" />
+    </layout-to-restore>
+  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
@@ -256,6 +476,12 @@
         <entry key="MAIN">
           <value>
             <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
               <option name="COLUMN_ORDER" />
             </State>
           </value>
@@ -277,40 +503,467 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Fix commit Loïc" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix commit Loïc" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="2218" y="184" key="#com.intellij.execution.impl.EditConfigurationsDialog" />
+    <state x="2218" y="184" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" />
     <state x="2218" y="184" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" />
-    <state x="618" y="301" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" />
-    <state x="618" y="301" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1536.824@0.0.1536.824" />
-    <state width="1878" height="343" key="GridCell.Tab.0.bottom" />
-    <state width="1878" height="343" key="GridCell.Tab.0.bottom/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" />
-    <state width="1638" height="278" key="GridCell.Tab.0.bottom/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
+    <state x="766" y="244" width="380" height="577" key="#com.intellij.ide.util.MemberChooser" />
+    <state x="766" y="244" key="#com.intellij.ide.util.MemberChooser/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" />
+    <state x="766" y="244" width="380" height="577" key="#com.intellij.ide.util.MemberChooser/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" />
+    <state x="691" y="310" width="530" height="445" key="#com.intellij.ide.util.PackageChooserDialog" />
+    <state x="691" y="310" width="530" height="445" key="#com.intellij.ide.util.PackageChooserDialog/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" />
+    <state width="1878" height="339" key="GridCell.Tab.0.bottom" />
+    <state width="1878" height="306" key="GridCell.Tab.0.bottom/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" />
+    <state width="1638" height="306" key="GridCell.Tab.0.bottom/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
+    <state width="1638" height="327" key="GridCell.Tab.0.bottom/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" />
+    <state width="1878" height="339" key="GridCell.Tab.0.bottom/1920.0.1280.1024/0.0.1920.1080@0.0.1920.1080" />
+    <state width="1878" height="306" key="GridCell.Tab.0.bottom/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" />
     <state width="1638" height="278" key="GridCell.Tab.0.bottom/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" />
-    <state width="1878" height="343" key="GridCell.Tab.0.center" />
-    <state width="1878" height="343" key="GridCell.Tab.0.center/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" />
-    <state width="1638" height="278" key="GridCell.Tab.0.center/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
+    <state width="1878" height="339" key="GridCell.Tab.0.center" />
+    <state width="1878" height="306" key="GridCell.Tab.0.center/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" />
+    <state width="1638" height="306" key="GridCell.Tab.0.center/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
+    <state width="1638" height="327" key="GridCell.Tab.0.center/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" />
+    <state width="1878" height="339" key="GridCell.Tab.0.center/1920.0.1280.1024/0.0.1920.1080@0.0.1920.1080" />
+    <state width="1878" height="306" key="GridCell.Tab.0.center/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" />
     <state width="1638" height="278" key="GridCell.Tab.0.center/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" />
-    <state width="1878" height="343" key="GridCell.Tab.0.left" />
-    <state width="1878" height="343" key="GridCell.Tab.0.left/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" />
-    <state width="1638" height="278" key="GridCell.Tab.0.left/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
+    <state width="1878" height="339" key="GridCell.Tab.0.left" />
+    <state width="1878" height="306" key="GridCell.Tab.0.left/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" />
+    <state width="1638" height="306" key="GridCell.Tab.0.left/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
+    <state width="1638" height="327" key="GridCell.Tab.0.left/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" />
+    <state width="1878" height="339" key="GridCell.Tab.0.left/1920.0.1280.1024/0.0.1920.1080@0.0.1920.1080" />
+    <state width="1878" height="306" key="GridCell.Tab.0.left/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" />
     <state width="1638" height="278" key="GridCell.Tab.0.left/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" />
-    <state width="1878" height="343" key="GridCell.Tab.0.right" />
-    <state width="1878" height="343" key="GridCell.Tab.0.right/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" />
-    <state width="1638" height="278" key="GridCell.Tab.0.right/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
+    <state width="1878" height="339" key="GridCell.Tab.0.right" />
+    <state width="1878" height="306" key="GridCell.Tab.0.right/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" />
+    <state width="1638" height="306" key="GridCell.Tab.0.right/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
+    <state width="1638" height="327" key="GridCell.Tab.0.right/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" />
+    <state width="1878" height="339" key="GridCell.Tab.0.right/1920.0.1280.1024/0.0.1920.1080@0.0.1920.1080" />
+    <state width="1878" height="306" key="GridCell.Tab.0.right/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" />
     <state width="1638" height="278" key="GridCell.Tab.0.right/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" />
-    <state x="2243" y="104" width="1030" height="847" key="SettingsEditor" />
+    <state x="321" y="94" width="1030" height="851" key="MergeDialog" />
+    <state x="321" y="94" width="1030" height="851" key="MergeDialog/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" />
+    <state x="547" y="236" width="582" height="565" key="MultipleFileMergeDialog" />
+    <state x="547" y="236" width="582" height="565" key="MultipleFileMergeDialog/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" />
+    <state x="1926" y="104" width="1030" height="847" key="SettingsEditor" />
     <state x="2243" y="104" width="1030" height="847" key="SettingsEditor/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
+    <state x="1926" y="104" width="1030" height="847" key="SettingsEditor/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" />
     <state x="2243" y="104" key="SettingsEditor/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" />
-    <state x="626" y="358" key="com.intellij.ide.util.TipDialog" />
+    <state width="498" height="445" key="SwitcherDM" />
+    <state width="498" height="445" key="SwitcherDM/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" />
+    <state x="626" y="353" key="com.intellij.ide.util.TipDialog" />
     <state x="626" y="358" key="com.intellij.ide.util.TipDialog/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" />
+    <state x="2468" y="343" key="com.intellij.ide.util.TipDialog/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
+    <state x="626" y="353" key="com.intellij.ide.util.TipDialog/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" />
+    <state x="626" y="353" key="com.intellij.ide.util.TipDialog/1920.0.1280.1024/0.0.1920.1080@0.0.1920.1080" />
     <state x="626" y="358" key="com.intellij.ide.util.TipDialog/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" />
     <state x="626" y="358" key="com.intellij.ide.util.TipDialog/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" />
-    <state x="578" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" />
-    <state x="578" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" />
     <state x="2530" y="232" width="455" height="591" key="com.intellij.testIntegration.createTest.CreateTestDialog" />
     <state x="2530" y="232" width="455" height="591" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
-    <state x="2414" y="136" width="692" height="780" key="find.popup" />
+    <state x="2515" y="156" width="692" height="819" key="find.popup" />
+    <state x="680" y="180" width="692" height="780" key="find.popup/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" />
+    <state x="2515" y="156" width="692" height="819" key="find.popup/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
+    <state x="680" y="180" width="692" height="780" key="find.popup/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" />
     <state x="2414" y="136" width="692" height="780" key="find.popup/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" />
+    <state x="619" y="242" width="672" height="677" key="run.anything.popup" />
+    <state x="619" y="242" width="672" height="677" key="run.anything.popup/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" />
+    <state x="2462" y="172" width="672" height="658" key="search.everywhere.popup" />
+    <state x="619" y="195" width="672" height="626" key="search.everywhere.popup/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" />
+    <state x="2462" y="172" width="672" height="658" key="search.everywhere.popup/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
+    <state x="2462" y="172" width="672" height="658" key="search.everywhere.popup/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" />
+    <state x="619" y="177" width="672" height="676" key="search.everywhere.popup/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/editor/menus/enimas/view/CluePanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="111" column="6" selection-start-line="111" selection-start-column="6" selection-end-line="111" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/popup/TestMapControl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="42" column="10" selection-start-line="42" selection-start-column="10" selection-end-line="42" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/editor/textures/TextureProxyTestMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="21" column="12" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/items.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="857">
+          <caret line="4" column="24" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
+          <caret line="18" column="24" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+          <caret line="32" column="24" selection-start-line="32" selection-start-column="24" selection-end-line="32" selection-end-column="24" />
+          <caret line="46" column="24" selection-start-line="46" selection-start-column="24" selection-end-line="46" selection-end-column="24" />
+          <caret line="60" column="24" selection-start-line="60" selection-start-column="24" selection-end-line="60" selection-end-column="24" />
+          <caret line="74" column="24" selection-start-line="74" selection-start-column="24" selection-end-line="74" selection-end-column="24" />
+          <caret line="88" column="24" selection-start-line="88" selection-start-column="24" selection-end-line="88" selection-end-column="24" />
+          <caret line="102" column="24" selection-start-line="102" selection-start-column="24" selection-end-line="102" selection-end-column="24" />
+          <caret line="118" column="24" selection-start-line="118" selection-start-column="24" selection-end-line="118" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/actions.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="23" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/decors.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="500">
+          <caret line="4" column="24" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
+          <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
+          <caret line="44" column="24" selection-start-line="44" selection-start-column="24" selection-end-line="44" selection-end-column="24" />
+          <caret line="63" column="24" selection-start-line="63" selection-start-column="24" selection-end-line="63" selection-end-column="24" />
+          <caret line="84" column="24" selection-start-line="84" selection-start-column="24" selection-end-line="84" selection-end-column="24" />
+          <caret line="99" column="24" selection-start-line="99" selection-start-column="24" selection-end-line="99" selection-end-column="24" />
+          <caret line="114" column="24" selection-start-line="114" selection-start-column="24" selection-end-line="114" selection-end-column="24" />
+          <caret line="129" column="24" selection-start-line="129" selection-start-column="24" selection-end-line="129" selection-end-column="24" />
+          <caret line="150" column="24" selection-start-line="150" selection-start-column="24" selection-end-line="150" selection-end-column="24" />
+          <caret line="169" column="24" selection-start-line="169" selection-start-column="24" selection-end-line="169" selection-end-column="24" />
+          <caret line="188" column="24" selection-start-line="188" selection-start-column="24" selection-end-line="188" selection-end-column="24" />
+          <caret line="207" column="24" selection-start-line="207" selection-start-column="24" selection-end-line="207" selection-end-column="24" />
+          <caret line="226" column="24" selection-start-line="226" selection-start-column="24" selection-end-line="226" selection-end-column="24" />
+          <caret line="245" column="24" selection-start-line="245" selection-start-column="24" selection-end-line="245" selection-end-column="24" />
+          <caret line="264" column="24" selection-start-line="264" selection-start-column="24" selection-end-line="264" selection-end-column="24" />
+          <caret line="283" column="24" selection-start-line="283" selection-start-column="24" selection-end-line="283" selection-end-column="24" />
+          <caret line="302" column="24" selection-start-line="302" selection-start-column="24" selection-end-line="302" selection-end-column="24" />
+          <caret line="323" column="24" selection-start-line="323" selection-start-column="24" selection-end-line="323" selection-end-column="24" />
+          <caret line="338" column="24" selection-start-line="338" selection-start-column="24" selection-end-line="338" selection-end-column="24" />
+          <caret line="353" column="24" selection-start-line="353" selection-start-column="24" selection-end-line="353" selection-end-column="24" />
+          <caret line="368" column="24" selection-start-line="368" selection-start-column="24" selection-end-line="368" selection-end-column="24" />
+          <caret line="385" column="24" selection-start-line="385" selection-start-column="24" selection-end-line="385" selection-end-column="24" />
+          <caret line="400" column="24" selection-start-line="400" selection-start-column="24" selection-end-line="400" selection-end-column="24" />
+          <caret line="415" column="24" selection-start-line="415" selection-start-column="24" selection-end-line="415" selection-end-column="24" />
+          <caret line="430" column="24" selection-start-line="430" selection-start-column="24" selection-end-line="430" selection-end-column="24" />
+          <caret line="445" column="24" selection-start-line="445" selection-start-column="24" selection-end-line="445" selection-end-column="24" />
+          <caret line="460" column="24" selection-start-line="460" selection-start-column="24" selection-end-line="460" selection-end-column="24" />
+          <caret line="477" column="24" selection-start-line="477" selection-start-column="24" selection-end-line="477" selection-end-column="24" />
+          <caret line="492" column="24" selection-start-line="492" selection-start-column="24" selection-end-line="492" selection-end-column="24" />
+          <caret line="507" column="24" selection-start-line="507" selection-start-column="24" selection-end-line="507" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/rooms.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="500">
+          <caret line="3" column="24" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
+          <caret line="385" column="24" selection-start-line="385" selection-start-column="24" selection-end-line="385" selection-end-column="24" />
+          <caret line="1426" column="24" selection-start-line="1426" selection-start-column="24" selection-end-line="1426" selection-end-column="24" />
+          <caret line="1927" column="24" selection-start-line="1927" selection-start-column="24" selection-end-line="1927" selection-end-column="24" />
+          <caret line="3053" column="24" selection-start-line="3053" selection-start-column="24" selection-end-line="3053" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/files/map/pop.tmx.json" />
+    <entry file="file://$PROJECT_DIR$/assets/files/map/cocoa.tmx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-12632" />
+      </provider>
+      <provider editor-type-id="com.soywiz.korge.intellij.editor.KorgeBothFileEditorProvider" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/map/MapTestScreenCell.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="673">
+          <caret line="69" column="82" selection-start-line="69" selection-start-column="82" selection-end-line="69" selection-end-column="82" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/popup/cases/listeners/CaseDelete.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="469">
+          <caret line="43" column="30" selection-start-line="43" selection-start-column="30" selection-end-line="43" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/menus/item/AddItemAddView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="52" column="45" selection-start-line="52" selection-start-column="45" selection-end-line="52" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/map/MapTestScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="438" column="23" lean-forward="true" selection-start-line="438" selection-start-column="23" selection-end-line="438" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/menus/others/ManageEnigmas.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="616">
+          <caret line="50" column="80" selection-start-line="50" selection-start-column="74" selection-end-line="50" selection-end-column="80" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/files/map/cocoa.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="43" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/bar/EnigmaMenuBarMenus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="36" column="54" selection-start-line="36" selection-start-column="54" selection-end-line="36" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/menus/AvailablePopUpOption.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="65" column="35" selection-start-line="65" selection-start-column="35" selection-end-line="65" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/menus/SelectionsModes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1020">
+          <caret line="60" column="4" selection-start-line="60" selection-start-column="4" selection-end-line="60" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/menus/enimas/view/Conditions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="54" column="7" lean-forward="true" selection-start-line="54" selection-start-column="7" selection-end-line="54" selection-end-column="7" />
+          <folding>
+            <element signature="e#2917#2918#0" expanded="true" />
+            <element signature="e#2982#2983#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/menus/enimas/view/ConditionPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="222" column="10" selection-start-line="222" selection-start-column="10" selection-end-line="222" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/menus/enimas/listeners/ConditionListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="874">
+          <caret line="142" column="32" lean-forward="true" selection-start-line="142" selection-start-column="8" selection-end-line="142" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/popup/listeners/CaseListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="64" column="31" selection-start-line="64" selection-start-column="31" selection-end-line="64" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/menus/enimas/view/Operations.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="103" column="87" lean-forward="true" selection-start-line="103" selection-start-column="53" selection-end-line="103" selection-end-column="87" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/menus/enimas/view/EnigmaView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="75" column="29" selection-start-line="75" selection-start-column="29" selection-end-line="75" selection-end-column="29" />
+          <folding>
+            <element signature="e#2098#2099#0" expanded="true" />
+            <element signature="e#2137#2138#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/menus/enimas/view/OperationPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1700">
+          <caret line="38" column="76" selection-start-line="38" selection-start-column="76" selection-end-line="38" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/menus/enimas/listeners/OperationListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="109" column="55" selection-start-line="109" selection-start-column="55" selection-end-line="109" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/entities/datas/players.json" />
+    <entry file="file://$PROJECT_DIR$/assets/entities/players/players.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/entities/players/p2b.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/entities/players/p3b.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/entities/players/p1b.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.desktop/java/awt/Window.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="1162" column="16" selection-start-line="1162" selection-start-column="16" selection-end-line="1162" selection-end-column="16" />
+          <folding>
+            <element signature="e#41932#41933#0" expanded="true" />
+            <element signature="e#41959#41960#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/DesktopLauncher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="84" column="15" lean-forward="true" selection-start-line="84" selection-start-column="15" selection-end-line="84" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/libgdx/actor/GameActorAnimation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="67" column="101" selection-start-line="67" selection-start-column="101" selection-end-line="67" selection-end-column="101" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/entities/players/players.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="381">
+          <caret line="107" column="12" selection-start-line="107" selection-start-column="12" selection-end-line="107" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/entities.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="147" column="17" selection-start-line="147" selection-start-column="17" selection-end-line="147" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/save/entities/serialization/PlayerFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="54" column="40" selection-start-line="54" selection-start-column="40" selection-end-line="54" selection-end-column="40" />
+          <folding>
+            <element signature="e#708#738#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/screens/TestScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1498">
+          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/EnigmaGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="344">
+          <caret line="57" column="58" selection-start-line="57" selection-start-column="58" selection-end-line="57" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/libgdx/LibgdxGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3349">
+          <caret line="220" column="10" selection-start-line="220" selection-start-column="10" selection-end-line="220" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/entities/players/PlayerGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="41" column="40" lean-forward="true" selection-start-line="41" selection-start-column="40" selection-end-line="41" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/hud/EnigmaWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1511">
+          <caret line="130" selection-start-line="130" selection-end-line="130" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/EnigmaFastGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="72" column="19" selection-start-line="72" selection-start-column="19" selection-end-line="72" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/libgdx/actor/GameActorUtilities.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-710">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/map/MapObjects.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1356">
+          <caret line="36" column="7" lean-forward="true" selection-start-line="36" selection-start-column="7" selection-end-line="36" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/libgdx/actor/GameActor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-676">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/save/entities/serialization/EntityFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="604">
+          <caret line="171" column="9" lean-forward="true" selection-start-line="171" selection-start-column="9" selection-end-line="171" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/entities/players/NPC.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="237" column="20" selection-start-line="237" selection-start-column="20" selection-end-line="237" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="29" column="68" selection-start-line="25" selection-start-column="8" selection-end-line="29" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/screens/GameScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-153">
+          <caret line="22" column="60" selection-start-line="22" selection-start-column="60" selection-end-line="22" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/map/GameMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="90" column="29" selection-start-line="90" selection-start-column="29" selection-end-line="90" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
   </component>
   <component name="masterDetails">
     <states>
@@ -361,10 +1014,12 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
+          <last-edited>Enigma</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>
@@ -372,7 +1027,6 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>libs</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

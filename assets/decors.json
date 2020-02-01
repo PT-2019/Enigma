@@ -2,7 +2,7 @@
   content: [
     //bibliothèques
     {
-      className: game.entity.item.Library
+      className: common.entities.items.Library
       path: assets/map/datas/library.png
       hover: une bibliothèque
       category: DECORS
@@ -21,7 +21,7 @@
       }
     }
     {
-      className: game.entity.item.Library
+      className: common.entities.items.Library
       path: assets/map/datas/library2.png
       hover: une bibliothèque
       category: DECORS
@@ -42,7 +42,7 @@
 
     //armoires
     {
-      className: game.entity.item.Library
+      className: common.entities.items.Library
       path: assets/map/datas/closet.png
       hover: une armoire
       category: DECORS
@@ -61,7 +61,7 @@
       }
     }
     {
-      className: game.entity.item.Library
+      className: common.entities.items.Library
       path: assets/map/datas/closet2.png
       hover: une armoire
       category: DECORS
@@ -82,7 +82,7 @@
 
     //panneaux
     {
-      className: game.entity.item.Pane
+      className: common.entities.items.Pane
       path: assets/map/datas/panneau1.png
       hover: une panneau
       category: DECORS
@@ -97,7 +97,7 @@
       }
     }
     {
-      className: game.entity.item.Pane
+      className: common.entities.items.Pane
       path: assets/map/datas/panneau2.png
       hover: une panneau
       category: DECORS
@@ -112,7 +112,7 @@
       }
     }
     {
-      className: game.entity.item.Pane
+      className: common.entities.items.Pane
       path: assets/map/datas/panneau3.png
       hover: une panneau
       category: DECORS
@@ -127,7 +127,7 @@
       }
     }
     {
-      className: game.entity.item.Pane
+      className: common.entities.items.Pane
       path: assets/map/datas/panneau4.png
       hover: une panneau
       category: DECORS
@@ -148,7 +148,7 @@
 
     //portes
     {
-      className: game.entity.item.Door
+      className: common.entities.items.Door
       path: assets/map/datas/decors/door/porte0.png
       hover: une porte
       category: DECORS
@@ -167,7 +167,7 @@
       }
     }
     {
-      className: game.entity.item.Door
+      className: common.entities.items.Door
       path: assets/map/datas/decors/door/porte1.png
       hover: une porte
       category: DECORS
@@ -186,7 +186,7 @@
       }
     }
     {
-      className: game.entity.item.Door
+      className: common.entities.items.Door
       path: assets/map/datas/decors/door/porte2.png
       hover: une porte
       category: DECORS
@@ -205,7 +205,7 @@
       }
     }
     {
-      className: game.entity.item.Door
+      className: common.entities.items.Door
       path: assets/map/datas/decors/door/porte3.png
       hover: une porte
       category: DECORS
@@ -224,7 +224,7 @@
       }
     }
     {
-      className: game.entity.item.Door
+      className: common.entities.items.Door
       path: assets/map/datas/decors/door/porte4.png
       hover: une porte
       category: DECORS
@@ -243,7 +243,7 @@
       }
     }
     {
-      className: game.entity.item.Door
+      className: common.entities.items.Door
       path: assets/map/datas/decors/door/porte5.png
       hover: une porte
       category: DECORS
@@ -262,7 +262,7 @@
       }
     }
     {
-      className: game.entity.item.Door
+      className: common.entities.items.Door
       path: assets/map/datas/decors/door/porte6.png
       hover: une porte
       category: DECORS
@@ -281,7 +281,7 @@
       }
     }
     {
-      className: game.entity.item.Door
+      className: common.entities.items.Door
       path: assets/map/datas/decors/door/porte7.png
       hover: une porte
       category: DECORS
@@ -300,7 +300,7 @@
       }
     }
     {
-      className: game.entity.item.Door
+      className: common.entities.items.Door
       path: assets/map/datas/decors/door/porte8.png
       hover: une porte
       category: DECORS
@@ -321,7 +321,7 @@
 
     //boutons
     {
-      className: game.entity.item.Button
+      className: common.entities.items.Button
       path: assets/map/datas/decors/boutons/bouton0.png
       hover: un bouton
       category: DECORS
@@ -336,7 +336,7 @@
       }
     }
     {
-      className: game.entity.item.Button
+      className: common.entities.items.Button
       path: assets/map/datas/decors/boutons/bouton1.png
       hover: un bouton
       category: DECORS
@@ -351,7 +351,7 @@
       }
     }
     {
-      className: game.entity.item.Button
+      className: common.entities.items.Button
       path: assets/map/datas/decors/boutons/bouton2.png
       hover: un bouton
       category: DECORS
@@ -366,7 +366,7 @@
       }
     }
     {
-      className: game.entity.item.Button
+      className: common.entities.items.Button
       path: assets/map/datas/decors/boutons/bouton3.png
       hover: un bouton
       category: DECORS
@@ -383,7 +383,7 @@
 
     //leviers
     {
-      className: game.entity.item.Switch
+      className: common.entities.items.Switch
       path: assets/map/datas/decors/switch/switch0.png
       hover: un interrupteur
       category: DECORS
@@ -398,7 +398,7 @@
       }
     }
     {
-      className: game.entity.item.Switch
+      className: common.entities.items.Switch
       path: assets/map/datas/decors/switch/switch1.png
       hover: un interrupteur
       category: DECORS
@@ -413,7 +413,7 @@
       }
     }
     {
-      className: game.entity.item.Switch
+      className: common.entities.items.Switch
       path: assets/map/datas/decors/switch/switch2.png
       hover: un interrupteur
       category: DECORS
@@ -428,7 +428,7 @@
       }
     }
     {
-      className: game.entity.item.Switch
+      className: common.entities.items.Switch
       path: assets/map/datas/decors/switch/switch3.png
       hover: un interrupteur
       category: DECORS
@@ -443,7 +443,7 @@
       }
     }
     {
-      className: game.entity.item.Switch
+      className: common.entities.items.Switch
       path: assets/map/datas/decors/switch/switch4.png
       hover: un interrupteur
       category: DECORS
@@ -458,7 +458,7 @@
       }
     }
     {
-      className: game.entity.item.Switch
+      className: common.entities.items.Switch
       path: assets/map/datas/decors/switch/switch5.png
       hover: un interrupteur
       category: DECORS
@@ -475,7 +475,7 @@
 
     //coffres
     {
-      className: game.entity.item.Chest
+      className: common.entities.items.Chest
       path: assets/map/datas/decors/chest/chest0.png
       hover: un coffre
       category: DECORS
@@ -490,7 +490,7 @@
       }
     }
     {
-      className: game.entity.item.Chest
+      className: common.entities.items.Chest
       path: assets/map/datas/decors/chest/chest1.png
       hover: un coffre
       category: DECORS
@@ -505,7 +505,7 @@
       }
     }
     {
-      className: game.entity.item.Chest
+      className: common.entities.items.Chest
       path: assets/map/datas/decors/chest/chest2.png
       hover: une coffre
       category: DECORS

@@ -1,20 +1,11 @@
 {
      "Enigmas": [
-           {
+          {
                "editor.enigma.Enigma": [
                     {
                          "operations": [
                               {
-                                   "editor.enigma.operation.Summon": [
-                                        {
-                                             "spawn": "9",
-                                             "entities": "8"
-                                        }
-                                   ]
-                              },
-
-                              {
-                                   "editor.enigma.operation.Unlock": [
+                                   "editor.enigma.operation.Give": [
                                         {
                                              "entities": "4"
                                         }
@@ -23,43 +14,13 @@
                          ],
                          "known": "false",
                          "currentAdviceIndex": "-1",
-                         "description": "oui c'est une énigme",
+                         "description": "f",
                          "advices": [
-                              {
-                                   "editor.enigma.Advice": [
-                                        {
-                                             "delay": "2",
-                                             "advice": "advice1"
-                                        }
-                                   ]
-                              },
-
-                              {
-                                   "editor.enigma.Advice": [
-                                        {
-                                             "delay": "2",
-                                             "advice": "advice2"
-                                        }
-                                   ]
-                              }
                          ],
-                         "title": "enigme",
+                         "id": "2",
+                         "title": "dd",
+                         "type": "ON_USE",
                          "conditions": [
-                              {
-                                   "editor.enigma.condition.HaveInHands": [
-                                        {
-                                             "entities": "0"
-                                        }
-                                   ]
-                              },
-
-                              {
-                                   "editor.enigma.condition.Activated": [
-                                        {
-                                             "entities": "1"
-                                        }
-                                   ]
-                              }
                          ]
                     }
                ]
@@ -70,60 +31,25 @@
                     {
                          "operations": [
                               {
-                                   "editor.enigma.operation.Unlock": [
+                                   "editor.enigma.operation.Summon": [
                                         {
-                                             "entities": "5"
-                                        }
-                                   ]
-                              },
-
-                              {
-                                   "editor.enigma.operation.Unlock": [
-                                        {
-                                             "entities": "6"
+                                             "entities": "5",
+                                             "spawn_layer": "",
+                                             "spawn_x": "9",
+                                             "spawn_y": "0"
                                         }
                                    ]
                               }
                          ],
                          "known": "false",
                          "currentAdviceIndex": "-1",
-                         "description": "oui c'est une énigme",
+                         "description": "",
                          "advices": [
-                              {
-                                   "editor.enigma.Advice": [
-                                        {
-                                             "delay": "2",
-                                             "advice": "advice3"
-                                        }
-                                   ]
-                              },
-
-                              {
-                                   "editor.enigma.Advice": [
-                                        {
-                                             "delay": "2",
-                                             "advice": "advice4"
-                                        }
-                                   ]
-                              }
                          ],
-                         "title": "enigme2",
+                         "id": "1",
+                         "title": "",
+                         "type": "ON_USE",
                          "conditions": [
-                              {
-                                   "editor.enigma.condition.HaveInHands": [
-                                        {
-                                             "entities": "2"
-                                        }
-                                   ]
-                              },
-
-                              {
-                                   "editor.enigma.condition.Activated": [
-                                        {
-                                             "entities": "3"
-                                        }
-                                   ]
-                              }
                          ]
                     }
                ]

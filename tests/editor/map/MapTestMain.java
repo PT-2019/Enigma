@@ -1,7 +1,8 @@
 package editor.map;
 
-import editor.utils.map.Map;
-import editor.utils.map.Room;
+
+import common.map.model.Map;
+import common.map.model.Room;
 import org.junit.Test;
 
 /**

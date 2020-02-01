@@ -1,0 +1,111 @@
+[
+  //stock1
+  {
+    name: Jean,
+    path: "assets/entities/players/p1b.png"
+    cols: 3
+    rows: 4
+    colPerImage: 12
+    rowPerImage: 8
+    index: 4
+    duration: 0.3f
+  },
+
+  {
+    name: Eri,
+    path: "assets/entities/players/p1b.png"
+    cols: 3
+    rows: 4
+    colPerImage: 12
+    rowPerImage: 8
+    index: 1
+    duration: 0.3f
+  },
+
+  {
+    name: Euphemia,
+    path: "assets/entities/players/p1b.png"
+    cols: 3
+    rows: 4
+    colPerImage: 12
+    rowPerImage: 8
+    index: 0
+    duration: 0.3f
+  },
+
+  {
+    name: Alexia,
+    path: "assets/entities/players/p1b.png"
+    cols: 3
+    rows: 4
+    colPerImage: 12
+    rowPerImage: 8
+    index: 2
+    duration: 0.3f
+  },
+
+  {
+    name: Kil,
+    path: "assets/entities/players/p1b.png"
+    cols: 3
+    rows: 4
+    colPerImage: 12
+    rowPerImage: 8
+    index: 7
+    duration: 0.3f
+  },
+
+  //stock2
+  {
+    name: Melanie,
+    path: "assets/entities/players/p2b.png",
+    cols: 3
+    rows: 4
+    colPerImage: 12
+    rowPerImage: 8,
+    index: 4
+    duration: 0.3f
+  },
+  {
+    name: Joker,
+    path: "assets/entities/players/p2b.png",
+    cols: 3
+    rows: 4
+    colPerImage: 12
+    rowPerImage: 8,
+    index: 7
+    duration: 0.3f
+  },
+  {
+    name: Richard,
+    path: "assets/entities/players/p2b.png",
+    cols: 3
+    rows: 4
+    colPerImage: 12
+    rowPerImage: 8,
+    index: 6
+    duration: 0.3f
+  },
+
+  {
+    name: Jordan,
+    path: "assets/entities/players/p3b.png",
+    cols: 3
+    rows: 4
+    colPerImage: 12
+    rowPerImage: 8,
+    index: 1
+    duration: 0.3f
+  }
+
+  {
+    name: Blonde,
+    path: "assets/entities/players/p3b.png",
+    cols: 3
+    rows: 4
+    colPerImage: 12
+    rowPerImage: 8,
+    index: 6
+    duration: 0.3f
+  },
+]

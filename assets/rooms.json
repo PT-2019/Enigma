@@ -1,7 +1,7 @@
 {
   content: [
     {
-      className: game.entity.item.Room
+      className: common.entities.special.Room
       path: assets/map/datas/rooms/Room1.png
       hover: une salle
       category: ROOMS
@@ -368,101 +368,22 @@
           0,
           0,
         ]
-        COLLISION: [
-          2041,
-          2041,
-          2041,
-          2041,
-          2041,
-          2041,
-          2041,
-          2041,
-          2041,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          2041,
-          2041,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          2041,
-          2041,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          2041,
-          2041,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          2041,
-          2041,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          2041,
-          2041,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          2041,
-          2041,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          2041,
-          2041,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          2041,
-          2041,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          2041,
-          2041,
-          2041,
-          2041,
-          0,
-          0,
-          2041,
-          2041,
-          2041,
-        ]
+        COLLISION: [2041,2041,2041,2041,2041,2041,2041,2041,
+          2041,2041,2041,2041,2041,2041,2041,2041,
+          2041,2041,2041,2041,2041,2041,2041,2041,
+          2041,0,0,0,0,0,0,2041,
+          2041,0,0,0,0,0,0,2041,
+          2041,0,0,0,0,0,0,2041,
+          2041,0,0,0,0,0,0,2041,
+          2041,0,0,0,0,0,0,2041,
+          2041,0,0,0,0,0,0,2041,
+          2041,0,0,0,0,0,0,2041,
+          2041,2041,2041,0,0,2041,2041,2041]
       }
     }
 
     {
-      className: game.entity.item.Room
+      className: common.entities.special.Room
       path: assets/map/datas/rooms/Room2.png
       hover: une salle
       category: ROOMS
@@ -1503,7 +1424,7 @@
     }
 
     {
-      className: game.entity.item.Room
+      className: common.entities.special.Room
       path: assets/map/datas/rooms/Room3.png
       hover: une salle
       category: ROOMS
@@ -2004,7 +1925,7 @@
     }
 
     {
-      className: game.entity.item.Room
+      className: common.entities.special.Room
       path: assets/map/datas/rooms/Room4.png
       hover: une salle
       category: ROOMS
@@ -3130,7 +3051,7 @@
     }
 
     {
-      className: game.entity.item.Room
+      className: common.entities.special.Room
       path: assets/map/datas/rooms/Room5.png
       hover: une salle
       category: ROOMS
