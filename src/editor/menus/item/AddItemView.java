@@ -23,7 +23,7 @@ public class AddItemView extends AbstractPopUpView {
 		AddItemSeeView addItemSeeView = new AddItemSeeView(this);
 		AddItemListView addItemListView = new AddItemListView(this, addItemSeeView);
 		addItemAddView = new AddItemAddView(this, addItemListView);
-		popUp.getObserver().addObserveur(addItemAddView);
+		popUp.getObserver().addObserver(addItemAddView);
 
 		panel.add(addItemListView, MENU);
 		panel.add(addItemAddView, ADD);

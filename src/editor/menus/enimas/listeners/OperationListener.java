@@ -1,6 +1,6 @@
 package editor.menus.enimas.listeners;
 
-import api.utils.Utility;
+import common.utils.Logger;
 import com.badlogic.gdx.math.Vector2;
 import common.enigmas.operation.Give;
 import common.enigmas.operation.Operation;
@@ -96,7 +96,7 @@ public class OperationListener implements ActionListener, ItemListener {
 		if (ope == null) return;
 
 		this.parent.getEnigma().addOperation(ope);
-		Utility.printDebug("OperationAdded", ope.toLongString());
+		Logger.printDebug("OperationAdded", ope.toLongString());
 		this.validate = true;
 		this.operationPanel.clean();
 		CardLayout layout = this.parent.getCardLayout();

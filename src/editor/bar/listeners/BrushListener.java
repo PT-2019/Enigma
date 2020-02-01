@@ -5,6 +5,7 @@ import data.EditorState;
 import editor.EditorLauncher;
 import game.screens.TestScreen;
 
+import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 
@@ -20,8 +21,8 @@ import java.awt.event.ActionEvent;
  */
 public class BrushListener extends MenuListener {
 
-	public BrushListener(EnigmaWindow window) {
-		super(window);
+	public BrushListener(EnigmaWindow window, Component parent) {
+		super(window, parent);
 	}
 
 	@Override

@@ -166,4 +166,11 @@ public class EntitySerializable {
 	protected EntitySerializable duplicates() {
 		return new EntitySerializable(this);
 	}
+
+	@Override
+	public String toString() {
+		return "EntitySerializable{" + "path='" + path + '\'' + ", width=" + width + ", height=" + height +
+				", tiles=" + tiles + ", category=" + category + ", className='" + className + '\'' +
+				", hover='" + hover + '\'' + '}';
+	}
 }

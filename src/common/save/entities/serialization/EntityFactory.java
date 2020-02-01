@@ -1,5 +1,6 @@
 package common.save.entities.serialization;
 
+import common.utils.Logger;
 import api.utils.Utility;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
@@ -151,7 +152,7 @@ public class EntityFactory {
 			if (entity instanceof PlayerSerializableToJson && object instanceof NPC) {
 				PlayerSerializableToJson player = ((PlayerSerializableToJson) entity);
 				((NPC) object).setJson(player.getJson(), player.getKey());
-				Utility.printDebug("EntityFactory", "PlayerSerializable loaded.");
+				Logger.printDebug("EntityFactory", "PlayerSerializable loaded.");
 			}
 
 			if (pos != null)

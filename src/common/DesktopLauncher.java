@@ -11,7 +11,6 @@ import common.language.GameLanguage;
 import common.language.HUDFields;
 import data.config.EnigmaUIValues;
 import editor.EditorLauncher;
-import editor.EditorScreen;
 import game.EnigmaGameLauncher;
 
 import javax.swing.border.EmptyBorder;
@@ -73,11 +72,6 @@ public class DesktopLauncher implements Runnable {
 	private static DesktopLauncher launcher;
 
 	/**
-	 * Une fenêtre temporaire pour lancer l'application
-	 */
-	private static EnigmaWindow c;
-
-	/**
 	 * La fenêtre du lancer
 	 *
 	 * @since 4.1
@@ -114,11 +108,6 @@ public class DesktopLauncher implements Runnable {
 	 */
 	private static void startApp(Application app) {
 		if (RUNNING_APP == null) {
-			//ferme l'application au démarrage d'une nouvelle
-			if (c != null) {
-				c.close();
-				c = null;
-			}
 			RUNNING_APP = app;
 			RUNNING_APP.start();
 			RUNNING_APP.getWindow().addWindowListener(new AppClosingManager());
@@ -147,12 +136,12 @@ public class DesktopLauncher implements Runnable {
 	 */
 	public static void close() {
 		//Dernière, on quitte
-		if (c != null) {
-			c.close();
-			c = null;
-		}
 		if (RUNNING_APP != null) {
-			RUNNING_APP.stop();
+			try {
+				RUNNING_APP.stop();
+			} catch (Exception e) {
+				System.err.println("Fermeture ratée.");
+			}
 		}
 
 		launcher.window.dispose();
@@ -177,7 +166,9 @@ public class DesktopLauncher implements Runnable {
 	//après chargement de la libgdx par SwingUtilities.invokeLater(Runnable)
 	@Override
 	public void run() {
-		final String OS = "Linux";
+		final int inset = 50;
+
+		//window
 		this.window = new EnigmaWindow();
 		this.window.setSize(WindowSize.HALF_SCREEN_SIZE);
 		this.window.setLocation(EnigmaWindow.CENTER);
@@ -192,28 +183,6 @@ public class DesktopLauncher implements Runnable {
 		EDIT_BUTTON = new EnigmaButton(GameLanguage.gl.get(HUDFields.EDITOR));
 		EDIT_BUTTON.addActionListener(new LauncherManagement(EditorLauncher.setEditor(this.window)));
 
-		//Cette chose charge la libgdx au lancement du jeu
-		//on ne peut pas directement l'attacher a this.window
-		c = new EnigmaWindow();
-		c.setIfAskBeforeClosing(false);
-
-		//Card layout pour cacher le chargement de la libgdx
-		EnigmaPanel background = this.window.getContentSpace();
-		background.getComponentUI().setAllBorders(EnigmaUIValues.ENIGMA_COMBOBOX_BORDER);
-		CardLayout cardLayout = new CardLayout();
-		background.setLayout(cardLayout);
-
-		EnigmaPanel content = new EnigmaPanel();
-		background.add(content);
-
-		//ajoute écran caché du cardLayout un copie de l'éditor
-		if (!System.getProperty("os.name").equals(OS)) background.add(new EditorScreen(c, false));
-		else c = null;
-
-
-		//p1.setLayout(new GridBagLayout());
-		content.setLayout(new GridLayout(1, 2));
-
 		/*
 			|---------|   |---------|
 			|   PLAY  |   |         |
@@ -223,7 +192,16 @@ public class DesktopLauncher implements Runnable {
 			|  EDITOR |   |         |
 			|---------|   |---------|
 		 */
-		final int inset = 50;
+
+		//panneau pour le contenu du lanceur
+		EnigmaPanel content = new EnigmaPanel();
+		content.setLayout(new GridLayout(1, 2));
+
+		EnigmaPanel background = this.window.getContentSpace();
+		background.getComponentUI().setAllBorders(EnigmaUIValues.ENIGMA_COMBOBOX_BORDER);
+		background.setLayout(new BorderLayout());
+		background.add(content, BorderLayout.CENTER);
+
 		GridBagConstraints gbc = new GridBagConstraints();
 
 		//boutons

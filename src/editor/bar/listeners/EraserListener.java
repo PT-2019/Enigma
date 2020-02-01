@@ -5,6 +5,7 @@ import data.EditorState;
 import editor.EditorLauncher;
 import game.screens.TestScreen;
 
+import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Image;
 import java.awt.Point;
@@ -35,8 +36,8 @@ public class EraserListener extends MenuListener {
 		ERASER_CURSOR = toolkit.createCustomCursor(image, new Point(5, 5), "eraser");
 	}
 
-	public EraserListener(EnigmaWindow window) {
-		super(window);
+	public EraserListener(EnigmaWindow window, Component parent) {
+		super(window, parent);
 	}
 
 	@Override

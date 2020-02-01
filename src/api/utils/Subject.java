@@ -17,19 +17,19 @@ public interface Subject<T> {
 	 *
 	 * @param obs un observateur
 	 */
-	void addObserveur(Observer<T> obs);
+	void addObserver(Observer<T> obs);
 
 	/**
 	 * Retire un observateur
 	 *
 	 * @param obs un observateur
 	 */
-	void removeObserveur(Observer<T> obs);
+	void removeObserver(Observer<T> obs);
 
 	/**
 	 * Appel de tous les observateurs {@link Observer#update(Object)}
 	 *
-	 * @param object
+	 * @param object object
 	 */
-	void updateObserveur(T object);
+	void updateObserver(T object);
 }

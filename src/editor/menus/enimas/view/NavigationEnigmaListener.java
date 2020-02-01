@@ -1,6 +1,6 @@
 package editor.menus.enimas.view;
 
-import api.utils.Utility;
+import common.utils.Logger;
 import common.enigmas.Enigma;
 import common.entities.types.EnigmaContainer;
 
@@ -61,7 +61,7 @@ public class NavigationEnigmaListener implements ActionListener {
 			eng.setDescription(description.getText());
 			eng.setTitle(title);
 			entity.addEnigma(eng);
-			Utility.printDebug("AddEnigma", eng.toLongString());
+			Logger.printDebug("AddEnigma", eng.toLongString());
 			view.dispose();
 			view.getPopUp().setVisible(true);
 		} else if (tmp.equals(EnigmaMenu.ADD_COND)) {

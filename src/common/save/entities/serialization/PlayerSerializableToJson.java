@@ -76,4 +76,12 @@ public class PlayerSerializableToJson extends EntitySerializable {
 	protected EntitySerializable duplicates() {
 		return new PlayerSerializableToJson(this);
 	}
+
+	@Override
+	public String toString() {
+		return "PlayerSerializableToJson{ {" + super.toString()+ "} " +
+				"json='" + json + '\'' +
+				", key='" + key + '\'' +
+				'}';
+	}
 }

@@ -13,6 +13,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileSets;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import common.entities.GameObject;
+import common.map.MapObjects;
 import common.map.model.Case;
 import common.map.model.Map;
 import common.save.entities.SaveKey;
@@ -59,7 +60,7 @@ public class SaveMap {
 	/**
 	 * Les entités de la map
 	 */
-	private final HashMap<Vector2, GameObject> entities;
+	private final MapObjects entities;
 
 	/**
 	 * Crée un sauvegarde de la map
@@ -67,7 +68,7 @@ public class SaveMap {
 	 * @param game     la map
 	 * @param entities Les entités de la map et leur position
 	 */
-	public SaveMap(TiledMap game, HashMap<Vector2, GameObject> entities) {
+	public SaveMap(TiledMap game, MapObjects entities) {
 		this.gameMap = game;
 		this.entities = entities;
 	}
@@ -355,54 +356,55 @@ public class SaveMap {
 				objetGroup.setAttribute(TmxProperties.TMX_ID, "6");
 				map.appendChild(objetGroup);
 
-				for (java.util.Map.Entry<Vector2, GameObject> entitySet : entities.entrySet()) {
-					GameObject entity = entitySet.getValue();
-					Vector2 pos = entitySet.getKey();
+				for (java.util.Map.Entry<Vector2, ArrayList<GameObject>> entitySet : entities.getAll().entrySet()) {
+					for (GameObject entity : entitySet.getValue()) {
+						Vector2 pos = entitySet.getKey();
 
-					//Sauvegarde de la taille, position de l'entité
-					Element object = document.createElement(TmxTags.TMX_OBJECT);
-					object.setAttribute(TmxProperties.TMX_ID, String.valueOf(entity.getID()));
-					object.setAttribute(TmxProperties.TMX_X, String.valueOf(pos.x));
-					object.setAttribute("y", String.valueOf(pos.y));
-					object.setAttribute(TmxProperties.TMX_WIDTH, String.valueOf(entity.getGameObjectWidth()));
-					object.setAttribute(TmxProperties.TMX_HEIGHT, String.valueOf(entity.getGameObjectHeight()));
-					object.setAttribute(TmxProperties.TMX_NAME, TmxProperties.TMX_PROP_ENTITY);
+						//Sauvegarde de la taille, position de l'entité
+						Element object = document.createElement(TmxTags.TMX_OBJECT);
+						object.setAttribute(TmxProperties.TMX_ID, String.valueOf(entity.getID()));
+						object.setAttribute(TmxProperties.TMX_X, String.valueOf(pos.x));
+						object.setAttribute("y", String.valueOf(pos.y));
+						object.setAttribute(TmxProperties.TMX_WIDTH, String.valueOf(entity.getGameObjectWidth()));
+						object.setAttribute(TmxProperties.TMX_HEIGHT, String.valueOf(entity.getGameObjectHeight()));
+						object.setAttribute(TmxProperties.TMX_NAME, TmxProperties.TMX_PROP_ENTITY);
 
-					Element properties = document.createElement(TmxTags.TMX_PROPERTIES);
+						Element properties = document.createElement(TmxTags.TMX_PROPERTIES);
 
-					//Sauvegarde de la classe de l'entité
-					Element className = document.createElement(TmxTags.TMX_PROPERTY);
-					className.setAttribute(TmxProperties.TMX_NAME, TmxProperties.TMX_PROP_ENTITY_CLASS);
-					className.setAttribute(TmxProperties.TMX_VALUE, entity.getClass().getName());
-					properties.appendChild(className);
+						//Sauvegarde de la classe de l'entité
+						Element className = document.createElement(TmxTags.TMX_PROPERTY);
+						className.setAttribute(TmxProperties.TMX_NAME, TmxProperties.TMX_PROP_ENTITY_CLASS);
+						className.setAttribute(TmxProperties.TMX_VALUE, entity.getClass().getName());
+						properties.appendChild(className);
 
-					//Sauvegarde de sa position y car la lecture donne une valeur bizarre mais celle du fichier est bonne.
-					//LIBGDX fait la lecture.
-					Element y2 = document.createElement(TmxTags.TMX_PROPERTY);
-					y2.setAttribute(TmxProperties.TMX_NAME, TmxProperties.TMX_Y);
-					y2.setAttribute(TmxProperties.TMX_VALUE, String.valueOf(pos.y));
-					properties.appendChild(y2);
+						//Sauvegarde de sa position y car la lecture donne une valeur bizarre mais celle du fichier est bonne.
+						//LIBGDX fait la lecture.
+						Element y2 = document.createElement(TmxTags.TMX_PROPERTY);
+						y2.setAttribute(TmxProperties.TMX_NAME, TmxProperties.TMX_Y);
+						y2.setAttribute(TmxProperties.TMX_VALUE, String.valueOf(pos.y));
+						properties.appendChild(y2);
 
-					//Sauvegarde du nombre de tiles par niveau
-					for (Layer layer : Layer.values()) {
-						Array<Float> tiles = entity.getTiles(layer);
-						if (tiles == null || tiles.size == 0) continue;
-						Element tilesTag = document.createElement(TmxTags.TMX_PROPERTY);
-						tilesTag.setAttribute(TmxProperties.TMX_NAME, layer.name());
-						tilesTag.setAttribute(TmxProperties.TMX_VALUE, String.valueOf(tiles.size));
-						properties.appendChild(tilesTag);
+						//Sauvegarde du nombre de tiles par niveau
+						for (Layer layer : Layer.values()) {
+							Array<Float> tiles = entity.getTiles(layer);
+							if (tiles == null || tiles.size == 0) continue;
+							Element tilesTag = document.createElement(TmxTags.TMX_PROPERTY);
+							tilesTag.setAttribute(TmxProperties.TMX_NAME, layer.name());
+							tilesTag.setAttribute(TmxProperties.TMX_VALUE, String.valueOf(tiles.size));
+							properties.appendChild(tilesTag);
+						}
+
+						//ajout des propriétés propres à l'object
+						for (java.util.Map.Entry<SaveKey, String> entry : entity.getSave().entrySet()) {
+							Element custom = document.createElement(TmxTags.TMX_PROPERTY);
+							custom.setAttribute(TmxProperties.TMX_NAME, entry.getKey().toString());
+							custom.setAttribute(TmxProperties.TMX_VALUE, entry.getValue());
+							properties.appendChild(custom);
+						}
+
+						object.appendChild(properties);
+						objetGroup.appendChild(object);
 					}
-
-					//ajout des propriétés propres à l'object
-					for (java.util.Map.Entry<SaveKey, String> entry : entity.getSave().entrySet()) {
-						Element custom = document.createElement(TmxTags.TMX_PROPERTY);
-						custom.setAttribute(TmxProperties.TMX_NAME, entry.getKey().toString());
-						custom.setAttribute(TmxProperties.TMX_VALUE, entry.getValue());
-						properties.appendChild(custom);
-					}
-
-					object.appendChild(properties);
-					objetGroup.appendChild(object);
 				}
 			}
 

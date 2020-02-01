@@ -9,6 +9,7 @@ import game.screens.TestScreen;
 
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 
 public class SaveListener extends MenuListener {
@@ -19,8 +20,8 @@ public class SaveListener extends MenuListener {
 	//private volatile boolean finished;
 	//private volatile File file;
 
-	public SaveListener(EnigmaWindow window) {
-		super(window);
+	public SaveListener(EnigmaWindow window, Component parent) {
+		super(window, parent);
 		//force lancement javafx
 		//new JFXPanel();
 		//this.finished = false;

@@ -12,6 +12,9 @@ import data.config.Config;
 import game.EnigmaGame;
 import game.screens.TestScreen;
 
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 
 /**
@@ -49,8 +52,8 @@ public class CreateListener extends MenuListener {
 	 *
 	 * @param window fenêtre
 	 */
-	public CreateListener(EnigmaWindow window) {
-		super(window);
+	public CreateListener(EnigmaWindow window, JComponent parent) {
+		super(window, parent);
 
 		//fields
 		EnigmaLabel nom = new EnigmaLabel("Nom :");

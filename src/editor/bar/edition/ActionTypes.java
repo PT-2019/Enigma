@@ -11,37 +11,25 @@ package editor.bar.edition;
  * @since 5.0 29/01/2020
  */
 public enum ActionTypes {
-/*
+
 	/**
 	 * Ajout d'une entité
-	 * @see game.entity.map.MapTestScreen#loadEntity(
-	 *      editor.entity.EntitySerializable,
-	 *      com.badlogic.gdx.math.Vector2)
-	 *
-	ADD_ENTITY(ActionTypes.REMOVE_ENTITY),
+	 */
+	ADD_ENTITY,
+
 	/**
 	 * Suppression d'une entité
-	 * @see game.entity.map.MapTestScreen#removeEntity(api.entity.GameObject)
-	 *
-	REMOVE_ENTITY(ActionTypes.ADD_ENTITY),
+	 */
+	REMOVE_ENTITY,
+
 	/**
 	 * Ajoute une énigme
-	 *
-	ADD_ENIGMA(ActionTypes.REMOVE_ENIGMA),
+	 */
+	ADD_ENIGMA,
+
 	/**
 	 * Suppression d'une énigme
 	 * Affiche un message qui confirme la suppression
-	 *
-	REMOVE_ENIGMA(ActionTypes.ADD_ENIGMA);*/;
-
-	public final ActionTypes invert;
-
-	/**
-	 * Crée un type d'action
-	 *
-	 * @param invert l'action inverse
 	 */
-	ActionTypes(ActionTypes invert) {
-		this.invert = invert;
-	}
+	REMOVE_ENIGMA,
 }
