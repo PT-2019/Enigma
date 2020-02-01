@@ -4,10 +4,10 @@ import api.ui.CustomButton;
 import api.ui.CustomOptionPane;
 import api.ui.CustomPanel;
 import api.ui.CustomWindow;
+import api.ui.base.DefaultUIValues;
 import api.ui.base.OptionPaneStyle;
 import api.ui.skin.CustomButtonUI;
 import common.hud.ui.EnigmaTextAreaUI;
-import data.config.EnigmaUIValues;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -34,15 +34,15 @@ public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyl
 	 * @param text contenu du bouton
 	 * @return le bouton auquel le style a été appliqué
 	 */
-	public static CustomButton getClassicButton(String text) {
+	private static CustomButton getClassicButton(String text) {
 		boolean[] borders = new boolean[4];
-		borders[EnigmaUIValues.BOTTOM_BORDER] = true;
+		borders[DefaultUIValues.BOTTOM_BORDER] = true;
 		Color grey = new Color(100, 100, 100);
 		CustomButton b = new CustomButton(text);
 		CustomButtonUI bui = b.getComponentUI();
 		bui.setAllBorders(null, Color.WHITE, Color.WHITE);
 		bui.setAllBackgrounds(grey, grey, new Color(50, 150, 200));
-		bui.setAllShowedBorders(EnigmaUIValues.ALL_BORDER_HIDDEN, borders, borders);
+		bui.setAllShowedBorders(DefaultUIValues.ALL_BORDER_HIDDEN, borders, borders);
 		bui.setAllBordersSize(1, 1, 1);
 		bui.setAllForegrounds(Color.WHITE, Color.WHITE, Color.WHITE);
 		return b;
@@ -53,16 +53,16 @@ public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyl
 	 *
 	 * @return le champ de saisie auquel le style a été appliqué
 	 */
-	public static EnigmaTextArea getClassicTextArea() {
+	private static EnigmaTextArea getClassicTextArea() {
 		EnigmaTextArea ta = new EnigmaTextArea();
-		boolean[] borders = EnigmaUIValues.ALL_BORDER_HIDDEN;
-		borders[EnigmaUIValues.BOTTOM_BORDER] = true;
+		boolean[] borders = DefaultUIValues.ALL_BORDER_HIDDEN;
+		borders[DefaultUIValues.BOTTOM_BORDER] = true;
 		Color grey = new Color(100, 100, 100);
 		EnigmaTextAreaUI tui = ta.getComponentUI();
 		tui.setAllBackgrounds(grey, grey, grey);
 		tui.setAllBorders(null, Color.WHITE, Color.WHITE);
 		tui.setAllBordersSize(1, 1, 1);
-		tui.setAllShowedBorders(EnigmaUIValues.ALL_BORDER_HIDDEN, borders, borders);
+		tui.setAllShowedBorders(DefaultUIValues.ALL_BORDER_HIDDEN, borders, borders);
 		return ta;
 	}
 
@@ -116,6 +116,17 @@ public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyl
 		return showInputDialog(parent, message, new EnigmaOptionPane());
 	}
 
+	/**
+	 * Crée un popup de choix de map
+	 *
+	 * @param parent  parent
+	 * @return le nom de la map séléctionnée
+	 * @since 5.0
+	 */
+	public static String showMapChoiceDialog(CustomWindow parent) {
+		return showMapChoiceDialog(parent, new EnigmaOptionPane());
+	}
+
 	// réécriture des méthodes static avec le bon style
 
 	/**
@@ -146,13 +157,13 @@ public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyl
 	/**
 	 * Affiche un popup personnalisé
 	 *
-	 * @param parent  parent
+	 * @param parent parent
 	 * @param message possiblement un tableau, des composants a afficher dans le popup
-	 * @param title   titre de la fenêtre
+	 * @param title titre de la fenêtre
 	 * @param options option (ok, confirmer, ...), par exemple un tableau de string
 	 * @return la position dans le tableau d'options choisie
 	 */
-	public static int showOptionDialog(CustomWindow parent, Object message, String title, String[] options) {
+	public static int showOptionDialog(CustomWindow parent, Object message, String title, String[] options){
 		return showOptionDialog(parent, message, title, options, new EnigmaOptionPane());
 	}
 
@@ -167,6 +178,18 @@ public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyl
 	 */
 	public static String showInputDialog(CustomWindow parent, Dimension size, String message) {
 		return showInputDialog(parent, size, message, new EnigmaOptionPane());
+	}
+
+	/**
+	 * Crée un popup de choix de map
+	 *
+	 * @param parent  parent
+	 * @param size taille
+	 * @return le nom de la map séléctionnée
+	 * @since 5.0
+	 */
+	public static String showMapChoiceDialog(CustomWindow parent, Dimension size) {
+		return showMapChoiceDialog(parent, size, new EnigmaOptionPane());
 	}
 
 	/**

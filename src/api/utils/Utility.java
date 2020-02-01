@@ -34,6 +34,25 @@ import java.util.Map;
 public class Utility implements Serializable {
 
 	/**
+	 * Obtenir le nom de toutes les maps en local
+	 * Les noms sont issus des fichiers tmx présents
+	 * @return Le nom des maps
+	 */
+	public static ArrayList<String> getAllMapName(){
+		ArrayList<String> maps = new ArrayList<>();
+		File file = new File("assets/files/map/");
+		String[] list = file.list();
+
+		if(list != null){
+			for(String s : list){
+				if(s.endsWith(".tmx"))
+					maps.add(s.replace(".tmx",""));
+			}
+		}
+		return maps;
+	}
+
+	/**
 	 * Cette méthode lit un fichier et le renvoi sous la forme d'une String.
 	 * Les saut de lignes sont conservés.
 	 *
