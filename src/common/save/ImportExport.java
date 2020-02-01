@@ -1,8 +1,6 @@
 package common.save;
 
 import api.utils.Utility;
-import common.map.data.GameData;
-import common.map.data.MapData;
 
 import java.io.*;
 import java.util.ArrayList;

@@ -23,6 +23,8 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Array;
 import common.entities.GameObject;
 import common.entities.types.ContainersManager;
+import common.data.MapData;
+import common.save.DataSave;
 import common.save.TmxProperties;
 import common.save.entities.serialization.EntityFactory;
 import common.save.entities.serialization.EntitySerializable;
@@ -31,6 +33,7 @@ import data.Layer;
 import org.intellij.lang.annotations.MagicConstant;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -51,6 +54,12 @@ import static common.save.MapsNameUtils.WIDTH_P;
  * @since 3.0
  */
 public abstract class AbstractMap extends Group {
+
+	/**
+	 * Données propres à la map
+	 * @since 6.0
+	 */
+	protected MapData data;
 
 	/**
 	 * Les entités de la map
@@ -112,6 +121,11 @@ public abstract class AbstractMap extends Group {
 		// charge la map
 		TiledMap tiledMap = new TmxMapLoader().load(path);
 		this.map = new OrthogonalTiledMapRenderer(tiledMap, unitScale);
+		try {
+			this.data = DataSave.readMapData(path);
+		} catch (IOException e) {
+			System.err.println("impossible de charger les données de la map");
+		}
 
 		//sauvegarde des propriétés de la map
 		MapProperties properties = tiledMap.getProperties();
@@ -723,5 +737,13 @@ public abstract class AbstractMap extends Group {
 	 */
 	public MapObjects getEntities(){
 		return this.objects;
+	}
+
+	/**
+	 * Retourne les données de la partie
+	 * @return Les données de la partie
+	 */
+	public MapData getMapData() {
+		return this.data;
 	}
 }
