@@ -1,6 +1,8 @@
 package common.save;
 
 import api.utils.Utility;
+import common.map.data.GameData;
+import common.map.data.MapData;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -38,10 +40,21 @@ public class ImportExport {
      * Données ligne de début des données de la partie
      */
     private final static String GAME_DATA = "gameData";
+
     /**
-     * Données nom de la map
+     * Permet d'obtenir les liste ordonnée des données obligatoires
+     * @return Liste de données
      */
-    private final static int DATA_COUNT = 5;
+    private static ArrayList<String> getDataList(){
+        ArrayList<String> data = new ArrayList<>();
+        data.add(NAME);
+        data.add(MAP_DATA);
+        data.add(GAME_DATA);
+        data.add(MAP);
+        data.add(ENIGMAS);
+
+        return data;
+    }
 
     /**
      * Convertie une donnée et sa valeur en une chaine unique avec une syntaxe précise
@@ -73,13 +86,26 @@ public class ImportExport {
      * @throws IOException En cas d'erreur de lecture
      */
     public static int countLines(String filePath) throws IOException {
-        try (InputStream is = new FileInputStream(filePath)) {
-            int count = 1;
-            for (int aChar = 0; aChar != -1; aChar = is.read())
-                count += aChar == '\n' ? 1 : 0;
-            is.close();
-            return count;
+        BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(filePath)));
+        String read;
+        int count = 0;
+
+        while((read = reader.readLine()) != null) {
+            if(!read.equals(""))
+                count++;
         }
+
+        reader.close();
+        return count;
+    }
+
+    public static void main(String[] g) throws IOException {
+        ImportExport.importGameOrMap("assets/files/exports/test.enigma");
+        /*GameData d= new GameData("test","d","e",2,2);
+        DataSave.writeGameData(d);
+        MapData dd= new MapData("a","test");
+        DataSave.writeMapData(dd);
+        ImportExport.exportMap("test","assets/files/exports/");*/
     }
 
     /**
@@ -92,18 +118,11 @@ public class ImportExport {
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(exportPath + mapName + ".enigma")));
         String map = "assets/files/map/" + mapName + ".tmx";
         String mapData = "assets/files/data/" + mapName + ".tmx";
-        //String gameData = "assets/files/game/" + mapName + ".tmx";
         String enigmas = "assets/files/map/" + mapName + ".json";
         int mapLineCount = ImportExport.countLines(map);
         int mapDataLineCount = ImportExport.countLines(mapData);
-        //int gameDataLineCount = ImportExport.countLines(gameData);
         int gameDataLineCount = 0;
-        ArrayList<String> data = new ArrayList<>();
-        data.add(NAME);
-        data.add(MAP_DATA);
-        data.add(GAME_DATA);
-        data.add(MAP);
-        data.add(ENIGMAS);
+        ArrayList<String> data = ImportExport.getDataList();
 
         String value = "";
         for(String key : data){
@@ -112,13 +131,13 @@ public class ImportExport {
                     value = mapName;
                     break;
                 case MAP:
-                    value = String.valueOf( (DATA_COUNT + mapDataLineCount + gameDataLineCount + 1) );
+                    value = String.valueOf( (data.size() + mapDataLineCount + gameDataLineCount + 1) );
                     break;
                 case ENIGMAS:
-                    value = String.valueOf( (DATA_COUNT + mapDataLineCount + gameDataLineCount + mapLineCount) );
+                    value = String.valueOf( (data.size() + mapDataLineCount + gameDataLineCount + mapLineCount + 1) );
                     break;
                 case MAP_DATA:
-                    value = String.valueOf( (DATA_COUNT + 1) );
+                    value = String.valueOf( (data.size() + 1) );
                     break;
                 case GAME_DATA:
                     value = "-1";
@@ -151,12 +170,7 @@ public class ImportExport {
         int mapLineCount = ImportExport.countLines(map);
         int mapDataLineCount = ImportExport.countLines(mapData);
         int gameDataLineCount = ImportExport.countLines(gameData);
-        ArrayList<String> data = new ArrayList<>();
-        data.add(NAME);
-        data.add(MAP_DATA);
-        data.add(GAME_DATA);
-        data.add(MAP);
-        data.add(ENIGMAS);
+        ArrayList<String> data = ImportExport.getDataList();
 
         String value = "";
         for(String key : data){
@@ -165,16 +179,16 @@ public class ImportExport {
                     value = mapName;
                     break;
                 case MAP:
-                    value = String.valueOf( (DATA_COUNT + mapDataLineCount + gameDataLineCount + 1) );
+                    value = String.valueOf( (data.size() + mapDataLineCount + gameDataLineCount + 1) );
                     break;
                 case ENIGMAS:
-                    value = String.valueOf( (DATA_COUNT + mapDataLineCount + gameDataLineCount + mapLineCount) );
+                    value = String.valueOf( (data.size() + mapDataLineCount + gameDataLineCount + mapLineCount + 1) );
                     break;
                 case MAP_DATA:
-                    value = String.valueOf( (DATA_COUNT + 1) );
+                    value = String.valueOf( (data.size() + 1) );
                     break;
                 case GAME_DATA:
-                    value = String.valueOf( (DATA_COUNT + mapDataLineCount + 1) );
+                    value = String.valueOf( (data.size() + mapDataLineCount + 1) );
                     break;
             }
 
@@ -212,13 +226,7 @@ public class ImportExport {
         String read;
         String mapName = null;
 
-        ArrayList<String> data = new ArrayList<>();
-        data.add(NAME);
-        data.add(MAP_DATA);
-        data.add(GAME_DATA);
-        data.add(MAP);
-        data.add(ENIGMAS);
-
+        ArrayList<String> data = ImportExport.getDataList();
         for(String key : data){
             line++;
             if((read = reader.readLine()) != null){
@@ -243,33 +251,45 @@ public class ImportExport {
                 throw new IllegalStateException(key + " corrompu");
         }
 
+        int tmpLine = mapLine;
+        if(gameDataLine > 0)
+            tmpLine = gameDataLine;
+
         writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("assets/files/data/" + mapName + ".tmx")));
-        for(; line < gameDataLine && (read = reader.readLine()) != null; line++){
-            writer.write(read);
-            writer.newLine();
+        for (; line < tmpLine && (read = reader.readLine()) != null; line++) {
+            if(!read.equals("")) {
+                writer.write(read);
+                writer.newLine();
+            }
         }
         writer.close();
 
         if(gameDataLine > 0) {
             writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("assets/files/game/" + mapName + ".tmx")));
             for (; line < mapLine && (read = reader.readLine()) != null; line++) {
-                writer.write(read);
-                writer.newLine();
+                if(!read.equals("")) {
+                    writer.write(read);
+                    writer.newLine();
+                }
             }
             writer.close();
         }
 
         writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("assets/files/map/" + mapName + ".tmx")));
         for(; line < enigmasLine && (read = reader.readLine()) != null; line++){
-            writer.write(read);
-            writer.newLine();
+            if(!read.equals("")) {
+                writer.write(read);
+                writer.newLine();
+            }
         }
         writer.close();
 
         writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("assets/files/map/" + mapName + ".json")));
         while((read = reader.readLine()) != null){
-            writer.write(read);
-            writer.newLine();
+            if(!read.equals("")) {
+                writer.write(read);
+                writer.newLine();
+            }
         }
         writer.close();
     }

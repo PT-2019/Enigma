@@ -1,7 +1,7 @@
 package common.save;
 
-import modifs.GameData;
-import modifs.MapData;
+import common.map.data.MapData;
+import common.map.data.GameData;
 
 import java.io.*;
 import java.util.HashMap;
