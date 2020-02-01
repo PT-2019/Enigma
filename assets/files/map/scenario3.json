@@ -1,0 +1,51 @@
+{
+     "Enigmas": [
+          {
+               "editor.enigma.Enigma": [
+                    {
+                         "operations": [
+                              {
+                                   "editor.enigma.operation.Unlock": [
+                                        {
+                                             "entities": "-1"
+                                        }
+                                   ]
+                              },
+
+                              {
+                                   "editor.enigma.operation.Unlock": [
+                                        {
+                                             "entities": "-1"
+                                        }
+                                   ]
+                              }
+                         ],
+                         "known": "false",
+                         "currentAdviceIndex": "-1",
+                         "description": "porte fermée si pas clef",
+                         "advices": [
+                              {
+                                   "editor.enigma.Advice": [
+                                        {
+                                             "delay": "2",
+                                             "advice": "baka euh nan baca euh nah"
+                                        }
+                                   ]
+                              }
+                         ],
+                         "id": "4",
+                         "title": "porte fermée",
+                         "conditions": [
+                              {
+                                   "editor.enigma.condition.HaveInHands": [
+                                        {
+                                             "entities": "-1"
+                                        }
+                                   ]
+                              }
+                         ]
+                    }
+               ]
+          }
+     ]
+}
