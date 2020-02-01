@@ -22,9 +22,11 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import common.entities.GameObject;
+import common.entities.players.NPC;
 import common.entities.players.PlayerGame;
 import common.save.entities.serialization.EntityFactory;
 import common.save.entities.serialization.EntitySerializable;
+import common.save.entities.serialization.PlayerFactory;
 import data.Layer;
 import editor.EditorLauncher;
 import org.jetbrains.annotations.NotNull;
@@ -124,7 +126,7 @@ public class GameMap extends AbstractMap {
 
 		this.window = EditorLauncher.getInstance().getWindow();
 
-		//init();
+		init();
 		//createCell(this.window.getContentPane());
 
 		this.added = new HashMap<>();
@@ -199,6 +201,7 @@ public class GameMap extends AbstractMap {
 		float x, y;
 		int width, height;
 		String className;
+		String isheros;
 		EntitySerializable e;
 		for (MapProperties prop : entities) {
 			width = Math.round(prop.get("width", Float.class));
@@ -210,6 +213,16 @@ public class GameMap extends AbstractMap {
 			Vector2 start = new Vector2(x, y);
 			e = new EntitySerializable(width, height, className, new HashMap<>());
 			GameObject object = EntityFactory.createEntity(e, this.added.size(), start);
+
+			if (className.equals("common.entities.players.NPC") ){
+				isheros = prop.get("HERO", String.class);
+				if (isheros.equals("true")){
+					String name = prop.get("KEY", String.class);
+					String path = prop.get("JSON", String.class);
+					this.addEntity(PlayerFactory.createPlayerGame(name, path, this));
+                    ((NPC)object).setHero(true);
+				}
+			}
 
 			Utility.printDebug("GameScreen#initEntities", object + " " + start);
 
@@ -445,5 +458,9 @@ public class GameMap extends AbstractMap {
 
 	public OrthographicCamera getCamera() {
 		return camera;
+	}
+
+	public ArrayList<GameActor> getEntities() {
+		return entities;
 	}
 }

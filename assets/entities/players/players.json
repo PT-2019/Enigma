@@ -29,7 +29,7 @@
     rows: 4
     colPerImage: 12
     rowPerImage: 8
-    index: 0
+    index: 5
     duration: 0.3f
   },
 
@@ -40,7 +40,7 @@
     rows: 4
     colPerImage: 12
     rowPerImage: 8
-    index: 2
+    index: 6
     duration: 0.3f
   },
 
@@ -96,7 +96,7 @@
     rowPerImage: 8,
     index: 1
     duration: 0.3f
-  }
+  },
 
   {
     name: Blonde,

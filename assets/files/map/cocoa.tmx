@@ -506,18 +506,6 @@
                 <property name="COLLISION" value="90"/>
             </properties>
         </object>
-        <object height="2.0" id="14" name="entity" width="2.0" x="18.0" y="38.0">
-            <properties>
-                <property name="className" value="common.entities.players.NPC"/>
-                <property name="y2" value="38.0"/>
-                <property name="FLOOR2" value="4"/>
-                <property name="JSON" value="assets/entities/datas/players.json"/>
-                <property name="KEY" value="Anna"/>
-                <property name="HERO" value="true"/>
-                <property name="NAME" value=""/>
-                <property name="INVENTORY" value="[]"/>
-            </properties>
-        </object>
         <object height="2.0" id="25" name="entity" width="1.0" x="30.0" y="31.0">
             <properties>
                 <property name="className" value="common.entities.items.Library"/>
@@ -566,7 +554,7 @@
                 <property name="className" value="common.entities.players.NPC"/>
                 <property name="y2" value="51.0"/>
                 <property name="FLOOR2" value="4"/>
-                <property name="JSON" value=""/>
+                <property name="JSON" value="assets/entities/players/players.json"/>
                 <property name="KEY" value=""/>
                 <property name="HERO" value="false"/>
                 <property name="NAME" value=""/>
@@ -651,8 +639,8 @@
                 <property name="className" value="common.entities.players.NPC"/>
                 <property name="y2" value="36.0"/>
                 <property name="FLOOR2" value="4"/>
-                <property name="JSON" value="assets/entities/datas/players.json"/>
-                <property name="KEY" value="Gold"/>
+                <property name="JSON" value="assets/entities/players/players.json"/>
+                <property name="KEY" value="Blonde"/>
                 <property name="HERO" value="true"/>
                 <property name="NAME" value=""/>
                 <property name="INVENTORY" value="[]"/>
