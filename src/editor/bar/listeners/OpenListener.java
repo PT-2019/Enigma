@@ -1,6 +1,8 @@
 package editor.bar.listeners;
 
+import api.ui.CustomOptionPane;
 import com.badlogic.gdx.Gdx;
+import common.hud.EnigmaOptionPane;
 import common.hud.EnigmaWindow;
 import common.save.EmptyMapGenerator;
 import data.EnigmaScreens;
@@ -51,14 +53,10 @@ public class OpenListener extends MenuListener {
 				Gdx.app.postRunnable(() -> EnigmaGame.reload(EnigmaScreens.TEST.name()));
 		}*/
 
-		FileNameExtensionFilter tmx = new FileNameExtensionFilter("Fichier map (*.tmx)", "tmx");
-		JFileChooser fileChooser = new JFileChooser(Config.MAP_FOLDER);
-		fileChooser.setAcceptAllFileFilterUsed(false);
-		fileChooser.setFileFilter(tmx);
-
-		if (fileChooser.showOpenDialog(new EnigmaWindow()) == JFileChooser.APPROVE_OPTION) {
-			//System.out.println("ouverture à "+fileChooser.getSelectedFile().getAbsolutePath());
-			EmptyMapGenerator.load(fileChooser.getSelectedFile().getAbsolutePath());
+		String map;
+		if (!(map = EnigmaOptionPane.showMapChoiceDialog(new EnigmaWindow())).equals(CustomOptionPane.CANCEL)) {
+			System.out.println("ouverture de "+Config.MAP_FOLDER + map + ".tmx");
+			EmptyMapGenerator.load( Config.MAP_FOLDER + map + ".tmx");
 			Gdx.app.postRunnable(() -> EnigmaGame.reload(EnigmaScreens.TEST.name()));
 			//TODO: message ok
 		}

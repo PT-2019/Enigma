@@ -5,6 +5,7 @@ import api.utils.annotations.ConvenienceMethod;
 import api.utils.annotations.NeedPatch;
 import common.utils.Logger;
 import data.config.Config;
+import editor.menus.AvailableOptionRunnable;
 
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsDevice;
@@ -33,6 +34,25 @@ import java.util.Map;
  */
 @ConvenienceClass
 public class Utility implements Serializable {
+
+	/**
+	 * Obtenir le nom de toutes les maps en local
+	 * Les noms sont issus des fichiers tmx présents
+	 * @return Le nom des maps
+	 */
+	public static ArrayList<String> getAllMapName(){
+		ArrayList<String> maps = new ArrayList<>();
+		File file = new File("assets/files/map/");
+		String[] list = file.list();
+
+		if(list != null){
+			for(String s : list){
+				if(s.endsWith(".tmx"))
+					maps.add(s.replace(".tmx",""));
+			}
+		}
+		return maps;
+	}
 
 	/**
 	 * Cette méthode lit un fichier et le renvoi sous la forme d'une String.
@@ -142,37 +162,41 @@ public class Utility implements Serializable {
 	}
 
 	/**
-	 * Retourne null ou une méthode d'un object depuis une string
-	 *
-	 * @param object     class d'un object
+	 * Appelle une méthode
+	 * @param m object méthode
+	 * @param className nom de la classe
+	 * @param <T> type de retour
+	 * @return appel une méthode et retourne son résultat
+	 */
+	@SuppressWarnings("unchecked")
+	public static <T> T invokeMethod(Method m, Class<T> className, Object ... args) {
+		try {
+			return (T) m.invoke(className, args);
+		} catch (IllegalAccessException | InvocationTargetException e) {
+			throw new IllegalStateException("Invocation ratée."+e);
+		}
+	}
+
+	/**
+	 * Appel une méthode depuis son nom en string
 	 * @param methodName nom d'une méthode
-	 * @return la méthode ou null
-	 * @see Method#invoke(Object, Object...) (attention, le premier object doit être la classe)
+	 * @param object    class de la méthode
+	 * @param args arguments
+	 * @param <T> type du type de retour
+	 * @return type de retour
 	 * @since 4.1
 	 */
-	@NeedPatch
-	public static Method findMethod(Class object, String methodName) {
-		/*
-		METHODE MARCHE MAIS LA OU YA DES ??? c'est compliqué (faut savoir les arguments de votre méthode)
+	public static <T> T invokeMethod(String methodName, Class<T> object, Object ... args) {
 		methodName = normalize(methodName);
 
 		for (Method method : object.getDeclaredMethods()) {
 			String name = normalize(method.getName());
-
 			if (methodName.equals(name)) {
-				//method call
-				//try {
-				//	return (????) method.invoke(????.class, args);
-				//} catch (IllegalAccessException | InvocationTargetException e) {
-				//	//fail
-				//}
-				//break;
-
-				return method;
+				return invokeMethod(method, object);
 			}
-		}*/
+		}
 
-		throw new UnsupportedOperationException("disabled");
+		throw new IllegalStateException("No such method");
 	}
 
 	/**

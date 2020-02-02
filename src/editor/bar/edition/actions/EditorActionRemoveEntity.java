@@ -34,12 +34,12 @@ class EditorActionRemoveEntity implements EditorAction {
 
 	@Override
 	public void doAction() {
-		this.map.removeEntity(this.entity);
+		this.map.remove(this.entity);
 	}
 
 	@Override
 	public void undoAction() {
-		this.map.set(entity, pos);
+		this.map.add(entity, pos);
 	}
 
 	@Override

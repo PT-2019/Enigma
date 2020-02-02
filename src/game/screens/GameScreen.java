@@ -20,7 +20,9 @@ import game.EnigmaGame;
  * @since 5.0 31/01/2020
  */
 public class GameScreen extends LibgdxScreen {
+
 	private static String MAP_PATH = "assets/files/map/Cocoa.tmx";
+
 	/**
 	 * Stage de la map et du jeu
 	 */

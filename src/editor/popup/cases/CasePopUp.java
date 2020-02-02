@@ -9,6 +9,7 @@ import data.Layer;
 import editor.EditorLauncher;
 import editor.menus.AvailableOptionRunnable;
 import editor.menus.AvailablePopUpOption;
+import editor.menus.OptionRunnableFactory;
 import editor.popup.cases.listeners.EntityChoseListener;
 import editor.popup.cases.panel.NavigationPanel;
 
@@ -74,7 +75,7 @@ public class CasePopUp extends AbstractPopUp {
 	public void initComponent() {
 		this.navigation = new NavigationPanel(this);
 		this.extra = new EnigmaPanel();
-		for (Class<?> c : AvailableOptionRunnable.classes) {
+		for (Class<?> c : OptionRunnableFactory.getAll()) {
 			AvailableOptionRunnable runnable = (AvailableOptionRunnable) Utility.instance(c, this);
 			runnables.put(runnable.getOption(), runnable);
 		}

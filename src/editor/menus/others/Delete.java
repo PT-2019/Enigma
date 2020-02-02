@@ -2,13 +2,17 @@ package editor.menus.others;
 
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import common.entities.GameObject;
+import common.entities.Item;
+import common.entities.types.Container;
 import common.hud.EnigmaButton;
-import common.hud.EnigmaPanel;
 import editor.menus.AbstractPopUpView;
 import editor.menus.AvailableOptionRunnable;
 import editor.menus.AvailablePopUpOption;
+import editor.menus.Drawable;
 import editor.popup.cases.CasePopUp;
 import editor.popup.cases.listeners.CaseDelete;
+import game.EnigmaGame;
+import game.screens.TestScreen;
 
 /**
  * Suppression d'une entité
@@ -47,13 +51,30 @@ public class Delete implements AvailableOptionRunnable {
 	}
 
 	@Override
-	public void run(AbstractPopUpView view, EnigmaPanel panel, GameObject object) {
+	public void run(AbstractPopUpView view, Drawable panel, GameObject object) {
 		//ajoute le bouton
-		panel.add(this.del);
-		/*this.del.addActionListener(new CaseDelete(this.parent.getCell(),
-				//récupère le niveau de l'entité a supprimer
-				(TiledMapTileLayer)this.parent.getTileMap().getLayers().get(this.parent.getCell().getLayer().getName()),
-				this.parent.getNavigation().getInfo(), this.parent)
-		);*/
+		panel.getDrawable().add(this.del);
+
+		this.del.addActionListener((e) -> {
+			//récupère l'entité
+			GameObject entity = view.getPopUp().getCell().getEntity();
+
+			//supprimer si container
+			if(object instanceof Item && entity instanceof Container) {
+				//remove from parent
+				((Container) entity).removeItem((Item) object);
+				//remove from map
+				((TestScreen)EnigmaGame.getCurrentScreen()).getMap().removeEntity(object);
+
+				//update
+				panel.invalidateDrawable();
+			} else {
+				//supprime l'entitée de la case
+				new CaseDelete(this.parent.getCell(),
+						//récupère le niveau de l'entité a supprimer
+						(TiledMapTileLayer) this.parent.getTileMap().getLayers().get(this.parent.getCell().getLayer().getName()),
+						this.parent.getNavigation().getInfo(), this.parent).actionPerformed(e);
+			}
+		});
 	}
 }

@@ -25,7 +25,7 @@ import java.awt.event.ItemListener;
 import java.util.ArrayList;
 
 /**
- * Desc
+ * Liste des objects contenus dans un object.
  *
  * @author Jorys-Micke ALAÏS
  * @author Louka DOZ
@@ -45,7 +45,7 @@ public class AddItemListView extends AbstractSubPopUpView {
 	private ButtonGroup groups;
 	private ItemListener listener;
 
-	public AddItemListView(AbstractPopUpView parent, AddItemSeeView seeView) {
+	AddItemListView(AbstractPopUpView parent, AddItemSeeView seeView) {
 		super(TITLE, parent, false);
 		this.groups = new ButtonGroup();
 		this.listener = new ItemListener() {
@@ -88,17 +88,9 @@ public class AddItemListView extends AbstractSubPopUpView {
 	}
 
 	@Override
-	public void onHide() {
-	}
-
-	@Override
 	public void onShow() {
-		//this.clean();
-		//this.initComponent();
-	}
-
-	@Override
-	public void update(GameObject object) {
+		this.clean();
+		this.initComponent();
 	}
 
 	@Override
@@ -145,6 +137,11 @@ public class AddItemListView extends AbstractSubPopUpView {
 		panelS.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 
 		this.content.add(panelS, BorderLayout.CENTER);
+	}
+
+
+	@Override
+	public void update(GameObject object) {
 	}
 
 	public ButtonGroup getGroup() {

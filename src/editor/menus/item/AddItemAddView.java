@@ -21,29 +21,41 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Vue du menu d'ajout d'un item
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ *
+ * @version 6.0 02/02/2020
+ * @since 6.0 02/02/2020
+ */
 public class AddItemAddView extends AbstractSubPopUpView {
 
 	private static final String TITLE = "Ajouter un objet";
 	private static final String NO_ITEMS = "Veuillez sélectionner un objet (menu)";
 	private static final String INVALID = "Entité Invalide. Objets Uniquement (livre, ...)";
 	private static final String SUMBIT = "Confimer";
+
 	private final EnigmaButton submit;
 	private final EnigmaLabel empty;
 	private GameObject item;
 
-	public AddItemAddView(AbstractPopUpView parent, AddItemListView list) {
+	AddItemAddView(AbstractPopUpView parent, AddItemListView list) {
 		super(TITLE, parent, true);
 
 		EnigmaPanel panel = new EnigmaPanel();
 		panel.setLayout(new GridBagLayout());
-		empty = new EnigmaLabel(NO_ITEMS);
-		empty.getComponentUI().setAllForegrounds(Color.YELLOW, Color.YELLOW, Color.YELLOW);
-		panel.add(empty);
+		this.empty = new EnigmaLabel(NO_ITEMS);
+		this.empty.getComponentUI().setAllForegrounds(Color.YELLOW, Color.YELLOW, Color.YELLOW);
+		panel.add(this.empty);
 
-		submit = new EnigmaButton(SUMBIT);
-		submit.setVisible(false);
-		submit.addActionListener(new SubmitListener(parent, this, list));
-		footer.add(submit);
+		this.submit = new EnigmaButton(SUMBIT);
+		this.submit.setVisible(false);
+		this.submit.addActionListener(new SubmitListener(parent, this, list));
+		this.footer.add(this.submit);
 
 		this.content.add(panel, BorderLayout.CENTER);
 	}
@@ -56,8 +68,8 @@ public class AddItemAddView extends AbstractSubPopUpView {
 		MapTestScreen map = ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap();
 
 		if (!(object instanceof Consumable)) {
-			empty.setText(INVALID);
-			submit.setVisible(false);
+			this.empty.setText(INVALID);
+			this.submit.setVisible(false);
 			if (this.item != null) {
 				//supprime
 				map.removeEntity(this.item);
@@ -78,10 +90,10 @@ public class AddItemAddView extends AbstractSubPopUpView {
 				//transfert id
 				object.setID(this.item.getID());
 			}
-			item = object;
+			this.item = object;
 			//System.out.println("#item:"+item);
-			empty.setText(object.getReadableName() + " (id=" + object.getID() + ")");
-			submit.setVisible(true);
+			this.empty.setText(object.getReadableName() + " (id=" + object.getID() + ")");
+			this.submit.setVisible(true);
 		}
 	}
 
@@ -90,19 +102,7 @@ public class AddItemAddView extends AbstractSubPopUpView {
 		GameObject objNull = null;
 		this.update(objNull);
 		DragAndDropBuilder.setForPopup(null);
-		empty.setText(NO_ITEMS);
-	}
-
-	@Override
-	public void onHide() {
-	}
-
-	@Override
-	public void onShow() {
-	}
-
-	@Override
-	public void initComponent() {
+		this.empty.setText(NO_ITEMS);
 	}
 
 	public EnigmaLabel getInfoLabel() {
@@ -127,16 +127,20 @@ public class AddItemAddView extends AbstractSubPopUpView {
 				//ajout au container
 				((Container) entity).addItem((Item) addItemAddView.item);
 				//clean
-				addItemAddView.item = null;
-				addItemAddView.submit.setVisible(false);
-				addItemAddView.empty.setText(NO_ITEMS);
+				this.addItemAddView.item = null;
+				this.addItemAddView.submit.setVisible(false);
+				this.addItemAddView.empty.setText(NO_ITEMS);
 				DragAndDropBuilder.setForPopup(null);
 				//update parent
-				list.clean();
-				list.initComponent();
+				this.list.clean();
+				this.list.initComponent();
 				//retour menu
-				parent.getCardLayout().show(parent.getPanel(), "menu");
+				this.parent.getCardLayout().show(parent.getPanel(), "menu");
 			}
 		}
+	}
+
+	@Override
+	public void initComponent() {
 	}
 }

@@ -34,12 +34,12 @@ class EditorActionAddEntity implements EditorAction {
 
 	@Override
 	public void doAction() {
-		this.map.set(entity, pos);
+		this.map.add(this.entity, this.pos);
 	}
 
 	@Override
 	public void undoAction() {
-		this.map.removeEntity(this.entity);
+		this.map.remove(this.entity);
 	}
 
 	@Override
