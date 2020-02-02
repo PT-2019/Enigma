@@ -24,12 +24,15 @@ import com.badlogic.gdx.utils.Array;
 import common.entities.GameObject;
 import common.entities.types.ContainersManager;
 import common.data.MapData;
+import common.hud.EnigmaOptionPane;
 import common.save.DataSave;
 import common.save.TmxProperties;
 import common.save.entities.serialization.EntityFactory;
 import common.save.entities.serialization.EntitySerializable;
 import common.utils.Logger;
 import data.Layer;
+import data.config.Config;
+import game.screens.TestScreen;
 import org.intellij.lang.annotations.MagicConstant;
 import org.jetbrains.annotations.NotNull;
 
@@ -121,10 +124,19 @@ public abstract class AbstractMap extends Group {
 		// charge la map
 		TiledMap tiledMap = new TmxMapLoader().load(path);
 		this.map = new OrthogonalTiledMapRenderer(tiledMap, unitScale);
-		try {
-			this.data = DataSave.readMapData(path);
-		} catch (IOException e) {
-			System.err.println("impossible de charger les données de la map");
+		String data = null;
+
+		//TODO: if else à retirer lorsque TestScreen.MAP_PATH ne vaudra plus assets/map/map_system/EmptyMap.tmx
+		if(!path.equals("assets/map/map_system/EmptyMap.tmx")) {	//evite des exceptions, à effacer le moment venu
+			try {
+				data = path.replace(Config.MAP_FOLDER, Config.MAP_DATA_FOLDER).replace(Config.MAP_EXTENSION, Config.DATA_EXTENSION);
+				this.data = DataSave.readMapData(data);
+			} catch (IOException e) {
+				Logger.printError("AbstractMap.java", "impossible de charger les données: " + data + " de la map: " + path);
+				//TODO: annuler le chargement
+			}
+		}else{
+			this.data = new MapData("a retirer","a retirer");
 		}
 
 		//sauvegarde des propriétés de la map

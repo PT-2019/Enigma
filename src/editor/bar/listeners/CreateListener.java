@@ -2,10 +2,12 @@ package editor.bar.listeners;
 
 import api.utils.Utility;
 import com.badlogic.gdx.Gdx;
+import common.data.MapData;
 import common.hud.EnigmaLabel;
 import common.hud.EnigmaOptionPane;
 import common.hud.EnigmaTextArea;
 import common.hud.EnigmaWindow;
+import common.save.DataSave;
 import common.save.EmptyMapGenerator;
 import data.EnigmaScreens;
 import data.config.Config;
@@ -16,6 +18,8 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Observateur de la création d'une map
@@ -83,8 +87,17 @@ public class CreateListener extends MenuListener {
 
 		if (choice == CREATE_POS) {
 			try {
+				String mapName = Utility.normalize(nameF.getText());
 				final int col = Integer.parseInt(widthF.getText()), row = Integer.parseInt(heightF.getText());
-				String path = Config.MAP_FOLDER + Utility.normalize(nameF.getText());
+				String path = Config.MAP_FOLDER + mapName;
+
+
+				for (String s : Utility.getAllMapName()) {
+					if (s.equals(mapName)) {
+						EnigmaOptionPane.showAlert(this.window, "Ce nom existe déjà");
+						return;
+					}
+				}
 
 				//TODO: vérifier col, row, chemin (caractères spéciaux) et afficher une erreur
 
@@ -92,12 +105,15 @@ public class CreateListener extends MenuListener {
 					path += ".tmx";
 				}
 
+				MapData data = new MapData("",mapName);
+				DataSave.writeMapData(data);
+
 				EmptyMapGenerator.generate(path, col, row);
 
 				if (((TestScreen) EnigmaGame.getCurrentScreen()).setMap(path))
 					Gdx.app.postRunnable(() -> EnigmaGame.reload(EnigmaScreens.TEST.name()));
 
-			} catch (NumberFormatException ex) {
+			} catch (NumberFormatException | IOException ex) {
 				System.err.println("gérer les erreurs!!!!");
 				System.out.println(choice);
 				System.out.println(widthF.getText() + " " + heightF.getText() + " " + nameF.getText());

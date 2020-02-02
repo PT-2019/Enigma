@@ -1,6 +1,7 @@
 package common.save;
 
 import api.utils.Utility;
+import data.config.Config;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -97,60 +98,56 @@ public class ImportExport {
         return count;
     }
 
-    public static void main(String[] g) throws IOException {
-        ImportExport.importGameOrMap("assets/files/exports/test.enigma");
-        /*GameData d= new GameData("test","d","e",2,2);
-        DataSave.writeGameData(d);
-        MapData dd= new MapData("a","test");
-        DataSave.writeMapData(dd);
-        ImportExport.exportMap("test","assets/files/exports/");*/
-    }
-
     /**
      * Exporte une map
      * @param mapName Nom de la map
      * @param exportPath Chemin où créer le fichier exporté
-     * @throws IOException En case d'erreur de lecture ou d'écriture
+     * @throws IllegalStateException En case d'erreur de lecture ou d'écriture
      */
     public static void exportMap(String mapName, String exportPath) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(exportPath + mapName + ".enigma")));
-        String map = "assets/files/map/" + mapName + ".tmx";
-        String mapData = "assets/files/data/" + mapName + ".tmx";
-        String enigmas = "assets/files/map/" + mapName + ".json";
-        int mapLineCount = ImportExport.countLines(map);
-        int mapDataLineCount = ImportExport.countLines(mapData);
-        int gameDataLineCount = 0;
-        ArrayList<String> data = ImportExport.getDataList();
+        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(exportPath + mapName + Config.EXPORT_EXTENSION)));
+        try {
+            System.out.println(exportPath + mapName + Config.EXPORT_EXTENSION);
+            String map = Config.MAP_FOLDER + mapName + Config.MAP_EXTENSION;
+            String mapData = Config.MAP_DATA_FOLDER + mapName + Config.DATA_EXTENSION;
+            String enigmas = Config.MAP_FOLDER + mapName + Config.ENIGMA_EXTENSION;
+            int mapLineCount = ImportExport.countLines(map);
+            int mapDataLineCount = ImportExport.countLines(mapData);
+            int gameDataLineCount = 0;
+            ArrayList<String> data = ImportExport.getDataList();
 
-        String value = "";
-        for(String key : data){
-            switch (key){
-                case NAME:
-                    value = mapName;
-                    break;
-                case MAP:
-                    value = String.valueOf( (data.size() + mapDataLineCount + gameDataLineCount + 1) );
-                    break;
-                case ENIGMAS:
-                    value = String.valueOf( (data.size() + mapDataLineCount + gameDataLineCount + mapLineCount + 1) );
-                    break;
-                case MAP_DATA:
-                    value = String.valueOf( (data.size() + 1) );
-                    break;
-                case GAME_DATA:
-                    value = "-1";
-                    break;
+            String value = "";
+            for (String key : data) {
+                switch (key) {
+                    case NAME:
+                        value = mapName;
+                        break;
+                    case MAP:
+                        value = String.valueOf((data.size() + mapDataLineCount + gameDataLineCount + 1));
+                        break;
+                    case ENIGMAS:
+                        value = String.valueOf((data.size() + mapDataLineCount + gameDataLineCount + mapLineCount + 1));
+                        break;
+                    case MAP_DATA:
+                        value = String.valueOf((data.size() + 1));
+                        break;
+                    case GAME_DATA:
+                        value = "-1";
+                        break;
+                }
+
+                writer.write(ImportExport.putInSyntax(key, value));
+                writer.newLine();
             }
+            writer.write(Utility.readFile(mapData));
+            writer.write(Utility.readFile(map));
+            writer.write(Utility.readFile(enigmas));
 
-            writer.write(ImportExport.putInSyntax(key, value));
-            writer.newLine();
+            writer.close();
+        }catch (IOException e){
+            writer.close();
+            throw new IOException("export error");
         }
-
-        writer.write(Utility.readFile(mapData));
-        writer.write(Utility.readFile(map));
-        writer.write(Utility.readFile(enigmas));
-
-        writer.close();
     }
 
     /**
@@ -160,46 +157,51 @@ public class ImportExport {
      * @throws IOException En case d'erreur de lecture ou d'écriture
      */
     public static void exportGame(String mapName, String exportPath) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(exportPath + mapName + ".enigma")));
-        String map = "assets/files/map/" + mapName + ".tmx";
-        String mapData = "assets/files/data/" + mapName + ".tmx";
-        String gameData = "assets/files/game/" + mapName + ".tmx";
-        String enigmas = "assets/files/map/" + mapName + ".json";
-        int mapLineCount = ImportExport.countLines(map);
-        int mapDataLineCount = ImportExport.countLines(mapData);
-        int gameDataLineCount = ImportExport.countLines(gameData);
-        ArrayList<String> data = ImportExport.getDataList();
+        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(exportPath + mapName + Config.EXPORT_EXTENSION)));
+        try {
+            String map = Config.MAP_FOLDER + mapName + Config.MAP_EXTENSION;
+            String mapData = Config.MAP_DATA_FOLDER + mapName + Config.DATA_EXTENSION;
+            String enigmas = Config.MAP_FOLDER + mapName + Config.ENIGMA_EXTENSION;
+            String gameData = Config.GAME_DATA_FOLDER + mapName + Config.DATA_EXTENSION;
+            int mapLineCount = ImportExport.countLines(map);
+            int mapDataLineCount = ImportExport.countLines(mapData);
+            int gameDataLineCount = ImportExport.countLines(gameData);
+            ArrayList<String> data = ImportExport.getDataList();
 
-        String value = "";
-        for(String key : data){
-            switch (key){
-                case NAME:
-                    value = mapName;
-                    break;
-                case MAP:
-                    value = String.valueOf( (data.size() + mapDataLineCount + gameDataLineCount + 1) );
-                    break;
-                case ENIGMAS:
-                    value = String.valueOf( (data.size() + mapDataLineCount + gameDataLineCount + mapLineCount + 1) );
-                    break;
-                case MAP_DATA:
-                    value = String.valueOf( (data.size() + 1) );
-                    break;
-                case GAME_DATA:
-                    value = String.valueOf( (data.size() + mapDataLineCount + 1) );
-                    break;
+            String value = "";
+            for (String key : data) {
+                switch (key) {
+                    case NAME:
+                        value = mapName;
+                        break;
+                    case MAP:
+                        value = String.valueOf((data.size() + mapDataLineCount + gameDataLineCount + 1));
+                        break;
+                    case ENIGMAS:
+                        value = String.valueOf((data.size() + mapDataLineCount + gameDataLineCount + mapLineCount + 1));
+                        break;
+                    case MAP_DATA:
+                        value = String.valueOf((data.size() + 1));
+                        break;
+                    case GAME_DATA:
+                        value = String.valueOf((data.size() + mapDataLineCount + 1));
+                        break;
+                }
+
+                writer.write(ImportExport.putInSyntax(key, value));
+                writer.newLine();
             }
 
-            writer.write(ImportExport.putInSyntax(key, value));
-            writer.newLine();
+            writer.write(Utility.readFile(mapData));
+            writer.write(Utility.readFile(gameData));
+            writer.write(Utility.readFile(map));
+            writer.write(Utility.readFile(enigmas));
+
+            writer.close();
+        }catch(IOException e){
+            writer.close();
+            throw new IOException("export error");
         }
-
-        writer.write(Utility.readFile(mapData));
-        writer.write(Utility.readFile(gameData));
-        writer.write(Utility.readFile(map));
-        writer.write(Utility.readFile(enigmas));
-
-        writer.close();
     }
 
     /**
@@ -211,7 +213,7 @@ public class ImportExport {
      * @throws NumberFormatException Si un numéro de ligne est corrompu
      */
     public static void importGameOrMap(String importPath) throws IOException {
-        if(!importPath.endsWith(".enigma"))
+        if(!importPath.endsWith(Config.EXPORT_EXTENSION))
             throw new IllegalArgumentException("Ce n'est pas un .enigma!");
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(importPath)));
@@ -253,7 +255,7 @@ public class ImportExport {
         if(gameDataLine > 0)
             tmpLine = gameDataLine;
 
-        writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("assets/files/data/" + mapName + ".tmx")));
+        writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(Config.MAP_DATA_FOLDER + mapName + Config.DATA_EXTENSION)));
         for (; line < tmpLine && (read = reader.readLine()) != null; line++) {
             if(!read.equals("")) {
                 writer.write(read);
@@ -263,7 +265,7 @@ public class ImportExport {
         writer.close();
 
         if(gameDataLine > 0) {
-            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("assets/files/game/" + mapName + ".tmx")));
+            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(Config.GAME_DATA_FOLDER + mapName + Config.DATA_EXTENSION)));
             for (; line < mapLine && (read = reader.readLine()) != null; line++) {
                 if(!read.equals("")) {
                     writer.write(read);
@@ -273,7 +275,7 @@ public class ImportExport {
             writer.close();
         }
 
-        writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("assets/files/map/" + mapName + ".tmx")));
+        writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(Config.MAP_FOLDER + mapName + Config.MAP_EXTENSION)));
         for(; line < enigmasLine && (read = reader.readLine()) != null; line++){
             if(!read.equals("")) {
                 writer.write(read);
@@ -282,7 +284,7 @@ public class ImportExport {
         }
         writer.close();
 
-        writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("assets/files/map/" + mapName + ".json")));
+        writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(Config.MAP_FOLDER + mapName + Config.ENIGMA_EXTENSION)));
         while((read = reader.readLine()) != null){
             if(!read.equals("")) {
                 writer.write(read);

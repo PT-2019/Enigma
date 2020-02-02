@@ -2,6 +2,7 @@ package common.save;
 
 import common.data.MapData;
 import common.data.GameData;
+import data.config.Config;
 
 import java.io.*;
 import java.util.HashMap;
@@ -88,7 +89,7 @@ public class DataSave {
      * @throws IOException En cas d'erreur d'écriture
      */
     public static void writeMapData(MapData data) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("assets/files/data/" + data.getMapName() + ".tmx")));
+        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(Config.MAP_DATA_FOLDER + data.getMapName() + Config.DATA_EXTENSION)));
 
         writer.write(HEADER);
         writer.newLine();
@@ -107,7 +108,7 @@ public class DataSave {
      * @throws IOException En cas d'erreur d'écriture
      */
     public static void writeGameData(GameData data) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("assets/files/game/" + data.getMapName() + ".tmx")));
+        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(Config.GAME_DATA_FOLDER + data.getMapName() + Config.DATA_EXTENSION)));
 
         writer.write(HEADER);
         writer.newLine();
@@ -135,12 +136,12 @@ public class DataSave {
 
     /**
      * Lis les données d'une map
-     * @param mapName Nom de la map
+     * @param path Chemin
      * @return Les données
      * @throws IOException En cas d'erreur de lecture
      */
-    public static MapData readMapData(String mapName) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream("assets/files/data/" + mapName + ".tmx")));
+    public static MapData readMapData(String path) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
 
         HashMap<String,String> data = DataSave.read(reader);
 
@@ -150,12 +151,12 @@ public class DataSave {
 
     /**
      * Lis les données d'une partie
-     * @param mapName Nom de la map
+     * @param path Chemin
      * @return Les données
      * @throws IOException En cas d'erreur de lecture
      */
-    public static GameData readGameData(String mapName) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream("assets/files/data/" + mapName + ".tmx")));
+    public static GameData readGameData(String path) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(path)));
 
         HashMap<String,String> data = DataSave.read(reader);
 
