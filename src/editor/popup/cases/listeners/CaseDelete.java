@@ -4,6 +4,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import common.hud.EnigmaPanel;
 import common.map.MapTestScreenCell;
 import editor.popup.cases.CasePopUp;
+import org.jetbrains.annotations.Nullable;
 
 import javax.swing.JLabel;
 import java.awt.event.ActionEvent;
@@ -38,7 +39,7 @@ public class CaseDelete implements ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(@Nullable ActionEvent e) {
 		if (this.current.getEntity() != null) {
 			//System.out.println("remove"+this.current.getEntity());
 			this.current.removeEntity();

@@ -10,6 +10,7 @@ import data.Layer;
 import editor.menus.AbstractPopUpView;
 import editor.menus.AvailableOptionRunnable;
 import editor.menus.AvailablePopUpOption;
+import editor.menus.Drawable;
 import editor.popup.cases.CasePopUp;
 import editor.popup.listeners.PopItemListener;
 
@@ -66,7 +67,7 @@ public class SetAccess implements AvailableOptionRunnable {
 	}
 
 	@Override
-	public void run(AbstractPopUpView view, EnigmaPanel panel, GameObject object) {
+	public void run(AbstractPopUpView view, Drawable panel, GameObject object) {
 		TiledMap tileMap = parent.getTileMap();
 		MapTestScreenCell cell = parent.getCell();
 		JCheckBox walkable = new JCheckBox(VALUE);
@@ -83,6 +84,6 @@ public class SetAccess implements AvailableOptionRunnable {
 			walkable.setSelected(true);
 		}
 		walkable.addItemListener(new PopItemListener(tileMap, cell));
-		panel.add(walkable);
+		panel.getDrawable().add(walkable);
 	}
 }

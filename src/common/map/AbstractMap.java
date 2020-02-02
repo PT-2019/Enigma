@@ -28,6 +28,7 @@ import common.save.entities.serialization.EntityFactory;
 import common.save.entities.serialization.EntitySerializable;
 import common.utils.Logger;
 import data.Layer;
+import editor.bar.edition.actions.EditorActionParent;
 import org.intellij.lang.annotations.MagicConstant;
 import org.jetbrains.annotations.NotNull;
 
@@ -50,7 +51,7 @@ import static common.save.MapsNameUtils.WIDTH_P;
  * @version 6.0
  * @since 3.0
  */
-public abstract class AbstractMap extends Group {
+public abstract class AbstractMap extends Group implements EditorActionParent<GameObject> {
 
 	/**
 	 * Les entités de la map
@@ -723,5 +724,15 @@ public abstract class AbstractMap extends Group {
 	 */
 	public MapObjects getEntities(){
 		return this.objects;
+	}
+
+	@Override
+	public void add(GameObject arg, Object... args) {
+		this.set(arg, (Vector2) args[0]);
+	}
+
+	@Override
+	public void remove(GameObject arg, Object... args) {
+		this.removeEntity(arg);
 	}
 }

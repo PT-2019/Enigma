@@ -1,10 +1,10 @@
 package editor.menus.others;
 
 import common.entities.GameObject;
-import common.hud.EnigmaPanel;
 import editor.menus.AbstractPopUpView;
 import editor.menus.AvailableOptionRunnable;
 import editor.menus.AvailablePopUpOption;
+import editor.menus.Drawable;
 import editor.popup.cases.CasePopUp;
 
 /**
@@ -17,6 +17,7 @@ import editor.popup.cases.CasePopUp;
  * @version 5.0 25/01/2020
  * @since 5.0 25/01/2020
  */
+@Deprecated
 public class DefineAsNpc implements AvailableOptionRunnable {
 
 	/**
@@ -44,7 +45,7 @@ public class DefineAsNpc implements AvailableOptionRunnable {
 	}
 
 	@Override
-	public void run(AbstractPopUpView view, EnigmaPanel panel, GameObject object) {
+	public void run(AbstractPopUpView view, Drawable panel, GameObject object) {
 
 	}
 }

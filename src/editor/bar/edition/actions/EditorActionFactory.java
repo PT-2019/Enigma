@@ -13,25 +13,29 @@ import editor.bar.edition.EditorAction;
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  *
- * @version 6.0 01/02/2020
+ * @version 6.1
  * @since 6.0 01/02/2020
  */
 public final class EditorActionFactory {
 
-	//TODO: on remarque les arguments : type, parent, object concerné
-	//  sur le parent, on appelle toujours "add" et "remove" avec l'object.
-	//  faire une interface, on utilisera la généricité si besoin.
-	//  puis factory ces méthodes en une seule, le but ultime
-	//  le nombre d'argument a remove peut être variable
-
-	public static EditorAction create(ActionTypes type, AbstractMap map, MapObject object){
+	/**
+	 * Crée une action
+	 *
+	 * @param type type
+	 * @param parent parent
+	 * @param object object concerné par l'action
+	 * @param <T> le type du premier argument de la méthode add
+	 * @return une action
+	 * @throws IllegalArgumentException si erreur
+	 * @since 6.0
+	 */
+	public static <T> EditorAction create(ActionTypes type, EditorActionParent<T> parent, Object object){
 
 			if (type.equals(ActionTypes.ADD_ENTITY)) {
-
-				return new EditorActionAddEntity(type, map, object);
+				return new EditorActionAddEntity(type, (AbstractMap) parent, (MapObject) object);
 			} else if (type.equals(ActionTypes.REMOVE_ENTITY)) {
 
-				return new EditorActionRemoveEntity(type, map, object);
+				return new EditorActionRemoveEntity(type, (AbstractMap) parent, (MapObject) object);
 			}
 
 

@@ -1,5 +1,6 @@
 package editor.menus;
 
+import api.utils.annotations.DoNothing;
 import com.badlogic.gdx.Gdx;
 import common.hud.EnigmaPanel;
 import editor.EditorLauncher;
@@ -9,6 +10,7 @@ import game.dnd.DragAndDropBuilder;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import java.awt.CardLayout;
+import java.awt.Container;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -22,7 +24,7 @@ import java.awt.event.WindowEvent;
  * @version 5.0 27/01/2020
  * @since 5.0 27/01/2020
  */
-public abstract class AbstractPopUpView extends JDialog {
+public abstract class AbstractPopUpView extends JDialog implements Drawable {
 
 	public static final int WIDTH = 700, HEIGHT = 300;
 
@@ -115,5 +117,12 @@ public abstract class AbstractPopUpView extends JDialog {
 			DragAndDropBuilder.setForPopup(null);
 		}
 	}
+
+	@Override
+	@DoNothing
+	public Container getDrawable() { return null; }
+
+	@Override
+	public void invalidateDrawable(){}
 }
 

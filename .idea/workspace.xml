@@ -5,23 +5,41 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ae09cfc3-8c68-40f7-a6e1-cb32552840e9" name="Default Changelist" comment="fix">
-      <change afterPath="$PROJECT_DIR$/assets/files/data/scenario3.tmx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/files/data/test.tmx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/files/exports/test.enigma" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/files/game/test.tmx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/editor/bar/listeners/ExportListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/editor/bar/listeners/SaveAsListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/files/map/test.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/files/map/test.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/exports/scenario3.enigma" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/lang/english.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/lang/english.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/lang/french.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/lang/french.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/hud/EnigmaOptionPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/hud/EnigmaOptionPane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/language/HUDFields.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/language/HUDFields.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/bar/BarMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/BarMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/bar/listeners/OpenListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/listeners/OpenListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/configure/managers/configurations/ChangeMaxPlayers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/configure/managers/configurations/ChangeMaxPlayers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/utils/Utility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/utils/Utility.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/DesktopLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/DesktopLauncher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/hud/EnigmaPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/hud/EnigmaPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/map/AbstractMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/map/AbstractMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/EditorScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/EditorScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/bar/edition/actions/EditorActionAddEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/edition/actions/EditorActionAddEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/bar/edition/actions/EditorActionFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/edition/actions/EditorActionFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/bar/edition/actions/EditorActionRemoveEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/edition/actions/EditorActionRemoveEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/menus/AbstractPopUpView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/menus/AbstractPopUpView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/menus/AbstractSubPopUpView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/menus/AbstractSubPopUpView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/menus/AvailableOptionRunnable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/menus/AvailableOptionRunnable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/menus/content/SetContent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/menus/content/SetContent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/menus/item/AddItemAddView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/menus/item/AddItemAddView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/menus/item/AddItemListView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/menus/item/AddItemListView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/menus/item/AddItemSeeView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/menus/item/AddItemSeeView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/menus/item/AddItemView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/menus/item/AddItemView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/menus/item/AddItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/menus/item/AddItems.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/menus/others/DefineAsHero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/menus/others/DefineAsHero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/menus/others/DefineAsNpc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/menus/others/DefineAsNpc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/menus/others/Delete.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/menus/others/Delete.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/menus/others/HidePassageRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/menus/others/HidePassageRoom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/menus/others/ManageEnigmas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/menus/enimas/ManageEnigmas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/menus/others/SetAccess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/menus/others/SetAccess.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/popup/cases/CasePopUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/popup/cases/CasePopUp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/popup/cases/listeners/CaseDelete.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/popup/cases/listeners/CaseDelete.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/screens/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/screens/GameScreen.java" afterDir="false" />
     </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <ignored path="$PROJECT_DIR$/libs/packer/" />
+    <ignored path="$PROJECT_DIR$/src/game/Louka/" />
+    <ignored path="$PROJECT_DIR$/src/item/" />
+    <ignored path="$PROJECT_DIR$/src/start/" />
+    <ignored path="$PROJECT_DIR$/build/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -45,16 +63,16 @@
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="AnnotationType" />
         <option value="Singleton" />
-        <option value="Class" />
-        <option value="Interface" />
         <option value="Enum" />
+        <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -80,13 +98,38 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/editor/bar/edition/actions/EditorActionAddEntity.java" />
         <option value="$PROJECT_DIR$/src/common/map/MapObjects.java" />
         <option value="$PROJECT_DIR$/src/editor/bar/listeners/SaveAsListener.java" />
         <option value="$PROJECT_DIR$/src/editor/bar/BarMenu.java" />
         <option value="$PROJECT_DIR$/src/editor/bar/listeners/ExportListener.java" />
         <option value="$PROJECT_DIR$/assets/files/map/test.json" />
         <option value="$PROJECT_DIR$/assets/files/map/test.tmx" />
+        <option value="$PROJECT_DIR$/src/editor/bar/edition/actions/EditorActionParent.java" />
+        <option value="$PROJECT_DIR$/src/editor/bar/edition/actions/EditorActionAddEntity.java" />
+        <option value="$PROJECT_DIR$/src/editor/bar/edition/actions/EditorActionRemoveEntity.java" />
+        <option value="$PROJECT_DIR$/src/common/map/AbstractMap.java" />
+        <option value="$PROJECT_DIR$/src/editor/bar/edition/actions/EditorActionFactory.java" />
+        <option value="$PROJECT_DIR$/src/game/screens/GameScreen.java" />
+        <option value="$PROJECT_DIR$/src/api/utils/Utility.java" />
+        <option value="$PROJECT_DIR$/src/editor/popup/cases/CasePopUp.java" />
+        <option value="$PROJECT_DIR$/src/editor/popup/cases/listeners/CaseDelete.java" />
+        <option value="$PROJECT_DIR$/src/editor/menus/AvailableOptionRunnable.java" />
+        <option value="$PROJECT_DIR$/src/editor/menus/others/SetName.java" />
+        <option value="$PROJECT_DIR$/src/editor/menus/others/DefineAsHero.java" />
+        <option value="$PROJECT_DIR$/src/editor/menus/others/DefineAsNpc.java" />
+        <option value="$PROJECT_DIR$/src/editor/menus/OptionRunnableFactory.java" />
+        <option value="$PROJECT_DIR$/src/editor/menus/others/SetAccess.java" />
+        <option value="$PROJECT_DIR$/src/editor/menus/item/AddItems.java" />
+        <option value="$PROJECT_DIR$/src/editor/menus/enimas/ManageEnigmas.java" />
+        <option value="$PROJECT_DIR$/src/editor/menus/content/SetContent.java" />
+        <option value="$PROJECT_DIR$/src/editor/menus/Drawable.java" />
+        <option value="$PROJECT_DIR$/src/editor/menus/others/Delete.java" />
+        <option value="$PROJECT_DIR$/src/editor/menus/AbstractPopUpView.java" />
+        <option value="$PROJECT_DIR$/src/editor/menus/AbstractSubPopUpView.java" />
+        <option value="$PROJECT_DIR$/src/editor/menus/item/AddItemSeeView.java" />
+        <option value="$PROJECT_DIR$/src/editor/menus/item/AddItemListView.java" />
+        <option value="$PROJECT_DIR$/src/editor/menus/item/AddItemView.java" />
+        <option value="$PROJECT_DIR$/src/editor/menus/item/AddItemAddView.java" />
       </list>
     </option>
   </component>
@@ -103,7 +146,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -114,35 +156,6 @@
             <path>
               <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
               <item name="Enigma" type="462c0819:PsiDirectoryNode" />
-              <item name=".idea" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="files" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="files" type="462c0819:PsiDirectoryNode" />
-              <item name="exports" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="lang" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -150,18 +163,12 @@
               <item name="Enigma" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="editor" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="editor" type="462c0819:PsiDirectoryNode" />
-              <item name="bar" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="ProjectViewState">
@@ -348,7 +355,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25809062" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -528,105 +535,6 @@
     <state x="619" y="177" width="672" height="676" key="search.everywhere.popup/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/common/hud/EnigmaOptionPane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
-          <caret line="229" column="17" lean-forward="true" selection-start-line="229" selection-start-column="17" selection-end-line="229" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/map/MapTestScreen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="239" column="40" lean-forward="true" selection-start-line="239" selection-start-column="40" selection-end-line="239" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/map/MapObjects.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="235" column="24" lean-forward="true" selection-start-line="235" selection-start-column="24" selection-end-line="235" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/bar/edition/actions/EditorActionAddEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="40" column="30" selection-start-line="40" selection-start-column="30" selection-end-line="40" selection-end-column="30" />
-          <folding>
-            <element signature="e#997#998#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="469">
-          <caret line="382" column="46" selection-start-line="382" selection-start-column="46" selection-end-line="382" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/bar/listeners/SaveAsListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="27" column="4" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#486#487#0" expanded="true" />
-            <element signature="e#514#515#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/bar/listeners/ExportListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="16" column="41" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="41" />
-          <folding>
-            <element signature="e#444#445#0" expanded="true" />
-            <element signature="e#464#465#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/files/enigma/test.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/files/map/test.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="718">
-          <caret line="49" column="1" selection-start-line="49" selection-start-column="1" selection-end-line="49" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/lang/english.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/lang/french.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="10" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/bar/BarMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-183">
-          <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/files/map/test.tmx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="319" column="45" selection-start-line="319" selection-start-column="45" selection-end-line="319" selection-end-column="45" />
-        </state>
-      </provider>
-      <provider editor-type-id="com.soywiz.korge.intellij.editor.KorgeBothFileEditorProvider" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/files/map/test4.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -650,12 +558,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/files/map/scenario3.tmx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5013" />
-      </provider>
-      <provider editor-type-id="com.soywiz.korge.intellij.editor.KorgeBothFileEditorProvider" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/files/map/scenario3.tmx" />
     <entry file="file://$PROJECT_DIR$/assets/files/map/bite.tmx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-918" />
@@ -669,17 +572,354 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/map/AbstractMap.java">
+    <entry file="file://$PROJECT_DIR$/src/editor/bar/EnigmaMenuBarMenus.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-570">
-          <caret line="219" column="7" lean-forward="true" selection-start-line="219" selection-start-column="7" selection-end-line="219" selection-end-column="7" />
+        <state relative-caret-position="238">
+          <caret line="26" column="12" selection-start-line="26" selection-start-column="12" selection-end-line="26" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/bar/EnigmaMenuBarItems.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="12" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/bar/listeners/RedoListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/bar/listeners/UndoListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/bar/edition/EditorAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="17" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/bar/edition/ActionTypes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/bar/edition/ActionsManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2359">
+          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/bar/listeners/SaveAsListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="25" selection-start-column="25" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#690#691#0" expanded="true" />
+            <element signature="e#718#719#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/bar/edition/actions/EditorActionAddEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="36" column="44" lean-forward="true" selection-start-line="36" selection-start-column="44" selection-end-line="36" selection-end-column="44" />
+          <folding>
+            <element signature="e#884#885#0" expanded="true" />
+            <element signature="e#916#917#0" expanded="true" />
+            <element signature="e#956#957#0" expanded="true" />
+            <element signature="e#991#992#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/bar/BarMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="429">
+          <caret line="86" column="49" selection-start-line="86" selection-start-column="49" selection-end-line="86" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/bar/edition/actions/EditorActionFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="497">
+          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/map/MapTestScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-119">
+          <caret line="43" column="40" selection-start-line="43" selection-start-column="40" selection-end-line="43" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/bar/edition/actions/EditorActionRemoveEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="38" lean-forward="true" selection-start-line="38" selection-end-line="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/bar/edition/actions/EditorActionParent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="39" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/screens/GameScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/game/screens/TestScreen.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="153" selection-start-line="153" selection-end-line="153" />
+        <state relative-caret-position="238">
+          <caret line="22" column="46" lean-forward="true" selection-start-line="22" selection-start-column="46" selection-end-line="22" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/utils/Utility.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="826">
+          <caret line="96" column="31" lean-forward="true" selection-start-line="96" selection-start-column="31" selection-end-line="96" selection-end-column="31" />
+          <folding>
+            <element signature="e#4579#4609#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/map/AbstractMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-833">
+          <caret line="53" column="88" selection-start-line="53" selection-start-column="78" selection-end-line="53" selection-end-column="88" />
+          <folding>
+            <element signature="e#20939#20940#0" expanded="true" />
+            <element signature="e#20978#20979#0" expanded="true" />
+            <element signature="e#21044#21045#0" expanded="true" />
+            <element signature="e#21073#21074#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/TypeEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="24" column="8" lean-forward="true" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/popup/cases/CasePopUp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="77" column="40" selection-start-line="77" selection-start-column="40" selection-end-line="77" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/menus/AvailablePopUpOption.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1013">
+          <caret line="19" column="12" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/popup/cases/listeners/CaseDelete.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/ui/base/ResetComponent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/hud/EnigmaAlert.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="381">
+          <caret line="30" column="6" selection-start-line="30" selection-start-column="6" selection-end-line="30" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/hud/EnigmaPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/menus/AvailableOptionRunnable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="31" column="37" selection-start-line="31" selection-start-column="37" selection-end-line="31" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/menus/others/DefineAsHero.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="415">
+          <caret line="64" column="27" selection-start-line="64" selection-start-column="27" selection-end-line="64" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/menus/OptionRunnableFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="40" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
+          <folding>
+            <element signature="e#1703#1704#0" expanded="true" />
+            <element signature="e#1723#1724#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/menus/others/DefineAsNpc.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-112">
+          <caret line="17" column="24" lean-forward="true" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/menus/others/HidePassageRoom.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-265">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/menus/others/SetName.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="52" column="27" selection-start-line="52" selection-start-column="8" selection-end-line="52" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/menus/others/SetAccess.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="86" column="27" selection-start-line="86" selection-start-column="27" selection-end-line="86" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/menus/item/AddItems.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="56" column="27" selection-start-line="56" selection-start-column="27" selection-end-line="56" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/menus/enimas/ManageEnigmas.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="51" column="27" selection-start-line="51" selection-start-column="27" selection-end-line="51" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/menus/content/SetContent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret line="55" column="27" selection-start-line="55" selection-start-column="27" selection-end-line="55" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/menus/MenuPopUp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="24" column="11" selection-start-line="24" selection-start-column="11" selection-end-line="24" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/menus/Drawable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" column="9" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/menus/AbstractPopUpView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1785">
+          <caret line="125" column="37" selection-start-line="125" selection-start-column="37" selection-end-line="125" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/menus/AbstractSubPopUpView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="82" column="50" lean-forward="true" selection-start-line="82" selection-start-column="50" selection-end-line="82" selection-end-column="50" />
+          <folding>
+            <element signature="e#2427#2428#0" expanded="true" />
+            <element signature="e#2455#2456#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/menus/item/AddItemSeeView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="446">
+          <caret line="89" column="83" lean-forward="true" selection-start-line="89" selection-start-column="83" selection-end-line="89" selection-end-column="83" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/menus/item/AddItemListView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="27" column="45" selection-start-line="27" selection-start-column="45" selection-end-line="27" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/menus/item/AddItemView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="33" selection-start-line="6" selection-start-column="33" selection-end-line="6" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/menus/item/AddItemAddView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="24" column="11" selection-start-line="24" selection-start-column="11" selection-end-line="24" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/menus/others/Delete.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="67" lean-forward="true" selection-start-line="67" selection-end-line="67" />
         </state>
       </provider>
     </entry>

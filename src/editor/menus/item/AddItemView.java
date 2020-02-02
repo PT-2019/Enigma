@@ -4,38 +4,63 @@ import editor.menus.AbstractPopUpView;
 import editor.popup.cases.CasePopUp;
 
 /**
- * Element principal dans la création de l'enigme, contient toute les informations nécessaire
+ * Ajout d'objects dans un object
  *
- * @see CasePopUp
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ *
+ * @version 5.0
+ * @since 5.0
  */
 public class AddItemView extends AbstractPopUpView {
 
-	public static final int WIDTH = 700, HEIGHT = 300;
-	public static final String MENU = "menu";
-	public static final String ADD = "add";
-	public static final String SEE = "see";
 	private static final String TITLE = "Gérer les objets";
+
+	static final String MENU = "menu";
+	static final String ADD = "add";
+	static final String SEE = "see";
+
+	/**
+	 * Stockage des écrans
+	 */
 	private final AddItemAddView addItemAddView;
+	private final AddItemListView addItemListView;
 
 	public AddItemView(CasePopUp popUp) {
 		super(TITLE, popUp);
 
+		//ajout des écrans
 		AddItemSeeView addItemSeeView = new AddItemSeeView(this);
-		AddItemListView addItemListView = new AddItemListView(this, addItemSeeView);
-		addItemAddView = new AddItemAddView(this, addItemListView);
-		popUp.getObserver().addObserver(addItemAddView);
+		this.addItemListView = new AddItemListView(this, addItemSeeView);
+		this.addItemAddView = new AddItemAddView(this, this.addItemListView);
 
-		panel.add(addItemListView, MENU);
-		panel.add(addItemAddView, ADD);
-		panel.add(addItemSeeView, SEE);
+		//ajout à l'observateur pour la sélection des entités
+		popUp.getObserver().addObserver(this.addItemAddView);
+
+		//ajout au card Layout
+		this.panel.add(this.addItemListView, MENU);
+		this.panel.add(this.addItemAddView, ADD);
+		this.panel.add(addItemSeeView, SEE);
 	}
 
+	/**
+	 * Retourne la vue pour ajouter des items
+	 * @return la vue pour ajouter des items
+	 */
 	public AddItemAddView getAddItemAddView() {
-		return addItemAddView;
+		return this.addItemAddView;
 	}
 
 	@Override
 	public void clean() {
-		addItemAddView.clean();
+		this.addItemAddView.clean();
+	}
+
+	@Override
+	public void invalidateDrawable() {
+		addItemListView.clean();
+		addItemListView.initComponent();
 	}
 }
