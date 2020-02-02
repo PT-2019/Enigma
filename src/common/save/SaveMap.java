@@ -13,11 +13,14 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileSets;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import common.entities.GameObject;
+import common.entities.players.EntityGame;
+import common.entities.players.Player;
 import common.map.model.Case;
 import common.map.model.Map;
 import common.save.entities.SaveKey;
 import common.utils.textures.TextureArea;
 import data.Layer;
+import org.lwjgl.Sys;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -302,9 +305,7 @@ public class SaveMap {
 
 
 			//écriture des différents layers de la map
-
 			for (MapLayer layer : mapLayers) {
-
 				if (!(layer instanceof TiledMapTileLayer))
 					continue;
 
@@ -327,6 +328,7 @@ public class SaveMap {
 				for (int i = tileLayer.getHeight() - 1; i >= 0; i--) {
 					for (int j = 0; j < tileLayer.getWidth(); j++) {
 						TiledMapTileLayer.Cell tmp = tileLayer.getCell(j, i);
+
 						if (tmp == null) {
 							tmpstring.append("0");
 						} else {
@@ -337,6 +339,7 @@ public class SaveMap {
 								tmpstring.append(tile.getId());
 							}
 						}
+
 						tmpstring.append(",");
 					}
 					tmpstring.append("\n");

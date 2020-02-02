@@ -2,6 +2,7 @@ package api.libgdx.actor;
 
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Polygon;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
@@ -60,6 +61,13 @@ public class GameActorUtilities {
 
 		poly1.setPosition(coordinates.x, coordinates.y);
 		poly2.setPosition(autre.x, autre.y);
+
+		System.out.println(poly1.getBoundingRectangle());
+		System.out.println(poly2.getBoundingRectangle());
+		Rectangle rect = poly1.getBoundingRectangle();
+		Rectangle rect2 = poly2.getBoundingRectangle();
+
+		System.out.println(rect.overlaps(rect2));
 
 		//test rectangles
 		if (!poly1.getBoundingRectangle().overlaps(poly2.getBoundingRectangle()))

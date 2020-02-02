@@ -555,7 +555,7 @@
                 <property name="y2" value="51.0"/>
                 <property name="FLOOR2" value="4"/>
                 <property name="JSON" value="assets/entities/players/players.json"/>
-                <property name="KEY" value=""/>
+                <property name="KEY" value="Kil"/>
                 <property name="HERO" value="false"/>
                 <property name="NAME" value=""/>
                 <property name="INVENTORY" value="[]"/>
@@ -675,6 +675,8 @@
                 <property name="className" value="common.entities.players.Monster"/>
                 <property name="y2" value="13.0"/>
                 <property name="FLOOR2" value="4"/>
+                <property name="JSON" value="assets/entities/monsters/monsters.json"/>
+                <property name="KEY" value="rat"/>
             </properties>
         </object>
         <object height="2.0" id="21" name="entity" width="1.0" x="26.0" y="31.0">
@@ -739,10 +741,10 @@
                 <property name="className" value="common.entities.players.NPC"/>
                 <property name="y2" value="33.0"/>
                 <property name="FLOOR2" value="4"/>
-                <property name="JSON" value=""/>
-                <property name="KEY" value=""/>
-                <property name="HERO" value="true"/>
-                <property name="NAME" value=""/>
+                <property name="JSON" value="assets/entities/players/players.json"/>
+                <property name="KEY" value="Joker"/>
+                <property name="HERO" value="false"/>
+                <property name="NAME" value="Joker"/>
                 <property name="INVENTORY" value="[]"/>
             </properties>
         </object>

@@ -4,6 +4,7 @@ import api.libgdx.LibgdxScreen;
 import api.libgdx.actor.GameActor;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import common.entities.players.NpcGame;
 import common.entities.players.PlayerGame;
 import common.map.AbstractMap;
 import common.map.GameMap;
@@ -23,7 +24,7 @@ import java.util.ArrayList;
  * @since 5.0 31/01/2020
  */
 public class GameScreen extends LibgdxScreen {
-	private static String MAP_PATH = "assets/files/map/a.tmx";
+	private static String MAP_PATH = "assets/files/map/cocoa.tmx";
 	/**
 	 * Stage de la map et du jeu
 	 */
@@ -32,10 +33,7 @@ public class GameScreen extends LibgdxScreen {
 	 * Stage de l'interface
 	 */
 	private Stage hud;
-	/**
-	 * Joueur
-	 */
-	private PlayerGame player;
+
 	/**
 	 * La map libgdx
 	 */

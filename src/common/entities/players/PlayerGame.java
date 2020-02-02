@@ -30,6 +30,7 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
 	public PlayerGame(GameMap map) {
 		this.setAnimationPaused(true);
 		this.map = map;
+		this.setBounds(7);
 	}
 
 	/**
@@ -38,9 +39,9 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
 	public void center() {
 		Camera cam = this.getStage().getCamera();
 		//pour éviter un bug graphique on crée 2 variables
-		int posy = (int) cam.position.y;
-		int posx = (int) cam.position.x;
-		cam.translate(-posx,-posy,0);
+		int posy = (int) (cam.position.y );
+		int posx = (int) (cam.position.x );
+		cam.translate(-posx + this.getX(),-posy + this.getY(),0);
 	}
 
 	/**
@@ -57,7 +58,7 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
 
 		if (CameraKeys.CAMERA_LEFT.isKey(i)) {
 			//on vérifie que la case où l'on compte se rendre est disponible
-			if (map.isWalkable(x - PlayerGame.SPEED, y, this)) {
+			if (map.isWalkable(x - PlayerGame.SPEED, y, this) && (!map.collision(this))) {
 				this.setPosition(x - PlayerGame.SPEED, y);
 				//pour changer de sprite proprement
 				if (isAnimationPaused() || this.facedDirection != Direction.LEFT) {
@@ -72,7 +73,7 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
 				this.setAnimationLooping(true);
 			}
 		} else if (CameraKeys.CAMERA_RIGHT.isKey(i)) {
-			if (map.isWalkable(x + PlayerGame.SPEED, y, this)) {
+			if (map.isWalkable(x + PlayerGame.SPEED, y, this) && (!map.collision(this)) ) {
 				this.setPosition(x + PlayerGame.SPEED, y);
 				if (isAnimationPaused() || this.facedDirection != Direction.RIGHT) {
 					this.setKeyFrame(6);
@@ -83,7 +84,7 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
 				this.setAnimationLooping(true);
 			}
 		} else if (CameraKeys.CAMERA_UP.isKey(i)) {
-			if (map.isWalkable(x, y + PlayerGame.SPEED, this)) {
+			if (map.isWalkable(x, y + PlayerGame.SPEED, this) && (!map.collision(this))) {
 				this.setPosition(x, y + PlayerGame.SPEED);
 				if (isAnimationPaused() || this.facedDirection != Direction.TOP) {
 					this.setKeyFrame(9);
@@ -94,7 +95,7 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
 				this.setAnimationLooping(true);
 			}
 		} else if (CameraKeys.CAMERA_DOWN.isKey(i)) {
-			if (map.isWalkable(x, y - PlayerGame.SPEED, this)) {
+			if (map.isWalkable(x, y - PlayerGame.SPEED, this) && (!map.collision(this))) {
 				this.setPosition(x, y - PlayerGame.SPEED);
 				if (isAnimationPaused() || this.facedDirection != Direction.BOTTOM) {
 					this.setKeyFrame(0);

@@ -158,7 +158,9 @@
     }
     {
       className: common.entities.players.Monster
-      path: assets/map/datas/players/mob1.png
+      path: assets/map/datas/players/mob1.png,
+      json: assets/entities/monsters/monsters.json,
+      key: rat,
       category: ENTITIES
       width: 2
       height: 2
@@ -171,7 +173,9 @@
     }
     {
       className: common.entities.players.Monster
-      path: assets/map/datas/players/mob2.png
+      path: assets/map/datas/players/mob2.png,
+      json: assets/entities/monsters/monsters.json,
+      key: snake,
       category: ENTITIES
       width: 2
       height: 2

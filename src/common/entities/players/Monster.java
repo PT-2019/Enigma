@@ -1,6 +1,7 @@
 package common.entities.players;
 
 import api.libgdx.actor.GameActorTextured;
+import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
@@ -8,6 +9,8 @@ import common.entities.Entity;
 import common.entities.types.Living;
 import common.language.GameFields;
 import common.language.GameLanguage;
+import common.save.entities.PlayerSave;
+import common.save.entities.SaveKey;
 import data.Layer;
 import data.TypeEntity;
 
@@ -24,7 +27,7 @@ import java.util.HashMap;
  * @version 5.0 25/01/2020
  * @since 5.0 25/01/2020
  */
-public class Monster extends GameActorTextured implements Entity, Living {
+public class Monster extends GameActorTextured implements Entity, Living,EntityGame {
 
 	/**
 	 * Points de vie maximaux du joueur
@@ -46,6 +49,10 @@ public class Monster extends GameActorTextured implements Entity, Living {
 	 * Dimensions de l'object
 	 */
 	private Rectangle bounds;
+
+	private String json;
+
+	private String key;
 
 	/**
 	 * Nom du npc
@@ -178,8 +185,37 @@ public class Monster extends GameActorTextured implements Entity, Living {
 	}
 
 	@Override
+	public HashMap<SaveKey,String> getSave(){
+		HashMap<SaveKey, String> save = new HashMap<>();
+		save.put(PlayerSave.KEY, this.key);
+		save.put(PlayerSave.JSON, this.json);
+		return save;
+	}
+
+	@Override
+	public void load(MapProperties data) {
+		this.key = data.get(PlayerSave.KEY.getKey(), String.class);
+		this.json = data.get(PlayerSave.JSON.getKey(), String.class);
+	}
+
+	@Override
 	public String getReadableName() {
 		return GameLanguage.gl.get(GameFields.MONSTER);
 	}
 
+	@Override
+	public void setJson(String json, String key) {
+		this.json = json;
+		this.key = key;
+	}
+
+	@Override
+	public String getJson() {
+		return this.json;
+	}
+
+	@Override
+	public String getKey() {
+		return this.key;
+	}
 }
