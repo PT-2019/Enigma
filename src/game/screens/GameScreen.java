@@ -21,7 +21,7 @@ import game.EnigmaGame;
  */
 public class GameScreen extends LibgdxScreen {
 
-	private static String MAP_PATH = "assets/files/map/Cocoa.tmx";
+	private static String MAP_PATH = "assets/files/map/test5.tmx";
 
 	/**
 	 * Stage de la map et du jeu

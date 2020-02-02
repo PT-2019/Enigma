@@ -278,6 +278,19 @@ public class CustomLabelUI extends BasicLabelUI implements CustomUIHoverAndPress
 		this.pressedForeground = pressedForeground;
 	}
 
+	/**
+	 * Définit tous les fonds (premier plan)
+	 *
+	 * @param foreground        fond
+	 */
+	public void setAllForegrounds(Color foreground) {
+		if (foreground == null)
+			throw new NullPointerException("Les arguments ne peuvent pas être null");
+		this.foreground = foreground;
+		this.hoveredForeground = foreground;
+		this.pressedForeground = foreground;
+	}
+
 	// implements
 
 	@Override
@@ -512,6 +525,15 @@ public class CustomLabelUI extends BasicLabelUI implements CustomUIHoverAndPress
 		this.background = background;
 		this.hoveredBackground = hoveredBackground;
 		this.pressedBackground = pressedBackground;
+	}
+
+	@Override
+	public void setAllBackgrounds(Color background) {
+		if (background == null)
+			throw new NullPointerException("Les arguments ne peuvent pas être null");
+		this.background = background;
+		this.hoveredBackground = background;
+		this.pressedBackground = background;
 	}
 
 	@Override

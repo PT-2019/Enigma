@@ -4,7 +4,6 @@ import common.utils.Logger;
 import api.utils.Utility;
 import common.entities.GameObject;
 import common.entities.Item;
-import common.hud.EnigmaLabel;
 import common.hud.EnigmaPanel;
 import editor.menus.AbstractPopUpView;
 import editor.menus.AbstractSubPopUpView;
@@ -43,6 +42,10 @@ public class AddItemSeeView extends AbstractSubPopUpView implements Drawable {
 	 */
 	private EnigmaPanel extra;
 
+	/**
+	 * Vue de l'item sélectionné
+	 * @param parent parent
+	 */
 	AddItemSeeView(AbstractPopUpView parent) {
 		super(TITLE, parent, true);
 
@@ -89,10 +92,6 @@ public class AddItemSeeView extends AbstractSubPopUpView implements Drawable {
 		//close and invalidate list
 		this.parent.getCardLayout().show(this.parent.getPanel(), AddItemView.MENU);
 		this.parent.invalidateDrawable();
-	}
-
-	@Override
-	public void update(GameObject object) {
 	}
 
 	@Override

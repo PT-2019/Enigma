@@ -34,7 +34,7 @@ public class DragAndDropBuilder extends InputListener {
 	 *
 	 * @since 5.0
 	 */
-	private static Observer forPopup = null;
+	private static Observer<GameObject> forPopup = null;
 
 	/**
 	 * entity qui sera déplaçable
@@ -67,7 +67,7 @@ public class DragAndDropBuilder extends InputListener {
 	 * @param forPopup true si on bloque sinon false
 	 * @since 5.0
 	 */
-	public static void setForPopup(Observer forPopup) {
+	public static void setForPopup(Observer<GameObject> forPopup) {
 		DragAndDropBuilder.forPopup = forPopup;
 	}
 

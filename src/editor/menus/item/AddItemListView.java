@@ -1,5 +1,6 @@
 package editor.menus.item;
 
+import api.utils.Observer;
 import common.entities.GameObject;
 import common.entities.Item;
 import common.entities.types.Container;
@@ -34,7 +35,7 @@ import java.util.ArrayList;
  * @version 5.0 30/01/2020
  * @since 5.0 30/01/2020
  */
-public class AddItemListView extends AbstractSubPopUpView {
+public class AddItemListView extends AbstractSubPopUpView implements Observer<GameObject> {
 
 	private static final String TITLE = "Liste des objets";
 	private static final String SEE_ENTITY = "Voir entité sélectionnée";
@@ -45,6 +46,11 @@ public class AddItemListView extends AbstractSubPopUpView {
 	private ButtonGroup groups;
 	private ItemListener listener;
 
+	/**
+	 * Liste des objects contenus dans un object.
+	 * @param parent parent
+	 * @param seeView vue d'un item
+	 */
 	AddItemListView(AbstractPopUpView parent, AddItemSeeView seeView) {
 		super(TITLE, parent, false);
 		this.groups = new ButtonGroup();

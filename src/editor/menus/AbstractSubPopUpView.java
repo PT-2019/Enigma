@@ -23,12 +23,13 @@ import java.awt.event.ComponentEvent;
  * @version 5.0 27/01/2020
  * @since 5.0 27/01/2020
  */
-public abstract class AbstractSubPopUpView extends EnigmaPanel implements Observer<GameObject>, ResetComponent {
+public abstract class AbstractSubPopUpView extends EnigmaPanel implements ResetComponent {
 
 	protected final EnigmaLabel infoLabel;
 	protected final EnigmaPanel footer;
 	protected final EnigmaPanel content;
 	protected final AbstractPopUpView parent;
+	protected final MenuPopUp menuPopUp;
 
 	/**
 	 * Une vue du cardLayout de la vue d'un popup
@@ -78,7 +79,8 @@ public abstract class AbstractSubPopUpView extends EnigmaPanel implements Observ
 		this.footer.add(this.infoLabel, gbc);
 
 		this.setLayout(new BorderLayout());
-		this.add(new MenuPopUp(title, "", parent, this, showBack), BorderLayout.NORTH);
+		menuPopUp = new MenuPopUp(title, "", parent, this, showBack);
+		this.add(menuPopUp, BorderLayout.NORTH);
 		this.add(this.content, BorderLayout.CENTER);
 		this.add(this.footer, BorderLayout.SOUTH);
 	}
@@ -92,8 +94,4 @@ public abstract class AbstractSubPopUpView extends EnigmaPanel implements Observ
 	 * Moment carte n'est plus affichée
 	 */
 	public void onHide(){}
-
-	public EnigmaLabel getInfoLabel() {
-		return this.infoLabel;
-	}
 }

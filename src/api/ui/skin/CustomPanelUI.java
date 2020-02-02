@@ -456,6 +456,15 @@ public class CustomPanelUI extends BasicPanelUI implements CustomUIHoverAndPress
 	}
 
 	@Override
+	public void setAllBackgrounds(Color background) {
+		if (background == null)
+			throw new NullPointerException("Argument ne peut pas être null");
+		this.background = background;
+		this.hoveredBackground = background;
+		this.pressedBackground = background;
+	}
+
+	@Override
 	public void setAllBorders(Color border, Color hoveredBorder, Color pressedBorder) {
 		this.border = border;
 		this.hoveredBorder = hoveredBorder;

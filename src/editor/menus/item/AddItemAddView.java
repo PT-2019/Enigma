@@ -1,5 +1,6 @@
 package editor.menus.item;
 
+import api.utils.Observer;
 import common.entities.Consumable;
 import common.entities.GameObject;
 import common.entities.Item;
@@ -10,7 +11,7 @@ import common.hud.EnigmaPanel;
 import common.map.MapTestScreen;
 import editor.menus.AbstractPopUpView;
 import editor.menus.AbstractSubPopUpView;
-import editor.menus.enimas.view.EnigmaView;
+import editor.popup.listeners.CaseListener;
 import game.EnigmaGame;
 import game.dnd.DragAndDropBuilder;
 import game.screens.TestScreen;
@@ -32,7 +33,7 @@ import java.awt.event.ActionListener;
  * @version 6.0 02/02/2020
  * @since 6.0 02/02/2020
  */
-public class AddItemAddView extends AbstractSubPopUpView {
+public class AddItemAddView extends AbstractSubPopUpView implements Observer<GameObject> {
 
 	private static final String TITLE = "Ajouter un objet";
 	private static final String NO_ITEMS = "Veuillez sélectionner un objet (menu)";
@@ -62,7 +63,7 @@ public class AddItemAddView extends AbstractSubPopUpView {
 
 	@Override
 	public void update(GameObject object) {
-		if (EnigmaView.getAvailable() != null) return;
+		if (CaseListener.getAvailable() != null) return;
 		//PrintColor.println("update#"+object, AnsiiColor.CYAN);
 		//Récupération de la map
 		MapTestScreen map = ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap();
@@ -109,12 +110,23 @@ public class AddItemAddView extends AbstractSubPopUpView {
 		return this.infoLabel;
 	}
 
+	/**
+	 * Bouton de validation
+	 *
+	 * @author Jorys-Micke ALAÏS
+	 * @author Louka DOZ
+	 * @author Loic SENECAT
+	 * @author Quentin RAMSAMY-AGEORGES
+	 *
+	 * @version 6.0 02/02/2020
+	 * @since 6.0 02/02/2020
+	 */
 	private static class SubmitListener implements ActionListener {
 		private final AbstractPopUpView parent;
 		private final AddItemAddView addItemAddView;
 		private final AddItemListView list;
 
-		public SubmitListener(AbstractPopUpView parent, AddItemAddView addItemAddView, AddItemListView list) {
+		SubmitListener(AbstractPopUpView parent, AddItemAddView addItemAddView, AddItemListView list) {
 			this.parent = parent;
 			this.addItemAddView = addItemAddView;
 			this.list = list;

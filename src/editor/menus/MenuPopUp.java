@@ -5,8 +5,8 @@ import common.hud.EnigmaButton;
 import common.hud.EnigmaLabel;
 import common.hud.EnigmaPanel;
 import data.config.EnigmaUIValues;
-import editor.menus.enimas.listeners.ListenerMenu;
-import editor.menus.enimas.view.EnigmaView;
+import editor.menus.enimas.create.listeners.ListenerMenu;
+import editor.popup.listeners.CaseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -19,29 +19,47 @@ import java.awt.event.ActionListener;
 
 /**
  * Cette classe représente un Menu lors de la création d'enigme
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ *
+ * @version 6.0
+ * @since 4.0
  */
 public class MenuPopUp extends EnigmaPanel {
 
-	public MenuPopUp(String title, String helpText, AbstractPopUpView parent, ResetComponent reset, boolean showBack) {
+	private static final String BACK = "Retour";
+	private static final String MENU = "menu";
+	private static final String HELP_ICON_PATH = "assets/hud/help.png";
+	private final EnigmaButton prev;
+	private final BackToMenu backToMenu;
+	private final EnigmaLabel titleView;
+
+	/**
+	 * Popup menu
+	 *
+	 * @param title title
+	 * @param helpText help
+	 * @param parent parent
+	 * @param reset reset
+	 * @param showBack afficher showBack
+	 */
+	MenuPopUp(String title, String helpText, AbstractPopUpView parent, ResetComponent reset, boolean showBack) {
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
-		EnigmaButton prev = new EnigmaButton("Retour");
-		EnigmaLabel titleView = new EnigmaLabel(title);
+		prev = new EnigmaButton(BACK);
+		titleView = new EnigmaLabel(title);
 		titleView.setVerticalAlignment(JLabel.CENTER);
 		//titleView.setEditable(false);
-		JLabel help = new JLabel(new ImageIcon("assets/hud/help.png"));
+		JLabel help = new JLabel(new ImageIcon(HELP_ICON_PATH));
 		help.addMouseListener(new ListenerMenu(helpText));
 		if (showBack) {
-			prev.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent actionEvent) {
-					reset.clean();
-					CardLayout layout = parent.getCardLayout();
-					EnigmaView.setAvailable(null);
-					layout.show(parent.getPanel(), "menu");
-				}
-			});
+			backToMenu = new BackToMenu(reset, parent);
+			prev.addActionListener(backToMenu);
 		} else {
+			backToMenu = null;
 			prev.setText("");
 			prev.getComponentUI().setAllShowedBorders(EnigmaUIValues.ALL_BORDER_HIDDEN,
 					EnigmaUIValues.ALL_BORDER_HIDDEN, EnigmaUIValues.ALL_BORDER_HIDDEN);
@@ -71,5 +89,47 @@ public class MenuPopUp extends EnigmaPanel {
 		gbc.anchor = GridBagConstraints.PAGE_START;
 		gbc.insets = new Insets(5, 0, 5, 0);
 		this.add(help, gbc);
+	}
+
+	public EnigmaButton getPrev() {
+		return prev;
+	}
+
+	public BackToMenu getBackToMenu() {
+		return backToMenu;
+	}
+
+	public void setTitle(String title){
+		this.titleView.setText(title);
+	}
+
+	/**
+	 * Retour au menu
+	 *
+	 * @author Jorys-Micke ALAÏS
+	 * @author Louka DOZ
+	 * @author Loic SENECAT
+	 * @author Quentin RAMSAMY-AGEORGES
+	 *
+	 * @version 6.0 02/02/2020
+	 * @since 6.0 02/02/2020
+	 */
+	private static final class BackToMenu implements ActionListener {
+
+		private final ResetComponent reset;
+		private final AbstractPopUpView parent;
+
+		BackToMenu(ResetComponent reset, AbstractPopUpView parent){
+			this.reset = reset;
+			this.parent = parent;
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent actionEvent) {
+			reset.clean();
+			CardLayout layout = parent.getCardLayout();
+			CaseListener.setAvailable(null);
+			layout.show(parent.getPanel(), MENU);
+		}
 	}
 }

@@ -1,5 +1,6 @@
 package common.save.entities.serialization;
 
+import common.utils.IDFactory;
 import common.utils.Logger;
 import api.utils.Utility;
 import com.badlogic.gdx.math.Vector2;
@@ -23,7 +24,7 @@ import java.util.Map;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 5.0
+ * @version 6.0
  * @since 3.0 14 décembre 2019
  */
 public class EntityFactory {
@@ -128,20 +129,26 @@ public class EntityFactory {
 	 * Crée une entité depuis une entité serializable
 	 *
 	 * @param entity une entité
-	 * @param id     son identifiant ou -1 si aucun
+	 * @param id     son identifiant ou -1 si aucun. NULL pour attribution automatique
 	 * @param pos    sa position @Nullable
+	 * @param idFactory idFactory
 	 * @return un GameObject représentant l'entitée
 	 * @since 4.0
 	 */
 	@SuppressWarnings("unchecked")
-	public static GameObject createEntity(EntitySerializable entity, int id, @Nullable Vector2 pos) {
+	public static GameObject createEntity(EntitySerializable entity, Integer id, @Nullable Vector2 pos, IDFactory idFactory) {
 		GameObject object;
 		try {
 			Class c = Class.forName(entity.getClassName());
 			Constructor declaredConstructor = c.getDeclaredConstructor();
 			object = (GameObject) declaredConstructor.newInstance();
 			//id
-			object.setID(id);
+			if(id == null){
+				//attribution
+				idFactory.newID(object);
+			} else {
+				idFactory.malloc(object, id);
+			}
 			//location
 			object.setDimension(entity.getWidth(), entity.getHeight());
 

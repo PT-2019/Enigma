@@ -22,7 +22,7 @@ public final class Logger {
 	 *
 	 * @param className nom de la classe
 	 * @param message   message
-	 * @since 5.2
+	 * @since 6.0
 	 */
 	@SuppressWarnings("ConstantConditions")
 	public static void printDebug(String className, String message) {
@@ -35,7 +35,7 @@ public final class Logger {
 	 *
 	 * @param className nom de la classe
 	 * @param message   message
-	 * @since 5.2
+	 * @since 6.0
 	 */
 	@SuppressWarnings("ConstantConditions")
 	public static void printError(String className, String message) {
@@ -43,4 +43,18 @@ public final class Logger {
 			PrintColor.println(className + ":" + message, Config.ERROR_COLOR);
 	}
 
+	/**
+	 * Affichage des messages moins importants de debug de l'application
+	 *
+	 * @param className nom de la classe
+	 * @param message   message
+	 * @since 6.0
+	 */
+	@SuppressWarnings("ConstantConditions")
+	public static void printDebugALL(String className, String message) {
+		if(Config.APPLICATION_LOG >= Application.DEBUG_ALL)
+			PrintColor.println(className + ":" + message, Config.DEBUG_ALL_COLOR);
+
+
+	}
 }

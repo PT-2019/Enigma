@@ -4,8 +4,10 @@ import com.badlogic.gdx.math.Vector2;
 import common.entities.GameObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * Stocke des {@link common.entities.GameObject GameObjects} en fonction de leur tile d'appartenance
@@ -133,6 +135,17 @@ public class MapObjects {
 	}
 
 	/**
+	 * Obtenir la liste complète, ceci est la map originale
+	 *
+	 * @return Liste complète, ceci est la map originale
+	 *
+	 * @since 6.0
+	 */
+	public HashMap<Vector2, ArrayList<GameObject>> getOriginalMap() {
+		return this.objects;
+	}
+
+	/**
 	 * Obtenir les éléments à tel vecteur
 	 *
 	 * @param v Vecteur
@@ -179,7 +192,10 @@ public class MapObjects {
 	}
 
 	/**
-	 * Obtenir tous les éléments d'une telle classe
+	 * Obtenir tous les éléments d'une telle classe.
+	 *
+	 * On regarde toutes les classes parent.
+	 * On regarde seulement les interfaces de première génération.
 	 *
 	 * @param t   Classe
 	 * @param <T> Type de la classe
@@ -187,17 +203,36 @@ public class MapObjects {
 	 * @since 5.0
 	 */
 	@SuppressWarnings("unchecked")
-	public <T extends GameObject> ArrayList<T> getAllObjectsByClass(Class<T> t) {
+	public <T extends GameObject> ArrayList<T> getAllObjectsByClass(Class<T> t, boolean clone) {
 		ArrayList<GameObject> obj = new ArrayList<>();
 
+		Class<?> c;
+		boolean find;
 		for (Map.Entry<Vector2, ArrayList<GameObject>> map : this.objects.entrySet()) {
 			for (GameObject go : map.getValue()) {
-				if (go.getClass().getName().equals(t.getName()))
-					obj.add(go);
+				find = false;
+				//Regarde toutes les classes parent
+				c = go.getClass();
+				while(c != null && !find){
+					if(c.getName().equals(t.getName())) break;
+					//regarde les interfaces
+					Class<?>[] interfaces = c.getInterfaces();
+					for (Class<?> anInterface:interfaces) {
+						//on regarde pas les supper interfaces, c'est notre limite
+						if(anInterface.getName().equals(t.getName())){
+							find = true;
+							break;
+						}
+					}
+					if(!find) c = c.getSuperclass();
+				}
+				//la classe a été trouvée
+				if(c != null) obj.add(go);
 			}
 		}
 
-		return (ArrayList<T>) obj.clone();
+		if(clone) return (ArrayList<T>) obj.clone();
+		else return (ArrayList<T>) obj;
 	}
 
 	/**

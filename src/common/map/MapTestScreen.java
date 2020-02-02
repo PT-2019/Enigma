@@ -122,7 +122,7 @@ public class MapTestScreen extends AbstractMap {
 		//si l'entité doit être placée sur la map
 		if (start != null) {
 			//instancie l'entité
-			object = EntityFactory.createEntity(entity, this.objects.size(), start);
+			object = EntityFactory.createEntity(entity, null, start, this.idFactory);
 
 			//vérifie que le placement est possible
 			if(!checkPlacement(object, start)) return null;
@@ -141,11 +141,11 @@ public class MapTestScreen extends AbstractMap {
 		} else {
 			//sinon c'est une entité dite temporaire donc pas sur la map mais que l'on garde
 			//par exemple pour les énigmes, on peut sélectionner des entités depuis le menu
-			int id = this.objects.size();
+			int id = idFactory.getNextID();
 			start = new Vector2(-1 * id, -1 * id);
 
 			//instancie l'entité
-			object = EntityFactory.createEntity(entity, id, start);
+			object = EntityFactory.createEntity(entity, null, start, this.idFactory);
 			Logger.printDebug("loadEntity", object.toString() + " " + object.getID());
 
 			//ajout à la liste des entités de la map
@@ -230,6 +230,8 @@ public class MapTestScreen extends AbstractMap {
 			if (entity instanceof GameExit) this.hasExit = false;
 			//ajoute à l'historique si pas déjà concerné
 			this.manager.add(EditorActionFactory.create(ActionTypes.REMOVE_ENTITY, this, object));
+			//libère l'id
+			idFactory.free(entity);
 		}
 		return removed;
 	}

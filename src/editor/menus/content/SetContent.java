@@ -6,7 +6,7 @@ import editor.menus.AbstractPopUpView;
 import editor.menus.AvailableOptionRunnable;
 import editor.menus.AvailablePopUpOption;
 import editor.menus.Drawable;
-import editor.menus.enimas.listeners.EnigmaWindowListener;
+import editor.menus.EnigmaWindowListener;
 import editor.popup.cases.CasePopUp;
 
 /**

@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import common.map.MapTestScreen;
 import data.EditorState;
+import data.config.Config;
 import editor.popup.TestMapControl;
 import game.EnigmaGame;
 import game.gui.CategoriesMenu;
@@ -23,8 +24,8 @@ import game.gui.CategoriesMenu;
 public class TestScreen extends LibgdxScreen {
 
 	//si tu veux charger une map c'est ici sans passer par le launcher
-	private static String MAP_PATH = "assets/map/map_system/EmptyMap.tmx";
-	//private static String MAP_PATH = Config.MAP_FOLDER+"test1.tmx";
+	//private static String MAP_PATH = "assets/map/map_system/EmptyMap.tmx";
+	private static String MAP_PATH = Config.MAP_FOLDER+"test5.tmx";
 
 	/**
 	 * L'état de l'éditeur

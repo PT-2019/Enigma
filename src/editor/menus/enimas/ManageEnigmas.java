@@ -6,7 +6,7 @@ import editor.menus.AbstractPopUpView;
 import editor.menus.AvailableOptionRunnable;
 import editor.menus.AvailablePopUpOption;
 import editor.menus.Drawable;
-import editor.menus.enimas.listeners.PopButtonListener;
+import editor.menus.enimas.create.listeners.PopButtonListener;
 import editor.popup.cases.CasePopUp;
 
 /**
@@ -23,11 +23,9 @@ public class ManageEnigmas implements AvailableOptionRunnable {
 
 	private static final String ENIGMAS = "Gérer les énigmes";
 	private final CasePopUp parent;
+
 	/**
-	 * Affiche la gestion de contenu pour les entités.
-	 * /TOD ce fameux menu de gestion
-	 *
-	 * @see common.entities.types.Content
+	 * Bouton gérer les énigmes
 	 */
 	private EnigmaButton eng;
 
@@ -44,13 +42,12 @@ public class ManageEnigmas implements AvailableOptionRunnable {
 	@Override
 	public void run() {
 		this.parent.getPanel().add(this.eng);
-		this.eng.addActionListener(new PopButtonListener(this.parent, this.parent.getCell(), this.parent.getObserver()));
+		this.eng.addActionListener(new PopButtonListener(this.parent));
 	}
 
 	@Override
 	public void run(AbstractPopUpView view, Drawable panel, GameObject object) {
 		panel.getDrawable().add(this.eng);
-		this.eng.addActionListener(new PopButtonListener(this.parent,
-				this.parent.getCell(), this.parent.getObserver(), view));
+		this.eng.addActionListener(new PopButtonListener(this.parent, view, object));
 	}
 }

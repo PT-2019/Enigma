@@ -23,9 +23,11 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Array;
 import common.entities.GameObject;
 import common.entities.types.ContainersManager;
+import common.entities.types.EnigmaContainer;
 import common.save.TmxProperties;
 import common.save.entities.serialization.EntityFactory;
 import common.save.entities.serialization.EntitySerializable;
+import common.utils.IDFactory;
 import common.utils.Logger;
 import data.Layer;
 import editor.bar.edition.actions.EditorActionParent;
@@ -48,7 +50,7 @@ import static common.save.MapsNameUtils.WIDTH_P;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 6.0
+ * @version 6.1
  * @since 3.0
  */
 public abstract class AbstractMap extends Group implements EditorActionParent<GameObject> {
@@ -102,6 +104,12 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 	protected boolean showGrid;
 
 	/**
+	 * IDFactory
+	 * @since 6.1
+	 */
+	protected IDFactory idFactory;
+
+	/**
 	 * Le seul constructeur possible d'une map, ne fait rien
 	 *
 	 * @param path      chemin d'une map
@@ -135,6 +143,8 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 		this.showGrid = false;
 
 		this.objects = new MapObjects();
+
+		this.idFactory = new IDFactory();
 
 		//initialise la map
 		this.init();
@@ -250,9 +260,8 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 					tiles.put(layer.toString(), tile);
 				}
 				e = new EntitySerializable(width, height, className, tiles);
-				GameObject object = EntityFactory.createEntity(e, id, start);
+				GameObject object = EntityFactory.createEntity(e, id, start, this.idFactory);
 				object.load(prop);
-
 				Logger.printDebug("MapTestScreen#initEntities", object + " " + start);
 
 				//ajout à la liste des entités de la map
@@ -264,7 +273,7 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 			} else {
 				//entitée temporaire, pas sur la map
 				e = new EntitySerializable(width, height, className, new HashMap<>());
-				GameObject object = EntityFactory.createEntity(e, id, start);
+				GameObject object = EntityFactory.createEntity(e, id, start, this.idFactory);
 
 				//ajout à la liste des entités de la map
 				//this.added.put(start, object);
