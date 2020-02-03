@@ -34,6 +34,7 @@ import game.entity.PlayerGame;
 import game.hud.Border;
 import game.hud.CategoriesMenu;
 import org.jetbrains.annotations.NotNull;
+import org.lwjgl.Sys;
 import starter.EditorLauncher;
 
 import javax.swing.*;
@@ -127,7 +128,7 @@ public class MapGame extends AbstractMap {
 		//cache le niveau de collision
 		MapLayer collision = this.map.getMap().getLayers().get(Layer.COLLISION.name());
 		if (collision != null)
-			collision.setVisible(false);
+			collision.setVisible(true);
 
 		this.camera = new OrthographicCamera();
 		this.camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -155,8 +156,8 @@ public class MapGame extends AbstractMap {
 		posX /= map.getUnitScale();
 		posY /= map.getUnitScale();
 
-		float column = MathUtils.clamp(Math.round(posX / map.getTileWidth()), 0, map.getMapBounds().right);
-		float row = MathUtils.clamp(Math.round(posY / map.getTileHeight()), 0, map.getMapBounds().top);
+		float column = MathUtils.clamp(Math.round(posX / map.getTileWidth()), 0, map.mapWidth*map.getTileWidth());
+		float row = MathUtils.clamp(Math.round(posY / map.getTileHeight()), 0, map.mapHeight*map.getTileHeight());
 
 		index.x = column;
 		index.y = row;
@@ -165,8 +166,21 @@ public class MapGame extends AbstractMap {
 	}
 
 	public boolean isWalkable(float posX, float posY, GameActor actor) {
-		//ICI CODER, gameActor est pas obligé, la classe peut être changé (GameActorAnimation..., PlayerGame)...
-		//throw new UnsupportedOperationException("non codé");
+		System.out.println(posX+" : "+ posY);
+		Vector2 position = posToIndex(posX,posY,this);
+		System.out.println(position);
+
+        TiledMapTileLayer tiledmap = (TiledMapTileLayer) this.map.getMap().getLayers().get(Layer.COLLISION.name());
+        TiledMapTileLayer.Cell c = tiledmap.getCell((int)position.x,(int)position.y);
+
+        if (c == null){
+
+        }else{
+            //si on retourne null alors il n'y a pas collision
+            if(c.getTile() != null){
+                return false;
+            }
+        }
 		return true;
 	}
 
@@ -374,7 +388,7 @@ public class MapGame extends AbstractMap {
 		this.map.setView(this.camera);
 
 		for (Layer layer : Layer.values()){
-			if (layer == Layer.COLLISION){
+			if (!this.map.getMap().getLayers().get(layer.name()).isVisible()/*== Layer.COLLISION*/ ){
 				continue;
 			}
 			for (GameActor entite : this.entities) {
@@ -393,7 +407,6 @@ public class MapGame extends AbstractMap {
 		//render borders
 		if (this.showGrid)
 			this.border.draw();
-
 	}
 
 	/**

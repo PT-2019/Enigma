@@ -5,14 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8e7723e5-c76a-467e-866a-3c20c5c03f9f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/entity/PlayerGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/entity/PlayerGame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game/entity/map/MapGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/entity/map/MapGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/screen/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/screen/GameScreen.java" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -104,18 +100,6 @@
       <recent name="com.enigma.game" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
   <component name="RunManager" selected="Application.EnigmaFastGame">
     <configuration name="EnigmaFastGame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="EnigmaFastGame" />
@@ -140,8 +124,8 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Main" />
       <item itemvalue="Application.EnigmaFastGame" />
+      <item itemvalue="Application.Main" />
     </list>
     <recent_temporary>
       <list>
@@ -167,15 +151,6 @@
       <workItem from="1579701797672" duration="402000" />
     </task>
     <servers />
-  </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -208,49 +183,67 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="209" y="118" key="#com.intellij.execution.impl.EditConfigurationsDialog" />
-    <state x="2218" y="184" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" />
-    <state x="209" y="118" key="#com.intellij.execution.impl.EditConfigurationsDialog/65.24.1215.776@65.24.1215.776" />
-    <state x="65" y="-4" width="1215" height="804" key="#com.intellij.ide.util.MemberChooser" />
-    <state x="65" y="-4" width="1215" height="804" key="#com.intellij.ide.util.MemberChooser/65.24.1215.776@65.24.1215.776" />
-    <state x="360" y="150" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" />
-    <state x="360" y="150" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/65.24.1215.776@65.24.1215.776" />
-    <state x="284" y="24" key="CommitChangelistDialog2" />
-    <state x="284" y="24" key="CommitChangelistDialog2/65.24.1215.776@65.24.1215.776" />
-    <state width="1169" height="102" key="GridCell.Tab.0.bottom" />
-    <state width="1878" height="343" key="GridCell.Tab.0.bottom/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" />
-    <state width="1638" height="278" key="GridCell.Tab.0.bottom/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
-    <state width="1638" height="278" key="GridCell.Tab.0.bottom/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" />
-    <state width="1169" height="102" key="GridCell.Tab.0.bottom/65.24.1215.776@65.24.1215.776" />
-    <state width="1169" height="102" key="GridCell.Tab.0.center" />
-    <state width="1878" height="343" key="GridCell.Tab.0.center/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" />
-    <state width="1638" height="278" key="GridCell.Tab.0.center/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
-    <state width="1638" height="278" key="GridCell.Tab.0.center/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" />
-    <state width="1169" height="102" key="GridCell.Tab.0.center/65.24.1215.776@65.24.1215.776" />
-    <state width="1169" height="102" key="GridCell.Tab.0.left" />
-    <state width="1878" height="343" key="GridCell.Tab.0.left/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" />
-    <state width="1638" height="278" key="GridCell.Tab.0.left/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
-    <state width="1638" height="278" key="GridCell.Tab.0.left/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" />
-    <state width="1169" height="102" key="GridCell.Tab.0.left/65.24.1215.776@65.24.1215.776" />
-    <state width="1169" height="102" key="GridCell.Tab.0.right" />
-    <state width="1878" height="343" key="GridCell.Tab.0.right/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" />
-    <state width="1638" height="278" key="GridCell.Tab.0.right/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
-    <state width="1638" height="278" key="GridCell.Tab.0.right/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" />
-    <state width="1169" height="102" key="GridCell.Tab.0.right/65.24.1215.776@65.24.1215.776" />
-    <state x="250" y="24" width="1030" height="776" key="SettingsEditor" />
-    <state x="2243" y="104" width="1030" height="847" key="SettingsEditor/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
-    <state x="2243" y="104" key="SettingsEditor/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" />
-    <state x="250" y="24" width="1030" height="776" key="SettingsEditor/65.24.1215.776@65.24.1215.776" />
-    <state x="415" y="198" key="com.intellij.ide.util.TipDialog" />
-    <state x="626" y="358" key="com.intellij.ide.util.TipDialog/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" />
-    <state x="626" y="358" key="com.intellij.ide.util.TipDialog/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" />
-    <state x="626" y="358" key="com.intellij.ide.util.TipDialog/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" />
-    <state x="415" y="198" key="com.intellij.ide.util.TipDialog/65.24.1215.776@65.24.1215.776" />
-    <state x="2530" y="232" width="455" height="591" key="com.intellij.testIntegration.createTest.CreateTestDialog" />
-    <state x="2530" y="232" width="455" height="591" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
-    <state x="2414" y="136" width="692" height="780" key="find.popup" />
-    <state x="2414" y="136" width="692" height="780" key="find.popup/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" />
-    <state x="335" y="121" width="672" height="678" key="search.everywhere.popup" />
-    <state x="335" y="121" width="672" height="678" key="search.everywhere.popup/65.24.1215.776@65.24.1215.776" />
+    <state x="209" y="118" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1580400655020" />
+    <state x="2218" y="184" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1580400655020" />
+    <state x="209" y="118" key="#com.intellij.execution.impl.EditConfigurationsDialog/65.24.1215.776@65.24.1215.776" timestamp="1580400655020" />
+    <state x="65" y="-4" width="1215" height="804" key="#com.intellij.ide.util.MemberChooser" timestamp="1580400655020" />
+    <state x="65" y="-4" width="1215" height="804" key="#com.intellij.ide.util.MemberChooser/65.24.1215.776@65.24.1215.776" timestamp="1580400655020" />
+    <state x="360" y="150" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1580400655020" />
+    <state x="360" y="150" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/65.24.1215.776@65.24.1215.776" timestamp="1580400655020" />
+    <state x="284" y="24" key="CommitChangelistDialog2" timestamp="1580400655020" />
+    <state x="284" y="24" key="CommitChangelistDialog2/65.24.1215.776@65.24.1215.776" timestamp="1580400655020" />
+    <state width="1169" height="258" key="GridCell.Tab.0.bottom" timestamp="1580492997205">
+      <screen x="65" y="24" width="1215" height="776" />
+    </state>
+    <state width="1878" height="343" key="GridCell.Tab.0.bottom/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" timestamp="1580400655020" />
+    <state width="1638" height="278" key="GridCell.Tab.0.bottom/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1580400655020" />
+    <state width="1638" height="278" key="GridCell.Tab.0.bottom/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1580400655020" />
+    <state width="1169" height="258" key="GridCell.Tab.0.bottom/65.24.1215.776@65.24.1215.776" timestamp="1580492997205" />
+    <state width="1169" height="258" key="GridCell.Tab.0.center" timestamp="1580492997202">
+      <screen x="65" y="24" width="1215" height="776" />
+    </state>
+    <state width="1878" height="343" key="GridCell.Tab.0.center/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" timestamp="1580400655020" />
+    <state width="1638" height="278" key="GridCell.Tab.0.center/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1580400655020" />
+    <state width="1638" height="278" key="GridCell.Tab.0.center/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1580400655020" />
+    <state width="1169" height="258" key="GridCell.Tab.0.center/65.24.1215.776@65.24.1215.776" timestamp="1580492997202" />
+    <state width="1169" height="258" key="GridCell.Tab.0.left" timestamp="1580492997199">
+      <screen x="65" y="24" width="1215" height="776" />
+    </state>
+    <state width="1878" height="343" key="GridCell.Tab.0.left/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" timestamp="1580400655020" />
+    <state width="1638" height="278" key="GridCell.Tab.0.left/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1580400655020" />
+    <state width="1638" height="278" key="GridCell.Tab.0.left/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1580400655020" />
+    <state width="1169" height="258" key="GridCell.Tab.0.left/65.24.1215.776@65.24.1215.776" timestamp="1580492997199" />
+    <state width="1169" height="258" key="GridCell.Tab.0.right" timestamp="1580492997204">
+      <screen x="65" y="24" width="1215" height="776" />
+    </state>
+    <state width="1878" height="343" key="GridCell.Tab.0.right/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" timestamp="1580400655020" />
+    <state width="1638" height="278" key="GridCell.Tab.0.right/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1580400655020" />
+    <state width="1638" height="278" key="GridCell.Tab.0.right/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1580400655020" />
+    <state width="1169" height="258" key="GridCell.Tab.0.right/65.24.1215.776@65.24.1215.776" timestamp="1580492997204" />
+    <state x="250" y="24" width="1030" height="776" key="SettingsEditor" timestamp="1580400670895">
+      <screen x="65" y="24" width="1215" height="776" />
+    </state>
+    <state x="2243" y="104" width="1030" height="847" key="SettingsEditor/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1580400655020" />
+    <state x="2243" y="104" key="SettingsEditor/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1580400655020" />
+    <state x="250" y="24" width="1030" height="776" key="SettingsEditor/65.24.1215.776@65.24.1215.776" timestamp="1580400670895" />
+    <state x="415" y="198" key="com.intellij.ide.util.TipDialog" timestamp="1580736801021">
+      <screen x="65" y="24" width="1215" height="776" />
+    </state>
+    <state x="626" y="358" key="com.intellij.ide.util.TipDialog/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" timestamp="1580400655020" />
+    <state x="626" y="358" key="com.intellij.ide.util.TipDialog/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" timestamp="1580400655020" />
+    <state x="626" y="358" key="com.intellij.ide.util.TipDialog/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1580400655020" />
+    <state x="415" y="198" key="com.intellij.ide.util.TipDialog/65.24.1215.776@65.24.1215.776" timestamp="1580736801021" />
+    <state x="445" y="319" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1580473447239">
+      <screen x="65" y="24" width="1215" height="776" />
+    </state>
+    <state x="445" y="319" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/65.24.1215.776@65.24.1215.776" timestamp="1580473447239" />
+    <state x="2530" y="232" width="455" height="591" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1580400655020" />
+    <state x="2530" y="232" width="455" height="591" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" timestamp="1580400655020" />
+    <state x="2414" y="136" width="692" height="780" key="find.popup" timestamp="1580400655020" />
+    <state x="2414" y="136" width="692" height="780" key="find.popup/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" timestamp="1580400655020" />
+    <state x="335" y="121" width="672" height="678" key="search.everywhere.popup" timestamp="1580479250645">
+      <screen x="65" y="24" width="1215" height="776" />
+    </state>
+    <state x="335" y="121" width="672" height="678" key="search.everywhere.popup/65.24.1215.776@65.24.1215.776" timestamp="1580479250645" />
   </component>
 </project>
