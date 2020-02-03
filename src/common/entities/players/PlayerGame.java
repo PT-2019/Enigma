@@ -30,7 +30,6 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
 	public PlayerGame(GameMap map) {
 		this.setAnimationPaused(true);
 		this.map = map;
-		this.setBounds(7);
 	}
 
 	/**
@@ -58,52 +57,72 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
 
 		if (CameraKeys.CAMERA_LEFT.isKey(i)) {
 			//on vérifie que la case où l'on compte se rendre est disponible
-			if (map.isWalkable(x - PlayerGame.SPEED, y, this) && (!map.collision(this))) {
+
+			if (map.isWalkable(x - PlayerGame.SPEED, y, this)
+					&& (!map.collision(this,-PlayerGame.SPEED,0))) {
+
 				this.setPosition(x - PlayerGame.SPEED, y);
 				//pour changer de sprite proprement
 				if (isAnimationPaused() || this.facedDirection != Direction.LEFT) {
 					this.setKeyFrame(3);
 				}
 				//pour centrer la caméra sur le personnage
-				this.getStage().getCamera().translate(-10, 0, 0);
+				this.getStage().getCamera().translate(-PlayerGame.SPEED, 0, 0);
 
 				this.setFacedDirection(Direction.LEFT);
 				//l'animation n'est plus en pause pour la faire tourner
 				this.setAnimationPaused(false);
 				this.setAnimationLooping(true);
+			}else{
+				this.setKeyFrame(5);
+				this.setFacedDirection(Direction.LEFT);
 			}
 		} else if (CameraKeys.CAMERA_RIGHT.isKey(i)) {
-			if (map.isWalkable(x + PlayerGame.SPEED, y, this) && (!map.collision(this)) ) {
+			if (map.isWalkable(x + PlayerGame.SPEED, y, this) &&
+					(!map.collision(this,PlayerGame.SPEED,0)) ) {
+
 				this.setPosition(x + PlayerGame.SPEED, y);
 				if (isAnimationPaused() || this.facedDirection != Direction.RIGHT) {
 					this.setKeyFrame(6);
 				}
-				this.getStage().getCamera().translate(10, 0, 0);
+				this.getStage().getCamera().translate(PlayerGame.SPEED, 0, 0);
 				this.setFacedDirection(Direction.RIGHT);
 				this.setAnimationPaused(false);
 				this.setAnimationLooping(true);
+			}else{
+				this.setKeyFrame(8);
+				this.setFacedDirection(Direction.RIGHT);
 			}
 		} else if (CameraKeys.CAMERA_UP.isKey(i)) {
-			if (map.isWalkable(x, y + PlayerGame.SPEED, this) && (!map.collision(this))) {
+			if (map.isWalkable(x, y + PlayerGame.SPEED, this) &&
+					(!map.collision(this,0,+PlayerGame.SPEED))) {
+
 				this.setPosition(x, y + PlayerGame.SPEED);
 				if (isAnimationPaused() || this.facedDirection != Direction.TOP) {
 					this.setKeyFrame(9);
 				}
-				this.getStage().getCamera().translate(0, 10, 0);
+				this.getStage().getCamera().translate(0, PlayerGame.SPEED, 0);
 				this.setFacedDirection(Direction.TOP);
 				this.setAnimationPaused(false);
 				this.setAnimationLooping(true);
+			}else{
+				this.setKeyFrame(11);
+				this.setFacedDirection(Direction.TOP);
 			}
 		} else if (CameraKeys.CAMERA_DOWN.isKey(i)) {
-			if (map.isWalkable(x, y - PlayerGame.SPEED, this) && (!map.collision(this))) {
+			if (map.isWalkable(x, y - PlayerGame.SPEED, this)
+					&& (!map.collision(this,0,-PlayerGame.SPEED))) {
 				this.setPosition(x, y - PlayerGame.SPEED);
 				if (isAnimationPaused() || this.facedDirection != Direction.BOTTOM) {
 					this.setKeyFrame(0);
 				}
-				this.getStage().getCamera().translate(0, -10, 0);
+				this.getStage().getCamera().translate(0, -PlayerGame.SPEED, 0);
 				this.setFacedDirection(Direction.BOTTOM);
 				this.setAnimationPaused(false);
 				this.setAnimationLooping(true);
+			}else{
+				this.setKeyFrame(2);
+				this.setFacedDirection(Direction.BOTTOM);
 			}
 		}
 

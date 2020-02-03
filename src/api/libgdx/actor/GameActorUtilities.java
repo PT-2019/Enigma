@@ -6,6 +6,8 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
+import java.util.Arrays;
+
 /**
  * Méthode pour permettre des calculs sur des actors
  *
@@ -53,7 +55,9 @@ public class GameActorUtilities {
 		if (actor instanceof GameActor) poly1 = ((GameActor) actor).getBounds();
 		else poly1 = getBounds(actor);
 
-		if (target instanceof GameActor) poly2 = ((GameActor) target).getBounds();
+		if (target instanceof GameActor) {
+			poly2 = ((GameActor) target).getBounds();
+		}
 		else poly2 = getBounds(target);
 
 		//correct coordinates
@@ -62,12 +66,40 @@ public class GameActorUtilities {
 		poly1.setPosition(coordinates.x, coordinates.y);
 		poly2.setPosition(autre.x, autre.y);
 
-		System.out.println(poly1.getBoundingRectangle());
-		System.out.println(poly2.getBoundingRectangle());
-		Rectangle rect = poly1.getBoundingRectangle();
-		Rectangle rect2 = poly2.getBoundingRectangle();
+		//test rectangles
+		if (!poly1.getBoundingRectangle().overlaps(poly2.getBoundingRectangle()))
+			return false;
 
-		System.out.println(rect.overlaps(rect2));
+		//test polygons
+		return Intersector.overlapConvexPolygons(poly1, poly2);
+	}
+
+	/**
+	 * Renvoi s'il y a collision entre deux acteurs
+	 *
+	 * @param actor  un actor
+	 * @param target une autre acteur
+	 * @return true s'il y a collision sinon false
+	 * @since 4.0 20/12/2019
+	 */
+	public static boolean overlaps(Actor actor, Actor target,float movx,float movy) {
+		//récupère le recouvrement (mis à jour)
+		Polygon poly1, poly2;
+
+		//get polygons
+		if (actor instanceof GameActor) poly1 = ((GameActor) actor).getBounds();
+		else poly1 = getBounds(actor);
+
+		if (target instanceof GameActor) {
+			poly2 = ((GameActor) target).getBounds();
+		}
+		else poly2 = getBounds(target);
+
+		//correct coordinates
+		Vector2 coordinates = getAbsolutePosition(actor), autre = getAbsolutePosition(target);
+
+		poly1.setPosition(coordinates.x + movx, coordinates.y + movy);
+		poly2.setPosition(autre.x, autre.y);
 
 		//test rectangles
 		if (!poly1.getBoundingRectangle().overlaps(poly2.getBoundingRectangle()))

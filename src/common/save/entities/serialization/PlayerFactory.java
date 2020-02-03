@@ -56,6 +56,8 @@ public class PlayerFactory {
 
 		game.setLayer(Layer.DECORATIONS1);
 
+		game.setBounds(7);
+
 		return game;
 	}
 }

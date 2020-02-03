@@ -6,6 +6,6 @@ public class NpcGame extends GameActorAnimation {
 
     public NpcGame(){
         this.setAnimationPaused(true);
-        this.setBounds(7);
+        this.setBounds(4);
     }
 }

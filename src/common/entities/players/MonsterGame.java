@@ -6,6 +6,6 @@ public class MonsterGame extends GameActorAnimation {
 
     public MonsterGame(){
         this.setAnimationPaused(true);
-        this.setBounds(7);
+        this.setBounds(4);
     }
 }

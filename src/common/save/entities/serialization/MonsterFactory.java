@@ -46,6 +46,7 @@ public class MonsterFactory {
                 playerInfo.getIndex());
 
         game.setLayer(Layer.DECORATIONS1);
+        game.setBounds(7);
 
         return game;
     }

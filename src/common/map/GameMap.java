@@ -346,14 +346,15 @@ public class GameMap extends AbstractMap {
 	 * @param actor On va tester en fonction de cet actor
 	 * @return boolean true si collision false sinon
 	 */
-	public boolean collision(GameActor actor){
+	public boolean collision(GameActor actor,float movx,float movy){
 		boolean result = false;
+
 		//on va itérer tout les actors connu sur la map
 		//todo : peut être un autre système
 		ArrayList<GameActor> actors = (ArrayList<GameActor>) this.entities.clone();
 		actors.remove(actor);
 		for (GameActor act : actors) {
-			if (actor.overlaps(act)){
+			if (actor.overlaps(act,movx,movy)){
 				result = true;
 				break;
 			}
