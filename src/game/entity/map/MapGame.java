@@ -53,7 +53,7 @@ import static api.MapsNameUtils.HEIGHT_P;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 1.0.0
+ * @version 1.3.0
  * @since 1.0 28 janvier 2019
  */
 public class MapGame extends AbstractMap {
@@ -98,7 +98,9 @@ public class MapGame extends AbstractMap {
      * Les entités de la maps
      */
     private HashMap<Vector2, GameObject> added;
-
+    /**
+     * Affichage de la grille de la map
+     */
     private boolean showGrid;
 
 
@@ -147,10 +149,15 @@ public class MapGame extends AbstractMap {
 		this.initEntities();
 	}
 
+    /**
+     * Convertit la position sur la map en position sur la grille
+     * @param posX coordonnées X
+     * @param posY coordonnées Y
+     * @param map la map
+     * @return la position sur la map
+     */
 	public static Vector2 posToIndex(float posX, float posY, MapGame map) {
-		//ICI CODER
-		//AbstractMap#swingPosToIndex(float posX, float posY, final AbstractMap map) si besoin
-		//throw new UnsupportedOperationException("non codé");
+
 		Vector2 index = new Vector2();
 
 		posX /= map.getUnitScale();
@@ -165,10 +172,15 @@ public class MapGame extends AbstractMap {
 		return index;
 	}
 
+    /**
+     *  Définit si on peut marcher sur la position en argument
+     * @param posX coordonnées X
+     * @param posY coordonnées Y
+     * @param actor
+     * @return boolean pour possible ou non
+     */
 	public boolean isWalkable(float posX, float posY, GameActor actor) {
-		System.out.println(posX+" : "+ posY);
 		Vector2 position = posToIndex(posX,posY,this);
-		System.out.println(position);
 
         TiledMapTileLayer tiledmap = (TiledMapTileLayer) this.map.getMap().getLayers().get(Layer.COLLISION.name());
         TiledMapTileLayer.Cell c = tiledmap.getCell((int)position.x,(int)position.y);
@@ -184,7 +196,16 @@ public class MapGame extends AbstractMap {
 		return true;
 	}
 
-	//boolean doAction(float posX, float posY, GameActor actor, ???  action)
+    /**
+     *
+     * @param posX
+     * @param posY
+     * @param actor
+     * @return
+     */
+	public boolean doAction(float posX, float posY, GameActor actor, ???  action){
+
+    }
 
 	/**
 	 * Définit les bounds de la map
