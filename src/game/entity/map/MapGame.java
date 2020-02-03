@@ -173,11 +173,11 @@ public class MapGame extends AbstractMap {
 	}
 
     /**
-     *  Définit si on peut marcher sur la position en argument
+     *  Définit si la case est accessible
      * @param posX coordonnées X
      * @param posY coordonnées Y
      * @param actor
-     * @return boolean pour possible ou non
+     * @return true = accessible, false = non accessible
      */
 	public boolean isWalkable(float posX, float posY, GameActor actor) {
 		Vector2 position = posToIndex(posX,posY,this);
@@ -204,7 +204,8 @@ public class MapGame extends AbstractMap {
      * @return
      */
 	public boolean doAction(float posX, float posY, GameActor actor, ???  action){
-
+        Vector2 position = posToIndex(posX,posY,this);
+        
     }
 
 	/**
