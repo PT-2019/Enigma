@@ -19,6 +19,7 @@
     run: Run
     help: Help
     export: export
+    import:import
     doc: documentation
     support: support
     start: start simulation

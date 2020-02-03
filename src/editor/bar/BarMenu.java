@@ -20,7 +20,7 @@ import static common.language.GameLanguage.gl;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 5.0 30/01/2020
+ * @version 6.1 30/01/2020
  * @since 5.0 30/01/2020
  */
 public class BarMenu extends EnigmaMenuBar {
@@ -31,6 +31,7 @@ public class BarMenu extends EnigmaMenuBar {
 	private EnigmaMenuItem save = new EnigmaMenuItem(gl.get(HUDFields.SAVE));
 	private EnigmaMenuItem saveAs = new EnigmaMenuItem(gl.get(HUDFields.SAVE_AS));
 	private EnigmaMenuItem export = new EnigmaMenuItem(gl.get(HUDFields.EXPORT));
+	private EnigmaMenuItem importMap = new EnigmaMenuItem(gl.get(HUDFields.IMPORT));
 	//2eme onglet
 	private EnigmaMenu edit = new EnigmaMenu(gl.get(HUDFields.EDIT));
 	private EnigmaMenuItem redo = new EnigmaMenuItem(gl.get(HUDFields.REDO));
@@ -60,6 +61,7 @@ public class BarMenu extends EnigmaMenuBar {
 		this.file.add(save);
 		this.file.add(saveAs);
 		this.file.add(export);
+		this.file.add(importMap);
 
 		this.edit.add(undo);
 		this.edit.add(redo);
@@ -82,6 +84,7 @@ public class BarMenu extends EnigmaMenuBar {
 		this.save.addActionListener(new SaveListener(window, this.save));
 		this.saveAs.addActionListener(new SaveAsListener(window, this.saveAs));
 		this.export.addActionListener(new ExportListener(window, this.export));
+		this.export.addActionListener(new ImportListener(window, this.importMap));
 		this.undo.addActionListener(new UndoListener(window, this.undo));
 		this.redo.addActionListener(new RedoListener(window, this.redo));
 

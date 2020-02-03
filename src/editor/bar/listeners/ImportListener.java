@@ -11,7 +11,6 @@ import game.EnigmaGame;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
@@ -25,9 +24,9 @@ import java.io.IOException;
  * @version 6.0 01/02/2020
  * @since 6.0 01/02/2020
  */
-public class ExportListener extends MenuListener {
+public class ImportListener extends MenuListener {
 
-	public ExportListener(EnigmaWindow window, JComponent parent) {
+	public ImportListener(EnigmaWindow window, JComponent parent) {
 		super(window, parent);
 	}
 

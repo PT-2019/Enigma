@@ -99,8 +99,8 @@ public class CreateListener extends MenuListener {
 
 				//TODO: vérifier col, row, chemin (caractères spéciaux) et afficher une erreur
 
-				if (!path.endsWith(".tmx")) {
-					path += ".tmx";
+				if (!path.endsWith(Config.MAP_EXTENSION)) {
+					path += Config.MAP_EXTENSION;
 				}
 
 				MapData data = new MapData(UserConfiguration.getInstance().getData().getName(),mapName);

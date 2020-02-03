@@ -7,6 +7,16 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Gère les sauvegardes des données de l'utilisateur
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 6.0
+ * @since 6.0
+ */
 public class UserSave {
 
     /**
@@ -64,6 +74,11 @@ public class UserSave {
         return !(s.equals(HEADER) || s.equals(START_USER_DATA) || s.equals(END_USER_DATA));
     }
 
+    /**
+     * Lis le fichier de sauvegarde
+     * @return Les données lus
+     * @throws IOException En cas d'erreur de lecture
+     */
     public static UserData read() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(Config.USER_DATA_FILE_FOLDER)));
 
@@ -81,6 +96,11 @@ public class UserSave {
         return new UserData(data);
     }
 
+    /**
+     * Ecrit les données
+     * @param data Données
+     * @throws IOException En cas d'erreur d'écriture
+     */
     public static void write(UserData data) throws IOException {
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(Config.USER_DATA_FILE_FOLDER)));
 

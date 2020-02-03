@@ -6,13 +6,20 @@
   <component name="ChangeListManager">
     <list default="true" id="ae09cfc3-8c68-40f7-a6e1-cb32552840e9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/lang/english.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/lang/english.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/lang/french.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/lang/french.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/ui/CustomOptionPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/ui/CustomOptionPane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/config/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/config/Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/data/UserData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/data/UserData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/language/HUDFields.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/language/HUDFields.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/save/EmptyMapGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/save/EmptyMapGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/save/ImportExport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/save/ImportExport.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/save/UserSave.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/save/UserSave.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/config/UserConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/config/UserConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/bar/BarMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/BarMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/editor/bar/listeners/CreateListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/listeners/CreateListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/editor/bar/listeners/ExportListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/listeners/ExportListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/configure/displayManagers/lowLevel/WaitPlayersDisplayManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/configure/displayManagers/lowLevel/WaitPlayersDisplayManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/configure/displayManagers/lowLevel/WaitPlayersLeaderDisplayManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/configure/displayManagers/lowLevel/WaitPlayersLeaderDisplayManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/screens/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/screens/GameScreen.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -89,12 +96,12 @@
     <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/src/editor/utils/save/view/cases/CaseListener.java" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Quentin Ra\Desktop\Enigma\src\api\libgdx\utils" />
-      <recent name="$PROJECT_DIR$/src/general/map" />
-      <recent name="$PROJECT_DIR$/src/game" />
-      <recent name="$PROJECT_DIR$/src/general/entities/special" />
-      <recent name="$PROJECT_DIR$/src/general/enigmas" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="api.entity.utils" />
+      <recent name="editor.entity" />
+      <recent name="api.utils" />
+      <recent name="api.enums" />
+      <recent name="game.utils" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
@@ -117,12 +124,12 @@
       <recent name="datas" />
       <recent name="editor.menus" />
     </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="api.entity.utils" />
-      <recent name="editor.entity" />
-      <recent name="api.utils" />
-      <recent name="api.enums" />
-      <recent name="game.utils" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Quentin Ra\Desktop\Enigma\src\api\libgdx\utils" />
+      <recent name="$PROJECT_DIR$/src/general/map" />
+      <recent name="$PROJECT_DIR$/src/game" />
+      <recent name="$PROJECT_DIR$/src/general/entities/special" />
+      <recent name="$PROJECT_DIR$/src/general/enigmas" />
     </key>
   </component>
   <component name="RunDashboard">

@@ -107,7 +107,6 @@ public class ImportExport {
     public static void exportMap(String mapName, String exportPath) throws IOException {
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(exportPath + mapName + Config.EXPORT_EXTENSION)));
         try {
-            System.out.println(exportPath + mapName + Config.EXPORT_EXTENSION);
             String map = Config.MAP_FOLDER + mapName + Config.MAP_EXTENSION;
             String mapData = Config.MAP_DATA_FOLDER + mapName + Config.DATA_EXTENSION;
             String enigmas = Config.MAP_FOLDER + mapName + Config.ENIGMA_EXTENSION;

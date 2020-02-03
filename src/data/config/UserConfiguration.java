@@ -1,12 +1,14 @@
 package data.config;
 
-import common.DesktopLauncher;
+import api.utils.Utility;
 import common.data.UserData;
 import common.entities.players.Player;
 import common.hud.EnigmaOptionPane;
+import common.hud.EnigmaWindow;
 import common.save.UserSave;
 import common.utils.Logger;
 
+import java.awt.*;
 import java.io.IOException;
 
 /**
@@ -34,7 +36,7 @@ public class UserConfiguration {
 	/**
 	 * Messages
 	 */
-	private final static String LOAD_ERROR = "Impossible de charger vos données. Peur être êtes vous nouveau? Choisissez un nom d'utilisateur avant de commencer :";
+	private final static String LOAD_ERROR = "Vous semblez être nouveau! Choisissez un nom d'utilisateur avant de commencer :";
 
 	/**
 	 * Utilisateur
@@ -44,14 +46,18 @@ public class UserConfiguration {
 
 	private UserConfiguration() {
 		try {
-			System.out.println("fffffffff");
 			this.data = UserSave.read();
 		} catch (IOException | IllegalArgumentException e) {
-			String name = EnigmaOptionPane.showInputDialog(DesktopLauncher.getInstance().getWindow(),LOAD_ERROR);
+			String name = "";
+			while(name.equals("") || name.equals(EnigmaOptionPane.CANCEL)) {
+				name = EnigmaOptionPane.showInputDialog(new EnigmaWindow(),new Dimension(800,350),LOAD_ERROR);
+			}
+			name = Utility.normalize(name);
 			this.data = new UserData(name);
 			try {
 				UserSave.write(this.data);
 			} catch (IOException ex) {
+				this.data = null;
 				Logger.printError("UserConfiguration.java","Impossible de savegarder les données");
 			}
 		}
