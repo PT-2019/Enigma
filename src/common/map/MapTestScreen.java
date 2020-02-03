@@ -1,5 +1,10 @@
 package common.map;
 
+import api.libgdx.utils.LibgdxUtility;
+import api.utils.Utility;
+import com.badlogic.gdx.maps.MapLayer;
+import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.utils.Array;
 import common.utils.Logger;
 import api.libgdx.utils.Bounds;
 import com.badlogic.gdx.Gdx;
@@ -28,6 +33,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.swing.JComponent;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -146,7 +152,7 @@ public class MapTestScreen extends AbstractMap {
 
 			//instancie l'entité
 			object = EntityFactory.createEntity(entity, null, start, this.idFactory);
-			Logger.printDebug("loadEntity", object.toString() + " " + object.getID());
+			Logger.printDebug("MapTestScreen#loadEntity", object.toString() + " " + object.getID());
 
 			//ajout à la liste des entités de la map
 			this.objects.put(start, object);
@@ -199,8 +205,9 @@ public class MapTestScreen extends AbstractMap {
 		//s'il y a des conditions pour placer l'item
 		boolean needManager = object instanceof NeedContainerManager;
 		boolean needContainer = object instanceof NeedContainer;
+		HashMap<Vector2, GameObject> parentObject;
 		if (needContainer || needManager) {
-			HashMap<Vector2, GameObject> parentObject = this.getParentObject(start, object);
+			parentObject = this.getParentObject(start, object);
 			//pas de parent, placement raté
 			if (parentObject == null || parentObject.isEmpty()) return false;
 
@@ -213,10 +220,77 @@ public class MapTestScreen extends AbstractMap {
 					break;
 			}
 
-			//TODO: faire une save des tiles si valeur == 0 mais ya entité
+			Logger.printDebug("MapTestScreen#checkPlacement", "Restoration des entités.");
+
+			saveParents(parentObject);
+
+			return true;
 		}
 
+		Logger.printDebug("MapTestScreen#checkPlacement", "Restoration des room(s)");
+
+		saveParents(getParentObject(start, object));
+
 		return true;
+	}
+
+	/**
+	 * Liste des éléments déjà restorés
+	 * @since 6.1
+	 * @see #saveParents(HashMap)
+	 */
+	private ArrayList<GameObject> restored = new ArrayList<>();
+
+	/**
+	 * Restaure les tiles des parents s'ils viennent d'une sauvegarde en case
+	 * de suppression de l'enfant.
+	 * @param parents parent
+	 * @since 6.1
+	 */
+	private void saveParents(HashMap<Vector2, GameObject> parents) {
+		boolean stop;
+		for (Map.Entry<Vector2, GameObject> entry: parents.entrySet()) {
+			GameObject value = entry.getValue();
+			Vector2 start = entry.getKey();
+			if(this.restored.contains(value)) continue;
+			stop = false;
+
+			//on parcours toutes les niveaux de la map et on y ajoute les tiles de l'entité
+			for (MapLayer mapLayer : this.map.getMap().getLayers()) {
+				//c'est un layer de tiles ?
+				if (!(mapLayer instanceof TiledMapTileLayer)) continue;
+
+				TiledMapTileLayer tileLayer = (TiledMapTileLayer) mapLayer;
+
+				//récupère les tiles de l'entités pour ce niveau
+				Array<Float> ent = value.getTiles(Utility.stringToEnum(tileLayer.getName(), Layer.values()));
+
+				//System.out.println("avant"+ent);
+
+				//si pas de tiles a mettre sur ce layer, on passe au suivant
+				if (ent == null) continue;
+
+				//calcul pour placer les tiles depuis x et y
+				//sachant que y est inversé, on part de la dernière tile et on remonte
+				//pas de problème pour x
+				for (int i = (int) start.y - 1, index = 0; i >= (start.y - value.getGameObjectHeight()); i--) {
+					for (int j = (int) start.x; j < start.x + value.getGameObjectWidth() && index < ent.size; j++, index++) {
+						MapTestScreenCell c = (MapTestScreenCell) tileLayer.getCell(j, i);
+						if (c == null || c.getTile() == null) continue;
+						if(ent.get(index) != 0) {
+							stop = true;
+							break;
+						}
+						ent.set(index, (float) c.getTile().getId());
+					}
+					if(stop) break;
+				}
+				//System.out.println("après"+ent);
+				if(stop) break;
+			}
+
+			this.restored.add(value);
+		}
 	}
 
 	@Override
@@ -228,10 +302,12 @@ public class MapTestScreen extends AbstractMap {
 		//si supprimé
 		if(removed){
 			if (entity instanceof GameExit) this.hasExit = false;
-			//ajoute à l'historique si pas déjà concerné
-			this.manager.add(EditorActionFactory.create(ActionTypes.REMOVE_ENTITY, this, object));
-			//libère l'id
-			idFactory.free(entity, false);
+			if(object.getPosition().y >= 0 && object.getPosition().x >= 0) {
+				//ajoute à l'historique si pas déjà concerné
+				this.manager.add(EditorActionFactory.create(ActionTypes.REMOVE_ENTITY, this, object));
+				//libère l'id
+				idFactory.free(entity, false);
+			}
 		}
 		return removed;
 	}

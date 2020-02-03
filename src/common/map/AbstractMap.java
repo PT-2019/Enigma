@@ -398,6 +398,7 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 	 */
 	private void delete(GameObject entity, Vector2 start) {
 		HashMap<Vector2, GameObject> parents = this.getParentObject(start, entity);
+		System.out.println(parents);
 		Array<Array<Float>> entities = null;
 		Array<GameObject> objects = null;
 		if (parents != null && !parents.isEmpty()) {
@@ -456,6 +457,11 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 							}
 						}
 					}
+					//si l'id vaut zéro alors que c'est celle à supprimer, alors on la sauvegarde car c'est
+					//une entité de la sauvegarde donc qui ne connait plus ses tiles
+					if(ent.get(index) == 0 && c.getTile() != null){
+						ent.set(index, (float) c.getTile().getId());
+					}
 					c.setTile(this.map.getMap().getTileSets().getTile(ind));
 					tileLayer.setCell(j, i, c);
 				}
@@ -472,16 +478,17 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 		ArrayList<Vector2> delete = new ArrayList<>();
 		HashMap<Vector2, GameObject> obj = new HashMap<>();
 		Rectangle ent = new Rectangle(start.x, start.y, entity.getGameObjectWidth(), entity.getGameObjectHeight());
-		for (Map.Entry<Vector2, ArrayList<GameObject>> item : this.objects.getAll().entrySet()) {
+		for (Map.Entry<Vector2, ArrayList<GameObject>> item : this.objects.getOriginalMap().entrySet()) {
 			for (GameObject object : item.getValue()) {
 				Rectangle other = new Rectangle(item.getKey().x, item.getKey().y,
 						object.getGameObjectWidth(), object.getGameObjectHeight());
 				//check collision
 				if (LibgdxUtility.overlapsBottomLeftOrigin(ent, other)) {
-					//si c'est un conteneur
+					//si l'object a supprimer est un container
 					if (entity instanceof ContainersManager) {
-						//si item est un conteneur, alors on va le reconstruire ses tiles après suppression
-						if (item.getValue() instanceof ContainersManager) {
+						//si l'object de la collision est un conteneur
+						//alors on va le reconstruire ses tiles après suppression
+						if (object instanceof ContainersManager) {
 							//je garde une salle
 							obj.put(item.getKey(), object);
 						}

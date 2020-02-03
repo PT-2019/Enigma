@@ -32,7 +32,7 @@ public enum SelectionsModes {
 	/**
 	 * Un nouveau ou un object existant
 	 */
-	MAP_AND_MENU("carte et menu", MAP, POPUP),
+	MAP_AND_MENU("carte et menu", MAP, MENU),
 
 	/**
 	 * Un objet d'un conteneur

@@ -1,5 +1,7 @@
 package common.language;
 
+import api.utils.Utility;
+
 /**
  * Les champs du jeu
  *
@@ -16,10 +18,6 @@ public enum GameFields implements Field {
 
 	@Override
 	public String toString() {
-		String name = this.name();
-		if (name.contains("_")) {
-			name = name.replaceAll("_", "");
-		}
-		return name.toLowerCase();
+		return Utility.snakeCaseToCamelCase(this.name());
 	}
 }

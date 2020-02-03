@@ -40,7 +40,7 @@ public enum Operations {
 	 * La classe possèderait un constructeur qui prends une EnigmaView et
 	 * un OperéationListener.
 	 *
-	 * @see editor.menus.enimas.listeners.OperationListener#actionPerformed(java.awt.event.ActionEvent)
+	 * @see editor.menus.enimas.create.listeners.OperationListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	public final Class<? extends Runnable> initClass;
 	/**
@@ -85,7 +85,7 @@ public enum Operations {
 	 * @param operations l'opération
 	 * @param observer   observeur
 	 */
-	public static void lock(@NotNull Operations operations, Observer observer) {
+	public static void lock(@NotNull Operations operations, Observer<GameObject> observer) {
 		unlock(locked);
 		locked = operations;
 		locked.lock(observer);
@@ -97,7 +97,7 @@ public enum Operations {
 	 *
 	 * @param observer observeur
 	 */
-	private void lock(Observer observer) {
+	private void lock(Observer<GameObject> observer) {
 		if (menuDrag.contains(SelectionsModes.MENU)) DragAndDropBuilder.setForPopup(observer);
 		//if(menuDrag.contains(SelectionsModes.MAP)) EnigmaView.setAvailable(observer);
 	}

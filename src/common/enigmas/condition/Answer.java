@@ -5,8 +5,11 @@ import common.entities.players.Player;
 import common.entities.types.Content;
 import common.hud.EnigmaOptionPane;
 import common.hud.EnigmaWindow;
+import common.language.EnigmaField;
 
 import java.util.Map;
+
+import static common.language.GameLanguage.gl;
 
 /**
  * Vérifie que l'utilisateur donne une réponse correcte
@@ -78,5 +81,11 @@ public class Answer extends Condition {
 
 	public String getContent() {
 		return ((Content) entity).getContent();
+	}
+
+	@Override
+	public String getEnigmaElementReadablePrint() {
+		return "["+gl.get(EnigmaField.INPUT_ANSWER)+": "+
+				gl.get(EnigmaField.ANSWER)+" = \"" + this.answer +"\" ]";
 	}
 }

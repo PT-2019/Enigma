@@ -135,7 +135,6 @@ public class OperationListener implements ActionListener, ItemListener {
             if (pos == null || pos.x < 0 || pos.y < 0) {
                 MapTestScreen map = ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap();
                 //supprime de la map
-                System.out.println("remove");
                 map.removeEntity(this.object);
                 //l'id du temporaire est forcément le dernier donc transfert de l'id si besoin
                 if (object != null && object.getID() > this.object.getID())

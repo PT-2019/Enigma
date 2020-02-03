@@ -9,6 +9,8 @@ import game.dnd.DragAndDropBuilder;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import static data.NeedToBeTranslated.*;
+
 /**
  * Conditions disponibles
  *
@@ -20,17 +22,22 @@ import org.jetbrains.annotations.Nullable;
  * @since 5.0 26/01/2020
  */
 public enum Conditions {
-	ACTIVATED("Un object doit être activé", "Seulement un objet activable.", null, SelectionsModes.MAP),
-	ANSWER("Demander au joueur une réponse", "", null, SelectionsModes.NONE),
-	HAVE_IN_HANDS("Avoir l'objet dans ses mains", "Objects uniquement (clef, livre, ...)", null, SelectionsModes.MAP_AND_POPUP),
-	HAVE_IN_INVENTORY("Avoir l'objet dans l'inventaire", "Objects uniquement (clef, livre, ...)", null, SelectionsModes.MAP_AND_POPUP),
+	ACTIVATED(ACTIVATED_DESC, ACTIVATED_RES, null, SelectionsModes.MAP),
+	ANSWER(ANSWER_DESC, ANSWER_RES, null, SelectionsModes.NONE),
+	HAVE_IN_HANDS(HAVE_IN_HANDS_DESC, HAVE_IN_HANDS_RES, null, SelectionsModes.MAP_AND_POPUP),
+	HAVE_IN_INVENTORY(HAVE_IN_INVENTORY_DESC, HAVE_IN_INVENTORY_RES, null, SelectionsModes.MAP_AND_POPUP),
 	;
 
 	/**
 	 * La condition qui verrouille actuellement l'état
 	 */
 	private static Conditions locked = null;
+
+	/**
+	 * Description
+	 */
 	public final String value;
+
 	/**
 	 * Le nom d'une classe dont la méthode run crée.
 	 * <p>
@@ -39,7 +46,7 @@ public enum Conditions {
 	 * La classe possèderait un constructeur qui prends une EnigmaView et
 	 * un OperéationListener.
 	 *
-	 * @see editor.menus.enimas.listeners.ConditionListener#actionPerformed(java.awt.event.ActionEvent)
+	 * @see editor.menus.enimas.create.listeners.ConditionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	public final Class<? extends Runnable> initClass;
 	/**
@@ -82,19 +89,19 @@ public enum Conditions {
 	 * @param conditions la condition
 	 * @param observer   observeur
 	 */
-	public static void lock(@NotNull Conditions conditions, Observer observer) {
+	public static void lock(@NotNull Conditions conditions, Observer<GameObject> observer) {
 		unlock(locked);
 		locked = conditions;
 		locked.lock(observer);
 	}
 
 	/**
-	 * Vérouille la condition actuelle. L'éditor est bloqué.
+	 * Verrouille la condition actuelle. L'éditor est bloqué.
 	 * Par exemple le drag and drop depuis le menu peu être désactivé.
 	 *
 	 * @param observer observeur
 	 */
-	private void lock(Observer observer) {
+	private void lock(Observer<GameObject> observer) {
 		if (menuDrag.contains(SelectionsModes.MENU)) DragAndDropBuilder.setForPopup(observer);
 	}
 

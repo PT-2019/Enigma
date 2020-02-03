@@ -4,6 +4,7 @@ import common.hud.EnigmaButton;
 import common.hud.EnigmaLabel;
 import common.hud.EnigmaPanel;
 import common.hud.EnigmaTextArea;
+import data.NeedToBeTranslated;
 import data.config.EnigmaUIValues;
 import editor.menus.AbstractPopUpView;
 import editor.menus.AbstractSubPopUpView;
@@ -30,10 +31,10 @@ import java.awt.Insets;
  */
 public class CluePanel extends AbstractSubPopUpView {
 
-	public static final String TITLE = "Ajouter un indice";
-	private static final String TIME = "Temps (minutes) avant activation de l'indice :";
-	private static final String CLUE = "Indice :";
-	private static final String SUBMIT = "Valider";
+	public static final String TITLE = NeedToBeTranslated.ADD_CLUE;
+	private static final String TIME = NeedToBeTranslated.TIME_CLUE;
+	private static final String CLUE = NeedToBeTranslated.INPUT_CLUE;
+	private static final String SUBMIT = NeedToBeTranslated.SUBMIT;
 	private final EnigmaLabel clue, time;
 
 	CluePanel(AbstractPopUpView parent, ManageEnigmasAddView addView) {

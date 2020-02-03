@@ -394,5 +394,35 @@ public class Utility implements Serializable {
 	public static void printDebug(String className, String message) {
 		throw new UnsupportedOperationException("disabled");
 	}
+
+	/**
+	 * Transforme un mot en SNAKE_CASE en CamelCase.
+	 *
+	 * @param name mot
+	 *
+	 * @return le mot en CamelCase
+	 */
+	@ConvenienceMethod
+	public static String snakeCaseToCamelCase(String name) {
+		if (name.contains("_")) {
+			StringBuilder sb = new StringBuilder();
+			boolean up = false; //si suivante est une majuscule
+			for (int i = 0; i < name.length(); i++) {
+				String c = (name.charAt(i) + "").toLowerCase(); //minuscule
+				if (c.equals("_")) {
+					up = true; //préviens de le prochain est une majuscule
+				} else {
+					if (up) {
+						sb.append((c + "").toUpperCase());
+						up = false;
+					} else {
+						sb.append(c);//ajoute à la chaîne
+					}
+				}
+			}
+			return sb.toString();
+		}
+		return name.toLowerCase();
+	}
 }
 

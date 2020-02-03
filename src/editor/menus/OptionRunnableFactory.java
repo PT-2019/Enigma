@@ -7,8 +7,10 @@ import editor.menus.others.DefineAsHero;
 import editor.menus.others.Delete;
 import editor.menus.others.HidePassageRoom;
 import editor.menus.enimas.ManageEnigmas;
-import editor.menus.others.SetAccess;
+import editor.menus.set.SetAccess;
 import editor.menus.others.SetName;
+import editor.menus.set.SetActivated;
+import editor.menus.set.SetLocked;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -91,8 +93,8 @@ public final class OptionRunnableFactory {
 	public static Class<? extends AvailableOptionRunnable> setName(){ return SetName.class; }
 
 	@SuppressWarnings("unused")
-	public static Class<? extends AvailableOptionRunnable> setLocked(){ return null; }
+	public static Class<? extends AvailableOptionRunnable> setLocked(){ return SetLocked.class; }
 
 	@SuppressWarnings("unused")
-	public static Class<? extends AvailableOptionRunnable> setActivated(){ return null; }
+	public static Class<? extends AvailableOptionRunnable> setActivated(){ return SetActivated.class; }
 }

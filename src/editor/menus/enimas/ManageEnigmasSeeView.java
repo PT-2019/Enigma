@@ -88,7 +88,7 @@ public class ManageEnigmasSeeView extends AbstractSubPopUpView implements Drawab
 		c = 0;
 		while(allAdvices.hasNext()){
 			Advice a = allAdvices.next();
-			extra.add(new EnigmaLabel(a.toString(), ui));
+			extra.add(new EnigmaLabel(a.getEnigmaElementReadablePrint(), ui));
 			c++;
 		}
 
@@ -106,7 +106,7 @@ public class ManageEnigmasSeeView extends AbstractSubPopUpView implements Drawab
 		//Affichage des conditions
 		while(allConditions.hasNext()){
 			Condition a = allConditions.next();
-			extra.add(new EnigmaLabel(a.toLongString(), ui));
+			extra.add(new EnigmaLabel(a.getEnigmaElementReadablePrint(), ui));
 			c++;
 		}
 
@@ -124,7 +124,7 @@ public class ManageEnigmasSeeView extends AbstractSubPopUpView implements Drawab
 		//Affichage des opérations
 		while(allOperations.hasNext()){
 			Operation a = allOperations.next();
-			extra.add(new EnigmaLabel(a.toLongString(), ui));
+			extra.add(new EnigmaLabel(a.getEnigmaElementReadablePrint(), ui));
 			c++;
 		}
 

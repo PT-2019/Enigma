@@ -7,7 +7,7 @@
     create:new file
     open:open
     save:save,
-    saveas:save As,
+    saveAs:save As,
     undo:undo
     redo:redo
     brush:brush
@@ -31,10 +31,13 @@
     actions: Actions
 
     layer: Layer
-    firstlayer: Ground Floor
+    firstLayer: Ground Floor
     ok: Yes
     cancel: No
     leave: Are you leaving ?
+
+    //actions
+    gameExit: Game Exit
 
     //game
     room: Room
@@ -44,11 +47,27 @@
     button: Button
     book: Book
     door: Door
-    pressureplate: Pressure Plate
+    pressurePlate: Pressure Plate
     player: Hero
     library: Library
 
     npc: NPC
     monster: Monster
+
+    adviceContent: content
+    delay: delay
+    advice: Advice
+    activated: Need to be activated
+    entity: entity
+    after: after
+    delayMesure: minutes
+    haveInHands: Have in hands
+    haveInInventory: Have in inventory
+    answer: answer
+    inputAnswer: Input answer
+    give: Give
+    summon: Summon
+    location: at
+    unlock: Unlock
   }
 }

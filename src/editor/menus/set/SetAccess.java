@@ -1,4 +1,4 @@
-package editor.menus.others;
+package editor.menus.set;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;

@@ -1,5 +1,6 @@
 package common.enigmas.condition;
 
+import common.enigmas.EnigmaElementReadablePrint;
 import common.entities.Entity;
 import common.entities.players.Player;
 import common.save.enigmas.EnigmaAttributes;
@@ -21,7 +22,7 @@ import java.util.Map;
  * @see common.enigmas.Enigma
  * @since 2.0
  */
-public abstract class Condition {
+public abstract class Condition implements EnigmaElementReadablePrint {
 
 	/**
 	 * Entité dont l'état détermine si la condition est satisfaite ou nom

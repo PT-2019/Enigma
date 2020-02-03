@@ -2,6 +2,7 @@ package editor.menus.content;
 
 import common.entities.GameObject;
 import common.hud.EnigmaButton;
+import data.NeedToBeTranslated;
 import editor.menus.AbstractPopUpView;
 import editor.menus.AvailableOptionRunnable;
 import editor.menus.AvailablePopUpOption;
@@ -21,7 +22,7 @@ import editor.popup.cases.CasePopUp;
  */
 public class SetContent implements AvailableOptionRunnable {
 
-	private static final String DIALOG = "Définir le contenu";
+	private static final String DIALOG = NeedToBeTranslated.DEFINE_CONTENT;
 	private final CasePopUp parent;
 	/**
 	 * Affiche la gestion de contenu pour les entités.

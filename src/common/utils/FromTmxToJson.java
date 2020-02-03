@@ -41,7 +41,7 @@ class FromTmxToJson {
 		StringBuilder sb = new StringBuilder();
 
 		sb.append("{\n");
-		sb.append("  className: game.entity.item.Room\n");
+		sb.append("  className: common.entities.special.Room\n");
 		sb.append("  path: assets/map/datas/rooms/");
 		sb.append(name);
 		sb.append(".png\n");
@@ -67,15 +67,15 @@ class FromTmxToJson {
 		for (Layer layer : Layer.values()) {
 			sb.append("   ");
 			sb.append(layer.name());
-			System.out.println(layer.name + " " + layer.name());
 			sb.append(": [\n");
 
 			//values
 			for (int i = 0; i < m.getRow(); i++) {
 				for (int j = 0; j < m.getCol(); j++) {
 					Texture entity = m.getCase(i * m.getCol() + j).getEntity(layer);
-					System.out.println(entity);
-					sb.append(entity.getPosition());
+					if(entity != null) sb.append(entity.getPosition());
+					else  if(m.getCase(i * m.getCol() + j).isWalkable()){ sb.append("2041");
+					} else { sb.append("0"); }
 					sb.append(',');
 				}
 				sb.append('\n');
@@ -187,6 +187,9 @@ class FromTmxToJson {
 			System.out.println(fromRoomToJson("assets/map/map_system/Room3.tmx", "Room3"));
 			System.out.println(fromRoomToJson("assets/map/map_system/Room4.tmx", "Room4"));
 			System.out.println(fromRoomToJson("assets/map/map_system/Room5.tmx", "Room5"));
+			System.out.println(fromRoomToJson("assets/map/map_system/Room6.tmx", "Room6"));
+			System.out.println(fromRoomToJson("assets/map/map_system/Room7.tmx", "Room7"));
+			System.out.println(fromRoomToJson("assets/map/map_system/Room8.tmx", "Room8"));
 		}
 	}
 

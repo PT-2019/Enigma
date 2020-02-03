@@ -6,6 +6,7 @@ import common.hud.EnigmaButton;
 import common.hud.EnigmaLabel;
 import common.hud.EnigmaPanel;
 import common.hud.EnigmaTextArea;
+import data.NeedToBeTranslated;
 import editor.menus.AbstractPopUpView;
 import editor.popup.cases.CasePopUp;
 
@@ -29,10 +30,10 @@ import java.awt.event.ActionListener;
  * @since 5.0 29/01/2020
  */
 public class AddContentView extends AbstractPopUpView {
-	private static final String INPUT = "Saisir du contenu";
-	private static final String TITLE = "Contenu de l'object";
-	private static final String SUBMIT = "Enregistrer";
-	private static final String SAVED = "Enregistré";
+	private static final String INPUT = NeedToBeTranslated.INPUT_CONTENT;
+	private static final String TITLE = NeedToBeTranslated.TITLE_CONTENT;
+	private static final String SUBMIT = NeedToBeTranslated.SAVE;
+	private static final String SAVED = NeedToBeTranslated.SAVED;
 	private static final int PADDING = 10;
 
 	/*
@@ -93,7 +94,6 @@ public class AddContentView extends AbstractPopUpView {
 
 	@Override
 	public void clean() {
-
 	}
 
 	/**

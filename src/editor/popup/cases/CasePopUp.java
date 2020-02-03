@@ -6,6 +6,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import common.hud.EnigmaPanel;
 import common.map.MapTestScreenCell;
 import data.Layer;
+import data.NeedToBeTranslated;
 import editor.EditorLauncher;
 import editor.menus.AvailableOptionRunnable;
 import editor.menus.AvailablePopUpOption;
@@ -15,12 +16,13 @@ import editor.popup.cases.panel.NavigationPanel;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Rectangle;
 import java.util.EnumMap;
 
 /**
- * Fenetre qui est afficher lorsqu'on clique sur une case
+ * Fenêtre qui est afficher lorsqu'on clique sur une case
  */
 public class CasePopUp extends AbstractPopUp {
 
@@ -80,7 +82,7 @@ public class CasePopUp extends AbstractPopUp {
 			runnables.put(runnable.getOption(), runnable);
 		}
 		this.navigation.setLayout(new GridLayout(1, 3));
-		this.extra.setLayout(new GridLayout(2, 3));
+		this.extra.setLayout(new FlowLayout());
 	}
 
 	/**
@@ -91,7 +93,7 @@ public class CasePopUp extends AbstractPopUp {
 		this.setTitle(Layer.valueOf(currentLayer.getName()).name);
 
 		if (this.cell.getEntity() == null) {
-			this.navigation.setText("Aucune entité");
+			this.navigation.setText(NeedToBeTranslated.NO_ENTITY);
 		} else {
 			this.navigation.setText(this.cell.getEntity().getReadableName());
 			fillPanel();
@@ -111,7 +113,9 @@ public class CasePopUp extends AbstractPopUp {
 			for (AvailablePopUpOption option : AvailablePopUpOption.values()) {
 				if (AvailablePopUpOption.isAvailable(option, this.cell.getEntity())) {
 					AvailableOptionRunnable runnable = runnables.get(option);
-					if (runnable != null) runnable.run();
+					if (runnable != null){
+						runnable.run();
+					}
 				}
 			}
 		}

@@ -6,6 +6,7 @@ import common.entities.GameObject;
 import common.hud.EnigmaButton;
 import common.hud.EnigmaLabel;
 import common.hud.EnigmaPanel;
+import data.NeedToBeTranslated;
 import editor.menus.AbstractPopUpView;
 import editor.menus.AbstractSubPopUpView;
 import editor.menus.enimas.create.listeners.ConditionListener;
@@ -35,12 +36,11 @@ import java.awt.Insets;
  */
 public class ConditionPanel extends AbstractSubPopUpView implements Observer<GameObject> {
 
-	public static final String NOT_AVAILABLE_OPERATION = "Condition non disponible";
-	public static final String ASK_SELECT = "Veuillez sélectionner un objet ";
-	public static final String ASK_COND = "Veuillez sélectionner une condition.";
-	public static final String NOT_AVAILABLE_CONDITION = "Opération non disponible";
-	public static final String TITLE = "Ajouter une Condition à l'énigme";
-	private static final String INVALID_ENTITY = "Entité Invalide. ";
+	public static final String NOT_AVAILABLE_CONDITION = NeedToBeTranslated.NOT_AVAILABLE_CONDITION;
+	private static final String ASK_SELECT = NeedToBeTranslated.ASK_SELECT;
+	public static final String ASK_COND = NeedToBeTranslated.ASK_COND;
+	public static final String TITLE = NeedToBeTranslated.ADD_CONDITION;
+	private static final String INVALID_ENTITY = NeedToBeTranslated.INVALID_ENTITY;
 
 	/**
 	 * Les informations sur l'entité sur laquelle l'opération sera faite
@@ -155,11 +155,11 @@ public class ConditionPanel extends AbstractSubPopUpView implements Observer<Gam
 		}
 
 		if (object == null && wrong) {
-			msg += INVALID_ENTITY;
+			msg += INVALID_ENTITY+" ";
 			msg += operations.restrict;
 			this.entityName.setText(msg);
 		} else if (object == null && operations != null) {
-			this.entityName.setText(ASK_SELECT + "(" + operations.menuDrag.msg + ")");
+			this.entityName.setText(ASK_SELECT + " (" + operations.menuDrag.msg + ")");
 		} else if (object != null) {
 			msg += object.getReadableName() + " (id=" + object.getID() + ")";
 			this.entityName.setText(msg);

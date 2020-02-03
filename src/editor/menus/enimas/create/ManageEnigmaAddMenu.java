@@ -70,7 +70,7 @@ public class ManageEnigmaAddMenu extends AbstractSubPopUpView {
 		//add
 		this.content.setLayout(new GridLayout(ROW, COL));
 
-		EnigmaPanel left = new EnigmaPanel(new GridLayout(2, 1));
+		EnigmaPanel left = new EnigmaPanel(new BorderLayout());
 		EnigmaPanel titleP = new EnigmaPanel(new GridBagLayout());
 		EnigmaPanel descP = new EnigmaPanel(new GridBagLayout());
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -94,8 +94,8 @@ public class ManageEnigmaAddMenu extends AbstractSubPopUpView {
 		gbc.weightx = 1;
 		gbc.fill = GridBagConstraints.BOTH;
 		descP.add(description.setScrollBar(), gbc);
-		left.add(titleP);
-		left.add(descP);
+		left.add(titleP, BorderLayout.NORTH);
+		left.add(descP, BorderLayout.CENTER);
 		this.content.add(left);
 
 		EnigmaPanel right = new EnigmaPanel(new GridBagLayout());

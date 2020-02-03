@@ -24,6 +24,7 @@ public interface Drawable {
 
 	/**
 	 * Une méthode pour forcer le composant a se mettre à jour
+	 * par exemple pour une liste.
 	 * @since 6.0
 	 */
 	void invalidateDrawable();
