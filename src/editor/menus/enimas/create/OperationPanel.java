@@ -1,22 +1,20 @@
-package editor.menus.enimas;
+package editor.menus.enimas.create;
 
-import api.ui.base.ResetComponent;
 import api.utils.Observer;
 import api.utils.Utility;
 import common.entities.GameObject;
 import common.hud.EnigmaButton;
 import common.hud.EnigmaLabel;
 import common.hud.EnigmaPanel;
-import editor.menus.enimas.listeners.OperationListener;
-import editor.menus.enimas.view.Operations;
-import editor.popup.cases.panel.MenuPanel;
+import editor.menus.AbstractPopUpView;
+import editor.menus.AbstractSubPopUpView;
+import editor.menus.enimas.create.listeners.ConditionListener;
+import editor.menus.enimas.create.listeners.OperationListener;
+import editor.popup.listeners.CaseListener;
 import game.dnd.DragAndDropBuilder;
 import org.jetbrains.annotations.Nullable;
 
-import javax.swing.ButtonGroup;
-import javax.swing.JRadioButton;
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
+import javax.swing.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
@@ -34,12 +32,33 @@ import java.awt.Insets;
  * @version 5.0
  * @since 4.0
  */
-public class OperationPanel extends EnigmaViewPanel implements Observer<GameObject>, ResetComponent {
+public class OperationPanel extends AbstractSubPopUpView implements Observer<GameObject> {
 
-	public OperationPanel(EnigmaView parent) {
-		super(parent);
+	public static final String NOT_SELECTED = "Vous n'avez pas encore choisi d'entité";
+	public static final String ASK_SELECT = "Veuillez sélectionner un objet ";
+	public static final String ASK_OP = "Veuillez sélectionner une opération.";
+	public static final String NOT_AVAILABLE_OPERATION = "Opération non disponible";
+	private static final String INVALID_ENTITY = "Entité Invalide. ";
+	public static final String TITLE = "Ajouter une Opération à l'énigme";
+
+	/**
+	 * Les informations sur l'entité sur laquelle l'opération sera faite
+	 */
+	private final EnigmaLabel entityName, selection;
+	/**
+	 * Groupe des bouton de choix de l'opération
+	 */
+	private ButtonGroup groups;
+	/**
+	 * Observateur de ce menu
+	 */
+	private OperationListener listener;
+
+	OperationPanel(AbstractPopUpView parent, ManageEnigmasAddView addView) {
+		super("", parent, false);
+
 		this.groups = new ButtonGroup();
-		this.listener = new OperationListener(parent, this);
+		this.listener = new OperationListener(parent, this, addView);
 
 		EnigmaPanel panel = new EnigmaPanel();
 		panel.setLayout(new GridLayout(Operations.values().length, 1));
@@ -88,17 +107,12 @@ public class OperationPanel extends EnigmaViewPanel implements Observer<GameObje
 		gbc.insets = new Insets(10, 0, 0, 0);
 		p2.add(submit, gbc);
 
-		this.setLayout(new BorderLayout());
-		this.add(new MenuPanel(TITLE, "", parent, this), BorderLayout.NORTH);
+		this.content.setLayout(new BorderLayout());
 		JScrollPane panelS = new JScrollPane(panel);
 		panelS.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		panelS.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-		this.add(panelS, BorderLayout.CENTER);
-		this.add(p2, BorderLayout.SOUTH);
-	}
-
-	@Override
-	public void initComponent() {
+		this.content.add(panelS, BorderLayout.CENTER);
+		this.content.add(p2, BorderLayout.SOUTH);
 	}
 
 	/**
@@ -115,6 +129,10 @@ public class OperationPanel extends EnigmaViewPanel implements Observer<GameObje
 		DragAndDropBuilder.setForPopup(null);
 	}
 
+	@Override
+	public void initComponent() {
+	}
+
 	/**
 	 * Met a jour le panneau des opérations, si par exemple une entité a étée sélectionnée
 	 *
@@ -123,7 +141,7 @@ public class OperationPanel extends EnigmaViewPanel implements Observer<GameObje
 	 */
 	@Override
 	public void update(@Nullable GameObject object) {
-		if (!EnigmaView.isAvailable(this)) return;
+		if (!CaseListener.isAvailable(this)) return;
 
 		this.listener.setGameObject(object);
 		JRadioButton currentButton = this.listener.getCurrentButton();

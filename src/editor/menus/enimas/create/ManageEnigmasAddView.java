@@ -8,7 +8,6 @@ import common.map.MapTestScreenCell;
 import editor.menus.AbstractPopUpView;
 import editor.menus.AbstractSubPopUpView;
 import editor.menus.enimas.ManageEnigmasView;
-import editor.menus.enimas.viewT.OperationPanel;
 import editor.popup.cases.CasePopUp;
 import editor.popup.listeners.CaseListener;
 import game.dnd.DragAndDropBuilder;
@@ -103,7 +102,7 @@ public class ManageEnigmasAddView extends AbstractSubPopUpView {
 		//layout
 		ConditionPanel condition = new ConditionPanel(parent, this);
 		parent.getPopUp().getObserver().addObserver(condition);
-		OperationPanel operation = new OperationPanel(parent);
+		OperationPanel operation = new OperationPanel(parent, this);
 		parent.getPopUp().getObserver().addObserver(operation);
 		CluePanel clue = new CluePanel(parent, this);
 		this.panel.add(new ManageEnigmaAddMenu(parent, this), MENU);

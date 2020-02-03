@@ -7,6 +7,7 @@ import common.hud.EnigmaTextArea;
 import data.config.EnigmaUIValues;
 import editor.menus.AbstractPopUpView;
 import editor.menus.AbstractSubPopUpView;
+import editor.menus.enimas.create.OperationPanel;
 import editor.menus.enimas.create.listeners.SubmitEnigmaListener;
 import org.jetbrains.annotations.Nullable;
 
@@ -112,7 +113,7 @@ public class ManageEnigmaAddMenu extends AbstractSubPopUpView {
 		//listeners
 		clue.addActionListener(new NextListener(ManageEnigmasAddView.CLUE, CluePanel.TITLE, addView));
 		condition.addActionListener(new NextListener(ManageEnigmasAddView.CONDITION, ConditionPanel.TITLE, addView));
-		operation.addActionListener(new NextListener(ManageEnigmasAddView.OPERATION,"", addView));
+		operation.addActionListener(new NextListener(ManageEnigmasAddView.OPERATION, OperationPanel.TITLE, addView));
 		submit.addActionListener(new SubmitEnigmaListener(title,description, addView, this));
 	}
 
