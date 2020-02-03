@@ -5,6 +5,7 @@ import api.ui.base.WindowSize;
 import api.utils.Utility;
 import common.hud.EnigmaAlert;
 import common.hud.EnigmaLabel;
+import common.hud.EnigmaWindow;
 import data.config.Config;
 
 import javax.swing.*;
@@ -100,6 +101,18 @@ public class ImportExport {
     }
 
     /**
+     * Rafraichi le chargement
+     * @param loading Label de chargement
+     * @param count Compte
+     * @param sum Total
+     */
+    private static void refreshLoading(EnigmaLabel loading, int count, int sum){
+        double d = (double) count / sum;
+        double i = d * 100;
+        loading.setText((int)i + "%");
+    }
+
+    /**
      * Exporte une map
      * @param mapName Nom de la map
      * @param exportPath Chemin où créer le fichier exporté
@@ -116,19 +129,22 @@ public class ImportExport {
             int count = 0;
             int sum = (mapData.length() + 1) + (gameData.length() + 1) + (map.length() + 1) + (enigmas.length() + 1);
 
-            EnigmaLabel title = new EnigmaLabel("Exportation en cours");
-            EnigmaLabel loading = new EnigmaLabel(count + "/" + sum);
+            EnigmaLabel title = new EnigmaLabel("Exportation en cours vers :");
+            EnigmaLabel path = new EnigmaLabel(exportPath + mapName + Config.EXPORT_EXTENSION);
+            EnigmaLabel loading = new EnigmaLabel("0%");
             title.setVerticalTextPosition(JLabel.BOTTOM);
             loading.setVerticalTextPosition(JLabel.TOP);
-            EnigmaAlert alert = new EnigmaAlert(50,50);
-            alert.getContentSpace().setLayout(new FlowLayout());
-            alert.getContentSpace().add(title);
-            alert.getContentSpace().add(loading);
-            alert.setWindowBackground(Color.DARK_GRAY);
-            alert.setAlwaysOnTop(true);
-            alert.setResizable(false);
-            alert.setMenuBarVisible(false);
-            alert.setVisible(true);
+            EnigmaAlert window = new EnigmaAlert(50,50);
+            window.setMinimumSize(new Dimension(50,50));
+            window.getContentSpace().setLayout(new GridLayout(3,1));
+            window.getContentSpace().add(title);
+            window.getContentSpace().add(path);
+            window.getContentSpace().add(loading);
+            window.setWindowBackground(Color.DARK_GRAY);
+            window.setAlwaysOnTop(true);
+            window.setResizable(false);
+            window.setMenuBarVisible(false);
+            window.setVisible(true);
 
             for(String s : ImportExport.toBytes(mapName + STRING_END))
                 writer.writeChars(s);
@@ -136,36 +152,33 @@ public class ImportExport {
             for(String s : ImportExport.toBytes(mapData + STRING_END)) {
                 writer.writeChars(s);
                 count++;
-                loading.setText(count + "/" + sum);
+                ImportExport.refreshLoading(loading,count,sum);
             }
 
             for(String s : ImportExport.toBytes(gameData + STRING_END)) {
                 writer.writeChars(s);
                 count++;
-                loading.setText(count + "/" + sum);
+                ImportExport.refreshLoading(loading,count,sum);
             }
 
             for(String s : ImportExport.toBytes(map + STRING_END)){
                 writer.writeChars(s);
                 count++;
-                loading.setText(count + "/" + sum);
+                ImportExport.refreshLoading(loading,count,sum);
             }
 
             for(String s : ImportExport.toBytes(enigmas + STRING_END)) {
                 writer.writeChars(s);
                 count++;
-                loading.setText(count + "/" + sum);
+                ImportExport.refreshLoading(loading,count,sum);
             }
 
+            window.dispose();
             writer.close();
         }catch (IOException e){
             writer.close();
             throw new IOException("export error");
         }
-    }
-
-    public static void main(String[] args) throws IOException {
-        ImportExport.exportGame("gbdvsdvsd","assets/files/user/");
     }
 
     /**
@@ -185,20 +198,22 @@ public class ImportExport {
             int count = 0;
             int sum = (mapData.length() + 1) + (gameData.length() + 1) + (map.length() + 1) + (enigmas.length() + 1);
 
-            EnigmaLabel title = new EnigmaLabel("Exportation en cours");
-            EnigmaLabel loading = new EnigmaLabel(count + "/" + sum);
+            EnigmaLabel title = new EnigmaLabel("Exportation en cours vers :");
+            EnigmaLabel path = new EnigmaLabel(exportPath + mapName + Config.EXPORT_EXTENSION);
+            EnigmaLabel loading = new EnigmaLabel("0%");
             title.setVerticalTextPosition(JLabel.BOTTOM);
             loading.setVerticalTextPosition(JLabel.TOP);
-            EnigmaAlert alert = new EnigmaAlert(50,50);
-            alert.setMinimumSize(new Dimension(50,50));
-            alert.getContentSpace().setLayout(new FlowLayout());
-            alert.getContentSpace().add(title);
-            alert.getContentSpace().add(loading);
-            alert.setWindowBackground(Color.DARK_GRAY);
-            alert.setAlwaysOnTop(true);
-            alert.setResizable(false);
-            alert.setMenuBarVisible(false);
-            alert.setVisible(true);
+            EnigmaAlert window = new EnigmaAlert(50,50);
+            window.setMinimumSize(new Dimension(50,50));
+            window.getContentSpace().setLayout(new GridLayout(3,1));
+            window.getContentSpace().add(title);
+            window.getContentSpace().add(path);
+            window.getContentSpace().add(loading);
+            window.setWindowBackground(Color.DARK_GRAY);
+            window.setAlwaysOnTop(true);
+            window.setResizable(false);
+            window.setMenuBarVisible(false);
+            window.setVisible(true);
 
             for(String s : ImportExport.toBytes(mapName + STRING_END))
                 writer.writeChars(s);
@@ -206,28 +221,29 @@ public class ImportExport {
             for(String s : ImportExport.toBytes(mapData + STRING_END)) {
                 writer.writeChars(s);
                 count++;
-                loading.setText(count + "/" + sum);
+                ImportExport.refreshLoading(loading,count,sum);
             }
 
             for(String s : ImportExport.toBytes(gameData + STRING_END)) {
                 writer.writeChars(s);
                 count++;
-                loading.setText(count + "/" + sum);
+                ImportExport.refreshLoading(loading,count,sum);
             }
 
             for(String s : ImportExport.toBytes(map + STRING_END)){
                 writer.writeChars(s);
                 count++;
-                loading.setText(count + "/" + sum);
+                ImportExport.refreshLoading(loading,count,sum);
             }
 
            for(String s : ImportExport.toBytes(enigmas + STRING_END)) {
                writer.writeChars(s);
                count++;
-               loading.setText(count + "/" + sum);
+               ImportExport.refreshLoading(loading,count,sum);
            }
 
-            writer.close();
+           window.dispose();
+           writer.close();
         }catch(IOException e){
             writer.close();
             throw new IOException("export error");

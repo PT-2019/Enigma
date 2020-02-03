@@ -84,7 +84,7 @@ public class BarMenu extends EnigmaMenuBar {
 		this.save.addActionListener(new SaveListener(window, this.save));
 		this.saveAs.addActionListener(new SaveAsListener(window, this.saveAs));
 		this.export.addActionListener(new ExportListener(window, this.export));
-		this.export.addActionListener(new ImportListener(window, this.importMap));
+		this.importMap.addActionListener(new ImportListener(window, this.importMap));
 		this.undo.addActionListener(new UndoListener(window, this.undo));
 		this.redo.addActionListener(new RedoListener(window, this.redo));
 
