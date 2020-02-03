@@ -184,18 +184,14 @@ public abstract class AbstractMap extends Group {
 	// utils (static)
 
 	/**
-	 * Retourne la case (indices) dans la map depuis une positon x,y dans l'espace.
-	 * <p>
+	 * Convertit la position sur la map en position sur la grille
+	 *
 	 * Attention! La position  x,y est considérée comme étant toujours dans la map.
 	 *
-	 * @param posX position x
-	 * @param posY position y
-	 * @param map  la map
-	 * @return la case (indices) dans la map depuis une positon x,y dans l'espace.
-	 * @since 3.0 14 décembre 2019
-	 * <p>
-	 * <p>
-	 * VERSION SWING TO LIBGDX
+	 * @param posX coordonnées X
+	 * @param posY coordonnées Y
+	 * @param map la map
+	 * @return la position sur la map
 	 */
 	public static Vector2 posToIndex(float posX, float posY, final AbstractMap map) {
 		Vector2 index = new Vector2();
@@ -203,8 +199,8 @@ public abstract class AbstractMap extends Group {
 		posX /= map.getUnitScale();
 		posY /= map.getUnitScale();
 
-		float column = MathUtils.clamp(Math.round(posX / map.getTileWidth()), 0, map.getMapBounds().right);
-		float row = MathUtils.clamp(Math.round(posY / map.getTileHeight()), 0, map.getMapBounds().top);
+		float column = MathUtils.clamp(Math.round(posX / map.getTileWidth()), 0, map.getMapWidth()*map.getTileWidth());
+		float row = MathUtils.clamp(Math.round(posY / map.getTileHeight()), 0, map.getMapHeight()*map.getTileHeight());
 
 		index.x = column;
 		index.y = row;
