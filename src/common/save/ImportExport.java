@@ -1,10 +1,17 @@
 package common.save;
 
+import api.ui.CustomAlert;
+import api.ui.base.WindowSize;
 import api.utils.Utility;
+import common.hud.EnigmaAlert;
+import common.hud.EnigmaLabel;
 import data.config.Config;
 
+import javax.swing.*;
+import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Exporteur de map
@@ -20,25 +27,9 @@ import java.util.ArrayList;
 public class ImportExport {
 
     /**
-     * Données nom de la map
+     * Indicateur d'une fin de chaine
      */
-    private final static String NAME = "name";
-    /**
-     * Données ligne de début de la map
-     */
-    private final static String MAP = "map";
-    /**
-     * Données ligne de début des énigmes
-     */
-    private final static String ENIGMAS = "enigmas";
-    /**
-     * Données ligne de début des données de la map
-     */
-    private final static String MAP_DATA = "mapData";
-    /**
-     * Données ligne de début des données de la partie
-     */
-    private final static String GAME_DATA = "gameData";
+    private final static char STRING_END = '\0';
 
     /**
      * Nombre de données
@@ -89,6 +80,26 @@ public class ImportExport {
     }
 
     /**
+     * Convertie une chaine de caractères en octets correspondants
+     * @param s Chaine
+     * @return Octets correpondants aux caractères
+     */
+    private static ArrayList<String> toBytes(String s){
+        ArrayList<String> bytes = new ArrayList<>();
+
+        for(char c : s.toCharArray()){
+            StringBuilder b = new StringBuilder(Integer.toBinaryString(c));
+
+            for(; b.length() < 8;)
+                b.insert(0, "0");
+
+            bytes.add(b.toString());
+        }
+
+        return bytes;
+    }
+
+    /**
      * Exporte une map
      * @param mapName Nom de la map
      * @param exportPath Chemin où créer le fichier exporté
@@ -96,28 +107,55 @@ public class ImportExport {
      */
     public static void exportMap(String mapName, String exportPath) throws IOException {
         DataOutputStream writer = new DataOutputStream(new FileOutputStream(exportPath + mapName + Config.EXPORT_EXTENSION));
+
         try {
-            String map = Config.MAP_FOLDER + mapName + Config.MAP_EXTENSION;
-            String mapData = Config.MAP_DATA_FOLDER + mapName + Config.DATA_EXTENSION;
-            String enigmas = Config.MAP_FOLDER + mapName + Config.ENIGMA_EXTENSION;
-            int mapLineCount = ImportExport.countLines(map);
-            int mapDataLineCount = ImportExport.countLines(mapData);
-            int gameDataLineCount = 0;
+            String map = Utility.readFile(Config.MAP_FOLDER + mapName + Config.MAP_EXTENSION);
+            String mapData =  Utility.readFile(Config.MAP_DATA_FOLDER + mapName + Config.DATA_EXTENSION);
+            String gameData =  "";
+            String enigmas =  Utility.readFile(Config.MAP_FOLDER + mapName + Config.ENIGMA_EXTENSION);
+            int count = 0;
+            int sum = (mapData.length() + 1) + (gameData.length() + 1) + (map.length() + 1) + (enigmas.length() + 1);
 
-            writer.writeChars(mapName);
-            writer.writeChar('\0');
-            writer.writeByte(HEAD_DATA_SIZE);
-            writer.writeChar('\0');
-            writer.writeByte(-1);
-            writer.writeChar('\0');
-            writer.writeByte((HEAD_DATA_SIZE + mapDataLineCount + gameDataLineCount));
-            writer.writeChar('\0');
-            writer.writeByte((HEAD_DATA_SIZE + mapDataLineCount + gameDataLineCount + mapLineCount));
-            writer.writeChar('\0');
+            EnigmaLabel title = new EnigmaLabel("Exportation en cours");
+            EnigmaLabel loading = new EnigmaLabel(count + "/" + sum);
+            title.setVerticalTextPosition(JLabel.BOTTOM);
+            loading.setVerticalTextPosition(JLabel.TOP);
+            EnigmaAlert alert = new EnigmaAlert(50,50);
+            alert.getContentSpace().setLayout(new FlowLayout());
+            alert.getContentSpace().add(title);
+            alert.getContentSpace().add(loading);
+            alert.setWindowBackground(Color.DARK_GRAY);
+            alert.setAlwaysOnTop(true);
+            alert.setResizable(false);
+            alert.setMenuBarVisible(false);
+            alert.setVisible(true);
 
-            writer.writeChars(Utility.readFile(mapData).replaceAll("\n","\0"));
-            writer.writeChars(Utility.readFile(map).replaceAll("\n","\0"));
-            writer.writeChars(Utility.readFile(enigmas).replaceAll("\n","\0"));
+            for(String s : ImportExport.toBytes(mapName + STRING_END))
+                writer.writeChars(s);
+
+            for(String s : ImportExport.toBytes(mapData + STRING_END)) {
+                writer.writeChars(s);
+                count++;
+                loading.setText(count + "/" + sum);
+            }
+
+            for(String s : ImportExport.toBytes(gameData + STRING_END)) {
+                writer.writeChars(s);
+                count++;
+                loading.setText(count + "/" + sum);
+            }
+
+            for(String s : ImportExport.toBytes(map + STRING_END)){
+                writer.writeChars(s);
+                count++;
+                loading.setText(count + "/" + sum);
+            }
+
+            for(String s : ImportExport.toBytes(enigmas + STRING_END)) {
+                writer.writeChars(s);
+                count++;
+                loading.setText(count + "/" + sum);
+            }
 
             writer.close();
         }catch (IOException e){
@@ -127,7 +165,7 @@ public class ImportExport {
     }
 
     public static void main(String[] args) throws IOException {
-        ImportExport.exportMap("gbdvsdvsd","assets/files/user/");
+        ImportExport.exportGame("gbdvsdvsd","assets/files/user/");
     }
 
     /**
@@ -138,30 +176,56 @@ public class ImportExport {
      */
     public static void exportGame(String mapName, String exportPath) throws IOException {
         DataOutputStream writer = new DataOutputStream(new FileOutputStream(exportPath + mapName + Config.EXPORT_EXTENSION));
+
         try {
-            String map = Config.MAP_FOLDER + mapName + Config.MAP_EXTENSION;
-            String mapData = Config.MAP_DATA_FOLDER + mapName + Config.DATA_EXTENSION;
-            String enigmas = Config.MAP_FOLDER + mapName + Config.ENIGMA_EXTENSION;
-            String gameData = Config.GAME_DATA_FOLDER + mapName + Config.DATA_EXTENSION;
-            int mapLineCount = ImportExport.countLines(map);
-            int mapDataLineCount = ImportExport.countLines(mapData);
-            int gameDataLineCount = ImportExport.countLines(gameData);
+            String map = Utility.readFile(Config.MAP_FOLDER + mapName + Config.MAP_EXTENSION);
+            String mapData =  Utility.readFile(Config.MAP_DATA_FOLDER + mapName + Config.DATA_EXTENSION);
+            String gameData =  Utility.readFile(Config.GAME_DATA_FOLDER + mapName + Config.DATA_EXTENSION);
+            String enigmas =  Utility.readFile(Config.MAP_FOLDER + mapName + Config.ENIGMA_EXTENSION);
+            int count = 0;
+            int sum = (mapData.length() + 1) + (gameData.length() + 1) + (map.length() + 1) + (enigmas.length() + 1);
 
-            writer.writeChars(mapName);
-            writer.writeChar('\0');
-            writer.writeByte(HEAD_DATA_SIZE);
-            writer.writeChar('\0');
-            writer.writeByte((HEAD_DATA_SIZE + mapDataLineCount));
-            writer.writeChar('\0');
-            writer.writeByte((HEAD_DATA_SIZE + mapDataLineCount + gameDataLineCount));
-            writer.writeChar('\0');
-            writer.writeByte((HEAD_DATA_SIZE + mapDataLineCount + gameDataLineCount + mapLineCount));
-            writer.writeChar('\0');
+            EnigmaLabel title = new EnigmaLabel("Exportation en cours");
+            EnigmaLabel loading = new EnigmaLabel(count + "/" + sum);
+            title.setVerticalTextPosition(JLabel.BOTTOM);
+            loading.setVerticalTextPosition(JLabel.TOP);
+            EnigmaAlert alert = new EnigmaAlert(50,50);
+            alert.setMinimumSize(new Dimension(50,50));
+            alert.getContentSpace().setLayout(new FlowLayout());
+            alert.getContentSpace().add(title);
+            alert.getContentSpace().add(loading);
+            alert.setWindowBackground(Color.DARK_GRAY);
+            alert.setAlwaysOnTop(true);
+            alert.setResizable(false);
+            alert.setMenuBarVisible(false);
+            alert.setVisible(true);
 
-            writer.writeChars(Utility.readFile(mapData).replaceAll("\n","\0"));
-            writer.writeChars(Utility.readFile(gameData).replaceAll("\n","\0"));
-            writer.writeChars(Utility.readFile(map).replaceAll("\n","\0"));
-            writer.writeChars(Utility.readFile(enigmas).replaceAll("\n","\0"));
+            for(String s : ImportExport.toBytes(mapName + STRING_END))
+                writer.writeChars(s);
+
+            for(String s : ImportExport.toBytes(mapData + STRING_END)) {
+                writer.writeChars(s);
+                count++;
+                loading.setText(count + "/" + sum);
+            }
+
+            for(String s : ImportExport.toBytes(gameData + STRING_END)) {
+                writer.writeChars(s);
+                count++;
+                loading.setText(count + "/" + sum);
+            }
+
+            for(String s : ImportExport.toBytes(map + STRING_END)){
+                writer.writeChars(s);
+                count++;
+                loading.setText(count + "/" + sum);
+            }
+
+           for(String s : ImportExport.toBytes(enigmas + STRING_END)) {
+               writer.writeChars(s);
+               count++;
+               loading.setText(count + "/" + sum);
+           }
 
             writer.close();
         }catch(IOException e){
@@ -191,6 +255,22 @@ public class ImportExport {
         int line = 1;
         String read;
         String mapName = null;
+
+        /*DataInputStream r = new DataInputStream(new FileInputStream(exportPath + mapName + Config.EXPORT_EXTENSION));
+            StringBuilder s = new StringBuilder();
+            StringBuilder s2 = new StringBuilder();
+            while(true) {
+                s.delete(0,s.length());
+                for (int i = 0; i < 8; i++) {
+                    s.append(r.readChar());
+                }
+                char c = (char) Integer.parseInt(s.toString(), 2);
+                if(c == '\0')
+                    break;
+                else
+                    s2.append(c);
+            }
+            System.out.println(s2);*/
 
         /*ArrayList<String> data = ImportExport.getDataList();
         for(String key : data){
