@@ -60,8 +60,10 @@ public class ExportListener extends MenuListener {
 
 			try {
 				ImportExport.exportMap(data.getMapName(),exportPath);
-			} catch (IOException e) {
+			} catch (IOException |IllegalStateException e) {
 				Logger.printError("ExportListener.java","export error");
+				File f = new File(exportPath + data.getMapName() + Config.EXPORT_EXTENSION);
+				f.delete();
 				EnigmaOptionPane.showAlert(this.window,"Export raté");
 			}
 			//TODO: afficher ok

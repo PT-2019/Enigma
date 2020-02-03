@@ -34,6 +34,11 @@ public final class Config {
 	public static final String GAME_DATA_FOLDER = "assets/files/game/";
 
 	/**
+	 * Données de l'utilisateur
+	 */
+	public static final String USER_DATA_FILE_FOLDER = "assets/files/user/user.tmx";
+
+	/**
 	 * Le chemin pour trouver le fichier DTD depuis {@link #MAP_FOLDER}
 	 *
 	 * @since 5.1

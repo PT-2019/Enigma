@@ -11,15 +11,13 @@ import common.save.DataSave;
 import common.save.EmptyMapGenerator;
 import data.EnigmaScreens;
 import data.config.Config;
+import data.config.UserConfiguration;
 import game.EnigmaGame;
 import game.screens.TestScreen;
 
-import javax.swing.JButton;
 import javax.swing.JComponent;
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  * Observateur de la création d'une map
@@ -105,7 +103,7 @@ public class CreateListener extends MenuListener {
 					path += ".tmx";
 				}
 
-				MapData data = new MapData("",mapName);
+				MapData data = new MapData(UserConfiguration.getInstance().getData().getName(),mapName);
 				DataSave.writeMapData(data);
 
 				EmptyMapGenerator.generate(path, col, row);

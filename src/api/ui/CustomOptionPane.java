@@ -397,6 +397,7 @@ public class CustomOptionPane implements OptionPaneStyle {
 		CustomLabel titleComponent = style.getLabelStyle("Choisissez une map");
 		CustomPanel confirmComponent = style.getPanelStyle();
 		CustomButton confirm = style.getButtonStyle(CONFIRM);
+		CustomButton cancel = style.getButtonStyle(CANCEL);
 		CustomPanel mapsComponent = style.getPanelStyle();
 		JScrollPane scroll = new JScrollPane(mapsComponent);
 		RadioButtonManager rbm = new RadioButtonManager();
@@ -404,7 +405,10 @@ public class CustomOptionPane implements OptionPaneStyle {
 		GridBagConstraints gbc = new GridBagConstraints();
 
 		confirm.addActionListener(new CustomOptionPaneButtonManager(optionPane));
+		cancel.addActionListener(new CustomOptionPaneButtonManager(optionPane));
 		confirmComponent.add(confirm);
+		confirmComponent.add(cancel);
+		cancel.getComponentUI().setPressedBackground(Color.RED);
 
 		parent.setAlwaysOnTop(true);
 		window.setAlwaysOnTop(true);
@@ -625,6 +629,7 @@ public class CustomOptionPane implements OptionPaneStyle {
 		CustomLabel titleComponent = style.getLabelStyle("Choisissez une map");
 		CustomPanel confirmComponent = style.getPanelStyle();
 		CustomButton confirm = style.getButtonStyle(CONFIRM);
+		CustomButton cancel = style.getButtonStyle(CANCEL);
 		CustomPanel mapsComponent = style.getPanelStyle();
 		JScrollPane scroll = new JScrollPane(mapsComponent);
 		RadioButtonManager rbm = new RadioButtonManager();
@@ -632,7 +637,10 @@ public class CustomOptionPane implements OptionPaneStyle {
 		GridBagConstraints gbc = new GridBagConstraints();
 
 		confirm.addActionListener(new CustomOptionPaneButtonManager(optionPane));
+		cancel.addActionListener(new CustomOptionPaneButtonManager(optionPane));
 		confirmComponent.add(confirm);
+		confirmComponent.add(cancel);
+		cancel.getComponentUI().setPressedBackground(Color.RED);
 
 		parent.setAlwaysOnTop(true);
 		window.setAlwaysOnTop(true);
@@ -871,7 +879,7 @@ public class CustomOptionPane implements OptionPaneStyle {
 		if (this.input != null) this.answer = this.input.getText();
 		else if(this.rbm != null){
 
-			if(this.rbm.getSelectedButton() != null)
+			if(this.rbm.getSelectedButton() != null && !answer.equals(CANCEL))
 				this.answer = this.rbm.getSelectedButton().getText();
 			else
 				this.answer = CANCEL;
