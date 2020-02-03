@@ -142,8 +142,15 @@ public class ActionsManager implements Subject<ActionsManager> {
 	 * @since 6.0
 	 */
 	public void clear(){
+		for (EditorAction action :this.undo) {
+			action.clear();
+		}
+		for (EditorAction action: this.redo){
+			action.clear();
+		}
 		this.undo.clear();
 		this.redo.clear();
+		this.updateObserver(this);
 	}
 
 	/**

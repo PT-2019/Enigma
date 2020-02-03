@@ -2,8 +2,6 @@ package editor.menus.enimas;
 
 import common.enigmas.Enigma;
 import common.entities.GameObject;
-import common.entities.Item;
-import common.entities.types.Container;
 import common.entities.types.EnigmaContainer;
 import common.hud.EnigmaButton;
 import common.hud.EnigmaLabel;
@@ -11,7 +9,6 @@ import common.hud.EnigmaPanel;
 import editor.menus.AbstractPopUpView;
 import editor.menus.AbstractSubPopUpView;
 import editor.menus.ShowCardLayout;
-import game.dnd.DragAndDropBuilder;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JCheckBox;
@@ -24,7 +21,6 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
@@ -66,7 +62,7 @@ public class ManageEnigmasListView extends AbstractSubPopUpView {
 				Iterator<Enigma> allEnigmas = container.getAllEnigmas();
 				while(allEnigmas.hasNext()){
 					Enigma enigma = allEnigmas.next();
-					if (enigma.getID() == Integer.parseInt(((JCheckBox) e.getSource()).getName())) {
+					if (enigma.getTitle().equals(((JCheckBox) e.getSource()).getName())) {
 						seeView.setChecked(enigma);
 						break;
 					}
@@ -114,26 +110,25 @@ public class ManageEnigmasListView extends AbstractSubPopUpView {
 	@Override
 	public void initComponent() {
 		Iterator<Enigma> enigmas = this.object.getAllEnigmas();
-		System.out.println(this.object);
 		EnigmaPanel panel = new EnigmaPanel(new GridLayout(1,1));
 		boolean first = true;
 		int i = 0;
+
 		while(enigmas.hasNext()){
-			System.out.println(enigmas);
 			Enigma e = enigmas.next();
 			JCheckBox r = new JCheckBox(e.getTitle());
 			//on ajoute les boutons au groupe
 			r.setToolTipText(e.getDescription());
-			groups.add(r);
-			r.setName(e.getID() + "");
+			this.groups.add(r);
+			r.setName(e.getTitle());
 			//ajoute les boutons au panneau
 			panel.add(r);
-			//listener pour les boutons
-			r.addItemListener(this.listener);
 			if (first) {
 				r.setSelected(true);
 				first = false;
 			}
+			//listener pour les boutons
+			r.addItemListener(this.listener);
 			i++;
 		}
 		((GridLayout)panel.getLayout()).setRows(i);

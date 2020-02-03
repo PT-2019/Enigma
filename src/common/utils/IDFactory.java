@@ -200,12 +200,15 @@ public class IDFactory {
 	/**
 	 * Libère l'id d'un object
 	 * @param object un object
+	 * @param deleted si l'id doit être rendu disponible doit suppression définitive
 	 * @since 6.0
 	 */
-	public void free(IDInterface object) {
+	public void free(IDInterface object, boolean deleted) {
 		if(!list.contains(object)) return;
 
-		this.deleted.add(object.getID());//ajoute aux ids libres
+		//ajoute aux ids libres
+		if(deleted) this.deleted.add(object.getID());
+
 		this.list.remove(object);//suppression
 		object.setID(ID_FACTORY_NO_ID);
 	}
@@ -238,7 +241,7 @@ public class IDFactory {
 	 * @since 6.0 02/02/2020
 	 */
 	@ConvenienceClass
-	public class NullIDInterfaceObject implements IDInterface {
+	public static class NullIDInterfaceObject implements IDInterface {
 
 		NullIDInterfaceObject(){}
 

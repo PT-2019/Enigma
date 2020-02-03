@@ -231,7 +231,7 @@ public class MapTestScreen extends AbstractMap {
 			//ajoute à l'historique si pas déjà concerné
 			this.manager.add(EditorActionFactory.create(ActionTypes.REMOVE_ENTITY, this, object));
 			//libère l'id
-			idFactory.free(entity);
+			idFactory.free(entity, false);
 		}
 		return removed;
 	}

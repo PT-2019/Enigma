@@ -8,6 +8,7 @@ import common.save.EmptyMapGenerator;
 import data.EnigmaScreens;
 import data.config.Config;
 import game.EnigmaGame;
+import game.screens.TestScreen;
 
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -55,10 +56,14 @@ public class OpenListener extends MenuListener {
 
 		String map;
 		if (!(map = EnigmaOptionPane.showMapChoiceDialog(new EnigmaWindow())).equals(CustomOptionPane.CANCEL)) {
-			System.out.println("ouverture de "+Config.MAP_FOLDER + map + ".tmx");
-			EmptyMapGenerator.load( Config.MAP_FOLDER + map + ".tmx");
-			Gdx.app.postRunnable(() -> EnigmaGame.reload(EnigmaScreens.TEST.name()));
-			//TODO: message ok
+			String path = Config.MAP_FOLDER + map + ".tmx";
+			((TestScreen) EnigmaGame.getCurrentScreen()).setMap(path);
+
+			Gdx.app.postRunnable(() -> {
+				//System.out.println("ouverture de "+Config.MAP_FOLDER + map + ".tmx");
+				EnigmaGame.reload(EnigmaScreens.TEST.name());
+				EmptyMapGenerator.load(path);
+			});
 		}
 	}
 }

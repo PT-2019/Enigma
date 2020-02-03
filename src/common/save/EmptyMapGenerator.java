@@ -14,6 +14,7 @@ import common.save.enigmas.EnigmaJsonReader;
 import common.save.enigmas.EnigmaJsonWriter;
 import common.utils.textures.TextureProxy;
 import data.config.Config;
+import editor.bar.edition.ActionsManager;
 import game.EnigmaGame;
 import game.screens.TestScreen;
 
@@ -95,8 +96,11 @@ public class EmptyMapGenerator {
 		try {
 			EnigmaJsonWriter.writeEnigmas(path + ".json", enigmas);
 		} catch (IOException e) {
-			//TODO: do something
+			Logger.printError("EmptyMapGenerator#save", "Sauvegarde ratée du json.");
 		}
+
+		// clear de l'historique
+		ActionsManager.reset();
 	}
 
 
@@ -139,7 +143,10 @@ public class EmptyMapGenerator {
 		} catch (IOException | ClassNotFoundException | InvocationTargetException | NoSuchMethodException |
 				InstantiationException | IllegalAccessException ignore) {
 		} catch (IllegalStateException e) {
-			System.err.println(e.toString());
+			Logger.printError("EmptyMapGenerator#load", e.toString());
 		}
+
+		// clear de l'historique
+		ActionsManager.reset();
 	}
 }

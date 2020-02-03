@@ -46,5 +46,10 @@ class EditorActionRemoveEntity implements EditorAction {
 	public ActionTypes getType() {
 		return this.type;
 	}
+
+	@Override
+	public void clear() {
+		this.map.freeId(this.entity);
+	}
 }
 

@@ -69,7 +69,7 @@ public class ManageEnigmasSeeView extends AbstractSubPopUpView implements Drawab
 		ui.setAllBackgrounds(Color.WHITE);
 		ui.setAllForegrounds(Color.BLACK);
 
-		int row = 2, c=0;
+		int row = 0, c;
 
 		String name = checked.getTitle();
 		String desc = checked.getDescription();
@@ -78,14 +78,18 @@ public class ManageEnigmasSeeView extends AbstractSubPopUpView implements Drawab
 		Iterator<Operation> allOperations = checked.getAllOperations();
 
 		extra.add(new EnigmaLabel("Nom:"+name, ui));
+		row++;
 		extra.add(new EnigmaLabel("Description:"+desc, ui));
+		row++;
 		extra.add(new EnigmaLabel(SEPARATOR+" "+CLUES+" "+SEPARATOR, ui));
+		row++;
 
 		//Affichage des indices
+		c = 0;
 		while(allAdvices.hasNext()){
 			Advice a = allAdvices.next();
 			extra.add(new EnigmaLabel(a.toString(), ui));
-			c+=2;
+			c++;
 		}
 
 		if(c != 0){
@@ -98,6 +102,7 @@ public class ManageEnigmasSeeView extends AbstractSubPopUpView implements Drawab
 
 		extra.add(new EnigmaLabel(SEPARATOR+" "+CONDITIONS+" "+SEPARATOR, ui));
 		row++;
+
 		//Affichage des conditions
 		while(allConditions.hasNext()){
 			Condition a = allConditions.next();

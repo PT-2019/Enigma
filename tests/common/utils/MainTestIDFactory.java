@@ -48,7 +48,7 @@ public class MainTestIDFactory {
 
 		System.out.println("Suppression");
 
-		f.free(k3);
+		f.free(k3, true);
 
 		System.out.println(k1.getID()); //0
 		System.out.println(k2.getID()); //1

@@ -24,6 +24,7 @@ import com.badlogic.gdx.utils.Array;
 import common.entities.GameObject;
 import common.entities.types.ContainersManager;
 import common.entities.types.EnigmaContainer;
+import common.entities.types.IDInterface;
 import common.save.TmxProperties;
 import common.save.entities.serialization.EntityFactory;
 import common.save.entities.serialization.EntitySerializable;
@@ -743,5 +744,14 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 	@Override
 	public void remove(GameObject arg, Object... args) {
 		this.removeEntity(arg);
+	}
+
+	/**
+	 * Libère un id
+	 * @param object object a libérer
+	 * @since 6.0
+	 */
+	public void freeId(IDInterface object) {
+		this.idFactory.free(object, true);
 	}
 }

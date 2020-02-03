@@ -16,6 +16,7 @@ public interface EditorAction {
 	/**
 	 * Retourne le type d'action
 	 * @return le type d'action
+	 * @since 5.0
 	 */
 	ActionTypes getType();
 
@@ -32,5 +33,11 @@ public interface EditorAction {
 	 * @since 5.0
 	 */
 	void undoAction();
+
+	/**
+	 * Supprime définitivement l'action
+	 * @since 6.0
+	 */
+	void clear();
 
 }

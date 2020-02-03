@@ -105,7 +105,7 @@ public class TestIDFactory {
 			//sauvegarde les ids supprimés
 			freeIds.add(i, keys.get(index).getID());
 			//libère un id aléatoire parmi les disponibles
-			factory.free(keys.get(index));
+			factory.free(keys.get(index), true);
 			//sauvegarde la position du supprimé
 			deleted.add(i, index);
 			//vérifie leur id
