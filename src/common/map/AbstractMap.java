@@ -398,7 +398,6 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 	 */
 	private void delete(GameObject entity, Vector2 start) {
 		HashMap<Vector2, GameObject> parents = this.getParentObject(start, entity);
-		System.out.println(parents);
 		Array<Array<Float>> entities = null;
 		Array<GameObject> objects = null;
 		if (parents != null && !parents.isEmpty()) {

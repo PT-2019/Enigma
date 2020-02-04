@@ -120,12 +120,12 @@ public class AddItemListView extends AbstractSubPopUpView implements Observer<Ga
 			r.setName(item.getID() + "");
 			//ajoute les boutons au panneau
 			panel.add(r);
-			//listener pour les boutons
-			r.addItemListener(this.listener);
 			if (first) {
 				r.setSelected(true);
 				first = false;
 			}
+			//listener pour les boutons
+			r.addItemListener(this.listener);
 		}
 
 		if (items.size() == 0) {

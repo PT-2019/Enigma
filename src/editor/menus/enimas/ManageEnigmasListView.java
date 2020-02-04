@@ -58,7 +58,7 @@ public class ManageEnigmasListView extends AbstractSubPopUpView {
 		this.listener = new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				EnigmaContainer container = (EnigmaContainer) parent.getPopUp().getCell().getEntity();
+				EnigmaContainer container = (EnigmaContainer) object;
 				Iterator<Enigma> allEnigmas = container.getAllEnigmas();
 				while(allEnigmas.hasNext()){
 					Enigma enigma = allEnigmas.next();

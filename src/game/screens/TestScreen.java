@@ -10,6 +10,7 @@ import data.config.Config;
 import editor.popup.TestMapControl;
 import game.EnigmaGame;
 import game.gui.CategoriesMenu;
+import game.gui.Toast;
 
 /**
  * TestScreen de la libgdx dans l'éditeur
@@ -112,6 +113,9 @@ public class TestScreen extends LibgdxScreen {
 						map.getMapHeight() / 2, 0
 				);
 			}
+
+			//creates a toast
+			Toast.create(this.hud);
 
 			//écoute inputProcessors
 			//leurs listeners seront appelés...
