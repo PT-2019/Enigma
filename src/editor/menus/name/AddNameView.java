@@ -1,7 +1,7 @@
-package editor.menus.content;
+package editor.menus.name;
 
 import common.entities.GameObject;
-import common.entities.types.Content;
+import common.entities.types.Living;
 import common.hud.EnigmaButton;
 import common.hud.EnigmaLabel;
 import common.hud.EnigmaPanel;
@@ -29,11 +29,11 @@ import java.awt.event.ActionListener;
  * @version 5.0 29/01/2020
  * @since 5.0 29/01/2020
  */
-public class AddContentView extends AbstractPopUpView {
-	private static final String INPUT = NeedToBeTranslated.INPUT_CONTENT;
-	private static final String TITLE = NeedToBeTranslated.TITLE_CONTENT;
+public class AddNameView extends AbstractPopUpView {
+	private static final String INPUT = NeedToBeTranslated.INPUT_NAME;
+	private static final String TITLE = NeedToBeTranslated.TITLE_NAME;
 	private static final String SUBMIT = NeedToBeTranslated.SAVE;
-	private static final String CONTENT_SAVED = NeedToBeTranslated.CONTENT_SAVED;
+	private static final String NAME_SAVED = NeedToBeTranslated.NAME_SAVED;
 	private static final int PADDING = 10;
 
 	/*
@@ -54,13 +54,13 @@ public class AddContentView extends AbstractPopUpView {
 	 * @param popUp  parent
 	 * @param object object implémente content
 	 */
-	AddContentView(CasePopUp popUp, GameObject object) {
+	AddNameView(CasePopUp popUp, GameObject object) {
 		super(TITLE, popUp);
 
 
-		Content entity;
-		if (object == null) entity = (Content) popUp.getCell().getEntity();
-		else entity = (Content) object;
+		Living entity;
+		if (object == null) entity = (Living) popUp.getCell().getEntity();
+		else entity = (Living) object;
 
 		//components
 
@@ -71,7 +71,7 @@ public class AddContentView extends AbstractPopUpView {
 		input.setBorder(new EmptyBorder(PADDING, PADDING, PADDING, PADDING));
 		//input field
 		EnigmaTextArea field = new EnigmaTextArea();
-		field.setText(entity.getContent());
+		field.setText(entity.getName());
 		field.getComponentUI().setAllBackgrounds(Color.WHITE, Color.WHITE, Color.WHITE);
 		field.getComponentUI().setAllForegrounds(Color.BLACK, Color.BLACK, Color.BLACK);
 		//submit button
@@ -107,11 +107,11 @@ public class AddContentView extends AbstractPopUpView {
 	 * @since 5.0 29/01/2020
 	 */
 	private static class SubmitListener implements ActionListener {
-		private final AddContentView parent;
-		private final Content entity;
+		private final AddNameView parent;
+		private final Living entity;
 		private final EnigmaTextArea field;
 
-		SubmitListener(AddContentView parent, Content entity, EnigmaTextArea field) {
+		SubmitListener(AddNameView parent, Living entity, EnigmaTextArea field) {
 			this.parent = parent;
 			this.entity = entity;
 			this.field = field;
@@ -120,9 +120,9 @@ public class AddContentView extends AbstractPopUpView {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			//ajout du contenu
-			this.entity.addContent(this.field.getText());
+			this.entity.setName(this.field.getText());
 			this.parent.dispose();//supprime fenêtre
-			EnigmaGame.getCurrentScreen().showToast(CONTENT_SAVED);
+			EnigmaGame.getCurrentScreen().showToast(NAME_SAVED);
 			this.parent.popUp.setVisible(true);
 		}
 	}

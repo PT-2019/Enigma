@@ -16,6 +16,7 @@ import common.entities.GameObject;
 import common.map.MapTestScreenCell;
 import data.EditorState;
 import data.TypeEntity;
+import editor.EditorLauncher;
 import editor.popup.cases.CasePopUp;
 import editor.popup.cases.CaseView;
 import editor.popup.cases.SpecialPopUp;
@@ -65,7 +66,7 @@ public class CaseListener extends ClickListener {
 	@Override
 	public void clicked(InputEvent event, float x, float y) {
 		//on ne peut cliquer que si l'état est normal
-		if (TestScreen.isState(EditorState.NORMAL)) {
+		if (EditorLauncher.isState(EditorState.NORMAL)) {
 			if (enigmacreate) { //une popup est ouverte
 				//on doit être dans un menu qui nécessite une deuxième popup
 				if (CaseListener.getAvailable() != null) {
@@ -120,7 +121,7 @@ public class CaseListener extends ClickListener {
 				popUp.addWindowListener(new CasePopWindowListener(popUp, g));
 				popUp.display();
 			}
-		} else if (TestScreen.isState(EditorState.ERASE)) {
+		} else if (EditorLauncher.isState(EditorState.ERASE)) {
 			CaseView actor = (CaseView) event.getTarget();
 			MapTestScreenCell cell = getRevelantEntity(actor);
 			if (cell != null && cell.getEntity() != null) cell.removeEntity();

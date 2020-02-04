@@ -8,7 +8,7 @@ import editor.menus.others.Delete;
 import editor.menus.others.HidePassageRoom;
 import editor.menus.enimas.ManageEnigmas;
 import editor.menus.set.SetAccess;
-import editor.menus.others.SetName;
+import editor.menus.name.SetName;
 import editor.menus.set.SetActivated;
 import editor.menus.set.SetLocked;
 

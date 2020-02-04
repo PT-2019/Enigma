@@ -121,5 +121,11 @@ public abstract class LibgdxScreen implements Screen, InputAdapter, IGameLogic {
 	public void resume() {
 	}
 
+	/**
+	 * Affiche un toast
+	 * @param message message
+	 */
+	public void showToast(String message){}
+
 	public abstract AbstractMap getMap();
 }

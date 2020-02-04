@@ -1,4 +1,4 @@
-package editor.menus.others;
+package editor.menus.name;
 
 import common.entities.GameObject;
 import common.hud.EnigmaButton;
@@ -6,6 +6,7 @@ import editor.menus.AbstractPopUpView;
 import editor.menus.AvailableOptionRunnable;
 import editor.menus.AvailablePopUpOption;
 import editor.menus.Drawable;
+import editor.menus.EnigmaWindowListener;
 import editor.popup.cases.CasePopUp;
 
 /**
@@ -42,9 +43,10 @@ public class SetName implements AvailableOptionRunnable {
 	public void run() {
 		this.parent.getPanel().add(this.input);
 		this.input.addActionListener((e) -> {
-			//code
-			//NPC entity = (NPC) this.parent.getCell().getEntity();
-			//entity.getName();
+			this.parent.setVisible(false);
+			AddNameView addNameView = new AddNameView(this.parent, null);
+			addNameView.setVisible(true);
+			addNameView.addWindowListener(new EnigmaWindowListener(this.parent));
 		});
 	}
 
@@ -52,9 +54,10 @@ public class SetName implements AvailableOptionRunnable {
 	public void run(AbstractPopUpView view, Drawable panel, GameObject object) {
 		panel.getDrawable().add(this.input);
 		this.input.addActionListener((e) -> {
-			//code
-			//NPC entity = (NPC) this.parent.getCell().getEntity();
-			//entity.getName();
+			this.parent.setVisible(false);
+			AddNameView addNameView = new AddNameView(this.parent, object);
+			addNameView.setVisible(true);
+			addNameView.addWindowListener(new EnigmaWindowListener(this.parent));
 		});
 	}
 }

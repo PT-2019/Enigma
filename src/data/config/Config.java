@@ -3,7 +3,6 @@ package data.config;
 import api.Application;
 import api.utils.AsciiColor;
 import api.utils.annotations.NeedPatch;
-import com.badlogic.gdx.Gdx;
 import common.language.Language;
 
 /**
@@ -96,7 +95,7 @@ public final class Config {
 	 *
 	 * @since 6.0
 	 */
-	public static final AsciiColor ERROR_COLOR = AsciiColor.ORANGE;
+	public static final AsciiColor ERROR_COLOR = AsciiColor.BRIGHT_MAGENTA;
 
 	/**
 	 * Couleur des éléments affichés en mode DEBUG_ALL

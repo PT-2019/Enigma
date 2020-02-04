@@ -43,13 +43,13 @@ public class EraserListener extends MenuListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		//si c'est déjà en erase, alors on reset
-		if (TestScreen.isState(EditorState.ERASE)) {
+		if (EditorLauncher.isState(EditorState.ERASE)) {
 			setActive(false);
-			TestScreen.setState(EditorState.NORMAL);
+			EditorLauncher.setState(EditorState.NORMAL);
 		} else {
 			//si on active la gomme
 			setActive(true);
-			TestScreen.setState(EditorState.ERASE);
+			EditorLauncher.setState(EditorState.ERASE);
 		}
 
 	}

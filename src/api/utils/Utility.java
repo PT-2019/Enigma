@@ -23,13 +23,14 @@ import java.lang.reflect.Method;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 /**
  * Tout un paquet de méthodes utiles
  *
  * @author Quentin RAMSAMY-AGEORGES
- * @version 6.0
+ * @version 6.2
  * @since 2.0 27 novembre 2019
  */
 @ConvenienceClass
@@ -39,7 +40,9 @@ public class Utility implements Serializable {
 	 * Obtenir le nom de toutes les maps en local
 	 * Les noms sont issus des fichiers tmx présents
 	 * @return Le nom des maps
+	 * @since 6.1
 	 */
+	//TODO: move to real utility
 	public static ArrayList<String> getAllMapName(){
 		ArrayList<String> maps = new ArrayList<>();
 		File file = new File("assets/files/map/");
@@ -52,6 +55,34 @@ public class Utility implements Serializable {
 			}
 		}
 		return maps;
+	}
+
+	/**
+	 * Obtenir le nom de toutes les fichiers dans un dossier
+	 * Les noms sont issus des fichiers tmx présents
+	 * @return Le nom des maps
+	 * @since 6.1
+	 */
+	public static ArrayList<String> getAllFiles(String folder, String[] extensions, boolean removeExtension){
+		ArrayList<String> files = new ArrayList<>();
+		File file = new File(folder);
+		String[] list = file.list();
+
+		if(list != null){
+			for(String s : list){
+				for (String ext :extensions) {
+					if(s.endsWith(ext)){
+						if(removeExtension){
+							s = s.replace(ext, "");
+						}
+						files.add(s);
+						break;
+					}
+				}
+
+			}
+		}
+		return files;
 	}
 
 	/**
@@ -401,6 +432,8 @@ public class Utility implements Serializable {
 	 * @param name mot
 	 *
 	 * @return le mot en CamelCase
+	 *
+	 * @since 6.0
 	 */
 	@ConvenienceMethod
 	public static String snakeCaseToCamelCase(String name) {

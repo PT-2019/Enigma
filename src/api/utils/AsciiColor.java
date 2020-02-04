@@ -8,7 +8,6 @@ package api.utils;
  * @since 4.0 21/01/2020
  */
 public enum AsciiColor {
-
 	BLACK("\u001B[30m"),
 	RED("\u001B[31m"),
 	GREEN("\u001B[32m"),
@@ -17,7 +16,7 @@ public enum AsciiColor {
 	PURPLE("\u001B[35m"),
 	CYAN("\u001B[36m"),
 	WHITE("\u001B[37m"),
-	ORANGE("\u001B[38m");
+	BRIGHT_MAGENTA("\u001B[95m");
 
 	public final String code;
 

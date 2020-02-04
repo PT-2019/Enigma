@@ -2,6 +2,9 @@ package common;
 
 import api.Application;
 import api.ui.base.WindowSize;
+import api.utils.annotations.NeedPatch;
+import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.backends.lwjgl.LwjglAWTCanvas;
 import common.hud.EnigmaButton;
 import common.hud.EnigmaLabel;
 import common.hud.EnigmaPanel;
@@ -9,12 +12,15 @@ import common.hud.EnigmaWindow;
 import common.hud.ui.EnigmaLabelUI;
 import common.language.GameLanguage;
 import common.language.HUDFields;
+import common.utils.Logger;
 import data.config.EnigmaUIValues;
 import editor.EditorLauncher;
+import editor.EditorScreen;
 import game.EnigmaGameLauncher;
 
 import javax.swing.border.EmptyBorder;
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.GridBagConstraints;
@@ -78,6 +84,13 @@ public class DesktopLauncher implements Runnable {
 	private EnigmaWindow window;
 
 	/**
+	 * Tentative de patch des erreurs de la libgdx
+	 * Lancement et fermeture
+	 */
+	@NeedPatch
+	private static EnigmaWindow c;
+
+	/**
 	 * Crée le lanceur de la version pc de l'application
 	 *
 	 * @since 4.0
@@ -107,6 +120,10 @@ public class DesktopLauncher implements Runnable {
 	 */
 	private static void startApp(Application app) {
 		if (RUNNING_APP == null) {
+			if (c != null) {
+				c.close();
+				c = null;
+			}
 			RUNNING_APP = app;
 			RUNNING_APP.start();
 			RUNNING_APP.getWindow().addWindowListener(new AppClosingManager());
@@ -122,6 +139,10 @@ public class DesktopLauncher implements Runnable {
 	 */
 	private static void closeRunningApp() {
 		if (RUNNING_APP != null) {
+			if (c != null) {
+				c.close();
+				c = null;
+			}
 			RUNNING_APP = null;
 			PLAY_BUTTON.setText(GAME);
 			EDIT_BUTTON.setText(EDITOR);
@@ -139,11 +160,16 @@ public class DesktopLauncher implements Runnable {
 			try {
 				RUNNING_APP.stop();
 			} catch (Exception e) {
-				System.err.println("Fermeture ratée.");
+				Logger.printError("DesktopLauncher","Fermeture de la libgdx ratée (last app).");
 			}
 		}
 
-		launcher.window.dispose();
+		try {
+			launcher.window.dispose();
+		} catch (Exception e){
+			Logger.printError("DesktopLauncher","Fermeture de la libgdx ratée (last window).");
+		}
+
 		System.exit(0);
 	}
 
@@ -198,8 +224,16 @@ public class DesktopLauncher implements Runnable {
 
 		EnigmaPanel background = this.window.getContentSpace();
 		background.getComponentUI().setAllBorders(EnigmaUIValues.ENIGMA_COMBOBOX_BORDER);
-		background.setLayout(new BorderLayout());
+		background.setLayout(new CardLayout());
 		background.add(content, BorderLayout.CENTER);
+
+		//Cette chose charge la libgdx au lancement du jeu
+		//on ne peut pas directement l'attacher a this.window
+		//ULTRA CHIANT
+		c = new EnigmaWindow();
+		c.setIfAskBeforeClosing(false);
+		if (!System.getProperty("os.name").equals("Linux")) background.add(new EditorScreen(c, false));
+		else c = null;
 
 		GridBagConstraints gbc = new GridBagConstraints();
 

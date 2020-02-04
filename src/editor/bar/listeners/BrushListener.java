@@ -28,6 +28,6 @@ public class BrushListener extends MenuListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		EditorLauncher.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-		TestScreen.setState(EditorState.NORMAL);
+		EditorLauncher.setState(EditorState.NORMAL);
 	}
 }
