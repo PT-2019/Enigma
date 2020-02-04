@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class NpcFactory {
 
     /**
-     * Liste des joueurs qu'on a récupérere dans le Json
+     * Liste des NPC qu'on a récupérere dans le Json
      */
     private static ArrayList<PlayerSerializable> players;
 
@@ -54,7 +54,7 @@ public class NpcFactory {
                 playerInfo.getIndex());
 
         game.setLayer(Layer.DECORATIONS1);
-
+        //on initialise la hitbox du pnj
         game.setBounds(7);
 
         return game;

@@ -55,7 +55,7 @@ public class PlayerFactory {
 				playerInfo.getIndex());
 
 		game.setLayer(Layer.DECORATIONS1);
-
+		//on initialise la hitbox du joueur
 		game.setBounds(7);
 
 		return game;

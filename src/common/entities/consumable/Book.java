@@ -1,12 +1,16 @@
 package common.entities.consumable;
 
+import com.badlogic.gdx.maps.MapProperties;
 import common.entities.types.AbstractConsumable;
 import common.entities.types.Content;
 import common.language.GameFields;
 import common.language.GameLanguage;
+import common.save.entities.PlayerSave;
+import common.save.entities.SaveKey;
 import data.TypeEntity;
 
 import java.util.EnumMap;
+import java.util.HashMap;
 
 /**
  * Un livre
@@ -71,7 +75,6 @@ public class Book extends AbstractConsumable implements Content {
 	public EnumMap<TypeEntity, Boolean> getImplements() {
 		EnumMap<TypeEntity, Boolean> imp = TypeEntity.emptyMap();
 		imp.put(TypeEntity.CONTENT, true);
-
 		imp.put(TypeEntity.CONSUMABLE, true);
 		imp.put(TypeEntity.NEED_CONTAINER, true);
 		imp.put(TypeEntity.NEED_CONTAINER_MANAGER, true);
@@ -82,5 +85,17 @@ public class Book extends AbstractConsumable implements Content {
 	@Override
 	public String getReadableName() {
 		return GameLanguage.gl.get(GameFields.BOOK);
+	}
+
+	@Override
+	public HashMap<SaveKey,String> getSave(){
+		HashMap<SaveKey, String> save = new HashMap<>();
+		save.put(PlayerSave.CONTENT, this.content);
+		return save;
+	}
+
+	@Override
+	public void load(MapProperties data) {
+		this.content = data.get(PlayerSave.CONTENT.getKey(), String.class);
 	}
 }

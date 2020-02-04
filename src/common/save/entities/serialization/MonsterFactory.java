@@ -10,15 +10,18 @@ import data.Layer;
 
 import java.util.ArrayList;
 
+/**
+ * Factory qui permet de créer des monstres
+ */
 public class MonsterFactory {
 
     /**
-     * Liste des joueurs qu'on a récupérere dans le Json
+     * Liste des monstres qu'on a récupérere dans le Json
      */
     private static ArrayList<PlayerSerializable> monsters;
 
     /**
-     * Permet de créer un playergame à partir d'un fichier Json
+     * Permet de créer un monstergame à partir d'un fichier Json
      *
      * @param path
      * @return un playerGame du Json
@@ -46,8 +49,8 @@ public class MonsterFactory {
                 playerInfo.getIndex());
 
         game.setLayer(Layer.DECORATIONS1);
+        //on initialise la hitbox du monstre
         game.setBounds(7);
-
         return game;
     }
 }

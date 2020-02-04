@@ -148,7 +148,6 @@ public class Monster extends GameActorTextured implements Entity, Living,EntityG
 	public EnumMap<TypeEntity, Boolean> getImplements() {
 		EnumMap<TypeEntity, Boolean> imp = TypeEntity.emptyMap();
 		imp.put(TypeEntity.MONSTER, true);
-
 		imp.put(TypeEntity.LIVING, true);
 		imp.put(TypeEntity.NEED_CONTAINER_MANAGER, true);
 		return imp;

@@ -1,15 +1,19 @@
 package common.entities.items;
 
+import com.badlogic.gdx.maps.MapProperties;
 import common.entities.Item;
 import common.entities.types.AbstractItem;
 import common.entities.types.Container;
 import common.entities.types.Lockable;
 import common.language.GameFields;
 import common.language.GameLanguage;
+import common.save.entities.PlayerSave;
+import common.save.entities.SaveKey;
 import data.TypeEntity;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
+import java.util.HashMap;
 
 /**
  * Un coffre
@@ -125,5 +129,17 @@ public class Chest extends AbstractItem implements Lockable, Container {
 	@Override
 	public ArrayList<Item> getItems() {
 		return this.items;
+	}
+
+	@Override
+	public HashMap<SaveKey,String> getSave(){
+		HashMap<SaveKey, String> save = new HashMap<>();
+		save.put(PlayerSave.LOCKED, String.valueOf(this.locked));
+		return save;
+	}
+
+	@Override
+	public void load(MapProperties data) {
+		this.locked = Boolean.parseBoolean(data.get(PlayerSave.LOCKED.getKey(), String.class));
 	}
 }

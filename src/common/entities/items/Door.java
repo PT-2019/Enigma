@@ -1,5 +1,6 @@
 package common.entities.items;
 
+import com.badlogic.gdx.maps.MapProperties;
 import common.entities.Item;
 import common.entities.types.AbstractItem;
 import common.entities.types.Lockable;
@@ -7,9 +8,12 @@ import common.entities.types.Passage;
 import common.language.GameFields;
 import common.language.GameLanguage;
 import common.map.model.Room;
+import common.save.entities.PlayerSave;
+import common.save.entities.SaveKey;
 import data.TypeEntity;
 
 import java.util.EnumMap;
+import java.util.HashMap;
 
 /**
  * Une porte
@@ -127,5 +131,17 @@ public class Door extends AbstractItem implements Passage, Lockable {
 	@Override
 	public String getReadableName() {
 		return GameLanguage.gl.get(GameFields.DOOR);
+	}
+
+	@Override
+	public HashMap<SaveKey,String> getSave(){
+		HashMap<SaveKey, String> save = new HashMap<>();
+		save.put(PlayerSave.LOCKED, String.valueOf(this.locked));
+		return save;
+	}
+
+	@Override
+	public void load(MapProperties data) {
+		this.locked = Boolean.parseBoolean(data.get(PlayerSave.LOCKED.getKey(), String.class));
 	}
 }
