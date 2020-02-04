@@ -1,7 +1,5 @@
 package common.save;
 
-import api.ui.CustomAlert;
-import api.ui.base.WindowSize;
 import api.utils.Utility;
 import common.hud.EnigmaAlert;
 import common.hud.EnigmaLabel;
@@ -12,7 +10,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Exporteur de map
@@ -25,7 +22,7 @@ import java.util.Arrays;
  * @version 6.0 01 fevrier 2020
  * @since 6.0
  */
-public class ImportExport {
+public class ImportExport{
 
     /**
      * Indicateur d'une fin de chaine
@@ -82,6 +79,7 @@ public class ImportExport {
 
     /**
      * Convertie une chaine de caractères en octets correspondants
+     * true = 1, false = 0
      * @param s Chaine
      * @return Octets correpondants aux caractères
      */
@@ -92,21 +90,40 @@ public class ImportExport {
             String sByte = Integer.toBinaryString(c);
             int sLen = sByte.length();
             boolean[] bByte = new boolean[8];
+            int bLen = bByte.length;
 
-            for(int i= 0; i < 8; i++){
-                if(i < sLen){
-                    if(sByte.charAt(i) == '0')
-                        bByte[i] = false;
-                    else
-                        bByte[i] = true;
-                }else
-                    bByte[i] = false;
+            for(int i = 0; i < bLen; i++){
+                if(i < sLen)
+                    bByte[(bLen - sLen) + i] = (sByte.charAt(i) == '1');
+                else
+                    bByte[(bLen - i) - 1] = false;
             }
 
             bytes.add(bByte);
         }
 
         return bytes;
+    }
+
+    private static String readToString(DataInputStream reader) throws IOException{
+        StringBuilder read = new StringBuilder();
+
+        while(true) {
+            StringBuilder sByte = new StringBuilder();
+            for (int i = 0; i < 8; i++) {
+                if(reader.readBoolean())
+                    sByte.append('1');
+                else
+                    sByte.append('0');
+            }
+            char c = (char) Integer.parseInt(sByte.toString(), 2);
+
+            if(c == '\0')
+                break;
+            read.append(c);
+        }
+
+        return read.toString();
     }
 
     /**
@@ -119,6 +136,25 @@ public class ImportExport {
         double d = (double) count / sum;
         double i = d * 100;
         loading.setText((int)i + "%");
+    }
+
+    private static EnigmaAlert initLoadingAlert(String mapPath, EnigmaLabel loadingComponent){
+        EnigmaLabel title = new EnigmaLabel("Exportation en cours vers :");
+        EnigmaLabel path = new EnigmaLabel(mapPath);
+        title.setVerticalTextPosition(JLabel.BOTTOM);
+        loadingComponent.setVerticalTextPosition(JLabel.TOP);
+        EnigmaAlert window = new EnigmaAlert(50,50);
+        window.setMinimumSize(new Dimension(50,50));
+        window.getContentSpace().setLayout(new GridLayout(3,1));
+        window.getContentSpace().add(title);
+        window.getContentSpace().add(path);
+        window.getContentSpace().add(loadingComponent);
+        window.setWindowBackground(Color.DARK_GRAY);
+        window.setAlwaysOnTop(true);
+        window.setResizable(false);
+        window.setMenuBarVisible(false);
+
+        return window;
     }
 
     /**
@@ -138,48 +174,33 @@ public class ImportExport {
             int count = 0;
             int sum = (mapData.length() + 1) + (gameData.length() + 1) + (map.length() + 1) + (enigmas.length() + 1);
 
-            EnigmaLabel title = new EnigmaLabel("Exportation en cours vers :");
-            EnigmaLabel path = new EnigmaLabel(exportPath + mapName + Config.EXPORT_EXTENSION);
-            EnigmaLabel loading = new EnigmaLabel("0%");
-            title.setVerticalTextPosition(JLabel.BOTTOM);
-            loading.setVerticalTextPosition(JLabel.TOP);
-            EnigmaAlert window = new EnigmaAlert(50,50);
-            window.setMinimumSize(new Dimension(50,50));
-            window.getContentSpace().setLayout(new GridLayout(3,1));
-            window.getContentSpace().add(title);
-            window.getContentSpace().add(path);
-            window.getContentSpace().add(loading);
-            window.setWindowBackground(Color.DARK_GRAY);
-            window.setAlwaysOnTop(true);
-            window.setResizable(false);
-            window.setMenuBarVisible(false);
+            EnigmaLabel loadingComponent = new EnigmaLabel("0%");
+            EnigmaAlert window = ImportExport.initLoadingAlert(exportPath + mapName + Config.EXPORT_EXTENSION,loadingComponent);
             window.setVisible(true);
 
-            for(String s : ImportExport.toBytes(mapName + STRING_END))
-                writer.writeChars(s);
+            for(boolean[] tab : ImportExport.toBytes(mapName + STRING_END))
+                for(boolean b : tab)
+                    writer.writeBoolean(b);
 
-            for(String s : ImportExport.toBytes(mapData + STRING_END)) {
-                writer.writeChars(s);
+            for(boolean[] tab : ImportExport.toBytes(mapData + STRING_END + STRING_END)) { //2 STRING_END pour les mapData et les gameData qui sont vides
+                for(boolean b : tab)
+                    writer.writeBoolean(b);
                 count++;
-                ImportExport.refreshLoading(loading,count,sum);
+                ImportExport.refreshLoading(loadingComponent,count,sum);
             }
 
-            for(String s : ImportExport.toBytes(gameData + STRING_END)) {
-                writer.writeChars(s);
+            for(boolean[] tab : ImportExport.toBytes(map + STRING_END)){
+                for(boolean b : tab)
+                    writer.writeBoolean(b);
                 count++;
-                ImportExport.refreshLoading(loading,count,sum);
+                ImportExport.refreshLoading(loadingComponent,count,sum);
             }
 
-            for(String s : ImportExport.toBytes(map + STRING_END)){
-                writer.writeChars(s);
+            for(boolean[] tab : ImportExport.toBytes(enigmas + STRING_END)) {
+                for(boolean b : tab)
+                    writer.writeBoolean(b);
                 count++;
-                ImportExport.refreshLoading(loading,count,sum);
-            }
-
-            for(String s : ImportExport.toBytes(enigmas + STRING_END)) {
-                writer.writeChars(s);
-                count++;
-                ImportExport.refreshLoading(loading,count,sum);
+                ImportExport.refreshLoading(loadingComponent,count,sum);
             }
 
             window.dispose();
@@ -207,48 +228,40 @@ public class ImportExport {
             int count = 0;
             int sum = (mapData.length() + 1) + (gameData.length() + 1) + (map.length() + 1) + (enigmas.length() + 1);
 
-            EnigmaLabel title = new EnigmaLabel("Exportation en cours vers :");
-            EnigmaLabel path = new EnigmaLabel(exportPath + mapName + Config.EXPORT_EXTENSION);
-            EnigmaLabel loading = new EnigmaLabel("0%");
-            title.setVerticalTextPosition(JLabel.BOTTOM);
-            loading.setVerticalTextPosition(JLabel.TOP);
-            EnigmaAlert window = new EnigmaAlert(50,50);
-            window.setMinimumSize(new Dimension(50,50));
-            window.getContentSpace().setLayout(new GridLayout(3,1));
-            window.getContentSpace().add(title);
-            window.getContentSpace().add(path);
-            window.getContentSpace().add(loading);
-            window.setWindowBackground(Color.DARK_GRAY);
-            window.setAlwaysOnTop(true);
-            window.setResizable(false);
-            window.setMenuBarVisible(false);
+            EnigmaLabel loadingComponent = new EnigmaLabel("0%");
+            EnigmaAlert window = ImportExport.initLoadingAlert(exportPath + mapName + Config.EXPORT_EXTENSION,loadingComponent);
             window.setVisible(true);
 
-            for(String s : ImportExport.toBytes(mapName + STRING_END))
-                writer.writeChars(s);
+            for(boolean[] tab : ImportExport.toBytes(mapName + STRING_END))
+                for (boolean b : tab)
+                    writer.writeBoolean(b);
 
-            for(String s : ImportExport.toBytes(mapData + STRING_END)) {
-                writer.writeChars(s);
+            for(boolean[] tab : ImportExport.toBytes(mapData + STRING_END)) {
+                for(boolean b : tab)
+                    writer.writeBoolean(b);
                 count++;
-                ImportExport.refreshLoading(loading,count,sum);
+                ImportExport.refreshLoading(loadingComponent,count,sum);
             }
 
-            for(String s : ImportExport.toBytes(gameData + STRING_END)) {
-                writer.writeChars(s);
+            for(boolean[] tab : ImportExport.toBytes(gameData + STRING_END)) {
+                for(boolean b : tab)
+                    writer.writeBoolean(b);
                 count++;
-                ImportExport.refreshLoading(loading,count,sum);
+                ImportExport.refreshLoading(loadingComponent,count,sum);
             }
 
-            for(String s : ImportExport.toBytes(map + STRING_END)){
-                writer.writeChars(s);
+            for(boolean[] tab : ImportExport.toBytes(map + STRING_END)){
+                for(boolean b : tab)
+                    writer.writeBoolean(b);
                 count++;
-                ImportExport.refreshLoading(loading,count,sum);
+                ImportExport.refreshLoading(loadingComponent,count,sum);
             }
 
-           for(String s : ImportExport.toBytes(enigmas + STRING_END)) {
-               writer.writeChars(s);
+           for(boolean[] tab : ImportExport.toBytes(enigmas + STRING_END)) {
+               for(boolean b : tab)
+                   writer.writeBoolean(b);
                count++;
-               ImportExport.refreshLoading(loading,count,sum);
+               ImportExport.refreshLoading(loadingComponent,count,sum);
            }
 
            window.dispose();
@@ -257,6 +270,10 @@ public class ImportExport {
             writer.close();
             throw new IOException("export error");
         }
+    }
+
+    public static void main(String[] args) throws IOException {
+        ImportExport.importGameOrMap("/export/home/an18/dozl/Desktop/aa.enigma");
     }
 
     /**
@@ -271,97 +288,34 @@ public class ImportExport {
         if(!importPath.endsWith(Config.EXPORT_EXTENSION))
             throw new IllegalArgumentException("Ce n'est pas un .enigma!");
 
-        BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(importPath)));
+        DataInputStream reader = new DataInputStream(new FileInputStream(importPath));
         BufferedWriter writer;
-        int mapLine = -1;
-        int mapDataLine = -1;
-        int gameDataLine = -1;
-        int enigmasLine = -1;
-        int line = 1;
-        String read;
-        String mapName = null;
+        try {
+            String mapName = ImportExport.readToString(reader);
+            System.out.println(mapName);
+            mapName = "testtest";
 
-        /*DataInputStream r = new DataInputStream(new FileInputStream(exportPath + mapName + Config.EXPORT_EXTENSION));
-            StringBuilder s = new StringBuilder();
-            StringBuilder s2 = new StringBuilder();
-            while(true) {
-                s.delete(0,s.length());
-                for (int i = 0; i < 8; i++) {
-                    s.append(r.readChar());
-                }
-                char c = (char) Integer.parseInt(s.toString(), 2);
-                if(c == '\0')
-                    break;
-                else
-                    s2.append(c);
-            }
-            System.out.println(s2);*/
-
-        /*ArrayList<String> data = ImportExport.getDataList();
-        for(String key : data){
-            line++;
-            if((read = reader.readLine()) != null){
-                switch (key){
-                    case NAME:
-                        mapName = ImportExport.getValueFromSyntax(read);
-                        break;
-                    case MAP:
-                        mapLine = Integer.parseInt(ImportExport.getValueFromSyntax(read));
-                        break;
-                    case ENIGMAS:
-                        enigmasLine = Integer.parseInt(ImportExport.getValueFromSyntax(read));
-                        break;
-                    case MAP_DATA:
-                        mapDataLine = Integer.parseInt(ImportExport.getValueFromSyntax(read));
-                        break;
-                    case GAME_DATA:
-                        gameDataLine = Integer.parseInt(ImportExport.getValueFromSyntax(read));
-                        break;
-                }
-            }else
-                throw new IllegalStateException(key + " corrompu");
-        }*/
-
-        int tmpLine = mapLine;
-        if(gameDataLine > 0)
-            tmpLine = gameDataLine;
-
-        writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(Config.MAP_DATA_FOLDER + mapName + Config.DATA_EXTENSION)));
-        for (; line < tmpLine && (read = reader.readLine()) != null; line++) {
-            if(!read.equals("")) {
-                writer.write(read);
-                writer.newLine();
-            }
-        }
-        writer.close();
-
-        if(gameDataLine > 0) {
-            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(Config.GAME_DATA_FOLDER + mapName + Config.DATA_EXTENSION)));
-            for (; line < mapLine && (read = reader.readLine()) != null; line++) {
-                if(!read.equals("")) {
-                    writer.write(read);
-                    writer.newLine();
-                }
-            }
+            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(Config.MAP_DATA_FOLDER + mapName + Config.DATA_EXTENSION)));
+            writer.write(ImportExport.readToString(reader));
             writer.close();
-        }
 
-        writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(Config.MAP_FOLDER + mapName + Config.MAP_EXTENSION)));
-        for(; line < enigmasLine && (read = reader.readLine()) != null; line++){
-            if(!read.equals("")) {
-                writer.write(read);
-                writer.newLine();
+            String game;
+            if((game = ImportExport.readToString(reader)).length() > 0) {
+                writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(Config.GAME_DATA_FOLDER + mapName + Config.DATA_EXTENSION)));
+                writer.write(game);
+                writer.close();
             }
-        }
-        writer.close();
 
-        writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(Config.MAP_FOLDER + mapName + Config.ENIGMA_EXTENSION)));
-        while((read = reader.readLine()) != null){
-            if(!read.equals("")) {
-                writer.write(read);
-                writer.newLine();
-            }
+            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(Config.MAP_FOLDER + mapName + Config.MAP_EXTENSION)));
+            writer.write(ImportExport.readToString(reader));
+            writer.close();
+
+            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(Config.MAP_FOLDER + mapName + Config.ENIGMA_EXTENSION)));
+            writer.write(ImportExport.readToString(reader));
+            writer.close();
+
+        }catch (EOFException e){
+            reader.close();
         }
-        writer.close();
     }
 }
