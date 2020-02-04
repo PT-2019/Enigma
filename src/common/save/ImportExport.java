@@ -85,16 +85,25 @@ public class ImportExport {
      * @param s Chaine
      * @return Octets correpondants aux caractères
      */
-    private static ArrayList<String> toBytes(String s){
-        ArrayList<String> bytes = new ArrayList<>();
+    private static ArrayList<boolean[]> toBytes(String s){
+        ArrayList<boolean[]> bytes = new ArrayList<>();
 
         for(char c : s.toCharArray()){
-            StringBuilder b = new StringBuilder(Integer.toBinaryString(c));
+            String sByte = Integer.toBinaryString(c);
+            int sLen = sByte.length();
+            boolean[] bByte = new boolean[8];
 
-            for(; b.length() < 8;)
-                b.insert(0, "0");
+            for(int i= 0; i < 8; i++){
+                if(i < sLen){
+                    if(sByte.charAt(i) == '0')
+                        bByte[i] = false;
+                    else
+                        bByte[i] = true;
+                }else
+                    bByte[i] = false;
+            }
 
-            bytes.add(b.toString());
+            bytes.add(bByte);
         }
 
         return bytes;
