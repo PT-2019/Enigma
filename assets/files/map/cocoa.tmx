@@ -476,7 +476,7 @@
             <properties>
                 <property name="className" value="common.entities.special.GameExit"/>
                 <property name="y2" value="51.0"/>
-                <property name="DECORATIONS2" value="4"/>
+                <property name="FLOOR2" value="4"/>
             </properties>
         </object>
         <object height="1.0" id="26" name="entity" width="1.0" x="14.0" y="41.0">

@@ -21,6 +21,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import common.entities.GameObject;
 import common.entities.players.*;
+import common.entities.special.GameExit;
 import common.save.entities.serialization.*;
 import data.Layer;
 import editor.EditorLauncher;
@@ -195,6 +196,8 @@ public class GameMap extends AbstractMap {
 		ArrayList<MapProperties> entities = getProperty("entity");
 		float x, y;
 		int width, height;
+		//variable pour savoir si il faut afficher ou non l'entité
+		boolean notdisplay = false;
 		String className;
 		String isheros;
 		EntitySerializable e;
@@ -229,7 +232,7 @@ public class GameMap extends AbstractMap {
 				//on soustrait et augmente pour que ce soit à la bonne position
 				entity.setPosition((x+0.5f)*this.tileWidth*this.getUnitScale(),
 						(y-2)*this.tileHeight*this.getUnitScale());
-				this.setEntityFromSave(object,start);
+				notdisplay = true;
 			}else if(object instanceof Monster){
 				String path = prop.get("JSON", String.class);
 				String name = prop.get("KEY", String.class);
@@ -238,10 +241,17 @@ public class GameMap extends AbstractMap {
 				this.addEntity(monster);
 				monster.setPosition((x+0.5f)*this.tileWidth*this.getUnitScale(),
 						(y-2)*this.tileHeight*this.getUnitScale());
-				this.setEntityFromSave(object,start);
+				notdisplay = true;
 			}else{
 				// on place les tiles
 				this.setFromSave(object, start);
+			}
+
+			if (object instanceof GameExit) notdisplay = true;
+
+			if (notdisplay){
+				this.setEntityFromSave(object,start);
+				notdisplay = false;
 			}
 
 			//ajout à la liste des entités de la map
@@ -279,7 +289,7 @@ public class GameMap extends AbstractMap {
 	}
 
 	/**
-	 * Enlève l'entités vivante de la map
+	 * Enlève l'entités vivante de la map et les actions comme la sortie
 	 * @param entity l'entité à charger
 	 * @param start  le coin supérieur gauche ou commencer a placer des tiles
 	 * @since 4.0
