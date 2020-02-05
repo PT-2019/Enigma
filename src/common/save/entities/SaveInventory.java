@@ -6,7 +6,11 @@ import common.entities.Item;
 import java.util.ArrayList;
 
 /**
- * Sauvegarde et charge l'inventaire
+ * Sauvegarde et charge l'inventaire.
+ *
+ * Elle se contente de sauvegarder les ids des entités stockées.
+ *
+ * Rien n'est instancié à la lecture donc les données sont intraitables.
  *
  * @author Jorys-Micke ALAÏS
  * @author Louka DOZ
@@ -17,6 +21,7 @@ import java.util.ArrayList;
  * @since 6.0 04/02/2020
  */
 @ConvenienceClass
+@Deprecated
 public final class SaveInventory {
 
 	/**

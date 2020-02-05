@@ -1,21 +1,17 @@
 package editor.menus.name;
 
+import com.badlogic.gdx.Gdx;
 import common.entities.GameObject;
 import common.entities.types.Living;
-import common.hud.EnigmaButton;
-import common.hud.EnigmaLabel;
-import common.hud.EnigmaPanel;
-import common.hud.EnigmaTextArea;
+import common.hud.*;
 import data.NeedToBeTranslated;
 import editor.menus.AbstractPopUpView;
 import editor.popup.cases.CasePopUp;
 import game.EnigmaGame;
 
-import javax.swing.JScrollPane;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.GridBagLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -34,16 +30,12 @@ public class AddNameView extends AbstractPopUpView {
 	private static final String TITLE = NeedToBeTranslated.TITLE_NAME;
 	private static final String SUBMIT = NeedToBeTranslated.SAVE;
 	private static final String NAME_SAVED = NeedToBeTranslated.NAME_SAVED;
-	private static final int PADDING = 10;
+	private static final int PADDING = 10, WIDTH = AbstractPopUpView.WIDTH/2;
 
 	/*
-				 LABEL : SAISIR DU CONTENU
+				 LABEL : SAISIR NOM
 		|---------------------------------------|
-		|                                       |
-		|                                       |
-		|              TEXT_AREA                |
-		|                                       |
-		|                                       |
+		|              TEXT_FIELD               |
 		|---------------------------------------|
 				| BUTTON: valider|
 		 */
@@ -70,7 +62,7 @@ public class AddNameView extends AbstractPopUpView {
 		input.getComponentUI().setAllForegrounds(Color.YELLOW, Color.YELLOW, Color.YELLOW);
 		input.setBorder(new EmptyBorder(PADDING, PADDING, PADDING, PADDING));
 		//input field
-		EnigmaTextArea field = new EnigmaTextArea();
+		EnigmaTextField field = new EnigmaTextField();
 		field.setText(entity.getName());
 		field.getComponentUI().setAllBackgrounds(Color.WHITE, Color.WHITE, Color.WHITE);
 		field.getComponentUI().setAllForegrounds(Color.BLACK, Color.BLACK, Color.BLACK);
@@ -84,12 +76,18 @@ public class AddNameView extends AbstractPopUpView {
 
 		//addToContainer
 		back.add(input, BorderLayout.NORTH);
-		JScrollPane jScrollPane = field.setScrollBar();
-		jScrollPane.setBorder(new EmptyBorder(0, PADDING, 0, PADDING));
-		back.add(jScrollPane, BorderLayout.CENTER);
+		EnigmaPanel fieldP = new EnigmaPanel(new BorderLayout());
+		fieldP.add(field, BorderLayout.CENTER);
+		//fieldP.setBorder(new EmptyBorder(0, PADDING, 0, PADDING));
+		JScrollPane sc = new JScrollPane(fieldP);
+		sc.setBorder(new EmptyBorder(0, PADDING, 0, PADDING));
+		back.add(sc, BorderLayout.CENTER);
 		back.add(tmp, BorderLayout.SOUTH);
 
+		this.setMinimumSize(new Dimension(WIDTH, 1));
 		this.add(back);
+		this.pack();
+		this.setLocation(Gdx.graphics.getWidth() / 2 - getWidth() / 2, Gdx.graphics.getHeight() / 2 - getHeight() / 2);
 	}
 
 	@Override
@@ -109,9 +107,9 @@ public class AddNameView extends AbstractPopUpView {
 	private static class SubmitListener implements ActionListener {
 		private final AddNameView parent;
 		private final Living entity;
-		private final EnigmaTextArea field;
+		private final EnigmaTextField field;
 
-		SubmitListener(AddNameView parent, Living entity, EnigmaTextArea field) {
+		SubmitListener(AddNameView parent, Living entity, EnigmaTextField field) {
 			this.parent = parent;
 			this.entity = entity;
 			this.field = field;

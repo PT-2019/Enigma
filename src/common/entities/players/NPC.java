@@ -217,6 +217,7 @@ public class NPC extends GameActorTextured implements Entity, Living, Container 
 		save.put(PlayerSave.KEY, this.key);
 		save.put(PlayerSave.JSON, this.json);
 		save.put(PlayerSave.HERO, String.valueOf(this.hero));
+		//save des ids des éléments de l'inventaire
 		save.put(PlayerSave.INVENTORY, SaveInventory.save(this.items));
 		save.put(PlayerSave.NAME, this.name);
 		return save;
@@ -226,8 +227,10 @@ public class NPC extends GameActorTextured implements Entity, Living, Container 
 	public void load(MapProperties data) {
 		this.key = data.get(PlayerSave.KEY.getKey(), String.class);
 		this.json = data.get(PlayerSave.JSON.getKey(), String.class);
-		this.hero = Boolean.valueOf(data.get(PlayerSave.HERO.getKey(), String.class));
-		//SaveInventory.load(data.get(PlayerSave.INVENTORY.getKey(), String.class));
+		this.hero = Boolean.parseBoolean(data.get(PlayerSave.HERO.getKey(), String.class));
+		//pourrait passer la map en argument de load ? Fait une boucle qui dans un thread demande en permanence
+		//si chargement fini et si oui alors fini le chargement des items en récupérant selon ids.
+		SaveInventory.load(data.get(PlayerSave.INVENTORY.getKey(), String.class));
 		this.name = data.get(PlayerSave.NAME.getKey(), String.class);
 	}
 
