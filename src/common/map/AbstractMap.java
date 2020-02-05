@@ -23,18 +23,21 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Array;
 import common.entities.GameObject;
 import common.entities.types.ContainersManager;
-import common.entities.types.EnigmaContainer;
 import common.entities.types.IDInterface;
+import common.map.data.MapData;
+import common.save.DataSave;
 import common.save.TmxProperties;
 import common.save.entities.serialization.EntityFactory;
 import common.save.entities.serialization.EntitySerializable;
 import common.utils.IDFactory;
 import common.utils.Logger;
 import data.Layer;
+import data.config.Config;
 import editor.bar.edition.actions.EditorActionParent;
 import org.intellij.lang.annotations.MagicConstant;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -55,6 +58,12 @@ import static common.save.MapsNameUtils.WIDTH_P;
  * @since 3.0
  */
 public abstract class AbstractMap extends Group implements EditorActionParent<GameObject> {
+
+	/**
+	 * Données propres à la map
+	 * @since 6.0
+	 */
+	protected MapData data;
 
 	/**
 	 * Les entités de la map
@@ -122,6 +131,20 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 		// charge la map
 		TiledMap tiledMap = new TmxMapLoader().load(path);
 		this.map = new OrthogonalTiledMapRenderer(tiledMap, unitScale);
+		String data = null;
+
+		//TODO: if else à retirer lorsque TestScreen.MAP_PATH ne vaudra plus assets/map/map_system/EmptyMap.tmx
+		if(!path.equals("assets/map/map_system/EmptyMap.tmx")) {	//evite des exceptions, à effacer le moment venu
+			try {
+				data = path.replace(Config.MAP_FOLDER, Config.MAP_DATA_FOLDER).replace(Config.MAP_EXTENSION, Config.DATA_EXTENSION);
+				this.data = DataSave.readMapData(data);
+			} catch (IOException e) {
+				Logger.printError("AbstractMap.java", "impossible de charger les données: " + data + " de la map: " + path);
+				//TODO: annuler le chargement
+			}
+		}else{
+			this.data = new MapData("a retirer","a retirer");
+		}
 
 		//sauvegarde des propriétés de la map
 		MapProperties properties = tiledMap.getProperties();
@@ -170,18 +193,14 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 	// utils (static)
 
 	/**
-	 * Retourne la case (indices) dans la map depuis une positon x,y dans l'espace.
-	 * <p>
+	 * Convertit la position sur la map en position sur la grille
+	 *
 	 * Attention! La position  x,y est considérée comme étant toujours dans la map.
 	 *
-	 * @param posX position x
-	 * @param posY position y
-	 * @param map  la map
-	 * @return la case (indices) dans la map depuis une positon x,y dans l'espace.
-	 * @since 3.0 14 décembre 2019
-	 * <p>
-	 * <p>
-	 * VERSION SWING TO LIBGDX
+	 * @param posX coordonnées X
+	 * @param posY coordonnées Y
+	 * @param map la map
+	 * @return la position sur la map
 	 */
 	public static Vector2 posToIndex(float posX, float posY, final AbstractMap map) {
 		Vector2 index = new Vector2();
@@ -189,8 +208,8 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 		posX /= map.getUnitScale();
 		posY /= map.getUnitScale();
 
-		float column = MathUtils.clamp(Math.round(posX / map.getTileWidth()), 0, map.getMapBounds().right);
-		float row = MathUtils.clamp(Math.round(posY / map.getTileHeight()), 0, map.getMapBounds().top);
+		float column = MathUtils.clamp(Math.round(posX / map.getTileWidth()), 0, map.getMapWidth()*map.getTileWidth());
+		float row = MathUtils.clamp(Math.round(posY / map.getTileHeight()), 0, map.getMapHeight()*map.getTileHeight());
 
 		index.x = column;
 		index.y = row;
@@ -759,5 +778,13 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 	 */
 	public void freeId(IDInterface object) {
 		this.idFactory.free(object, true);
+	}
+
+	/**
+	 * Retourne les données de la partie
+	 * @return Les données de la partie
+	 */
+	public MapData getMapData() {
+		return this.data;
 	}
 }

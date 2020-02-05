@@ -55,6 +55,11 @@ public class OpenListener extends MenuListener {
 		}*/
 
 		String map;
+		if (!(map = EnigmaOptionPane.showMapChoiceDialog(this.window)).equals(CustomOptionPane.CANCEL)) {
+			System.out.println("ouverture de "+Config.MAP_FOLDER + map + ".tmx");
+			EmptyMapGenerator.load( Config.MAP_FOLDER + map + ".tmx");
+			Gdx.app.postRunnable(() -> EnigmaGame.reload(EnigmaScreens.TEST.name()));
+			//TODO: message ok
 		if (!(map = EnigmaOptionPane.showMapChoiceDialog(new EnigmaWindow())).equals(CustomOptionPane.CANCEL)) {
 			String path = Config.MAP_FOLDER + map + ".tmx";
 			((TestScreen) EnigmaGame.getCurrentScreen()).setMap(path);

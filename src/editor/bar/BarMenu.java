@@ -6,11 +6,7 @@ import common.hud.ui.EnigmaMenuUI;
 import common.language.HUDFields;
 import data.EnigmaScreens;
 import data.config.EnigmaUIValues;
-import editor.bar.listeners.CreateListener;
-import editor.bar.listeners.OpenListener;
-import editor.bar.listeners.RedoListener;
-import editor.bar.listeners.SaveAsListener;
-import editor.bar.listeners.UndoListener;
+import editor.bar.listeners.*;
 import game.EnigmaGame;
 
 import java.awt.*;
@@ -34,7 +30,7 @@ public class BarMenu extends EnigmaMenuBar {
 	private EnigmaMenuItem ouvrir = new EnigmaMenuItem(gl.get(HUDFields.OPEN));
 	private EnigmaMenuItem save = new EnigmaMenuItem(gl.get(HUDFields.SAVE));
 	private EnigmaMenuItem saveAs = new EnigmaMenuItem(gl.get(HUDFields.SAVE_AS));
-	private EnigmaMenuItem map = new EnigmaMenuItem(gl.get(HUDFields.EXPORT));
+	private EnigmaMenuItem export = new EnigmaMenuItem(gl.get(HUDFields.EXPORT));
 	//2eme onglet
 	private EnigmaMenu edit = new EnigmaMenu(gl.get(HUDFields.EDIT));
 	private EnigmaMenuItem redo = new EnigmaMenuItem(gl.get(HUDFields.REDO));
@@ -63,7 +59,7 @@ public class BarMenu extends EnigmaMenuBar {
 		this.file.add(ouvrir);
 		this.file.add(save);
 		this.file.add(saveAs);
-		this.file.add(map);
+		this.file.add(export);
 
 		this.edit.add(undo);
 		this.edit.add(redo);
@@ -83,8 +79,9 @@ public class BarMenu extends EnigmaMenuBar {
 
 		this.create.addActionListener(new CreateListener(window, this.create));
 		this.ouvrir.addActionListener(new OpenListener(window, this.ouvrir));
-		this.save.addActionListener(new OpenListener(window, this.save));
+		this.save.addActionListener(new SaveListener(window, this.save));
 		this.saveAs.addActionListener(new SaveAsListener(window, this.saveAs));
+		this.export.addActionListener(new ExportListener(window, this.export));
 		this.undo.addActionListener(new UndoListener(window, this.undo));
 		this.redo.addActionListener(new RedoListener(window, this.redo));
 

@@ -8,7 +8,7 @@ package common.enigmas;
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  * @version 5.0
- * @see game.Louka.event.TileEvent
+ * @see TileEvent
  * @since 5.0
  */
 public enum TileEventEnum {

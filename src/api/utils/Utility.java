@@ -117,8 +117,7 @@ public class Utility implements Serializable {
 	}
 
 	/**
-	 * Cette méthode normalize une chaîne de caractère : supprime les accents et la
-	 * met en minuscule
+	 * Cette méthode normalize une chaîne de caractère : supprime les caractères spéciaux et les nombres
 	 *
 	 * @param string la chaîne a normaliser
 	 * @return la chaîne normalisée
@@ -126,11 +125,11 @@ public class Utility implements Serializable {
 	 */
 	@ConvenienceMethod
 	public static String normalize(String string) {
-		string = string.toLowerCase();//lower case
-		//escape non ascii chars
 		string = Normalizer.normalize(string, Normalizer.Form.NFD);
 		string = string.replaceAll("[^\\x00-\\x7F]", "");
-		return string;
+		string = string.replaceAll("[-+.^:,\"]","");
+		string = string.replaceAll("[\\n\\t ]", "");
+		return string.trim();
 	}
 
 	/**
@@ -145,7 +144,7 @@ public class Utility implements Serializable {
 	 */
 	@ConvenienceMethod
 	public static <T extends Enum> T stringToEnum(String name, T[] enumValues) {
-		name = normalize(name);
+		name = normalize(name).toLowerCase();
 
 		for (T screen : enumValues) {
 			if (screen.name().toLowerCase().equals(name))

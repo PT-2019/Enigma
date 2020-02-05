@@ -23,6 +23,16 @@ public final class Config {
 	public static final String MAP_FOLDER = "assets/files/map/";
 
 	/**
+	 * Données de la map sauvegardées dans le logiciel tant que pas exportées
+	 */
+	public static final String MAP_DATA_FOLDER = "assets/files/data/";
+
+	/**
+	 * Données des parties locales sauvegardées dans le logiciel tant que pas exportées
+	 */
+	public static final String GAME_DATA_FOLDER = "assets/files/game/";
+
+	/**
 	 * Le chemin pour trouver le fichier DTD depuis {@link #MAP_FOLDER}
 	 *
 	 * @since 5.1
@@ -103,4 +113,24 @@ public final class Config {
 	 * @since 6.1
 	 */
 	public static final AsciiColor DEBUG_ALL_COLOR = AsciiColor.CYAN;
+
+	/**
+	 * Extension des maps
+	 */
+	public static final String MAP_EXTENSION = ".tmx";
+
+	/**
+	 * Extension des mapData et gameData
+	 */
+	public static final String DATA_EXTENSION = ".tmx";
+
+	/**
+	 * Extension des énigmes
+	 */
+	public static final String ENIGMA_EXTENSION = ".json";
+
+	/**
+	 * Extension des exports
+	 */
+	public static final String EXPORT_EXTENSION = ".enigma";
 }
