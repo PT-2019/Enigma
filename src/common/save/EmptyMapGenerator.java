@@ -14,6 +14,7 @@ import common.save.enigmas.EnigmaJsonReader;
 import common.save.enigmas.EnigmaJsonWriter;
 import common.utils.textures.TextureProxy;
 import data.config.Config;
+import editor.bar.edition.ActionsManager;
 import game.EnigmaGame;
 import game.screens.TestScreen;
 
@@ -79,9 +80,8 @@ public class EmptyMapGenerator {
 
 		//Récupère les énigmes
 		ArrayList<Enigma> enigmas = new ArrayList<>();
-		for (GameObject entity : entities.getAllObjectsByClass(GameObject.class)) {
+		for (GameObject entity : entities.getAllObjectsByClass(GameObject.class, true)) {
 			if (entity instanceof EnigmaContainer) {
-				System.out.println(entity);
 				Iterator<Enigma> enigmasRaw = ((EnigmaContainer) entity).getAllEnigmas();
 				while (enigmasRaw.hasNext()) {
 					//associe aux énigmes l'id de l'entité
@@ -96,8 +96,11 @@ public class EmptyMapGenerator {
 		try {
 			EnigmaJsonWriter.writeEnigmas(path + ".json", enigmas);
 		} catch (IOException e) {
-			//TODO: do something
+			Logger.printError("EmptyMapGenerator#save", "Sauvegarde ratée du json.");
 		}
+
+		// clear de l'historique
+		ActionsManager.reset();
 	}
 
 
@@ -121,7 +124,7 @@ public class EmptyMapGenerator {
 		int id;
 		try {
 			enigmas = EnigmaJsonReader.readEnigmas(path);
-			for (GameObject o : entities.getAllObjectsByClass(GameObject.class)) {
+			for (GameObject o : entities.getAllObjectsByClass(GameObject.class, false)) {
 				if (!(o instanceof EnigmaContainer)) continue;
 				//récupère les énigmes de cet object
 				for (Enigma en : enigmas) {
@@ -140,7 +143,10 @@ public class EmptyMapGenerator {
 		} catch (IOException | ClassNotFoundException | InvocationTargetException | NoSuchMethodException |
 				InstantiationException | IllegalAccessException ignore) {
 		} catch (IllegalStateException e) {
-			System.err.println(e.toString());
+			Logger.printError("EmptyMapGenerator#load", e.toString());
 		}
+
+		// clear de l'historique
+		ActionsManager.reset();
 	}
 }

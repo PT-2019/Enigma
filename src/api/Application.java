@@ -6,7 +6,7 @@ import api.ui.CustomWindow;
  * Représentation d'une application
  *
  * @author Quentin RAMSAMY-AGEORGES
- * @version 5.0
+ * @version 6.1
  * @since 1.0
  */
 public interface Application {
@@ -31,6 +31,11 @@ public interface Application {
 	 * @since 6.0
 	 */
 	int LOG_ERROR = 1;
+	/**
+	 * Affiche infos debug en plus
+	 * @since 6.1
+	 */
+	int DEBUG_ALL = 5;
 
 	/**
 	 * Cette méthode lance une application

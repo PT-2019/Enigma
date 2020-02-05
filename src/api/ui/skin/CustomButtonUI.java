@@ -845,6 +845,15 @@ public class CustomButtonUI extends BasicButtonUI implements CustomUIHoverAndPre
 	}
 
 	@Override
+	public void setAllBackgrounds(Color background) {
+		if (background == null)
+			throw new NullPointerException("Les arguments ne peuvent pas être null");
+		this.background = background;
+		this.hoveredBackground = background;
+		this.pressedBackground = background;
+	}
+
+	@Override
 	public void setAllBorders(Color border, Color hoveredBorder, Color pressedBorder) {
 		this.border = border;
 		this.hoveredBorder = hoveredBorder;

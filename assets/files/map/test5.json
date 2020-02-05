@@ -1,0 +1,60 @@
+{
+     "Enigmas": [
+          {
+               "common.enigmas.Enigma": [
+                    {
+                         "operations": [
+                         ],
+                         "known": "false",
+                         "currentAdviceIndex": "-1",
+                         "description": "",
+                         "advices": [
+                         ],
+                         "id": "11",
+                         "title": ".526.588",
+                         "type": "ON_USE",
+                         "conditions": [
+                         ]
+                    }
+               ]
+          },
+
+          {
+               "common.enigmas.Enigma": [
+                    {
+                         "operations": [
+                         ],
+                         "known": "false",
+                         "currentAdviceIndex": "-1",
+                         "description": "",
+                         "advices": [
+                         ],
+                         "id": "7",
+                         "title": "254245",
+                         "type": "ON_USE",
+                         "conditions": [
+                         ]
+                    }
+               ]
+          },
+
+          {
+               "common.enigmas.Enigma": [
+                    {
+                         "operations": [
+                         ],
+                         "known": "false",
+                         "currentAdviceIndex": "-1",
+                         "description": "",
+                         "advices": [
+                         ],
+                         "id": "7",
+                         "title": "563.",
+                         "type": "ON_USE",
+                         "conditions": [
+                         ]
+                    }
+               ]
+          }
+     ]
+}

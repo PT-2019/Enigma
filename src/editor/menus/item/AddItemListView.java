@@ -1,5 +1,6 @@
 package editor.menus.item;
 
+import api.utils.Observer;
 import common.entities.GameObject;
 import common.entities.Item;
 import common.entities.types.Container;
@@ -25,7 +26,7 @@ import java.awt.event.ItemListener;
 import java.util.ArrayList;
 
 /**
- * Desc
+ * Liste des objects contenus dans un object.
  *
  * @author Jorys-Micke ALAÏS
  * @author Louka DOZ
@@ -34,7 +35,7 @@ import java.util.ArrayList;
  * @version 5.0 30/01/2020
  * @since 5.0 30/01/2020
  */
-public class AddItemListView extends AbstractSubPopUpView {
+public class AddItemListView extends AbstractSubPopUpView implements Observer<GameObject> {
 
 	private static final String TITLE = "Liste des objets";
 	private static final String SEE_ENTITY = "Voir entité sélectionnée";
@@ -45,7 +46,12 @@ public class AddItemListView extends AbstractSubPopUpView {
 	private ButtonGroup groups;
 	private ItemListener listener;
 
-	public AddItemListView(AbstractPopUpView parent, AddItemSeeView seeView) {
+	/**
+	 * Liste des objects contenus dans un object.
+	 * @param parent parent
+	 * @param seeView vue d'un item
+	 */
+	AddItemListView(AbstractPopUpView parent, AddItemSeeView seeView) {
 		super(TITLE, parent, false);
 		this.groups = new ButtonGroup();
 		this.listener = new ItemListener() {
@@ -88,17 +94,9 @@ public class AddItemListView extends AbstractSubPopUpView {
 	}
 
 	@Override
-	public void onHide() {
-	}
-
-	@Override
 	public void onShow() {
-		//this.clean();
-		//this.initComponent();
-	}
-
-	@Override
-	public void update(GameObject object) {
+		this.clean();
+		this.initComponent();
 	}
 
 	@Override
@@ -122,12 +120,12 @@ public class AddItemListView extends AbstractSubPopUpView {
 			r.setName(item.getID() + "");
 			//ajoute les boutons au panneau
 			panel.add(r);
-			//listener pour les boutons
-			r.addItemListener(this.listener);
 			if (first) {
 				r.setSelected(true);
 				first = false;
 			}
+			//listener pour les boutons
+			r.addItemListener(this.listener);
 		}
 
 		if (items.size() == 0) {
@@ -145,6 +143,11 @@ public class AddItemListView extends AbstractSubPopUpView {
 		panelS.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 
 		this.content.add(panelS, BorderLayout.CENTER);
+	}
+
+
+	@Override
+	public void update(GameObject object) {
 	}
 
 	public ButtonGroup getGroup() {

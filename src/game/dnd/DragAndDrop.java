@@ -58,7 +58,7 @@ public class DragAndDrop extends InputListener {
 	// Drag Strart
 	@Override
 	public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-		if (this.dragged.isDraggable() && TestScreen.isState(EditorState.NORMAL)) {
+		if (this.dragged.isDraggable() && EditorLauncher.isState(EditorState.NORMAL)) {
 			//cursor de drag
 			EditorLauncher.getInstance().getWindow().setCursor(new Cursor(Cursor.HAND_CURSOR));
 

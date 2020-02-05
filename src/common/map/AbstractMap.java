@@ -21,18 +21,19 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Array;
+import common.data.MapData;
 import common.entities.GameObject;
 import common.entities.types.ContainersManager;
-import common.data.MapData;
-import common.hud.EnigmaOptionPane;
+import common.entities.types.IDInterface;
 import common.save.DataSave;
 import common.save.TmxProperties;
 import common.save.entities.serialization.EntityFactory;
 import common.save.entities.serialization.EntitySerializable;
+import common.utils.IDFactory;
 import common.utils.Logger;
 import data.Layer;
 import data.config.Config;
-import game.screens.TestScreen;
+import editor.bar.edition.actions.EditorActionParent;
 import org.intellij.lang.annotations.MagicConstant;
 import org.jetbrains.annotations.NotNull;
 
@@ -53,10 +54,10 @@ import static common.save.MapsNameUtils.WIDTH_P;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 6.0
+ * @version 6.1
  * @since 3.0
  */
-public abstract class AbstractMap extends Group {
+public abstract class AbstractMap extends Group implements EditorActionParent<GameObject> {
 
 	/**
 	 * Données propres à la map
@@ -113,6 +114,12 @@ public abstract class AbstractMap extends Group {
 	protected boolean showGrid;
 
 	/**
+	 * IDFactory
+	 * @since 6.1
+	 */
+	protected IDFactory idFactory;
+
+	/**
 	 * Le seul constructeur possible d'une map, ne fait rien
 	 *
 	 * @param path      chemin d'une map
@@ -134,9 +141,11 @@ public abstract class AbstractMap extends Group {
 			} catch (IOException e) {
 				Logger.printError("AbstractMap.java", "impossible de charger les données: " + data + " de la map: " + path);
 				//TODO: annuler le chargement
+				//TODO: a retirer, temporaire pour les anciennes maps
+				this.data = new MapData("à retirer","à retirer");
 			}
 		}else{
-			this.data = new MapData("a retirer","a retirer");
+			this.data = new MapData("à retirer","à retirer");
 		}
 
 		//sauvegarde des propriétés de la map
@@ -160,6 +169,8 @@ public abstract class AbstractMap extends Group {
 		this.showGrid = false;
 
 		this.objects = new MapObjects();
+
+		this.idFactory = new IDFactory();
 
 		//initialise la map
 		this.init();
@@ -271,9 +282,8 @@ public abstract class AbstractMap extends Group {
 					tiles.put(layer.toString(), tile);
 				}
 				e = new EntitySerializable(width, height, className, tiles);
-				GameObject object = EntityFactory.createEntity(e, id, start);
+				GameObject object = EntityFactory.createEntity(e, id, start, this.idFactory);
 				object.load(prop);
-
 				Logger.printDebug("MapTestScreen#initEntities", object + " " + start);
 
 				//ajout à la liste des entités de la map
@@ -285,7 +295,7 @@ public abstract class AbstractMap extends Group {
 			} else {
 				//entitée temporaire, pas sur la map
 				e = new EntitySerializable(width, height, className, new HashMap<>());
-				GameObject object = EntityFactory.createEntity(e, id, start);
+				GameObject object = EntityFactory.createEntity(e, id, start, this.idFactory);
 
 				//ajout à la liste des entités de la map
 				//this.added.put(start, object);
@@ -467,6 +477,11 @@ public abstract class AbstractMap extends Group {
 							}
 						}
 					}
+					//si l'id vaut zéro alors que c'est celle à supprimer, alors on la sauvegarde car c'est
+					//une entité de la sauvegarde donc qui ne connait plus ses tiles
+					if(ent.get(index) == 0 && c.getTile() != null){
+						ent.set(index, (float) c.getTile().getId());
+					}
 					c.setTile(this.map.getMap().getTileSets().getTile(ind));
 					tileLayer.setCell(j, i, c);
 				}
@@ -483,16 +498,17 @@ public abstract class AbstractMap extends Group {
 		ArrayList<Vector2> delete = new ArrayList<>();
 		HashMap<Vector2, GameObject> obj = new HashMap<>();
 		Rectangle ent = new Rectangle(start.x, start.y, entity.getGameObjectWidth(), entity.getGameObjectHeight());
-		for (Map.Entry<Vector2, ArrayList<GameObject>> item : this.objects.getAll().entrySet()) {
+		for (Map.Entry<Vector2, ArrayList<GameObject>> item : this.objects.getOriginalMap().entrySet()) {
 			for (GameObject object : item.getValue()) {
 				Rectangle other = new Rectangle(item.getKey().x, item.getKey().y,
 						object.getGameObjectWidth(), object.getGameObjectHeight());
 				//check collision
 				if (LibgdxUtility.overlapsBottomLeftOrigin(ent, other)) {
-					//si c'est un conteneur
+					//si l'object a supprimer est un container
 					if (entity instanceof ContainersManager) {
-						//si item est un conteneur, alors on va le reconstruire ses tiles après suppression
-						if (item.getValue() instanceof ContainersManager) {
+						//si l'object de la collision est un conteneur
+						//alors on va le reconstruire ses tiles après suppression
+						if (object instanceof ContainersManager) {
 							//je garde une salle
 							obj.put(item.getKey(), object);
 						}
@@ -747,9 +763,29 @@ public abstract class AbstractMap extends Group {
 		return this.objects;
 	}
 
+	@Override
+	public void add(GameObject arg, Object... args) {
+		this.set(arg, (Vector2) args[0]);
+	}
+
+	@Override
+	public void remove(GameObject arg, Object... args) {
+		this.removeEntity(arg);
+	}
+
+	/**
+	 * Libère un id
+	 * @param object object a libérer
+	 * @since 6.0
+	 */
+	public void freeId(IDInterface object) {
+		this.idFactory.free(object, true);
+	}
+
 	/**
 	 * Retourne les données de la partie
 	 * @return Les données de la partie
+	 * @since 6.0
 	 */
 	public MapData getMapData() {
 		return this.data;

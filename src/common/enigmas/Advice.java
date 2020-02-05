@@ -1,9 +1,13 @@
 package common.enigmas;
 
+import common.language.EnigmaField;
+import common.language.GameLanguage;
 import common.save.enigmas.EnigmaAttributes;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static common.language.GameLanguage.gl;
 
 /**
  * Advice définie les indices donnés aux joueurs pour les aider à résoudre une énigme
@@ -17,7 +21,7 @@ import java.util.Map;
  * @see Enigma
  * @since 2.0
  */
-public class Advice {
+public class Advice implements EnigmaElementReadablePrint {
 
 	/**
 	 * Texte de l'indice
@@ -142,5 +146,12 @@ public class Advice {
 	@Override
 	public String toString() {
 		return "[Advice  : advice = \"" + this.advice + "\", delay = " + this.delay + "]";
+	}
+
+	@Override
+	public String getEnigmaElementReadablePrint() {
+		return "["+gl.get(EnigmaField.ADVICE)+":" +
+				gl.get(EnigmaField.ADVICE_CONTENT)+" = \""+this.advice+"\" "+
+				gl.get(EnigmaField.AFTER)+" "+this.delay+" "+gl.get(EnigmaField.DELAY_MESURE)+" ]";
 	}
 }

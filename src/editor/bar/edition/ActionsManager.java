@@ -6,6 +6,7 @@ import api.utils.annotations.ConvenienceMethod;
 import data.config.Config;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * Conserve l'historique des actions effectuées.
@@ -14,7 +15,7 @@ import java.util.ArrayList;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 6.0
+ * @version 6.2
  * @since 5.0 29/01/2020
  */
 public class ActionsManager implements Subject<ActionsManager> {
@@ -50,6 +51,12 @@ public class ActionsManager implements Subject<ActionsManager> {
 	private ArrayList<Observer<ActionsManager>> obs;
 
 	/**
+	 * Dernière action effectuée
+	 *
+	 */
+	private LastAction last;
+
+	/**
 	 * Crée un historique des actions effectuées
 	 * @since 5.0
 	 */
@@ -58,6 +65,7 @@ public class ActionsManager implements Subject<ActionsManager> {
 		this.redo = new ArrayList<>(Config.MAX_OF_REDO);
 		this.obs = new ArrayList<>();
 		this.isDoingAction = false;
+		this.last = null;
 	}
 
 	/**
@@ -74,6 +82,8 @@ public class ActionsManager implements Subject<ActionsManager> {
 
 		EditorAction editorAction = this.undo.get(this.undo.size() - 1);
 		editorAction.undoAction(); //annule l'action de la dernière ajoutée
+
+		this.last = new LastAction(editorAction, ActionsManagerType.UNDO);
 
 		this.isDoingAction = false;
 
@@ -101,6 +111,8 @@ public class ActionsManager implements Subject<ActionsManager> {
 		//on rétablit l'action annulée
 		EditorAction editorAction = this.redo.get(this.redo.size() - 1);
 		editorAction.doAction();
+
+		this.last = new LastAction(editorAction, ActionsManagerType.REDO);
 
 		this.isDoingAction = false;
 
@@ -131,6 +143,9 @@ public class ActionsManager implements Subject<ActionsManager> {
 		//plus possible de redo car branche changée.
 		this.redo.clear();
 
+		//save comme étant la dernière
+		this.last = new LastAction(action, ActionsManagerType.ADD);
+
 		this.updateObserver(this);
 
 		return true;
@@ -142,8 +157,16 @@ public class ActionsManager implements Subject<ActionsManager> {
 	 * @since 6.0
 	 */
 	public void clear(){
+		for (EditorAction action :this.undo) {
+			action.clear();
+		}
+		for (EditorAction action: this.redo){
+			action.clear();
+		}
 		this.undo.clear();
 		this.redo.clear();
+		this.last = null;
+		this.updateObserver(this);
 	}
 
 	/**
@@ -206,5 +229,27 @@ public class ActionsManager implements Subject<ActionsManager> {
 	@ConvenienceMethod
 	public static void reset(){
 		getInstance().clear();
+	}
+
+	/**
+	 * Retourne la dernière action effectuée
+	 * @since 6.2
+	 * @return la dernière action effectuée
+	 */
+	public LastAction getLastAction() {
+		return this.last;
+	}
+
+	/**
+	 * Dernière action faite sur la map
+	 */
+	public static final class LastAction {
+		public final ActionsManagerType type;
+		public final EditorAction last;
+
+		private LastAction(EditorAction last, ActionsManagerType type) {
+			this.type = type;
+			this.last = last;
+		}
 	}
 }

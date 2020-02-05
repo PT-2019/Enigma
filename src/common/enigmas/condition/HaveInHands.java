@@ -2,8 +2,11 @@ package common.enigmas.condition;
 
 import common.entities.Item;
 import common.entities.players.Player;
+import common.language.EnigmaField;
 
 import java.util.Map;
+
+import static common.language.GameLanguage.gl;
 
 /**
  * Vérifie que le joueur tien un item défini dans ses mains
@@ -66,5 +69,11 @@ public class HaveInHands extends Condition {
 	@Override
 	public String toLongString() {
 		return "[HaveInHands  : entity = " + this.entity + "]";
+	}
+
+	@Override
+	public String getEnigmaElementReadablePrint() {
+		return "["+gl.get(EnigmaField.HAVE_IN_HANDS)+": "+
+				this.entity.getReadableName() + " (id="+this.entity.getID()+") ]";
 	}
 }

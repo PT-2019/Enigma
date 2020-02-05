@@ -11,7 +11,7 @@ import common.entities.players.Player;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 2.2
+ * @version 6.0
  * apiNote : on peux entends une seule classe donc autant que ce soit un actor (possible)
  * @see common.entities.Item
  * @since 1.0
@@ -37,6 +37,15 @@ public abstract class Activatable extends AbstractItem {
 	 */
 	public Activatable(boolean activated, int id) {
 		super(id);
+		this.activated = activated;
+	}
+
+	/**
+	 * Définit si l'object est activé
+	 * @param activated true si l'object est activé
+	 * @since 6.0
+	 */
+	public void setActivated(boolean activated) {
 		this.activated = activated;
 	}
 

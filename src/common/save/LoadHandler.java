@@ -25,6 +25,7 @@ import org.xml.sax.helpers.DefaultHandler;
  */
 public class LoadHandler extends DefaultHandler {
 
+	private static final int COLLISION_TILE = 2041;
 	private String currentName;
 
 	private TextureProxy proxyTexture;
@@ -129,8 +130,8 @@ public class LoadHandler extends DefaultHandler {
 						loadMap.setCase(indice, tmpCase);
 					}
 					//si c'est une collision on applique une méthode différente
-					if (currentLayer.equals(Layer.COLLISION.name)) {
-						if (num == 1) {
+					if (currentLayer.equals(Layer.COLLISION.name())) {
+						if (num == COLLISION_TILE) {
 							tmpCase.setWalkable(true);
 						}
 					} else {
@@ -153,8 +154,8 @@ public class LoadHandler extends DefaultHandler {
 					loadMap.setCase(indice, tmpCase);
 				}
 				//si c'est une collision on applique une méthode différente
-				if (currentLayer.equals("Colision")) {
-					if (num == 1) {
+				if (currentLayer.equals(Layer.COLLISION.name())) {
+					if (num == COLLISION_TILE) {
 						tmpCase.setWalkable(true);
 					}
 				} else {

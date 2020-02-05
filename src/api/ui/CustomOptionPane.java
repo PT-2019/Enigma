@@ -9,6 +9,7 @@ import api.ui.skin.CustomButtonUI;
 import api.ui.skin.CustomTextAreaUI;
 import api.utils.Utility;
 import common.hud.EnigmaButton;
+import common.hud.EnigmaOptionPane;
 import common.hud.ui.EnigmaButtonUI;
 
 import javax.swing.*;
@@ -19,6 +20,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 
 /**
  * Un panneau de choix modal customizable
@@ -612,17 +614,29 @@ public class CustomOptionPane implements OptionPaneStyle {
 	}
 
 	/**
-	 * Crée un popup de choix de map
+	 * Crée un popup avec une liste de choix.
 	 *
 	 * @param parent  parent
 	 * @param size taille
-	 * @param style   style
-	 * @return le nom de la map séléctionnée
-	 * @since 5.0
+	 * @return le nom du choix sélectionné
+	 * @since 6.0
 	 */
-	protected static String showMapChoiceDialog(CustomWindow parent, Dimension size, OptionPaneStyle style) {
+	public static String showListDialog(CustomWindow parent, String title, Dimension size, ArrayList<String> choices){
+		return showListDialog(parent, title, size, choices, new CustomOptionPane());
+	}
+
+	/**
+	 * Crée un popup avec une liste de choix.
+	 *
+	 * @param parent  parent
+	 * @param size taille
+	 * @return le nom du choix sélectionné
+	 * @since 6.0
+	 */
+	protected static String showListDialog(CustomWindow parent, String title, Dimension size,
+	                                       ArrayList<String> choices, OptionPaneStyle style) {
 		CustomAlert window = style.getWindow();
-		CustomLabel titleComponent = style.getLabelStyle("Choisissez une map");
+		CustomLabel titleComponent = style.getLabelStyle(title);
 		CustomPanel confirmComponent = style.getPanelStyle();
 		CustomButton confirm = style.getButtonStyle(CONFIRM);
 		CustomPanel mapsComponent = style.getPanelStyle();
@@ -661,7 +675,7 @@ public class CustomOptionPane implements OptionPaneStyle {
 		gbc.weighty = 0;
 
 		mapsComponent.setLayout(new GridLayout(30,1));
-		for(String s : Utility.getAllMapName()){
+		for(String s : choices){
 			EnigmaButton b = new EnigmaButton(s);
 			b.setComponentUI(bui);
 			mapsComponent.add(b);

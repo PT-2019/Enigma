@@ -33,6 +33,11 @@ public class EnigmaLabel extends CustomLabel {
 		this.setComponentUI(new EnigmaLabelUI());
 	}
 
+	public EnigmaLabel(String title, EnigmaLabelUI ui) {
+		super(title);
+		this.setComponentUI(ui.duplicate());
+	}
+
 	@Override
 	public EnigmaLabelUI getComponentUI() {
 		return (EnigmaLabelUI) super.getComponentUI();

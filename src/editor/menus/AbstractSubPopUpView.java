@@ -23,17 +23,29 @@ import java.awt.event.ComponentEvent;
  * @version 5.0 27/01/2020
  * @since 5.0 27/01/2020
  */
-public abstract class AbstractSubPopUpView extends EnigmaPanel implements Observer<GameObject>, ResetComponent {
+public abstract class AbstractSubPopUpView extends EnigmaPanel implements ResetComponent {
 
 	protected final EnigmaLabel infoLabel;
 	protected final EnigmaPanel footer;
 	protected final EnigmaPanel content;
 	protected final AbstractPopUpView parent;
+	protected final MenuPopUp menuPopUp;
 
+	/**
+	 * Une vue du cardLayout de la vue d'un popup
+	 * @param title titre
+	 * @param parent parent
+	 */
 	public AbstractSubPopUpView(String title, AbstractPopUpView parent) {
 		this(title, parent, true);
 	}
 
+	/**
+	 * Une vue du cardLayout de la vue d'un popup
+	 * @param title titre
+	 * @param parent parent
+	 * @param showBack afficher bouton retour
+	 */
 	public AbstractSubPopUpView(String title, AbstractPopUpView parent, boolean showBack) {
 		super();
 		this.parent = parent;
@@ -51,32 +63,35 @@ public abstract class AbstractSubPopUpView extends EnigmaPanel implements Observ
 			}
 		});
 
-		footer = new EnigmaPanel();
-		footer.setLayout(new GridBagLayout());
+		this.footer = new EnigmaPanel();
+		this.footer.setLayout(new GridBagLayout());
 
 		GridBagConstraints gbc = new GridBagConstraints();
 
-		infoLabel = new EnigmaLabel("");
-		infoLabel.getComponentUI().setAllForegrounds(Color.YELLOW, Color.YELLOW, Color.YELLOW);
+		this.infoLabel = new EnigmaLabel("");
+		this.infoLabel.getComponentUI().setAllForegrounds(Color.YELLOW, Color.YELLOW, Color.YELLOW);
 		gbc.gridx = 0;
 		gbc.gridy = 1;
 		gbc.weightx = 0;
 		gbc.weighty = 0;
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.gridwidth = 2;
-		footer.add(infoLabel, gbc);
+		this.footer.add(this.infoLabel, gbc);
 
 		this.setLayout(new BorderLayout());
-		this.add(new MenuPopUp(title, "", parent, this, showBack), BorderLayout.NORTH);
-		this.add(content, BorderLayout.CENTER);
-		this.add(footer, BorderLayout.SOUTH);
+		menuPopUp = new MenuPopUp(title, "", parent, this, showBack);
+		this.add(menuPopUp, BorderLayout.NORTH);
+		this.add(this.content, BorderLayout.CENTER);
+		this.add(this.footer, BorderLayout.SOUTH);
 	}
 
-	public abstract void onShow();
+	/**
+	 * Affichage de la carte
+	 */
+	public void onShow(){}
 
-	public abstract void onHide();
-
-	public EnigmaLabel getInfoLabel() {
-		return this.infoLabel;
-	}
+	/**
+	 * Moment carte n'est plus affichée
+	 */
+	public void onHide(){}
 }

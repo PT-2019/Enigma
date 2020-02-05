@@ -5,10 +5,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import common.map.MapTestScreen;
-import data.EditorState;
+import common.utils.Logger;
+import data.config.Config;
 import editor.popup.TestMapControl;
 import game.EnigmaGame;
 import game.gui.CategoriesMenu;
+import api.libgdx.ui.Toast;
+import game.gui.EnigmaEditorToast;
 
 /**
  * TestScreen de la libgdx dans l'éditeur
@@ -17,20 +20,14 @@ import game.gui.CategoriesMenu;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 4.4
+ * @version 6.0
  * @since 2.0
  */
 public class TestScreen extends LibgdxScreen {
 
 	//si tu veux charger une map c'est ici sans passer par le launcher
 	private static String MAP_PATH = "assets/map/map_system/EmptyMap.tmx";
-	//private static String MAP_PATH = Config.MAP_FOLDER+"test1.tmx";
-
-	/**
-	 * L'état de l'éditeur
-	 */
-	//TODO: dans l'éditor
-	private static EditorState state;
+	//private static String MAP_PATH = Config.MAP_FOLDER+"test5.tmx";
 
 	/**
 	 * Stage de la map et du jeu
@@ -50,25 +47,9 @@ public class TestScreen extends LibgdxScreen {
 	private MapTestScreen map;
 
 	/**
-	 * Retourne le chemin de la map
-	 *
-	 * @return chemin de la map
+	 * Toast pour afficher info
 	 */
-	public static String getMapPath() {
-		return MAP_PATH;
-	}
-
-	public static EditorState getState() {
-		return TestScreen.state;
-	}
-
-	public static void setState(EditorState state) {
-		TestScreen.state = state;
-	}
-
-	public static boolean isState(EditorState state) {
-		return state.equals(TestScreen.state);
-	}
+	private Toast toast;
 
 	/**
 	 * Prépare les stages, la map et la caméra
@@ -112,13 +93,16 @@ public class TestScreen extends LibgdxScreen {
 				);
 			}
 
+			//creates a toast
+			this.toast = new EnigmaEditorToast();
+			this.hud.addActor(this.toast);
+
 			//écoute inputProcessors
 			//leurs listeners seront appelés...
 			this.listen(this.dnd);
 			this.listen(this.hud);
 			this.listen(this.main);
-			if (!noMap)
-				this.listen(new TestMapControl(map));
+			if (!noMap) this.listen(new TestMapControl(map));
 		} catch (Exception e) {
 			System.err.println("échec création testScreen");
 			e.printStackTrace();
@@ -166,7 +150,7 @@ public class TestScreen extends LibgdxScreen {
 			this.dnd.dispose();
 			this.hud.dispose();
 		} catch (Exception e) {
-			Gdx.app.error("TestScreen", "dispose failed");
+			Logger.printError("TestScreen#dispose", "échec de la libération des ressources.");
 		}
 	}
 
@@ -184,6 +168,11 @@ public class TestScreen extends LibgdxScreen {
 		return false;
 	}
 
+	@Override
+	public void showToast(String message){
+		this.toast.update(message);
+	}
+
 	/**
 	 * Retourne la map
 	 *
@@ -191,5 +180,13 @@ public class TestScreen extends LibgdxScreen {
 	 */
 	public MapTestScreen getMap() {
 		return map;
+	}
+
+	/**
+	 * Retourne le chemin de la map actuelle
+	 * @return le chemin de la map
+	 */
+	public static String getMapPath() {
+		return MAP_PATH;
 	}
 }

@@ -20,45 +20,25 @@ import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Observateur de la sauvegarde (rapide) de la map.
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ *
+ * @version 6.0
+ * @since 3.0
+ */
 public class SaveListener extends MenuListener {
-
-	/*private static final FileChooser.ExtensionFilter extensions = new FileChooser.ExtensionFilter("Fichier map .tmx",
-			"*.tmx");*/
-
-	//private volatile boolean finished;
-	//private volatile File file;
 
 	public SaveListener(EnigmaWindow window, Component parent) {
 		super(window, parent);
-		//force lancement javafx
-		//new JFXPanel();
-		//this.finished = false;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent actionEvent) {
-		//this.finished = false;
-
-
-		/*Platform.runLater(
-				() ->
-				{
-					FileChooser fileChooser = new FileChooser();
-					fileChooser.setInitialDirectory(new File("./assets/map"));
-					fileChooser.getExtensionFilters().addAll(extensions);
-
-					this.file = fileChooser.showSaveDialog(null);
-					this.finished = true;
-				}
-		);*/
-
-		//while (!this.finished) ; //attends le thread file chooser
-
-		//sauvegarde
-		/*if (this.file != null) {
-
-		}*/
-
 		String author = EnigmaGame.getCurrentScreen().getMap().getMapData().getAuthor();
 
 		if(author.equals("")) {
@@ -74,6 +54,7 @@ public class SaveListener extends MenuListener {
 
 		MapTestScreen map = ((TestScreen) EnigmaGame.getCurrentScreen()).getMap();
 		EmptyMapGenerator.save(TestScreen.getMapPath().replace(Config.MAP_EXTENSION,""), map.getTiledMap(), map.getEntities());
+
 		//TODO: message ok
 	}
 

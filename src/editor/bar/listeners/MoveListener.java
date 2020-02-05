@@ -30,13 +30,13 @@ public class MoveListener extends MenuListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		//si c'est déjà en move, alors on reset
-		if (TestScreen.isState(EditorState.MOVE)) {
+		if (EditorLauncher.isState(EditorState.MOVE)) {
 			setActive(false);
-			TestScreen.setState(EditorState.NORMAL);
+			EditorLauncher.setState(EditorState.NORMAL);
 		} else {
 			//si on active la gomme
 			setActive(true);
-			TestScreen.setState(EditorState.MOVE);
+			EditorLauncher.setState(EditorState.MOVE);
 		}
 	}
 
