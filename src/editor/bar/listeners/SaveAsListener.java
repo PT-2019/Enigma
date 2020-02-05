@@ -36,16 +36,13 @@ public class SaveAsListener extends MenuListener {
 
 	@Override
 	public void actionPerformed(ActionEvent actionEvent) {
-		String mapName = "";
-		boolean notExist = true;
+		String mapName = EnigmaOptionPane.showInputDialog(this.window,"Nom de la map :");
+		mapName = Utility.normalize(mapName);
 
-		while(notExist) {
-			mapName = EnigmaOptionPane.showInputDialog(this.window,"Sauvegarder sous :");
-			notExist = false;
-			for (String s : Utility.getAllMapName()) {
-				if (s.equals(mapName)) {
-					notExist = true;
-					EnigmaOptionPane.showAlert(this.window, "Ce nom existe déjà");
+		for(String s : Utility.getAllMapName()) {
+			if (s.equals(mapName)){
+				if(!EnigmaOptionPane.showConfirmDialog(this.window,"Une map nommée \"" + mapName + "\" existe déjà, remplacer?")){
+					return;
 				}
 			}
 		}

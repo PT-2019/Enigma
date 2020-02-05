@@ -33,6 +33,7 @@ public class ExportListener extends MenuListener {
 
 	@Override
 	public void actionPerformed(ActionEvent actionEvent) {
+		//TODO: verifier si map a été sauvegardée avant d'exporter
 		MapData data = EnigmaGame.getCurrentScreen().getMap().getMapData();
 
 		JFileChooser fileChooser = new JFileChooser();
@@ -41,17 +42,6 @@ public class ExportListener extends MenuListener {
 
 		if(fileChooser.showOpenDialog(this.parent) == JFileChooser.APPROVE_OPTION){
 			String exportPath = fileChooser.getSelectedFile().getAbsolutePath();
-			String file = data.getMapName() + Config.EXPORT_EXTENSION;
-
-			String[] files = fileChooser.getSelectedFile().list();
-			if(files != null) {
-				for (String s : files){
-					if(s.equals(file)){
-						EnigmaOptionPane.showAlert(this.window,"Un fichier du même nom existe déjà");
-						return;
-					}
-				}
-			}
 
 			if(exportPath.contains("\\"))
 				exportPath += "\\";
@@ -61,10 +51,10 @@ public class ExportListener extends MenuListener {
 			try {
 				ImportExport.exportMap(data.getMapName(),exportPath);
 			} catch (IOException |IllegalStateException e) {
-				Logger.printError("ExportListener.java","export error");
+				Logger.printError("ExportListener.java","export error: " + e.getMessage());
 
 				//on efface le fichier créé car erreur
-				File f = new File(exportPath + data.getMapName() + Config.EXPORT_EXTENSION);
+				File f = new File(exportPath + data.getMapName() + Config.MAP_EXPORT_EXTENSION);
 				f.delete();
 				EnigmaOptionPane.showAlert(this.window,"Export raté");
 			}

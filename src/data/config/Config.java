@@ -129,7 +129,12 @@ public final class Config {
 	public static final String ENIGMA_EXTENSION = ".json";
 
 	/**
-	 * Extension des exports
+	 * Extension des exports de maps
 	 */
-	public static final String EXPORT_EXTENSION = ".enigma";
+	public static final String MAP_EXPORT_EXTENSION = ".enigma-map";
+
+	/**
+	 * Extension des exports de parties
+	 */
+	public static final String GAME_EXPORT_EXTENSION = ".enigma-game";
 }

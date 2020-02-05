@@ -41,15 +41,36 @@ public class Utility implements Serializable {
 	 */
 	public static ArrayList<String> getAllMapName(){
 		ArrayList<String> maps = new ArrayList<>();
-		File file = new File("assets/files/map/");
+		File file = new File(Config.MAP_FOLDER);
 		String[] list = file.list();
 
 		if(list != null){
 			for(String s : list){
-				if(s.endsWith(".tmx"))
-					maps.add(s.replace(".tmx",""));
+				if(s.endsWith(Config.MAP_EXTENSION))
+					maps.add(s.replace(Config.MAP_EXTENSION,""));
 			}
 		}
+
+		return maps;
+	}
+
+	/**
+	 * Obtenir le nom de toutes les parties en local
+	 * Les noms sont issus des fichiers tmx présents
+	 * @return Le nom des parties
+	 */
+	public static ArrayList<String> getAllGameName() {
+		ArrayList<String> maps = new ArrayList<>();
+		File file = new File(Config.GAME_DATA_FOLDER);
+		String[] list = file.list();
+
+		if(list != null){
+			for(String s : list){
+				if(s.endsWith(Config.DATA_EXTENSION))
+					maps.add(s.replace(Config.DATA_EXTENSION,""));
+			}
+		}
+
 		return maps;
 	}
 
@@ -95,7 +116,7 @@ public class Utility implements Serializable {
 	public static String normalize(String string) {
 		string = Normalizer.normalize(string, Normalizer.Form.NFD);
 		string = string.replaceAll("[^\\x00-\\x7F]", "");
-		string = string.replaceAll("[-+.^:,\"]","");
+		string = string.replaceAll("[-+.^:,\"']","");
 		string = string.replaceAll("[\\n\\t ]", "");
 		return string.trim();
 	}

@@ -9,6 +9,7 @@ import data.config.Config;
 import game.EnigmaGame;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
@@ -32,40 +33,23 @@ public class ImportListener extends MenuListener {
 
 	@Override
 	public void actionPerformed(ActionEvent actionEvent) {
-		MapData data = EnigmaGame.getCurrentScreen().getMap().getMapData();
+		String extension = Config.MAP_EXPORT_EXTENSION.replaceFirst(".","");
 
 		JFileChooser fileChooser = new JFileChooser();
-		fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-		fileChooser.setDialogTitle("Choisissez le dossier de destination");
+		fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+		fileChooser.setDialogTitle("Choisissez le fichier à importer");
+		fileChooser.setAcceptAllFileFilterUsed(false);
+		fileChooser.addChoosableFileFilter(new FileNameExtensionFilter(Config.MAP_EXPORT_EXTENSION,extension));
 
 		if(fileChooser.showOpenDialog(this.parent) == JFileChooser.APPROVE_OPTION){
-			String exportPath = fileChooser.getSelectedFile().getAbsolutePath();
-			String file = data.getMapName() + Config.EXPORT_EXTENSION;
-
-			String[] files = fileChooser.getSelectedFile().list();
-			if(files != null) {
-				for (String s : files){
-					if(s.equals(file)){
-						EnigmaOptionPane.showAlert(this.window,"Un fichier du même nom existe déjà");
-						return;
-					}
-				}
-			}
-
-			if(exportPath.contains("\\"))
-				exportPath += "\\";
-			if(exportPath.contains("/"))
-				exportPath += "/";
+			String importPath = fileChooser.getSelectedFile().getAbsolutePath();
 
 			try {
-				ImportExport.exportMap(data.getMapName(),exportPath);
+				ImportExport.importMap(importPath);
 			} catch (IOException |IllegalStateException e) {
-				Logger.printError("ExportListener.java","export error");
+				Logger.printError("ImportListener.java","import error: " + e.getMessage());
 
-				//on efface le fichier créé car erreur
-				File f = new File(exportPath + data.getMapName() + Config.EXPORT_EXTENSION);
-				f.delete();
-				EnigmaOptionPane.showAlert(this.window,"Export raté");
+				EnigmaOptionPane.showAlert(this.window,"Import raté");
 			}
 			//TODO: afficher ok
 		}
