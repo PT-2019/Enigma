@@ -8,7 +8,7 @@
       width: 2
       category: ACTIONS
       tiles: {
-        DECORATIONS2:
+        FLOOR2:
         [
           2427, 2428
           2507, 2508,

@@ -245,9 +245,8 @@ public class GameMap extends AbstractMap {
 			}else{
 				// on place les tiles
 				this.setFromSave(object, start);
+				if (object instanceof GameExit) notdisplay = true;
 			}
-
-			if (object instanceof GameExit) notdisplay = true;
 
 			if (notdisplay){
 				this.setEntityFromSave(object,start);
