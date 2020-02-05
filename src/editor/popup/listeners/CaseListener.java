@@ -1,5 +1,6 @@
 package editor.popup.listeners;
 
+import api.utils.Observer;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -15,7 +16,7 @@ import common.entities.GameObject;
 import common.map.MapTestScreenCell;
 import data.EditorState;
 import data.TypeEntity;
-import editor.menus.enimas.view.EnigmaView;
+import editor.EditorLauncher;
 import editor.popup.cases.CasePopUp;
 import editor.popup.cases.CaseView;
 import editor.popup.cases.SpecialPopUp;
@@ -47,22 +48,28 @@ public class CaseListener extends ClickListener {
 	 * boolean qui dit si nous sommes entrain de créer une enigme ou pas.
 	 */
 	private boolean enigmacreate;
+
+	/**
+	 * Second popup
+	 */
 	private SpecialPopUp pop;
+
+	private static Observer available = null;
 
 	public CaseListener(CasePopUp pop) {
 		super(Input.Buttons.LEFT);
 		popUp = pop;
 		enigmacreate = false;
-		pop = null;
+		//this.pop = null;
 	}
 
 	@Override
 	public void clicked(InputEvent event, float x, float y) {
 		//on ne peut cliquer que si l'état est normal
-		if (TestScreen.isState(EditorState.NORMAL)) {
+		if (EditorLauncher.isState(EditorState.NORMAL)) {
 			if (enigmacreate) { //une popup est ouverte
 				//on doit être dans un menu qui nécessite une deuxième popup
-				if (EnigmaView.getAvailable() != null) {
+				if (CaseListener.getAvailable() != null) {
 					//deuxième fenêtre ok on ne quitte pas
 					if (pop != null) {
 						pop.setAlwaysOnTop(true);
@@ -114,7 +121,7 @@ public class CaseListener extends ClickListener {
 				popUp.addWindowListener(new CasePopWindowListener(popUp, g));
 				popUp.display();
 			}
-		} else if (TestScreen.isState(EditorState.ERASE)) {
+		} else if (EditorLauncher.isState(EditorState.ERASE)) {
 			CaseView actor = (CaseView) event.getTarget();
 			MapTestScreenCell cell = getRevelantEntity(actor);
 			if (cell != null && cell.getEntity() != null) cell.removeEntity();
@@ -163,5 +170,18 @@ public class CaseListener extends ClickListener {
 		}
 
 		return cell;
+	}
+
+	public static Observer getAvailable() {
+		return available;
+	}
+
+	public static void setAvailable(Observer available) {
+		CaseListener.available = available;
+	}
+
+	public static boolean isAvailable(Observer observer) {
+		if (available == null) return false;
+		return available.equals(observer);
 	}
 }

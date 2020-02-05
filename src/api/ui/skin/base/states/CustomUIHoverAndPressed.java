@@ -52,6 +52,14 @@ public interface CustomUIHoverAndPressed<T extends CustomUI> extends CustomUIPre
 	 */
 	void setAllBackgrounds(Color background, Color hoveredBackground, Color pressedBackground);
 
+
+	/**
+	 * Définit les couleurs de tous fond
+	 *
+	 * @param background        couleur fonds
+	 */
+	void setAllBackgrounds(Color background);
+
 	/**
 	 * Définit les couleurs de toutes les bordures
 	 *

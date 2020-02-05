@@ -1,10 +1,10 @@
 package editor.popup.cases.listeners;
 
 import common.entities.GameObject;
-import editor.menus.enimas.view.EnigmaView;
 import editor.popup.cases.AbstractPopUp;
 import editor.popup.cases.CasePopUp;
 import editor.popup.cases.SpecialPopUp;
+import editor.popup.listeners.CaseListener;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -42,7 +42,7 @@ public class SpecialPopListener implements ActionListener {
 		EntityChoseListener obs = popup.getObserver();
 		obs.updateObserver(objectChose);
 		popDispose.dispose();
-		EnigmaView.setAvailable(null);
+		CaseListener.setAvailable(null);
 
 		if (popDispose instanceof SpecialPopUp)
 			((SpecialPopUp) popDispose).getCaseListener().setPop(null);

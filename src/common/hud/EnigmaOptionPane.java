@@ -7,10 +7,14 @@ import api.ui.CustomWindow;
 import api.ui.base.DefaultUIValues;
 import api.ui.base.OptionPaneStyle;
 import api.ui.skin.CustomButtonUI;
+import api.utils.Utility;
+import api.utils.annotations.ConvenienceMethod;
 import common.hud.ui.EnigmaTextAreaUI;
+import data.NeedToBeTranslated;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.util.ArrayList;
 
 /**
  * Un panneau de choix modal d'enigma
@@ -188,8 +192,22 @@ public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyl
 	 * @return le nom de la map séléctionnée
 	 * @since 5.0
 	 */
+	@ConvenienceMethod
 	public static String showMapChoiceDialog(CustomWindow parent, Dimension size) {
-		return showMapChoiceDialog(parent, size, new EnigmaOptionPane());
+		return showListDialog(parent, NeedToBeTranslated.ASK_SELECT_MAP, size, Utility.getAllMapName(),
+				new EnigmaOptionPane());
+	}
+
+	/**
+	 * Crée un popup avec une liste de choix.
+	 *
+	 * @param parent  parent
+	 * @param size taille
+	 * @return le nom du choix sélectionné
+	 * @since 5.0
+	 */
+	public static String showListDialog(CustomWindow parent, String title, Dimension size, ArrayList<String> choices) {
+		return showListDialog(parent, title, size, choices, new EnigmaOptionPane());
 	}
 
 	/**

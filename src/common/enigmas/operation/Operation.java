@@ -1,5 +1,6 @@
 package common.enigmas.operation;
 
+import common.enigmas.EnigmaElementReadablePrint;
 import common.entities.Entity;
 import common.entities.players.Player;
 import common.save.enigmas.EnigmaAttributes;
@@ -22,7 +23,7 @@ import java.util.Map;
  * @see common.enigmas.Enigma
  * @since 2.0
  */
-public abstract class Operation {
+public abstract class Operation implements EnigmaElementReadablePrint {
 
 	/**
 	 * Entité concernée par l'opération

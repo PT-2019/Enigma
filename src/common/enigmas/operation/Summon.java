@@ -3,6 +3,7 @@ package common.enigmas.operation;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import common.entities.Entity;
 import common.entities.players.Player;
+import common.language.EnigmaField;
 import common.map.AbstractMap;
 import common.map.MapTestScreenCell;
 import common.save.enigmas.EnigmaAttributes;
@@ -11,6 +12,8 @@ import game.EnigmaGame;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import static common.language.GameLanguage.gl;
 
 /**
  * Fait apparaître une entité sur une case donnée
@@ -160,5 +163,15 @@ public class Summon extends Operation {
 	@Override
 	public String toLongString() {
 		return "[Summon  : entity = " + this.entity + ", spawn = " + this.spawn + "]";
+	}
+
+	@Override
+	public String getEnigmaElementReadablePrint() {
+		int i = this.spawn.getIndex();
+		int x = i % this.spawn.getLayer().getWidth(), y = i / this.spawn.getLayer().getWidth();
+
+		return "["+gl.get(EnigmaField.SUMMON)+": "+
+				this.entity.getReadableName() + " (id="+this.entity.getID()+") "+
+				gl.get(EnigmaField.LOCATION) + " ("+x+","+y+") ]";
 	}
 }

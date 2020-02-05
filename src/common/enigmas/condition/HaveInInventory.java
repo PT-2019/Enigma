@@ -2,8 +2,11 @@ package common.enigmas.condition;
 
 import common.entities.Item;
 import common.entities.players.Player;
+import common.language.EnigmaField;
 
 import java.util.Map;
+
+import static common.language.GameLanguage.gl;
 
 /**
  * Vérifie qu'un joueur à un item défini dans son inventaire
@@ -63,5 +66,11 @@ public class HaveInInventory extends Condition {
 	@Override
 	public String toLongString() {
 		return "[HaveInInventory  : entity = " + this.entity + "]";
+	}
+
+	@Override
+	public String getEnigmaElementReadablePrint() {
+		return "["+gl.get(EnigmaField.HAVE_IN_INVENTORY)+": "+
+				this.entity.getReadableName() + " (id="+this.entity.getID()+") ]";
 	}
 }

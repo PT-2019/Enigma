@@ -2,8 +2,11 @@ package common.enigmas.condition;
 
 import common.entities.players.Player;
 import common.entities.types.Activatable;
+import common.language.EnigmaField;
 
 import java.util.Map;
+
+import static common.language.GameLanguage.gl;
 
 /**
  * Vérifie qu'un objet activable est activé
@@ -63,5 +66,11 @@ public class Activated extends Condition {
 	@Override
 	public String toLongString() {
 		return "[Activated  : entity = " + this.entity + "]";
+	}
+
+	@Override
+	public String getEnigmaElementReadablePrint() {
+		return "["+gl.get(EnigmaField.ACTIVATED)+": "+
+				this.entity.getReadableName() + " (id="+this.entity.getID()+") ]";
 	}
 }

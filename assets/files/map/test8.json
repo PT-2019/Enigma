@@ -1,0 +1,79 @@
+{
+     "Enigmas": [
+          {
+               "common.enigmas.Enigma": [
+                    {
+                         "operations": [
+                              {
+                                   "common.enigmas.operation.Give": [
+                                        {
+                                             "entities": "10"
+                                        }
+                                   ]
+                              },
+
+                              {
+                                   "common.enigmas.operation.Summon": [
+                                        {
+                                             "entities": "11",
+                                             "spawn_layer": "FLOOR2",
+                                             "spawn_x": "12",
+                                             "spawn_y": "36"
+                                        }
+                                   ]
+                              },
+
+                              {
+                                   "common.enigmas.operation.Unlock": [
+                                        {
+                                             "entities": "7"
+                                        }
+                                   ]
+                              }
+                         ],
+                         "known": "false",
+                         "currentAdviceIndex": "0",
+                         "description": "Ceci est un test",
+                         "advices": [
+                              {
+                                   "common.enigmas.Advice": [
+                                        {
+                                             "delay": "52",
+                                             "advice": "test111111111111111"
+                                        }
+                                   ]
+                              }
+                         ],
+                         "id": "7",
+                         "title": "testMegaMax",
+                         "type": "ON_USE",
+                         "conditions": [
+                              {
+                                   "common.enigmas.condition.Activated": [
+                                        {
+                                             "entities": "8"
+                                        }
+                                   ]
+                              },
+
+                              {
+                                   "common.enigmas.condition.HaveInHands": [
+                                        {
+                                             "entities": "9"
+                                        }
+                                   ]
+                              },
+
+                              {
+                                   "common.enigmas.condition.HaveInInventory": [
+                                        {
+                                             "entities": "10"
+                                        }
+                                   ]
+                              }
+                         ]
+                    }
+               ]
+          }
+     ]
+}

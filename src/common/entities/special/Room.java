@@ -50,6 +50,11 @@ public class Room extends AbstractGameObject implements ContainersManager {
 	}
 
 	@Override
+	public String toString() {
+		return super.toString()+" id="+this.id;
+	}
+
+	@Override
 	public String getReadableName() {
 		return GameLanguage.gl.get(GameFields.ROOM);
 	}

@@ -9,7 +9,7 @@
     create:Nouveau
     open:Ouvrir
     save:Enregistrer,
-    saveas:Enregistrer sous,
+    saveAs:Enregistrer sous,
     undo:Annuler
     redo:Refaire
     brush:Normal
@@ -34,7 +34,7 @@
     actions: Actions
 
     layer: Étage
-    firstlayer: Niveau
+    firstLayer: Niveau
     ok: Confirmer
     cancel: Annuler
     leave: Voulez vous vraiment quittez?
@@ -48,15 +48,31 @@
     button: Bouton
     book: Livre
     door: Porte
-    pressureplate: Plaque de pression
+    pressurePlate: Plaque de pression
     library: Bibliothèque
 
     //actions
-    gameexit: Sortie
+    gameExit: Sortie
 
     //entities
     player: Héros
     npc: Personne
     monster: Monstre
+
+    adviceContent: contenu
+    delay: délais
+    advice: Indice
+    activated: Doit être activé
+    entity: l'entité
+    after: après
+    delayMesure: minutes
+    haveInHands: Avoir dans les mains
+    haveInInventory: Avoir dans l'inventaire
+    answer: réponse
+    inputAnswer: Saisir la réponse
+    give: Donner
+    summon: Invoque
+    location: à
+    unlock: Déverrouille
   }
 }

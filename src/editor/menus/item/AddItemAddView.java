@@ -1,5 +1,6 @@
 package editor.menus.item;
 
+import api.utils.Observer;
 import common.entities.Consumable;
 import common.entities.GameObject;
 import common.entities.Item;
@@ -10,7 +11,7 @@ import common.hud.EnigmaPanel;
 import common.map.MapTestScreen;
 import editor.menus.AbstractPopUpView;
 import editor.menus.AbstractSubPopUpView;
-import editor.menus.enimas.view.EnigmaView;
+import editor.popup.listeners.CaseListener;
 import game.EnigmaGame;
 import game.dnd.DragAndDropBuilder;
 import game.screens.TestScreen;
@@ -21,43 +22,55 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AddItemAddView extends AbstractSubPopUpView {
+/**
+ * Vue du menu d'ajout d'un item
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ *
+ * @version 6.0 02/02/2020
+ * @since 6.0 02/02/2020
+ */
+public class AddItemAddView extends AbstractSubPopUpView implements Observer<GameObject> {
 
 	private static final String TITLE = "Ajouter un objet";
 	private static final String NO_ITEMS = "Veuillez sélectionner un objet (menu)";
 	private static final String INVALID = "Entité Invalide. Objets Uniquement (livre, ...)";
 	private static final String SUMBIT = "Confimer";
+
 	private final EnigmaButton submit;
 	private final EnigmaLabel empty;
 	private GameObject item;
 
-	public AddItemAddView(AbstractPopUpView parent, AddItemListView list) {
+	AddItemAddView(AbstractPopUpView parent, AddItemListView list) {
 		super(TITLE, parent, true);
 
 		EnigmaPanel panel = new EnigmaPanel();
 		panel.setLayout(new GridBagLayout());
-		empty = new EnigmaLabel(NO_ITEMS);
-		empty.getComponentUI().setAllForegrounds(Color.YELLOW, Color.YELLOW, Color.YELLOW);
-		panel.add(empty);
+		this.empty = new EnigmaLabel(NO_ITEMS);
+		this.empty.getComponentUI().setAllForegrounds(Color.YELLOW, Color.YELLOW, Color.YELLOW);
+		panel.add(this.empty);
 
-		submit = new EnigmaButton(SUMBIT);
-		submit.setVisible(false);
-		submit.addActionListener(new SubmitListener(parent, this, list));
-		footer.add(submit);
+		this.submit = new EnigmaButton(SUMBIT);
+		this.submit.setVisible(false);
+		this.submit.addActionListener(new SubmitListener(parent, this, list));
+		this.footer.add(this.submit);
 
 		this.content.add(panel, BorderLayout.CENTER);
 	}
 
 	@Override
 	public void update(GameObject object) {
-		if (EnigmaView.getAvailable() != null) return;
+		if (CaseListener.getAvailable() != null) return;
 		//PrintColor.println("update#"+object, AnsiiColor.CYAN);
 		//Récupération de la map
 		MapTestScreen map = ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap();
 
 		if (!(object instanceof Consumable)) {
-			empty.setText(INVALID);
-			submit.setVisible(false);
+			this.empty.setText(INVALID);
+			this.submit.setVisible(false);
 			if (this.item != null) {
 				//supprime
 				map.removeEntity(this.item);
@@ -78,10 +91,10 @@ public class AddItemAddView extends AbstractSubPopUpView {
 				//transfert id
 				object.setID(this.item.getID());
 			}
-			item = object;
+			this.item = object;
 			//System.out.println("#item:"+item);
-			empty.setText(object.getReadableName() + " (id=" + object.getID() + ")");
-			submit.setVisible(true);
+			this.empty.setText(object.getReadableName() + " (id=" + object.getID() + ")");
+			this.submit.setVisible(true);
 		}
 	}
 
@@ -90,31 +103,30 @@ public class AddItemAddView extends AbstractSubPopUpView {
 		GameObject objNull = null;
 		this.update(objNull);
 		DragAndDropBuilder.setForPopup(null);
-		empty.setText(NO_ITEMS);
-	}
-
-	@Override
-	public void onHide() {
-	}
-
-	@Override
-	public void onShow() {
-	}
-
-	@Override
-	public void initComponent() {
+		this.empty.setText(NO_ITEMS);
 	}
 
 	public EnigmaLabel getInfoLabel() {
 		return this.infoLabel;
 	}
 
+	/**
+	 * Bouton de validation
+	 *
+	 * @author Jorys-Micke ALAÏS
+	 * @author Louka DOZ
+	 * @author Loic SENECAT
+	 * @author Quentin RAMSAMY-AGEORGES
+	 *
+	 * @version 6.0 02/02/2020
+	 * @since 6.0 02/02/2020
+	 */
 	private static class SubmitListener implements ActionListener {
 		private final AbstractPopUpView parent;
 		private final AddItemAddView addItemAddView;
 		private final AddItemListView list;
 
-		public SubmitListener(AbstractPopUpView parent, AddItemAddView addItemAddView, AddItemListView list) {
+		SubmitListener(AbstractPopUpView parent, AddItemAddView addItemAddView, AddItemListView list) {
 			this.parent = parent;
 			this.addItemAddView = addItemAddView;
 			this.list = list;
@@ -127,16 +139,20 @@ public class AddItemAddView extends AbstractSubPopUpView {
 				//ajout au container
 				((Container) entity).addItem((Item) addItemAddView.item);
 				//clean
-				addItemAddView.item = null;
-				addItemAddView.submit.setVisible(false);
-				addItemAddView.empty.setText(NO_ITEMS);
+				this.addItemAddView.item = null;
+				this.addItemAddView.submit.setVisible(false);
+				this.addItemAddView.empty.setText(NO_ITEMS);
 				DragAndDropBuilder.setForPopup(null);
 				//update parent
-				list.clean();
-				list.initComponent();
+				this.list.clean();
+				this.list.initComponent();
 				//retour menu
-				parent.getCardLayout().show(parent.getPanel(), "menu");
+				this.parent.getCardLayout().show(parent.getPanel(), "menu");
 			}
 		}
+	}
+
+	@Override
+	public void initComponent() {
 	}
 }

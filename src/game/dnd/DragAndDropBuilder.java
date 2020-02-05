@@ -34,7 +34,7 @@ public class DragAndDropBuilder extends InputListener {
 	 *
 	 * @since 5.0
 	 */
-	private static Observer forPopup = null;
+	private static Observer<GameObject> forPopup = null;
 
 	/**
 	 * entity qui sera déplaçable
@@ -67,15 +67,15 @@ public class DragAndDropBuilder extends InputListener {
 	 * @param forPopup true si on bloque sinon false
 	 * @since 5.0
 	 */
-	public static void setForPopup(Observer forPopup) {
+	public static void setForPopup(Observer<GameObject> forPopup) {
 		DragAndDropBuilder.forPopup = forPopup;
 	}
 
 	@Override
 	public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-		if (!TestScreen.isState(EditorState.NORMAL)) {
+		if (!EditorLauncher.isState(EditorState.NORMAL)) {
 			//POUR LE CONFORT, ON FORCE LE PASSAGE EN NORMAL
-			TestScreen.setState(EditorState.NORMAL);
+			EditorLauncher.setState(EditorState.NORMAL);
 			EditorLauncher.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 		} else if (forPopup != null) {
 			Logger.printDebug("DnDBuilder", "Déplacement bloqué. Sélection.");

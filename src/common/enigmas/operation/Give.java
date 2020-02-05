@@ -2,8 +2,11 @@ package common.enigmas.operation;
 
 import common.entities.Item;
 import common.entities.players.Player;
+import common.language.EnigmaField;
 
 import java.util.Map;
+
+import static common.language.GameLanguage.gl;
 
 /**
  * Donne un objet au joueur ayant entrainé le déclenchement de cette opération
@@ -76,5 +79,11 @@ public class Give extends Operation {
 	@Override
 	public String toLongString() {
 		return "[Give  : entity = " + this.entity + "]";
+	}
+
+	@Override
+	public String getEnigmaElementReadablePrint() {
+		return "["+gl.get(EnigmaField.GIVE)+": "+
+				this.entity.getReadableName() + " (id="+this.entity.getID()+") ]";
 	}
 }

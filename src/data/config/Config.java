@@ -3,14 +3,13 @@ package data.config;
 import api.Application;
 import api.utils.AsciiColor;
 import api.utils.annotations.NeedPatch;
-import com.badlogic.gdx.Gdx;
 import common.language.Language;
 
 /**
  * Fichier des configurations de l'application
  *
  * @author Quentin RAMSAMY-AGEORGES
- * @version 6.0
+ * @version 6.1
  * @since 4.0
  */
 public final class Config {
@@ -111,7 +110,14 @@ public final class Config {
 	 *
 	 * @since 6.0
 	 */
-	public static final AsciiColor ERROR_COLOR = AsciiColor.ORANGE;
+	public static final AsciiColor ERROR_COLOR = AsciiColor.BRIGHT_MAGENTA;
+
+	/**
+	 * Couleur des éléments affichés en mode DEBUG_ALL
+	 *
+	 * @since 6.1
+	 */
+	public static final AsciiColor DEBUG_ALL_COLOR = AsciiColor.CYAN;
 
 	/**
 	 * Extension des maps

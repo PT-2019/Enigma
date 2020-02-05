@@ -21,14 +21,23 @@ import java.awt.Cursor;
  * @author Jorys-Micke ALAÏS
  * @author Louka DOZ
  * @author Quentin RAMSAMY-AGEORGES
- * @version 4.2
+ * @version 5.0
  * @since 1.0
  */
 public class EditorLauncher implements Application {
 
 	private static EditorLauncher editor;
 
+	/**
+	 * écran de l'éditor
+	 */
 	private EditorScreen editorScreen;
+
+	/**
+	 * état de l'éditor
+	 * @since 5.0
+	 */
+	private static EditorState state;
 
 	/**
 	 * la fenêtre dans laquelle il est lancé
@@ -45,7 +54,7 @@ public class EditorLauncher implements Application {
 			this.window = new EnigmaWindow();
 		}
 
-		TestScreen.setState(EditorState.NORMAL);
+		EditorLauncher.setState(EditorState.NORMAL);
 
 		this.window.setSize(WindowSize.FULL_SCREEN_SIZE);
 		this.editorScreen = null;
@@ -159,6 +168,18 @@ public class EditorLauncher implements Application {
 	 */
 	public CustomWindow getWindow() {
 		return window;
+	}
+
+	public static EditorState getState() {
+		return EditorLauncher.state;
+	}
+
+	public static void setState(EditorState state) {
+		EditorLauncher.state = state;
+	}
+
+	public static boolean isState(EditorState state) {
+		return state.equals(EditorLauncher.state);
 	}
 
 }

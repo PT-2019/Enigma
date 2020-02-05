@@ -3,8 +3,11 @@ package common.enigmas.operation;
 import common.entities.Item;
 import common.entities.players.Player;
 import common.entities.types.Lockable;
+import common.language.EnigmaField;
 
 import java.util.Map;
+
+import static common.language.GameLanguage.gl;
 
 /**
  * Déverrouille un objet verrouillable
@@ -74,5 +77,10 @@ public class Unlock extends Operation {
 	@Override
 	public String toLongString() {
 		return "[Unlock  : entity = " + this.entity + "]";
+	}
+
+	@Override
+	public String getEnigmaElementReadablePrint() {
+		return "["+gl.get(EnigmaField.UNLOCK)+": "+this.entity.getReadableName() + " (id="+this.entity.getID()+") ]";
 	}
 }

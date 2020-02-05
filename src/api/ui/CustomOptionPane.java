@@ -9,6 +9,7 @@ import api.ui.skin.CustomButtonUI;
 import api.ui.skin.CustomTextAreaUI;
 import api.utils.Utility;
 import common.hud.EnigmaButton;
+import common.hud.EnigmaOptionPane;
 import common.hud.ui.EnigmaButtonUI;
 
 import javax.swing.*;
@@ -398,7 +399,6 @@ public class CustomOptionPane implements OptionPaneStyle {
 		CustomLabel titleComponent = style.getLabelStyle("Choisissez une map");
 		CustomPanel confirmComponent = style.getPanelStyle();
 		CustomButton confirm = style.getButtonStyle(CONFIRM);
-		CustomButton cancel = style.getButtonStyle(CANCEL);
 		CustomPanel mapsComponent = style.getPanelStyle();
 		JScrollPane scroll = new JScrollPane(mapsComponent);
 		RadioButtonManager rbm = new RadioButtonManager();
@@ -406,10 +406,7 @@ public class CustomOptionPane implements OptionPaneStyle {
 		GridBagConstraints gbc = new GridBagConstraints();
 
 		confirm.addActionListener(new CustomOptionPaneButtonManager(optionPane));
-		cancel.addActionListener(new CustomOptionPaneButtonManager(optionPane));
 		confirmComponent.add(confirm);
-		confirmComponent.add(cancel);
-		cancel.getComponentUI().setPressedBackground(Color.RED);
 
 		parent.setAlwaysOnTop(true);
 		window.setAlwaysOnTop(true);
@@ -437,9 +434,8 @@ public class CustomOptionPane implements OptionPaneStyle {
 		gbc.weightx = 1;
 		gbc.weighty = 0;
 
-		ArrayList<String> maps = Utility.getAllMapName();
-		mapsComponent.setLayout(new GridLayout(maps.size(),1));
-		for(String s : maps){
+		mapsComponent.setLayout(new GridLayout(30,1));
+		for(String s : Utility.getAllMapName()){
 			EnigmaButton b = new EnigmaButton(s);
 			b.setComponentUI(bui);
 			mapsComponent.add(b);
@@ -618,20 +614,31 @@ public class CustomOptionPane implements OptionPaneStyle {
 	}
 
 	/**
-	 * Crée un popup de choix de map
+	 * Crée un popup avec une liste de choix.
 	 *
 	 * @param parent  parent
 	 * @param size taille
-	 * @param style   style
-	 * @return le nom de la map séléctionnée
-	 * @since 5.0
+	 * @return le nom du choix sélectionné
+	 * @since 6.0
 	 */
-	protected static String showMapChoiceDialog(CustomWindow parent, Dimension size, OptionPaneStyle style) {
+	public static String showListDialog(CustomWindow parent, String title, Dimension size, ArrayList<String> choices){
+		return showListDialog(parent, title, size, choices, new CustomOptionPane());
+	}
+
+	/**
+	 * Crée un popup avec une liste de choix.
+	 *
+	 * @param parent  parent
+	 * @param size taille
+	 * @return le nom du choix sélectionné
+	 * @since 6.0
+	 */
+	protected static String showListDialog(CustomWindow parent, String title, Dimension size,
+	                                       ArrayList<String> choices, OptionPaneStyle style) {
 		CustomAlert window = style.getWindow();
-		CustomLabel titleComponent = style.getLabelStyle("Choisissez une map");
+		CustomLabel titleComponent = style.getLabelStyle(title);
 		CustomPanel confirmComponent = style.getPanelStyle();
 		CustomButton confirm = style.getButtonStyle(CONFIRM);
-		CustomButton cancel = style.getButtonStyle(CANCEL);
 		CustomPanel mapsComponent = style.getPanelStyle();
 		JScrollPane scroll = new JScrollPane(mapsComponent);
 		RadioButtonManager rbm = new RadioButtonManager();
@@ -639,10 +646,7 @@ public class CustomOptionPane implements OptionPaneStyle {
 		GridBagConstraints gbc = new GridBagConstraints();
 
 		confirm.addActionListener(new CustomOptionPaneButtonManager(optionPane));
-		cancel.addActionListener(new CustomOptionPaneButtonManager(optionPane));
 		confirmComponent.add(confirm);
-		confirmComponent.add(cancel);
-		cancel.getComponentUI().setPressedBackground(Color.RED);
 
 		parent.setAlwaysOnTop(true);
 		window.setAlwaysOnTop(true);
@@ -670,9 +674,8 @@ public class CustomOptionPane implements OptionPaneStyle {
 		gbc.weightx = 1;
 		gbc.weighty = 0;
 
-		ArrayList<String> maps = Utility.getAllMapName();
-		mapsComponent.setLayout(new GridLayout(maps.size(),1));
-		for(String s : maps){
+		mapsComponent.setLayout(new GridLayout(30,1));
+		for(String s : choices){
 			EnigmaButton b = new EnigmaButton(s);
 			b.setComponentUI(bui);
 			mapsComponent.add(b);
@@ -882,7 +885,7 @@ public class CustomOptionPane implements OptionPaneStyle {
 		if (this.input != null) this.answer = this.input.getText();
 		else if(this.rbm != null){
 
-			if(this.rbm.getSelectedButton() != null && !answer.equals(CANCEL))
+			if(this.rbm.getSelectedButton() != null)
 				this.answer = this.rbm.getSelectedButton().getText();
 			else
 				this.answer = CANCEL;

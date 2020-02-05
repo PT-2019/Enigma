@@ -5,6 +5,7 @@ import api.utils.annotations.ConvenienceMethod;
 import api.utils.annotations.NeedPatch;
 import common.utils.Logger;
 import data.config.Config;
+import editor.menus.AvailableOptionRunnable;
 
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsDevice;
@@ -22,13 +23,14 @@ import java.lang.reflect.Method;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 /**
  * Tout un paquet de méthodes utiles
  *
  * @author Quentin RAMSAMY-AGEORGES
- * @version 6.0
+ * @version 6.2
  * @since 2.0 27 novembre 2019
  */
 @ConvenienceClass
@@ -38,7 +40,9 @@ public class Utility implements Serializable {
 	 * Obtenir le nom de toutes les maps en local
 	 * Les noms sont issus des fichiers tmx présents
 	 * @return Le nom des maps
+	 * @since 6.1
 	 */
+	//TODO: move to real utility
 	public static ArrayList<String> getAllMapName(){
 		ArrayList<String> maps = new ArrayList<>();
 		File file = new File(Config.MAP_FOLDER);
@@ -72,6 +76,34 @@ public class Utility implements Serializable {
 		}
 
 		return maps;
+	}
+
+	/**
+	 * Obtenir le nom de toutes les fichiers dans un dossier
+	 * Les noms sont issus des fichiers tmx présents
+	 * @return Le nom des maps
+	 * @since 6.1
+	 */
+	public static ArrayList<String> getAllFiles(String folder, String[] extensions, boolean removeExtension){
+		ArrayList<String> files = new ArrayList<>();
+		File file = new File(folder);
+		String[] list = file.list();
+
+		if(list != null){
+			for(String s : list){
+				for (String ext :extensions) {
+					if(s.endsWith(ext)){
+						if(removeExtension){
+							s = s.replace(ext, "");
+						}
+						files.add(s);
+						break;
+					}
+				}
+
+			}
+		}
+		return files;
 	}
 
 	/**
@@ -181,37 +213,41 @@ public class Utility implements Serializable {
 	}
 
 	/**
-	 * Retourne null ou une méthode d'un object depuis une string
-	 *
-	 * @param object     class d'un object
+	 * Appelle une méthode
+	 * @param m object méthode
+	 * @param className nom de la classe
+	 * @param <T> type de retour
+	 * @return appel une méthode et retourne son résultat
+	 */
+	@SuppressWarnings("unchecked")
+	public static <T> T invokeMethod(Method m, Class<T> className, Object ... args) {
+		try {
+			return (T) m.invoke(className, args);
+		} catch (IllegalAccessException | InvocationTargetException e) {
+			throw new IllegalStateException("Invocation ratée."+e);
+		}
+	}
+
+	/**
+	 * Appel une méthode depuis son nom en string
 	 * @param methodName nom d'une méthode
-	 * @return la méthode ou null
-	 * @see Method#invoke(Object, Object...) (attention, le premier object doit être la classe)
+	 * @param object    class de la méthode
+	 * @param args arguments
+	 * @param <T> type du type de retour
+	 * @return type de retour
 	 * @since 4.1
 	 */
-	@NeedPatch
-	public static Method findMethod(Class object, String methodName) {
-		/*
-		METHODE MARCHE MAIS LA OU YA DES ??? c'est compliqué (faut savoir les arguments de votre méthode)
+	public static <T> T invokeMethod(String methodName, Class<T> object, Object ... args) {
 		methodName = normalize(methodName);
 
 		for (Method method : object.getDeclaredMethods()) {
 			String name = normalize(method.getName());
-
 			if (methodName.equals(name)) {
-				//method call
-				//try {
-				//	return (????) method.invoke(????.class, args);
-				//} catch (IllegalAccessException | InvocationTargetException e) {
-				//	//fail
-				//}
-				//break;
-
-				return method;
+				return invokeMethod(method, object);
 			}
-		}*/
+		}
 
-		throw new UnsupportedOperationException("disabled");
+		throw new IllegalStateException("No such method");
 	}
 
 	/**
@@ -408,6 +444,38 @@ public class Utility implements Serializable {
 	@Deprecated
 	public static void printDebug(String className, String message) {
 		throw new UnsupportedOperationException("disabled");
+	}
+
+	/**
+	 * Transforme un mot en SNAKE_CASE en CamelCase.
+	 *
+	 * @param name mot
+	 *
+	 * @return le mot en CamelCase
+	 *
+	 * @since 6.0
+	 */
+	@ConvenienceMethod
+	public static String snakeCaseToCamelCase(String name) {
+		if (name.contains("_")) {
+			StringBuilder sb = new StringBuilder();
+			boolean up = false; //si suivante est une majuscule
+			for (int i = 0; i < name.length(); i++) {
+				String c = (name.charAt(i) + "").toLowerCase(); //minuscule
+				if (c.equals("_")) {
+					up = true; //préviens de le prochain est une majuscule
+				} else {
+					if (up) {
+						sb.append((c + "").toUpperCase());
+						up = false;
+					} else {
+						sb.append(c);//ajoute à la chaîne
+					}
+				}
+			}
+			return sb.toString();
+		}
+		return name.toLowerCase();
 	}
 }
 

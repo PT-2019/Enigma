@@ -2,11 +2,11 @@ package editor.menus.item;
 
 import common.entities.GameObject;
 import common.hud.EnigmaButton;
-import common.hud.EnigmaPanel;
 import editor.menus.AbstractPopUpView;
 import editor.menus.AvailableOptionRunnable;
 import editor.menus.AvailablePopUpOption;
-import editor.menus.enimas.listeners.EnigmaWindowListener;
+import editor.menus.Drawable;
+import editor.menus.EnigmaWindowListener;
 import editor.popup.cases.CasePopUp;
 
 /**
@@ -53,8 +53,8 @@ public class AddItems implements AvailableOptionRunnable {
 	}
 
 	@Override
-	public void run(AbstractPopUpView view, EnigmaPanel panel, GameObject object) {
-		panel.add(this.addItems);
+	public void run(AbstractPopUpView view, Drawable panel, GameObject object) {
+		panel.getDrawable().add(this.addItems);
 		this.addItems.addActionListener((e) -> {
 			this.parent.setVisible(false);
 			AddItemView addItemView = new AddItemView(this.parent);

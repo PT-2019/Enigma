@@ -7,20 +7,26 @@ import common.entities.players.PlayerGame;
 import common.map.AbstractMap;
 import common.map.GameMap;
 import common.save.entities.serialization.PlayerFactory;
+import common.utils.Logger;
 import game.EnigmaGame;
 
 /**
- * Ecran du jeu
+ * écran du jeu
  *
  * @author Jorys-Micke ALAÏS
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 5.0 31/01/2020
- * @since 5.0 31/01/2020
+ * @version 6.0
+ * @since 5.0
  */
 public class GameScreen extends LibgdxScreen {
-	private static String MAP_PATH = "assets/files/map/cocoa.tmx";
+
+	/**
+	 * Chemin de la map du jeu
+	 */
+	private static String MAP_PATH = "assets/files/map/test5.tmx";
+
 	/**
 	 * Stage de la map et du jeu
 	 */
@@ -94,7 +100,7 @@ public class GameScreen extends LibgdxScreen {
 			this.main.dispose();
 			this.hud.dispose();
 		} catch (Exception e) {
-			Gdx.app.error("GameScreen", "dispose failed");
+			Logger.printError("GameScreen#dispose", "échec de la libération des ressources.");
 		}
 	}
 
