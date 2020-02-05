@@ -4,7 +4,7 @@ import api.ui.CustomTextField;
 import common.hud.ui.EnigmaTextFieldUI;
 
 /**
- * Champ de texte
+ * Champ de texte de Enigma
  *
  * @author Jorys-Micke ALAÏS
  * @author Louka DOZ
@@ -15,12 +15,18 @@ import common.hud.ui.EnigmaTextFieldUI;
  */
 public class EnigmaTextField extends CustomTextField {
 
-
+    /**
+     * Champ de texte vide
+     */
     public EnigmaTextField() {
         super();
         this.setComponentUI(new EnigmaTextFieldUI());
     }
 
+    /**
+     * Champ de texte
+     * @param text contenu
+     */
     public EnigmaTextField(String text) {
         super(text);
         this.setComponentUI(new EnigmaTextFieldUI());

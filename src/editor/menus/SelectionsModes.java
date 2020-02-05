@@ -52,7 +52,12 @@ public enum SelectionsModes {
 	/**
 	 * Aucune restriction
 	 */
-	NONE("carte, menu et contenu");
+	NONE("Spécial"),
+
+	/**
+	 * Map, menu ou inventaire
+	 */
+	ALL("carte, menu et contenu");
 
 	public final ArrayList<SelectionsModes> modes;
 	public final String msg;

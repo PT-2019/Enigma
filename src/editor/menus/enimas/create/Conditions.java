@@ -3,6 +3,7 @@ package editor.menus.enimas.create;
 import api.utils.Observer;
 import common.entities.Consumable;
 import common.entities.GameObject;
+import common.entities.special.Room;
 import common.entities.types.Activatable;
 import editor.menus.SelectionsModes;
 import game.dnd.DragAndDropBuilder;
@@ -23,7 +24,9 @@ import static data.NeedToBeTranslated.*;
  */
 public enum Conditions {
 	ACTIVATED(ACTIVATED_DESC, ACTIVATED_RES, null, SelectionsModes.MAP),
-	ANSWER(ANSWER_DESC, ANSWER_RES, null, SelectionsModes.NONE),
+	ANSWER(ANSWER_DESC, ANSWER_RES, null, SelectionsModes.ALL),
+	ROOM_DISCOVERED(ROOM_DISCOVERED_DESC, ROOM_DISCOVERED_RES, null, SelectionsModes.MAP),
+	ROOM_UNDISCOVERED(ROOM_UNDISCOVERED_DESC, ROOM_UNDISCOVERED_RES, null, SelectionsModes.MAP),
 	HAVE_IN_HANDS(HAVE_IN_HANDS_DESC, HAVE_IN_HANDS_RES, null, SelectionsModes.MAP_AND_POPUP),
 	HAVE_IN_INVENTORY(HAVE_IN_INVENTORY_DESC, HAVE_IN_INVENTORY_RES, null, SelectionsModes.MAP_AND_POPUP),
 	;
@@ -129,7 +132,12 @@ public enum Conditions {
 			return object instanceof Consumable;
 		} else if (this.equals(HAVE_IN_INVENTORY)) {
 			return object instanceof Consumable;
+		} else if(this.equals(ROOM_DISCOVERED)){
+			return object instanceof Room;
+		} else if(this.equals(ROOM_UNDISCOVERED)){
+			return object instanceof Room;
 		}
+
 		return false;
 	}
 }

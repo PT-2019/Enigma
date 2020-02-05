@@ -5,7 +5,6 @@ import editor.menus.content.SetContent;
 import editor.menus.item.AddItems;
 import editor.menus.others.DefineAsHero;
 import editor.menus.others.Delete;
-import editor.menus.others.HidePassageRoom;
 import editor.menus.enimas.ManageEnigmas;
 import editor.menus.set.SetAccess;
 import editor.menus.name.SetName;
@@ -70,8 +69,9 @@ public final class OptionRunnableFactory {
 	}
 
 	@SuppressWarnings("unused")
+	@Deprecated
 	public static Class<? extends AvailableOptionRunnable> hidePassageRoom(){
-		return HidePassageRoom.class;
+		return null;
 	}
 
 	@SuppressWarnings("unused")

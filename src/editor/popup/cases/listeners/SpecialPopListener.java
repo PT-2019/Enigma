@@ -42,7 +42,7 @@ public class SpecialPopListener implements ActionListener {
 		EntityChoseListener obs = popup.getObserver();
 		obs.updateObserver(objectChose);
 		popDispose.dispose();
-		CaseListener.setAvailable(null);
+		//CaseListener.setAvailable(null);
 
 		if (popDispose instanceof SpecialPopUp)
 			((SpecialPopUp) popDispose).getCaseListener().setPop(null);

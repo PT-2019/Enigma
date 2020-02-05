@@ -1,7 +1,7 @@
 package common.enigmas.operation;
 
 import common.enigmas.EnigmaElementReadablePrint;
-import common.entities.Entity;
+import common.entities.GameObject;
 import common.entities.players.Player;
 import common.save.enigmas.EnigmaAttributes;
 import game.EnigmaGame;
@@ -28,12 +28,12 @@ public abstract class Operation implements EnigmaElementReadablePrint {
 	/**
 	 * Entité concernée par l'opération
 	 */
-	protected Entity entity;
+	protected GameObject entity;
 
 	/**
 	 * @param e Entité concernée par l'opération
 	 */
-	public Operation(Entity e) {
+	public Operation(GameObject e) {
 		this.entity = e;
 	}
 
@@ -53,7 +53,7 @@ public abstract class Operation implements EnigmaElementReadablePrint {
 
 			switch (a) {
 				case EnigmaAttributes.ENTITY:
-					this.entity = (Entity) EnigmaGame.getCurrentScreen().getMap().getEntities().getObjectByID(Integer.parseInt((String) get));
+					this.entity = EnigmaGame.getCurrentScreen().getMap().getEntities().getObjectByID(Integer.parseInt((String) get));
 					break;
 			}
 		}
@@ -92,7 +92,7 @@ public abstract class Operation implements EnigmaElementReadablePrint {
 	 *
 	 * @return L'entité, null sinon
 	 */
-	public Entity getEntity() {
+	public GameObject getEntity() {
 		return this.entity;
 	}
 
@@ -101,7 +101,7 @@ public abstract class Operation implements EnigmaElementReadablePrint {
 	 *
 	 * @param e Entité
 	 */
-	public void setEntity(Entity e) {
+	public void setEntity(GameObject e) {
 		this.entity = e;
 	}
 
