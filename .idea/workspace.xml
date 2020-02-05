@@ -59,7 +59,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="LoukaDOZ/Implementation2" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -138,7 +138,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.ImportExport">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="EnigmaFastGame" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="EnigmaFastGame" />
       <module name="Enigma" />
@@ -221,10 +221,10 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ImportExport" />
-        <item itemvalue="Application.Main" />
-        <item itemvalue="Application.Utility" />
         <item itemvalue="JUnit.MapTestMain" />
+        <item itemvalue="Application.Utility" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.ImportExport" />
         <item itemvalue="Application.Main$MainFast" />
       </list>
     </recent_temporary>
