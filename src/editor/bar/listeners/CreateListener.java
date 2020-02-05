@@ -10,6 +10,7 @@ import common.hud.EnigmaWindow;
 import common.save.DataSave;
 import common.save.EmptyMapGenerator;
 import data.EnigmaScreens;
+import data.NeedToBeTranslated;
 import data.config.Config;
 import data.config.UserConfiguration;
 import game.EnigmaGame;
@@ -35,7 +36,13 @@ public class CreateListener extends MenuListener {
 	private static final String CREATE = "Créer", CANCEL = "Annuler";
 
 	/**
-	 * title
+	 * Textes
+	 */
+	private static final String NAME_ALREADY_EXIST = NeedToBeTranslated.NAME_ALREADY_EXIST;
+	private static final String CREATE_ERROR = NeedToBeTranslated.CREATE_ERROR;
+
+	/**
+	 * titre
 	 */
 	private static final String TITLE = "Création d'une nouvelle map.";
 
@@ -92,7 +99,7 @@ public class CreateListener extends MenuListener {
 
 				for (String s : Utility.getAllMapName()) {
 					if (s.equals(mapName)) {
-						EnigmaOptionPane.showAlert(this.window, "Ce nom existe déjà");
+						EnigmaOptionPane.showAlert(this.window, NAME_ALREADY_EXIST);
 						return;
 					}
 				}
@@ -115,6 +122,7 @@ public class CreateListener extends MenuListener {
 				System.err.println("gérer les erreurs!!!!");
 				System.out.println(choice);
 				System.out.println(widthF.getText() + " " + heightF.getText() + " " + nameF.getText());
+				EnigmaGame.getCurrentScreen().showToast(CREATE_ERROR);
 			}
 		}
 	}

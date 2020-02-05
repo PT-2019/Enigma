@@ -5,6 +5,7 @@ import common.hud.EnigmaAlert;
 import common.hud.EnigmaLabel;
 import common.hud.EnigmaOptionPane;
 import common.hud.EnigmaWindow;
+import data.NeedToBeTranslated;
 import data.config.Config;
 import editor.EditorLauncher;
 import game.EnigmaGame;
@@ -26,6 +27,12 @@ import java.util.ArrayList;
  * @since 6.0
  */
 public class ImportExport {
+    /**
+     * Textes
+     */
+    private static final String REPLACE_FILE = NeedToBeTranslated.REPLACE_FILE;
+    private static final String REPLACE_MAP = NeedToBeTranslated.REPLACE_MAP;
+    private static final String REPLACE_GAME = NeedToBeTranslated.REPLACE_GAME;
 
     /**
      * Indicateur d'une fin de chaine
@@ -102,7 +109,7 @@ public class ImportExport {
         if(file.exists()) {
             if(!EnigmaOptionPane.showConfirmDialog(EditorLauncher.getInstance().getWindow(),
                     new Dimension(600,250),
-                    "Un fichier nommé \"" + mapName + Config.MAP_EXPORT_EXTENSION + "\" existe déjà, remplacer?")){
+                    REPLACE_FILE)){
                 throw new IllegalStateException("Export annulé");
             }
         }
@@ -142,7 +149,7 @@ public class ImportExport {
         if(file.exists()) {
             if(!EnigmaOptionPane.showConfirmDialog(EditorLauncher.getInstance().getWindow(),
                     new Dimension(600,250),
-                    "Un fichier nommé \"" + mapName + Config.GAME_EXPORT_EXTENSION + "\" existe déjà, remplacer?")){
+                    REPLACE_FILE)){
                 throw new IllegalStateException("Export annulé");
             }
         }
@@ -192,7 +199,7 @@ public class ImportExport {
                 if (s.equals(mapName)){
                     if(!EnigmaOptionPane.showConfirmDialog(EditorLauncher.getInstance().getWindow(),
                             new Dimension(600,250),
-                            "Une map nommée \"" + mapName + "\" existe déjà, remplacer?")){
+                            REPLACE_MAP)){
                         throw new IllegalStateException("Import annulé");
                     }
                 }
@@ -240,7 +247,7 @@ public class ImportExport {
                 if (s.equals(mapName)){
                     if(!EnigmaOptionPane.showConfirmDialog(EditorLauncher.getInstance().getWindow(),
                             new Dimension(600,250),
-                            "Une map nommée \"" + mapName + "\" existe déjà, remplacer?")){
+                            REPLACE_MAP)){
                         throw new IllegalStateException("Import annulé");
                     }
                 }
@@ -251,7 +258,7 @@ public class ImportExport {
                     if (s.equals(gameName)) {
                         if (!EnigmaOptionPane.showConfirmDialog(EditorLauncher.getInstance().getWindow(),
                                 new Dimension(600, 250),
-                                "Une partie nommée \"" + gameName + "\" existe déjà, remplacer?")) {
+                                REPLACE_GAME)) {
                             throw new IllegalStateException("Import annulé");
                         }
                     }

@@ -9,6 +9,7 @@ import common.map.MapTestScreen;
 import common.save.DataSave;
 import common.save.EmptyMapGenerator;
 import common.utils.Logger;
+import data.NeedToBeTranslated;
 import data.config.Config;
 import editor.EditorLauncher;
 import game.EnigmaGame;
@@ -32,6 +33,10 @@ import java.util.ArrayList;
  * @since 3.0
  */
 public class SaveListener extends MenuListener {
+	/**
+	 * Textes
+	 */
+	private static final String SAVE_ENDED = NeedToBeTranslated.SAVE_ENDED;
 
 	public SaveListener(EnigmaWindow window, Component parent) {
 		super(window, parent);
@@ -39,23 +44,16 @@ public class SaveListener extends MenuListener {
 
 	@Override
 	public void actionPerformed(ActionEvent actionEvent) {
-		String author = EnigmaGame.getCurrentScreen().getMap().getMapData().getAuthor();
-
-		if(author.equals("")) {
-			author = Utility.normalize(EnigmaOptionPane.showInputDialog(this.window,"Entrez votre nom d'auteur (irréversible) :"));
-			MapData data = new MapData(author,Utility.normalize( EnigmaGame.getCurrentScreen().getMap().getMapData().getMapName() ));
-			try {
-				DataSave.writeMapData(data);
-			} catch (IOException e) {
-				Logger.printError("SaveListener.java","DataSave error");
-				EnigmaOptionPane.showAlert(this.window,"Erreur lors de la sauvegarde");
-			}
-		}
-
-		MapTestScreen map = ((TestScreen) EnigmaGame.getCurrentScreen()).getMap();
-		EmptyMapGenerator.save(TestScreen.getMapPath().replace(Config.MAP_EXTENSION,""), map.getTiledMap(), map.getEntities());
-
-		//TODO: message ok
+		this.save();
+		EnigmaGame.getCurrentScreen().showToast(SAVE_ENDED);
 	}
 
+	/**
+	 * Sauvegarde
+	 * Existe car utilisé par d'autres classes
+	 */
+	public void save(){
+		MapTestScreen map = ((TestScreen) EnigmaGame.getCurrentScreen()).getMap();
+		EmptyMapGenerator.save(TestScreen.getMapPath().replace(Config.MAP_EXTENSION,""), map.getTiledMap(), map.getEntities());
+	}
 }

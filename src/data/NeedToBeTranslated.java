@@ -1,6 +1,7 @@
 package data;
 
 import api.utils.annotations.Temporary;
+import data.config.Config;
 
 import java.util.ArrayList;
 
@@ -76,4 +77,26 @@ public interface NeedToBeTranslated {
 	//enigma OptionPane
 
 	String ASK_SELECT_MAP = "Choisissez une map";
+
+	//ImportExport
+	String REPLACE_FILE = "Un fichier du même nom existe déjà, le remplacer?";
+	String REPLACE_GAME = "Une partie du même nom existe déjà, la remplacer?";
+	String REPLACE_MAP = "Une map du même nom existe déjà, la remplacer?";
+
+	//editor.bar.listener
+	String NAME_ALREADY_EXIST = "Ce nom existe déjà";
+	String CREATE_ERROR = "Erreur lors de la création";
+
+	String CHOOSE_DESTINATION_FOLDER = "Choisissez un dossier de destination";
+	String EXPORT_ENDED = "Exportation terminée";
+	String EXPORT_ERROR = "Erreur lors de l'exportation";
+	String EXPORT_ABANDONED = "Exportation abandonnée";
+
+	String CHOOSE_FILE_TO_IMPORT = "Choisissez le fichier à importer";
+	String IMPORT_ENDED = "Importation terminée";
+	String IMPORT_ERROR = "Erreur lors de l'importation";
+	String IMPORT_ABANDONED = "Importation abandonnée";
+
+	String MAP_NAME = "Nom de la map :";
+	String SAVE_ENDED = "Sauvegarde terminée";
 }

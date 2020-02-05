@@ -9,6 +9,7 @@ import common.map.MapTestScreen;
 import common.save.DataSave;
 import common.save.EmptyMapGenerator;
 import common.utils.Logger;
+import data.NeedToBeTranslated;
 import data.config.Config;
 import game.EnigmaGame;
 import game.screens.TestScreen;
@@ -29,6 +30,12 @@ import java.io.IOException;
  * @since 6.0 01/02/2020
  */
 public class SaveAsListener extends MenuListener {
+	/**
+	 * Textes
+	 */
+	private static final String SAVE_ENDED = NeedToBeTranslated.SAVE_ENDED;
+	private static final String REPLACE_MAP = NeedToBeTranslated.REPLACE_MAP;
+	private static final String MAP_NAME = NeedToBeTranslated.MAP_NAME;
 
 	public SaveAsListener(EnigmaWindow window, JComponent parent) {
 		super(window, parent);
@@ -36,34 +43,21 @@ public class SaveAsListener extends MenuListener {
 
 	@Override
 	public void actionPerformed(ActionEvent actionEvent) {
-		String mapName = EnigmaOptionPane.showInputDialog(this.window,"Nom de la map :");
+		String mapName = EnigmaOptionPane.showInputDialog(this.window,MAP_NAME);
 		mapName = Utility.normalize(mapName);
 
 		for(String s : Utility.getAllMapName()) {
 			if (s.equals(mapName)){
-				if(!EnigmaOptionPane.showConfirmDialog(this.window,"Une map nommée \"" + mapName + "\" existe déjà, remplacer?")){
+				if(!EnigmaOptionPane.showConfirmDialog(this.window,REPLACE_MAP)){
 					return;
 				}
 			}
 		}
 
 		if (!mapName.equals(CustomOptionPane.CANCEL) && !mapName.equals("")) {
-			String author = EnigmaGame.getCurrentScreen().getMap().getMapData().getAuthor();
-
-			if(author.equals("")) {
-				author = Utility.normalize(EnigmaOptionPane.showInputDialog(this.window,"Entrez votre nom d'auteur (irréversible) :"));
-				MapData data = new MapData(author,Utility.normalize( EnigmaGame.getCurrentScreen().getMap().getMapData().getMapName() ));
-				try {
-					DataSave.writeMapData(data);
-				} catch (IOException e) {
-					Logger.printError("SaveListener.java","DataSave error");
-					EnigmaOptionPane.showAlert(this.window,"Erreur lors de la sauvegarde");
-				}
-			}
-
 			MapTestScreen map = ((TestScreen) EnigmaGame.getCurrentScreen()).getMap();
 			EmptyMapGenerator.save(Config.MAP_FOLDER + mapName, map.getTiledMap(), map.getEntities());
-			//TODO: message ok
+			EnigmaGame.getCurrentScreen().showToast(SAVE_ENDED);
 		}
 	}
 

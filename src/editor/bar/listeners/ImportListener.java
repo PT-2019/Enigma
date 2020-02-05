@@ -5,6 +5,7 @@ import common.hud.EnigmaOptionPane;
 import common.hud.EnigmaWindow;
 import common.save.ImportExport;
 import common.utils.Logger;
+import data.NeedToBeTranslated;
 import data.config.Config;
 import game.EnigmaGame;
 
@@ -26,6 +27,13 @@ import java.io.IOException;
  * @since 6.0 01/02/2020
  */
 public class ImportListener extends MenuListener {
+	/**
+	 * Textes
+	 */
+	private static final String CHOOSE_FILE = NeedToBeTranslated.CHOOSE_FILE_TO_IMPORT;
+	private static final String IMPORT_ENDED = NeedToBeTranslated.IMPORT_ENDED;
+	private static final String IMPORT_ERROR = NeedToBeTranslated.IMPORT_ERROR;
+	private static final String IMPORT_ABANDONED = NeedToBeTranslated.IMPORT_ABANDONED;
 
 	public ImportListener(EnigmaWindow window, JComponent parent) {
 		super(window, parent);
@@ -37,7 +45,7 @@ public class ImportListener extends MenuListener {
 
 		JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-		fileChooser.setDialogTitle("Choisissez le fichier à importer");
+		fileChooser.setDialogTitle(CHOOSE_FILE);
 		fileChooser.setAcceptAllFileFilterUsed(false);
 		fileChooser.addChoosableFileFilter(new FileNameExtensionFilter(Config.MAP_EXPORT_EXTENSION,extension));
 
@@ -46,12 +54,14 @@ public class ImportListener extends MenuListener {
 
 			try {
 				ImportExport.importMap(importPath);
-			} catch (IOException |IllegalStateException e) {
+				EnigmaGame.getCurrentScreen().showToast(IMPORT_ENDED);
+			} catch (IOException e) {
+				EnigmaGame.getCurrentScreen().showToast(IMPORT_ERROR);
 				Logger.printError("ImportListener.java","import error: " + e.getMessage());
-
-				EnigmaOptionPane.showAlert(this.window,"Import raté");
+			} catch (IllegalStateException e){
+				EnigmaGame.getCurrentScreen().showToast(IMPORT_ABANDONED);
+				Logger.printError("ImportListener.java","import error: " + e.getMessage());
 			}
-			//TODO: afficher ok
 		}
 	}
 }
