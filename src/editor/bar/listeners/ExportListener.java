@@ -56,7 +56,6 @@ public class ExportListener extends MenuListener {
 				//on efface le fichier créé car erreur
 				File f = new File(exportPath + data.getMapName() + Config.MAP_EXPORT_EXTENSION);
 				f.delete();
-				EnigmaOptionPane.showAlert(this.window,"Export raté");
 			}
 			//TODO: afficher ok
 		}
