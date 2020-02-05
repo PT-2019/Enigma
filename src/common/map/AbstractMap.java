@@ -21,10 +21,10 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Array;
+import common.data.MapData;
 import common.entities.GameObject;
 import common.entities.types.ContainersManager;
 import common.entities.types.IDInterface;
-import common.map.data.MapData;
 import common.save.DataSave;
 import common.save.TmxProperties;
 import common.save.entities.serialization.EntityFactory;
@@ -141,9 +141,11 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 			} catch (IOException e) {
 				Logger.printError("AbstractMap.java", "impossible de charger les données: " + data + " de la map: " + path);
 				//TODO: annuler le chargement
+				//TODO: a retirer, temporaire pour les anciennes maps
+				this.data = new MapData("à retirer","à retirer");
 			}
 		}else{
-			this.data = new MapData("a retirer","a retirer");
+			this.data = new MapData("à retirer","à retirer");
 		}
 
 		//sauvegarde des propriétés de la map
@@ -783,6 +785,7 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 	/**
 	 * Retourne les données de la partie
 	 * @return Les données de la partie
+	 * @since 6.0
 	 */
 	public MapData getMapData() {
 		return this.data;

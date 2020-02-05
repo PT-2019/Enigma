@@ -10,7 +10,8 @@ import data.config.Config;
 import editor.popup.TestMapControl;
 import game.EnigmaGame;
 import game.gui.CategoriesMenu;
-import game.gui.Toast;
+import api.libgdx.ui.Toast;
+import game.gui.EnigmaEditorToast;
 
 /**
  * TestScreen de la libgdx dans l'éditeur
@@ -19,14 +20,14 @@ import game.gui.Toast;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 4.4
+ * @version 6.0
  * @since 2.0
  */
 public class TestScreen extends LibgdxScreen {
 
 	//si tu veux charger une map c'est ici sans passer par le launcher
-	//private static String MAP_PATH = "assets/map/map_system/EmptyMap.tmx";
-	private static String MAP_PATH = Config.MAP_FOLDER+"test5.tmx";
+	private static String MAP_PATH = "assets/map/map_system/EmptyMap.tmx";
+	//private static String MAP_PATH = Config.MAP_FOLDER+"test5.tmx";
 
 	/**
 	 * Stage de la map et du jeu
@@ -93,7 +94,7 @@ public class TestScreen extends LibgdxScreen {
 			}
 
 			//creates a toast
-			this.toast = new Toast() ;
+			this.toast = new EnigmaEditorToast();
 			this.hud.addActor(this.toast);
 
 			//écoute inputProcessors
@@ -149,7 +150,7 @@ public class TestScreen extends LibgdxScreen {
 			this.dnd.dispose();
 			this.hud.dispose();
 		} catch (Exception e) {
-			Logger.printError("TestScreen", "échec de la libération des ressources.");
+			Logger.printError("TestScreen#dispose", "échec de la libération des ressources.");
 		}
 	}
 
@@ -179,5 +180,13 @@ public class TestScreen extends LibgdxScreen {
 	 */
 	public MapTestScreen getMap() {
 		return map;
+	}
+
+	/**
+	 * Retourne le chemin de la map actuelle
+	 * @return le chemin de la map
+	 */
+	public static String getMapPath() {
+		return MAP_PATH;
 	}
 }

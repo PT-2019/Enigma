@@ -207,10 +207,13 @@ public class IDFactory {
 		if(!list.contains(object)) return;
 
 		//ajoute aux ids libres
-		if(deleted) this.deleted.add(object.getID());
+		if(deleted){
+			this.deleted.add(object.getID());
+			//retire l'id
+			object.setID(ID_FACTORY_NO_ID);
+		}
 
 		this.list.remove(object);//suppression
-		object.setID(ID_FACTORY_NO_ID);
 	}
 
 	/**
