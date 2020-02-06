@@ -37,8 +37,6 @@ public class ExportListener extends MenuListener {
 	 * Textes
 	 */
 	private static final String CHOOSE_DESTINATION_FOLDER = NeedToBeTranslated.CHOOSE_DESTINATION_FOLDER;
-	private static final String EXPORT_ERROR = NeedToBeTranslated.EXPORT_ERROR;
-	private static final String EXPORT_ABANDONED = NeedToBeTranslated.EXPORT_ABANDONED;
 
 	public ExportListener(EnigmaWindow window, JComponent parent) {
 		super(window, parent);
@@ -60,19 +58,9 @@ public class ExportListener extends MenuListener {
 			if(exportPath.contains("/"))
 				exportPath += "/";
 
-			try {
-				//Sauvegarde avant d'exporter
-				new SaveListener(this.window,this.parent).save();
-				ImportExport.exportMap(data.getMapName(),exportPath);
-			} catch (IOException e) {
-				new File(exportPath + data.getMapName() + Config.MAP_EXPORT_EXTENSION).delete();
-				EnigmaGame.getCurrentScreen().showToast(EXPORT_ERROR);
-				Logger.printError("ExportListener.java","export error");
-			}catch (IllegalStateException e) {
-				new File(exportPath + data.getMapName() + Config.MAP_EXPORT_EXTENSION).delete();
-				EnigmaGame.getCurrentScreen().showToast(EXPORT_ABANDONED);
-				Logger.printError("ExportListener.java", "export error");
-			}
+			//Sauvegarde avant d'exporter
+			new SaveListener(this.window,this.parent).save();
+			ImportExport.exportMap(data.getMapName(),exportPath);
 		}
 	}
 }

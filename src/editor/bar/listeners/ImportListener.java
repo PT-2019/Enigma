@@ -31,8 +31,6 @@ public class ImportListener extends MenuListener {
 	 * Textes
 	 */
 	private static final String CHOOSE_FILE = NeedToBeTranslated.CHOOSE_FILE_TO_IMPORT;
-	private static final String IMPORT_ERROR = NeedToBeTranslated.IMPORT_ERROR;
-	private static final String IMPORT_ABANDONED = NeedToBeTranslated.IMPORT_ABANDONED;
 
 	public ImportListener(EnigmaWindow window, JComponent parent) {
 		super(window, parent);
@@ -50,16 +48,7 @@ public class ImportListener extends MenuListener {
 
 		if(fileChooser.showOpenDialog(this.parent) == JFileChooser.APPROVE_OPTION){
 			String importPath = fileChooser.getSelectedFile().getAbsolutePath();
-
-			try {
-				ImportExport.importMap(importPath);
-			} catch (IOException e) {
-				EnigmaGame.getCurrentScreen().showToast(IMPORT_ERROR);
-				Logger.printError("ImportListener.java","import error: " + e.getMessage());
-			} catch (IllegalStateException e){
-				EnigmaGame.getCurrentScreen().showToast(IMPORT_ABANDONED);
-				Logger.printError("ImportListener.java","import error: " + e.getMessage());
-			}
+			ImportExport.importMap(importPath);
 		}
 	}
 }

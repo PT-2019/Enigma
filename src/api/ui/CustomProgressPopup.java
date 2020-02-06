@@ -1,5 +1,6 @@
 package api.ui;
 
+import javax.swing.*;
 import java.awt.*;
 
 /**
@@ -84,12 +85,14 @@ public class CustomProgressPopup extends Thread {
         this.window.getContentSpace().setLayout(new GridLayout(2,1));
         messageComponent.setText(message);
         this.window.getContentSpace().add(messageComponent);
+        this.window.setExtendedState(JFrame.NORMAL);
         this.window.setMinimumSize(new Dimension(250,100));
         this.window.setSize(new Dimension(250,100));
         this.window.setLocation(CustomWindow.CENTER);
         this.window.setResizable(false);
         this.window.setUndecorated(true);
         this.window.setAlwaysOnTop(true);
+        this.window.setIfAskBeforeClosing(false);
 
         this.progress = progressComponent;
         this.window.getContentSpace().add(this.progress);

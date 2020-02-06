@@ -2,10 +2,8 @@ package api.utils;
 
 import api.utils.annotations.ConvenienceClass;
 import api.utils.annotations.ConvenienceMethod;
-import api.utils.annotations.NeedPatch;
 import common.utils.Logger;
 import data.config.Config;
-import editor.menus.AvailableOptionRunnable;
 
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsDevice;
@@ -21,10 +19,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.Normalizer;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Tout un paquet de méthodes utiles
@@ -55,6 +50,7 @@ public class Utility implements Serializable {
 			}
 		}
 
+		Collections.sort(maps);
 		return maps;
 	}
 
@@ -75,6 +71,7 @@ public class Utility implements Serializable {
 			}
 		}
 
+		Collections.sort(maps);
 		return maps;
 	}
 

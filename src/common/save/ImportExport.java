@@ -3,6 +3,7 @@ package common.save;
 import api.ui.CustomWindow;
 import api.utils.Utility;
 import common.hud.*;
+import common.utils.Logger;
 import data.NeedToBeTranslated;
 import data.config.Config;
 import editor.EditorLauncher;
@@ -21,7 +22,7 @@ import java.util.ArrayList;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 6.5 01 fevrier 2020
+ * @version 6.6 01 fevrier 2020
  * @since 6.0
  */
 public class ImportExport {
@@ -31,10 +32,14 @@ public class ImportExport {
     private static final String REPLACE_FILE = NeedToBeTranslated.REPLACE_FILE;
     private static final String REPLACE_MAP = NeedToBeTranslated.REPLACE_MAP;
     private static final String REPLACE_GAME = NeedToBeTranslated.REPLACE_GAME;
-    private static final String EXPORT_ENDED = NeedToBeTranslated.EXPORT_ENDED;
-    private static final String IMPORT_ENDED = NeedToBeTranslated.IMPORT_ENDED;
-    private static final String IMPORT = NeedToBeTranslated.IMPORT;
     private static final String EXPORT = NeedToBeTranslated.EXPORT;
+    private static final String EXPORT_ENDED = NeedToBeTranslated.EXPORT_ENDED;
+    private static final String EXPORT_ERROR = NeedToBeTranslated.EXPORT_ERROR;
+    private static final String EXPORT_ABANDONED = NeedToBeTranslated.EXPORT_ABANDONED;
+    private static final String IMPORT = NeedToBeTranslated.IMPORT;
+    private static final String IMPORT_ENDED = NeedToBeTranslated.IMPORT_ENDED;
+    private static final String IMPORT_ERROR = NeedToBeTranslated.IMPORT_ERROR;
+    private static final String IMPORT_ABANDONED = NeedToBeTranslated.IMPORT_ABANDONED;
 
     /**
      * Indicateur d'une fin de chaine
@@ -45,68 +50,38 @@ public class ImportExport {
      * Exporte une map
      * @param mapName Nom de la map
      * @param exportPath Chemin où créer le fichier exporté
-     * @throws IOException En cas d'erreur de lecture ou d'écriture
-     * @throws IllegalStateException Si l'export est annulé
      */
-    public static void exportMap(String mapName, String exportPath) throws IOException {
+    public static void exportMap(String mapName, String exportPath) {
         ExportMap exportMap = new ExportMap(mapName,exportPath);
         exportMap.start();
-        if(exportMap.getIOException() != null)
-            throw exportMap.getIOException();
-        if(exportMap.getIllegalStateException() != null)
-            throw exportMap.getIllegalStateException();
     }
 
     /**
      * Exporte une map
      * @param mapName Nom de la map
      * @param exportPath Chemin où créer le fichier exporté
-     * @throws IOException En cas d'erreur de lecture ou d'écriture
-     * @throws IllegalStateException Si l'export est annulé
      */
-    public static void exportGame(String mapName, String gameName, String exportPath) throws IOException {
+    public static void exportGame(String mapName, String gameName, String exportPath) {
         ExportGame exportGame = new ExportGame(mapName,gameName,exportPath);
         exportGame.start();
-        if(exportGame.getIOException() != null)
-            throw exportGame.getIOException();
-        if(exportGame.getIllegalStateException() != null)
-            throw exportGame.getIllegalStateException();
     }
 
     /**
      * Importe une map
      * @param importPath Chemin du fichier à importer
-     * @throws IOException En case d'erreur de lecture ou d'écriture
-     * @throws IllegalArgumentException Si le fichier n'est pas un .egmm
-     * @throws IllegalStateException Si l'import est annulé
      */
-    public static void importMap(String importPath) throws IOException {
+    public static void importMap(String importPath) {
         ImportMap importMap = new ImportMap(importPath);
         importMap.start();
-        if(importMap.getIOException() != null)
-            throw importMap.getIOException();
-        if(importMap.getIllegalStateException() != null)
-            throw importMap.getIllegalStateException();
-        if(importMap.getIllegalArgumentException() != null)
-            throw importMap.getIllegalArgumentException();
     }
 
     /**
      * Importe une partie
      * @param importPath Chemin du fichier à importer
-     * @throws IOException En case d'erreur de lecture ou d'écriture
-     * @throws IllegalArgumentException Si le fichier n'est pas un .egmg
-     * @throws IllegalStateException Si l'import est annulé
      */
-    public static void importGame(String importPath) throws IOException {
+    public static void importGame(String importPath) {
         ImportGame importGame = new ImportGame(importPath);
         importGame.start();
-        if(importGame.getIOException() != null)
-            throw importGame.getIOException();
-        if(importGame.getIllegalStateException() != null)
-            throw importGame.getIllegalStateException();
-        if(importGame.getIllegalArgumentException() != null)
-            throw importGame.getIllegalArgumentException();
     }
 
     /**
@@ -142,10 +117,12 @@ public class ImportExport {
      * Lit des bits en les convertissant en chaine de caractère
      * S'arrête à la rencontre d'un '\0'
      * @param reader Lecteur
+     * @param epp Affichage de la progression
+     * @param value valeur actuelle = int[1]
      * @return Chaine de caractère
      * @throws IOException En cas d'erreur de lecture
      */
-    private static String readToString(DataInputStream reader, EnigmaProgressPopup epp, int value) throws IOException{
+    private static String readToString(DataInputStream reader, EnigmaProgressPopup epp, int[] value) throws IOException{
         StringBuilder read = new StringBuilder();
 
         while(true) {
@@ -157,30 +134,8 @@ public class ImportExport {
                     sByte.append('0');
             }
             char c = (char) Integer.parseInt(sByte.toString(), 2);
-
-            if(c == '\0')
-                break;
-
-            read.append(c);
-            value += Character.BYTES;
-            epp.update(value);
-        }
-
-        return read.toString();
-    }
-
-    private static String readToString(DataInputStream reader) throws IOException{
-        StringBuilder read = new StringBuilder();
-
-        while(true) {
-            StringBuilder sByte = new StringBuilder();
-            for (int i = 0; i < 8; i++) {
-                if(reader.readBoolean())
-                    sByte.append('1');
-                else
-                    sByte.append('0');
-            }
-            char c = (char) Integer.parseInt(sByte.toString(), 2);
+            value[0] += Character.BYTES;
+            epp.update(value[0]);
 
             if(c == '\0')
                 break;
@@ -203,36 +158,27 @@ public class ImportExport {
      * @see common.save.ImportExport
      */
     private static class ExportMap extends Thread {
+        /**
+         * Nom de la map
+         */
         private String mapName;
+        /**
+         * Chemin d'exportation
+         */
         private String exportPath;
-        private IOException ioException;
-        private IllegalStateException isException;
+        /**
+         * Affichage de la progession
+         */
+        private EnigmaProgressPopup epp;
 
         /**
          * @param mapName Nom de la map
          * @param exportPath Chemin d'exportation
          */
-        public ExportMap(String mapName, String exportPath){
+        public ExportMap(String mapName, String exportPath) {
             this.mapName = mapName;
             this.exportPath = exportPath;
-            this.ioException = null;
-            this.isException = null;
-        }
-
-        /**
-         * Obtenir l'IOException
-         * @return IOException si elle est sortie, null sinon
-         */
-        public IOException getIOException(){
-            return this.ioException;
-        }
-
-        /**
-         * Obtenir l'IllegalStateException
-         * @return IllegalStateException si elle est sortie, null sinon
-         */
-        public IllegalStateException getIllegalStateException(){
-            return this.isException;
+            this.epp = null;
         }
 
         @Override
@@ -243,8 +189,7 @@ public class ImportExport {
                 if(!EnigmaOptionPane.showConfirmDialog(EditorLauncher.getInstance().getWindow(),
                         new Dimension(600,250),
                         REPLACE_FILE)){
-                    this.isException = new IllegalStateException("Export annulé");
-                    return;
+                    throw new IllegalStateException("Export annulé");
                 }
             }
 
@@ -260,7 +205,7 @@ public class ImportExport {
                 for(String s : toWrite)
                     sum += s.length() + 1;
 
-                EnigmaProgressPopup epp = new EnigmaProgressPopup("Exportation",value,sum,EnigmaProgressPopup.PERCENT_TYPE);
+                epp = new EnigmaProgressPopup(EXPORT,value,sum,EnigmaProgressPopup.PERCENT_TYPE);
                 epp.setActionOnMaxValueReached(EnigmaProgressPopup.END_ON_MAX_VALUE_REACHED);
                 epp.getWindow().setLocation(CustomWindow.SOUTH);
                 epp.begin();
@@ -277,10 +222,14 @@ public class ImportExport {
 
                 writer.close();
                 EnigmaGame.getCurrentScreen().showToast(EXPORT_ENDED);
-            }catch (IOException e){
-                this.ioException = new IOException("export error");
-            }catch (IllegalStateException e){
-                this.isException = new IllegalStateException("Export error");
+            } catch (IllegalStateException e){
+                EnigmaGame.getCurrentScreen().showToast(EXPORT_ABANDONED);
+            } catch (IOException e) {
+                EnigmaGame.getCurrentScreen().showToast(EXPORT_ERROR);
+                Logger.printError("ImportExport.java","export map error: " + e.getMessage());
+            }finally {
+                if(epp != null)
+                    epp.end();
             }
         }
     }
@@ -297,39 +246,33 @@ public class ImportExport {
      * @see common.save.ImportExport
      */
     private static class ExportGame extends Thread {
+        /**
+         * Nom de la map
+         */
         private String mapName;
+        /**
+         * Nom de la partie
+         */
         private String gameName;
+        /**
+         * Chemin d'exportation
+         */
         private String exportPath;
-        private IOException ioException;
-        private IllegalStateException isException;
+        /**
+         * Affichage de la progession
+         */
+        private EnigmaProgressPopup epp;
 
         /**
          * @param mapName Nom de la map
          * @param gameName Nom de la partie
          * @param exportPath Chemin d'exportation
          */
-        public ExportGame(String mapName, String gameName, String exportPath){
+        public ExportGame(String mapName, String gameName, String exportPath) {
             this.mapName = mapName;
             this.gameName = gameName;
             this.exportPath = exportPath;
-            this.ioException = null;
-            this.isException = null;
-        }
-
-        /**
-         * Obtenir l'IOException
-         * @return IOException si elle est sortie, null sinon
-         */
-        public IOException getIOException(){
-            return this.ioException;
-        }
-
-        /**
-         * Obtenir l'IllegalStateException
-         * @return IllegalStateException si elle est sortie, null sinon
-         */
-        public IllegalStateException getIllegalStateException(){
-            return this.isException;
+            this.epp = null;
         }
 
         @Override
@@ -340,8 +283,7 @@ public class ImportExport {
                 if(!EnigmaOptionPane.showConfirmDialog(EditorLauncher.getInstance().getWindow(),
                         new Dimension(600,250),
                         REPLACE_FILE)){
-                    this.isException = new IllegalStateException("Export annulé");
-                    return;
+                    throw new IllegalStateException("Export annulé");
                 }
             }
 
@@ -359,7 +301,7 @@ public class ImportExport {
                 for(String s : toWrite)
                     sum += s.length() + 1;
 
-                EnigmaProgressPopup epp = new EnigmaProgressPopup(EXPORT,value,sum,EnigmaProgressPopup.PERCENT_TYPE);
+                epp = new EnigmaProgressPopup(EXPORT,value,sum,EnigmaProgressPopup.PERCENT_TYPE);
                 epp.setActionOnMaxValueReached(EnigmaProgressPopup.END_ON_MAX_VALUE_REACHED);
                 epp.getWindow().setLocation(CustomWindow.SOUTH);
                 epp.begin();
@@ -376,10 +318,14 @@ public class ImportExport {
 
                 writer.close();
                 EnigmaGame.getCurrentScreen().showToast(EXPORT_ENDED);
-            }catch (IOException e){
-                this.ioException = new IOException("export error");
-            }catch (IllegalStateException e){
-                this.isException = new IllegalStateException("Export error");
+            } catch (IllegalStateException e){
+                EnigmaGame.getCurrentScreen().showToast(EXPORT_ABANDONED);
+            } catch (IOException e) {
+                EnigmaGame.getCurrentScreen().showToast(EXPORT_ERROR);
+                Logger.printError("ImportExport.java","export game error: " + e.getMessage());
+            }finally {
+                if(epp != null)
+                    epp.end();
             }
         }
     }
@@ -396,73 +342,51 @@ public class ImportExport {
      * @see common.save.ImportExport
      */
     private static class ImportMap extends Thread {
+        /**
+         * Chemin du fichier à importer
+         */
         private String importPath;
-        private IOException ioException;
-        private IllegalStateException isException;
-        private IllegalArgumentException iaException;
+        /**
+         * Affichage de la progession
+         */
+        private EnigmaProgressPopup epp;
 
         /**
          * @param importPath Chemin du fichier à importer
          */
         public ImportMap(String importPath){
             this.importPath = importPath;
-            this.ioException = null;
-            this.isException = null;
-            this.iaException = null;
-        }
-
-        /**
-         * Obtenir l'IOException
-         * @return IOException si elle est sortie, null sinon
-         */
-        public IOException getIOException(){
-            return this.ioException;
-        }
-
-        /**
-         * Obtenir l'IllegalStateException
-         * @return IllegalStateException si elle est sortie, null sinon
-         */
-        public IllegalStateException getIllegalStateException(){
-            return this.isException;
-        }
-
-        /**
-         * Obtenir l'IllegalArgumentException
-         * @return IllegalArgumentException si elle est sortie, null sinon
-         */
-        public IllegalArgumentException getIllegalArgumentException(){
-            return this.iaException;
+            this.epp = null;
         }
 
         @Override
         public void run() {
             try {
                 if (!importPath.endsWith(Config.MAP_EXPORT_EXTENSION))
-                    this.iaException = new IllegalArgumentException("Ce n'est pas un " + Config.MAP_EXPORT_EXTENSION);
+                    throw new IllegalArgumentException("Ce n'est pas un " + Config.MAP_EXPORT_EXTENSION);
 
                 FileInputStream file = new FileInputStream(importPath);
                 DataInputStream reader = new DataInputStream(file);
                 BufferedWriter writer;
                 try {
                     String read;
-                    int value = 0;
+                    int[] value = new int[1];
+                    value[0] = 0;
                     int sum = file.available() / (Character.BYTES * 2);
-                    EnigmaProgressPopup epp = new EnigmaProgressPopup(IMPORT,value,sum,EnigmaProgressPopup.PERCENT_TYPE);
+                    epp = new EnigmaProgressPopup(IMPORT,value[0],sum,EnigmaProgressPopup.PERCENT_TYPE);
                     epp.setActionOnMaxValueReached(EnigmaProgressPopup.END_ON_MAX_VALUE_REACHED);
                     epp.getWindow().setLocation(CustomWindow.SOUTH);
                     epp.begin();
 
                     //Récupération du nom
                     String mapName = ImportExport.readToString(reader,epp,value);
-                    value += (mapName.getBytes().length + 1) * Character.BYTES;
 
                     for (String s : Utility.getAllMapName()) {
                         if (s.equals(mapName)) {
                             if (!EnigmaOptionPane.showConfirmDialog(EditorLauncher.getInstance().getWindow(),
                                     new Dimension(600, 250),
                                     REPLACE_MAP)) {
-                                this.isException = new IllegalStateException("Import annulé");
+                                throw new IllegalStateException("Import annulé");
                             }
                         }
                     }
@@ -471,32 +395,32 @@ public class ImportExport {
                     writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(Config.MAP_DATA_FOLDER + mapName + Config.DATA_EXTENSION)));
                     read = ImportExport.readToString(reader,epp,value);
                     writer.write(read);
-                    value += (read.getBytes().length + 1) * Character.BYTES;
-                    epp.update(value);
                     writer.close();
 
                     //Récupération de la map
                     writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(Config.MAP_FOLDER + mapName + Config.MAP_EXTENSION)));
                     read = ImportExport.readToString(reader,epp,value);
                     writer.write(read);
-                    value += (read.getBytes().length + 1) * Character.BYTES;
-                    epp.update(value);
                     writer.close();
 
                     //Récupération des énigmes
                     writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(Config.MAP_FOLDER + mapName + Config.ENIGMA_EXTENSION)));
                     read = ImportExport.readToString(reader,epp,value);
                     writer.write(read);
-                    value += (read.getBytes().length + 1) * Character.BYTES;
-                    epp.update(value);
                     writer.close();
 
                     EnigmaGame.getCurrentScreen().showToast(IMPORT_ENDED);
                 } catch (EOFException e) {
                     reader.close();
                 }
-            } catch (IOException e) {
-                this.ioException = new IOException("import error");
+            } catch (IllegalStateException e){
+                EnigmaGame.getCurrentScreen().showToast(IMPORT_ABANDONED);
+            } catch (IOException | IllegalArgumentException e) {
+                EnigmaGame.getCurrentScreen().showToast(IMPORT_ERROR);
+                Logger.printError("ImportExport.java","import map error: " + e.getMessage());
+            }finally {
+                if(epp != null)
+                    epp.end();
             }
         }
     }
@@ -513,75 +437,52 @@ public class ImportExport {
      * @see common.save.ImportExport
      */
     private static class ImportGame extends Thread {
+        /**
+         * Chemin du fichier à importer
+         */
         private String importPath;
-        private IOException ioException;
-        private IllegalStateException isException;
-        private IllegalArgumentException iaException;
+        /**
+         * Affichage de la progession
+         */
+        private EnigmaProgressPopup epp;
 
         /**
          * @param importPath Chemin du fichier à importer
          */
         public ImportGame(String importPath){
             this.importPath = importPath;
-            this.ioException = null;
-            this.isException = null;
-            this.iaException = null;
-        }
-
-        /**
-         * Obtenir l'IOException
-         * @return IOException si elle est sortie, null sinon
-         */
-        public IOException getIOException(){
-            return this.ioException;
-        }
-
-        /**
-         * Obtenir l'IllegalStateException
-         * @return IllegalStateException si elle est sortie, null sinon
-         */
-        public IllegalStateException getIllegalStateException(){
-            return this.isException;
-        }
-
-        /**
-         * Obtenir l'IllegalArgumentException
-         * @return IllegalArgumentException si elle est sortie, null sinon
-         */
-        public IllegalArgumentException getIllegalArgumentException(){
-            return this.iaException;
+            this.epp = null;
         }
 
         @Override
         public void run() {
             try {
                 if (!importPath.endsWith(Config.MAP_EXPORT_EXTENSION))
-                    this.iaException = new IllegalArgumentException("Ce n'est pas un " + Config.GAME_EXPORT_EXTENSION);
+                    throw new IllegalArgumentException("Ce n'est pas un " + Config.GAME_EXPORT_EXTENSION);
 
                 FileInputStream file = new FileInputStream(importPath);
                 DataInputStream reader = new DataInputStream(file);
                 BufferedWriter writer;
                 try {
                     String read;
-                    int value = 0;
+                    int[] value = new int[1];
+                    value[0] = 0;
                     int sum = file.available() / (Character.BYTES * 2);
-                    EnigmaProgressPopup epp = new EnigmaProgressPopup(IMPORT,value,sum,EnigmaProgressPopup.PERCENT_TYPE);
+                    epp = new EnigmaProgressPopup(IMPORT,value[0],sum,EnigmaProgressPopup.PERCENT_TYPE);
                     epp.setActionOnMaxValueReached(EnigmaProgressPopup.END_ON_MAX_VALUE_REACHED);
                     epp.getWindow().setLocation(CustomWindow.SOUTH);
                     epp.begin();
 
                     //Récupération du nom
                     String mapName = ImportExport.readToString(reader,epp,value);
-                    value += (mapName.getBytes().length + 1) * Character.BYTES;
                     String gameName = ImportExport.readToString(reader,epp,value);
-                    value += (gameName.getBytes().length + 1) * Character.BYTES;
 
                     for (String s : Utility.getAllMapName()) {
                         if (s.equals(mapName)) {
                             if (!EnigmaOptionPane.showConfirmDialog(EditorLauncher.getInstance().getWindow(),
                                     new Dimension(600, 250),
                                     REPLACE_MAP)) {
-                                this.isException = new IllegalStateException("Import annulé");
+                                throw new IllegalStateException("Import annulé");
                             }
                         }
                     }
@@ -592,7 +493,7 @@ public class ImportExport {
                                 if (!EnigmaOptionPane.showConfirmDialog(EditorLauncher.getInstance().getWindow(),
                                         new Dimension(600, 250),
                                         REPLACE_GAME)) {
-                                    this.isException = new IllegalStateException("Import annulé");
+                                    throw new IllegalStateException("Import annulé");
                                 }
                             }
                         }
@@ -601,40 +502,38 @@ public class ImportExport {
                     writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(Config.MAP_DATA_FOLDER + mapName + Config.DATA_EXTENSION)));
                     read = ImportExport.readToString(reader,epp,value);
                     writer.write(read);
-                    value += (read.getBytes().length + 1) * Character.BYTES;
-                    epp.update(value);
                     writer.close();
 
                     //Récupération des données du jeu
                     writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(Config.GAME_DATA_FOLDER + gameName + Config.DATA_EXTENSION)));
                     read = ImportExport.readToString(reader,epp,value);
                     writer.write(read);
-                    value += (read.getBytes().length + 1) * Character.BYTES;
-                    epp.update(value);
                     writer.close();
 
                     //Récupération de la map
                     writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(Config.MAP_FOLDER + mapName + Config.MAP_EXTENSION)));
                     read = ImportExport.readToString(reader,epp,value);
                     writer.write(read);
-                    value += (read.getBytes().length + 1) * Character.BYTES;
-                    epp.update(value);
                     writer.close();
 
                     //Récupération des énigmes
                     writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(Config.MAP_FOLDER + mapName + Config.ENIGMA_EXTENSION)));
                     read = ImportExport.readToString(reader,epp,value);
                     writer.write(read);
-                    value += (read.getBytes().length + 1) * Character.BYTES;
-                    epp.update(value);
                     writer.close();
 
                     EnigmaGame.getCurrentScreen().showToast(IMPORT_ENDED);
                 } catch (EOFException e) {
                     reader.close();
                 }
-            } catch (IOException e) {
-                this.ioException = new IOException("import error");
+            } catch (IllegalStateException e){
+                EnigmaGame.getCurrentScreen().showToast(IMPORT_ABANDONED);
+            } catch (IOException | IllegalArgumentException e) {
+                EnigmaGame.getCurrentScreen().showToast(IMPORT_ERROR);
+                Logger.printError("ImportExport.java","import game error: " + e.getMessage());
+            }finally {
+                if(epp != null)
+                    epp.end();
             }
         }
     }
