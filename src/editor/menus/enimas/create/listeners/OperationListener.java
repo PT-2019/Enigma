@@ -113,6 +113,7 @@ public class OperationListener implements ActionListener, ItemListener {
             CaseListener.setAvailable(this.operationPanel);
             Operations.lock(Operations.valueOf(currentButton.getName()), this.operationPanel);
             this.operationPanel.update(this.object);
+
             //DragAndDropBuilder.setForPopup(this.operationPanel);
         }
     }

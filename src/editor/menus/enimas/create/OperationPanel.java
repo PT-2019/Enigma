@@ -37,6 +37,7 @@ public class OperationPanel extends AbstractSubPopUpView implements Observer<Gam
 	public static final String NOT_SELECTED = "Vous n'avez pas encore choisi d'entité";
 	public static final String ASK_SELECT = "Veuillez sélectionner un objet ";
 	public static final String ASK_OP = "Veuillez sélectionner une opération.";
+	public static final String ASK_MUS = "Veuillez sélectionner une musique.";
 	public static final String NOT_AVAILABLE_OPERATION = "Opération non disponible";
 	private static final String INVALID_ENTITY = "Entité Invalide. ";
 	public static final String TITLE = "Ajouter une Opération à l'énigme";
@@ -61,16 +62,29 @@ public class OperationPanel extends AbstractSubPopUpView implements Observer<Gam
 		this.listener = new OperationListener(parent, this, addView);
 
 		EnigmaPanel panel = new EnigmaPanel();
-		panel.setLayout(new GridLayout(Operations.values().length, 1));
+		//panel.setLayout(new GridLayout(Operations.values().length, 1));
+		GridBagLayout gb = new GridBagLayout();
+		panel.setLayout(gb);
+		GridBagConstraints gbc = new GridBagConstraints();
+		int x=0,y=0;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 1;
+		gbc.gridx = x;
+		gbc.gridy = y;
+		gbc.weightx = 0;
+		gbc.weighty = 0;
+		gbc.insets = new Insets(0,0,0,0);
 
 		for (Operations op : Operations.values()) {
 			JRadioButton r = new JRadioButton(op.value);
-			r.setToolTipText(op.tooltip);
+			r.setToolTipText(op.name());
 			r.setName(op.name());
 			//on ajoute les boutons au groupe
 			groups.add(r);
 			//ajoute les boutons au panneau
-			panel.add(r);
+			panel.add(r,gbc);
+			y++;
+			gbc.gridy = y;
 			//listener pour les boutons
 			r.addItemListener(this.listener);
 		}
@@ -81,7 +95,7 @@ public class OperationPanel extends AbstractSubPopUpView implements Observer<Gam
 		EnigmaButton submit = new EnigmaButton("Valider");
 		submit.addActionListener(listener);
 		selection = new EnigmaLabel();
-		GridBagConstraints gbc = new GridBagConstraints();
+		gbc = new GridBagConstraints();
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.weightx = 0;

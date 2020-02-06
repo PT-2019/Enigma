@@ -27,6 +27,10 @@ public enum SelectionsModes {
 	 */
 	POPUP("contenu uniquement"),
 
+	/**
+	 * Lorsqu'on veut choisir une musique
+	 */
+	MUSIC("musique uniquement"),
 	//combinaisons (utiles)
 
 	/**

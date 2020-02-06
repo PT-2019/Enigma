@@ -5,26 +5,29 @@
                     {
                          "operations": [
                               {
-                                   "common.enigmas.operation.Give": [
+                                   "common.enigmas.operation.Summon": [
                                         {
-                                             "entities": "19"
+                                             "entities": "12",
+                                             "spawn_layer": "FLOOR2",
+                                             "spawn_x": "10",
+                                             "spawn_y": "32"
                                         }
                                    ]
                               }
                          ],
                          "known": "false",
                          "currentAdviceIndex": "-1",
-                         "description": "",
+                         "description": "issou",
                          "advices": [
                          ],
                          "id": "0",
-                         "title": "Polo",
+                         "title": "7",
                          "type": "ON_USE",
                          "conditions": [
                               {
-                                   "common.enigmas.condition.RoomDiscovered": [
+                                   "common.enigmas.condition.Activated": [
                                         {
-                                             "entities": "2"
+                                             "entities": "18"
                                         }
                                    ]
                               }
