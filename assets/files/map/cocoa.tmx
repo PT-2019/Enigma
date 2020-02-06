@@ -361,7 +361,7 @@
                 <property name="FLOOR2" value="4"/>
                 <property name="KEY" value="Euphemia"/>
                 <property name="JSON" value="assets/entities/players/players.json"/>
-                <property name="HERO" value="true"/>
+                <property name="HERO" value="false"/>
                 <property name="NAME" value=""/>
                 <property name="INVENTORY" value=""/>
             </properties>
@@ -373,7 +373,7 @@
                 <property name="FLOOR2" value="4"/>
                 <property name="KEY" value="Alexia"/>
                 <property name="JSON" value="assets/entities/players/players.json"/>
-                <property name="HERO" value="true"/>
+                <property name="HERO" value="false"/>
                 <property name="NAME" value="Zoé"/>
                 <property name="INVENTORY" value=""/>
             </properties>
