@@ -1,7 +1,7 @@
 package common.enigmas.condition;
 
 import common.enigmas.EnigmaElementReadablePrint;
-import common.entities.Entity;
+import common.entities.GameObject;
 import common.entities.players.Player;
 import common.save.enigmas.EnigmaAttributes;
 import game.EnigmaGame;
@@ -27,12 +27,12 @@ public abstract class Condition implements EnigmaElementReadablePrint {
 	/**
 	 * Entité dont l'état détermine si la condition est satisfaite ou nom
 	 */
-	protected Entity entity;
+	protected GameObject entity;
 
 	/**
 	 * @param e Entité concernée par la condition
 	 */
-	public Condition(Entity e) {
+	public Condition(GameObject e) {
 		this.entity = e;
 	}
 
@@ -52,7 +52,7 @@ public abstract class Condition implements EnigmaElementReadablePrint {
 
 			switch (a) {
 				case EnigmaAttributes.ENTITY:
-					this.entity = (Entity) EnigmaGame.getCurrentScreen().getMap().getEntities().getObjectByID(Integer.parseInt((String) get));
+					this.entity = EnigmaGame.getCurrentScreen().getMap().getEntities().getObjectByID(Integer.parseInt((String) get));
 					break;
 			}
 		}
@@ -71,7 +71,7 @@ public abstract class Condition implements EnigmaElementReadablePrint {
 	 *
 	 * @return L'entité, null sinon
 	 */
-	public Entity getEntity() {
+	public GameObject getEntity() {
 		return this.entity;
 	}
 
@@ -80,7 +80,7 @@ public abstract class Condition implements EnigmaElementReadablePrint {
 	 *
 	 * @param e Entité
 	 */
-	public void setEntity(Entity e) {
+	public void setEntity(GameObject e) {
 		this.entity = e;
 	}
 

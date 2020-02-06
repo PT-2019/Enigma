@@ -54,6 +54,12 @@ public interface NeedToBeTranslated {
 	String HAVE_IN_INVENTORY_DESC = "Avoir l'objet dans l'inventaire";
 	String HAVE_IN_INVENTORY_RES = "Objects uniquement (clef, livre, ...)";
 
+	String ROOM_DISCOVERED_DESC = "Salle doit être découverte";
+	String ROOM_DISCOVERED_RES = "Salles uniquement";
+
+	String ROOM_UNDISCOVERED_DESC = "Salle ne doit pas être découverte.";
+	String ROOM_UNDISCOVERED_RES = "Salles uniquement";
+
 	//ActionTypes
 
 	String ADD_ENTITY = "Ajout d'une entité";
@@ -76,4 +82,6 @@ public interface NeedToBeTranslated {
 	//enigma OptionPane
 
 	String ASK_SELECT_MAP = "Choisissez une map";
+
+	String HIDE_ROOM = "Cacher une salle";
 }

@@ -1,6 +1,8 @@
 package editor.menus.others;
 
 import common.entities.GameObject;
+import common.hud.EnigmaButton;
+import data.NeedToBeTranslated;
 import editor.menus.AbstractPopUpView;
 import editor.menus.AvailableOptionRunnable;
 import editor.menus.AvailablePopUpOption;
@@ -17,13 +19,20 @@ import editor.popup.cases.CasePopUp;
  * @author Quentin RAMSAMY-AGEORGES
  * @version 5.0 25/01/2020
  * @since 5.0 25/01/2020
+ *
+ * Plus besoin, maintenant si s'agît d'une opération d'une énigme.
  */
+@Deprecated
 public class HidePassageRoom implements AvailableOptionRunnable {
+
+	private final static String HIDE = NeedToBeTranslated.HIDE_ROOM;
 
 	/**
 	 * Parent
 	 */
 	private final CasePopUp parent;
+
+	private final EnigmaButton hide;
 
 	/**
 	 * Ouvre un menu permettant de cacher l'un des deux salles
@@ -33,6 +42,7 @@ public class HidePassageRoom implements AvailableOptionRunnable {
 	 */
 	public HidePassageRoom(CasePopUp parent) {
 		this.parent = parent;
+		this.hide = new EnigmaButton();
 	}
 
 	@Override
@@ -42,24 +52,18 @@ public class HidePassageRoom implements AvailableOptionRunnable {
 
 	@Override
 	public void run() {
-		/* PASSAGE :
-		private JCheckBox hideRigth = new JCheckBox("Cacher room à droite");
-		private JCheckBox hideLeft = new JCheckBox("Cacher room à gauche");
-		private JPanel passage = new JPanel();
-		passage.setLayout(new GridLayout(2, 1));
-		if (isPassage//true) {
-			passage.add(hideLeft);
-			passage.add(hideRigth);
-			extra.add(passage);
-		}
-		passage.remove(hideLeft);
-		passage.remove(hideRigth);
-		*/
+		//ajoute le bouton
+		this.parent.getPanel().add(this.hide);
+		this.hide.addActionListener((e) -> {
+		});
 	}
 
 	@Override
 	public void run(AbstractPopUpView view, Drawable panel, GameObject object) {
-
+		//ajoute le bouton
+		panel.getDrawable().add(this.hide);
+		this.hide.addActionListener((e) -> {
+		});
 	}
 }
 

@@ -1,5 +1,8 @@
 package editor.menus.enimas.create.listeners;
 
+import common.enigmas.condition.RoomDiscovered;
+import common.enigmas.condition.RoomUndiscovered;
+import common.entities.special.Room;
 import common.utils.Logger;
 import com.badlogic.gdx.math.Vector2;
 import common.enigmas.condition.Activated;
@@ -97,6 +100,12 @@ public class ConditionListener implements ActionListener, ItemListener {
 		} else if (this.currentButton.getName().equals(Conditions.HAVE_IN_INVENTORY.name())) {
 			if (this.object instanceof Item)
 				cond = new HaveInInventory((Item) object);
+		}else if (this.currentButton.getName().equals(Conditions.ROOM_UNDISCOVERED.name())) {
+			if (this.object instanceof Room)
+				cond = new RoomUndiscovered((Room) object);
+		}else if (this.currentButton.getName().equals(Conditions.ROOM_DISCOVERED.name())) {
+			if (this.object instanceof Room)
+				cond = new RoomDiscovered((Room) object);
 		} else {
 			this.panel.getEntityName().setText(ConditionPanel.NOT_AVAILABLE_CONDITION);
 		}

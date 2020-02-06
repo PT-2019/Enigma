@@ -12,7 +12,9 @@ import common.map.model.Room;
  * @version 2.0
  * @since 2.0
  */
+@Deprecated
 public interface Passage {
+
 	/**
 	 * Obtenir la première pièce
 	 *

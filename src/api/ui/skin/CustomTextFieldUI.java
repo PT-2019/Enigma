@@ -11,7 +11,15 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 /**
- * TODO:
+ * Style d'une champ de texte customizable
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ *
+ * @version 6.0 05/02/2020
+ * @since 6.0 05/02/2020
  */
 public class CustomTextFieldUI extends BasicTextFieldUI implements CustomUIFocusedAndHover<CustomTextFieldUI>, CustomUIForeground {
 
@@ -25,6 +33,9 @@ public class CustomTextFieldUI extends BasicTextFieldUI implements CustomUIFocus
     protected boolean[] showedBorders, hoveredShowedBorders, focusedShowedBorders;
     protected Font font;
 
+    /**
+     * Style par défaut
+     */
     public CustomTextFieldUI() {
         this.background = DefaultUIValues.DEFAULT_TEXTAREA_BACKGROUND;
         this.hoveredBackground = DefaultUIValues.DEFAULT_TEXTAREA_HOVERED_BACKGROUND;

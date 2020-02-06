@@ -47,7 +47,8 @@ public enum AvailablePopUpOption {
 	 * Ouvre un menu permettant de cacher l'un des deux salles
 	 * des objets de type passage
 	 */
-	SET_PASSAGE_ROOM_HIDDEN(),
+	@Deprecated
+	SET_PASSAGE_ROOM_HIDDEN(TypeEntity.PASSAGE),
 	/**
 	 * Checkbox qui définit si l'entité est verrouillée ou non
 	 */

@@ -8,16 +8,36 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * TODO: javadoc
+ * Un champ de texte de l'application
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ *
+ * @version 6.0 05/02/2020
+ * @since 6.0 05/02/2020
  */
 public class CustomTextField extends JTextField implements CustomComponent<CustomTextFieldUI> {
 
 	private CustomTextFieldUI ui;
 
+	/**
+	 * Champ de texte vide
+	 */
 	public CustomTextField() {
 		super();
+		CustomTextFieldManager manager = new CustomTextFieldManager(this);
+		this.addMouseListener(manager);
+		this.addFocusListener(manager);
+		this.setOpaque(true);
+		this.setComponentUI(new CustomTextFieldUI());
 	}
 
+	/**
+	 * Champ de texte
+	 * @param text contenu
+	 */
 	public CustomTextField(String text) {
 		super(text);
 		CustomTextFieldManager manager = new CustomTextFieldManager(this);

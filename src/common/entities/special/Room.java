@@ -15,10 +15,12 @@ import java.util.EnumMap;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 4.0 24/12/2019
+ * @version 6.0
  * @since 4.0 24/12/2019
  */
 public class Room extends AbstractGameObject implements ContainersManager {
+
+	private boolean discovered, showed;
 
 	/**
 	 * Crée une pièce
@@ -27,6 +29,8 @@ public class Room extends AbstractGameObject implements ContainersManager {
 	 */
 	public Room() {
 		super(-1);
+		this.discovered = false;
+		this.showed = true;
 	}
 
 	/**
@@ -39,6 +43,8 @@ public class Room extends AbstractGameObject implements ContainersManager {
 	public Room(int cols, int rows) {
 		super(-1);
 		this.setDimension(cols, rows);
+		this.discovered = false;
+		this.showed = true;
 	}
 
 	@Override
@@ -57,5 +63,41 @@ public class Room extends AbstractGameObject implements ContainersManager {
 	@Override
 	public String getReadableName() {
 		return GameLanguage.gl.get(GameFields.ROOM);
+	}
+
+	/**
+	 * Retourne si la room a étée découverte
+	 * @return true si la room a étée découverte
+	 * @since 6.0
+	 */
+	public boolean isDiscovered() {
+		return this.discovered;
+	}
+
+	/**
+	 * Définit si la room a étée découverte
+	 * @param discovered true si la room a étée découverte
+	 * @since 6.0
+	 */
+	public void setDiscovered(boolean discovered) {
+		this.discovered = discovered;
+	}
+
+	/**
+	 * Retourne si la room est cachée, au sens que son contenu est caché
+	 * @return true si la room est cachée, au sens que son contenu est caché
+	 * @since 6.0
+	 */
+	public boolean isShowed() {
+		return showed;
+	}
+
+	/**
+	 * Retourne si la room est cachée, au sens que son contenu est caché
+	 * @param showed true si la room est cachée, au sens que son contenu est caché
+	 * @since 6.0
+	 */
+	public void setShowed(boolean showed) {
+		this.showed = showed;
 	}
 }
