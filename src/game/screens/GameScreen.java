@@ -29,7 +29,7 @@ public class GameScreen extends LibgdxScreen {
 	/**
 	 * Chemin de la map du jeu
 	 */
-	private static String MAP_PATH = "assets/files/map/test0.tmx";
+	private static String MAP_PATH = "assets/files/map/cocoa.tmx";
 
 	/**
 	 * Stage de la map et du jeu

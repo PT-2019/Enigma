@@ -26,8 +26,8 @@ import game.gui.EnigmaEditorToast;
 public class TestScreen extends LibgdxScreen {
 
 	//si tu veux charger une map c'est ici sans passer par le launcher
-	private static String MAP_PATH = "assets/map/map_system/EmptyMap.tmx";
-	//private static String MAP_PATH = Config.MAP_FOLDER+"test5.tmx";
+	//private static String MAP_PATH = "assets/map/map_system/EmptyMap.tmx";
+	private static String MAP_PATH = Config.MAP_FOLDER+"cocoa.tmx";
 
 	/**
 	 * Stage de la map et du jeu

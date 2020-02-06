@@ -188,6 +188,7 @@ public class Monster extends GameActorTextured implements Entity, Living,EntityG
 		HashMap<SaveKey, String> save = new HashMap<>();
 		save.put(PlayerSave.KEY, this.key);
 		save.put(PlayerSave.JSON, this.json);
+		save.put(PlayerSave.NAME, this.name);
 		return save;
 	}
 
@@ -195,6 +196,7 @@ public class Monster extends GameActorTextured implements Entity, Living,EntityG
 	public void load(MapProperties data) {
 		this.key = data.get(PlayerSave.KEY.getKey(), String.class);
 		this.json = data.get(PlayerSave.JSON.getKey(), String.class);
+		this.name = data.get(PlayerSave.NAME.getKey(), String.class);
 	}
 
 	@Override

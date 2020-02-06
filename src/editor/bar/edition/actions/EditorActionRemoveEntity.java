@@ -49,7 +49,10 @@ class EditorActionRemoveEntity implements EditorAction {
 
 	@Override
 	public void clear() {
-		this.map.freeId(this.entity);
+		//si plus dans la map
+		if(this.map.getEntities().getEntry(this.entity) == null){
+			this.map.freeId(this.entity); //free
+		}
 	}
 }
 

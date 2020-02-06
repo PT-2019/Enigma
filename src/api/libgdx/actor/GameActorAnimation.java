@@ -62,8 +62,6 @@ public class GameActorAnimation extends GameActor {
 	public void setAnimation(String texture, int nbCol, int nbRow, float timePerFrame,
 	                         int colPerImage, int rowPerImage, int index) {
 		//position des colonne et ligne des sous ensembles de sprite
-		System.out.println(colPerImage);
-		System.out.println(nbCol);
 		int colPerLine = colPerImage / nbCol; //calcul de la largeur sinon ça indexe nbCol par nbCol...
 		int row = index / colPerLine, col = index % colPerLine;
 		//nb de sous ensembles de sprites par colonne et image

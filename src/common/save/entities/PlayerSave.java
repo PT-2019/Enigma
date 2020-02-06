@@ -11,7 +11,7 @@ package common.save.entities;
  * @since 5.0 27/01/2020
  */
 public enum PlayerSave implements SaveKey {
-	JSON, KEY, NAME, INVENTORY, HERO,ACTIVATED,LOCKED,CONTENT;
+	JSON, KEY, NAME, INVENTORY, HERO, ACTIVATED, LOCKED, CONTENT;
 
 	@Override
 	public String getKey() {

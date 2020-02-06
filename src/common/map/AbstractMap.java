@@ -5,6 +5,7 @@ import api.libgdx.utils.Border;
 import api.libgdx.utils.Bounds;
 import api.libgdx.utils.LibgdxUtility;
 import api.utils.Utility;
+import api.utils.annotations.ConvenienceMethod;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -435,7 +436,7 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 	 * @since 5.1
 	 */
 	private void delete(GameObject entity, Vector2 start) {
-		HashMap<Vector2, GameObject> parents = this.getParentObject(start, entity);
+		HashMap<Vector2, GameObject> parents = this.getParentObject(start, entity, true);
 		Array<Array<Float>> entities = null;
 		Array<GameObject> objects = null;
 		if (parents != null && !parents.isEmpty()) {
@@ -511,7 +512,17 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 	 *
 	 * @since 5.2
 	 */
-	protected HashMap<Vector2, GameObject> getParentObject(Vector2 start, GameObject entity) {
+	@ConvenienceMethod
+	protected HashMap<Vector2, GameObject> getParentObject(Vector2 start, GameObject entity){
+		return getParentObject(start, entity, false);
+	}
+
+	/**
+	 * Re-instancie les entités
+	 *
+	 * @since 6.2
+	 */
+	protected HashMap<Vector2, GameObject> getParentObject(Vector2 start, GameObject entity, boolean withDelete) {
 		ArrayList<Vector2> delete = new ArrayList<>();
 		HashMap<Vector2, GameObject> obj = new HashMap<>();
 		Rectangle ent = new Rectangle(start.x, start.y, entity.getGameObjectWidth(), entity.getGameObjectHeight());
@@ -535,7 +546,7 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 						}
 					} else {
 						//sinon on renvoi le conteneur
-						Logger.printDebug("DeleteGetParent", item.toString() + "(" + ent + " overlaps " + other + ")");
+						if(withDelete) Logger.printDebug("DeleteGetParent", item.toString() + "(" + ent + " overlaps " + other + ")");
 						obj.put(item.getKey(), object);
 						return obj;
 					}
@@ -543,9 +554,11 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 			}
 		}
 
-		//suppression des contenus
-		for (Vector2 v : delete) {
-			this.objects.remove(v);
+		if(withDelete) {
+			//suppression des contenus
+			for (Vector2 v : delete) {
+				this.objects.remove(v);
+			}
 		}
 
 		return obj;

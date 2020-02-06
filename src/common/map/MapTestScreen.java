@@ -222,14 +222,14 @@ public class MapTestScreen extends AbstractMap {
 
 			Logger.printDebug("MapTestScreen#checkPlacement", "Restoration des entités.");
 
-			//saveParents(parentObject);
+			saveParents(parentObject);
 
 			return true;
 		}
 
 		Logger.printDebug("MapTestScreen#checkPlacement", "Restoration des room(s)");
 
-		//saveParents(getParentObject(start, object));
+		saveParents(getParentObject(start, object));
 
 		return true;
 	}

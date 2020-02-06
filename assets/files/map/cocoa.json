@@ -1,4 +1,65 @@
 {
      "Enigmas": [
+          {
+               "common.enigmas.Enigma": [
+                    {
+                         "operations": [
+                         ],
+                         "known": "false",
+                         "currentAdviceIndex": "-1",
+                         "description": "Un boutton assez bizare qui rends les gens heureux hitler",
+                         "advices": [
+                         ],
+                         "id": "11",
+                         "title": "OpenTheDoor",
+                         "type": "ON_USE",
+                         "conditions": [
+                              {
+                                   "common.enigmas.condition.Activated": [
+                                        {
+                                             "entities": "18"
+                                        }
+                                   ]
+                              }
+                         ]
+                    }
+               ]
+          },
+
+          {
+               "common.enigmas.Enigma": [
+                    {
+                         "operations": [
+                              {
+                                   "common.enigmas.operation.Summon": [
+                                        {
+                                             "entities": "6",
+                                             "spawn_layer": "FLOOR2",
+                                             "spawn_x": "3",
+                                             "spawn_y": "33"
+                                        }
+                                   ]
+                              }
+                         ],
+                         "known": "false",
+                         "currentAdviceIndex": "-1",
+                         "description": "Remise à mesure",
+                         "advices": [
+                         ],
+                         "id": "7",
+                         "title": "Tarre",
+                         "type": "ON_USE",
+                         "conditions": [
+                              {
+                                   "common.enigmas.condition.Activated": [
+                                        {
+                                             "entities": "18"
+                                        }
+                                   ]
+                              }
+                         ]
+                    }
+               ]
+          }
      ]
 }
