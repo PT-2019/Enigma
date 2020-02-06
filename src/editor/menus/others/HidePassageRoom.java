@@ -25,7 +25,7 @@ import editor.popup.cases.CasePopUp;
 @Deprecated
 public class HidePassageRoom implements AvailableOptionRunnable {
 
-	private final static String HIDE = NeedToBeTranslated.HIDE_ROOM;
+	private final static String HIDE = NeedToBeTranslated.HIDE_ROOM_DESC;
 
 	/**
 	 * Parent

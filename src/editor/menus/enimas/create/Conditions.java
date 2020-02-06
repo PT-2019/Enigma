@@ -5,12 +5,11 @@ import common.entities.Consumable;
 import common.entities.GameObject;
 import common.entities.special.Room;
 import common.entities.types.Activatable;
+import data.NeedToBeTranslated;
 import editor.menus.SelectionsModes;
 import game.dnd.DragAndDropBuilder;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import static data.NeedToBeTranslated.*;
 
 /**
  * Conditions disponibles
@@ -23,12 +22,12 @@ import static data.NeedToBeTranslated.*;
  * @since 5.0 26/01/2020
  */
 public enum Conditions {
-	ACTIVATED(ACTIVATED_DESC, ACTIVATED_RES, null, SelectionsModes.MAP),
-	ANSWER(ANSWER_DESC, ANSWER_RES, null, SelectionsModes.ALL),
-	ROOM_DISCOVERED(ROOM_DISCOVERED_DESC, ROOM_DISCOVERED_RES, null, SelectionsModes.MAP),
-	ROOM_UNDISCOVERED(ROOM_UNDISCOVERED_DESC, ROOM_UNDISCOVERED_RES, null, SelectionsModes.MAP),
-	HAVE_IN_HANDS(HAVE_IN_HANDS_DESC, HAVE_IN_HANDS_RES, null, SelectionsModes.MAP_AND_POPUP),
-	HAVE_IN_INVENTORY(HAVE_IN_INVENTORY_DESC, HAVE_IN_INVENTORY_RES, null, SelectionsModes.MAP_AND_POPUP),
+	ACTIVATED(NeedToBeTranslated.ACTIVATED_DESC, NeedToBeTranslated.ACTIVATED_RES, null, SelectionsModes.MAP),
+	ANSWER(NeedToBeTranslated.ANSWER_DESC, NeedToBeTranslated.ANSWER_RES, null, SelectionsModes.ALL),
+	ROOM_DISCOVERED(NeedToBeTranslated.ROOM_DISCOVERED_DESC, NeedToBeTranslated.ROOM_DISCOVERED_RES, null, SelectionsModes.MAP),
+	ROOM_UNDISCOVERED(NeedToBeTranslated.ROOM_UNDISCOVERED_DESC, NeedToBeTranslated.ROOM_UNDISCOVERED_RES, null, SelectionsModes.MAP),
+	HAVE_IN_HANDS(NeedToBeTranslated.HAVE_IN_HANDS_DESC, NeedToBeTranslated.HAVE_IN_HANDS_RES, null, SelectionsModes.MAP_AND_POPUP),
+	HAVE_IN_INVENTORY(NeedToBeTranslated.HAVE_IN_INVENTORY_DESC, NeedToBeTranslated.HAVE_IN_INVENTORY_RES, null, SelectionsModes.MAP_AND_POPUP),
 	;
 
 	/**

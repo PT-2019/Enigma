@@ -4,10 +4,13 @@ import com.badlogic.gdx.Gdx;
 import common.hud.*;
 import common.hud.ui.EnigmaMenuUI;
 import common.language.HUDFields;
+import common.save.EmptyMapGenerator;
 import data.EnigmaScreens;
 import data.config.EnigmaUIValues;
 import editor.bar.listeners.*;
 import game.EnigmaGame;
+import game.screens.GameScreen;
+import game.screens.TestScreen;
 
 import java.awt.*;
 
@@ -86,7 +89,14 @@ public class BarMenu extends EnigmaMenuBar {
 		this.redo.addActionListener(new RedoListener(window, this.redo));
 
 		this.runJeu.addActionListener((e -> {
-			Gdx.app.postRunnable(() -> EnigmaGame.setScreen(EnigmaScreens.GAME.name()));
+			//change la map avant de recharger
+			EnigmaGame.getCurrentScreen().setMap(TestScreen.getMapPath());
+			Gdx.app.postRunnable(() -> {
+				//rechargement de la map
+				EnigmaGame.reload(EnigmaScreens.GAME.name());
+				//charge les entités sur la bonne map !
+				EmptyMapGenerator.load(TestScreen.getMapPath());
+			});
 			this.finJeu.setEnabled(true);
 			this.runJeu.setEnabled(false);
 		}));

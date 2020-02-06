@@ -3,9 +3,11 @@ package editor.menus.enimas.create;
 import api.utils.Observer;
 import common.entities.GameObject;
 import common.entities.players.NPC;
+import common.entities.special.Room;
 import common.entities.types.Living;
 import common.entities.types.Lockable;
 import common.entities.types.NeedContainer;
+import data.NeedToBeTranslated;
 import editor.menus.SelectionsModes;
 import game.dnd.DragAndDropBuilder;
 import org.jetbrains.annotations.NotNull;
@@ -22,9 +24,11 @@ import org.jetbrains.annotations.Nullable;
  * @since 5.0 25/01/2020
  */
 public enum Operations {
-	GIVE("Donne un object à l'utilisateur", "Objects uniquement (livre...).", null, SelectionsModes.MENU_AND_POPUP),
-	SUMMON("Invoque une entité", "Seulement des personnages, pas de héros.", null, SelectionsModes.MAP_AND_MENU),
-	UNLOCK("Dévérouille un object", "Seulement un object \"Décors\" fermable.", null, SelectionsModes.MAP),
+	GIVE(NeedToBeTranslated.GIVE_DESC, NeedToBeTranslated.GIVE_RES, null, SelectionsModes.MENU_AND_POPUP),
+	SUMMON(NeedToBeTranslated.SUMMON_DESC, NeedToBeTranslated.SUMMON_RES, null, SelectionsModes.MAP_AND_MENU),
+	SHOW_ROOM(NeedToBeTranslated.SHOW_ROOM_DESC, NeedToBeTranslated.SHOW_ROOM_RES, null, SelectionsModes.MAP_AND_MENU),
+	HIDE_ROOM(NeedToBeTranslated.HIDE_ROOM_DESC, NeedToBeTranslated.HIDE_ROOM_RES, null, SelectionsModes.MAP_AND_MENU),
+	UNLOCK(NeedToBeTranslated.UNLOCK_DESC, NeedToBeTranslated. UNLOCK_RES, null, SelectionsModes.MAP),
 	;
 
 	/**
@@ -130,7 +134,12 @@ public enum Operations {
 			}
 		} else if (this.equals(UNLOCK)) {
 			return (object instanceof Lockable);
+		}else if (this.equals(SHOW_ROOM)) {
+			return (object instanceof Room);
+		}else if (this.equals(HIDE_ROOM)) {
+			return (object instanceof Room);
 		}
+
 		return false;
 	}
 }

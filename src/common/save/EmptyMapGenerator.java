@@ -1,14 +1,13 @@
 package common.save;
 
+import common.map.AbstractMap;
 import common.map.MapObjects;
 import common.utils.Logger;
 import api.utils.annotations.ConvenienceMethod;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.math.Vector2;
 import common.enigmas.Enigma;
 import common.entities.GameObject;
 import common.entities.types.EnigmaContainer;
-import common.map.MapTestScreen;
 import common.map.model.Map;
 import common.save.enigmas.EnigmaJsonReader;
 import common.save.enigmas.EnigmaJsonWriter;
@@ -16,7 +15,6 @@ import common.utils.textures.TextureProxy;
 import data.config.Config;
 import editor.bar.edition.ActionsManager;
 import game.EnigmaGame;
-import game.screens.TestScreen;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -111,10 +109,10 @@ public class EmptyMapGenerator {
 	 */
 	public static void load(String path) {
 		//------------ charge .tmx ------------
-		((TestScreen) EnigmaGame.getCurrentScreen()).setMap(path);
+		EnigmaGame.getCurrentScreen().setMap(path);
 
 		//------------ charge .json ------------
-		MapTestScreen map = ((TestScreen) EnigmaGame.getCurrentScreen()).getMap();
+		AbstractMap map = EnigmaGame.getCurrentScreen().getMap();
 		MapObjects entities = map.getEntities();
 
 		ArrayList<Enigma> enigmas;

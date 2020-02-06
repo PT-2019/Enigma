@@ -154,12 +154,7 @@ public class TestScreen extends LibgdxScreen {
 		}
 	}
 
-	/**
-	 * Définit la map de l'écran
-	 *
-	 * @param absolutePath chemin
-	 * @return true si map changée sinon false, pas changée si c'est déjà la bonne
-	 */
+	@Override
 	public boolean setMap(String absolutePath) {
 		if (!absolutePath.equals(MAP_PATH)) {
 			MAP_PATH = absolutePath;
@@ -173,11 +168,7 @@ public class TestScreen extends LibgdxScreen {
 		this.toast.update(message);
 	}
 
-	/**
-	 * Retourne la map
-	 *
-	 * @return la map
-	 */
+	@Override
 	public MapTestScreen getMap() {
 		return map;
 	}

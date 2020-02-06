@@ -1,11 +1,9 @@
 package editor.menus.enimas.create.listeners;
 
+import common.enigmas.operation.*;
+import common.entities.special.Room;
 import common.utils.Logger;
 import com.badlogic.gdx.math.Vector2;
-import common.enigmas.operation.Give;
-import common.enigmas.operation.Operation;
-import common.enigmas.operation.Summon;
-import common.enigmas.operation.Unlock;
 import common.entities.Entity;
 import common.entities.GameObject;
 import common.entities.Item;
@@ -93,6 +91,12 @@ public class OperationListener implements ActionListener, ItemListener {
         } else if (this.currentButton.getName().equals(Operations.UNLOCK.name())) {
             if (this.object instanceof Lockable)
                 ope = new Unlock((Lockable) this.object);
+        }else if (this.currentButton.getName().equals(Operations.SHOW_ROOM.name())) {
+            if (this.object instanceof Room)
+                ope = new ShowRoom((Room) this.object);
+        }else if (this.currentButton.getName().equals(Operations.HIDE_ROOM.name())) {
+            if (this.object instanceof Room)
+                ope = new HideRoom((Room) this.object);
         } else {
             this.operationPanel.getEntityName().setText(OperationPanel.NOT_AVAILABLE_OPERATION);
         }

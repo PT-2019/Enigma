@@ -83,5 +83,26 @@ public interface NeedToBeTranslated {
 
 	String ASK_SELECT_MAP = "Choisissez une map";
 
-	String HIDE_ROOM = "Cacher une salle";
+
+	//Operations
+
+	String GIVE_DESC = "Donne un object à l'utilisateur";
+	String GIVE_RES = "Objects uniquement (livre...).";
+
+
+	String SUMMON_DESC = "Invoque une entité";
+	String SUMMON_RES = "Seulement des personnages, pas de héros.";
+
+
+	String UNLOCK_DESC = "Dévérouille un object";
+	String UNLOCK_RES = "Seulement un object \"Décors\" fermable.";
+
+
+	String HIDE_ROOM_DESC = "Cacher une salle";
+	String HIDE_ROOM_RES = "Seulement une salle.";
+
+
+	String SHOW_ROOM_DESC = "Afficher une salle";
+	String SHOW_ROOM_RES = "Seulement une salle.";
+
 }

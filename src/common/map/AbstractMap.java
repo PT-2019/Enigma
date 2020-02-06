@@ -437,6 +437,7 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 	 */
 	private void delete(GameObject entity, Vector2 start) {
 		HashMap<Vector2, GameObject> parents = this.getParentObject(start, entity, true);
+		Utility.printHashMap(parents);
 		Array<Array<Float>> entities = null;
 		Array<GameObject> objects = null;
 		if (parents != null && !parents.isEmpty()) {
@@ -487,7 +488,8 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 									if (LibgdxUtility.containsBottomLeftOrigin(entry.getValue(), entry.getKey(), j, i)) {
 										int indexR = LibgdxUtility.calculatesOffset(new Vector2(j, i + 1),
 												entry.getKey(), entry.getValue());
-										ind = MathUtils.ceil(entitiesArray.get(indexR));
+										if(indexR < entitiesArray.size) ind = MathUtils.ceil(entitiesArray.get(indexR));
+										else ind = MathUtils.ceil(entitiesArray.get(entitiesArray.size-1));
 										c.setEntity(entry.getValue());
 										break;
 									}
@@ -555,6 +557,7 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 		}
 
 		if(withDelete) {
+			System.out.println("delete");
 			//suppression des contenus
 			for (Vector2 v : delete) {
 				this.objects.remove(v);

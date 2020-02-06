@@ -1,36 +1,4 @@
 {
      "Enigmas": [
-          {
-               "common.enigmas.Enigma": [
-                    {
-                         "operations": [
-                              {
-                                   "common.enigmas.operation.Give": [
-                                        {
-                                             "entities": "19"
-                                        }
-                                   ]
-                              }
-                         ],
-                         "known": "false",
-                         "currentAdviceIndex": "-1",
-                         "description": "",
-                         "advices": [
-                         ],
-                         "id": "0",
-                         "title": "Polo",
-                         "type": "ON_USE",
-                         "conditions": [
-                              {
-                                   "common.enigmas.condition.RoomDiscovered": [
-                                        {
-                                             "entities": "2"
-                                        }
-                                   ]
-                              }
-                         ]
-                    }
-               ]
-          }
      ]
 }
