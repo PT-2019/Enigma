@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<DataMap>
-  <duration>10</duration>
-  <author>Louka</author>
-  <multiPlayers>true</multiPlayers>
-  <name>scenario3</name>
-  <description>Ceci est une description sacrement utile</description>
-  <maxPLayers>3</maxPLayers>
-</DataMap>
