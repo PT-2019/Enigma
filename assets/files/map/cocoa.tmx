@@ -86,7 +86,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,763,0,0,488,488,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,771,0,0,496,496,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,910,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -248,7 +248,7 @@
 0,2041,2041,2041,2041,2041,0,0,2041,2041,2041,2041,2041,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,2041,0,0,0,0,0,0,0,0,0,0,2041,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,2041,0,0,0,0,0,0,0,0,2041,0,2041,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,2041,0,0,0,0,0,0,0,0,0,0,2041,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,2041,0,0,0,0,0,0,0,0,0,0,2041,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,2041,0,0,0,0,0,0,0,0,0,0,2041,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -322,9 +322,9 @@
                 <property name="className" value="common.entities.players.Monster"/>
                 <property name="y2" value="40.0"/>
                 <property name="FLOOR2" value="4"/>
-                <property name="NAME" value=""/>
                 <property name="KEY" value="rat"/>
                 <property name="JSON" value="assets/entities/monsters/monsters.json"/>
+                <property name="NAME" value=""/>
             </properties>
         </object>
         <object height="2.0" id="15" name="entity" width="2.0" x="3.0" y="16.0">
@@ -332,11 +332,11 @@
                 <property name="className" value="common.entities.players.NPC"/>
                 <property name="y2" value="16.0"/>
                 <property name="FLOOR2" value="4"/>
-                <property name="INVENTORY" value=""/>
-                <property name="NAME" value="Pire"/>
                 <property name="KEY" value="Kil"/>
-                <property name="HERO" value="true"/>
                 <property name="JSON" value="assets/entities/players/players.json"/>
+                <property name="HERO" value="true"/>
+                <property name="NAME" value="Pire"/>
+                <property name="INVENTORY" value=""/>
             </properties>
         </object>
         <object height="1.0" id="16" name="entity" width="1.0" x="-16.0" y="-16.0">
@@ -345,14 +345,13 @@
                 <property name="y2" value="-16.0"/>
             </properties>
         </object>
-        <object height="2.0" id="6" name="entity" width="2.0" x="-19.0" y="-19.0">
+        <object height="1.0" id="0" name="entity" width="1.0" x="10.0" y="33.0">
             <properties>
-                <property name="className" value="common.entities.players.Monster"/>
-                <property name="y2" value="-19.0"/>
-                <property name="FLOOR2" value="4"/>
-                <property name="NAME" value=""/>
-                <property name="KEY" value="rat"/>
-                <property name="JSON" value="assets/entities/monsters/monsters.json"/>
+                <property name="className" value="common.entities.items.Chest"/>
+                <property name="y2" value="33.0"/>
+                <property name="FLOOR2" value="1"/>
+                <property name="COLLISION" value="1"/>
+                <property name="LOCKED" value="true"/>
             </properties>
         </object>
         <object height="2.0" id="13" name="entity" width="2.0" x="36.0" y="19.0">
@@ -360,11 +359,11 @@
                 <property name="className" value="common.entities.players.NPC"/>
                 <property name="y2" value="19.0"/>
                 <property name="FLOOR2" value="4"/>
-                <property name="INVENTORY" value=""/>
-                <property name="NAME" value=""/>
                 <property name="KEY" value="Euphemia"/>
-                <property name="HERO" value="true"/>
                 <property name="JSON" value="assets/entities/players/players.json"/>
+                <property name="HERO" value="true"/>
+                <property name="NAME" value=""/>
+                <property name="INVENTORY" value=""/>
             </properties>
         </object>
         <object height="2.0" id="14" name="entity" width="2.0" x="21.0" y="11.0">
@@ -372,11 +371,11 @@
                 <property name="className" value="common.entities.players.NPC"/>
                 <property name="y2" value="11.0"/>
                 <property name="FLOOR2" value="4"/>
-                <property name="INVENTORY" value=""/>
-                <property name="NAME" value="Zoé"/>
                 <property name="KEY" value="Alexia"/>
-                <property name="HERO" value="true"/>
                 <property name="JSON" value="assets/entities/players/players.json"/>
+                <property name="HERO" value="true"/>
+                <property name="NAME" value="Zoé"/>
+                <property name="INVENTORY" value=""/>
             </properties>
         </object>
         <object height="1.0" id="9" name="entity" width="1.0" x="6.0" y="43.0">

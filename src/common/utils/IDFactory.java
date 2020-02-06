@@ -96,7 +96,6 @@ public class IDFactory {
 					s = i;
 			}
 			//donne un id qui s'est libéré
-			System.out.println(s+" "+this.deleted);
 			if(s != BASE_REVERSE) object.setID(this.deleted.remove(s));
 			else {
 				//on lui donne un nouvel id
