@@ -1,12 +1,16 @@
 package common.entities.items;
 
+import com.badlogic.gdx.maps.MapProperties;
 import common.entities.types.AbstractItem;
 import common.entities.types.Content;
 import common.language.GameFields;
 import common.language.GameLanguage;
+import common.save.entities.PlayerSave;
+import common.save.entities.SaveKey;
 import data.TypeEntity;
 
 import java.util.EnumMap;
+import java.util.HashMap;
 
 /**
  * Un panneau
@@ -83,5 +87,17 @@ public class Pane extends AbstractItem implements Content {
 	@Override
 	public String getReadableName() {
 		return GameLanguage.gl.get(GameFields.PANE);
+	}
+
+	@Override
+	public HashMap<SaveKey,String> getSave(){
+		HashMap<SaveKey, String> save = new HashMap<>();
+		save.put(PlayerSave.CONTENT, this.content);
+		return save;
+	}
+
+	@Override
+	public void load(MapProperties data) {
+		this.content = data.get(PlayerSave.CONTENT.getKey(), String.class);
 	}
 }

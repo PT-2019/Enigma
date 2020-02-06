@@ -1,14 +1,18 @@
 package game.screens;
 
 import api.libgdx.LibgdxScreen;
+import api.libgdx.actor.GameActor;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import common.entities.players.NpcGame;
 import common.entities.players.PlayerGame;
 import common.map.AbstractMap;
 import common.map.GameMap;
 import common.save.entities.serialization.PlayerFactory;
 import common.utils.Logger;
 import game.EnigmaGame;
+
+import java.util.ArrayList;
 
 /**
  * écran du jeu
@@ -35,10 +39,7 @@ public class GameScreen extends LibgdxScreen {
 	 * Stage de l'interface
 	 */
 	private Stage hud;
-	/**
-	 * Joueur
-	 */
-	private PlayerGame player;
+
 	/**
 	 * La map libgdx
 	 */
@@ -56,13 +57,17 @@ public class GameScreen extends LibgdxScreen {
 			this.map.showGrid(false);
 
 			//compléter ici
-			player = PlayerFactory.createPlayerGame("Blonde", "assets/entities/players/players.json", this.map);
-			this.map.addEntity(player);
-			player.center();
+			ArrayList<GameActor> actors = this.map.getEntities();
+
+			for (GameActor actor: actors) {
+				if (actor instanceof PlayerGame){
+					((PlayerGame)actor).center();
+					this.listen(((PlayerGame)actor));
+				}
+			}
 
 			//écoute des inputProcessor et des listeners
 			this.listen(this.hud);
-			this.listen(player);
 			this.listen(this.main);
 		} catch (Exception e) {
 			e.printStackTrace();

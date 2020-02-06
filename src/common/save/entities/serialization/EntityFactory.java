@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
 import common.entities.GameObject;
+import common.entities.players.EntityGame;
 import common.entities.players.NPC;
 import data.EntitiesCategories;
 import data.Layer;
@@ -156,10 +157,10 @@ public class EntityFactory {
 			//on devrait faire une méthode qui demande a l'entité s'il elle veut
 			//ajouter des infos et une interface plutôt que donner direct NPC
 			//mais j'ai flemme et manque de temps là ~#rush
-			if (entity instanceof PlayerSerializableToJson && object instanceof NPC) {
+			if (entity instanceof PlayerSerializableToJson && object instanceof EntityGame) {
 				PlayerSerializableToJson player = ((PlayerSerializableToJson) entity);
-				((NPC) object).setJson(player.getJson(), player.getKey());
-				Logger.printDebug("EntityFactory", "PlayerSerializable loaded.");
+				((EntityGame) object).setJson(player.getJson(), player.getKey());
+				Utility.printDebug("EntityFactory", "PlayerSerializable loaded.");
 			}
 
 			if (pos != null)

@@ -32,7 +32,7 @@ import java.util.HashMap;
  * @version 5.0 25/01/2020
  * @since 5.0 25/01/2020
  */
-public class NPC extends GameActorTextured implements Entity, Living, Container {
+public class NPC extends GameActorTextured implements Entity, Living, Container,EntityGame  {
 
 	/**
 	 * Points de vie maximaux du joueur
@@ -82,7 +82,7 @@ public class NPC extends GameActorTextured implements Entity, Living, Container 
 		this.items = new ArrayList<>();
 	}
 
-	/**
+    /**
 	 * @param id ID
 	 */
 	public NPC(int id) {
@@ -259,4 +259,14 @@ public class NPC extends GameActorTextured implements Entity, Living, Container 
 	public ArrayList<Item> getItems() {
 		return this.items;
 	}
+
+    @Override
+    public String getJson() {
+        return json;
+    }
+
+    @Override
+    public String getKey() {
+        return key;
+    }
 }

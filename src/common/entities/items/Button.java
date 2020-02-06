@@ -1,11 +1,15 @@
 package common.entities.items;
 
+import com.badlogic.gdx.maps.MapProperties;
 import common.entities.types.Activatable;
 import common.language.GameFields;
 import common.language.GameLanguage;
+import common.save.entities.PlayerSave;
+import common.save.entities.SaveKey;
 import data.TypeEntity;
 
 import java.util.EnumMap;
+import java.util.HashMap;
 
 /**
  * Un bouton
@@ -60,5 +64,17 @@ public class Button extends Activatable {
 	@Override
 	public String getReadableName() {
 		return GameLanguage.gl.get(GameFields.BUTTON);
+	}
+
+	@Override
+	public HashMap<SaveKey,String> getSave(){
+		HashMap<SaveKey, String> save = new HashMap<>();
+		save.put(PlayerSave.ACTIVATED, String.valueOf(this.activated));
+		return save;
+	}
+
+	@Override
+	public void load(MapProperties data) {
+		this.activated = Boolean.parseBoolean(data.get(PlayerSave.ACTIVATED.getKey(), String.class));
 	}
 }
