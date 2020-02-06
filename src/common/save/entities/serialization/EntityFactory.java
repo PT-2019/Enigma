@@ -160,7 +160,7 @@ public class EntityFactory {
 			if (entity instanceof PlayerSerializableToJson && object instanceof EntityGame) {
 				PlayerSerializableToJson player = ((PlayerSerializableToJson) entity);
 				((EntityGame) object).setJson(player.getJson(), player.getKey());
-				Utility.printDebug("EntityFactory", "PlayerSerializable loaded.");
+				Logger.printDebug("EntityFactory", "PlayerSerializable loaded.");
 			}
 
 			if (pos != null)

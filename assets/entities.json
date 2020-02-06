@@ -127,7 +127,7 @@
     {
       className: common.entities.players.NPC
       path: assets/map/datas/players/p10.png
-      json: assets/entities/datas/players.json
+      json: assets/entities/players/players.json
       key: Jordan
       category: ENTITIES
       width: 2
@@ -144,7 +144,7 @@
     {
       className: common.entities.players.NPC
       path: assets/map/datas/players/p12.png
-      json: assets/entities/datas/players.json
+      json: assets/entities/players/players.json
       key: Blonde
       category: ENTITIES
       width: 2

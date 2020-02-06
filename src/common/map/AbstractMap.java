@@ -1,5 +1,6 @@
 package common.map;
 
+import api.libgdx.actor.GameActor;
 import api.libgdx.utils.Border;
 import api.libgdx.utils.Bounds;
 import api.libgdx.utils.LibgdxUtility;
@@ -23,12 +24,14 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Array;
 import common.data.MapData;
 import common.entities.GameObject;
+import common.entities.players.Monster;
+import common.entities.players.NPC;
+import common.entities.special.GameExit;
 import common.entities.types.ContainersManager;
 import common.entities.types.IDInterface;
 import common.save.DataSave;
 import common.save.TmxProperties;
-import common.save.entities.serialization.EntityFactory;
-import common.save.entities.serialization.EntitySerializable;
+import common.save.entities.serialization.*;
 import common.utils.IDFactory;
 import common.utils.Logger;
 import data.Layer;
@@ -128,6 +131,18 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 	 * @since 3.0
 	 */
 	AbstractMap(@NotNull final String path, final float unitScale) {
+		this(path, unitScale, true);
+	}
+
+	/**
+	 * Le seul constructeur possible d'une map, ne fait rien
+	 *
+	 * @param path      chemin d'une map
+	 * @param unitScale taux de distortion
+	 *
+	 * @since 3.0
+	 */
+	AbstractMap(@NotNull final String path, final float unitScale,boolean isInit) {
 		// charge la map
 		TiledMap tiledMap = new TmxMapLoader().load(path);
 		this.map = new OrthogonalTiledMapRenderer(tiledMap, unitScale);
@@ -172,8 +187,10 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 
 		this.idFactory = new IDFactory();
 
-		//initialise la map
-		this.init();
+		if (isInit){
+			//initialise la map
+			this.init();
+		}
 	}
 
 	/**
@@ -181,7 +198,7 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 	 *
 	 * @since 6.0
 	 */
-	private void init() {
+	protected void init() {
 		//change les cellules de la map
 		this.initCells();
 
@@ -227,7 +244,7 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 	 * @see MapTestScreenCell
 	 * @since 4.0
 	 */
-	private void initCells() {
+	protected void initCells() {
 		MapLayers layers = this.map.getMap().getLayers();
 		for (int i = 0; i < 5; i++) {
 			TiledMapTileLayer layer = (TiledMapTileLayer) layers.get(i);
@@ -251,7 +268,7 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 	 *
 	 * @since 5.3
 	 */
-	private void initEntities() {
+	protected void initEntities() {
 		ArrayList<MapProperties> entities = getProperty(TmxProperties.TMX_PROP_ENTITY, this);
 		float x, y;
 		int width, height;
@@ -352,7 +369,7 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 	 * @param start  le coin supérieur gauche ou commencer a placer des tiles
 	 * @since 5.3
 	 */
-	private void setFromSave(GameObject entity, Vector2 start) {
+	protected void setFromSave(GameObject entity, Vector2 start) {
 		//un manager ne peut pas être déposé sauf s'il l'emplacement est vide.
 		boolean manager = entity instanceof ContainersManager;
 

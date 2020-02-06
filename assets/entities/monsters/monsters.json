@@ -14,8 +14,8 @@
       path: "assets/entities/monsters/023s.png",
       cols: 4
       rows: 4
-      colPerImage: 1
-      rowPerImage: 1
+      colPerImage: 4
+      rowPerImage: 4
       index: 0
       duration: 0.3f
     }

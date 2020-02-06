@@ -1,6 +1,7 @@
 package common.map;
 
 import api.libgdx.actor.GameActor;
+import api.utils.Utility;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.MapLayer;
@@ -19,11 +20,15 @@ import com.badlogic.gdx.utils.Array;
 import common.entities.GameObject;
 import common.entities.players.*;
 import common.entities.special.GameExit;
+import common.save.TmxProperties;
 import common.save.entities.serialization.*;
+import common.utils.Logger;
 import data.Layer;
 import org.jetbrains.annotations.NotNull;
+import org.lwjgl.Sys;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Map de la libgdx
@@ -43,14 +48,34 @@ public class GameMap extends AbstractMap {
 	private ArrayList<GameActor> entities;
 
 	public GameMap(final String path, float unitScale) {
-		super(path, unitScale);
+		super(path, unitScale,false);
 
 		this.showLayer(Layer.COLLISION, true);
+
+		//change les cellules de la map
+		this.initCells();
 
 		//hahsmap <Vector2, TileEvent> ???
 		this.loadTileEvents();
 
 		this.entities = new ArrayList<>();
+
+		this.init();
+	}
+
+	/**
+	 * Initialisation de la map.
+	 *
+	 * @since 6.0
+	 */
+	protected void init() {
+
+
+		//recharge les entités depuis sauvegarde
+		this.initEntities();
+
+		//bounds
+		this.setMapBounds();
 	}
 
 	private void loadTileEvents() {
@@ -193,71 +218,7 @@ public class GameMap extends AbstractMap {
 		}
 	}
 
-    private void initEntities() {
-        ArrayList<MapProperties> entities = getProperty("entity");
-        float x, y;
-        int width, height;
-        //variable pour savoir si il faut afficher ou non l'entité
-        boolean notdisplay = false;
-        String className;
-        String isheros;
-        EntitySerializable e;
-        for (MapProperties prop : entities) {
-            width = Math.round(prop.get("width", Float.class));
-            height = Math.round(prop.get("height", Float.class));
-            className = prop.get("className", String.class);
-            x = prop.get("x", Float.class);
-            //obligé de faire ce truc sale y2 car y renvoi truc bizarres y=789 renvoi y=0...
-            y = Float.parseFloat(prop.get("y2", String.class));
-            Vector2 start = new Vector2(x, y);
-            e = new EntitySerializable(width, height, className, new HashMap<>());
-            GameObject object = EntityFactory.createEntity(e, this.added.size(), start);
 
-            Utility.printDebug("GameScreen#initEntities", object + " " + start);
-
-            //on place pas les entités "vivantes" dans les tiles de la map
-            if (object instanceof NPC){
-                isheros = prop.get("HERO", String.class);
-                String name = prop.get("KEY", String.class);
-                String path = prop.get("JSON", String.class);
-                GameActor entity;
-
-                if (isheros.equals("true")){
-                    entity = PlayerFactory.createPlayerGame(name, path, this);
-                    ((NPC)object).setHero(true);
-                }else{
-                    //c'est un npc
-                    entity = NpcFactory.createNpcGame(name,path);
-                }
-                this.addEntity(entity);
-                //on soustrait et augmente pour que ce soit à la bonne position
-                entity.setPosition((x+0.5f)*this.tileWidth*this.getUnitScale(),
-                        (y-2)*this.tileHeight*this.getUnitScale());
-                notdisplay = true;
-            }else if(object instanceof Monster){
-                String path = prop.get("JSON", String.class);
-                String name = prop.get("KEY", String.class);
-
-                GameActor monster = MonsterFactory.createMonsterGame(name, path);
-                this.addEntity(monster);
-                monster.setPosition((x+0.5f)*this.tileWidth*this.getUnitScale(),
-                        (y-2)*this.tileHeight*this.getUnitScale());
-                notdisplay = true;
-            }else{
-                // on place les tiles
-                this.setFromSave(object, start);
-                if (object instanceof GameExit) notdisplay = true;
-            }
-
-            if (notdisplay){
-                this.setEntityFromSave(object,start);
-                notdisplay = false;
-            }
-
-            //ajout à la liste des entités de la map
-            this.added.put(start, object);
-        }
-    }
 
     /**
      * Enlève l'entités vivante de la map et les actions comme la sortie
@@ -285,4 +246,101 @@ public class GameMap extends AbstractMap {
         }
     }
 
+    @Override
+	protected void initEntities() {
+		ArrayList<MapProperties> entities = getProperty(TmxProperties.TMX_PROP_ENTITY, this);
+		float x, y;
+		int width, height;
+		Integer id;
+		//variable pour savoir si il faut afficher ou non l'entité
+		boolean notdisplay = false;
+		String className;
+		String isheros;
+		EntitySerializable e;
+		for (MapProperties prop : entities) {
+			width = Math.round(prop.get(TmxProperties.TMX_WIDTH, Float.class));
+			height = Math.round(prop.get(TmxProperties.TMX_HEIGHT, Float.class));
+			className = prop.get(TmxProperties.TMX_PROP_ENTITY_CLASS, String.class);
+			x = prop.get(TmxProperties.TMX_X, Float.class);
+			//obligé de faire ce truc sale y2 car y renvoi truc bizarres y=789 renvoi y=0...
+			y = Float.parseFloat(prop.get(TmxProperties.TMX_Y, String.class));
+
+			id = prop.get(TmxProperties.TMX_ID, Integer.class);
+			if (id == null) id = 0;
+
+			Vector2 start = new Vector2(x, y);
+			if (start.x >= 0 && start.y >= 0) {
+				//TILES
+				HashMap<String, Array<Float>> tiles = new HashMap<>();
+				for (Layer layer : Layer.values()) {
+					String sizeS = prop.get(layer.toString(), String.class);
+					if (sizeS == null || sizeS.length() == 0) continue;
+					int size = Integer.parseInt(sizeS);
+					Array<Float> tile = new Array<>();
+					for (int i = 0; i < size; i++) {
+						tile.add(0f);
+					}
+					tiles.put(layer.toString(), tile);
+				}
+				e = new EntitySerializable(width, height, className, tiles);
+				GameObject object = EntityFactory.createEntity(e, id, start, this.idFactory);
+				object.load(prop);
+				Logger.printDebug("MapTestScreen#initEntities", object + " " + start);
+
+				//on place pas les entités "vivantes" dans les tiles de la map
+				if (object instanceof NPC){
+					NPC npc = (NPC) object;
+					GameActor entity;
+
+					if (npc.isHero()) {
+						entity = PlayerFactory.createPlayerGame(npc.getKey(), npc.getJson(), this);
+						npc.setHero(true);
+					}else{
+						//c'est un npc
+						entity = NpcFactory.createNpcGame(npc.getKey(),npc.getJson());
+					}
+					this.addEntity(entity);
+					//on soustrait et augmente pour que ce soit à la bonne position
+					entity.setPosition((x+0.5f)*this.tileWidth*this.getUnitScale(),
+							(y-2)*this.tileHeight*this.getUnitScale());
+					notdisplay = true;
+				}else if(object instanceof Monster){
+					String path = prop.get("JSON", String.class);
+					String name = prop.get("KEY", String.class);
+
+					GameActor monster = MonsterFactory.createMonsterGame(name, path);
+					this.addEntity(monster);
+					monster.setPosition((x+0.5f)*this.tileWidth*this.getUnitScale(),
+							(y-2)*this.tileHeight*this.getUnitScale());
+					notdisplay = true;
+				}else{
+					// on place les tiles
+					this.setFromSave(object, start);
+					if (object instanceof GameExit) notdisplay = true;
+				}
+				//this.added.put(start, object);
+				if (notdisplay){
+					this.setEntityFromSave(object,start);
+					notdisplay = false;
+				}
+
+				//ajout à la liste des entités de la map
+				this.objects.put(start, object);
+			} else {
+				//entitée temporaire, pas sur la map
+				e = new EntitySerializable(width, height, className, new HashMap<>());
+				GameObject object = EntityFactory.createEntity(e, id, start, this.idFactory);
+
+				//ajout à la liste des entités de la map
+				//this.added.put(start, object);
+				this.objects.put(start, object);
+
+				Logger.printDebug("(tmp) MapTestScreen#initEntities", object + " " + start);
+			}
+		}
+	}
+
+	public ArrayList<GameActor> getGameEntities() {
+		return entities;
+	}
 }

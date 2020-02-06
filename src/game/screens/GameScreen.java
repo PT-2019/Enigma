@@ -29,7 +29,7 @@ public class GameScreen extends LibgdxScreen {
 	/**
 	 * Chemin de la map du jeu
 	 */
-	private static String MAP_PATH = "assets/files/map/test5.tmx";
+	private static String MAP_PATH = "assets/files/map/test0.tmx";
 
 	/**
 	 * Stage de la map et du jeu
@@ -57,7 +57,7 @@ public class GameScreen extends LibgdxScreen {
 			this.map.showGrid(false);
 
 			//compléter ici
-			ArrayList<GameActor> actors = this.map.getEntities();
+			ArrayList<GameActor> actors = this.map.getGameEntities();
 
 			for (GameActor actor: actors) {
 				if (actor instanceof PlayerGame){
