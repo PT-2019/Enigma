@@ -54,7 +54,7 @@ public class EntitySerializable {
 
 	/**
 	 * Une entité sérializable avec juste assez d'infos pour utiliser la fonction
-	 * {@link EntityFactory#createEntity(EntitySerializable, int, Vector2)}
+	 * {@link EntityFactory(EntitySerializable, int, Vector2)}
 	 *
 	 * @param width     largeur
 	 * @param height    hauteur

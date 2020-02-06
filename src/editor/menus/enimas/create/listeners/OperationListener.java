@@ -13,6 +13,7 @@ import common.entities.types.Lockable;
 import common.map.MapTestScreen;
 import editor.menus.AbstractPopUpView;
 import editor.menus.enimas.create.ManageEnigmasAddView;
+import editor.menus.enimas.create.MusicPanel;
 import editor.menus.enimas.create.OperationPanel;
 import editor.menus.enimas.create.Operations;
 import editor.popup.listeners.CaseListener;
@@ -114,7 +115,15 @@ public class OperationListener implements ActionListener, ItemListener {
             Operations.lock(Operations.valueOf(currentButton.getName()), this.operationPanel);
             this.operationPanel.update(this.object);
 
+            if (this.currentButton.getParent() instanceof MusicPanel) {
+                MusicPanel parent = (MusicPanel) this.currentButton.getParent();
+                parent.dispLink();
+            }
             //DragAndDropBuilder.setForPopup(this.operationPanel);
+        }else{
+            if (this.currentButton.getParent() instanceof MusicPanel) {
+                ((MusicPanel) this.currentButton.getParent()).remove();
+            }
         }
     }
 

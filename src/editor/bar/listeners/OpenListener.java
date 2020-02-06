@@ -39,7 +39,6 @@ public class OpenListener extends MenuListener {
 		if (!(map = EnigmaOptionPane.showMapChoiceDialog(this.window)).equals(CustomOptionPane.CANCEL)) {
 			String path =  Config.MAP_FOLDER + map + ".tmx";
 			Logger.printDebug("OpenListener#actionPerformed","ouverture de " + path);
-
 			//change la map avant de recharger
 			((TestScreen) EnigmaGame.getCurrentScreen()).setMap(path);
 

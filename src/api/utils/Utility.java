@@ -58,6 +58,27 @@ public class Utility implements Serializable {
 	}
 
 	/**
+	 * Obtenir le nom de toutes les maps en local
+	 * Les noms sont issus des fichiers tmx présents
+	 * @return Le nom des maps
+	 * @since 6.1
+	 */
+	//TODO: move to real utility
+	public static ArrayList<String> getAllMusicName(){
+		ArrayList<String> maps = new ArrayList<>();
+		File file = new File("assets/files/music/");
+		String[] list = file.list();
+
+		if(list != null){
+			for(String s : list){
+				if(s.endsWith(".mp3"))
+					maps.add(s.replace(".mp3",""));
+			}
+		}
+		return maps;
+	}
+
+	/**
 	 * Obtenir le nom de toutes les fichiers dans un dossier
 	 * Les noms sont issus des fichiers tmx présents
 	 * @return Le nom des maps

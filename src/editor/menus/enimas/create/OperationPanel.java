@@ -2,6 +2,7 @@ package editor.menus.enimas.create;
 
 import api.utils.Observer;
 import api.utils.Utility;
+import common.enigmas.operation.Operation;
 import common.entities.GameObject;
 import common.hud.EnigmaButton;
 import common.hud.EnigmaLabel;
@@ -41,6 +42,7 @@ public class OperationPanel extends AbstractSubPopUpView implements Observer<Gam
 	public static final String NOT_AVAILABLE_OPERATION = "Opération non disponible";
 	private static final String INVALID_ENTITY = "Entité Invalide. ";
 	public static final String TITLE = "Ajouter une Opération à l'énigme";
+	public static final String BUT_MUS = "Choisir musique";
 
 	/**
 	 * Les informations sur l'entité sur laquelle l'opération sera faite
@@ -71,9 +73,13 @@ public class OperationPanel extends AbstractSubPopUpView implements Observer<Gam
 		gbc.gridheight = 1;
 		gbc.gridx = x;
 		gbc.gridy = y;
-		gbc.weightx = 0;
-		gbc.weighty = 0;
+		gbc.weightx = 1;
+		gbc.weighty = 1;
 		gbc.insets = new Insets(0,0,0,0);
+		gbc.anchor = GridBagConstraints.WEST;
+		gbc.fill = GridBagConstraints.BOTH;
+		//pour ouvrir le sélecteur de musique
+		JLabel open = new JLabel(OperationPanel.BUT_MUS);
 
 		for (Operations op : Operations.values()) {
 			JRadioButton r = new JRadioButton(op.value);
@@ -81,8 +87,14 @@ public class OperationPanel extends AbstractSubPopUpView implements Observer<Gam
 			r.setName(op.name());
 			//on ajoute les boutons au groupe
 			groups.add(r);
-			//ajoute les boutons au panneau
-			panel.add(r,gbc);
+
+			if (op == Operations.MUSIC || op == Operations.MAINMUSIC){
+				MusicPanel musicPanel = new MusicPanel(OperationPanel.BUT_MUS,r);
+				panel.add(musicPanel,gbc);
+			}else{
+				//ajoute les boutons au panneau
+				panel.add(r,gbc);
+			}
 			y++;
 			gbc.gridy = y;
 			//listener pour les boutons
