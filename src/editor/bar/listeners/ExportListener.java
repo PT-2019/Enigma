@@ -1,9 +1,11 @@
 package editor.bar.listeners;
 
 import api.libgdx.ui.Toast;
+import api.ui.CustomWindow;
 import common.data.MapData;
 import common.enigmas.Enigma;
 import common.hud.EnigmaOptionPane;
+import common.hud.EnigmaProgressPopup;
 import common.hud.EnigmaWindow;
 import common.save.ImportExport;
 import common.utils.Logger;
@@ -14,6 +16,7 @@ import game.gui.EnigmaEditorToast;
 import game.screens.TestScreen;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
@@ -34,7 +37,6 @@ public class ExportListener extends MenuListener {
 	 * Textes
 	 */
 	private static final String CHOOSE_DESTINATION_FOLDER = NeedToBeTranslated.CHOOSE_DESTINATION_FOLDER;
-	private static final String EXPORT_ENDED = NeedToBeTranslated.EXPORT_ENDED;
 	private static final String EXPORT_ERROR = NeedToBeTranslated.EXPORT_ERROR;
 	private static final String EXPORT_ABANDONED = NeedToBeTranslated.EXPORT_ABANDONED;
 
@@ -62,7 +64,6 @@ public class ExportListener extends MenuListener {
 				//Sauvegarde avant d'exporter
 				new SaveListener(this.window,this.parent).save();
 				ImportExport.exportMap(data.getMapName(),exportPath);
-				EnigmaGame.getCurrentScreen().showToast(EXPORT_ENDED);
 			} catch (IOException e) {
 				new File(exportPath + data.getMapName() + Config.MAP_EXPORT_EXTENSION).delete();
 				EnigmaGame.getCurrentScreen().showToast(EXPORT_ERROR);

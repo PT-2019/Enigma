@@ -82,6 +82,8 @@ public interface NeedToBeTranslated {
 	String REPLACE_FILE = "Un fichier du même nom existe déjà, le remplacer?";
 	String REPLACE_GAME = "Une partie du même nom existe déjà, la remplacer?";
 	String REPLACE_MAP = "Une map du même nom existe déjà, la remplacer?";
+	String EXPORT = "Exportation";
+	String IMPORT = "Importation";
 
 	//editor.bar.listener
 	String NAME_ALREADY_EXIST = "Ce nom existe déjà";
@@ -99,4 +101,6 @@ public interface NeedToBeTranslated {
 
 	String MAP_NAME = "Nom de la map :";
 	String SAVE_ENDED = "Sauvegarde terminée";
+	String SAVE_CANCELED = "Sauvegarde annulée";
+	String SAVE_FAILED = "Erreur lors de la sauvegarde";
 }

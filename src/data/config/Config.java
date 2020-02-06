@@ -121,26 +121,43 @@ public final class Config {
 
 	/**
 	 * Extension des maps
+	 *
+	 * @since 6.1
 	 */
 	public static final String MAP_EXTENSION = ".tmx";
 
 	/**
 	 * Extension des mapData et gameData
+	 *
+	 * @since 6.0
 	 */
 	public static final String DATA_EXTENSION = ".tmx";
 
 	/**
 	 * Extension des énigmes
+	 *
+	 * @since 6.0
 	 */
 	public static final String ENIGMA_EXTENSION = ".json";
 
 	/**
-	 * Extension des exports de maps
+	 * Extension des fichier hors application
+	 *
+	 * @since 6.0
 	 */
-	public static final String MAP_EXPORT_EXTENSION = ".enigma-map";
+	public static final String APPLICATION_EXTENSION = ".egm";
+
+	/**
+	 * Extension des exports de maps
+	 *
+	 * @since 6.0
+	 */
+	public static final String MAP_EXPORT_EXTENSION = APPLICATION_EXTENSION + "m";
 
 	/**
 	 * Extension des exports de parties
+	 *
+	 * @since 6.0
 	 */
-	public static final String GAME_EXPORT_EXTENSION = ".enigma-game";
+	public static final String GAME_EXPORT_EXTENSION = APPLICATION_EXTENSION + "g";
 }

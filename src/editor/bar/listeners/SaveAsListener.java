@@ -2,6 +2,7 @@ package editor.bar.listeners;
 
 import api.ui.CustomOptionPane;
 import api.utils.Utility;
+import com.badlogic.gdx.graphics.g3d.particles.ResourceData;
 import common.data.MapData;
 import common.hud.EnigmaOptionPane;
 import common.hud.EnigmaWindow;
@@ -17,6 +18,8 @@ import game.screens.TestScreen;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Listener enregistrer sous
@@ -34,6 +37,8 @@ public class SaveAsListener extends MenuListener {
 	 * Textes
 	 */
 	private static final String SAVE_ENDED = NeedToBeTranslated.SAVE_ENDED;
+	private static final String SAVE_CANCELED = NeedToBeTranslated.SAVE_CANCELED;
+	private static final String SAVE_FAILED = NeedToBeTranslated.SAVE_FAILED;
 	private static final String REPLACE_MAP = NeedToBeTranslated.REPLACE_MAP;
 	private static final String MAP_NAME = NeedToBeTranslated.MAP_NAME;
 
@@ -54,10 +59,22 @@ public class SaveAsListener extends MenuListener {
 			}
 		}
 
+		HashMap<String,String> data = EnigmaGame.getCurrentScreen().getMap().getMapData().getData();
+		data.replace(MapData.MAP_NAME,mapName);
+
 		if (!mapName.equals(CustomOptionPane.CANCEL) && !mapName.equals("")) {
+			try {
+				DataSave.writeMapData(new MapData(data));
+			}catch (IOException e){
+				EnigmaGame.getCurrentScreen().showToast(SAVE_FAILED);
+				Logger.printError("SavAsListener.java","dave data : " + e.getMessage());
+			}
+
 			MapTestScreen map = ((TestScreen) EnigmaGame.getCurrentScreen()).getMap();
 			EmptyMapGenerator.save(Config.MAP_FOLDER + mapName, map.getTiledMap(), map.getEntities());
 			EnigmaGame.getCurrentScreen().showToast(SAVE_ENDED);
+		}else{
+			EnigmaGame.getCurrentScreen().showToast(SAVE_CANCELED);
 		}
 	}
 

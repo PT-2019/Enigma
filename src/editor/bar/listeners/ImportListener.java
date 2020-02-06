@@ -31,7 +31,6 @@ public class ImportListener extends MenuListener {
 	 * Textes
 	 */
 	private static final String CHOOSE_FILE = NeedToBeTranslated.CHOOSE_FILE_TO_IMPORT;
-	private static final String IMPORT_ENDED = NeedToBeTranslated.IMPORT_ENDED;
 	private static final String IMPORT_ERROR = NeedToBeTranslated.IMPORT_ERROR;
 	private static final String IMPORT_ABANDONED = NeedToBeTranslated.IMPORT_ABANDONED;
 
@@ -54,7 +53,6 @@ public class ImportListener extends MenuListener {
 
 			try {
 				ImportExport.importMap(importPath);
-				EnigmaGame.getCurrentScreen().showToast(IMPORT_ENDED);
 			} catch (IOException e) {
 				EnigmaGame.getCurrentScreen().showToast(IMPORT_ERROR);
 				Logger.printError("ImportListener.java","import error: " + e.getMessage());
