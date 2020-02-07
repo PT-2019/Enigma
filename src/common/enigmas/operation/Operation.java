@@ -1,5 +1,7 @@
 package common.enigmas.operation;
 
+import api.utils.Utility;
+import com.badlogic.gdx.math.Vector2;
 import common.enigmas.EnigmaElementReadablePrint;
 import common.entities.GameObject;
 import common.entities.players.Player;
@@ -81,6 +83,7 @@ public abstract class Operation implements EnigmaElementReadablePrint {
 	 * @see EnigmaAttributes
 	 */
 	public HashMap<String, Object> objectToMap() {
+		System.out.println(this);
 		HashMap<String, Object> object = new HashMap<>();
 		object.put(EnigmaAttributes.PATH, this.getClass().getName());
 		object.put(EnigmaAttributes.ENTITY, this.entity.getID() + "");
