@@ -1,5 +1,6 @@
 package editor.menus.enimas.create.listeners;
 
+import common.entities.special.MusicEditor;
 import common.utils.Logger;
 import com.badlogic.gdx.math.Vector2;
 import common.enigmas.operation.Give;
@@ -138,12 +139,14 @@ public class OperationListener implements ActionListener, ItemListener {
     }
 
     public void setGameObject(GameObject object) {
+        MapTestScreen map = ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap();
+
         if (this.object != null && !this.validate) {//si j'avais un object temporaire, je le supprime
             //il existe déjà un object
             Vector2 pos = this.object.getGameObjectPosition();
             //this.object est un temporaire
             if (pos == null || pos.x < 0 || pos.y < 0) {
-                MapTestScreen map = ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap();
+
                 //supprime de la map
                 map.removeEntity(this.object);
                 //l'id du temporaire est forcément le dernier donc transfert de l'id si besoin
@@ -151,6 +154,17 @@ public class OperationListener implements ActionListener, ItemListener {
                     object.setID(this.object.getID());//transfert de l'ID du supprimé
             }
         }
+
+        if (object instanceof MusicEditor){
+            if (this.object instanceof MusicEditor){
+
+            }else{
+
+            }
+            Vector2 vect = new Vector2();
+            map.set(object,);
+        }
+
         this.object = object;
     }
 }

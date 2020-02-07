@@ -4,9 +4,12 @@ package editor.menus.enimas.create.listeners;
 import common.entities.special.MusicEditor;
 import common.hud.EnigmaOptionPane;
 import common.hud.EnigmaWindow;
+import common.map.MapTestScreen;
 import editor.menus.AbstractPopUpView;
 import editor.menus.enimas.create.MusicPanel;
 import editor.menus.enimas.create.OperationPanel;
+import game.EnigmaGame;
+import game.screens.TestScreen;
 
 import javax.swing.*;
 import java.awt.*;
@@ -32,7 +35,10 @@ public class MusicListener implements MouseListener {
 
             tmp = e.getSource();
             if (tmp instanceof JLabel){
+                //pour avoir la factory de id
+                MapTestScreen map = ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap();
                 MusicPanel panel =(MusicPanel) ((JLabel) tmp).getParent();
+                map.getIdFactory().newID(object);
                 panel.getPanelOperation().update(object);
             }
         }
