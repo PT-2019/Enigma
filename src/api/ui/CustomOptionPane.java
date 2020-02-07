@@ -435,7 +435,11 @@ public class CustomOptionPane implements OptionPaneStyle {
 		gbc.weighty = 0;
 
 		ArrayList<String> maps = Utility.getAllMapName();
-		mapsComponent.setLayout(new GridLayout(maps.size(),1));
+		int size = 5;
+		if(size < maps.size())
+			size = maps.size();
+
+		mapsComponent.setLayout(new GridLayout(size,1));
 		for(String s : maps){
 			EnigmaButton b = new EnigmaButton(s);
 			b.setComponentUI(bui);
