@@ -4,6 +4,8 @@ import api.libgdx.utils.Border;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.utils.BooleanArray;
 import common.entities.types.AbstractGameObject;
+import common.language.GameFields;
+import common.language.GameLanguage;
 import common.save.entities.PlayerSave;
 import common.save.entities.SaveKey;
 import data.TypeEntity;
@@ -32,6 +34,11 @@ public class MusicEditor extends AbstractGameObject {
         this.path = path;
     }
 
+    public MusicEditor(String path,int id) {
+        super(id);
+        this.path = path;
+    }
+
     @Override
     public EnumMap<TypeEntity, Boolean> getImplements() {
         return TypeEntity.emptyMap();
@@ -39,7 +46,7 @@ public class MusicEditor extends AbstractGameObject {
 
     @Override
     public String getReadableName() {
-        return null;
+        return GameLanguage.gl.get(GameFields.MUSIC);
     }
 
     @Override

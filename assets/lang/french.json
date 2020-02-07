@@ -49,6 +49,7 @@
     door: Porte
     pressurePlate: Plaque de pression
     library: Bibliothèque
+    music: Musique
 
     //actions
     gameExit: Sortie

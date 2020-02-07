@@ -14,7 +14,7 @@ import api.utils.Utility;
  */
 public enum GameFields implements Field {
 	ROOM, CHEST, PANE, SWITCH, BUTTON, KEY, FLOOR,
-	BOOK, DOOR, PRESSURE_PLATE, PLAYER, NPC, MONSTER, LIBRARY;
+	BOOK, DOOR, PRESSURE_PLATE, PLAYER, NPC, MONSTER, LIBRARY, MUSIC;
 
 	@Override
 	public String toString() {

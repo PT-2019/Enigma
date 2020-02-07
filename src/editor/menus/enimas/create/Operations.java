@@ -132,6 +132,10 @@ public enum Operations {
 			}
 		} else if (this.equals(UNLOCK)) {
 			return (object instanceof Lockable);
+		}else if(this.equals(MUSIC)){
+			return true;
+		}else if(this.equals(MAINMUSIC)){
+			return true;
 		}
 		return false;
 	}

@@ -13,12 +13,14 @@ public class MusicPanel extends JPanel {
 
     private JLabel link;
 
-    public MusicPanel(String text, JRadioButton button){
-        this.link = new JLabel(text);
+    private OperationPanel parent;
 
+    public MusicPanel(String text, JRadioButton button,OperationPanel parent){
+        this.link = new JLabel(text);
         this.link.addMouseListener(new MusicListener());
         this.setLayout(new GridLayout(1,2));
         this.add(button);
+        this.parent = parent;
     }
 
     public void dispLink(){
@@ -31,4 +33,7 @@ public class MusicPanel extends JPanel {
         this.revalidate();
     }
 
+    public OperationPanel getPanelOperation() {
+        return parent;
+    }
 }

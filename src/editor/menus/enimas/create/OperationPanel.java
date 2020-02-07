@@ -89,7 +89,7 @@ public class OperationPanel extends AbstractSubPopUpView implements Observer<Gam
 			groups.add(r);
 
 			if (op == Operations.MUSIC || op == Operations.MAINMUSIC){
-				MusicPanel musicPanel = new MusicPanel(OperationPanel.BUT_MUS,r);
+				MusicPanel musicPanel = new MusicPanel(OperationPanel.BUT_MUS,r,this);
 				panel.add(musicPanel,gbc);
 			}else{
 				//ajoute les boutons au panneau

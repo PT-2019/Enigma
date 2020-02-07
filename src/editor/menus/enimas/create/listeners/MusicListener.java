@@ -1,9 +1,12 @@
 package editor.menus.enimas.create.listeners;
 
 
+import common.entities.special.MusicEditor;
 import common.hud.EnigmaOptionPane;
 import common.hud.EnigmaWindow;
 import editor.menus.AbstractPopUpView;
+import editor.menus.enimas.create.MusicPanel;
+import editor.menus.enimas.create.OperationPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,9 +20,22 @@ import static common.language.GameLanguage.gl;
  */
 public class MusicListener implements MouseListener {
 
+    private static String CANCEL = "Annuler";
+
     @Override
     public void mouseClicked(MouseEvent e) {
-        EnigmaOptionPane.showMusicChoiceDialog(new EnigmaWindow());
+        String chose = EnigmaOptionPane.showMusicChoiceDialog(new EnigmaWindow());
+        Object tmp;
+
+        if (!chose.equals(MusicListener.CANCEL)){
+            MusicEditor object = new MusicEditor(chose);
+
+            tmp = e.getSource();
+            if (tmp instanceof JLabel){
+                MusicPanel panel =(MusicPanel) ((JLabel) tmp).getParent();
+                panel.getPanelOperation().update(object);
+            }
+        }
     }
 
     @Override
@@ -34,7 +50,7 @@ public class MusicListener implements MouseListener {
     public void mouseEntered(MouseEvent e) {
         if (e.getSource() instanceof JLabel){
             JLabel label = (JLabel) e.getSource();
-            label.setForeground(new Color(  230, 69, 249 ));
+            label.setForeground(new Color(203, 64, 249 ));
         }
     }
 
