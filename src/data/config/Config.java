@@ -33,6 +33,11 @@ public final class Config {
 	public static final String GAME_DATA_FOLDER = "assets/files/game/";
 
 	/**
+	 * Données de l'utilisateur
+	 */
+	public static final String USER_DATA_FILE_FOLDER = "assets/files/user/user.tmx";
+
+	/**
 	 * Le chemin pour trouver le fichier DTD depuis {@link #MAP_FOLDER}
 	 *
 	 * @since 5.1
@@ -116,21 +121,43 @@ public final class Config {
 
 	/**
 	 * Extension des maps
+	 *
+	 * @since 6.1
 	 */
 	public static final String MAP_EXTENSION = ".tmx";
 
 	/**
 	 * Extension des mapData et gameData
+	 *
+	 * @since 6.0
 	 */
 	public static final String DATA_EXTENSION = ".tmx";
 
 	/**
 	 * Extension des énigmes
+	 *
+	 * @since 6.0
 	 */
 	public static final String ENIGMA_EXTENSION = ".json";
 
 	/**
-	 * Extension des exports
+	 * Extension des fichier hors application
+	 *
+	 * @since 6.0
 	 */
-	public static final String EXPORT_EXTENSION = ".enigma";
+	public static final String APPLICATION_EXTENSION = ".egm";
+
+	/**
+	 * Extension des exports de maps
+	 *
+	 * @since 6.0
+	 */
+	public static final String MAP_EXPORT_EXTENSION = APPLICATION_EXTENSION + "m";
+
+	/**
+	 * Extension des exports de parties
+	 *
+	 * @since 6.0
+	 */
+	public static final String GAME_EXPORT_EXTENSION = APPLICATION_EXTENSION + "g";
 }

@@ -10,16 +10,15 @@ import common.hud.EnigmaWindow;
 import common.save.DataSave;
 import common.save.EmptyMapGenerator;
 import data.EnigmaScreens;
+import data.NeedToBeTranslated;
 import data.config.Config;
+import data.config.UserConfiguration;
 import game.EnigmaGame;
 import game.screens.TestScreen;
 
-import javax.swing.JButton;
 import javax.swing.JComponent;
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  * Observateur de la création d'une map
@@ -37,7 +36,13 @@ public class CreateListener extends MenuListener {
 	private static final String CREATE = "Créer", CANCEL = "Annuler";
 
 	/**
-	 * title
+	 * Textes
+	 */
+	private static final String NAME_ALREADY_EXIST = NeedToBeTranslated.NAME_ALREADY_EXIST;
+	private static final String CREATE_ERROR = NeedToBeTranslated.CREATE_ERROR;
+
+	/**
+	 * titre
 	 */
 	private static final String TITLE = "Création d'une nouvelle map.";
 
@@ -94,18 +99,18 @@ public class CreateListener extends MenuListener {
 
 				for (String s : Utility.getAllMapName()) {
 					if (s.equals(mapName)) {
-						EnigmaOptionPane.showAlert(this.window, "Ce nom existe déjà");
+						EnigmaOptionPane.showAlert(this.window, NAME_ALREADY_EXIST);
 						return;
 					}
 				}
 
 				//TODO: vérifier col, row, chemin (caractères spéciaux) et afficher une erreur
 
-				if (!path.endsWith(".tmx")) {
-					path += ".tmx";
+				if (!path.endsWith(Config.MAP_EXTENSION)) {
+					path += Config.MAP_EXTENSION;
 				}
 
-				MapData data = new MapData("",mapName);
+				MapData data = new MapData(UserConfiguration.getInstance().getData().getName(),mapName);
 				DataSave.writeMapData(data);
 
 				EmptyMapGenerator.generate(path, col, row);
@@ -117,6 +122,7 @@ public class CreateListener extends MenuListener {
 				System.err.println("gérer les erreurs!!!!");
 				System.out.println(choice);
 				System.out.println(widthF.getText() + " " + heightF.getText() + " " + nameF.getText());
+				EnigmaGame.getCurrentScreen().showToast(CREATE_ERROR);
 			}
 		}
 	}

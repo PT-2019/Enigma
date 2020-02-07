@@ -21,6 +21,7 @@
     run:Simulation
     help:Aide
     export:Exporter
+    import:Importer
     doc:Documentation
     support:Support
     start:Lancer simulation

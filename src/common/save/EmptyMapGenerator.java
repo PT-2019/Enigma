@@ -62,6 +62,12 @@ public class EmptyMapGenerator {
 		proxy.addTexture(16, "assets/map/Player.png", 80, 2105, 2105 + 6400);
 
 		SaveMap.saveMap(path, new Map(col, row), proxy.getTextures(), Config.MAP_FOLDER_SAV);
+		ArrayList<Enigma> e = new ArrayList<>();
+		try {
+			EnigmaJsonWriter.writeEnigmas(path.replace(Config.MAP_EXTENSION,"") + Config.ENIGMA_EXTENSION,e);
+		} catch (IOException ex) {
+			Logger.printError("EmptyMapGenerator.java",ex.toString());
+		}
 	}
 
 	/**

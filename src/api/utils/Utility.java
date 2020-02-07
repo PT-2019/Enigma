@@ -2,10 +2,8 @@ package api.utils;
 
 import api.utils.annotations.ConvenienceClass;
 import api.utils.annotations.ConvenienceMethod;
-import api.utils.annotations.NeedPatch;
 import common.utils.Logger;
 import data.config.Config;
-import editor.menus.AvailableOptionRunnable;
 
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsDevice;
@@ -21,10 +19,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.Normalizer;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Tout un paquet de méthodes utiles
@@ -45,15 +40,38 @@ public class Utility implements Serializable {
 	//TODO: move to real utility
 	public static ArrayList<String> getAllMapName(){
 		ArrayList<String> maps = new ArrayList<>();
-		File file = new File("assets/files/map/");
+		File file = new File(Config.MAP_FOLDER);
 		String[] list = file.list();
 
 		if(list != null){
 			for(String s : list){
-				if(s.endsWith(".tmx"))
-					maps.add(s.replace(".tmx",""));
+				if(s.endsWith(Config.MAP_EXTENSION))
+					maps.add(s.replace(Config.MAP_EXTENSION,""));
 			}
 		}
+
+		Collections.sort(maps);
+		return maps;
+	}
+
+	/**
+	 * Obtenir le nom de toutes les parties en local
+	 * Les noms sont issus des fichiers tmx présents
+	 * @return Le nom des parties
+	 */
+	public static ArrayList<String> getAllGameName() {
+		ArrayList<String> maps = new ArrayList<>();
+		File file = new File(Config.GAME_DATA_FOLDER);
+		String[] list = file.list();
+
+		if(list != null){
+			for(String s : list){
+				if(s.endsWith(Config.DATA_EXTENSION))
+					maps.add(s.replace(Config.DATA_EXTENSION,""));
+			}
+		}
+
+		Collections.sort(maps);
 		return maps;
 	}
 
@@ -127,7 +145,7 @@ public class Utility implements Serializable {
 	public static String normalize(String string) {
 		string = Normalizer.normalize(string, Normalizer.Form.NFD);
 		string = string.replaceAll("[^\\x00-\\x7F]", "");
-		string = string.replaceAll("[-+.^:,\"]","");
+		string = string.replaceAll("[-+.^:,\"']","");
 		string = string.replaceAll("[\\n\\t ]", "");
 		return string.trim();
 	}

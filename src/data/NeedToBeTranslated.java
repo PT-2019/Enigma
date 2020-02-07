@@ -1,6 +1,7 @@
 package data;
 
 import api.utils.annotations.Temporary;
+import data.config.Config;
 
 import java.util.ArrayList;
 
@@ -54,12 +55,6 @@ public interface NeedToBeTranslated {
 	String HAVE_IN_INVENTORY_DESC = "Avoir l'objet dans l'inventaire";
 	String HAVE_IN_INVENTORY_RES = "Objects uniquement (clef, livre, ...)";
 
-	String ROOM_DISCOVERED_DESC = "Salle doit être découverte";
-	String ROOM_DISCOVERED_RES = "Salles uniquement";
-
-	String ROOM_UNDISCOVERED_DESC = "Salle ne doit pas être découverte.";
-	String ROOM_UNDISCOVERED_RES = "Salles uniquement";
-
 	//ActionTypes
 
 	String ADD_ENTITY = "Ajout d'une entité";
@@ -83,5 +78,29 @@ public interface NeedToBeTranslated {
 
 	String ASK_SELECT_MAP = "Choisissez une map";
 
-	String HIDE_ROOM = "Cacher une salle";
+	//ImportExport
+	String REPLACE_FILE = "Un fichier du même nom existe déjà, le remplacer?";
+	String REPLACE_GAME = "Une partie du même nom existe déjà, la remplacer?";
+	String REPLACE_MAP = "Une map du même nom existe déjà, la remplacer?";
+	String EXPORT = "Exportation";
+	String IMPORT = "Importation";
+
+	//editor.bar.listener
+	String NAME_ALREADY_EXIST = "Ce nom existe déjà";
+	String CREATE_ERROR = "Erreur lors de la création";
+
+	String CHOOSE_DESTINATION_FOLDER = "Choisissez un dossier de destination";
+	String EXPORT_ENDED = "Exportation terminée";
+	String EXPORT_ERROR = "Erreur lors de l'exportation";
+	String EXPORT_ABANDONED = "Exportation abandonnée";
+
+	String CHOOSE_FILE_TO_IMPORT = "Choisissez le fichier à importer";
+	String IMPORT_ENDED = "Importation terminée";
+	String IMPORT_ERROR = "Erreur lors de l'importation";
+	String IMPORT_ABANDONED = "Importation abandonnée";
+
+	String MAP_NAME = "Nom de la map :";
+	String SAVE_ENDED = "Sauvegarde terminée";
+	String SAVE_CANCELED = "Sauvegarde annulée";
+	String SAVE_FAILED = "Erreur lors de la sauvegarde";
 }

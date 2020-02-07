@@ -1,17 +1,24 @@
 package editor.bar.listeners;
 
+import api.libgdx.ui.Toast;
+import api.ui.CustomWindow;
 import common.data.MapData;
+import common.enigmas.Enigma;
 import common.hud.EnigmaOptionPane;
+import common.hud.EnigmaProgressPopup;
 import common.hud.EnigmaWindow;
 import common.save.ImportExport;
 import common.utils.Logger;
+import data.NeedToBeTranslated;
 import data.config.Config;
 import game.EnigmaGame;
+import game.gui.EnigmaEditorToast;
+import game.screens.TestScreen;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
@@ -26,6 +33,10 @@ import java.io.IOException;
  * @since 6.0 01/02/2020
  */
 public class ExportListener extends MenuListener {
+	/**
+	 * Textes
+	 */
+	private static final String CHOOSE_DESTINATION_FOLDER = NeedToBeTranslated.CHOOSE_DESTINATION_FOLDER;
 
 	public ExportListener(EnigmaWindow window, JComponent parent) {
 		super(window, parent);
@@ -37,34 +48,19 @@ public class ExportListener extends MenuListener {
 
 		JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-		fileChooser.setDialogTitle("Choisissez le dossier de destination");
+		fileChooser.setDialogTitle(CHOOSE_DESTINATION_FOLDER);
 
 		if(fileChooser.showOpenDialog(this.parent) == JFileChooser.APPROVE_OPTION){
 			String exportPath = fileChooser.getSelectedFile().getAbsolutePath();
-			String file = data.getMapName() + Config.EXPORT_EXTENSION;
-
-			String[] files = fileChooser.getSelectedFile().list();
-			if(files != null) {
-				for (String s : files){
-					if(s.equals(file)){
-						EnigmaOptionPane.showAlert(this.window,"Un fichier du même nom existe déjà");
-						return;
-					}
-				}
-			}
 
 			if(exportPath.contains("\\"))
 				exportPath += "\\";
 			if(exportPath.contains("/"))
 				exportPath += "/";
 
-			try {
-				ImportExport.exportMap(data.getMapName(),exportPath);
-			} catch (IOException e) {
-				Logger.printError("ExportListener.java","export error");
-				EnigmaOptionPane.showAlert(this.window,"Export raté");
-			}
-			//TODO: afficher ok
+			//Sauvegarde avant d'exporter
+			new SaveListener(this.window,this.parent).save();
+			ImportExport.exportMap(data.getMapName(),exportPath);
 		}
 	}
 }

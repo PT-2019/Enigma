@@ -232,10 +232,10 @@ public class WaitPlayersLeaderDisplayManager implements DisplayManager {
 		for (int i = 0; i < GameConfiguration.MAX_PLAYERS; i++) {
 			EnigmaLabel name = new EnigmaLabel();
 			if (i < gameConfig.getTotalPlayers()) {
-				Player p = gameConfig.getAllPlayers().get(i);
-				name.setText(p.getName());
+				String pName = gameConfig.getAllPlayers().get(i).getName();
+				name.setText(pName);
 
-				if (p.equals(UserConfiguration.getInstance().getUser()))
+				if (pName.equals(UserConfiguration.getInstance().getData().getName()))
 					name.getComponentUI().setAllBackgrounds(blue, blue, blue);
 			}
 

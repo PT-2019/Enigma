@@ -21,6 +21,11 @@ public class GameData {
      */
     private String name;
     /**
+     * Auteur de la map
+     * Donné à l'instanciation, il ne doit, dans auncun cas, être changé plus tard
+     */
+    private String author;
+    /**
      * Nom de la map
      * Donnée à l'instanciation, elle ne doit, dans auncun cas, être changée plus tard
      */
@@ -47,6 +52,10 @@ public class GameData {
      */
     public final static String NAME = "name";
     /**
+     * Attribut auteur
+     */
+    public final static String AUTHOR = "author";
+    /**
      * Attribut nom de la partie
      */
     public final static String MAP_NAME = "mapName";
@@ -62,9 +71,10 @@ public class GameData {
     /**
      * @param mapName Nom de la map
      */
-    public GameData(String mapName, String name, String description, int duration, int maxPlayers){
+    public GameData(String name, String author, String mapName, String description, int duration, int maxPlayers){
         this.mapName = mapName;
         this.name = name;
+        this.author = author;
         this.description = description;
         this.duration = duration;
         this.maxPlayers = maxPlayers;
@@ -80,6 +90,7 @@ public class GameData {
         dataName.add(NAME);
         dataName.add(DURATION);
         dataName.add(MAX_PLAYERS);
+        dataName.add(AUTHOR);
 
         for(String name : dataName){
             String get = data.get(name);
@@ -90,6 +101,9 @@ public class GameData {
                         break;
                     case NAME:
                         this.name = get;
+                        break;
+                    case AUTHOR:
+                        this.author = get;
                         break;
                     case DESCRIPTION:
                         this.description = get;
@@ -162,6 +176,7 @@ public class GameData {
     public HashMap<String,String> getData(){
         HashMap<String,String> data = new HashMap<>();
         data.put(NAME, this.name);
+        data.put(AUTHOR, this.author);
         data.put(MAP_NAME, this.mapName);
         data.put(DESCRIPTION, this.description);
         data.put(MAX_PLAYERS, String.valueOf(this.maxPlayers));
