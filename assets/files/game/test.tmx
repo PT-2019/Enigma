@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GameData>
+  <author>zzzzz</author>
   <duration>2</duration>
   <name>d</name>
   <description>e</description>
   <mapName>test</mapName>
-  <maxPLayers>2</maxPLayers>
+  <maxPLayers>1</maxPLayers>
 </GameData>
