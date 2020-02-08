@@ -20,6 +20,8 @@ import com.badlogic.gdx.utils.Array;
 import common.entities.GameObject;
 import common.entities.players.*;
 import common.entities.special.GameExit;
+import common.entities.special.GameMusic;
+import common.entities.special.MusicEditor;
 import common.save.TmxProperties;
 import common.save.entities.serialization.*;
 import common.utils.Logger;
@@ -46,6 +48,11 @@ public class GameMap extends AbstractMap {
 	 * Tableau des entités
 	 */
 	private ArrayList<GameActor> entities;
+
+	/**
+	 * Musique ambiante
+	 */
+	private GameMusic music;
 
 	public GameMap(final String path, float unitScale) {
 		super(path, unitScale,false);
@@ -305,14 +312,16 @@ public class GameMap extends AbstractMap {
 							(y-2)*this.tileHeight*this.getUnitScale());
 					notdisplay = true;
 				}else if(object instanceof Monster){
-					String path = prop.get("JSON", String.class);
-					String name = prop.get("KEY", String.class);
+					GameActor monster = MonsterFactory.createMonsterGame(((Monster) object).getKey(),
+							((Monster) object).getJson());
 
-					GameActor monster = MonsterFactory.createMonsterGame(name, path);
 					this.addEntity(monster);
 					monster.setPosition((x+0.5f)*this.tileWidth*this.getUnitScale(),
 							(y-2)*this.tileHeight*this.getUnitScale());
 					notdisplay = true;
+				}else if(object instanceof MusicEditor){
+					if (((MusicEditor) object).isMainMusic() && ((MusicEditor) object).isStarter())
+					this.music = new GameMusic(((MusicEditor) object).getPath());
 				}else{
 					// on place les tiles
 					this.setFromSave(object, start);
@@ -338,6 +347,10 @@ public class GameMap extends AbstractMap {
 				Logger.printDebug("(tmp) MapTestScreen#initEntities", object + " " + start);
 			}
 		}
+	}
+
+	public void launchMusic(){
+    	this.music.getMusic().play();
 	}
 
 	public ArrayList<GameActor> getGameEntities() {
