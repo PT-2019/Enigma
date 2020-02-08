@@ -23,7 +23,7 @@ import static common.language.GameLanguage.gl;
  */
 public class MusicListener implements MouseListener {
 
-    private static String CANCEL = "Annuler";
+    public static String CANCEL = "Annuler";
 
     @Override
     public void mouseClicked(MouseEvent e) {

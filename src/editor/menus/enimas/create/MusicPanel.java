@@ -1,8 +1,7 @@
 package editor.menus.enimas.create;
 
-import editor.menus.AbstractPopUpView;
-import editor.menus.enimas.create.listeners.MusicListener;
 
+import editor.menus.enimas.create.listeners.MusicListener;
 import javax.swing.*;
 import java.awt.*;
 

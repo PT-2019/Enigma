@@ -3,9 +3,9 @@ package common.enigmas.operation;
 import common.entities.players.Player;
 import common.entities.special.MusicEditor;
 
-public class LaunchMusic extends Operation {
+public class ChangeMainMusic extends Operation {
 
-    public LaunchMusic(MusicEditor object){
+    public ChangeMainMusic(MusicEditor object){
         super(object);
     }
 
@@ -20,7 +20,7 @@ public class LaunchMusic extends Operation {
 
     @Override
     public String toLongString() {
-        return "[Music  : entity = " + this.entity + "]";
+        return "[MainMusic  : entity = " + this.entity + "]";
     }
 
     @Override

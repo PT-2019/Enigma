@@ -31,5 +31,14 @@ public abstract class MenuListener implements ActionListener {
 		this.parent = parent;
 	}
 
+	/**
+	 * Prototype de listener du menu
+	 * @param window fenêtre
+	 */
+	MenuListener(EnigmaWindow window) {
+		this.window = window;
+		this.parent = null;
+	}
+
 	public abstract void actionPerformed(ActionEvent e);
 }

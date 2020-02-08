@@ -1,12 +1,9 @@
 package editor.menus.enimas.create.listeners;
 
+import common.enigmas.operation.*;
 import common.entities.special.MusicEditor;
 import common.utils.Logger;
 import com.badlogic.gdx.math.Vector2;
-import common.enigmas.operation.Give;
-import common.enigmas.operation.Operation;
-import common.enigmas.operation.Summon;
-import common.enigmas.operation.Unlock;
 import common.entities.Entity;
 import common.entities.GameObject;
 import common.entities.Item;
@@ -95,7 +92,23 @@ public class OperationListener implements ActionListener, ItemListener {
         } else if (this.currentButton.getName().equals(Operations.UNLOCK.name())) {
             if (this.object instanceof Lockable)
                 ope = new Unlock((Lockable) this.object);
-        } else {
+
+        }else if(this.currentButton.getName().equals(Operations.MUSIC.name())){
+            if (this.object instanceof MusicEditor) {
+                ope = new LaunchMusic((MusicEditor) this.object);
+                //on rajoute l"objet musique à la map pour pouvoir le sauvegarder dans le tmx
+                MapTestScreen map = ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap();
+                map.set(this.object, new Vector2(0, 0));
+            }
+        }else if(this.currentButton.getName().equals(Operations.MAINMUSIC.name())){
+            if (this.object instanceof MusicEditor) {
+                ((MusicEditor) this.object).setMainMusic(true);
+                ope = new ChangeMainMusic((MusicEditor) this.object);
+                MapTestScreen map = ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap();
+                //on met le vecteur à 0 car on s'en fiche de la position
+                map.set(this.object, new Vector2(0, 0));
+            }
+        }else{
             this.operationPanel.getEntityName().setText(OperationPanel.NOT_AVAILABLE_OPERATION);
         }
 
@@ -122,8 +135,10 @@ public class OperationListener implements ActionListener, ItemListener {
             }
             //DragAndDropBuilder.setForPopup(this.operationPanel);
         }else{
-            if (this.currentButton.getParent() instanceof MusicPanel) {
-                ((MusicPanel) this.currentButton.getParent()).remove();
+            if (this.currentButton != null){
+                if (this.currentButton.getParent() instanceof MusicPanel) {
+                    ((MusicPanel) this.currentButton.getParent()).remove();
+                }
             }
         }
     }
@@ -139,30 +154,19 @@ public class OperationListener implements ActionListener, ItemListener {
     }
 
     public void setGameObject(GameObject object) {
-        MapTestScreen map = ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap();
 
         if (this.object != null && !this.validate) {//si j'avais un object temporaire, je le supprime
             //il existe déjà un object
             Vector2 pos = this.object.getGameObjectPosition();
             //this.object est un temporaire
             if (pos == null || pos.x < 0 || pos.y < 0) {
-
+                MapTestScreen map = ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap();
                 //supprime de la map
                 map.removeEntity(this.object);
                 //l'id du temporaire est forcément le dernier donc transfert de l'id si besoin
                 if (object != null && object.getID() > this.object.getID())
                     object.setID(this.object.getID());//transfert de l'ID du supprimé
             }
-        }
-
-        if (object instanceof MusicEditor){
-            if (this.object instanceof MusicEditor){
-
-            }else{
-
-            }
-            Vector2 vect = new Vector2();
-            map.set(object,);
         }
 
         this.object = object;

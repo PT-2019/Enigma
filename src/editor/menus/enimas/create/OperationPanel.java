@@ -57,12 +57,15 @@ public class OperationPanel extends AbstractSubPopUpView implements Observer<Gam
 	 */
 	private OperationListener listener;
 
+	private MusicPanel[] musicPanel;
+
 	OperationPanel(AbstractPopUpView parent, ManageEnigmasAddView addView) {
 		super("", parent, false);
 
 		this.groups = new ButtonGroup();
 		this.listener = new OperationListener(parent, this, addView);
-
+		this.musicPanel = new MusicPanel[2];
+		int index = 0;
 		EnigmaPanel panel = new EnigmaPanel();
 		//panel.setLayout(new GridLayout(Operations.values().length, 1));
 		GridBagLayout gb = new GridBagLayout();
@@ -89,8 +92,9 @@ public class OperationPanel extends AbstractSubPopUpView implements Observer<Gam
 			groups.add(r);
 
 			if (op == Operations.MUSIC || op == Operations.MAINMUSIC){
-				MusicPanel musicPanel = new MusicPanel(OperationPanel.BUT_MUS,r,this);
-				panel.add(musicPanel,gbc);
+				this.musicPanel[index] = new MusicPanel(OperationPanel.BUT_MUS,r,this);
+				panel.add(musicPanel[index],gbc);
+				index++;
 			}else{
 				//ajoute les boutons au panneau
 				panel.add(r,gbc);
@@ -152,6 +156,9 @@ public class OperationPanel extends AbstractSubPopUpView implements Observer<Gam
 		this.entityName.setText(ASK_OP);
 		this.listener.clean();
 		this.groups.clearSelection();
+		for (MusicPanel p: this.musicPanel) {
+			p.remove();
+		}
 		DragAndDropBuilder.setForPopup(null);
 	}
 

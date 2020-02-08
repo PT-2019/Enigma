@@ -14,7 +14,8 @@
     redo:Refaire
     brush:Normal
     eraser:Gomme
-    move:Déplacer entités
+    move:Déplacer entités,
+    chose: Principale
 
     file:Fichier
     edit:Edition

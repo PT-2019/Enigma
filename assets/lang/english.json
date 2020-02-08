@@ -12,7 +12,8 @@
     redo:redo
     brush:brush
     eraser:eraser
-    move:move
+    move:move,
+    chose: Main,
 
     file: File
     edit: Edit
@@ -49,7 +50,8 @@
     door: Door
     pressurePlate: Pressure Plate
     player: Hero
-    library: Library
+    library: Library,
+    music: Music,
 
     npc: NPC
     monster: Monster

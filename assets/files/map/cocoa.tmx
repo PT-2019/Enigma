@@ -332,9 +332,9 @@
                 <property name="className" value="common.entities.players.NPC"/>
                 <property name="y2" value="16.0"/>
                 <property name="FLOOR2" value="4"/>
-                <property name="INVENTORY" value=""/>
-                <property name="HERO" value="true"/>
                 <property name="KEY" value="Kil"/>
+                <property name="HERO" value="true"/>
+                <property name="INVENTORY" value=""/>
                 <property name="NAME" value="Pire"/>
                 <property name="JSON" value="assets/entities/players/players.json"/>
             </properties>
@@ -343,6 +343,26 @@
             <properties>
                 <property name="className" value="common.entities.consumable.Key"/>
                 <property name="y2" value="-16.0"/>
+            </properties>
+        </object>
+        <object height="0.0" id="19" name="entity" width="0.0" x="0.0" y="0.0">
+            <properties>
+                <property name="className" value="common.entities.special.MusicEditor"/>
+                <property name="y2" value="0.0"/>
+                <property name="NAME" value="ambience03"/>
+                <property name="MAIN" value="false"/>
+                <property name="STARTER" value="false"/>
+                <property name="PATH" value="assets/files/music/ambience03.mp3"/>
+            </properties>
+        </object>
+        <object height="0.0" id="6" name="entity" width="0.0" x="0.0" y="0.0">
+            <properties>
+                <property name="className" value="common.entities.special.MusicEditor"/>
+                <property name="y2" value="0.0"/>
+                <property name="NAME" value="Battle-Furious"/>
+                <property name="MAIN" value="true"/>
+                <property name="STARTER" value="true"/>
+                <property name="PATH" value="assets/files/music/Battle-Furious.mp3"/>
             </properties>
         </object>
         <object height="1.0" id="0" name="entity" width="1.0" x="10.0" y="33.0">
@@ -359,9 +379,9 @@
                 <property name="className" value="common.entities.players.NPC"/>
                 <property name="y2" value="19.0"/>
                 <property name="FLOOR2" value="4"/>
-                <property name="INVENTORY" value=""/>
-                <property name="HERO" value="false"/>
                 <property name="KEY" value="Euphemia"/>
+                <property name="HERO" value="false"/>
+                <property name="INVENTORY" value=""/>
                 <property name="NAME" value=""/>
                 <property name="JSON" value="assets/entities/players/players.json"/>
             </properties>
@@ -371,9 +391,9 @@
                 <property name="className" value="common.entities.players.NPC"/>
                 <property name="y2" value="11.0"/>
                 <property name="FLOOR2" value="4"/>
-                <property name="INVENTORY" value=""/>
-                <property name="HERO" value="false"/>
                 <property name="KEY" value="Alexia"/>
+                <property name="HERO" value="false"/>
+                <property name="INVENTORY" value=""/>
                 <property name="NAME" value="Zoé"/>
                 <property name="JSON" value="assets/entities/players/players.json"/>
             </properties>
