@@ -8,7 +8,6 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
 import common.entities.GameObject;
 import common.entities.players.EntityGame;
-import common.entities.players.NPC;
 import data.EntitiesCategories;
 import data.Layer;
 import org.jetbrains.annotations.Nullable;
