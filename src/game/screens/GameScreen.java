@@ -50,11 +50,6 @@ public class GameScreen extends LibgdxScreen {
 	 */
 	private GameMap map;
 
-	/**
-	 * Musique
-	 */
-	private Music music;
-
 	@Override
 	public void init() {
 		this.main = new Stage();
@@ -75,10 +70,10 @@ public class GameScreen extends LibgdxScreen {
 			}
 		}
 
+		this.map.launchMusic();
 		//écoute des inputProcessor et des listeners
 		this.listen(this.hud);
 		this.listen(this.main);
-		this.map.launchMusic();
 	}
 
 	@Override//géré par input processor

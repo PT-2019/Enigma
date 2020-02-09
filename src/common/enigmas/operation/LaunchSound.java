@@ -1,12 +1,23 @@
 package common.enigmas.operation;
 
 import common.entities.players.Player;
+import common.entities.special.GameMusic;
 import common.entities.special.MusicEditor;
 
-public class LaunchMusic extends Operation {
+/**
+ * Lance un son suite à la résolution d'une enigme
+ */
+public class LaunchSound extends Operation {
 
-    public LaunchMusic(MusicEditor object){
+    private GameMusic musicGame;
+
+    public LaunchSound(MusicEditor object){
         super(object);
+    }
+
+    public LaunchSound(MusicEditor object, GameMusic music){
+        super(object);
+        musicGame = music;
     }
 
     @Override
@@ -15,7 +26,7 @@ public class LaunchMusic extends Operation {
 
     @Override
     public void run(Player p) {
-
+        musicGame.playSound((MusicEditor) this.entity);
     }
 
     @Override
