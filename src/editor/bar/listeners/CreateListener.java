@@ -5,21 +5,20 @@ import com.badlogic.gdx.Gdx;
 import common.data.MapData;
 import common.hud.EnigmaLabel;
 import common.hud.EnigmaOptionPane;
-import common.hud.EnigmaTextArea;
+import common.hud.EnigmaTextField;
 import common.hud.EnigmaWindow;
 import common.save.DataSave;
 import common.save.EmptyMapGenerator;
 import data.EnigmaScreens;
+import data.NeedToBeTranslated;
 import data.config.Config;
+import data.config.EnigmaUIValues;
 import game.EnigmaGame;
-import game.screens.TestScreen;
 
-import javax.swing.JButton;
 import javax.swing.JComponent;
-import java.awt.Component;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  * Observateur de la création d'une map
@@ -34,17 +33,26 @@ import java.util.ArrayList;
 public class CreateListener extends MenuListener {
 
 	private static final int CREATE_POS = 0, CANCEL_POS = 1;
-	private static final String CREATE = "Créer", CANCEL = "Annuler";
+	private static final String CREATE = NeedToBeTranslated.CREATE, CANCEL = NeedToBeTranslated.CANCEL;
+	private static final Color ERROR = Color.YELLOW, BASE = EnigmaUIValues.ENIGMA_LABEL_FOREGROUND;
 
 	/**
 	 * title
 	 */
-	private static final String TITLE = "Création d'une nouvelle map.";
+	private static final String TITLE = NeedToBeTranslated.CREATE_NEW_MAP;
+
+	//TODO: louloukit
+	private static final String ALREADY_TAKEN = "déjà pris";
+	private static final String INVALID = "invalide";
+	private static final String NAME = NeedToBeTranslated.INPUT_NAME+" :";
+	private static final String WIDTH = NeedToBeTranslated.WIDTH +" :";
+	private static final String HEIGHT = NeedToBeTranslated.HEIGHT +" :";
+	private static final String EMPTY = NeedToBeTranslated.EMPTY;
 
 	/**
 	 * fields
 	 */
-	private final EnigmaTextArea nameF, widthF, heightF;
+	private final EnigmaTextField nameF, widthF, heightF;
 
 	/**
 	 * popup content
@@ -52,72 +60,136 @@ public class CreateListener extends MenuListener {
 	private final Object content;
 
 	/**
+	 * Nom des champs
+	 */
+	private final EnigmaLabel nom, width, height;
+
+	/**
 	 * Observateur de la création d'une map
 	 *
 	 * @param window fenêtre
+	 * @param parent parent
 	 */
 	public CreateListener(EnigmaWindow window, JComponent parent) {
 		super(window, parent);
 
 		//fields
-		EnigmaLabel nom = new EnigmaLabel("Nom :");
-		EnigmaLabel width = new EnigmaLabel("Largeur (blocs de 16x16) :");
-		EnigmaLabel height = new EnigmaLabel("Hauteur (blocs de 16x16) :");
+		nom = new EnigmaLabel(NAME);
+		width = new EnigmaLabel(WIDTH);
+		height = new EnigmaLabel(HEIGHT);
 
 		//input
-		this.nameF = new EnigmaTextArea();
-		this.widthF = new EnigmaTextArea();
-		this.heightF = new EnigmaTextArea();
+		this.nameF = new EnigmaTextField();
+		this.widthF = new EnigmaTextField();
+		this.heightF = new EnigmaTextField();
 
+		//content
 		this.content = new Object[]{
-				nom, this.nameF,
-				width, this.widthF,
-				height, this.heightF,
+				this.nom, this.nameF,
+				this.width, this.widthF,
+				this.height, this.heightF,
 		};
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		final int CHOICES = 2;
-		String[] choices = new String[CHOICES];
+		String[] choices = new String[2];
 		choices[CREATE_POS] = CREATE;
 		choices[CANCEL_POS] = CANCEL;
+		boolean error = false;
 
-		int choice = EnigmaOptionPane.showOptionDialog(window, content, TITLE, choices);
+		do {
+			int choice = EnigmaOptionPane.showOptionDialog(this.window, this.content, TITLE, choices);
+			//s'il ne veut pas/plus créer, on quitte
+			if(choice != CREATE_POS) break;
 
-		if (choice == CREATE_POS) {
+			//récupération de la saisie
+			String mapName = Utility.normalize(this.nameF.getText());
+			int col = -1, row = -1;
+			//test width
 			try {
-				String mapName = Utility.normalize(nameF.getText());
-				final int col = Integer.parseInt(widthF.getText()), row = Integer.parseInt(heightF.getText());
-				String path = Config.MAP_FOLDER + mapName;
+				col = Integer.parseInt(this.widthF.getText());
 
+				if(col > Config.MAP_MAX_WIDTH){
+					error = true;
+					this.width.setText(NeedToBeTranslated.WIDTH +" ("+"max "+Config.MAP_MAX_WIDTH+") :");
+				}
 
+				if(col <= 0) throw new NumberFormatException();
+
+				//reset
+				this.width.setText(WIDTH);
+			} catch (NumberFormatException ex){
+				error = true;
+				this.width.setText(NeedToBeTranslated.WIDTH +" ("+INVALID+") :");
+			}
+
+			//test height
+			try {
+				row = Integer.parseInt(this.heightF.getText());
+
+				if(row > Config.MAP_MAX_HEIGHT){
+					error = true;
+					this.height.setText(NeedToBeTranslated.HEIGHT +" ("+"max "+Config.MAP_MAX_HEIGHT+") :");
+				}
+
+				if(row <= 0) throw new NumberFormatException();
+
+				//reset
+				this.height.setText(HEIGHT);
+			} catch (NumberFormatException ex){
+				error = true;
+				this.height.setText(NeedToBeTranslated.HEIGHT +" ("+INVALID+") :");
+			}
+
+			//test map
+			boolean mapNameError = false;
+			if(mapName.isEmpty()||mapName.isBlank()){
+				error = true;
+				mapNameError = true;
+				this.nom.setText(NeedToBeTranslated.INPUT_NAME+" ("+EMPTY+") :");
+			}
+			if(!mapNameError){
+				//correction
+				mapName = Utility.escape(mapName);
+				this.nameF.setText(mapName);
+			}
+
+			//nom déjà pris
+			if(!mapNameError){
 				for (String s : Utility.getAllMapName()) {
 					if (s.equals(mapName)) {
-						EnigmaOptionPane.showAlert(this.window, "Ce nom existe déjà");
-						return;
+						this.nom.setText(NeedToBeTranslated.INPUT_NAME+" ("+ALREADY_TAKEN+") :");
+						error = true;
+						mapNameError = true;
+						break;
 					}
 				}
+			}
 
-				//TODO: vérifier col, row, chemin (caractères spéciaux) et afficher une erreur
+			//reset
+			if(!mapNameError){
+				this.nom.setText(NAME);
+			}
 
-				if (!path.endsWith(".tmx")) {
-					path += ".tmx";
+			//aucune erreur, création
+			if(!error){
+				//retire l'extension dans mapName
+				if(mapName.contains(Config.MAP_EXTENSION)) mapName = mapName.replaceAll(Config.MAP_EXTENSION, "");
+				String path = Config.MAP_FOLDER + mapName + Config.MAP_EXTENSION;
+
+				//TODO: lis author
+				MapData data = new MapData("", mapName);
+				try {
+					DataSave.writeMapData(data);
+				} catch (IOException ignore) {
 				}
-
-				MapData data = new MapData("",mapName);
-				DataSave.writeMapData(data);
 
 				EmptyMapGenerator.generate(path, col, row);
 
-				if (((TestScreen) EnigmaGame.getCurrentScreen()).setMap(path))
+				if (EnigmaGame.getCurrentScreen().setMap(path))
 					Gdx.app.postRunnable(() -> EnigmaGame.reload(EnigmaScreens.TEST.name()));
-
-			} catch (NumberFormatException | IOException ex) {
-				System.err.println("gérer les erreurs!!!!");
-				System.out.println(choice);
-				System.out.println(widthF.getText() + " " + heightF.getText() + " " + nameF.getText());
 			}
-		}
+		} while (error);
 	}
 }

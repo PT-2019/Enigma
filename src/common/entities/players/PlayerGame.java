@@ -1,31 +1,43 @@
 package common.entities.players;
 
 import api.libgdx.actor.GameActorAnimation;
+import api.libgdx.utils.InputAdapter;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Camera;
 import common.map.GameMap;
+import common.utils.Logger;
 import data.Direction;
 import data.keys.CameraKeys;
 
 /**
  * Cette classe permet de déplacer le joueur et d'actionner son animation
  *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ *
+ * @version 6.0
+ * @since 5.0
+ *
  * @see GameActorAnimation
  */
-public class PlayerGame extends GameActorAnimation implements InputProcessor {
+public class PlayerGame extends GameActorAnimation implements InputAdapter {
 
 	/**
 	 * Vitesse de déplacement du personnage
 	 */
 	public static final int SPEED = 10;
+
 	/**
 	 * La map dans la laquelle est placé le joueur
 	 */
 	private GameMap map;
 
 	/**
-	 * @param map
+	 * Cette classe permet de déplacer le joueur et d'actionner son animation
+	 * @param map La map dans la laquelle est placé le joueur
 	 */
 	public PlayerGame(GameMap map) {
 		this.setAnimationPaused(true);
@@ -45,9 +57,8 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
 
 	/**
 	 * Actionné lorsqu'une touche est appuyé
-	 *
-	 * @param i
-	 * @return
+	 * @param i touche
+	 * @return true si événement géré
 	 */
 	@Override
 	public boolean keyDown(int i) {
@@ -128,7 +139,7 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
 
 		if (Input.Keys.E == i || Input.Keys.ENTER == i) {
 			//interaction
-			System.out.println("interact");
+			Logger.printDebug("PlayerGame#keyDown","interact");
 		}
 		return false;
 	}
@@ -136,7 +147,7 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
 	/**
 	 * Méthode qui est appelé par le stage associé, permet d'afficher les animations
 	 *
-	 * @param delta
+	 * @param delta interval de temps depuis dernier appel
 	 */
 	@Override
 	public void act(float delta) {
@@ -176,40 +187,5 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
 				this.setKeyFrame(11);
 			}
 		}
-	}
-
-	@Override
-	public boolean keyUp(int i) {
-		return false;
-	}
-
-	@Override
-	public boolean keyTyped(char c) {
-		return false;
-	}
-
-	@Override
-	public boolean touchDown(int i, int i1, int i2, int i3) {
-		return false;
-	}
-
-	@Override
-	public boolean touchUp(int i, int i1, int i2, int i3) {
-		return false;
-	}
-
-	@Override
-	public boolean touchDragged(int i, int i1, int i2) {
-		return false;
-	}
-
-	@Override
-	public boolean mouseMoved(int i, int i1) {
-		return false;
-	}
-
-	@Override
-	public boolean scrolled(int i) {
-		return false;
 	}
 }

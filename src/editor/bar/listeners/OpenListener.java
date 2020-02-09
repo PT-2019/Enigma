@@ -8,6 +8,7 @@ import common.save.EmptyMapGenerator;
 import common.utils.Logger;
 import data.EnigmaScreens;
 import data.config.Config;
+import editor.popup.listeners.CaseListener;
 import game.EnigmaGame;
 import game.screens.TestScreen;
 
@@ -36,12 +37,13 @@ public class OpenListener extends MenuListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String map;
+		CaseListener.close();
 		if (!(map = EnigmaOptionPane.showMapChoiceDialog(this.window)).equals(CustomOptionPane.CANCEL)) {
 			String path =  Config.MAP_FOLDER + map + ".tmx";
 			Logger.printDebug("OpenListener#actionPerformed","ouverture de " + path);
 
 			//change la map avant de recharger
-			((TestScreen) EnigmaGame.getCurrentScreen()).setMap(path);
+			EnigmaGame.getCurrentScreen().setMap(path);
 
 			Gdx.app.postRunnable(() -> {
 				//rechargement de la map

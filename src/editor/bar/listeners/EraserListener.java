@@ -4,6 +4,7 @@ import common.hud.EnigmaWindow;
 import data.EditorState;
 import editor.EditorLauncher;
 import game.screens.TestScreen;
+import org.jetbrains.annotations.Nullable;
 
 import java.awt.Component;
 import java.awt.Cursor;
@@ -36,20 +37,24 @@ public class EraserListener extends MenuListener {
 		ERASER_CURSOR = toolkit.createCustomCursor(image, new Point(5, 5), "eraser");
 	}
 
-	public EraserListener(EnigmaWindow window, Component parent) {
+	public EraserListener(EnigmaWindow window, @Nullable Component parent) {
 		super(window, parent);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		//si c'est déjà en erase, alors on reset
-		if (EditorLauncher.isState(EditorState.ERASE)) {
+		if (EditorLauncher.containsState(EditorState.ERASE)) {
 			setActive(false);
-			EditorLauncher.setState(EditorState.NORMAL);
+			//exception du zoom, passe en normal automatiquement si pas de zoom
+			EditorLauncher.clearStates(EditorState.ZOOM);
 		} else {
 			//si on active la gomme
 			setActive(true);
-			EditorLauncher.setState(EditorState.ERASE);
+			//exception du zoom
+			EditorLauncher.clearStates(EditorState.ZOOM);
+			//passe en "gomme"
+			EditorLauncher.addState(EditorState.ERASE);
 		}
 
 	}

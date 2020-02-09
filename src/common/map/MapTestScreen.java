@@ -105,7 +105,10 @@ public class MapTestScreen extends AbstractMap {
 	public GameObject loadEntity(EntitySerializable entity, @Nullable Vector2 pos) {
 		Vector2 start = null;
 		//récupère la position sur la map depuis pos, s'il y a une pos
-		if (pos != null) start = getMapPosition(pos, entity);
+		if (pos != null){
+			start = getMapPosition(pos, entity);
+			if(start == null) return null;
+		}
 
 		if (entity.getCategory().name.equals(EntitiesCategories.ACTIONS.name)) {
 			if (entity.getClassName() == null) {
@@ -134,7 +137,7 @@ public class MapTestScreen extends AbstractMap {
 			if(!checkPlacement(object, start)) return null;
 
 			//print debug
-			Logger.printDebug("loadEntity", object.toString() + " " + object.getID());
+			Logger.printDebug("MapTestScreen#loadEntity", object.toString() + " " + object.getID());
 
 			//ajout à la liste des entités de la map
 			this.objects.put(start, object);

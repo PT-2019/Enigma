@@ -45,7 +45,7 @@ public class CasePopWindowListener implements WindowListener {
 		//on désactive le mode enigmacreate
 		for (Actor act : arr) {
 			Array<EventListener> listeners = act.getListeners();
-			((CaseListener) listeners.get(0)).setEnigmacreate(false);
+			((CaseListener) listeners.get(0)).setEnigmaCreate(false);
 		}
 		popUp.clean();
 		popUp.setVisible(false);

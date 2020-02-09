@@ -1,20 +1,17 @@
 package editor.bar;
 
-import com.badlogic.gdx.Gdx;
-import common.hud.*;
+import api.utils.Utility;
+import com.badlogic.gdx.utils.Array;
+import common.hud.EnigmaMenu;
+import common.hud.EnigmaMenuBar;
+import common.hud.EnigmaMenuItem;
+import common.hud.EnigmaWindow;
 import common.hud.ui.EnigmaMenuUI;
-import common.language.HUDFields;
-import common.save.EmptyMapGenerator;
-import data.EnigmaScreens;
 import data.config.EnigmaUIValues;
-import editor.bar.listeners.*;
-import game.EnigmaGame;
-import game.screens.GameScreen;
-import game.screens.TestScreen;
 
-import java.awt.*;
-
-import static common.language.GameLanguage.gl;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.event.ActionListener;
 
 /**
  * Barre du menu
@@ -23,88 +20,60 @@ import static common.language.GameLanguage.gl;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 5.0 30/01/2020
- * @since 5.0 30/01/2020
+ * @version 6.2
+ * @since 3.0
  */
 public class BarMenu extends EnigmaMenuBar {
-	//1er onglet
-	private EnigmaMenu file = new EnigmaMenu(gl.get(HUDFields.FILE));
-	private EnigmaMenuItem create = new EnigmaMenuItem(gl.get(HUDFields.CREATE));
-	private EnigmaMenuItem ouvrir = new EnigmaMenuItem(gl.get(HUDFields.OPEN));
-	private EnigmaMenuItem save = new EnigmaMenuItem(gl.get(HUDFields.SAVE));
-	private EnigmaMenuItem saveAs = new EnigmaMenuItem(gl.get(HUDFields.SAVE_AS));
-	private EnigmaMenuItem export = new EnigmaMenuItem(gl.get(HUDFields.EXPORT));
-	//2eme onglet
-	private EnigmaMenu edit = new EnigmaMenu(gl.get(HUDFields.EDIT));
-	private EnigmaMenuItem redo = new EnigmaMenuItem(gl.get(HUDFields.REDO));
-	private EnigmaMenuItem undo = new EnigmaMenuItem(gl.get(HUDFields.UNDO));
-	//3eme onglet
-	private EnigmaMenu run = new EnigmaMenu(gl.get(HUDFields.RUN));
-	private EnigmaMenuItem runJeu = new EnigmaMenuItem(gl.get(HUDFields.START));
-	private EnigmaMenuItem finJeu = new EnigmaMenuItem(gl.get(HUDFields.STOP));
-	//4eme onglet
-	private EnigmaMenu help = new EnigmaMenu(gl.get(HUDFields.HELP));
-	private EnigmaMenuItem doc = new EnigmaMenuItem(gl.get(HUDFields.DOC));
-	private EnigmaMenuItem support = new EnigmaMenuItem(gl.get(HUDFields.SUPPORT));
 
+	/**
+	 * Crée une barre de menus
+	 * @param window fenêtre
+	 * @since 3.0
+	 */
 	public BarMenu(EnigmaWindow window) {
+		//ui
 		EnigmaMenuUI mui = new EnigmaMenuUI();
 		mui.setPopupBackground(Color.WHITE);
 		mui.setPopupBorderSize(1);
 		mui.setShowedPopupBorders(EnigmaUIValues.ALL_BORDERS_SHOWED);
 
-		this.file.setComponentUI(mui);
-		this.edit.setComponentUI(mui);
-		this.run.setComponentUI(mui);
-		this.help.setComponentUI(mui);
+		for (EnigmaMenuBarMenus menuCategory : EnigmaMenuBarMenus.values()) {
+			//crée le menu
+			EnigmaMenu menu = new EnigmaMenu(menuCategory.name);
+			//parcours des fils
+			for (EnigmaMenuBarItems itemCategory : menuCategory.items) {
+				//création
+				EnigmaMenuItem item = new EnigmaMenuItem(itemCategory.name);
+				//ajout listener
+				if (itemCategory.run != null) {
+					item.addActionListener((ActionListener) Utility.instance(itemCategory.run, window, item));
+				}
+				//définit l'état
+				item.setEnabled(itemCategory.enabled);
 
-		this.file.add(create);
-		this.file.add(ouvrir);
-		this.file.add(save);
-		this.file.add(saveAs);
-		this.file.add(export);
+				//ajout des fils
+				menu.add(item);
+			}
+			//ajout de l'ui
+			menu.setComponentUI(mui);
+			//ajout à la barre
+			this.add(menu);
+		}
+	}
 
-		this.edit.add(undo);
-		this.edit.add(redo);
-
-		this.run.add(runJeu);
-		this.run.add(finJeu);
-
-		this.help.add(doc);
-		this.help.add(support);
-
-		this.add(file);
-		this.add(edit);
-		this.add(run);
-		this.add(help);
-
-		//listeners
-
-		this.create.addActionListener(new CreateListener(window, this.create));
-		this.ouvrir.addActionListener(new OpenListener(window, this.ouvrir));
-		this.save.addActionListener(new SaveListener(window, this.save));
-		this.saveAs.addActionListener(new SaveAsListener(window, this.saveAs));
-		this.export.addActionListener(new ExportListener(window, this.export));
-		this.undo.addActionListener(new UndoListener(window, this.undo));
-		this.redo.addActionListener(new RedoListener(window, this.redo));
-
-		this.runJeu.addActionListener((e -> {
-			//change la map avant de recharger
-			EnigmaGame.getCurrentScreen().setMap(TestScreen.getMapPath());
-			Gdx.app.postRunnable(() -> {
-				//rechargement de la map
-				EnigmaGame.reload(EnigmaScreens.GAME.name());
-				//charge les entités sur la bonne map !
-				EmptyMapGenerator.load(TestScreen.getMapPath());
-			});
-			this.finJeu.setEnabled(true);
-			this.runJeu.setEnabled(false);
-		}));
-		this.finJeu.addActionListener((e -> {
-			Gdx.app.postRunnable(() -> EnigmaGame.setScreen(EnigmaScreens.TEST.name()));
-			this.runJeu.setEnabled(true);
-			this.finJeu.setEnabled(false);
-		}));
-		this.finJeu.setEnabled(false);
+	/**
+	 * Retourne un item de la barre depuis son nom
+	 * @param itemName un nom d'item
+	 * @return l'item ou null
+	 * @since 6.2
+	 */
+	public EnigmaMenuItem getItem(EnigmaMenuBarItems itemName){
+		for (Component menu : new Array.ArrayIterator<>(this.getMenus())) {
+			for (Object item: ((EnigmaMenu)menu).getItems()){
+				if(!(item instanceof EnigmaMenuItem)) continue;
+				if(itemName.name.equals(((EnigmaMenuItem)item).getText())) return (EnigmaMenuItem) item;
+			}
+		}
+		return null;
 	}
 }

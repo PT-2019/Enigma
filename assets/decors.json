@@ -154,7 +154,7 @@
       category: DECORS
       height: 2
       tiles: {
-        FLOOR2:
+        DECORATIONS1:
         [
           408,
           416
@@ -173,7 +173,7 @@
       category: DECORS
       height: 2
       tiles: {
-        FLOOR2:
+        DECORATIONS1:
         [
           424,
           432
@@ -192,7 +192,7 @@
       category: DECORS
       height: 2
       tiles: {
-        FLOOR2:
+        DECORATIONS1:
         [
           440,
           448
@@ -211,7 +211,7 @@
       category: DECORS
       height: 2
       tiles: {
-        FLOOR2:
+        DECORATIONS1:
         [
           456,
           464
@@ -230,7 +230,7 @@
       category: DECORS
       height: 2
       tiles: {
-        FLOOR2:
+        DECORATIONS1:
         [
           472,
           480
@@ -249,7 +249,7 @@
       category: DECORS
       height: 2
       tiles: {
-        FLOOR2:
+        DECORATIONS1:
         [
           488,
           496
@@ -268,7 +268,7 @@
       category: DECORS
       height: 2
       tiles: {
-        FLOOR2:
+        DECORATIONS1:
         [
           504,
           512
@@ -287,7 +287,7 @@
       category: DECORS
       height: 2
       tiles: {
-        FLOOR2:
+        DECORATIONS1:
         [
           520,
           528
@@ -306,7 +306,7 @@
       category: DECORS
       height: 2
       tiles: {
-        FLOOR2:
+        DECORATIONS1:
         [
           536,
           544

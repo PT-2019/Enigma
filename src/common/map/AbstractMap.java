@@ -302,7 +302,7 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 				e = new EntitySerializable(width, height, className, tiles);
 				GameObject object = EntityFactory.createEntity(e, id, start, this.idFactory);
 				object.load(prop);
-				Logger.printDebug("MapTestScreen#initEntities", object + " " + start);
+				Logger.printDebugALL("MapTestScreen#initEntities", object + " " + start);
 
 				//ajout à la liste des entités de la map
 				this.objects.put(start, object);
@@ -437,7 +437,6 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 	 */
 	private void delete(GameObject entity, Vector2 start) {
 		HashMap<Vector2, GameObject> parents = this.getParentObject(start, entity, true);
-		Utility.printHashMap(parents);
 		Array<Array<Float>> entities = null;
 		Array<GameObject> objects = null;
 		if (parents != null && !parents.isEmpty()) {
@@ -557,7 +556,6 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 		}
 
 		if(withDelete) {
-			System.out.println("delete");
 			//suppression des contenus
 			for (Vector2 v : delete) {
 				this.objects.remove(v);

@@ -34,15 +34,14 @@ public final class EnigmaJComboBoxUI extends BasicComboBoxUI implements ListCell
 	}
 
 	@SuppressWarnings("unchecked")
-	public static ComboBoxUI createUI(JComboBox<?> c) {
+	public static void createUI(JComboBox<?> c) {
 		EnigmaJComboBoxUI ui = new EnigmaJComboBoxUI();
 		c.setRenderer(ui);
 		c.setBackground(EnigmaUIValues.ENIGMA_LABEL_BACKGROUND);
 		c.setFont(EnigmaUIValues.ENIGMA_FONT);
 		c.setForeground(EnigmaUIValues.ENIGMA_LABEL_FOREGROUND);
 		c.setBorder(new EnigmaJComboBoxUIBorder());
-
-		return ui;
+		c.setUI(ui);
 	}
 
 	@Override

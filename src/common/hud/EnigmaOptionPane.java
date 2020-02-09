@@ -1,8 +1,10 @@
 package common.hud;
 
+import api.ui.CustomAlert;
 import api.ui.CustomButton;
 import api.ui.CustomOptionPane;
 import api.ui.CustomPanel;
+import api.ui.CustomTextField;
 import api.ui.CustomWindow;
 import api.ui.base.DefaultUIValues;
 import api.ui.base.OptionPaneStyle;
@@ -10,6 +12,7 @@ import api.ui.skin.CustomButtonUI;
 import api.utils.Utility;
 import api.utils.annotations.ConvenienceMethod;
 import common.hud.ui.EnigmaTextAreaUI;
+import common.hud.ui.EnigmaTextFieldUI;
 import data.NeedToBeTranslated;
 
 import java.awt.Color;
@@ -32,13 +35,17 @@ public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyl
 		super(new EnigmaAlert());
 	}
 
+	protected EnigmaOptionPane(CustomAlert alert) {
+		super(alert);
+	}
+
 	/**
 	 * Retourne le style de base d'un bouton de l'option bane
 	 *
 	 * @param text contenu du bouton
 	 * @return le bouton auquel le style a été appliqué
 	 */
-	public static CustomButton getClassicButton(String text) {
+	private static CustomButton getClassicButton(String text) {
 		boolean[] borders = new boolean[4];
 		borders[DefaultUIValues.BOTTOM_BORDER] = true;
 		Color grey = new Color(100, 100, 100);
@@ -63,6 +70,24 @@ public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyl
 		borders[DefaultUIValues.BOTTOM_BORDER] = true;
 		Color grey = new Color(100, 100, 100);
 		EnigmaTextAreaUI tui = ta.getComponentUI();
+		tui.setAllBackgrounds(grey, grey, grey);
+		tui.setAllBorders(null, Color.WHITE, Color.WHITE);
+		tui.setAllBordersSize(1, 1, 1);
+		tui.setAllShowedBorders(DefaultUIValues.ALL_BORDER_HIDDEN, borders, borders);
+		return ta;
+	}
+
+	/**
+	 * Retourne le style de base d'un champ de saisie de l'option bane
+	 *
+	 * @return le champ de saisie auquel le style a été appliqué
+	 */
+	private static EnigmaTextField getClassicTextField() {
+		EnigmaTextField ta = new EnigmaTextField();
+		boolean[] borders = DefaultUIValues.ALL_BORDER_HIDDEN;
+		borders[DefaultUIValues.BOTTOM_BORDER] = true;
+		Color grey = new Color(100, 100, 100);
+		EnigmaTextFieldUI tui = ta.getComponentUI();
 		tui.setAllBackgrounds(grey, grey, grey);
 		tui.setAllBorders(null, Color.WHITE, Color.WHITE);
 		tui.setAllBordersSize(1, 1, 1);
@@ -231,6 +256,9 @@ public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyl
 	public EnigmaTextArea getTextAreaStyle() {
 		return getClassicTextArea();
 	}
+
+	@Override
+	public CustomTextField getTextFieldStyle() { return getClassicTextField(); }
 
 	@Override
 	public CustomPanel getPanelStyle() {

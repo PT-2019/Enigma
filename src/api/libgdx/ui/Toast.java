@@ -20,26 +20,55 @@ public class Toast extends Window {
 
     /**
      * Size
-     * @since 6.0
+     * @since 6.1
      */
-    protected static final float WIDTH = 300, HEIGHT = 70;
+    protected static final float WIDTH = 300;
+
+    /**
+     * Size
+     * @since 6.1
+     */
+    protected static final float HEIGHT = 70;
+
+    /**
+     * Padding
+     * @since 6.1
+     */
+    private static final float PADDING = 10;
 
     /**
      * Valeur de base des attributs fadeIn, fadeOut et delay
      * @since 6.0
      */
-    protected static final float BASE_FADE_IN_DELAY = 0.3f, BASE_FADE_OUT_DELAY = 0.5f, DELAY = 1f;
+    @SuppressWarnings("WeakerAccess")
+    protected static final float BASE_FADE_IN_DELAY = 0.3f;
+
+    /**
+     * Valeur de base des attributs fadeIn, fadeOut et delay
+     * @since 6.0
+     */
+    @SuppressWarnings("WeakerAccess")
+    protected static final float BASE_FADE_OUT_DELAY = 0.5f;
+
+    /**
+     * Valeur de base des attributs fadeIn, fadeOut et delay
+     * @since 6.0
+     */
+    @SuppressWarnings("WeakerAccess")
+    protected static final float DELAY = 1f;
 
     /**
      * Temps en secondes pour que le toast apparaissent
      * @since 6.0
      */
     protected float fadeIn;
+
     /**
      * Temps en secondes pour que le toast disparaisse
      * @since 6.0
      */
     protected float fadeOut;
+
     /**
      * Temps en secondes pendant lequel le toast est affiché
      * @since 6.0
@@ -70,6 +99,7 @@ public class Toast extends Window {
      * @param b true pour cacher sinon false
      * @since 6.0
      */
+    @SuppressWarnings("SameParameterValue")
     protected void hide(boolean b){
         if(b) this.getColor().a = 0f;
         else this.getColor().a = 1f;
@@ -96,6 +126,7 @@ public class Toast extends Window {
                 this.clear();
                 this.addAction(Actions.fadeIn(0.01f));//instant
                 this.add(text);
+                this.resize();
                 this.addAction(Actions.sequence(Actions.delay(delay), Actions.fadeOut(fadeOut)));
 
                 return;
@@ -104,6 +135,17 @@ public class Toast extends Window {
 
         //sinon lance l'action normale
         this.addAction(Actions.sequence(Actions.run(new ShowToast(this, text))));
+    }
+
+    /**
+     * Re-dimensionne le toast si besoin.
+     * Appelé dès que le contenu est changé
+     * @since 6.1
+     */
+    protected void resize() {
+        this.pack();
+        if(this.getWidth() > WIDTH) this.setSize(PADDING*2 + this.getWidth(), HEIGHT);
+        else this.setSize(WIDTH, HEIGHT);
     }
 
     /**
@@ -130,7 +172,8 @@ public class Toast extends Window {
         @Override
         public void run() {
             this.toast.clear();
-            this.toast.add(text);
+            this.toast.add(this.text);
+            this.toast.resize();
             this.toast.addAction(
                     Actions.sequence(
                             Actions.fadeIn(this.toast.fadeIn),

@@ -753,6 +753,15 @@ public class CustomButtonUI extends BasicButtonUI implements CustomUIHoverAndPre
 	}
 
 	@Override
+	public void setAllShowedBorders(boolean[] showedBorders) {
+		if (showedBorders.length != 4)
+			throw new IllegalArgumentException("Les tableaux doivent être de 4 éléments");
+		this.showedBorders = showedBorders;
+		this.hoveredShowedBorders = showedBorders;
+		this.pressedShowedBorders = showedBorders;
+	}
+
+	@Override
 	public Cursor getCursor() {
 		return this.cursor;
 	}

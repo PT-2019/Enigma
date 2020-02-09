@@ -132,7 +132,7 @@ public class ConditionPanel extends AbstractSubPopUpView implements Observer<Gam
 
 	@Override
 	public void update(GameObject object) {
-		if (!CaseListener.isAvailable(this)) return;
+		if (CaseListener.isNotAvailable(this)) return;
 
 		this.listener.setGameObject(object);
 		JRadioButton currentButton = this.listener.getCurrentButton();

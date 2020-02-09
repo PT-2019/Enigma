@@ -2,9 +2,14 @@ package game.gui;
 
 import api.libgdx.ui.Toast;
 import api.utils.Observer;
+import api.utils.annotations.ConvenienceMethod;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Align;
+import common.enigmas.Enigma;
+import common.entities.GameObject;
+import editor.bar.edition.ActionTypes;
 import editor.bar.edition.ActionsManager;
+import editor.bar.edition.ActionsManagerType;
 
 /**
  * Toast d'Enigma
@@ -65,14 +70,26 @@ public class EnigmaEditorToast extends Toast implements Observer<ActionsManager>
 	 * @since 6.0
 	 */
 	@Override
+	@ConvenienceMethod
 	public void update(ActionsManager object) {
 		ActionsManager.LastAction lastAction = object.getLastAction();
-		if(lastAction == null) return;
+		//on affiche pas les "add" soit ajout et remove
+		if(lastAction == null || lastAction.type.equals(ActionsManagerType.ADD)) return;
 		String text = lastAction.type.toString();
 		if(text.length() > 0){
 			text +=": ";
 		}
-		text += lastAction.last.getType().toString();
+		ActionTypes type = lastAction.last.getType();
+		text += type.toString()+" ";
+
+		//ajoute l'entité
+		if(type.equals(ActionTypes.ADD_ENTITY) ||type.equals(ActionTypes.REMOVE_ENTITY)){
+			text += "["+((GameObject)lastAction.last.getActor()).getReadableName()+"]";
+		}
+		if(type.equals(ActionTypes.ADD_ENIGMA) ||type.equals(ActionTypes.REMOVE_ENIGMA)){
+			text += "["+((Enigma)lastAction.last.getActor()).getTitle()+"]";
+		}
+
 		this.update(text);
 	}
 }

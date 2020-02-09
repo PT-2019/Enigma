@@ -243,6 +243,7 @@ public class NPC extends GameActorTextured implements Entity, Living, Container,
 	public void setJson(String json, String key) {
 		this.json = json;
 		this.key = key;
+		if(this.name.isEmpty()) this.name= key;
 	}
 
 	@Override

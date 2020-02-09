@@ -160,7 +160,7 @@ public class MapObjects {
 	/**
 	 * Obtenir un vecteur de tel élément
 	 *
-	 * @param go Elément
+	 * @param go élément
 	 * @return Vecteur, null si l'éléments n'existe pas
 	 *
 	 * @since 5.0

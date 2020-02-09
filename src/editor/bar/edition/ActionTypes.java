@@ -33,7 +33,16 @@ public enum ActionTypes {
 	 * Suppression d'une énigme
 	 * Affiche un message qui confirme la suppression
 	 */
-	REMOVE_ENIGMA(NeedToBeTranslated.REMOVE_ENIGMA);
+	REMOVE_ENIGMA(NeedToBeTranslated.REMOVE_ENIGMA),
+
+	ADD_CONTENT(""),
+
+	REMOVE_CONTENT(""),
+
+	SET_HERO(""),
+
+	UNSET_HERO(""),
+	;
 
 	private final String value;
 

@@ -43,6 +43,7 @@ public class RedoListener extends MenuListener implements Observer<ActionsManage
 
 	@Override
 	public void update(ActionsManager object) {
+		//si pas de redo, alors je disable le bouton sinon je l'active
 		if(object.isRedoAvailable()){
 			if(parent instanceof EnigmaButton)
 				((EnigmaButton)parent).setIcon(Outil.REDO_OK);

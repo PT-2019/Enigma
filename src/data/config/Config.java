@@ -9,7 +9,7 @@ import common.language.Language;
  * Fichier des configurations de l'application
  *
  * @author Quentin RAMSAMY-AGEORGES
- * @version 6.1
+ * @version 6.2
  * @since 4.0
  */
 public final class Config {
@@ -48,7 +48,9 @@ public final class Config {
 
 	/**
 	 * Map sauvegardés par exemple dans les doc de l'utilisateur
-	 * Elles forment UN SEUL Fichier
+	 * Elles forment UN SEUL Fichier.
+	 *
+	 * Cette valeur peut être changée dans les préférences.
 	 */
 	@NeedPatch
 	public static final String MAP_FOLDER_USER = MAP_FOLDER;
@@ -116,21 +118,73 @@ public final class Config {
 
 	/**
 	 * Extension des maps
+	 * @since 6.2
 	 */
 	public static final String MAP_EXTENSION = ".tmx";
 
 	/**
 	 * Extension des mapData et gameData
+	 * @since 6.2
 	 */
 	public static final String DATA_EXTENSION = ".tmx";
 
 	/**
 	 * Extension des énigmes
+	 * @since 6.2
 	 */
 	public static final String ENIGMA_EXTENSION = ".json";
 
 	/**
 	 * Extension des exports
+	 * @since 6.2
 	 */
 	public static final String EXPORT_EXTENSION = ".enigma";
+
+	/**
+	 * Ratio d'affichage pour afficher 100 tiles dans un écran
+	 * @since 6.3
+	 */
+	public static final float ZOOM_RATIO_BY_HEIGHT = 1.84f, RATIO_HEIGHT = 881, RATIO_UNIT = 100;
+
+	/**
+	 * Valeur du zoom de base
+	 * @since 6.3
+	 */
+	public static final float BASE_ZOOM_VALUE = 1.0f;
+
+	/**
+	 * Valeur de changement du zoom
+	 * @since 6.3
+	 */
+	public static final float ZOOM_CHANGE_VALUE = 0.05f;
+
+	/**
+	 * Valeur du déplacement de la caméra
+	 * @since 6.3
+	 */
+	public static final int CAMERA_OFFSET = 32;
+
+	/**
+	 * Valeur du zoom en jeu
+	 * @since 6.3
+	 */
+	public static final float IN_GAME_ZOOM_VALUE = BASE_ZOOM_VALUE / 2f;
+
+	/**
+	 * Les valeurs du zoom
+	 * @since 6.3
+	 */
+	public static final String[] ZOOM_VALUES = new String[]{"25%", "50%", "100%", "125%", "150%", "175%", "200%"};
+
+	/**
+	 * Valeur de base dans le tableau des valeurs du zoom
+	 * @since 6.3
+	 */
+	public static final int ZOOM_VALUES_BASE_INDEX = 2;
+
+	/**
+	 * Taille max des map que l'on peut créer (inclus)
+	 * @since 6.3
+	 */
+	public static final int MAP_MAX_WIDTH = 300, MAP_MAX_HEIGHT = 300;
 }

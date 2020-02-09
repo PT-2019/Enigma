@@ -73,9 +73,9 @@ public class DragAndDropBuilder extends InputListener {
 
 	@Override
 	public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-		if (!EditorLauncher.isState(EditorState.NORMAL)) {
-			//POUR LE CONFORT, ON FORCE LE PASSAGE EN NORMAL
-			EditorLauncher.setState(EditorState.NORMAL);
+		if (!EditorLauncher.containsState(EditorState.NORMAL)) {
+			//activation du dnd
+			EditorLauncher.clearStates(EditorState.ZOOM);
 			EditorLauncher.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 		} else if (forPopup != null) {
 			Logger.printDebug("DnDBuilder", "Déplacement bloqué. Sélection.");

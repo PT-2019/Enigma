@@ -1,6 +1,5 @@
 package editor.bar;
 
-import api.utils.annotations.Temporary;
 import common.language.HUDFields;
 import editor.bar.listeners.BrushListener;
 import editor.bar.listeners.CreateListener;
@@ -35,8 +34,7 @@ public enum Outil {
 	REDO(gl.get(HUDFields.REDO), new ImageIcon("assets/icon/noRedo.png"), true, RedoListener.class),
 	BRUSH(gl.get(HUDFields.BRUSH), new ImageIcon("assets/icon/brush.png"), BrushListener.class),
 	GOMME(gl.get(HUDFields.ERASER), new ImageIcon("assets/icon/eraser.png"), EraserListener.class),
-	@Temporary(reason = "true normalement mais zoom désactivé")
-	MOVE(gl.get(HUDFields.MOVE), new ImageIcon("assets/icon/move.png"), false, MoveListener.class);
+	MOVE(gl.get(HUDFields.MOVE), new ImageIcon("assets/icon/move.png"), true, MoveListener.class);
 
 	public static ImageIcon SEPARATOR = new ImageIcon("assets/icon/sep.png");
 	public static ImageIcon UNDO_OK = new ImageIcon("assets/icon/undo.png");

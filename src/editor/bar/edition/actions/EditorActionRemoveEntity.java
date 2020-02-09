@@ -54,5 +54,14 @@ class EditorActionRemoveEntity implements EditorAction {
 			this.map.freeId(this.entity); //free
 		}
 	}
+
+	/**
+	 * Retourne l'entité
+	 * @return l'entité
+	 */
+	@Override
+	public Object getActor() {
+		return this.entity;
+	}
 }
 

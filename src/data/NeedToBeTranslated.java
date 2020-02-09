@@ -62,10 +62,12 @@ public interface NeedToBeTranslated {
 
 	//ActionTypes
 
-	String ADD_ENTITY = "Ajout d'une entité";
-	String REMOVE_ENTITY = "Suppression d'une entité";
+	String ADD_ENTITY = "Ajout de";
+	String REMOVE_ENTITY = "Suppression de";
 	String ADD_ENIGMA = "Ajoute une énigme";
 	String REMOVE_ENIGMA = "Suppression d'une énigme";
+
+	//TODO: all
 
 	//ActionsManagerType
 
@@ -105,4 +107,37 @@ public interface NeedToBeTranslated {
 	String SHOW_ROOM_DESC = "Afficher une salle";
 	String SHOW_ROOM_RES = "Seulement une salle.";
 
+	// DragAndDrop
+
+	String DRAG_AND_DROP_FAILED = "Déplacement raté. Position invalide.";
+	String DRAG_AND_DROP_FAILED_ZOOM = "Déplacement raté. Veuillez rétablir le zoom.";
+
+	// CaseListener
+	String ERASE_FAILED_ZOOM = "Effacement raté. Veuillez rétablir le zoom.";
+
+	//EntityPopMenu
+
+	String ZOOM = "Zoom";
+	String ZOOM_FIT = "Voir toute la map";
+	String ZOOM_IN_GAME = "Zoom du jeu";
+	String ZOOM_BASE = "Zoom de base";
+
+	String SHOW = "Affichage";
+	String CASES_BLOCKED = "Cases bloquantes";
+
+	String CURSOR = "Souris";
+	String ERASER = "Gomme";
+	String BRUSH = "Pinceau";
+	String MOVE = "Déplacement";
+
+	// Spécial popup
+	String SELECT_ENTITY = "Utiliser cette entité";
+
+	//createListener
+	String CREATE = "Créer";
+	String CANCEL = "Annuler";
+	String CREATE_NEW_MAP = "Création d'une nouvelle map.";
+	String WIDTH = "Largeur";
+	String HEIGHT = "Hauteur";
+	String EMPTY = "Vide";
 }

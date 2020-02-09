@@ -29,7 +29,7 @@ import java.util.Iterator;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 4.0 23/12/2019
+ * @version 6.0
  * @since 4.0 23/12/2019
  */
 public class EmptyMapGenerator {
@@ -68,6 +68,8 @@ public class EmptyMapGenerator {
 	 * @param path     chemin du fichier sans l'extension
 	 * @param game     map tiled
 	 * @param entities liste des entités de la map
+	 *
+	 * @since 5.0
 	 */
 	public static void save(String path, TiledMap game, MapObjects entities) {
 		//----------------- fichier .tmx -----------------
@@ -106,8 +108,24 @@ public class EmptyMapGenerator {
 	 * Recharge le jeu depuis une sauvegarde
 	 *
 	 * @param path chemin sauvegarde
+	 *
+	 * @since 5.0
 	 */
 	public static void load(String path) {
+		load(path, true);
+	}
+
+	/**
+	 * Recharge le jeu depuis une sauvegarde
+	 *
+	 * @param path chemin sauvegarde
+	 * @param clear reset à l'état initial
+	 *
+	 * @since 6.0
+	 */
+	public static void load(String path, boolean clear){
+		Logger.printDebug("EmptyMapGenerator#load", path);
+
 		//------------ charge .tmx ------------
 		EnigmaGame.getCurrentScreen().setMap(path);
 
@@ -118,7 +136,6 @@ public class EmptyMapGenerator {
 		ArrayList<Enigma> enigmas;
 		ArrayList<Enigma> copy = new ArrayList<>();
 		path = path.substring(0, path.length() - 4) + ".json"; //retire l'extension tmx
-		Logger.printDebug("EmptyMapGenerator#load", path);
 		int id;
 		try {
 			enigmas = EnigmaJsonReader.readEnigmas(path);
@@ -145,6 +162,6 @@ public class EmptyMapGenerator {
 		}
 
 		// clear de l'historique
-		ActionsManager.reset();
+		if(clear) ActionsManager.reset();
 	}
 }

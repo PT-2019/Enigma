@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class PlayerFactory {
 
 	/**
-	 * Liste des joueurs qu'on a récupérere dans le Json
+	 * Liste des joueurs qu'on a récupère dans le Json
 	 */
 	private static ArrayList<PlayerSerializable> players;
 
@@ -23,11 +23,12 @@ public class PlayerFactory {
 	}
 
 	/**
-	 * Permet de créer un playergame à partir d'un fichier Json
+	 * Permet de créer un playerGame à partir d'un fichier Json
 	 *
-	 * @param name
-	 * @param path
-	 * @param map
+	 * @param name nom
+	 * @param path fichier
+	 * @param map map
+	 *
 	 * @return un playerGame du Json
 	 */
 	@SuppressWarnings("unchecked")

@@ -44,6 +44,18 @@ public interface CustomUIHoverAndPressed<T extends CustomUI> extends CustomUIPre
 	void setAllShowedBorders(boolean[] showedBorders, boolean[] hoveredShowedBorders, boolean[] pressedShowedBorders);
 
 	/**
+	 * Définit toutes les bordures
+	 *
+	 * @param showedBorders        tableau de 4, true pour afficher
+	 * @throws IllegalArgumentException si la taille d'un tableau est différente de 4
+	 * @see DefaultUIValues#TOP_BORDER
+	 * @see DefaultUIValues#RIGHT_BORDER
+	 * @see DefaultUIValues#LEFT_BORDER
+	 * @see DefaultUIValues#BOTTOM_BORDER
+	 */
+	void setAllShowedBorders(boolean[] showedBorders);
+
+	/**
 	 * Définit les couleurs de tous fond
 	 *
 	 * @param background        fond normal

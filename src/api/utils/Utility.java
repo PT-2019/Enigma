@@ -133,6 +133,20 @@ public class Utility implements Serializable {
 	}
 
 	/**
+	 *  Cette méthode échappe une chaîne de caractère : supprime les caractères spéciaux et les nombres
+	 * @param string une chaîne
+	 * @return la chaîne échappée
+	 */
+	public static String escape(String string) {
+		string = Normalizer.normalize(string, Normalizer.Form.NFD);
+		string = string.replaceAll("[^\\x00-\\x7F]", "");
+		string = string.replaceAll("[-+.^:,]","");
+		string = string.replaceAll("[^\\p{L}\\p{Z}]","");
+		string = string.replaceAll("[\\n\\t ]", "");
+		return string;
+	}
+
+	/**
 	 * Retourne un enum depuis son nom sous la forme d'un string
 	 *
 	 * @param name       nom de la valeur de l'enum

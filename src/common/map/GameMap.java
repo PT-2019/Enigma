@@ -94,7 +94,6 @@ public class GameMap extends AbstractMap {
 	 * @return true = accessible, false = non accessible
 	 */
 	public boolean isWalkable(float posX, float posY, GameActor actor) {
-		System.out.println("isWalkable");
 		Vector2 position = posToIndex(posX,posY,this);
 
 		TiledMapTileLayer tiledmap = (TiledMapTileLayer) this.map.getMap().getLayers().get(Layer.COLLISION.name());
@@ -177,11 +176,12 @@ public class GameMap extends AbstractMap {
 			if (!this.map.getMap().getLayers().get(layer.name()).isVisible()/*== Layer.COLLISION*/ ){
 				continue;
 			}
-			for (GameActor entite : this.entities) {
-				if (entite.getLayer() == layer){
+			//render actors
+			for (GameActor entity : this.entities) {
+				if (entity.getLayer() == layer){
 					batch.end();
 					batch.begin();
-					entite.draw(batch, parentAlpha);
+					entity.draw(batch, parentAlpha);
 					batch.end();
 					batch.begin();
 				}
@@ -285,7 +285,7 @@ public class GameMap extends AbstractMap {
 				e = new EntitySerializable(width, height, className, tiles);
 				GameObject object = EntityFactory.createEntity(e, id, start, this.idFactory);
 				object.load(prop);
-				Logger.printDebug("MapTestScreen#initEntities", object + " " + start);
+				Logger.printDebugALL("MapTestScreen#initEntities", object + " " + start);
 
 				//on place pas les entités "vivantes" dans les tiles de la map
 				if (object instanceof NPC){

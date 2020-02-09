@@ -1,139 +1,149 @@
 package editor.popup;
 
+import api.libgdx.utils.InputAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import common.hud.EnigmaWindow;
 import common.map.MapTestScreen;
+import data.EditorState;
+import data.config.Config;
 import editor.EditorLauncher;
 
-import java.awt.Window;
-
 /**
- * Controlleur des différents évènement sur la map
+ * Contrôleur des différents évènement sur la map
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ *
+ * @version 6.0
+ * @since 2.0
  */
-public class TestMapControl implements InputProcessor {
+public class TestMapControl implements InputAdapter {
 
-	private static final float ZOOM_VALUE = 0.05f;
+	/**
+	 * True si touche control appuyée
+	 */
+	private boolean isPush;
 
-	private static final int CAMERA_OFFSET = 32;
-
-	private boolean ispush;
-
+	/**
+	 * Menu popup
+	 */
 	private EntityPopMenu menu;
 
-	//@Deprecated
-	//private JComponent component;
-
-	private Window window;
-
+	/**
+	 * Caméra
+	 */
 	private OrthographicCamera camera;
 
-	private MapTestScreen map;
-
+	/**
+	 * Contrôleur des différents évènement sur la map
+	 * @param map map
+	 */
 	public TestMapControl(MapTestScreen map) {
-		camera = map.getCamera();
-		ispush = false;
-		this.map = map;
+		this.camera = map.getCamera();
+		this.isPush = false;
 		//changed to window
-		this.window = EditorLauncher.getInstance().getWindow();
-
-
-		this.menu = new EntityPopMenu(map.getMap().getMap(), camera);
-		//TODO: test pour vérifier que cela marche avec une window
+		this.menu = new EntityPopMenu(map, (EnigmaWindow) EditorLauncher.getInstance().getWindow());
 	}
 
 	@Override
 	public boolean keyDown(int keycode) {
-
-		if (keycode == Input.Keys.CONTROL_LEFT)
-			ispush = true;
-		if (keycode == Input.Keys.PLUS && ispush)
+		//control activé
+		if (keycode == Input.Keys.CONTROL_LEFT){
+			this.isPush = true;
+			return true;
+		}
+		//zoom ou de-zoom
+		if (keycode == Input.Keys.PLUS && this.isPush){
 			this.plusCamera();
-		if (keycode == Input.Keys.MINUS && ispush)
+			return true;
+		}
+		if (keycode == Input.Keys.MINUS && this.isPush){
 			this.minCamera();
-
+			return true;
+		}
 		return false;
 	}
 
 	@Override
 	public boolean keyUp(int keycode) {
 		if (keycode == Input.Keys.LEFT) {
-			camera.translate(-CAMERA_OFFSET, 0);
-			camera.update();
+			this.camera.translate(-Config.CAMERA_OFFSET, 0);
+			this.camera.update();
 			return true;
 		}
 		if (keycode == Input.Keys.RIGHT) {
-			camera.translate(CAMERA_OFFSET, 0);
-			camera.update();
+			this.camera.translate(Config.CAMERA_OFFSET, 0);
+			this.camera.update();
 			return true;
 		}
 		if (keycode == Input.Keys.UP) {
-			camera.translate(0, CAMERA_OFFSET);
-			camera.update();
+			this.camera.translate(0, Config.CAMERA_OFFSET);
+			this.camera.update();
 			return true;
 		}
 		if (keycode == Input.Keys.DOWN) {
-			camera.translate(0, -CAMERA_OFFSET);
-			camera.update();
+			this.camera.translate(0, -Config.CAMERA_OFFSET);
+			this.camera.update();
 			return true;
 		}
+		//dés-activation control
 		if (keycode == Input.Keys.CONTROL_LEFT) {
-			ispush = false;
+			this.isPush = false;
 			return true;
 		}
-		return false;
-	}
-
-	@Override
-	public boolean keyTyped(char character) {
-		return false;
-	}
-
-	@Override
-	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 		return false;
 	}
 
 	@Override
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
 		if (button == Input.Buttons.RIGHT) {
-			menu.show(this.window, Gdx.input.getX(), Gdx.input.getY());
+			this.menu.show(EditorLauncher.getInstance().getMapPanel(), Gdx.input.getX(), Gdx.input.getY());
 			return true;
 		}
-		return false;
-	}
-
-	@Override
-	public boolean touchDragged(int screenX, int screenY, int pointer) {
-		return false;
-	}
-
-	@Override
-	public boolean mouseMoved(int screenX, int screenY) {
 		return false;
 	}
 
 	@Override
 	public boolean scrolled(int amount) {
 		if (Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT)) {
-			if (amount == 1) {
-				this.camera.zoom += ZOOM_VALUE;
+			if (amount == 1) this.minCamera();
+			else this.plusCamera();
+
+			if(this.camera.zoom == Config.BASE_ZOOM_VALUE){
+				//mode normal
+				EditorLauncher.removeState(EditorState.ZOOM);
 			} else {
-				this.camera.zoom -= ZOOM_VALUE;
+				//sinon zoom
+				if(EditorLauncher.containsState(EditorState.NORMAL)){
+					EditorLauncher.clearStates();
+				}
+				EditorLauncher.addState(EditorState.ZOOM);
 			}
+
 			this.camera.update();
-			return true;
+
+			return true; //géré
 		}
+
 		return false;
 	}
 
 
+	/**
+	 * Augmente le zoom
+	 */
 	private void plusCamera() {
-		camera.zoom -= ZOOM_VALUE;
+		this.camera.zoom -= Config.ZOOM_CHANGE_VALUE;
 	}
 
+	/**
+	 * Diminue le zoom
+	 */
 	private void minCamera() {
-		camera.zoom += ZOOM_VALUE;
+		this.camera.zoom += Config.ZOOM_CHANGE_VALUE;
 	}
 }

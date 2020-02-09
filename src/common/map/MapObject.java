@@ -28,7 +28,7 @@ public class MapObject {
 	 */
 	private final Vector2 position;
 
-	public MapObject(Vector2 position, GameObject entity){
+	MapObject(Vector2 position, GameObject entity){
 		this.position = position;
 		this.entity = entity;
 	}

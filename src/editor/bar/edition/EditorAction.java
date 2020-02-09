@@ -8,7 +8,7 @@ package editor.bar.edition;
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  *
- * @version 6.0
+ * @version 6.1
  * @since 5.0 01/02/2020
  */
 public interface EditorAction {
@@ -40,4 +40,10 @@ public interface EditorAction {
 	 */
 	void clear();
 
+	/**
+	 * Retourne l'object concerné par l'action
+	 * @return l'object concerné par l'action
+	 * @since 6.1
+	 */
+	Object getActor();
 }

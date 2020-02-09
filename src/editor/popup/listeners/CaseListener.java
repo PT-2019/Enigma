@@ -12,16 +12,18 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.SnapshotArray;
+import common.enigmas.Enigma;
 import common.entities.GameObject;
 import common.map.MapTestScreenCell;
 import data.EditorState;
+import data.NeedToBeTranslated;
 import data.TypeEntity;
 import editor.EditorLauncher;
 import editor.popup.cases.CasePopUp;
 import editor.popup.cases.CaseView;
 import editor.popup.cases.SpecialPopUp;
 import editor.popup.cases.listeners.CasePopWindowListener;
-import game.screens.TestScreen;
+import game.EnigmaGame;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -39,15 +41,17 @@ import java.awt.event.WindowEvent;
  */
 public class CaseListener extends ClickListener {
 
+	private static CaseListener caseListener = null;
+
 	/**
 	 * PopUp qui représente graphiquement toutes les informations de la case cliquée
 	 */
 	private CasePopUp popUp;
 
 	/**
-	 * boolean qui dit si nous sommes entrain de créer une enigme ou pas.
+	 * boolean qui dit si nous sommes entrain de créer une énigme ou pas.
 	 */
-	private boolean enigmacreate;
+	private boolean enigmaCreate;
 
 	/**
 	 * Second popup
@@ -58,35 +62,45 @@ public class CaseListener extends ClickListener {
 
 	public CaseListener(CasePopUp pop) {
 		super(Input.Buttons.LEFT);
-		popUp = pop;
-		enigmacreate = false;
-		//this.pop = null;
+		CaseListener.caseListener = this;
+		this.popUp = pop;
+		this.enigmaCreate = false;
 	}
 
 	@Override
 	public void clicked(InputEvent event, float x, float y) {
+		if (EditorLauncher.containsState(EditorState.ERASE)) {//clic avec gomme
+			if(!EditorLauncher.containsState(EditorState.ZOOM)) {//pas en zoom
+				CaseView actor = (CaseView) event.getTarget();
+				MapTestScreenCell cell = getRelevantEntity(actor);
+				if (cell != null && cell.getEntity() != null) cell.removeEntity();
+			} else {
+				EnigmaGame.getCurrentScreen().showToast(NeedToBeTranslated.ERASE_FAILED_ZOOM);
+			}
+		} else
 		//on ne peut cliquer que si l'état est normal
-		if (EditorLauncher.isState(EditorState.NORMAL)) {
-			if (enigmacreate) { //une popup est ouverte
+		if (EditorLauncher.containsState(EditorState.ZOOM, true)
+		|| EditorLauncher.containsState(EditorState.NORMAL)) {
+			if (this.enigmaCreate) { //une popup est ouverte
 				//on doit être dans un menu qui nécessite une deuxième popup
 				if (CaseListener.getAvailable() != null) {
 					//deuxième fenêtre ok on ne quitte pas
-					if (pop != null) {
-						pop.setAlwaysOnTop(true);
-						pop.revalidate();
-						pop.setAlwaysOnTop(false);
+					if (this.pop != null) {
+						this.pop.setAlwaysOnTop(true);
+						this.pop.revalidate();
+						this.pop.setAlwaysOnTop(false);
 						return;
 					}
 				} else {
-					if (pop == null) {
+					if (this.pop == null) {
 						//on met la window au premier plan
-						popUp.setAlwaysOnTop(true);
-						popUp.revalidate();
-						popUp.setAlwaysOnTop(false);
+						this.popUp.setAlwaysOnTop(true);
+						this.popUp.revalidate();
+						this.popUp.setAlwaysOnTop(false);
 					} else {
-						pop.setAlwaysOnTop(true);
-						pop.revalidate();
-						pop.setAlwaysOnTop(false);
+						this.pop.setAlwaysOnTop(true);
+						this.pop.revalidate();
+						this.pop.setAlwaysOnTop(false);
 					}
 					//équivalent d'un focus mais en mode bizarre
 					return;
@@ -94,75 +108,82 @@ public class CaseListener extends ClickListener {
 			}
 
 			CaseView actor = (CaseView) event.getTarget();
-			MapTestScreenCell cell = getRevelantEntity(actor);
+			MapTestScreenCell cell = getRelevantEntity(actor);
 
-			if (enigmacreate) {
-				pop = new SpecialPopUp(popUp.getComponent(), popUp.getTileMap(), popUp, this);
-				pop.setCell(cell);
-				pop.display();
-				pop.setVisible(true);
-				pop.addWindowListener(new WindowAdapter() {
+			if (this.enigmaCreate) {
+				this.pop = new SpecialPopUp(this.popUp.getComponent(), this.popUp.getTileMap(), this.popUp, this);
+				this.pop.setCell(cell);
+				this.pop.display();
+				this.pop.setVisible(true);
+				this.pop.addWindowListener(new WindowAdapter() {
 					@Override
 					public void windowClosing(WindowEvent e) {
 						pop = null;
 					}
 				});
 			} else {
-				popUp.setCell(cell);
+				this.popUp.setCell(cell);
 				Group g = actor.getParent();
 				//on récupère tout les actors
 				SnapshotArray<Actor> arr = g.getChildren();
 
-				//on passe dans le mode enigmacreate
+				//on passe dans le mode enigmaCreate
 				for (Actor act : arr) {
 					Array<EventListener> listeners = act.getListeners();
-					((CaseListener) listeners.get(0)).setEnigmacreate(true);
+					((CaseListener) listeners.get(0)).setEnigmaCreate(true);
 				}
-				popUp.addWindowListener(new CasePopWindowListener(popUp, g));
-				popUp.display();
+				this.popUp.addWindowListener(new CasePopWindowListener(this.popUp, g));
+				this.popUp.display();
 			}
-		} else if (EditorLauncher.isState(EditorState.ERASE)) {
-			CaseView actor = (CaseView) event.getTarget();
-			MapTestScreenCell cell = getRevelantEntity(actor);
-			if (cell != null && cell.getEntity() != null) cell.removeEntity();
 		}
 	}
 
-	public void setEnigmacreate(boolean b) {
-		this.enigmacreate = b;
+	/**
+	 * Booléen si on peut ouvrir autre fenêtre
+	 * @param b true pour si on peut ouvrir autre fenêtre sinon false
+	 */
+	public void setEnigmaCreate(boolean b) {
+		this.enigmaCreate = b;
 	}
 
 	public void setPop(SpecialPopUp pop) {
 		this.pop = pop;
 	}
 
-	private MapTestScreenCell getRevelantEntity(CaseView actor) {
+	/**
+	 * Retourne la cellule contenant l'entité la plus intéressante
+	 * @param actor case view
+	 * @return la cellule contenant l'entité la plus intéressante
+	 */
+	private MapTestScreenCell getRelevantEntity(CaseView actor) {
 		MapTestScreenCell cell = actor.getCell();
 
 		//on parcours tout les layers à la recherche d'une entité
 		// pour afficher le panneau avec l'entité en premier
 		GameObject entity = actor.getCell().getEntity();
 		if (entity == null) {
-			TiledMap map = popUp.getTileMap();
+			TiledMap map = this.popUp.getTileMap();
 			MapLayers layers = map.getLayers();
 			MapTestScreenCell tmp;
 
 			for (int i = 0; i < 4; i++) {
 				TiledMapTileLayer layer = (TiledMapTileLayer) layers.get(i);
-				tmp = (MapTestScreenCell) layer.getCell(cell.getIndex() % layer.getWidth(), cell.getIndex() / layer.getWidth());
+				tmp = (MapTestScreenCell) layer.getCell(cell.getIndex() % layer.getWidth(),
+						cell.getIndex() / layer.getWidth());
 				if (tmp.getEntity() != null) {
 					cell = tmp;
 				}
 			}
 			//si ya déjà une entité mais c'est une pièce
 		} else if (entity.getImplements().get(TypeEntity.CONTAINER_MANAGER)) {//on regarde si on a quelque chose de mieux
-			TiledMap map = popUp.getTileMap();
+			TiledMap map = this.popUp.getTileMap();
 			MapLayers layers = map.getLayers();
 			MapTestScreenCell tmp;
 
 			for (int i = 0; i < 4; i++) {
 				TiledMapTileLayer layer = (TiledMapTileLayer) layers.get(i);
-				tmp = (MapTestScreenCell) layer.getCell(cell.getIndex() % layer.getWidth(), cell.getIndex() / layer.getWidth());
+				tmp = (MapTestScreenCell) layer.getCell(cell.getIndex() % layer.getWidth(),
+						cell.getIndex() / layer.getWidth());
 				if (tmp.getEntity() != null && !tmp.getEntity().getImplements().get(TypeEntity.CONTAINER_MANAGER)) {
 					cell = tmp;
 				}
@@ -172,16 +193,41 @@ public class CaseListener extends ClickListener {
 		return cell;
 	}
 
+	/**
+	 * Retourne l'écran monopolisant le 2ème popup ou null si aucun
+	 * @return l'écran monopolisant le 2ème popup ou null si aucun
+	 */
 	public static Observer getAvailable() {
-		return available;
+		return CaseListener.available;
 	}
 
+	/**
+	 * Définit l'écran monopolisant le 2ème popup ou null si aucun
+	 * @param available l'écran monopolisant le 2ème popup ou null si aucun
+	 */
 	public static void setAvailable(Observer available) {
 		CaseListener.available = available;
 	}
 
-	public static boolean isAvailable(Observer observer) {
-		if (available == null) return false;
-		return available.equals(observer);
+	/**
+	 * Retourne true si l'écran monopolisant le 2ème popup est cette écran
+	 * @param observer écran
+	 * @return true si l'écran monopolisant le 2ème popup est cette écran
+	 */
+	public static boolean isNotAvailable(Observer observer) {
+		if (CaseListener.available == null) return true;
+		return !CaseListener.available.equals(observer);
+	}
+
+	/**
+	 * Ferme tous les popups
+	 */
+	public static void close(){
+		CasePopUp popUp = CaseListener.caseListener.popUp;
+		if(popUp != null){
+			popUp.clean();
+			popUp.setVisible(false);
+			CaseListener.caseListener.enigmaCreate = false;
+		}
 	}
 }

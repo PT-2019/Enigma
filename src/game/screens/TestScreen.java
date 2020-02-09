@@ -88,8 +88,8 @@ public class TestScreen extends LibgdxScreen {
 				//centre map dans l'écran
 				this.main.getViewport().setCamera(this.map.getCamera());
 				this.main.getCamera().position.set(
-						map.getMapWidth() / 2 - CategoriesMenu.WIDTH / 2f,
-						map.getMapHeight() / 2, 0
+						this.map.getMapWidth() / 2 - CategoriesMenu.WIDTH / 2f,
+						this.map.getMapHeight() / 2, 0
 				);
 			}
 
@@ -99,10 +99,11 @@ public class TestScreen extends LibgdxScreen {
 
 			//écoute inputProcessors
 			//leurs listeners seront appelés...
+			//le premier a recevoir les events
+			if (!noMap) this.listen(new TestMapControl(this.map));
 			this.listen(this.dnd);
 			this.listen(this.hud);
 			this.listen(this.main);
-			if (!noMap) this.listen(new TestMapControl(map));
 		} catch (Exception e) {
 			System.err.println("échec création testScreen");
 			e.printStackTrace();
@@ -170,7 +171,7 @@ public class TestScreen extends LibgdxScreen {
 
 	@Override
 	public MapTestScreen getMap() {
-		return map;
+		return this.map;
 	}
 
 	/**

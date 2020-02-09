@@ -7,7 +7,7 @@ package data;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 5.0 23/01/2020
+ * @version 6.0
  * @since 5.0 23/01/2020
  */
 public enum EditorState {
@@ -16,13 +16,27 @@ public enum EditorState {
 	 * une énigme
 	 */
 	NORMAL,
+
 	/**
 	 * Pas de glisser déposer, cliquer sur une entité la supprime, sauf si elle contient
 	 * d'autres entités
 	 */
 	ERASE,
+
 	/**
 	 * Permet de déplacer des entités
 	 */
-	MOVE
+	MOVE,
+
+	/**
+	 * En cours de simulation
+	 * @since 6.0
+	 */
+	SIMULATION,
+
+	/**
+	 * En cours de zoom
+	 * @since 6.1
+	 */
+	ZOOM
 }

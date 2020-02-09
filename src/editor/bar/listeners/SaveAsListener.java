@@ -2,6 +2,7 @@ package editor.bar.listeners;
 
 import api.ui.CustomOptionPane;
 import api.utils.Utility;
+import com.badlogic.gdx.Gdx;
 import common.data.MapData;
 import common.hud.EnigmaOptionPane;
 import common.hud.EnigmaWindow;
@@ -9,6 +10,7 @@ import common.map.MapTestScreen;
 import common.save.DataSave;
 import common.save.EmptyMapGenerator;
 import common.utils.Logger;
+import data.EnigmaScreens;
 import data.config.Config;
 import game.EnigmaGame;
 import game.screens.TestScreen;
@@ -64,9 +66,31 @@ public class SaveAsListener extends MenuListener {
 				}
 			}
 
+			String path = Config.MAP_FOLDER + mapName;
+
+			System.out.println("save?");
+
+			//sauvegarde
 			MapTestScreen map = ((TestScreen) EnigmaGame.getCurrentScreen()).getMap();
-			EmptyMapGenerator.save(Config.MAP_FOLDER + mapName, map.getTiledMap(), map.getEntities());
+			EmptyMapGenerator.save(path, map.getTiledMap(), map.getEntities());
+
+			System.out.println("save?ok");
+
+			//change la map avant de recharger
+			EnigmaGame.getCurrentScreen().setMap(path+Config.MAP_EXTENSION);
+
+			Gdx.app.postRunnable(() -> {
+				System.out.println("reload?");
+				//rechargement de la map
+				EnigmaGame.reload(EnigmaScreens.TEST.name());
+				//charge les entités sur la bonne map !
+				EmptyMapGenerator.load(path+Config.MAP_EXTENSION);
+				System.out.println("reload?ok");
+			});
+
+
 			//TODO: message ok
+
 		}
 	}
 
