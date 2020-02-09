@@ -19,6 +19,7 @@ public class ContentManager extends Content {
     public final static int MULTI_STATE = 1;
     public final static int CREATE_STATE = 2;
     public final static int LOBBY_STATE = 3;
+    private int state;
 
     private ContentManager() {
         super(new EnigmaPanel());
@@ -46,19 +47,31 @@ public class ContentManager extends Content {
         switch (state){
             case SOLO_STATE:
                 Solo.getInstance().refresh(NO_PRECISED_STATE);
+                NavBar.getInstance().refresh(NavBar.SOLO_STATE);
+                ActionBar.getInstance().refresh(ActionBar.NO_PRECISED_STATE);
                 break;
             case MULTI_STATE:
                 MultiPlayer.getInstance().refresh(NO_PRECISED_STATE);
+                NavBar.getInstance().refresh(NavBar.MULTI_STATE);
+                ActionBar.getInstance().refresh(ActionBar.NO_PRECISED_STATE);
                 break;
             case CREATE_STATE:
                 Create.getInstance().refresh(NO_PRECISED_STATE);
+                NavBar.getInstance().refresh(NavBar.CREATE_STATE);
+                ActionBar.getInstance().refresh(ActionBar.CREATE_STATE);
                 break;
             case LOBBY_STATE:
                 Lobby.getInstance().refresh(NO_PRECISED_STATE);
+                NavBar.getInstance().refresh(NavBar.MULTI_STATE);
                 break;
         }
 
+        this.state = state;
         this.content.revalidate();
+    }
+
+    public int getState(){
+        return this.state;
     }
 
     public static ContentManager getInstance(){

@@ -4,6 +4,9 @@ import common.hud.EnigmaButton;
 import common.hud.EnigmaPanel;
 import common.hud.ui.EnigmaButtonUI;
 import data.config.EnigmaUIValues;
+import game.hmi.listener.redirect.CreateRedirectListener;
+import game.hmi.listener.redirect.MultiRedirectListener;
+import game.hmi.listener.redirect.SoloRedirectListener;
 
 import java.awt.*;
 
@@ -54,12 +57,16 @@ public class NavBar extends Content {
 
     @Override
     public void initContent() {
-        this.content.setLayout(new FlowLayout(FlowLayout.LEFT));
+        this.content.setLayout(new FlowLayout(FlowLayout.LEADING));
         this.content.getComponentUI().setAllBackgrounds(Color.BLACK,Color.BLACK,Color.BLACK);
 
         this.solo.setComponentUI(this.normalUI);
         this.multi.setComponentUI(this.normalUI);
         this.create.setComponentUI(this.normalUI);
+
+        this.solo.addActionListener(new SoloRedirectListener());
+        this.multi.addActionListener(new MultiRedirectListener());
+        this.create.addActionListener(new CreateRedirectListener());
 
         this.content.add(this.solo);
         this.content.add(this.multi);

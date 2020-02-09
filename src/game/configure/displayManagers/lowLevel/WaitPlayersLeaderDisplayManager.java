@@ -202,12 +202,12 @@ public class WaitPlayersLeaderDisplayManager implements DisplayManager {
 		String[] infos = new String[infoCount];
 		infos[0] = "Partie : " + gameConfig.getName();
 		infos[1] = "Description : " + gameConfig.getDescription();
-		Player owner = gameConfig.getOwner();
+		/*Player owner = gameConfig.getOwner();
 		//TODO: hum ???????????????, owner est null????
 		if (owner == null)
 			infos[2] = "Chef de groupe : NULL";
 		else
-			infos[2] = "Chef de groupe : " + owner.getName();
+			infos[2] = "Chef de groupe : " + owner.getName();*/
 		infos[3] = "Map : " + gameConfig.getMap();
 		infos[4] = "Durée : " + gameConfig.getDuration() + " min";
 		infos[5] = "Nombre de joueurs : " + gameConfig.getTotalPlayers() + "/" + gameConfig.getMaxGamePlayers();
@@ -232,11 +232,11 @@ public class WaitPlayersLeaderDisplayManager implements DisplayManager {
 		for (int i = 0; i < GameConfiguration.MAX_PLAYERS; i++) {
 			EnigmaLabel name = new EnigmaLabel();
 			if (i < gameConfig.getTotalPlayers()) {
-				String pName = gameConfig.getAllPlayers().get(i).getName();
+				/*String pName = gameConfig.getAllPlayers().get(i).getName();
 				name.setText(pName);
 
 				if (pName.equals(UserConfiguration.getInstance().getData().getName()))
-					name.getComponentUI().setAllBackgrounds(blue, blue, blue);
+					name.getComponentUI().setAllBackgrounds(blue, blue, blue);*/
 			}
 
 			if (i < GameConfiguration.MAX_PLAYERS - 1) {

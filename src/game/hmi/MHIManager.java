@@ -1,23 +1,38 @@
 package game.hmi;
 
+import api.ui.CustomPanel;
 import common.hud.EnigmaPanel;
 import common.hud.EnigmaWindow;
 import common.language.GameLanguage;
+import data.config.GameConfiguration;
+import data.config.UserConfiguration;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class MHIManager {
+public class MHIManager extends Content {
     private final static MHIManager instance = new MHIManager();
-    private EnigmaPanel content;
+
+    /**
+     * Etats
+     */
+    public final static int GAME_STATE = 0;
+    public final static int CONFIGURE_STATE = 1;
 
     private MHIManager(){
+        super(new EnigmaPanel());
+
+        this.initContent();
+        this.refresh(CONFIGURE_STATE);
+    }
+
+    @Override
+    protected void initContent() {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridheight = 1;
         gbc.fill = GridBagConstraints.BOTH;
         gbc.weightx = 1;
 
-        this.content = new EnigmaPanel();
         this.content.setLayout(new GridBagLayout());
 
         gbc.gridx = 1;
@@ -37,13 +52,20 @@ public class MHIManager {
         gbc.gridy = 3;
         gbc.weighty = 100;
         this.content.add(ContentManager.getInstance().getContent(),gbc);
-
-        ContentManager.getInstance().refresh(ContentManager.SOLO_STATE);
-        NavBar.getInstance().refresh(NavBar.SOLO_STATE);
-        ActionBar.getInstance().refresh(Content.NO_PRECISED_STATE);
     }
 
-    public EnigmaPanel getContent(){
+    @Override
+    public void refresh(int state) {
+        switch (state){
+            case GAME_STATE:
+                break;
+            case CONFIGURE_STATE:
+            default:
+                break;
+        }
+    }
+
+    public CustomPanel getContent(){
         return this.content;
     }
 

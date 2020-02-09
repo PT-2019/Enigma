@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GameData>
+  <author>xXDarkBGXx</author>
+  <duration>2</duration>
+  <name>testS</name>
+  <description>Allez-vous trouver la sortie? Moi je pense que vous pouvez pas battre le jeu!</description>
+  <mapName>test</mapName>
+  <maxPLayers>1</maxPLayers>
+</GameData>

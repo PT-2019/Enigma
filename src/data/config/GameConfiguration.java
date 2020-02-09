@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 3.0
+ * @version 6.0
  * @since 3.0
  */
 public class GameConfiguration {
@@ -52,12 +52,22 @@ public class GameConfiguration {
 	private String description;
 	/**
 	 * Chef de la partie
+	 * @deprecated
 	 */
-	private Player owner;
+	private Player owner2;
+	/**
+	 * Chef de la partie
+	 */
+	private String owner;
+	/**
+	 * Liste des joueurs, y compris le chef de la partie
+	 * @deprecated
+	 */
+	private ArrayList<Player> players2;
 	/**
 	 * Liste des joueurs, y compris le chef de la partie
 	 */
-	private ArrayList<Player> players;
+	private ArrayList<String> players;
 
 	private GameConfiguration() {
 		this.duration = 5;
@@ -210,7 +220,7 @@ public class GameConfiguration {
 	 *
 	 * @return Chef de la partie
 	 */
-	public Player getOwner() {
+	public String getOwner() {
 		return this.owner;
 	}
 
@@ -219,7 +229,7 @@ public class GameConfiguration {
 	 *
 	 * @param owner Chef de la partie
 	 */
-	public void setOwner(Player owner) {
+	public void setOwner(String owner) {
 		this.owner = owner;
 		if (!this.players.contains(this.owner))
 			this.players.add(this.owner);
@@ -230,7 +240,7 @@ public class GameConfiguration {
 	 *
 	 * @param player Joueur ayant rejoint
 	 */
-	public void playerJoined(Player player) {
+	public void playerJoined(String player) {
 		if (this.players.size() < this.maxGamePlayers)
 			this.players.add(player);
 	}
@@ -250,8 +260,8 @@ public class GameConfiguration {
 	 * @return Une liste des joueurs
 	 */
 	@SuppressWarnings("unchecked")
-	public ArrayList<Player> getAllPlayers() {
-		return (ArrayList<Player>) this.players.clone();
+	public ArrayList<String> getAllPlayers() {
+		return (ArrayList<String>) this.players.clone();
 	}
 
 	/**

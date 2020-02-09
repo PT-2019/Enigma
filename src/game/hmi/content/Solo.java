@@ -11,6 +11,9 @@ import common.utils.Logger;
 import data.config.Config;
 import data.config.EnigmaUIValues;
 import game.hmi.Content;
+import game.hmi.listener.action.DeleteListener;
+import game.hmi.listener.action.MoreListener;
+import game.hmi.listener.action.PlayListener;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,7 +23,6 @@ import java.util.ArrayList;
 public class Solo extends Content {
     private final static Solo instance = new Solo();
     private EnigmaPanel listComponent;
-    private EnigmaButtonUI normalUI;
 
     /**
      * Textes
@@ -46,11 +48,6 @@ public class Solo extends Content {
         this.content.add(scroll);
         this.content.setBorder(BorderFactory.createEmptyBorder(borderSize,borderSize,borderSize,borderSize));
 
-        this.normalUI = new EnigmaButtonUI();
-        this.normalUI.setAllBackgrounds(Color.DARK_GRAY,Color.DARK_GRAY,Color.DARK_GRAY);
-        this.normalUI.setAllShowedBorders(EnigmaUIValues.ALL_BORDER_HIDDEN,EnigmaUIValues.ALL_BORDER_HIDDEN,EnigmaUIValues.ALL_BORDER_HIDDEN);
-        this.normalUI.setAllForegrounds(Color.WHITE,Color.WHITE,Color.WHITE);
-
         this.initContent();
         this.refresh(NO_PRECISED_STATE);
     }
@@ -60,10 +57,19 @@ public class Solo extends Content {
 
     @Override
     public void refresh(int state) {
+        Color blue = new Color(0, 136, 193);
+        Color green = new Color(90, 191, 17);
+        Color red = new Color(193, 7, 0);
         ArrayList<String> games = Utility.getAllGameName();
         int size = 5;
         int borderSize = 5;
         int borderSize2 = 2;
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridy = 1;
+        gbc.gridwidth = 1;
+        gbc.gridheight = 1;
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.weighty = 1;
 
         if(games.size() > size)
             size = games.size();
@@ -91,8 +97,10 @@ public class Solo extends Content {
                 EnigmaPanel eTexts = new EnigmaPanel();
                 EnigmaPanel eValues = new EnigmaPanel();
                 EnigmaPanel eButtons = new EnigmaPanel();
+                EnigmaPanel eMainButtons = new EnigmaPanel();
                 EnigmaButton play = new EnigmaButton(PLAY);
                 EnigmaButton delete = new EnigmaButton(DELETE);
+                EnigmaButton more = new EnigmaButton("+");
                 EnigmaLabel name = new EnigmaLabel(NAME + ": " + data.getName());
                 EnigmaLabel description = new EnigmaLabel(DESCRIPTION + ": " + data.getDescription());
                 EnigmaLabel author = new EnigmaLabel(AUTHOR + ": " + data.getAuthor());
@@ -102,13 +110,27 @@ public class Solo extends Content {
 
                 element.setPreferredSize(new Dimension(element.getPreferredSize().width, 130));
 
+                play.addActionListener(new PlayListener(data));
+                delete.addActionListener(new DeleteListener(data));
+                more.addActionListener(new MoreListener(new SeeMore(data)));
+
                 element.setLayout(new GridLayout(1, 3));
                 eTexts.setLayout(new GridLayout(3, 1));
                 eValues.setLayout(new GridLayout(3, 1));
-                eButtons.setLayout(new GridLayout(2, 1));
+                eButtons.setLayout(new GridBagLayout());
+                eMainButtons.setLayout(new GridLayout(2,1));
 
                 eValues.setBorder(BorderFactory.createMatteBorder(0, borderSize2, 0, 0, Color.DARK_GRAY));
                 eButtons.setBorder(BorderFactory.createMatteBorder(0, borderSize2, 0, 0, Color.DARK_GRAY));
+
+                eMainButtons.add(play);
+                eMainButtons.add(delete);
+                gbc.gridx = 1;
+                gbc.weightx = 5;
+                eButtons.add(eMainButtons,gbc);
+                gbc.gridx = 2;
+                gbc.weightx = 1;
+                eButtons.add(more,gbc);
 
                 eTexts.add(name);
                 eTexts.add(description);
@@ -116,8 +138,6 @@ public class Solo extends Content {
                 eValues.add(map);
                 eValues.add(nbPlayers);
                 eValues.add(duration);
-                eButtons.add(play);
-                eButtons.add(delete);
                 element.add(eTexts);
                 element.add(eValues);
                 element.add(eButtons);
@@ -131,18 +151,26 @@ public class Solo extends Content {
 
                 element.setBorder(BorderFactory.createMatteBorder(borderSize, borderSize, borderSize, borderSize, Color.DARK_GRAY));
                 element.getComponentUI().setAllBackgrounds(Color.GRAY);
+
                 name.getComponentUI().setAllBackgrounds(Color.GRAY);
                 description.getComponentUI().setAllBackgrounds(Color.GRAY);
                 author.getComponentUI().setAllBackgrounds(Color.GRAY);
                 map.getComponentUI().setAllBackgrounds(Color.GRAY);
                 duration.getComponentUI().setAllBackgrounds(Color.GRAY);
                 nbPlayers.getComponentUI().setAllBackgrounds(Color.GRAY);
+
                 play.setComponentUI(bui);
                 play.setBorderPainted(true);
-                play.getComponentUI().setHoveredBackground(new Color(100, 214, 20));
+                play.getComponentUI().setHoveredBackground(green);
+                play.getComponentUI().setPressedBackground(green);
                 delete.setComponentUI(bui);
                 delete.setBorderPainted(true);
-                delete.getComponentUI().setHoveredBackground(new Color(193, 7, 0));
+                delete.getComponentUI().setHoveredBackground(red);
+                delete.getComponentUI().setPressedBackground(red);
+                more.setComponentUI(bui);
+                more.setBorderPainted(true);
+                more.getComponentUI().setHoveredBackground(blue);
+                more.getComponentUI().setPressedBackground(blue);
 
                 name.setBorder(BorderFactory.createMatteBorder(0, borderSize, 0, 0, Color.GRAY));
                 description.setBorder(BorderFactory.createMatteBorder(0, borderSize, 0, 0, Color.GRAY));
@@ -152,10 +180,12 @@ public class Solo extends Content {
                 duration.setBorder(BorderFactory.createMatteBorder(0, borderSize, 0, 0, Color.GRAY));
                 play.setBorder(BorderFactory.createMatteBorder(0, 0, borderSize2 / 2, 0, Color.DARK_GRAY));
                 delete.setBorder(BorderFactory.createMatteBorder(borderSize2 / 2, 0, 0, 0, Color.DARK_GRAY));
-
+                more.setBorder(BorderFactory.createMatteBorder(0, borderSize2, 0, 0, Color.DARK_GRAY));
                 this.listComponent.add(element);
             }
         }
+
+        this.content.revalidate();
     }
 
     public static Solo getInstance(){
