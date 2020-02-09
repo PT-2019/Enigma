@@ -2,8 +2,6 @@ package data;
 
 import api.utils.annotations.Temporary;
 
-import java.util.ArrayList;
-
 /**
  * Constantes à traduire et ajouter au language.
  *
@@ -109,8 +107,19 @@ public interface NeedToBeTranslated {
 
 	// DragAndDrop
 
-	String DRAG_AND_DROP_FAILED = "Déplacement raté. Position invalide.";
+	String DRAG_AND_DROP_NOT_IN_MAP = "Déplacement raté. En dehors de la map.";
 	String DRAG_AND_DROP_FAILED_ZOOM = "Déplacement raté. Veuillez rétablir le zoom.";
+	String DRAG_AND_DROP_FAILED_CONTAINER = "Déplacement raté. Ne peut être directement posé.";
+	String DRAG_AND_DROP_NOT_SUPPORTED = "Déplacement raté. Action non supportée.";
+	String DRAG_AND_DROP_EXIT_FAILED = "Déplacement raté. Une seule sortie par map.";
+	String DRAG_AND_DROP_FAILED_MENU = "Déplacement raté. Dans le menu.";
+	String DRAG_AND_DROP_ALREADY_TAKEN = "Déplacement raté. Emplacement déjà pris.";
+	String DRAG_AND_DROP_NOT_EMPTY_SAVE = "Il y a des entités à cette position.";
+	String DRAG_AND_DROP_ENTITY_UNREACHABLE = "bloque.";
+	String DELETE_FAILED_IN_ENIGMA_COND = "Impossible. Utilisé dans une condition.";
+	String DELETE_FAILED_IN_ENIGMA_OP = "Impossible. Utilisé dans une opération.";
+	String DELETE_FAILED_CHILD_ENIGMA_COND = "Impossible. Enfant utilisé dans une condition.";
+	String DELETE_FAILED_CHILD_ENIGMA_OP = "Impossible. Enfant utilisé dans une opération.";
 
 	// CaseListener
 	String ERASE_FAILED_ZOOM = "Effacement raté. Veuillez rétablir le zoom.";
@@ -140,4 +149,7 @@ public interface NeedToBeTranslated {
 	String WIDTH = "Largeur";
 	String HEIGHT = "Hauteur";
 	String EMPTY = "Vide";
+
+	//ManageEnigmasSeeView
+	String DELETE = "Supprimer";
 }

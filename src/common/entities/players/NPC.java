@@ -232,6 +232,7 @@ public class NPC extends GameActorTextured implements Entity, Living, Container,
 		//si chargement fini et si oui alors fini le chargement des items en récupérant selon ids.
 		SaveInventory.load(data.get(PlayerSave.INVENTORY.getKey(), String.class));
 		this.name = data.get(PlayerSave.NAME.getKey(), String.class);
+		if(this.name.isEmpty()||this.name.isBlank()) this.name = this.key;
 	}
 
 	/**
@@ -243,7 +244,7 @@ public class NPC extends GameActorTextured implements Entity, Living, Container,
 	public void setJson(String json, String key) {
 		this.json = json;
 		this.key = key;
-		if(this.name.isEmpty()) this.name= key;
+		if(this.name.isEmpty()||this.name.isBlank()) this.name= key;
 	}
 
 	@Override

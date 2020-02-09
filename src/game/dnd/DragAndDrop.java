@@ -79,6 +79,7 @@ public class DragAndDrop extends InputListener {
 		//reset cursor
 		EditorLauncher.getInstance().getWindow().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 
+		//si zoom activé. Fin.
 		if(EditorLauncher.containsState(EditorState.ZOOM)){
 			Logger.printDebug("DragAndDrop#up", "En mode Zoom");
 
@@ -101,30 +102,35 @@ public class DragAndDrop extends InputListener {
 
 		//si on la pas mis sur le menu donc partie de la map non visible car cachée par celui-ci
 		boolean retour = !GameActorUtilities.contains(this.container, pos);
-		if (retour) {//si pas caché
+		String message;
+		if (retour) {//si pas caché par le menu
 			MapTestScreen map = ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap();
 			//on regarde si on l'a mis sur la map
-			retour = map.loadEntity(this.dragged.getEntity(), pos) != null;
-		}/* else {
-			Gdx.app.debug("DragAndDrop", "dans le menu");
-		}*/
-
-		if (retour) {//placé
-			//disparaît
-			this.dragged.remove();
+			MapTestScreen.LoadedEntity loadedEntity = map.loadEntity(this.dragged.getEntity(), pos);
+			if(loadedEntity.entity == null){
+				//affiche l'erreur
+				message = loadedEntity.message;
+			} else {
+				//si placé alors disparaît
+				this.dragged.remove();
+				return;
+			}
 		} else {
-			//fade out si pas placé
-			this.dragged.addAction(
-					Actions.sequence(
-							Actions.fadeOut(0.2f),
-							Actions.hide(),
-							Actions.run(this.dragged::remove)
-					)
-			);
-
-			//message
-			EnigmaGame.getCurrentScreen().showToast(NeedToBeTranslated.DRAG_AND_DROP_FAILED);
+			//dans le menu, affiche l'erreur
+			message = NeedToBeTranslated.DRAG_AND_DROP_FAILED_MENU;
 		}
+
+		//fade out si pas placé
+		this.dragged.addAction(
+				Actions.sequence(
+						Actions.fadeOut(0.2f),
+						Actions.hide(),
+						Actions.run(this.dragged::remove)
+				)
+		);
+
+		//message
+		EnigmaGame.getCurrentScreen().showToast(message);
 	}
 
 	// Drag

@@ -80,7 +80,7 @@ public class EmptyMapGenerator {
 
 		//Récupère les énigmes
 		ArrayList<Enigma> enigmas = new ArrayList<>();
-		for (GameObject entity : entities.getAllObjectsByClass(GameObject.class, true)) {
+		for (GameObject entity : entities.getAllObjectsByClass(GameObject.class)) {
 			if (entity instanceof EnigmaContainer) {
 				Iterator<Enigma> enigmasRaw = ((EnigmaContainer) entity).getAllEnigmas();
 				while (enigmasRaw.hasNext()) {

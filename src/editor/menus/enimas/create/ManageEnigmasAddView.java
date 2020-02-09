@@ -79,7 +79,7 @@ public class ManageEnigmasAddView extends AbstractSubPopUpView {
 	/**
 	 * Vue du menu d'ajout d'une énigme
 	 * @param parent parent
-	 * @param object
+	 * @param object object contenant l'énigme
 	 */
 	public ManageEnigmasAddView(ManageEnigmasView parent, GameObject object) {
 		super(TITLE, parent, true);

@@ -4,6 +4,8 @@ import api.libgdx.actor.GameActor;
 import api.libgdx.utils.Border;
 import api.libgdx.utils.Bounds;
 import api.libgdx.utils.LibgdxUtility;
+import api.utils.AsciiColor;
+import api.utils.PrintColor;
 import api.utils.Utility;
 import api.utils.annotations.ConvenienceMethod;
 import com.badlogic.gdx.Gdx;
@@ -400,7 +402,6 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 							|| !manager) {//sinon cela dépends de ce que je veux placer
 						c.setEntity(entity);
 						tileLayer.setCell(j, i, c);
-						//PrintColor.println("Placement de "+entity+" sur "+ent, AnsiiColor.CYAN);
 					}
 				}
 			}
@@ -411,21 +412,20 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 	 * Supprime une entité de la map
 	 *
 	 * @param entity l'entité
-	 * @return true si entité supprimée sinon false
+	 * @return null si aucun problème sinon la string contenu l'error
 	 * @since 5.1
 	 */
-	public boolean removeEntity(GameObject entity) {
+	public String removeEntity(GameObject entity) {
 		Logger.printDebug("deleteEntity", entity + " (" +
 				entity.getGameObjectWidth() + " " + entity.getGameObjectHeight() + ")"
 		);
-		//System.out.println(this.added);
 		if (this.objects.contains(entity)) {//peut la supprimer
 			Vector2 pos = this.objects.getVectorByObject(entity);
 			this.objects.remove(pos);
 			if (pos.x >= 0 && pos.y >= 0) this.delete(entity, pos);
-			return true;
+			return null;
 		}
-		return false;
+		return "";
 	}
 
 	/**
@@ -437,14 +437,14 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 	 */
 	private void delete(GameObject entity, Vector2 start) {
 		HashMap<Vector2, GameObject> parents = this.getParentObject(start, entity, true);
-		Array<Array<Float>> entities = null;
+		HashMap<GameObject, Array<Float>> entities = null;
 		Array<GameObject> objects = null;
 		if (parents != null && !parents.isEmpty()) {
 			objects = new Array<>();
 			for (GameObject obj : parents.values()) {
 				objects.add(obj);
 			}
-			entities = new Array<>();
+			entities = new HashMap<>();
 		}
 
 		//on parcours toutes les niveaux de la map et on y ajoute les tiles de l'entité
@@ -460,7 +460,7 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 			if (objects != null) {
 				entities.clear();
 				for (GameObject o : new Array.ArrayIterator<>(objects)) {
-					entities.add(o.getTiles(Utility.stringToEnum(tileLayer.getName(), Layer.values())));
+					entities.put(o, o.getTiles(Utility.stringToEnum(tileLayer.getName(), Layer.values())));
 				}
 			}
 
@@ -477,21 +477,23 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 					c.setEntity(null);
 					//si on a des tiles a mettre
 					if (entities != null) {
-						//regarde parmi tous les objets depuis lequels on peut prendre des tiles
-						for (Array<Float> entitiesArray : new Array.ArrayIterator<>(entities)) {
-							//si possible
-							if (entitiesArray != null && index < entitiesArray.size) {
-								//Parcours de toutes les entités ...
-								for (Map.Entry<Vector2, GameObject> entry : parents.entrySet()) {
-									//... et regarde quelle entité on prends les tiles
-									if (LibgdxUtility.containsBottomLeftOrigin(entry.getValue(), entry.getKey(), j, i)) {
-										int indexR = LibgdxUtility.calculatesOffset(new Vector2(j, i + 1),
-												entry.getKey(), entry.getValue());
-										if(indexR < entitiesArray.size) ind = MathUtils.ceil(entitiesArray.get(indexR));
-										else ind = MathUtils.ceil(entitiesArray.get(entitiesArray.size-1));
-										c.setEntity(entry.getValue());
-										break;
-									}
+						//parcours des entités
+						for (Map.Entry<Vector2, GameObject> entry : parents.entrySet()) {
+							//info
+							GameObject gameObject = entry.getValue();
+							Vector2 pos = entry.getKey();
+							//récupère ses tiles
+							Array<Float> entitiesArray = entities.get(gameObject);
+							//????
+							if (entitiesArray != null ) {
+								if (LibgdxUtility.containsBottomLeftOrigin(gameObject, pos, j, i+1)) {
+									int offset =  LibgdxUtility.calculatesOffset(
+											gameObject, //gameObject pour indexer selon sa largeur
+											new Vector2(j, i+1) //la case qui est dedans
+									);
+									ind = (int) Math.ceil(entitiesArray.get(offset));
+									c.setEntity(gameObject);
+									break;
 								}
 							}
 						}
@@ -509,22 +511,42 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 	}
 
 	/**
-	 * Re-instancie les entités
-	 *
+	 * Renvoi toutes les entités qui font collision avec parent
+	 * @param start position parent
+	 * @param entity parent
+	 * @return map des objects qui font collision avec parent mais ne sont pas ceux contenus dans parent
 	 * @since 5.2
 	 */
 	@ConvenienceMethod
 	protected HashMap<Vector2, GameObject> getParentObject(Vector2 start, GameObject entity){
-		return getParentObject(start, entity, false);
+		return getParentObject(start, entity, false, false);
 	}
 
 	/**
-	 * Re-instancie les entités
-	 *
-	 * @since 6.2
+	 * Renvoi toutes les entités qui font collision avec parent
+	 * @param start position parent
+	 * @param entity parent
+	 * @param withDelete supprime toutes les entités contenues dans le parent
+	 * @return map des objects qui font collision avec parent mais ne sont pas ceux contenus dans parent
+	 * @since 5.2
 	 */
-	protected HashMap<Vector2, GameObject> getParentObject(Vector2 start, GameObject entity, boolean withDelete) {
-		ArrayList<Vector2> delete = new ArrayList<>();
+	@ConvenienceMethod
+	protected HashMap<Vector2, GameObject> getParentObject(Vector2 start, GameObject entity, boolean withDelete){
+		return getParentObject(start, entity, withDelete, false);
+	}
+
+	/**
+	 * Renvoi toutes les entités qui font collision avec parent
+	 * @param start position parent
+	 * @param entity parent
+	 * @param withDelete supprime toutes les entités contenues dans le parent
+	 * @param all mêmes les objets qui sont dans parent sont retournés
+	 * @return map des objects qui font collision avec parent mais ne sont pas ceux contenus dans parent
+	 * @since 5.2
+	 */
+	protected HashMap<Vector2, GameObject> getParentObject(Vector2 start, GameObject entity,
+	                                                       boolean withDelete, boolean all) {
+		HashMap<Vector2, GameObject> delete = new HashMap<>();
 		HashMap<Vector2, GameObject> obj = new HashMap<>();
 		Rectangle ent = new Rectangle(start.x, start.y, entity.getGameObjectWidth(), entity.getGameObjectHeight());
 		for (Map.Entry<Vector2, ArrayList<GameObject>> item : this.objects.getOriginalMap().entrySet()) {
@@ -543,13 +565,13 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 						}
 						//sinon on supprime le contenu
 						else {
-							delete.add(item.getKey());
+							delete.put(item.getKey(), object);
 						}
 					} else {
 						//sinon on renvoi le conteneur
 						if(withDelete) Logger.printDebug("DeleteGetParent", item.toString() + "(" + ent + " overlaps " + other + ")");
 						obj.put(item.getKey(), object);
-						return obj;
+						if(!all) return obj;
 					}
 				}
 			}
@@ -557,10 +579,13 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 
 		if(withDelete) {
 			//suppression des contenus
-			for (Vector2 v : delete) {
-				this.objects.remove(v);
+			for (Vector2 v : delete.keySet()) {
+				//delete
+				this.remove(this.objects.getFirstEntry(v).getEntity());
 			}
 		}
+
+		if(all){ obj.putAll(delete); }
 
 		return obj;
 	}

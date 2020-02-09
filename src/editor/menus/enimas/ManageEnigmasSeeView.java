@@ -4,25 +4,33 @@ import common.enigmas.Advice;
 import common.enigmas.Enigma;
 import common.enigmas.condition.Condition;
 import common.enigmas.operation.Operation;
+import common.entities.GameObject;
+import common.entities.items.Floor;
+import common.entities.types.EnigmaContainer;
+import common.hud.EnigmaButton;
 import common.hud.EnigmaLabel;
 import common.hud.ui.EnigmaLabelUI;
 import common.utils.Logger;
-import api.utils.Utility;
 import common.hud.EnigmaPanel;
+import data.NeedToBeTranslated;
+import editor.bar.edition.ActionTypes;
+import editor.bar.edition.ActionsManager;
+import editor.bar.edition.actions.EditorActionFactory;
 import editor.menus.AbstractPopUpView;
 import editor.menus.AbstractSubPopUpView;
-import editor.menus.AvailableOptionRunnable;
-import editor.menus.AvailablePopUpOption;
 import editor.menus.Drawable;
-import editor.menus.OptionRunnableFactory;
+import game.EnigmaGame;
 
 
+import javax.swing.BorderFactory;
 import javax.swing.JScrollPane;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.util.EnumMap;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Iterator;
 
 /**
@@ -47,6 +55,11 @@ public class ManageEnigmasSeeView extends AbstractSubPopUpView implements Drawab
 	private static final String CLUES = "Indices";
 
 	/**
+	 * Object contenant l'énigme
+	 */
+	private final EnigmaContainer object;
+
+	/**
 	 * Menu extra
 	 */
 	private EnigmaPanel extra;
@@ -54,13 +67,15 @@ public class ManageEnigmasSeeView extends AbstractSubPopUpView implements Drawab
 	/**
 	 * Vue de l'item sélectionné
 	 * @param parent parent
+	 * @param object Object contenant l'énigme
 	 */
-	ManageEnigmasSeeView(AbstractPopUpView parent) {
+	ManageEnigmasSeeView(AbstractPopUpView parent, GameObject object) {
 		super(TITLE, parent, true);
+		this.object = (EnigmaContainer) object;
 	}
 
 	void setChecked(Enigma checked) {
-		Logger.printDebug("Enigma#See", checked.toLongString());
+		Logger.printDebugALL("Enigma#See", checked.toLongString());
 
 		this.content.removeAll();
 		this.extra = new EnigmaPanel(new GridLayout(1,1));
@@ -141,7 +156,15 @@ public class ManageEnigmasSeeView extends AbstractSubPopUpView implements Drawab
 		panelS.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		panelS.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 
+		EnigmaPanel deleteP = new EnigmaPanel(new GridBagLayout());
+		EnigmaButton delete = new EnigmaButton(NeedToBeTranslated.DELETE);
+		delete.addActionListener(new DeleteEnigma(checked, this));
+		final int margin = 5;
+		deleteP.setBorder(BorderFactory.createEmptyBorder(margin, 0, margin, 0));
+		deleteP.add(delete);
+
 		this.content.add(panelS, BorderLayout.CENTER);
+		this.content.add(deleteP, BorderLayout.SOUTH);
 		this.content.revalidate();
 	}
 
@@ -163,5 +186,49 @@ public class ManageEnigmasSeeView extends AbstractSubPopUpView implements Drawab
 
 	@Override
 	public void initComponent() {
+	}
+
+	/**
+	 * Listener de la suppression d'une énigme.
+	 *
+	 * @author Jorys-Micke ALAÏS
+	 * @author Louka DOZ
+	 * @author Loic SENECAT
+	 * @author Quentin RAMSAMY-AGEORGES
+	 *
+	 * @version 6.0 09/02/2020
+	 * @since 6.0 09/02/2020
+	 */
+	private static class DeleteEnigma implements ActionListener {
+		private final Enigma checked;
+		private final AbstractPopUpView parent;
+		private EnigmaContainer entity;
+
+		DeleteEnigma(Enigma checked, ManageEnigmasSeeView view) {
+			this.checked = checked;
+			this.parent = view.parent;
+			this.entity = view.object;
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			this.entity.removeEnigma(this.checked);
+			//ajout à l'historique
+			ActionsManager.getInstance().add(
+					EditorActionFactory.enigma(
+							ActionTypes.REMOVE_ENIGMA,
+							this.entity,
+							this.checked,
+							() -> {
+								this.parent.invalidateDrawable();
+								this.parent.getCardLayout()
+									.show(this.parent.getPanel(), ManageEnigmasView.MENU);}
+					)
+			);
+			//EnigmaGame.getCurrentScreen().showToast(NeedToBeTranslated.REMOVE_ENIGMA);
+			this.parent.invalidateDrawable();
+			this.parent.getCardLayout()
+					.show(this.parent.getPanel(), ManageEnigmasView.MENU);
+		}
 	}
 }

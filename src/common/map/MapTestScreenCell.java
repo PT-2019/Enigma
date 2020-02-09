@@ -66,7 +66,7 @@ public class MapTestScreenCell extends TiledMapTileLayer.Cell {
 	/**
 	 * Vide la case
 	 */
-	public boolean removeEntity() {
+	public String removeEntity() {
 		return ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap().removeEntity(entity);
 	}
 }

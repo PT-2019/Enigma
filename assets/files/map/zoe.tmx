@@ -293,6 +293,109 @@
                 <property name="LOCKED" value="false"/>
             </properties>
         </object>
+        <object height="2.0" id="21" name="entity" width="2.0" x="-25.0" y="-25.0">
+            <properties>
+                <property name="className" value="common.entities.players.Monster"/>
+                <property name="y2" value="-25.0"/>
+                <property name="FLOOR2" value="4"/>
+                <property name="JSON" value="assets/entities/monsters/monsters.json"/>
+                <property name="NAME" value=""/>
+                <property name="KEY" value="rat"/>
+            </properties>
+        </object>
+        <object height="2.0" id="17" name="entity" width="2.0" x="7.0" y="41.0">
+            <properties>
+                <property name="className" value="common.entities.players.NPC"/>
+                <property name="y2" value="41.0"/>
+                <property name="FLOOR2" value="4"/>
+                <property name="INVENTORY" value=""/>
+                <property name="JSON" value="assets/entities/players/players.json"/>
+                <property name="NAME" value=""/>
+                <property name="HERO" value="false"/>
+                <property name="KEY" value="Jean"/>
+            </properties>
+        </object>
+        <object height="2.0" id="23" name="entity" width="1.0" x="6.0" y="33.0">
+            <properties>
+                <property name="className" value="common.entities.items.Door"/>
+                <property name="y2" value="33.0"/>
+                <property name="DECORATIONS1" value="2"/>
+                <property name="COLLISION" value="2"/>
+                <property name="LOCKED" value="true"/>
+            </properties>
+        </object>
+        <object height="17.0" id="9" name="entity" width="12.0" x="0.0" y="34.0">
+            <properties>
+                <property name="className" value="common.entities.special.Room"/>
+                <property name="y2" value="34.0"/>
+                <property name="FLOOR1" value="204"/>
+                <property name="FLOOR2" value="204"/>
+                <property name="DECORATIONS1" value="204"/>
+                <property name="DECORATIONS2" value="204"/>
+                <property name="COLLISION" value="204"/>
+            </properties>
+        </object>
+        <object height="2.0" id="15" name="entity" width="2.0" x="38.0" y="10.0">
+            <properties>
+                <property name="className" value="common.entities.players.Monster"/>
+                <property name="y2" value="10.0"/>
+                <property name="FLOOR2" value="4"/>
+                <property name="JSON" value="assets/entities/monsters/monsters.json"/>
+                <property name="NAME" value=""/>
+                <property name="KEY" value="snake"/>
+            </properties>
+        </object>
+        <object height="1.0" id="19" name="entity" width="1.0" x="5.0" y="42.0">
+            <properties>
+                <property name="className" value="common.entities.items.Button"/>
+                <property name="y2" value="42.0"/>
+                <property name="FLOOR2" value="1"/>
+                <property name="COLLISION" value="1"/>
+                <property name="ACTIVATED" value="false"/>
+            </properties>
+        </object>
+        <object height="2.0" id="13" name="entity" width="2.0" x="37.0" y="20.0">
+            <properties>
+                <property name="className" value="common.entities.players.Monster"/>
+                <property name="y2" value="20.0"/>
+                <property name="FLOOR2" value="4"/>
+                <property name="JSON" value="assets/entities/monsters/monsters.json"/>
+                <property name="NAME" value=""/>
+                <property name="KEY" value="snake"/>
+            </properties>
+        </object>
+        <object height="6.0" id="1" name="entity" width="10.0" x="24.0" y="18.0">
+            <properties>
+                <property name="className" value="common.entities.special.Room"/>
+                <property name="y2" value="18.0"/>
+                <property name="FLOOR1" value="60"/>
+                <property name="FLOOR2" value="60"/>
+                <property name="DECORATIONS1" value="60"/>
+                <property name="DECORATIONS2" value="60"/>
+                <property name="COLLISION" value="60"/>
+            </properties>
+        </object>
+        <object height="2.0" id="14" name="entity" width="2.0" x="44.0" y="17.0">
+            <properties>
+                <property name="className" value="common.entities.players.Monster"/>
+                <property name="y2" value="17.0"/>
+                <property name="FLOOR2" value="4"/>
+                <property name="JSON" value="assets/entities/monsters/monsters.json"/>
+                <property name="NAME" value=""/>
+                <property name="KEY" value="snake"/>
+            </properties>
+        </object>
+        <object height="6.0" id="10" name="entity" width="15.0" x="16.0" y="39.0">
+            <properties>
+                <property name="className" value="common.entities.special.Room"/>
+                <property name="y2" value="39.0"/>
+                <property name="FLOOR1" value="90"/>
+                <property name="FLOOR2" value="90"/>
+                <property name="DECORATIONS1" value="90"/>
+                <property name="DECORATIONS2" value="90"/>
+                <property name="COLLISION" value="90"/>
+            </properties>
+        </object>
         <object height="2.0" id="3" name="entity" width="1.0" x="10.0" y="32.0">
             <properties>
                 <property name="className" value="common.entities.items.Library"/>
@@ -318,32 +421,11 @@
                 <property name="className" value="common.entities.players.NPC"/>
                 <property name="y2" value="41.0"/>
                 <property name="FLOOR2" value="4"/>
+                <property name="INVENTORY" value=""/>
+                <property name="JSON" value="assets/entities/players/players.json"/>
                 <property name="NAME" value=""/>
                 <property name="HERO" value="false"/>
-                <property name="JSON" value="assets/entities/players/players.json"/>
                 <property name="KEY" value="Eri"/>
-                <property name="INVENTORY" value=""/>
-            </properties>
-        </object>
-        <object height="2.0" id="17" name="entity" width="2.0" x="7.0" y="41.0">
-            <properties>
-                <property name="className" value="common.entities.players.NPC"/>
-                <property name="y2" value="41.0"/>
-                <property name="FLOOR2" value="4"/>
-                <property name="NAME" value=""/>
-                <property name="HERO" value="false"/>
-                <property name="JSON" value="assets/entities/players/players.json"/>
-                <property name="KEY" value="Jean"/>
-                <property name="INVENTORY" value=""/>
-            </properties>
-        </object>
-        <object height="2.0" id="23" name="entity" width="1.0" x="6.0" y="33.0">
-            <properties>
-                <property name="className" value="common.entities.items.Door"/>
-                <property name="y2" value="33.0"/>
-                <property name="DECORATIONS1" value="2"/>
-                <property name="COLLISION" value="2"/>
-                <property name="LOCKED" value="true"/>
             </properties>
         </object>
         <object height="2.0" id="24" name="entity" width="1.0" x="5.0" y="33.0">
@@ -355,17 +437,6 @@
                 <property name="LOCKED" value="true"/>
             </properties>
         </object>
-        <object height="17.0" id="9" name="entity" width="12.0" x="0.0" y="34.0">
-            <properties>
-                <property name="className" value="common.entities.special.Room"/>
-                <property name="y2" value="34.0"/>
-                <property name="FLOOR1" value="204"/>
-                <property name="FLOOR2" value="204"/>
-                <property name="DECORATIONS1" value="204"/>
-                <property name="DECORATIONS2" value="204"/>
-                <property name="COLLISION" value="204"/>
-            </properties>
-        </object>
         <object height="12.0" id="11" name="entity" width="8.0" x="31.0" y="40.0">
             <properties>
                 <property name="className" value="common.entities.special.Room"/>
@@ -375,46 +446,6 @@
                 <property name="DECORATIONS1" value="96"/>
                 <property name="DECORATIONS2" value="96"/>
                 <property name="COLLISION" value="96"/>
-            </properties>
-        </object>
-        <object height="2.0" id="15" name="entity" width="2.0" x="38.0" y="10.0">
-            <properties>
-                <property name="className" value="common.entities.players.Monster"/>
-                <property name="y2" value="10.0"/>
-                <property name="FLOOR2" value="4"/>
-                <property name="NAME" value=""/>
-                <property name="JSON" value="assets/entities/monsters/monsters.json"/>
-                <property name="KEY" value="snake"/>
-            </properties>
-        </object>
-        <object height="1.0" id="19" name="entity" width="1.0" x="5.0" y="42.0">
-            <properties>
-                <property name="className" value="common.entities.items.Button"/>
-                <property name="y2" value="42.0"/>
-                <property name="FLOOR2" value="1"/>
-                <property name="COLLISION" value="1"/>
-                <property name="ACTIVATED" value="false"/>
-            </properties>
-        </object>
-        <object height="2.0" id="13" name="entity" width="2.0" x="37.0" y="20.0">
-            <properties>
-                <property name="className" value="common.entities.players.Monster"/>
-                <property name="y2" value="20.0"/>
-                <property name="FLOOR2" value="4"/>
-                <property name="NAME" value=""/>
-                <property name="JSON" value="assets/entities/monsters/monsters.json"/>
-                <property name="KEY" value="snake"/>
-            </properties>
-        </object>
-        <object height="6.0" id="1" name="entity" width="10.0" x="24.0" y="18.0">
-            <properties>
-                <property name="className" value="common.entities.special.Room"/>
-                <property name="y2" value="18.0"/>
-                <property name="FLOOR1" value="60"/>
-                <property name="FLOOR2" value="60"/>
-                <property name="DECORATIONS1" value="60"/>
-                <property name="DECORATIONS2" value="60"/>
-                <property name="COLLISION" value="60"/>
             </properties>
         </object>
         <object height="17.0" id="8" name="entity" width="12.0" x="12.0" y="22.0">
@@ -459,26 +490,16 @@
                 <property name="COLLISION" value="285"/>
             </properties>
         </object>
-        <object height="2.0" id="14" name="entity" width="2.0" x="44.0" y="17.0">
-            <properties>
-                <property name="className" value="common.entities.players.Monster"/>
-                <property name="y2" value="17.0"/>
-                <property name="FLOOR2" value="4"/>
-                <property name="NAME" value=""/>
-                <property name="JSON" value="assets/entities/monsters/monsters.json"/>
-                <property name="KEY" value="snake"/>
-            </properties>
-        </object>
         <object height="2.0" id="18" name="entity" width="2.0" x="5.0" y="38.0">
             <properties>
                 <property name="className" value="common.entities.players.NPC"/>
                 <property name="y2" value="38.0"/>
                 <property name="FLOOR2" value="4"/>
+                <property name="INVENTORY" value=""/>
+                <property name="JSON" value="assets/entities/players/players.json"/>
                 <property name="NAME" value=""/>
                 <property name="HERO" value="true"/>
-                <property name="JSON" value="assets/entities/players/players.json"/>
                 <property name="KEY" value="Joker"/>
-                <property name="INVENTORY" value=""/>
             </properties>
         </object>
         <object height="1.0" id="6" name="entity" width="1.0" x="2.0" y="31.0">
@@ -506,17 +527,6 @@
                 <property name="FLOOR2" value="1"/>
                 <property name="COLLISION" value="1"/>
                 <property name="ACTIVATED" value="false"/>
-            </properties>
-        </object>
-        <object height="6.0" id="10" name="entity" width="15.0" x="16.0" y="39.0">
-            <properties>
-                <property name="className" value="common.entities.special.Room"/>
-                <property name="y2" value="39.0"/>
-                <property name="FLOOR1" value="90"/>
-                <property name="FLOOR2" value="90"/>
-                <property name="DECORATIONS1" value="90"/>
-                <property name="DECORATIONS2" value="90"/>
-                <property name="COLLISION" value="90"/>
             </properties>
         </object>
     </objectgroup>

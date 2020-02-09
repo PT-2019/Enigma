@@ -28,8 +28,8 @@ public class ManageEnigmasView extends AbstractPopUpView {
 	/**
 	 * Stockage des écrans
 	 */
-	private final ManageEnigmasAddView manageEnigmasAddView;
-	private final ManageEnigmasListView manageEnigmasListView;
+	private final ManageEnigmasAddView addView;
+	private final ManageEnigmasListView listView;
 
 	public ManageEnigmasView(CasePopUp popUp, GameObject object) {
 		super(TITLE, popUp);
@@ -37,32 +37,24 @@ public class ManageEnigmasView extends AbstractPopUpView {
 		if(object == null) object = popUp.getCell().getEntity();
 
 		//ajout des écrans
-		ManageEnigmasSeeView manageEnigmasSeeView = new ManageEnigmasSeeView(this);
-		this.manageEnigmasListView = new ManageEnigmasListView(this, manageEnigmasSeeView, object);
-		this.manageEnigmasAddView = new ManageEnigmasAddView(this, object);
+		this.addView = new ManageEnigmasAddView(this, object);
+		ManageEnigmasSeeView manageEnigmasSeeView = new ManageEnigmasSeeView(this, object);
+		this.listView = new ManageEnigmasListView(this, manageEnigmasSeeView, object);
 
 		//ajout au card Layout
-		this.panel.add(this.manageEnigmasListView, MENU);
-		this.panel.add(this.manageEnigmasAddView, ADD);
+		this.panel.add(this.listView, MENU);
+		this.panel.add(this.addView, ADD);
 		this.panel.add(manageEnigmasSeeView, SEE);
-	}
-
-	/**
-	 * Retourne la vue pour ajouter des items
-	 * @return la vue pour ajouter des items
-	 */
-	public ManageEnigmasAddView getManageEnigmaAddView() {
-		return this.manageEnigmasAddView;
 	}
 
 	@Override
 	public void clean() {
-		this.manageEnigmasAddView.clean();
+		this.addView.clean();
 	}
 
 	@Override
 	public void invalidateDrawable() {
-		this.manageEnigmasListView.clean();
-		this.manageEnigmasListView.initComponent();
+		this.listView.clean();
+		this.listView.initComponent();
 	}
 }

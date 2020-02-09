@@ -1,5 +1,7 @@
 package common.map;
 
+import api.utils.annotations.ConvenienceMethod;
+import api.utils.annotations.Immutable;
 import com.badlogic.gdx.math.Vector2;
 import common.entities.GameObject;
 
@@ -11,9 +13,10 @@ import common.entities.GameObject;
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  *
- * @version 6.0 01/02/2020
+ * @version 6.1
  * @since 6.0 01/02/2020
  */
+@Immutable
 public class MapObject {
 
 	/**
@@ -39,5 +42,17 @@ public class MapObject {
 
 	public Vector2 getPosition() {
 		return position;
+	}
+
+	/**
+	 * Crée un mapObject
+	 * @param position position
+	 * @param entity entité
+	 * @return un mapObject
+	 * @since 6.1
+	 */
+	@ConvenienceMethod
+	public static MapObject create(Vector2 position, GameObject entity){
+		return new MapObject(position, entity);
 	}
 }

@@ -12,7 +12,6 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.SnapshotArray;
-import common.enigmas.Enigma;
 import common.entities.GameObject;
 import common.map.MapTestScreenCell;
 import data.EditorState;
@@ -73,7 +72,19 @@ public class CaseListener extends ClickListener {
 			if(!EditorLauncher.containsState(EditorState.ZOOM)) {//pas en zoom
 				CaseView actor = (CaseView) event.getTarget();
 				MapTestScreenCell cell = getRelevantEntity(actor);
-				if (cell != null && cell.getEntity() != null) cell.removeEntity();
+				if (cell != null && cell.getEntity() != null){
+					if(this.popUp != null && this.popUp.getCell() != null
+						&& this.popUp.getCell().getEntity() != null){
+						//si supprime l'entité dans le popup
+						if(this.popUp.getCell().getEntity().getID() == cell.getEntity().getID()){
+							close();
+						}
+					}
+					String s = cell.removeEntity();
+					if(s != null){//error
+						EnigmaGame.getCurrentScreen().showToast(s);
+					}
+				}
 			} else {
 				EnigmaGame.getCurrentScreen().showToast(NeedToBeTranslated.ERASE_FAILED_ZOOM);
 			}
@@ -93,17 +104,15 @@ public class CaseListener extends ClickListener {
 					}
 				} else {
 					if (this.pop == null) {
-						//on met la window au premier plan
-						this.popUp.setAlwaysOnTop(true);
-						this.popUp.revalidate();
-						this.popUp.setAlwaysOnTop(false);
+						//ferme la popup
+						CaseListener.close();
 					} else {
+						//équivalent d'un focus mais en mode bizarre
 						this.pop.setAlwaysOnTop(true);
 						this.pop.revalidate();
 						this.pop.setAlwaysOnTop(false);
+						return;
 					}
-					//équivalent d'un focus mais en mode bizarre
-					return;
 				}
 			}
 

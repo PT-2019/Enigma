@@ -1,4 +1,67 @@
 {
      "Enigmas": [
+          {
+               "common.enigmas.Enigma": [
+                    {
+                         "operations": [
+                         ],
+                         "known": "false",
+                         "currentAdviceIndex": "-1",
+                         "description": "",
+                         "advices": [
+                         ],
+                         "id": "0",
+                         "title": "A",
+                         "type": "ON_USE",
+                         "conditions": [
+                         ]
+                    }
+               ]
+          },
+
+          {
+               "common.enigmas.Enigma": [
+                    {
+                         "operations": [
+                         ],
+                         "known": "false",
+                         "currentAdviceIndex": "-1",
+                         "description": "",
+                         "advices": [
+                         ],
+                         "id": "0",
+                         "title": "B",
+                         "type": "ON_USE",
+                         "conditions": [
+                         ]
+                    }
+               ]
+          },
+
+          {
+               "common.enigmas.Enigma": [
+                    {
+                         "operations": [
+                         ],
+                         "known": "false",
+                         "currentAdviceIndex": "-1",
+                         "description": "",
+                         "advices": [
+                         ],
+                         "id": "11",
+                         "title": "Test",
+                         "type": "ON_USE",
+                         "conditions": [
+                              {
+                                   "common.enigmas.condition.Activated": [
+                                        {
+                                             "entities": "18"
+                                        }
+                                   ]
+                              }
+                         ]
+                    }
+               ]
+          }
      ]
 }

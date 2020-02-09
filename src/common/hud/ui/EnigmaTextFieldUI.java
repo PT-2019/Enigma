@@ -6,7 +6,15 @@ import data.config.EnigmaUIValues;
 import java.awt.*;
 
 /**
- * TODO
+ * Apparence d'un champ de saisie d'Enigma
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ *
+ * @version 6.0 09/02/2020
+ * @since 6.0 09/02/2020
  */
 public class EnigmaTextFieldUI extends CustomTextFieldUI {
 

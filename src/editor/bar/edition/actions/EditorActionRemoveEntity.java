@@ -2,6 +2,7 @@ package editor.bar.edition.actions;
 
 import com.badlogic.gdx.math.Vector2;
 import common.entities.GameObject;
+import common.entities.types.ContainersManager;
 import common.map.AbstractMap;
 import common.map.MapObject;
 import common.map.MapObjects;

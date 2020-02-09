@@ -4,6 +4,8 @@ import api.libgdx.utils.LoadGameLibgdxApplication;
 import com.badlogic.gdx.utils.Array;
 import common.hud.EnigmaPanel;
 import common.hud.EnigmaWindow;
+import common.language.GameLanguage;
+import common.language.HUDFields;
 import common.save.entities.serialization.EntityFactory;
 import common.save.entities.serialization.EntitySerializable;
 import common.utils.dnd.DragAndDropDND;
@@ -38,6 +40,12 @@ public class EditorScreen extends JPanel {
 	 * @since 6.0
 	 */
 	private final JPanel map;
+
+	/**
+	 * Barre de menu
+	 * @since 6.1
+	 */
+	private final BarMenu barMenu;
 
 	/**
 	 * Barre d'outils
@@ -77,7 +85,8 @@ public class EditorScreen extends JPanel {
 		this.add(outilBar, BorderLayout.NORTH);
 		this.add(this.map, BorderLayout.CENTER);
 
-		if (bar) parent.addToMenuBar(new BarMenu(parent));
+		this.barMenu = new BarMenu(parent);
+		if (bar) parent.addToMenuBar(this.barMenu);
 	}
 
 	/**
@@ -176,10 +185,13 @@ public class EditorScreen extends JPanel {
 	 * @since 6.0
 	 */
 	void simulationMode(boolean activate) {
+		this.outilBar.setVisible(activate);
 		if(activate){
 			this.outilBar.setVisible(false);
+			this.barMenu.enableAll(false,GameLanguage.gl.get(HUDFields.STOP));
 		} else {
 			this.outilBar.setVisible(true);
+			this.barMenu.enableAll(true);
 		}
 	}
 

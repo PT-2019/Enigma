@@ -107,7 +107,7 @@ public abstract class AbstractPopUpView extends JDialog implements Drawable {
 
 		private final AbstractPopUpView parent;
 
-		public Close(AbstractPopUpView parent) {
+		Close(AbstractPopUpView parent) {
 			this.parent = parent;
 		}
 

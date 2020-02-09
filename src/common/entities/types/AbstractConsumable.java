@@ -80,6 +80,16 @@ public abstract class AbstractConsumable extends AbstractGameObject implements C
 		return e.iterator();
 	}
 
+	@Override
+	public void add(Enigma arg, Object... args) {
+		this.addEnigma(arg);
+	}
+
+	@Override
+	public void remove(Enigma arg, Object... args) {
+		this.removeEnigma(arg);
+	}
+
 	//toString
 
 	@Override

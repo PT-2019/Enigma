@@ -1,7 +1,13 @@
 package common.map;
 
+import api.utils.Utility;
 import com.badlogic.gdx.math.Vector2;
 import common.entities.GameObject;
+import common.entities.consumable.Key;
+import common.entities.items.Chest;
+import common.entities.items.Door;
+import common.entities.special.Room;
+import common.entities.types.EnigmaContainer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -202,32 +208,29 @@ public class MapObjects {
 	 * @return Les éléments
 	 * @since 5.0
 	 */
+	public <T> ArrayList<T> getAllObjectsByClass(Class<T> t) {
+		return getAllObjectsByClass(t, true);
+	}
+
+	/**
+	 * Obtenir tous les éléments d'une telle classe.
+	 *
+	 * On regarde toutes les classes parent.
+	 * On regarde seulement les interfaces de première génération.
+	 *
+	 * @param t   Classe
+	 * @param <T> Type de la classe
+	 * @return Les éléments
+	 * @since 5.0
+	 */
 	@SuppressWarnings("unchecked")
-	public <T extends GameObject> ArrayList<T> getAllObjectsByClass(Class<T> t, boolean clone) {
+	public <T> ArrayList<T> getAllObjectsByClass(Class<T> t, boolean clone) {
 		ArrayList<GameObject> obj = new ArrayList<>();
 
-		Class<?> c;
-		boolean find;
 		for (Map.Entry<Vector2, ArrayList<GameObject>> map : this.objects.entrySet()) {
 			for (GameObject go : map.getValue()) {
-				find = false;
-				//Regarde toutes les classes parent
-				c = go.getClass();
-				while(c != null && !find){
-					if(c.getName().equals(t.getName())) break;
-					//regarde les interfaces
-					Class<?>[] interfaces = c.getInterfaces();
-					for (Class<?> anInterface:interfaces) {
-						//on regarde pas les supper interfaces, c'est notre limite
-						if(anInterface.getName().equals(t.getName())){
-							find = true;
-							break;
-						}
-					}
-					if(!find) c = c.getSuperclass();
-				}
 				//la classe a été trouvée
-				if(c != null) obj.add(go);
+				if(Utility.hasClass(t, go)) obj.add(go);
 			}
 		}
 

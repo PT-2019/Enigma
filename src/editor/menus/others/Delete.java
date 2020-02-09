@@ -5,6 +5,7 @@ import common.entities.GameObject;
 import common.entities.Item;
 import common.entities.types.Container;
 import common.hud.EnigmaButton;
+import common.utils.Logger;
 import editor.menus.AbstractPopUpView;
 import editor.menus.AvailableOptionRunnable;
 import editor.menus.AvailablePopUpOption;
@@ -61,10 +62,16 @@ public class Delete implements AvailableOptionRunnable {
 
 			//supprimer si container
 			if(object instanceof Item && entity instanceof Container) {
+				//remove from map
+				String s = ((TestScreen) EnigmaGame.getCurrentScreen()).getMap().removeEntity(object);
+				if(s != null){
+					//erreur
+					Logger.printDebug("Delete#run", "Impossible de supprimer");
+					EnigmaGame.getCurrentScreen().showToast(s);
+					return;
+				}
 				//remove from parent
 				((Container) entity).removeItem((Item) object);
-				//remove from map
-				((TestScreen)EnigmaGame.getCurrentScreen()).getMap().removeEntity(object);
 
 				//update
 				panel.invalidateDrawable();

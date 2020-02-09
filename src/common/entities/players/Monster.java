@@ -197,6 +197,7 @@ public class Monster extends GameActorTextured implements Entity, Living,EntityG
 		this.key = data.get(PlayerSave.KEY.getKey(), String.class);
 		this.json = data.get(PlayerSave.JSON.getKey(), String.class);
 		this.name = data.get(PlayerSave.NAME.getKey(), String.class);
+		if(this.name.isEmpty()||this.name.isBlank()) this.name = this.key;
 	}
 
 	@Override
@@ -208,6 +209,7 @@ public class Monster extends GameActorTextured implements Entity, Living,EntityG
 	public void setJson(String json, String key) {
 		this.json = json;
 		this.key = key;
+		if(this.name.isEmpty()||this.name.isBlank()) this.name = this.key;
 	}
 
 	@Override

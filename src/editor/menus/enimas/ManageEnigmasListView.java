@@ -55,21 +55,7 @@ public class ManageEnigmasListView extends AbstractSubPopUpView {
 		super(TITLE, parent, false);
 		this.object = (EnigmaContainer) object;
 		this.groups = new ButtonGroup();
-		this.listener = new ItemListener() {
-			@Override
-			public void itemStateChanged(ItemEvent e) {
-				EnigmaContainer container = (EnigmaContainer) object;
-				Iterator<Enigma> allEnigmas = container.getAllEnigmas();
-				while(allEnigmas.hasNext()){
-					Enigma enigma = allEnigmas.next();
-					if (enigma.getTitle().equals(((JCheckBox) e.getSource()).getName())) {
-						seeView.setChecked(enigma);
-						break;
-					}
-
-				}
-			}
-		};
+		this.listener = new SelectEnigmaListener(object, seeView);
 
 		see = new EnigmaButton(SEE_ENIGMA);
 		see.addActionListener(new ShowCardLayout(ManageEnigmasView.SEE, parent));
@@ -151,7 +137,39 @@ public class ManageEnigmasListView extends AbstractSubPopUpView {
 		this.content.revalidate();
 	}
 
-	public ButtonGroup getGroup() {
-		return groups;
+	/**
+	 * Sélection d'une énigme
+	 *
+	 * @author Jorys-Micke ALAÏS
+	 * @author Louka DOZ
+	 * @author Loic SENECAT
+	 * @author Quentin RAMSAMY-AGEORGES
+	 *
+	 * @version 6.0 09/02/2020
+	 * @since 6.0 09/02/2020
+	 */
+	private static final class SelectEnigmaListener implements ItemListener {
+
+		private final GameObject object;
+		private final ManageEnigmasSeeView seeView;
+
+		private SelectEnigmaListener(GameObject object, ManageEnigmasSeeView seeView) {
+			this.object = object;
+			this.seeView = seeView;
+		}
+
+		@Override
+		public void itemStateChanged(ItemEvent e) {
+			EnigmaContainer container = (EnigmaContainer) object;
+			Iterator<Enigma> allEnigmas = container.getAllEnigmas();
+			while(allEnigmas.hasNext()){
+				Enigma enigma = allEnigmas.next();
+				if (enigma.getTitle().equals(((JCheckBox) e.getSource()).getName())) {
+					seeView.setChecked(enigma);
+					break;
+				}
+
+			}
+		}
 	}
 }

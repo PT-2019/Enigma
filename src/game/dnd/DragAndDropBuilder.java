@@ -80,7 +80,7 @@ public class DragAndDropBuilder extends InputListener {
 		} else if (forPopup != null) {
 			Logger.printDebug("DnDBuilder", "Déplacement bloqué. Sélection.");
 			MapTestScreen map = ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap();
-			GameObject obj = map.loadEntity(this.container.getEntity(), null);
+			GameObject obj = map.loadEntity(this.container.getEntity(), null).entity;
 			forPopup.update(obj);
 			return true;
 		}
