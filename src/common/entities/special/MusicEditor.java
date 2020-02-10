@@ -1,8 +1,6 @@
 package common.entities.special;
 
-import api.libgdx.utils.Border;
 import com.badlogic.gdx.maps.MapProperties;
-import com.badlogic.gdx.utils.BooleanArray;
 import common.entities.types.AbstractGameObject;
 import common.language.GameFields;
 import common.language.GameLanguage;
@@ -70,7 +68,7 @@ public class MusicEditor extends AbstractGameObject {
 
     @Override
     public String getReadableName() {
-        return GameLanguage.gl.get(GameFields.MUSIC);
+        return GameLanguage.gl.get(GameFields.MUSIC)+" "+this.name;
     }
 
     @Override
@@ -113,5 +111,13 @@ public class MusicEditor extends AbstractGameObject {
 
     public String getPath() {
         return path;
+    }
+
+    //toString
+
+    @Override
+    public String toString() {
+        return "MusicEditor{" + "path='" + path + '\'' + ", isMainMusic=" + isMainMusic +
+                ", name='" + name + '\'' + ", isStarter=" + isStarter + ", id=" + id + '}';
     }
 }

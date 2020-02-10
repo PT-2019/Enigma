@@ -19,7 +19,6 @@ import game.EnigmaGame;
 import game.screens.TestScreen;
 
 import javax.swing.JRadioButton;
-import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -53,7 +52,7 @@ public class OperationListener implements ActionListener, ItemListener {
      **/
     private AbstractPopUpView parent;
     /**
-     * operation submited
+     * operation submitted
      **/
     private boolean validate;
     /**
@@ -79,9 +78,7 @@ public class OperationListener implements ActionListener, ItemListener {
             return;
         }
 
-        //TODO: on devrait pouvoir ajouter des nouvelles opérations plus facilement
-        // voir la classe Operations, le problème est le nombre variable d'argument du constructeur
-        // même si il y a toujours un object apparemment
+        //sélection de l'opération
 
         if (this.currentButton.getName().equals(Operations.GIVE.name())) {
             if (this.object instanceof Item)
@@ -95,7 +92,7 @@ public class OperationListener implements ActionListener, ItemListener {
 
         }else if(this.currentButton.getName().equals(Operations.MUSIC.name())){
             if (this.object instanceof MusicEditor) {
-                ope = new LaunchMusic((MusicEditor) this.object);
+                ope = new LaunchSound((MusicEditor) this.object);
                 //on rajoute l"objet musique à la map pour pouvoir le sauvegarder dans le tmx
                 MapTestScreen map = ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap();
                 map.set(this.object, new Vector2(0, 0));

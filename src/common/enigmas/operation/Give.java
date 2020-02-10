@@ -42,17 +42,6 @@ public class Give extends Operation {
 	 * @param p Joueur ayant mené à l'appel de cette méthode
 	 */
 	@Override
-	@Deprecated
-	public void doOperation(Player p) {
-		this.run(p);
-	}
-
-	/**
-	 * Effectue l'action
-	 *
-	 * @param p Joueur ayant mené à l'appel de cette méthode
-	 */
-	@Override
 	public void run(Player p) {
 		Item i = (Item) this.entity;
 		if (p.holdSomething())

@@ -12,6 +12,8 @@ import java.util.ArrayList;
 @Temporary(reason = "flemme, car possibles doublons et changer tout le temps et enums et json et ... clc et ça")
 public interface NeedToBeTranslated {
 
+	String WITH = "avec";
+
 	//case popup
 	String NO_ENTITY = "Aucune entité";
 
@@ -41,6 +43,9 @@ public interface NeedToBeTranslated {
 	String INVALID_ENTITY = "Entité Invalide.";
 
 	//Conditions
+
+	String MUSIC = "Jouer un son";
+	String CHANGE_MAIN_MUSIC = "Change la musique ambiante";
 
 	String ACTIVATED_DESC = "Un object doit être activé";
 	String ACTIVATED_RES = "Seulement un objet activable.";
