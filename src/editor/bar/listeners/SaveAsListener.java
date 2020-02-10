@@ -36,11 +36,11 @@ public class SaveAsListener extends MenuListener {
 	/**
 	 * Textes
 	 */
-	private static final String SAVE_ENDED = NeedToBeTranslated.SAVE_ENDED;
-	private static final String SAVE_CANCELED = NeedToBeTranslated.SAVE_CANCELED;
-	private static final String SAVE_FAILED = NeedToBeTranslated.SAVE_FAILED;
-	private static final String REPLACE_MAP = NeedToBeTranslated.REPLACE_MAP;
-	private static final String MAP_NAME = NeedToBeTranslated.MAP_NAME;
+	public static final String SAVE_ENDED = NeedToBeTranslated.SAVE_ENDED;
+	public static final String SAVE_CANCELED = NeedToBeTranslated.SAVE_CANCELED;
+	public static final String SAVE_FAILED = NeedToBeTranslated.SAVE_FAILED;
+	public static final String REPLACE_MAP = NeedToBeTranslated.REPLACE_MAP;
+	public static final String MAP_NAME = NeedToBeTranslated.MAP_NAME;
 
 	public SaveAsListener(EnigmaWindow window, JComponent parent) {
 		super(window, parent);

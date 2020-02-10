@@ -36,7 +36,7 @@ public class SaveListener extends MenuListener {
 	/**
 	 * Textes
 	 */
-	private static final String SAVE_ENDED = NeedToBeTranslated.SAVE_ENDED;
+	public static final String SAVE_ENDED = NeedToBeTranslated.SAVE_ENDED;
 
 	public SaveListener(EnigmaWindow window, Component parent) {
 		super(window, parent);

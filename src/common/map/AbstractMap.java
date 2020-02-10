@@ -25,6 +25,7 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Array;
 import common.data.MapData;
 import common.entities.GameObject;
+import common.entities.items.Chest;
 import common.entities.players.Monster;
 import common.entities.players.NPC;
 import common.entities.special.GameExit;
@@ -306,7 +307,6 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 
 				//ajout à la liste des entités de la map
 				this.objects.put(start, object);
-				//this.added.put(start, object);
 
 				// on place les tiles
 				this.setFromSave(object, start);
@@ -316,7 +316,6 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 				GameObject object = EntityFactory.createEntity(e, id, start, this.idFactory);
 
 				//ajout à la liste des entités de la map
-				//this.added.put(start, object);
 				this.objects.put(start, object);
 
 				Logger.printDebug("(tmp) MapTestScreen#initEntities", object + " " + start);
@@ -394,11 +393,13 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 				for (int j = (int) start.x; j < start.x + entity.getGameObjectWidth() && index < entities.size; j++, index++) {
 					MapTestScreenCell c = (MapTestScreenCell) tileLayer.getCell(j, i);
 					if (c == null) continue;
+
 					//si l'entité contient une salle
 					GameObject ent = c.getEntity();
 					if (ent == null  //vide : je peux placer sans problèmes
 							|| !manager) {//sinon cela dépends de ce que je veux placer
 						c.setEntity(entity);
+
 						tileLayer.setCell(j, i, c);
 						//PrintColor.println("Placement de "+entity+" sur "+ent, AnsiiColor.CYAN);
 					}

@@ -4,6 +4,10 @@ import api.libgdx.actor.GameActorAnimation;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.math.Vector2;
+import common.enigmas.TileEventEnum;
+import common.entities.GameObject;
+import common.map.AbstractMap;
 import common.map.GameMap;
 import data.Direction;
 import data.keys.CameraKeys;
@@ -126,9 +130,28 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
 			}
 		}
 
+		//interaction du joueur avec le milieu
 		if (Input.Keys.E == i || Input.Keys.ENTER == i) {
-			//interaction
-			System.out.println("interact");
+			float tmpX,tmpY;
+
+			if(facedDirection == Direction.BOTTOM){
+				tmpX = this.getX();
+				tmpY = this.getY() - PlayerGame.SPEED;
+			} else if (facedDirection == Direction.TOP) {
+				tmpX = this.getX();
+				tmpY = this.getY() + PlayerGame.SPEED;
+			}else if (facedDirection == Direction.RIGHT) {
+				tmpX = this.getX() + PlayerGame.SPEED;
+				tmpY = this.getY();
+			}else{
+				tmpX = this.getX() - PlayerGame.SPEED;
+				tmpY = this.getY();
+			}
+
+			map.doAction(tmpX,tmpY,this, TileEventEnum.ON_USE);
+			//on récupère l'objet sur lequelle on a intéragit
+			/*GameObject object = this.posToEntities((int)position.y,(int)position.x);
+			System.out.println(object);*/
 		}
 		return false;
 	}

@@ -69,8 +69,6 @@ public class GameMap extends AbstractMap {
 	 * @since 6.0
 	 */
 	protected void init() {
-
-
 		//recharge les entités depuis sauvegarde
 		this.initEntities();
 
@@ -218,8 +216,6 @@ public class GameMap extends AbstractMap {
 		}
 	}
 
-
-
     /**
      * Enlève l'entités vivante de la map et les actions comme la sortie
      * @param entity l'entité à charger
@@ -246,7 +242,17 @@ public class GameMap extends AbstractMap {
         }
     }
 
-    @Override
+	/**
+	 * Renvoi les entités présente sur cette case
+	 */
+	public GameObject posToEntities(int row, int col){
+		MapLayer mapLayer = this.map.getMap().getLayers().get(Layer.FLOOR2.name());
+		TiledMapTileLayer tileLayer = (TiledMapTileLayer) mapLayer;
+		MapTestScreenCell c = (MapTestScreenCell) tileLayer.getCell(col,row);
+		return c.getEntity();
+	}
+
+	@Override
 	protected void initEntities() {
 		ArrayList<MapProperties> entities = getProperty(TmxProperties.TMX_PROP_ENTITY, this);
 		float x, y;
@@ -255,8 +261,8 @@ public class GameMap extends AbstractMap {
 		//variable pour savoir si il faut afficher ou non l'entité
 		boolean notdisplay = false;
 		String className;
-		String isheros;
 		EntitySerializable e;
+
 		for (MapProperties prop : entities) {
 			width = Math.round(prop.get(TmxProperties.TMX_WIDTH, Float.class));
 			height = Math.round(prop.get(TmxProperties.TMX_HEIGHT, Float.class));
@@ -305,25 +311,22 @@ public class GameMap extends AbstractMap {
 							(y-2)*this.tileHeight*this.getUnitScale());
 					notdisplay = true;
 				}else if(object instanceof Monster){
-					String path = prop.get("JSON", String.class);
-					String name = prop.get("KEY", String.class);
-
-					GameActor monster = MonsterFactory.createMonsterGame(name, path);
+					GameActor monster = MonsterFactory.createMonsterGame(((Monster) object).getKey(), ((Monster) object).getJson());
 					this.addEntity(monster);
 					monster.setPosition((x+0.5f)*this.tileWidth*this.getUnitScale(),
 							(y-2)*this.tileHeight*this.getUnitScale());
 					notdisplay = true;
 				}else{
-					// on place les tiles
-					this.setFromSave(object, start);
 					if (object instanceof GameExit) notdisplay = true;
 				}
-				//this.added.put(start, object);
+
 				if (notdisplay){
 					this.setEntityFromSave(object,start);
 					notdisplay = false;
 				}
 
+				// on place les tiles
+				this.setFromSave(object, start);
 				//ajout à la liste des entités de la map
 				this.objects.put(start, object);
 			} else {
