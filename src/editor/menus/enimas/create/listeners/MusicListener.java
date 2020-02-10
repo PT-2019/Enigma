@@ -8,6 +8,7 @@ import common.map.MapTestScreen;
 import editor.menus.AbstractPopUpView;
 import editor.menus.enimas.create.MusicPanel;
 import editor.menus.enimas.create.OperationPanel;
+import editor.menus.enimas.create.Operations;
 import game.EnigmaGame;
 import game.screens.TestScreen;
 
@@ -25,9 +26,20 @@ public class MusicListener implements MouseListener {
 
     public static String CANCEL = "Annuler";
 
+    private Operations operations;
+
+    public MusicListener(Operations ope){
+        this.operations = ope;
+    }
+
     @Override
     public void mouseClicked(MouseEvent e) {
-        String chose = EnigmaOptionPane.showMusicChoiceDialog(new EnigmaWindow());
+        String chose;
+        if (operations == Operations.MAINMUSIC){
+            chose = EnigmaOptionPane.showMusicChoiceDialog(new EnigmaWindow());
+        }else {
+            chose = EnigmaOptionPane.showSoundChoiceDialog(new EnigmaWindow());
+        }
         Object tmp;
 
         if (!chose.equals(MusicListener.CANCEL)){

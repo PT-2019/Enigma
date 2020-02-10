@@ -58,24 +58,45 @@ public class Utility implements Serializable {
 	}
 
 	/**
-	 * Obtenir le nom de toutes les maps en local
+	 * Obtenir le nom de toutes les musiques en local
 	 * Les noms sont issus des fichiers tmx présents
 	 * @return Le nom des maps
 	 * @since 6.1
 	 */
 	//TODO: move to real utility
 	public static ArrayList<String> getAllMusicName(){
-		ArrayList<String> maps = new ArrayList<>();
+		ArrayList<String> musics = new ArrayList<>();
 		File file = new File("assets/files/music/");
 		String[] list = file.list();
 
 		if(list != null){
 			for(String s : list){
 				if(s.endsWith(".mp3"))
-					maps.add(s.replace(".mp3",""));
+					musics.add(s.replace(".mp3",""));
 			}
 		}
-		return maps;
+		return musics;
+	}
+
+	/**
+	 * Obtenir le nom de toutes les maps en local
+	 * Les noms sont issus des fichiers tmx présents
+	 * @return Le nom des maps
+	 * @since 6.1
+	 */
+	//TODO: move to real utility
+	public static ArrayList<String> getAllSoundName(){
+		ArrayList<String> sounds = new ArrayList<>();
+		File file = new File("assets/files/sound/");
+		String[] list = file.list();
+
+		if(list != null){
+			for(String s : list){
+				if(s.endsWith(".mp3"))
+					sounds.add(s.replace(".mp3",""));
+			}
+		}
+		return sounds;
 	}
 
 	/**

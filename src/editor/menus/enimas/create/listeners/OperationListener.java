@@ -93,9 +93,9 @@ public class OperationListener implements ActionListener, ItemListener {
             if (this.object instanceof Lockable)
                 ope = new Unlock((Lockable) this.object);
 
-        }else if(this.currentButton.getName().equals(Operations.MUSIC.name())){
+        }else if(this.currentButton.getName().equals(Operations.SOUND.name())){
             if (this.object instanceof MusicEditor) {
-                ope = new LaunchMusic((MusicEditor) this.object);
+                ope = new LaunchSound((MusicEditor) this.object);
                 //on rajoute l"objet musique à la map pour pouvoir le sauvegarder dans le tmx
                 MapTestScreen map = ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap();
                 map.set(this.object, new Vector2(0, 0));

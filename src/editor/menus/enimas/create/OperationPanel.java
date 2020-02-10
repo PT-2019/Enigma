@@ -43,6 +43,7 @@ public class OperationPanel extends AbstractSubPopUpView implements Observer<Gam
 	private static final String INVALID_ENTITY = "Entité Invalide. ";
 	public static final String TITLE = "Ajouter une Opération à l'énigme";
 	public static final String BUT_MUS = "Choisir musique";
+	public static final String BUT_SOUND = "Choisir son";
 
 	/**
 	 * Les informations sur l'entité sur laquelle l'opération sera faite
@@ -91,9 +92,13 @@ public class OperationPanel extends AbstractSubPopUpView implements Observer<Gam
 			//on ajoute les boutons au groupe
 			groups.add(r);
 
-			if (op == Operations.MUSIC || op == Operations.MAINMUSIC){
-				this.musicPanel[index] = new MusicPanel(OperationPanel.BUT_MUS,r,this);
-				panel.add(musicPanel[index],gbc);
+			if (op == Operations.SOUND ) {
+				this.musicPanel[index] = new MusicPanel(OperationPanel.BUT_SOUND, r, this, op);
+				panel.add(musicPanel[index], gbc);
+				index++;
+			}else if(op == Operations.MAINMUSIC){
+				this.musicPanel[index] = new MusicPanel(OperationPanel.BUT_MUS, r, this, op);
+				panel.add(musicPanel[index], gbc);
 				index++;
 			}else{
 				//ajoute les boutons au panneau

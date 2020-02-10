@@ -25,7 +25,7 @@ public enum Operations {
 	GIVE("Donne un object à l'utilisateur", "Objects uniquement (livre...).", null, SelectionsModes.MENU_AND_POPUP),
 	SUMMON("Invoque une entité", "Seulement des personnages, pas de héros.", null, SelectionsModes.MAP_AND_MENU),
 	UNLOCK("Dévérouille un object", "Seulement un object \"Décors\" fermable.", null, SelectionsModes.MAP),
-	MUSIC("Lancer un son", "Seulement une musique.", null, SelectionsModes.MUSIC),
+	SOUND("Lancer un son", "Seulement une musique.", null, SelectionsModes.MUSIC),
 	MAINMUSIC("Changer la musique principale", "Seulement une musique.", null, SelectionsModes.MUSIC),
 	;
 
@@ -132,7 +132,7 @@ public enum Operations {
 			}
 		} else if (this.equals(UNLOCK)) {
 			return (object instanceof Lockable);
-		}else if(this.equals(MUSIC)){
+		}else if(this.equals(SOUND)){
 			return true;
 		}else if(this.equals(MAINMUSIC)){
 			return true;

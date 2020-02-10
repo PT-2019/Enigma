@@ -142,6 +142,17 @@ public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyl
 		return showMusicChoiceDialog(parent, new EnigmaOptionPane());
 	}
 
+	/**
+	 * Crée un popup de choix pour les sons
+	 *
+	 * @param parent  parent
+	 * @return le nom de la map séléctionnée
+	 * @since 5.0
+	 */
+	public static String showSoundChoiceDialog(CustomWindow parent) {
+		return showSoundChoiceDialog(parent, new EnigmaOptionPane());
+	}
+
 	// réécriture des méthodes static avec le bon style
 
 	/**

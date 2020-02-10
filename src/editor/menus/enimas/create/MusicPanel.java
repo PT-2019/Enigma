@@ -14,9 +14,10 @@ public class MusicPanel extends JPanel {
 
     private OperationPanel parent;
 
-    public MusicPanel(String text, JRadioButton button,OperationPanel parent){
+    public MusicPanel(String text, JRadioButton button,OperationPanel parent,Operations operation){
         this.link = new JLabel(text);
-        this.link.addMouseListener(new MusicListener());
+
+        this.link.addMouseListener(new MusicListener(operation));
         this.setLayout(new GridLayout(1,2));
         this.add(button);
         this.parent = parent;
