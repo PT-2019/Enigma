@@ -3,30 +3,48 @@ package common.enigmas.operation;
 import common.entities.players.Player;
 import common.entities.special.GameMusic;
 import common.entities.special.MusicEditor;
+import data.NeedToBeTranslated;
 
 /**
- * Lance un son suite à la résolution d'une enigme
+ * Lance un son suite à la résolution d'une énigme
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ *
+ * @version 6.0
+ * @since 6.0
  */
 public class LaunchSound extends Operation {
 
+    /**
+     * Musique
+     */
     private GameMusic musicGame;
 
+    /**
+     * Lance une musique
+     * @param object une musique
+     */
     public LaunchSound(MusicEditor object){
         super(object);
     }
 
+    /**
+     * Lance une musique
+     * @param object une musique
+     * @param music gestionnaire des musiques
+     */
+    @SuppressWarnings("unused")
     public LaunchSound(MusicEditor object, GameMusic music){
         super(object);
-        musicGame = music;
-    }
-
-    @Override
-    public void doOperation(Player p) {
+        this.musicGame = music;
     }
 
     @Override
     public void run(Player p) {
-        musicGame.playSound((MusicEditor) this.entity);
+       this.musicGame.playSound((MusicEditor) this.entity);
     }
 
     @Override
@@ -36,6 +54,7 @@ public class LaunchSound extends Operation {
 
     @Override
     public String getEnigmaElementReadablePrint() {
-        return null;
+        return "["+ NeedToBeTranslated.MUSIC +": "+ NeedToBeTranslated.WITH+" "+
+                this.entity.getReadableName() + " (id="+this.entity.getID()+") ]";
     }
 }
