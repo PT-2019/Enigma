@@ -15,6 +15,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import common.enigmas.TileEvent;
 import common.enigmas.TileEventEnum;
+import common.entities.Entity;
 import common.entities.players.PlayerGame;
 import com.badlogic.gdx.utils.Array;
 import common.entities.GameObject;
@@ -135,7 +136,7 @@ public class GameMap extends AbstractMap {
 	 * @param actor On va tester en fonction de cet actor
 	 * @return boolean true si collision false sinon
 	 */
-	public boolean collision(GameActor actor,float movx,float movy){
+	public boolean collision(GameActor actor,float movX,float movY){
 		boolean result = false;
 
 		//on va itérer tout les actors connu sur la map
@@ -143,7 +144,7 @@ public class GameMap extends AbstractMap {
 		ArrayList<GameActor> actors = (ArrayList<GameActor>) this.entities.clone();
 		actors.remove(actor);
 		for (GameActor act : actors) {
-			if (actor.overlaps(act,movx,movy)){
+			if (actor.overlaps(act,movX,movY)){
 				result = true;
 				break;
 			}
@@ -151,6 +152,28 @@ public class GameMap extends AbstractMap {
 		//pour vider au cas où l'arrayList temporaire
 		actors = null;
 		return result;
+	}
+
+	/**
+	 * Renvoie EntityGame avec laquelle il a touché
+	 * @param actor
+	 * @param movX
+	 * @param movY
+	 * @return
+	 */
+	public GameActor collisionEntityGame(GameActor actor,float movX,float movY){
+		GameActor entity = null;
+
+		ArrayList<GameActor> actors = (ArrayList<GameActor>) this.entities.clone();
+		actors.remove(actor);
+		for (GameActor act : actors) {
+			if (actor.overlaps(act,movX,movY)){
+				entity = act;
+				break;
+			}
+		}
+
+		return entity;
 	}
 
 	@Override
@@ -323,10 +346,11 @@ public class GameMap extends AbstractMap {
 				if (notdisplay){
 					this.setEntityFromSave(object,start);
 					notdisplay = false;
+				}else{
+					// on place les tiles
+					this.setFromSave(object, start);
 				}
 
-				// on place les tiles
-				this.setFromSave(object, start);
 				//ajout à la liste des entités de la map
 				this.objects.put(start, object);
 			} else {

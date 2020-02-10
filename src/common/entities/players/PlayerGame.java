@@ -1,5 +1,6 @@
 package common.entities.players;
 
+import api.libgdx.actor.GameActor;
 import api.libgdx.actor.GameActorAnimation;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
@@ -138,6 +139,7 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
 				tmpX = this.getX();
 				tmpY = this.getY() - PlayerGame.SPEED;
 			} else if (facedDirection == Direction.TOP) {
+
 				tmpX = this.getX();
 				tmpY = this.getY() + PlayerGame.SPEED;
 			}else if (facedDirection == Direction.RIGHT) {
@@ -148,10 +150,16 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
 				tmpY = this.getY();
 			}
 
+			GameActor entityGame = map.collisionEntityGame(this,tmpX - this.getX(),tmpY - this.getY());
+			if (entityGame != null){
+				System.out.println(entityGame);
+			}
+
 			map.doAction(tmpX,tmpY,this, TileEventEnum.ON_USE);
 			//on récupère l'objet sur lequelle on a intéragit
-			/*GameObject object = this.posToEntities((int)position.y,(int)position.x);
-			System.out.println(object);*/
+			Vector2 position = AbstractMap.posToIndex(tmpX,tmpY,map);
+			GameObject object = map.posToEntities((int)position.y,(int)position.x);
+			System.out.println(object);
 		}
 		return false;
 	}
