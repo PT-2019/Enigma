@@ -8,10 +8,9 @@ import common.utils.Logger;
 import data.config.Config;
 import game.EnigmaGame;
 
-import javax.swing.*;
+import javax.swing.JComponent;
+import javax.swing.JFileChooser;
 import java.awt.event.ActionEvent;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
@@ -21,7 +20,6 @@ import java.io.IOException;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.0 01/02/2020
  * @since 6.0 01/02/2020
  */
@@ -39,30 +37,30 @@ public class ExportListener extends MenuListener {
 		fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		fileChooser.setDialogTitle("Choisissez le dossier de destination");
 
-		if(fileChooser.showOpenDialog(this.parent) == JFileChooser.APPROVE_OPTION){
+		if (fileChooser.showOpenDialog(this.parent) == JFileChooser.APPROVE_OPTION) {
 			String exportPath = fileChooser.getSelectedFile().getAbsolutePath();
 			String file = data.getMapName() + Config.EXPORT_EXTENSION;
 
 			String[] files = fileChooser.getSelectedFile().list();
-			if(files != null) {
-				for (String s : files){
-					if(s.equals(file)){
-						EnigmaOptionPane.showAlert(this.window,"Un fichier du même nom existe déjà");
+			if (files != null) {
+				for (String s : files) {
+					if (s.equals(file)) {
+						EnigmaOptionPane.showAlert(this.window, "Un fichier du même nom existe déjà");
 						return;
 					}
 				}
 			}
 
-			if(exportPath.contains("\\"))
+			if (exportPath.contains("\\"))
 				exportPath += "\\";
-			if(exportPath.contains("/"))
+			if (exportPath.contains("/"))
 				exportPath += "/";
 
 			try {
-				ImportExport.exportMap(data.getMapName(),exportPath);
+				ImportExport.exportMap(data.getMapName(), exportPath);
 			} catch (IOException e) {
-				Logger.printError("ExportListener.java","export error");
-				EnigmaOptionPane.showAlert(this.window,"Export raté");
+				Logger.printError("ExportListener.java", "export error");
+				EnigmaOptionPane.showAlert(this.window, "Export raté");
 			}
 			//TODO: afficher ok
 		}

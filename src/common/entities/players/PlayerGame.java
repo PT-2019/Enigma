@@ -3,7 +3,6 @@ package common.entities.players;
 import api.libgdx.actor.GameActorAnimation;
 import api.libgdx.utils.InputAdapter;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Camera;
 import common.map.GameMap;
 import common.utils.Logger;
@@ -17,11 +16,9 @@ import data.keys.CameraKeys;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.0
- * @since 5.0
- *
  * @see GameActorAnimation
+ * @since 5.0
  */
 public class PlayerGame extends GameActorAnimation implements InputAdapter {
 
@@ -37,6 +34,7 @@ public class PlayerGame extends GameActorAnimation implements InputAdapter {
 
 	/**
 	 * Cette classe permet de déplacer le joueur et d'actionner son animation
+	 *
 	 * @param map La map dans la laquelle est placé le joueur
 	 */
 	public PlayerGame(GameMap map) {
@@ -50,13 +48,14 @@ public class PlayerGame extends GameActorAnimation implements InputAdapter {
 	public void center() {
 		Camera cam = this.getStage().getCamera();
 		//pour éviter un bug graphique on crée 2 variables
-		int posy = (int) (cam.position.y );
-		int posx = (int) (cam.position.x );
-		cam.translate(-posx + this.getX(),-posy + this.getY(),0);
+		int posy = (int) (cam.position.y);
+		int posx = (int) (cam.position.x);
+		cam.translate(-posx + this.getX(), -posy + this.getY(), 0);
 	}
 
 	/**
 	 * Actionné lorsqu'une touche est appuyé
+	 *
 	 * @param i touche
 	 * @return true si événement géré
 	 */
@@ -70,7 +69,7 @@ public class PlayerGame extends GameActorAnimation implements InputAdapter {
 			//on vérifie que la case où l'on compte se rendre est disponible
 
 			if (map.isWalkable(x - PlayerGame.SPEED, y, this)
-					&& (!map.collision(this,-PlayerGame.SPEED,0))) {
+					&& (!map.collision(this, -PlayerGame.SPEED, 0))) {
 
 				this.setPosition(x - PlayerGame.SPEED, y);
 				//pour changer de sprite proprement
@@ -84,13 +83,13 @@ public class PlayerGame extends GameActorAnimation implements InputAdapter {
 				//l'animation n'est plus en pause pour la faire tourner
 				this.setAnimationPaused(false);
 				this.setAnimationLooping(true);
-			}else{
+			} else {
 				this.setKeyFrame(5);
 				this.setFacedDirection(Direction.LEFT);
 			}
 		} else if (CameraKeys.CAMERA_RIGHT.isKey(i)) {
 			if (map.isWalkable(x + PlayerGame.SPEED, y, this) &&
-					(!map.collision(this,PlayerGame.SPEED,0)) ) {
+					(!map.collision(this, PlayerGame.SPEED, 0))) {
 
 				this.setPosition(x + PlayerGame.SPEED, y);
 				if (isAnimationPaused() || this.facedDirection != Direction.RIGHT) {
@@ -100,13 +99,13 @@ public class PlayerGame extends GameActorAnimation implements InputAdapter {
 				this.setFacedDirection(Direction.RIGHT);
 				this.setAnimationPaused(false);
 				this.setAnimationLooping(true);
-			}else{
+			} else {
 				this.setKeyFrame(8);
 				this.setFacedDirection(Direction.RIGHT);
 			}
 		} else if (CameraKeys.CAMERA_UP.isKey(i)) {
 			if (map.isWalkable(x, y + PlayerGame.SPEED, this) &&
-					(!map.collision(this,0,+PlayerGame.SPEED))) {
+					(!map.collision(this, 0, +PlayerGame.SPEED))) {
 
 				this.setPosition(x, y + PlayerGame.SPEED);
 				if (isAnimationPaused() || this.facedDirection != Direction.TOP) {
@@ -116,13 +115,13 @@ public class PlayerGame extends GameActorAnimation implements InputAdapter {
 				this.setFacedDirection(Direction.TOP);
 				this.setAnimationPaused(false);
 				this.setAnimationLooping(true);
-			}else{
+			} else {
 				this.setKeyFrame(11);
 				this.setFacedDirection(Direction.TOP);
 			}
 		} else if (CameraKeys.CAMERA_DOWN.isKey(i)) {
 			if (map.isWalkable(x, y - PlayerGame.SPEED, this)
-					&& (!map.collision(this,0,-PlayerGame.SPEED))) {
+					&& (!map.collision(this, 0, -PlayerGame.SPEED))) {
 				this.setPosition(x, y - PlayerGame.SPEED);
 				if (isAnimationPaused() || this.facedDirection != Direction.BOTTOM) {
 					this.setKeyFrame(0);
@@ -131,7 +130,7 @@ public class PlayerGame extends GameActorAnimation implements InputAdapter {
 				this.setFacedDirection(Direction.BOTTOM);
 				this.setAnimationPaused(false);
 				this.setAnimationLooping(true);
-			}else{
+			} else {
 				this.setKeyFrame(2);
 				this.setFacedDirection(Direction.BOTTOM);
 			}
@@ -139,7 +138,7 @@ public class PlayerGame extends GameActorAnimation implements InputAdapter {
 
 		if (Input.Keys.E == i || Input.Keys.ENTER == i) {
 			//interaction
-			Logger.printDebug("PlayerGame#keyDown","interact");
+			Logger.printDebug("PlayerGame#keyDown", "interact");
 		}
 		return false;
 	}

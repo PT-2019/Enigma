@@ -48,10 +48,10 @@ public class TextureProxy {
 		return textures.get(path).getImage(x, y, width, height);
 	}
 
-	public void addTexture(int tileSize, String path, int nbcol, int min, int max) {
+	public void addTexture(int tileSize, String path, int nbCol, int min, int max) {
 		//on vérifie si il y a pas déjà la texture
 		if (!textures.containsKey(path)) {
-			textures.put(path, new TextureArea(tileSize, tileSize, path, nbcol, min, max));
+			textures.put(path, new TextureArea(tileSize, tileSize, path, nbCol, min, max));
 		}
 	}
 
@@ -74,7 +74,7 @@ public class TextureProxy {
 
 	/**
 	 * Charge en mémoire toutes les textures décrites dans le fichier donné en argument.
-	 * Voir le format du fichier en quesiton.
+	 * Voir le format du fichier en question.
 	 *
 	 * @param pathFile chemin du fichier
 	 * @throws NumberFormatException causé par un fichier mal conçu
@@ -84,7 +84,7 @@ public class TextureProxy {
 	public void loadTexture(String pathFile) {
 		BufferedReader buff;
 		FileReader file;
-		String line = "";
+		String line;
 		StringBuilder tmpString = new StringBuilder();
 		String[] info = new String[5];
 		char currentChar;

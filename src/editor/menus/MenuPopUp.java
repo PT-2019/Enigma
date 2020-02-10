@@ -24,7 +24,6 @@ import java.awt.event.ActionListener;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.0
  * @since 4.0
  */
@@ -40,10 +39,10 @@ public class MenuPopUp extends EnigmaPanel {
 	/**
 	 * Popup menu
 	 *
-	 * @param title title
+	 * @param title    title
 	 * @param helpText help
-	 * @param parent parent
-	 * @param reset reset
+	 * @param parent   parent
+	 * @param reset    reset
 	 * @param showBack afficher showBack
 	 */
 	MenuPopUp(String title, String helpText, AbstractPopUpView parent, ResetComponent reset, boolean showBack) {
@@ -99,7 +98,7 @@ public class MenuPopUp extends EnigmaPanel {
 		return backToMenu;
 	}
 
-	public void setTitle(String title){
+	public void setTitle(String title) {
 		this.titleView.setText(title);
 	}
 
@@ -110,7 +109,6 @@ public class MenuPopUp extends EnigmaPanel {
 	 * @author Louka DOZ
 	 * @author Loic SENECAT
 	 * @author Quentin RAMSAMY-AGEORGES
-	 *
 	 * @version 6.0 02/02/2020
 	 * @since 6.0 02/02/2020
 	 */
@@ -119,7 +117,7 @@ public class MenuPopUp extends EnigmaPanel {
 		private final ResetComponent reset;
 		private final AbstractPopUpView parent;
 
-		BackToMenu(ResetComponent reset, AbstractPopUpView parent){
+		BackToMenu(ResetComponent reset, AbstractPopUpView parent) {
 			this.reset = reset;
 			this.parent = parent;
 		}

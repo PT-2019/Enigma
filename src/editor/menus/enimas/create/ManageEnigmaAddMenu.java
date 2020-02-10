@@ -7,7 +7,6 @@ import common.hud.EnigmaTextArea;
 import data.config.EnigmaUIValues;
 import editor.menus.AbstractPopUpView;
 import editor.menus.AbstractSubPopUpView;
-import editor.menus.enimas.create.OperationPanel;
 import editor.menus.enimas.create.listeners.SubmitEnigmaListener;
 import org.jetbrains.annotations.Nullable;
 
@@ -28,7 +27,6 @@ import java.awt.event.ActionListener;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.0 02/02/2020
  * @since 6.0 02/02/2020
  */
@@ -42,6 +40,7 @@ public class ManageEnigmaAddMenu extends AbstractSubPopUpView {
 
 	/**
 	 * Menu d'ajout d'une énigme
+	 *
 	 * @param parent parent
 	 */
 	ManageEnigmaAddMenu(AbstractPopUpView parent, ManageEnigmasAddView addView) {
@@ -114,17 +113,18 @@ public class ManageEnigmaAddMenu extends AbstractSubPopUpView {
 		clue.addActionListener(new NextListener(ManageEnigmasAddView.CLUE, CluePanel.TITLE, addView));
 		condition.addActionListener(new NextListener(ManageEnigmasAddView.CONDITION, ConditionPanel.TITLE, addView));
 		operation.addActionListener(new NextListener(ManageEnigmasAddView.OPERATION, OperationPanel.TITLE, addView));
-		submit.addActionListener(new SubmitEnigmaListener(title,description, addView, this));
+		submit.addActionListener(new SubmitEnigmaListener(title, description, addView, parent, this));
 	}
 
 	/**
 	 * Définition du titre
+	 *
 	 * @param invalid true pour invalide
-	 * @param vide indication sur l'erreur
+	 * @param vide    indication sur l'erreur
 	 */
 	public void setTitleInvalid(boolean invalid, @Nullable String vide) {
 		if (invalid) {
-			if(vide == null) vide = "";
+			if (vide == null) vide = "";
 			else vide = " (" + vide + ")";
 			this.enigmaTitle.getComponentUI().setAllForegrounds(Color.YELLOW, Color.YELLOW, Color.YELLOW);
 			this.enigmaTitle.setText(TITLE + vide);
@@ -149,6 +149,14 @@ public class ManageEnigmaAddMenu extends AbstractSubPopUpView {
 		gbc.insets = new Insets(INSET_VALUE, INSET_VALUE, INSET_VALUE, INSET_VALUE);
 	}
 
+	@Override
+	public void clean() {
+	}
+
+	@Override
+	public void initComponent() {
+	}
+
 	/**
 	 * Passe a l'écran suivant
 	 *
@@ -156,7 +164,6 @@ public class ManageEnigmaAddMenu extends AbstractSubPopUpView {
 	 * @author Louka DOZ
 	 * @author Loic SENECAT
 	 * @author Quentin RAMSAMY-AGEORGES
-	 *
 	 * @version 6.0 02/02/2020
 	 * @since 6.0 02/02/2020
 	 */
@@ -166,7 +173,7 @@ public class ManageEnigmaAddMenu extends AbstractSubPopUpView {
 		private final String title;
 		private final ManageEnigmasAddView view;
 
-		NextListener(String name, String title, ManageEnigmasAddView view ){
+		NextListener(String name, String title, ManageEnigmasAddView view) {
 			this.name = name;
 			this.title = title;
 			this.view = view;
@@ -176,13 +183,5 @@ public class ManageEnigmaAddMenu extends AbstractSubPopUpView {
 		public void actionPerformed(ActionEvent e) {
 			this.view.setCard(this.name, this.title);
 		}
-	}
-
-	@Override
-	public void clean() {
-	}
-
-	@Override
-	public void initComponent() {
 	}
 }

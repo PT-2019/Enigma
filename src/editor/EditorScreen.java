@@ -37,18 +37,21 @@ public class EditorScreen extends JPanel {
 
 	/**
 	 * Libgdx map panel
+	 *
 	 * @since 6.0
 	 */
 	private final JPanel map;
 
 	/**
 	 * Barre de menu
+	 *
 	 * @since 6.1
 	 */
 	private final BarMenu barMenu;
 
 	/**
 	 * Barre d'outils
+	 *
 	 * @since 6.0
 	 */
 	private EnigmaPanel outilBar;
@@ -181,14 +184,15 @@ public class EditorScreen extends JPanel {
 
 	/**
 	 * Activer la simulation ou la désactiver
+	 *
 	 * @param activate true pour activer
 	 * @since 6.0
 	 */
 	void simulationMode(boolean activate) {
 		this.outilBar.setVisible(activate);
-		if(activate){
+		if (activate) {
 			this.outilBar.setVisible(false);
-			this.barMenu.enableAll(false,GameLanguage.gl.get(HUDFields.STOP));
+			this.barMenu.enableAll(false, GameLanguage.gl.get(HUDFields.STOP));
 		} else {
 			this.outilBar.setVisible(true);
 			this.barMenu.enableAll(true);
@@ -197,6 +201,7 @@ public class EditorScreen extends JPanel {
 
 	/**
 	 * Retourne libgdx map panel
+	 *
 	 * @return libgdx map panel
 	 * @since 6.0
 	 */

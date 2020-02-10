@@ -27,8 +27,7 @@ public class PlayerFactory {
 	 *
 	 * @param name nom
 	 * @param path fichier
-	 * @param map map
-	 *
+	 * @param map  map
 	 * @return un playerGame du Json
 	 */
 	@SuppressWarnings("unchecked")

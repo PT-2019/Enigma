@@ -511,7 +511,7 @@ public class Enigma implements ActionListener, IDInterface {
 	 * @return Texte représentant l'énigme
 	 */
 	public String toLongString() {
-		StringBuilder s = new StringBuilder("[Enigma ("+this.id+")  : title = \"" + this.title + "\", descrption = \"" + this.description + "\", type = \"" + this.type + "\", isKnown = " + this.isKnown() + ", currentAdviceIndex = " + this.currentAdvice + ", currentAdvice = " + this.getAdvice() + ", currentTextAdvice = \"" + this.getTextAdvice() + "\", allAdvices = {");
+		StringBuilder s = new StringBuilder("[Enigma (" + this.id + ")  : title = \"" + this.title + "\", descrption = \"" + this.description + "\", type = \"" + this.type + "\", isKnown = " + this.isKnown() + ", currentAdviceIndex = " + this.currentAdvice + ", currentAdvice = " + this.getAdvice() + ", currentTextAdvice = \"" + this.getTextAdvice() + "\", allAdvices = {");
 		int sizeA = this.advices.size() - 1;
 		int sizeC = this.conditions.size() - 1;
 		int sizeO = this.operations.size() - 1;

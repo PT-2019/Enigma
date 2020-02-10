@@ -1,8 +1,6 @@
 package editor.menus;
 
 import api.ui.base.ResetComponent;
-import api.utils.Observer;
-import common.entities.GameObject;
 import common.hud.EnigmaLabel;
 import common.hud.EnigmaPanel;
 
@@ -33,7 +31,8 @@ public abstract class AbstractSubPopUpView extends EnigmaPanel implements ResetC
 
 	/**
 	 * Une vue du cardLayout de la vue d'un popup
-	 * @param title titre
+	 *
+	 * @param title  titre
 	 * @param parent parent
 	 */
 	public AbstractSubPopUpView(String title, AbstractPopUpView parent) {
@@ -42,8 +41,9 @@ public abstract class AbstractSubPopUpView extends EnigmaPanel implements ResetC
 
 	/**
 	 * Une vue du cardLayout de la vue d'un popup
-	 * @param title titre
-	 * @param parent parent
+	 *
+	 * @param title    titre
+	 * @param parent   parent
 	 * @param showBack afficher bouton retour
 	 */
 	public AbstractSubPopUpView(String title, AbstractPopUpView parent, boolean showBack) {
@@ -88,10 +88,12 @@ public abstract class AbstractSubPopUpView extends EnigmaPanel implements ResetC
 	/**
 	 * Affichage de la carte
 	 */
-	public void onShow(){}
+	public void onShow() {
+	}
 
 	/**
 	 * Moment carte n'est plus affichée
 	 */
-	public void onHide(){}
+	public void onHide() {
+	}
 }

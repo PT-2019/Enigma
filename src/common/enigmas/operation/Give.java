@@ -83,7 +83,7 @@ public class Give extends Operation {
 
 	@Override
 	public String getEnigmaElementReadablePrint() {
-		return "["+gl.get(EnigmaField.GIVE)+": "+
-				this.entity.getReadableName() + " (id="+this.entity.getID()+") ]";
+		return "[" + gl.get(EnigmaField.GIVE) + ": " +
+				this.entity.getReadableName() + " (id=" + this.entity.getID() + ") ]";
 	}
 }

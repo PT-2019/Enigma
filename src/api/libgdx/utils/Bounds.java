@@ -8,6 +8,8 @@ import com.badlogic.gdx.math.Vector2;
 /**
  * Un rectangle représentant la taille de quelque chose
  *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  * @version 4.0 22/12/2019

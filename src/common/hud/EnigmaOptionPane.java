@@ -29,6 +29,7 @@ import java.util.ArrayList;
  * @version 6.0
  * @since 3.0
  */
+@SuppressWarnings("unused")
 public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyle {
 
 	private EnigmaOptionPane() {
@@ -148,8 +149,8 @@ public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyl
 	/**
 	 * Crée un popup de choix de map
 	 *
-	 * @param parent  parent
-	 * @return le nom de la map séléctionnée
+	 * @param parent parent
+	 * @return le nom de la map sélectionnée
 	 * @since 5.0
 	 */
 	public static String showMapChoiceDialog(CustomWindow parent) {
@@ -186,13 +187,13 @@ public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyl
 	/**
 	 * Affiche un popup personnalisé
 	 *
-	 * @param parent parent
+	 * @param parent  parent
 	 * @param message possiblement un tableau, des composants a afficher dans le popup
-	 * @param title titre de la fenêtre
+	 * @param title   titre de la fenêtre
 	 * @param options option (ok, confirmer, ...), par exemple un tableau de string
 	 * @return la position dans le tableau d'options choisie
 	 */
-	public static int showOptionDialog(CustomWindow parent, Object message, String title, String[] options){
+	public static int showOptionDialog(CustomWindow parent, Object message, String title, String[] options) {
 		return showOptionDialog(parent, message, title, options, new EnigmaOptionPane());
 	}
 
@@ -212,9 +213,9 @@ public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyl
 	/**
 	 * Crée un popup de choix de map
 	 *
-	 * @param parent  parent
-	 * @param size taille
-	 * @return le nom de la map séléctionnée
+	 * @param parent parent
+	 * @param size   taille
+	 * @return le nom de la map sélectionnée
 	 * @since 5.0
 	 */
 	@ConvenienceMethod
@@ -226,8 +227,8 @@ public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyl
 	/**
 	 * Crée un popup avec une liste de choix.
 	 *
-	 * @param parent  parent
-	 * @param size taille
+	 * @param parent parent
+	 * @param size   taille
 	 * @return le nom du choix sélectionné
 	 * @since 5.0
 	 */
@@ -247,6 +248,16 @@ public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyl
 		showAlert(parent, size, message, new EnigmaOptionPane());
 	}
 
+	/**
+	 * Retourne le style de l'enigma option pane
+	 *
+	 * @return le style de l'enigma option pane
+	 * @since 6.0
+	 */
+	public static OptionPaneStyle getStyle() {
+		return new EnigmaOptionPane();
+	}
+
 	@Override
 	public CustomButton getButtonStyle(String text) {
 		return getClassicButton(text);
@@ -258,7 +269,9 @@ public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyl
 	}
 
 	@Override
-	public CustomTextField getTextFieldStyle() { return getClassicTextField(); }
+	public CustomTextField getTextFieldStyle() {
+		return getClassicTextField();
+	}
 
 	@Override
 	public CustomPanel getPanelStyle() {
@@ -268,14 +281,5 @@ public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyl
 	@Override
 	public EnigmaLabel getLabelStyle(String content) {
 		return new EnigmaLabel(content);
-	}
-
-	/**
-	 * Retourne le style de l'enigma option pane
-	 * @return le style de l'enigma option pane
-	 * @since 6.0
-	 */
-	public static OptionPaneStyle getStyle(){
-		return new EnigmaOptionPane();
 	}
 }

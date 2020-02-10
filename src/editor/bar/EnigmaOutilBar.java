@@ -28,7 +28,6 @@ import java.awt.event.ItemListener;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.0 08/02/2020
  * @since 6.0 08/02/2020
  */
@@ -58,7 +57,8 @@ public class EnigmaOutilBar extends EnigmaPanel {
 
 	/**
 	 * Création des boutons
-	 * @param ui style
+	 *
+	 * @param ui     style
 	 * @param window fenêtre
 	 * @since 6.0
 	 */
@@ -93,6 +93,7 @@ public class EnigmaOutilBar extends EnigmaPanel {
 
 	/**
 	 * La partie liée au zoom de la barre
+	 *
 	 * @since 6.0
 	 */
 	private void generateZoom() {
@@ -139,28 +140,25 @@ public class EnigmaOutilBar extends EnigmaPanel {
 	 * @author Louka DOZ
 	 * @author Loic SENECAT
 	 * @author Quentin RAMSAMY-AGEORGES
-	 *
 	 * @version 6.0 09/02/2020
 	 * @since 6.0 09/02/2020
 	 */
 	private static final class SelectZoomListener implements ItemListener {
 
 		private final ButtonGroup group;
-		private ZoomListener zoomListener;
 
 		SelectZoomListener(ButtonGroup group) {
 			this.group = group;
-			this.zoomListener = null;
 		}
 
 		@Override
 		public void itemStateChanged(ItemEvent e) {
-			if(e.getStateChange() == ItemEvent.SELECTED){
+			if (e.getStateChange() == ItemEvent.SELECTED) {
 				this.group.clearSelection();
 				String command = ((String) e.getItem());
 				//Crée l'action listener
-				if(this.zoomListener == null) this.zoomListener = new ZoomListener(EnigmaGame.getCurrentScreen().getMap());
-				this.zoomListener.actionPerformed(new ActionEvent(this, -1, command));
+				ZoomListener zoomListener = new ZoomListener(EnigmaGame.getCurrentScreen().getMap());
+				zoomListener.actionPerformed(new ActionEvent(this, -1, command));
 			}
 		}
 	}
@@ -172,28 +170,25 @@ public class EnigmaOutilBar extends EnigmaPanel {
 	 * @author Louka DOZ
 	 * @author Loic SENECAT
 	 * @author Quentin RAMSAMY-AGEORGES
-	 *
 	 * @version 6.0 09/02/2020
 	 * @since 6.0 09/02/2020
 	 */
 	private static final class ZoomLevel implements ItemListener {
 
-		private ZoomListener zoomListener;
-
 		@Override
 		public void itemStateChanged(ItemEvent e) {
-			if(e.getStateChange() == ItemEvent.SELECTED){
+			if (e.getStateChange() == ItemEvent.SELECTED) {
 				String text = ((JRadioButton) e.getItem()).getText();
 				String command;
-				if(text.equals(FIT_BUTTON)){
+				if (text.equals(FIT_BUTTON)) {
 					command = NeedToBeTranslated.ZOOM_FIT;
-				} else if(text.equals(IN_GAME_BUTTON)){
+				} else if (text.equals(IN_GAME_BUTTON)) {
 					command = NeedToBeTranslated.ZOOM_IN_GAME;
 				} else {
 					return;
 				}
-				if(this.zoomListener == null) this.zoomListener = new ZoomListener(EnigmaGame.getCurrentScreen().getMap());
-				this.zoomListener.actionPerformed(new ActionEvent(this, -1, command));
+				ZoomListener zoomListener = new ZoomListener(EnigmaGame.getCurrentScreen().getMap());
+				zoomListener.actionPerformed(new ActionEvent(this, -1, command));
 			}
 		}
 	}

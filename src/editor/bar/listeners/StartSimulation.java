@@ -7,7 +7,6 @@ import common.save.EmptyMapGenerator;
 import data.EditorState;
 import data.EnigmaScreens;
 import editor.EditorLauncher;
-import editor.bar.BarMenu;
 import editor.bar.EnigmaMenuBarItems;
 import game.EnigmaGame;
 import game.screens.TestScreen;
@@ -16,7 +15,6 @@ import javax.swing.JPopupMenu;
 import javax.swing.MenuElement;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
-import java.util.Arrays;
 
 /**
  * Lance la simulation du jeu
@@ -25,7 +23,6 @@ import java.util.Arrays;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.0 08/02/2020
  * @since 6.0 08/02/2020
  */
@@ -46,7 +43,7 @@ public class StartSimulation extends MenuListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		//Garde le mode zoom
-		EditorLauncher.clearStates(EditorState.ZOOM);
+		EditorLauncher.clearStates(EditorState.ZOOM, EditorState.SPECIAL_POPUP_DISABLED);
 		//simulation
 		EditorLauncher.addState(EditorState.SIMULATION);
 
@@ -59,9 +56,9 @@ public class StartSimulation extends MenuListener {
 
 		//active le bouton stop
 		for (MenuElement item : ((JPopupMenu) this.parent.getParent()).getSubElements()) {
-			if(item instanceof EnigmaMenuItem){
+			if (item instanceof EnigmaMenuItem) {
 				EnigmaMenuItem enigmaItem = (EnigmaMenuItem) item;
-				if(STOP.equals(enigmaItem.getText())){
+				if (STOP.equals(enigmaItem.getText())) {
 					enigmaItem.setEnabled(true);
 					return;
 				}
@@ -76,7 +73,6 @@ public class StartSimulation extends MenuListener {
 	 * @author Louka DOZ
 	 * @author Loic SENECAT
 	 * @author Quentin RAMSAMY-AGEORGES
-	 *
 	 * @version 6.0 08/02/2020
 	 * @since 6.0 08/02/2020
 	 */

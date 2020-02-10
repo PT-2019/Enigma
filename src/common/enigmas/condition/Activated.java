@@ -70,7 +70,7 @@ public class Activated extends Condition {
 
 	@Override
 	public String getEnigmaElementReadablePrint() {
-		return "["+gl.get(EnigmaField.ACTIVATED)+": "+
-				this.entity.getReadableName() + " (id="+this.entity.getID()+") ]";
+		return "[" + gl.get(EnigmaField.ACTIVATED) + ": " +
+				this.entity.getReadableName() + " (id=" + this.entity.getID() + ") ]";
 	}
 }

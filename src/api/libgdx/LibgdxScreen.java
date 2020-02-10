@@ -19,6 +19,9 @@ import java.util.Iterator;
  * <p>
  * Les méthodes de la libgdx sont cachés au mieux.
  *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  * @version 6.0
  * @see #listen(InputProcessor)
@@ -123,13 +126,16 @@ public abstract class LibgdxScreen implements Screen, InputAdapter, IGameLogic {
 
 	/**
 	 * Affiche un toast
+	 *
 	 * @param message message
 	 * @since 6.0
 	 */
-	public void showToast(String message){}
+	public void showToast(String message) {
+	}
 
 	/**
 	 * Retourne la map dans l'écran
+	 *
 	 * @return la map de l'écran
 	 * @since 4.0
 	 */

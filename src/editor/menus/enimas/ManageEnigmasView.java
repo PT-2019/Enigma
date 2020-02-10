@@ -12,19 +12,19 @@ import editor.popup.cases.CasePopUp;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.0 02/02/2020
  * @since 6.0 02/02/2020
  */
 public class ManageEnigmasView extends AbstractPopUpView {
 
-	private static final String TITLE = "Gérer les énigmes";
-
 	/**
 	 * CardLayout
 	 */
-	static final String MENU = "menu", ADD = "add", SEE = "see";
-
+	public static final String MENU = "menu";
+	static final String ADD = "add";
+	static final String SEE = "see";
+	private static final String TITLE = "Gérer les énigmes";
+	private static ManageEnigmasView instance;
 	/**
 	 * Stockage des écrans
 	 */
@@ -33,8 +33,9 @@ public class ManageEnigmasView extends AbstractPopUpView {
 
 	public ManageEnigmasView(CasePopUp popUp, GameObject object) {
 		super(TITLE, popUp);
+		instance = this;
 
-		if(object == null) object = popUp.getCell().getEntity();
+		if (object == null) object = popUp.getCell().getEntity();
 
 		//ajout des écrans
 		this.addView = new ManageEnigmasAddView(this, object);
@@ -45,6 +46,10 @@ public class ManageEnigmasView extends AbstractPopUpView {
 		this.panel.add(this.listView, MENU);
 		this.panel.add(this.addView, ADD);
 		this.panel.add(manageEnigmasSeeView, SEE);
+	}
+
+	public static ManageEnigmasView getInstance() {
+		return instance;
 	}
 
 	@Override

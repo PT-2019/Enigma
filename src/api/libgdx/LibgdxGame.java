@@ -15,6 +15,7 @@ import java.util.HashMap;
  * Lanceur de jeux vidéos
  *
  * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  * @version 4.2 26/12/2019

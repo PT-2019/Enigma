@@ -2,10 +2,7 @@ package common.save.entities.serialization;
 
 import api.utils.Utility;
 import com.badlogic.gdx.utils.Json;
-import common.entities.players.Monster;
 import common.entities.players.MonsterGame;
-import common.entities.players.PlayerGame;
-import common.map.GameMap;
 import data.Layer;
 
 import java.util.ArrayList;
@@ -15,42 +12,45 @@ import java.util.ArrayList;
  */
 public class MonsterFactory {
 
-    /**
-     * Liste des monstres qu'on a récupérere dans le Json
-     */
-    private static ArrayList<PlayerSerializable> monsters;
+	/**
+	 * Liste des monstres qu'on a récupère dans le Json
+	 */
+	@SuppressWarnings("FieldCanBeLocal")
+	private static ArrayList<PlayerSerializable> monsters;
 
-    /**
-     * Permet de créer un monstergame à partir d'un fichier Json
-     *
-     * @param path
-     * @return un playerGame du Json
-     */
-    @SuppressWarnings("unchecked")
-    public static MonsterGame createMonsterGame(String name,String path) {
-        MonsterGame game = new MonsterGame();
-        Json json = new Json();
-        PlayerSerializable playerInfo = null;
+	/**
+	 * Permet de créer un monsterGame à partir d'un fichier Json
+	 *
+	 * @param path chemin
+	 * @return un playerGame du Json
+	 */
+	@SuppressWarnings("unchecked")
+	public static MonsterGame createMonsterGame(String name, String path) {
+		MonsterGame game = new MonsterGame();
+		Json json = new Json();
+		PlayerSerializable playerInfo = null;
 
-        //parseur de json de la libgdx
-        monsters = json.fromJson(ArrayList.class, PlayerSerializable.class, Utility.loadFile(path));
-        for (PlayerSerializable  p : monsters) {
-            if (p.getName().equals(name)) {
-                playerInfo = p;
-                break;
-            }
-        }
+		//parseur de json de la libgdx
+		monsters = json.fromJson(ArrayList.class, PlayerSerializable.class, Utility.loadFile(path));
+		for (PlayerSerializable p : monsters) {
+			if (p.getName().equals(name)) {
+				playerInfo = p;
+				break;
+			}
+		}
 
-        //on instantie les paramètres de l'animation
-        game.setAnimation(playerInfo.getPath(),
-                playerInfo.getCols(), playerInfo.getRows(),
-                playerInfo.getDuration(),
-                playerInfo.getColPerImage(), playerInfo.getRowPerImage(),
-                playerInfo.getIndex());
+		//on instancie les paramètres de l'animation
+		assert playerInfo != null;
 
-        game.setLayer(Layer.DECORATIONS1);
-        //on initialise la hitbox du monstre
-        game.setBounds(7);
-        return game;
-    }
+		game.setAnimation(playerInfo.getPath(),
+				playerInfo.getCols(), playerInfo.getRows(),
+				playerInfo.getDuration(),
+				playerInfo.getColPerImage(), playerInfo.getRowPerImage(),
+				playerInfo.getIndex());
+
+		game.setLayer(Layer.DECORATIONS1);
+		//on initialise la hitBox du monstre
+		game.setBounds(7);
+		return game;
+	}
 }

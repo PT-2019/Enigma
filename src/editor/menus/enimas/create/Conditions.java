@@ -5,7 +5,9 @@ import common.entities.Consumable;
 import common.entities.GameObject;
 import common.entities.special.Room;
 import common.entities.types.Activatable;
+import data.EditorState;
 import data.NeedToBeTranslated;
+import editor.EditorLauncher;
 import editor.menus.SelectionsModes;
 import game.dnd.DragAndDropBuilder;
 import org.jetbrains.annotations.NotNull;
@@ -22,12 +24,12 @@ import org.jetbrains.annotations.Nullable;
  * @since 5.0 26/01/2020
  */
 public enum Conditions {
-	ACTIVATED(NeedToBeTranslated.ACTIVATED_DESC, NeedToBeTranslated.ACTIVATED_RES, null, SelectionsModes.MAP),
-	ANSWER(NeedToBeTranslated.ANSWER_DESC, NeedToBeTranslated.ANSWER_RES, null, SelectionsModes.ALL),
-	ROOM_DISCOVERED(NeedToBeTranslated.ROOM_DISCOVERED_DESC, NeedToBeTranslated.ROOM_DISCOVERED_RES, null, SelectionsModes.MAP),
-	ROOM_UNDISCOVERED(NeedToBeTranslated.ROOM_UNDISCOVERED_DESC, NeedToBeTranslated.ROOM_UNDISCOVERED_RES, null, SelectionsModes.MAP),
-	HAVE_IN_HANDS(NeedToBeTranslated.HAVE_IN_HANDS_DESC, NeedToBeTranslated.HAVE_IN_HANDS_RES, null, SelectionsModes.MAP_AND_POPUP),
-	HAVE_IN_INVENTORY(NeedToBeTranslated.HAVE_IN_INVENTORY_DESC, NeedToBeTranslated.HAVE_IN_INVENTORY_RES, null, SelectionsModes.MAP_AND_POPUP),
+	ACTIVATED(NeedToBeTranslated.ACTIVATED_DESC, NeedToBeTranslated.ACTIVATED_RES, SelectionsModes.MAP),
+	ANSWER(NeedToBeTranslated.ANSWER_DESC, NeedToBeTranslated.ANSWER_RES, SelectionsModes.ALL),
+	ROOM_DISCOVERED(NeedToBeTranslated.ROOM_DISCOVERED_DESC, NeedToBeTranslated.ROOM_DISCOVERED_RES, SelectionsModes.MAP),
+	ROOM_UNDISCOVERED(NeedToBeTranslated.ROOM_UNDISCOVERED_DESC, NeedToBeTranslated.ROOM_UNDISCOVERED_RES, SelectionsModes.MAP),
+	HAVE_IN_HANDS(NeedToBeTranslated.HAVE_IN_HANDS_DESC, NeedToBeTranslated.HAVE_IN_HANDS_RES, SelectionsModes.MAP_AND_POPUP),
+	HAVE_IN_INVENTORY(NeedToBeTranslated.HAVE_IN_INVENTORY_DESC, NeedToBeTranslated.HAVE_IN_INVENTORY_RES, SelectionsModes.MAP_AND_POPUP),
 	;
 
 	/**
@@ -41,17 +43,6 @@ public enum Conditions {
 	public final String value;
 
 	/**
-	 * Le nom d'une classe dont la méthode run crée.
-	 * <p>
-	 * Non utilisé et non fonctionnel.
-	 * <p>
-	 * La classe possèderait un constructeur qui prends une EnigmaView et
-	 * un OperéationListener.
-	 *
-	 * @see editor.menus.enimas.create.listeners.ConditionListener#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	public final Class<? extends Runnable> initClass;
-	/**
 	 * ignore
 	 */
 	public final String tooltip;
@@ -64,16 +55,15 @@ public enum Conditions {
 	 */
 	public final SelectionsModes menuDrag;
 
-	Conditions(String value, String restrict, Class<? extends Runnable> initClass, SelectionsModes menuDrag) {
+	Conditions(String value, String restrict, SelectionsModes menuDrag) {
 		this.value = value;
-		this.initClass = initClass;
 		this.tooltip = "";
 		this.restrict = restrict;
 		this.menuDrag = menuDrag;
 	}
 
 	/**
-	 * Dévérouille la condition actuelle. L'éditor est débloqué.
+	 * Déverrouille la condition actuelle. L'éditor est débloqué.
 	 * Par exemple le drag and drop depuis le menu peu être désactivé.
 	 *
 	 * @param conditions condition
@@ -85,11 +75,11 @@ public enum Conditions {
 	}
 
 	/**
-	 * Vérouille la condition actuelle. L'éditor est bloqué.
+	 * Verrouille la condition actuelle. L'éditor est bloqué.
 	 * Par exemple le drag and drop depuis le menu peu être désactivé.
 	 *
 	 * @param conditions la condition
-	 * @param observer   observeur
+	 * @param observer   observer
 	 */
 	public static void lock(@NotNull Conditions conditions, Observer<GameObject> observer) {
 		unlock(locked);
@@ -101,18 +91,37 @@ public enum Conditions {
 	 * Verrouille la condition actuelle. L'éditor est bloqué.
 	 * Par exemple le drag and drop depuis le menu peu être désactivé.
 	 *
-	 * @param observer observeur
+	 * @param observer observer
 	 */
 	private void lock(Observer<GameObject> observer) {
-		if (menuDrag.contains(SelectionsModes.MENU)) DragAndDropBuilder.setForPopup(observer);
+		//capture du drag and drop
+		if (menuDrag.contains(SelectionsModes.MENU)) {
+			DragAndDropBuilder.setForPopup(observer);
+		}
+
+		//désactivation de la sélection depuis la map
+		if (!menuDrag.contains(SelectionsModes.MAP)) {
+			if (EditorLauncher.containsState(EditorState.NORMAL)) {
+				EditorLauncher.clearStates();
+			}
+			EditorLauncher.addState(EditorState.SPECIAL_POPUP_DISABLED);
+		}
 	}
 
 	/**
-	 * Dévérouille la condition actuelle. L'éditor est débloqué.
+	 * Déverrouille la condition actuelle. L'éditor est débloqué.
 	 * Par exemple le drag and drop depuis le menu peu être désactivé.
 	 */
 	private void unlock() {
-		if (menuDrag.contains(SelectionsModes.MENU)) DragAndDropBuilder.setForPopup(null);
+		//débloque la capture du drag and drop
+		if (this.menuDrag.contains(SelectionsModes.MENU)) {
+			DragAndDropBuilder.setForPopup(null);
+		}
+
+		//débloque la sélection de la map
+		if (!menuDrag.contains(SelectionsModes.MAP)) {
+			EditorLauncher.removeState(EditorState.SPECIAL_POPUP_DISABLED);
+		}
 	}
 
 	/**
@@ -131,9 +140,9 @@ public enum Conditions {
 			return object instanceof Consumable;
 		} else if (this.equals(HAVE_IN_INVENTORY)) {
 			return object instanceof Consumable;
-		} else if(this.equals(ROOM_DISCOVERED)){
+		} else if (this.equals(ROOM_DISCOVERED)) {
 			return object instanceof Room;
-		} else if(this.equals(ROOM_UNDISCOVERED)){
+		} else if (this.equals(ROOM_UNDISCOVERED)) {
 			return object instanceof Room;
 		}
 

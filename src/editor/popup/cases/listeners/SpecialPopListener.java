@@ -4,7 +4,6 @@ import common.entities.GameObject;
 import editor.popup.cases.AbstractPopUp;
 import editor.popup.cases.CasePopUp;
 import editor.popup.cases.SpecialPopUp;
-import editor.popup.listeners.CaseListener;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

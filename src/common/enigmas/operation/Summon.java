@@ -170,8 +170,8 @@ public class Summon extends Operation {
 		int i = this.spawn.getIndex();
 		int x = i % this.spawn.getLayer().getWidth(), y = i / this.spawn.getLayer().getWidth();
 
-		return "["+gl.get(EnigmaField.SUMMON)+": "+
-				this.entity.getReadableName() + " (id="+this.entity.getID()+") "+
-				gl.get(EnigmaField.LOCATION) + " ("+x+","+y+") ]";
+		return "[" + gl.get(EnigmaField.SUMMON) + ": " +
+				this.entity.getReadableName() + " (id=" + this.entity.getID() + ") " +
+				gl.get(EnigmaField.LOCATION) + " (" + x + "," + y + ") ]";
 	}
 }

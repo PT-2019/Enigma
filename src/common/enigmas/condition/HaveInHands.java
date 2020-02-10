@@ -73,7 +73,7 @@ public class HaveInHands extends Condition {
 
 	@Override
 	public String getEnigmaElementReadablePrint() {
-		return "["+gl.get(EnigmaField.HAVE_IN_HANDS)+": "+
-				this.entity.getReadableName() + " (id="+this.entity.getID()+") ]";
+		return "[" + gl.get(EnigmaField.HAVE_IN_HANDS) + ": " +
+				this.entity.getReadableName() + " (id=" + this.entity.getID() + ") ]";
 	}
 }

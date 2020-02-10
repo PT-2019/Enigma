@@ -5,13 +5,12 @@ import common.enigmas.Enigma;
 import common.enigmas.condition.Condition;
 import common.enigmas.operation.Operation;
 import common.entities.GameObject;
-import common.entities.items.Floor;
 import common.entities.types.EnigmaContainer;
 import common.hud.EnigmaButton;
 import common.hud.EnigmaLabel;
+import common.hud.EnigmaPanel;
 import common.hud.ui.EnigmaLabelUI;
 import common.utils.Logger;
-import common.hud.EnigmaPanel;
 import data.NeedToBeTranslated;
 import editor.bar.edition.ActionTypes;
 import editor.bar.edition.ActionsManager;
@@ -19,8 +18,6 @@ import editor.bar.edition.actions.EditorActionFactory;
 import editor.menus.AbstractPopUpView;
 import editor.menus.AbstractSubPopUpView;
 import editor.menus.Drawable;
-import game.EnigmaGame;
-
 
 import javax.swing.BorderFactory;
 import javax.swing.JScrollPane;
@@ -40,7 +37,6 @@ import java.util.Iterator;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 5.0
  * @since 5.0
  */
@@ -66,6 +62,7 @@ public class ManageEnigmasSeeView extends AbstractSubPopUpView implements Drawab
 
 	/**
 	 * Vue de l'item sélectionné
+	 *
 	 * @param parent parent
 	 * @param object Object contenant l'énigme
 	 */
@@ -78,7 +75,7 @@ public class ManageEnigmasSeeView extends AbstractSubPopUpView implements Drawab
 		Logger.printDebugALL("Enigma#See", checked.toLongString());
 
 		this.content.removeAll();
-		this.extra = new EnigmaPanel(new GridLayout(1,1));
+		this.extra = new EnigmaPanel(new GridLayout(1, 1));
 
 		EnigmaLabelUI ui = new EnigmaLabelUI();
 		ui.setAllBackgrounds(Color.WHITE);
@@ -92,22 +89,22 @@ public class ManageEnigmasSeeView extends AbstractSubPopUpView implements Drawab
 		Iterator<Condition> allConditions = checked.getAllConditions();
 		Iterator<Operation> allOperations = checked.getAllOperations();
 
-		extra.add(new EnigmaLabel("Nom:"+name, ui));
+		extra.add(new EnigmaLabel("Nom:" + name, ui));
 		row++;
-		extra.add(new EnigmaLabel("Description:"+desc, ui));
+		extra.add(new EnigmaLabel("Description:" + desc, ui));
 		row++;
-		extra.add(new EnigmaLabel(SEPARATOR+" "+CLUES+" "+SEPARATOR, ui));
+		extra.add(new EnigmaLabel(SEPARATOR + " " + CLUES + " " + SEPARATOR, ui));
 		row++;
 
 		//Affichage des indices
 		c = 0;
-		while(allAdvices.hasNext()){
+		while (allAdvices.hasNext()) {
 			Advice a = allAdvices.next();
 			extra.add(new EnigmaLabel(a.getEnigmaElementReadablePrint(), ui));
 			c++;
 		}
 
-		if(c != 0){
+		if (c != 0) {
 			row += c;
 			c = 0;
 		} else {
@@ -115,17 +112,17 @@ public class ManageEnigmasSeeView extends AbstractSubPopUpView implements Drawab
 			row++;
 		}
 
-		extra.add(new EnigmaLabel(SEPARATOR+" "+CONDITIONS+" "+SEPARATOR, ui));
+		extra.add(new EnigmaLabel(SEPARATOR + " " + CONDITIONS + " " + SEPARATOR, ui));
 		row++;
 
 		//Affichage des conditions
-		while(allConditions.hasNext()){
+		while (allConditions.hasNext()) {
 			Condition a = allConditions.next();
 			extra.add(new EnigmaLabel(a.getEnigmaElementReadablePrint(), ui));
 			c++;
 		}
 
-		if(c != 0){
+		if (c != 0) {
 			row += c;
 			c = 0;
 		} else {
@@ -133,24 +130,24 @@ public class ManageEnigmasSeeView extends AbstractSubPopUpView implements Drawab
 			row++;
 		}
 
-		extra.add(new EnigmaLabel(SEPARATOR+" "+OPERATIONS+" "+SEPARATOR, ui));
+		extra.add(new EnigmaLabel(SEPARATOR + " " + OPERATIONS + " " + SEPARATOR, ui));
 		row++;
 
 		//Affichage des opérations
-		while(allOperations.hasNext()){
+		while (allOperations.hasNext()) {
 			Operation a = allOperations.next();
 			extra.add(new EnigmaLabel(a.getEnigmaElementReadablePrint(), ui));
 			c++;
 		}
 
-		if(c != 0){
+		if (c != 0) {
 			row += c;
 		} else {
 			extra.add(new EnigmaLabel(NONE, ui));
 			row++;
 		}
 
-		((GridLayout)this.extra.getLayout()).setRows(row);
+		((GridLayout) this.extra.getLayout()).setRows(row);
 
 		JScrollPane panelS = new JScrollPane(this.extra);
 		panelS.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -195,7 +192,6 @@ public class ManageEnigmasSeeView extends AbstractSubPopUpView implements Drawab
 	 * @author Louka DOZ
 	 * @author Loic SENECAT
 	 * @author Quentin RAMSAMY-AGEORGES
-	 *
 	 * @version 6.0 09/02/2020
 	 * @since 6.0 09/02/2020
 	 */
@@ -215,15 +211,7 @@ public class ManageEnigmasSeeView extends AbstractSubPopUpView implements Drawab
 			this.entity.removeEnigma(this.checked);
 			//ajout à l'historique
 			ActionsManager.getInstance().add(
-					EditorActionFactory.enigma(
-							ActionTypes.REMOVE_ENIGMA,
-							this.entity,
-							this.checked,
-							() -> {
-								this.parent.invalidateDrawable();
-								this.parent.getCardLayout()
-									.show(this.parent.getPanel(), ManageEnigmasView.MENU);}
-					)
+					EditorActionFactory.actionWithinAMenu(ActionTypes.REMOVE_ENIGMA, this.entity, this.checked)
 			);
 			//EnigmaGame.getCurrentScreen().showToast(NeedToBeTranslated.REMOVE_ENIGMA);
 			this.parent.invalidateDrawable();

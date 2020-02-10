@@ -88,7 +88,7 @@ public class Book extends AbstractConsumable implements Content {
 	}
 
 	@Override
-	public HashMap<SaveKey,String> getSave(){
+	public HashMap<SaveKey, String> getSave() {
 		HashMap<SaveKey, String> save = new HashMap<>();
 		save.put(PlayerSave.CONTENT, this.content);
 		return save;

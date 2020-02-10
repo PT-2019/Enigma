@@ -14,14 +14,11 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import common.entities.GameObject;
 import common.map.MapObjects;
-import common.entities.players.EntityGame;
-import common.entities.players.Player;
 import common.map.model.Case;
 import common.map.model.Map;
 import common.save.entities.SaveKey;
 import common.utils.textures.TextureArea;
 import data.Layer;
-import org.lwjgl.Sys;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 

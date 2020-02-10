@@ -3,7 +3,6 @@ package editor.bar.listeners;
 import common.hud.EnigmaWindow;
 import data.EditorState;
 import editor.EditorLauncher;
-import game.screens.TestScreen;
 import org.jetbrains.annotations.Nullable;
 
 import java.awt.Component;
@@ -47,12 +46,12 @@ public class EraserListener extends MenuListener {
 		if (EditorLauncher.containsState(EditorState.ERASE)) {
 			setActive(false);
 			//exception du zoom, passe en normal automatiquement si pas de zoom
-			EditorLauncher.clearStates(EditorState.ZOOM);
+			EditorLauncher.clearStates(EditorState.ZOOM, EditorState.SPECIAL_POPUP_DISABLED);
 		} else {
 			//si on active la gomme
 			setActive(true);
 			//exception du zoom
-			EditorLauncher.clearStates(EditorState.ZOOM);
+			EditorLauncher.clearStates(EditorState.ZOOM, EditorState.SPECIAL_POPUP_DISABLED);
 			//passe en "gomme"
 			EditorLauncher.addState(EditorState.ERASE);
 		}

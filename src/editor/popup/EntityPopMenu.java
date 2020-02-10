@@ -19,7 +19,6 @@ import javax.swing.JPopupMenu;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.0
  * @since 4.0
  */
@@ -28,7 +27,7 @@ public class EntityPopMenu extends JPopupMenu {
 	/**
 	 * Popup du clic droit
 	 *
-	 * @param map map
+	 * @param map    map
 	 * @param window fenêtre
 	 * @since 4.0
 	 */
@@ -84,6 +83,7 @@ public class EntityPopMenu extends JPopupMenu {
 
 	/**
 	 * Constructeur pour des test
+	 *
 	 * @since 4.0
 	 */
 	@Deprecated

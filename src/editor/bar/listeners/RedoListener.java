@@ -16,7 +16,6 @@ import java.awt.event.ActionEvent;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 5.0 01/02/2020
  * @since 5.0 01/02/2020
  */
@@ -26,6 +25,7 @@ public class RedoListener extends MenuListener implements Observer<ActionsManage
 
 	/**
 	 * Observateur de l'annulation de "revenir en arrière"
+	 *
 	 * @param window window
 	 * @param parent parent
 	 */
@@ -44,12 +44,12 @@ public class RedoListener extends MenuListener implements Observer<ActionsManage
 	@Override
 	public void update(ActionsManager object) {
 		//si pas de redo, alors je disable le bouton sinon je l'active
-		if(object.isRedoAvailable()){
-			if(parent instanceof EnigmaButton)
-				((EnigmaButton)parent).setIcon(Outil.REDO_OK);
+		if (object.isRedoAvailable()) {
+			if (parent instanceof EnigmaButton)
+				((EnigmaButton) parent).setIcon(Outil.REDO_OK);
 			else parent.setEnabled(true);
 		} else {
-			if(parent instanceof EnigmaButton) ((EnigmaButton)parent).setIcon(Outil.REDO_KO);
+			if (parent instanceof EnigmaButton) ((EnigmaButton) parent).setIcon(Outil.REDO_KO);
 			else parent.setEnabled(false);
 		}
 	}

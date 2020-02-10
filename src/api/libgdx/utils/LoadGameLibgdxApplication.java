@@ -13,6 +13,8 @@ import java.awt.event.WindowListener;
 /**
  * Charge l'application libgdx dans un composant SWING
  *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  * @version 4.0

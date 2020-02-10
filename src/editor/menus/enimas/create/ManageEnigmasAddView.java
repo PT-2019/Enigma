@@ -26,7 +26,6 @@ import java.awt.event.ActionListener;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.1
  * @since 6.0 02/02/2020
  */
@@ -36,48 +35,41 @@ public class ManageEnigmasAddView extends AbstractSubPopUpView {
 	 * Textes à traduire
 	 */
 	public static final String TITLE = "Créer une énigme";
-	static final String SAVE = "Sauvegarder Enigme";
-	static final String ADD_CLUE = "Ajouter un indice";
-	static final String ADD_COND = "Ajouter une condition";
-	static final String ADD_OP = "Ajouter une conséquence";
-
 	/**
 	 * CardLayout
 	 */
 	public static final String MENU = "menu";
+	static final String SAVE = "Sauvegarder Enigme";
+	static final String ADD_CLUE = "Ajouter un indice";
+	static final String ADD_COND = "Ajouter une condition";
+	static final String ADD_OP = "Ajouter une conséquence";
 	static final String CLUE = "clue";
 	static final String OPERATION = "operation";
 	static final String CONDITION = "condition";
 	private final GameObject object;
-
+	/**
+	 * Listener de la "fermeture"
+	 */
+	private final CustomBackToMenu customBackToMenu;
 	/**
 	 * Enigme que l'utilisateur va créer
 	 */
 	private Enigma enigma;
-
 	private CardLayout layout;
-
 	/**
 	 * Composant principal de la fenêtre
 	 */
 	private JPanel panel;
-
 	private CasePopUp popUp;
-
 	private MapTestScreenCell cell;
-
 	/**
 	 * true si on est sur le menu sinon false
 	 */
 	private boolean onMenu;
 
 	/**
-	 * Listener de la "fermeture"
-	 */
-	private final CustomBackToMenu customBackToMenu;
-
-	/**
 	 * Vue du menu d'ajout d'une énigme
+	 *
 	 * @param parent parent
 	 * @param object object contenant l'énigme
 	 */
@@ -124,10 +116,11 @@ public class ManageEnigmasAddView extends AbstractSubPopUpView {
 
 	/**
 	 * Change la card lue
+	 *
 	 * @param name nom d'une card
 	 * @since 6.1
 	 */
-	public void setCard(String name, String title){
+	public void setCard(String name, String title) {
 		this.onMenu = name.equals(MENU);
 		this.layout.show(this.panel, name);
 		this.menuPopUp.setTitle(title);
@@ -139,9 +132,10 @@ public class ManageEnigmasAddView extends AbstractSubPopUpView {
 
 	/**
 	 * Ferme cette fenêtre
+	 *
 	 * @since 6.1
 	 */
-	public void close(){
+	public void close() {
 		this.onMenu = true;
 		this.customBackToMenu.actionPerformed(null);
 	}
@@ -173,7 +167,6 @@ public class ManageEnigmasAddView extends AbstractSubPopUpView {
 	 * @author Louka DOZ
 	 * @author Loic SENECAT
 	 * @author Quentin RAMSAMY-AGEORGES
-	 *
 	 * @version 6.0 02/02/2020
 	 * @since 6.0 02/02/2020
 	 */
@@ -190,7 +183,7 @@ public class ManageEnigmasAddView extends AbstractSubPopUpView {
 		@Override
 		public void actionPerformed(@Nullable ActionEvent e) {
 			//si on est sur le menu de création, on quitte pour revenir à la liste
-			if(this.addView.onMenu) {
+			if (this.addView.onMenu) {
 				//reset du menu
 				this.addView.clean();
 

@@ -23,7 +23,7 @@ import static common.language.GameLanguage.gl;
 public class Unlock extends Operation {
 
 	/**
-	 * @param l Objet verrouillabe concerné par l'opération
+	 * @param l Objet verrouillable concerné par l'opération
 	 */
 	public Unlock(Lockable l) {
 		super((Item) l);
@@ -81,6 +81,6 @@ public class Unlock extends Operation {
 
 	@Override
 	public String getEnigmaElementReadablePrint() {
-		return "["+gl.get(EnigmaField.UNLOCK)+": "+this.entity.getReadableName() + " (id="+this.entity.getID()+") ]";
+		return "[" + gl.get(EnigmaField.UNLOCK) + ": " + this.entity.getReadableName() + " (id=" + this.entity.getID() + ") ]";
 	}
 }

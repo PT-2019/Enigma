@@ -2,10 +2,8 @@ package editor.bar.edition.actions;
 
 import com.badlogic.gdx.math.Vector2;
 import common.entities.GameObject;
-import common.entities.types.ContainersManager;
 import common.map.AbstractMap;
 import common.map.MapObject;
-import common.map.MapObjects;
 import editor.bar.edition.ActionTypes;
 import editor.bar.edition.EditorAction;
 
@@ -51,13 +49,14 @@ class EditorActionRemoveEntity implements EditorAction {
 	@Override
 	public void clear() {
 		//si plus dans la map
-		if(this.map.getEntities().getEntry(this.entity) == null){
+		if (this.map.getEntities().getEntry(this.entity) == null) {
 			this.map.freeId(this.entity); //free
 		}
 	}
 
 	/**
 	 * Retourne l'entité
+	 *
 	 * @return l'entité
 	 */
 	@Override

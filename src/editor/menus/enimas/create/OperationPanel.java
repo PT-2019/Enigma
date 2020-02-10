@@ -8,13 +8,15 @@ import common.hud.EnigmaLabel;
 import common.hud.EnigmaPanel;
 import editor.menus.AbstractPopUpView;
 import editor.menus.AbstractSubPopUpView;
-import editor.menus.enimas.create.listeners.ConditionListener;
 import editor.menus.enimas.create.listeners.OperationListener;
 import editor.popup.listeners.CaseListener;
 import game.dnd.DragAndDropBuilder;
 import org.jetbrains.annotations.Nullable;
 
-import javax.swing.*;
+import javax.swing.ButtonGroup;
+import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
@@ -38,9 +40,8 @@ public class OperationPanel extends AbstractSubPopUpView implements Observer<Gam
 	public static final String ASK_SELECT = "Veuillez sélectionner un objet ";
 	public static final String ASK_OP = "Veuillez sélectionner une opération.";
 	public static final String NOT_AVAILABLE_OPERATION = "Opération non disponible";
-	private static final String INVALID_ENTITY = "Entité Invalide. ";
 	public static final String TITLE = "Ajouter une Opération à l'énigme";
-
+	private static final String INVALID_ENTITY = "Entité Invalide. ";
 	/**
 	 * Les informations sur l'entité sur laquelle l'opération sera faite
 	 */

@@ -29,12 +29,14 @@ public class BarMenu extends EnigmaMenuBar {
 
 	/**
 	 * Sauvegarde des menus particuliers si on veut les cacher
+	 *
 	 * @since 6.2
 	 */
 	private ArrayList<String> lastStated;
 
 	/**
 	 * Crée une barre de menus
+	 *
 	 * @param window fenêtre
 	 * @since 3.0
 	 */
@@ -73,15 +75,16 @@ public class BarMenu extends EnigmaMenuBar {
 
 	/**
 	 * Retourne un item de la barre depuis son nom
+	 *
 	 * @param itemName un nom d'item
 	 * @return l'item ou null
 	 * @since 6.2
 	 */
-	public EnigmaMenuItem getItem(EnigmaMenuBarItems itemName){
+	public EnigmaMenuItem getItem(EnigmaMenuBarItems itemName) {
 		for (Component menu : new Array.ArrayIterator<>(this.getMenus())) {
-			for (Object item: ((EnigmaMenu)menu).getItems()){
-				if(!(item instanceof EnigmaMenuItem)) continue;
-				if(itemName.name.equals(((EnigmaMenuItem)item).getText())) return (EnigmaMenuItem) item;
+			for (Object item : ((EnigmaMenu) menu).getItems()) {
+				if (!(item instanceof EnigmaMenuItem)) continue;
+				if (itemName.name.equals(((EnigmaMenuItem) item).getText())) return (EnigmaMenuItem) item;
 			}
 		}
 		return null;
@@ -89,33 +92,34 @@ public class BarMenu extends EnigmaMenuBar {
 
 	/**
 	 * Active/Désactive tous les menus sauf exceptions
-	 * @param enable true pour activer sinon false pour désactiver
+	 *
+	 * @param enable     true pour activer sinon false pour désactiver
 	 * @param exceptions nom des menus à ne pas désactiver
 	 * @since 6.2
 	 */
 	public void enableAll(boolean enable, String... exceptions) {
 		//Crée une liste comme ça c'est plus rapide
 		ArrayList<String> exceptionsList = new ArrayList<>();
-		if(exceptions != null && exceptions.length > 0) exceptionsList.addAll(Arrays.asList(exceptions));
+		if (exceptions != null && exceptions.length > 0) exceptionsList.addAll(Arrays.asList(exceptions));
 		//parcours des grand menus
 		for (Component c : new Array.ArrayIterator<>(this.getMenus())) {
-			if(!(c instanceof EnigmaMenu)) continue;
+			if (!(c instanceof EnigmaMenu)) continue;
 			//parcours de leur contenu
-			for (Component cItem: ((EnigmaMenu) c).getItems()) {
-				if(!(cItem instanceof EnigmaMenuItem)) continue;
+			for (Component cItem : ((EnigmaMenu) c).getItems()) {
+				if (!(cItem instanceof EnigmaMenuItem)) continue;
 				EnigmaMenuItem item = (EnigmaMenuItem) cItem;
 				//si je ne dois pas toucher à l'object
 				String text = item.getText();
 				boolean enabled = item.isEnabled();
-				if(exceptionsList.contains(text)) continue;
+				if (exceptionsList.contains(text)) continue;
 
 				//si bouton activé, et que je veux l'activer
 				//ou si bouton désactivé, et que je veux le désactiver
-				if(enable == enabled){
+				if (enable == enabled) {
 					lastStated.add(text);
 				} else {
 					//s'il était dans un état différent, alors je le rétablis pas
-					if(lastStated.contains(text))	lastStated.remove(text);
+					if (lastStated.contains(text)) lastStated.remove(text);
 					else item.setEnabled(enable);
 				}
 			}

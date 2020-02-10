@@ -5,9 +5,9 @@ package common.entities.players;
  */
 public interface EntityGame {
 
-    void setJson(String json, String key);
+	void setJson(String json, String key);
 
-    String getJson();
+	String getJson();
 
-    String getKey();
+	String getKey();
 }

@@ -1,7 +1,7 @@
 package data;
 
 /**
- * Etats de l'éditeur
+ * états de l'éditeur
  *
  * @author Jorys-Micke ALAÏS
  * @author Louka DOZ
@@ -30,13 +30,17 @@ public enum EditorState {
 
 	/**
 	 * En cours de simulation
+	 *
 	 * @since 6.0
 	 */
 	SIMULATION,
 
 	/**
 	 * En cours de zoom
+	 *
 	 * @since 6.1
 	 */
-	ZOOM
+	ZOOM,
+
+	SPECIAL_POPUP_DISABLED,
 }

@@ -1,26 +1,26 @@
 package common.map;
 
-import api.utils.Utility;
-import com.badlogic.gdx.maps.MapLayer;
-import com.badlogic.gdx.utils.Array;
-import common.enigmas.Enigma;
-import common.enigmas.condition.Condition;
-import common.enigmas.operation.Operation;
-import common.entities.types.EnigmaContainer;
-import common.utils.Logger;
 import api.libgdx.utils.Bounds;
+import api.utils.Utility;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
+import common.enigmas.Enigma;
+import common.enigmas.condition.Condition;
+import common.enigmas.operation.Operation;
 import common.entities.GameObject;
 import common.entities.special.GameExit;
 import common.entities.types.ContainersManager;
+import common.entities.types.EnigmaContainer;
 import common.entities.types.NeedContainer;
 import common.entities.types.NeedContainerManager;
 import common.save.entities.serialization.EntityFactory;
 import common.save.entities.serialization.EntitySerializable;
+import common.utils.Logger;
 import data.EntitiesCategories;
 import data.Layer;
 import data.NeedToBeTranslated;
@@ -64,6 +64,13 @@ public class MapTestScreen extends AbstractMap {
 	 * Surveille les actions effectuées
 	 */
 	private ActionsManager manager;
+	/**
+	 * Liste des éléments déjà restorés
+	 *
+	 * @see #saveParents(HashMap)
+	 * @since 6.1
+	 */
+	private ArrayList<GameObject> restored = new ArrayList<>();
 
 	/**
 	 * Crée une map depuis un fichier tmx
@@ -109,14 +116,14 @@ public class MapTestScreen extends AbstractMap {
 	public LoadedEntity loadEntity(EntitySerializable entity, @Nullable Vector2 pos) {
 		Vector2 start = null;
 		//récupère la position sur la map depuis pos, s'il y a une pos
-		if (pos != null){
+		if (pos != null) {
 			start = getMapPosition(pos, entity);
-			if(start == null) return new LoadedEntity(null, LoadEntityError.OUT_MAP.message);
+			if (start == null) return new LoadedEntity(null, LoadEntityError.OUT_MAP.message);
 		}
 
 		if (entity.getCategory().name.equals(EntitiesCategories.ACTIONS.name)) {
 			if (entity.getClassName() == null) {
-				Logger.printError("MapTestScreen#loadEntity", "Action "+entity+" non supportée.");
+				Logger.printError("MapTestScreen#loadEntity", "Action " + entity + " non supportée.");
 				return new LoadedEntity(null, LoadEntityError.NOT_SUPPORTED.message);
 			} else if (entity.getClassName().equals(GameExit.class.getName())) {
 				//une seule sortie
@@ -135,9 +142,9 @@ public class MapTestScreen extends AbstractMap {
 
 			//vérifie que le placement est possible
 			String s = checkPlacement(object, start);
-			if(s != null) return new LoadedEntity(null, s);
+			if (s != null) return new LoadedEntity(null, s);
 
-			if(object instanceof GameExit) this.hasExit = true;
+			if (object instanceof GameExit) this.hasExit = true;
 
 			//print debug
 			Logger.printDebug("MapTestScreen#loadEntity", object.toString() + " " + object.getID());
@@ -169,7 +176,8 @@ public class MapTestScreen extends AbstractMap {
 
 	/**
 	 * Retourne la position du entité dans la map ou null si pas dedans
-	 * @param pos position x,y
+	 *
+	 * @param pos    position x,y
 	 * @param entity entité
 	 * @return la position du entité dans la map ou null si pas dedans
 	 */
@@ -202,8 +210,9 @@ public class MapTestScreen extends AbstractMap {
 
 	/**
 	 * Vérifie que le placement est possible
+	 *
 	 * @param object object
-	 * @param start position
+	 * @param start  position
 	 * @return true si possible
 	 */
 	private String checkPlacement(GameObject object, Vector2 start) {
@@ -215,10 +224,10 @@ public class MapTestScreen extends AbstractMap {
 			//Vérifie que la case est vide.
 			parentObject = this.getParentObject(start, object, false, true);
 
-			if(parentObject != null && parentObject.size() != 0) {
+			if (parentObject != null && parentObject.size() != 0) {
 				for (GameObject o : parentObject.values()) {
-					if(o instanceof ContainersManager) continue;
-					return o.getReadableName()+" "+ LoadEntityError.ENTITY_UNREACHABLE.message;
+					if (o instanceof ContainersManager) continue;
+					return o.getReadableName() + " " + LoadEntityError.ENTITY_UNREACHABLE.message;
 				}
 			}
 
@@ -247,8 +256,8 @@ public class MapTestScreen extends AbstractMap {
 		parentObject = getParentObject(start, object, false, true);
 
 		//Vérifie que la salle est vide.
-		for (Map.Entry<Vector2, GameObject> entry :parentObject.entrySet()) {
-			if(!(entry.getValue() instanceof ContainersManager))
+		for (Map.Entry<Vector2, GameObject> entry : parentObject.entrySet()) {
+			if (!(entry.getValue() instanceof ContainersManager))
 				return LoadEntityError.SPOT_NOT_EMPTY.message;
 		}
 
@@ -260,24 +269,18 @@ public class MapTestScreen extends AbstractMap {
 	}
 
 	/**
-	 * Liste des éléments déjà restorés
-	 * @since 6.1
-	 * @see #saveParents(HashMap)
-	 */
-	private ArrayList<GameObject> restored = new ArrayList<>();
-
-	/**
 	 * Restaure les tiles des parents s'ils viennent d'une sauvegarde en case
 	 * de suppression de l'enfant.
+	 *
 	 * @param parents parent
 	 * @since 6.1
 	 */
 	private void saveParents(HashMap<Vector2, GameObject> parents) {
 		boolean stop;
-		for (Map.Entry<Vector2, GameObject> entry: parents.entrySet()) {
+		for (Map.Entry<Vector2, GameObject> entry : parents.entrySet()) {
 			GameObject value = entry.getValue();
 			Vector2 start = entry.getKey();
-			if(this.restored.contains(value)) continue;
+			if (this.restored.contains(value)) continue;
 			stop = false;
 
 			//on parcours toutes les niveaux de la map et on y ajoute les tiles de l'entité
@@ -302,16 +305,16 @@ public class MapTestScreen extends AbstractMap {
 					for (int j = (int) start.x; j < start.x + value.getGameObjectWidth() && index < ent.size; j++, index++) {
 						MapTestScreenCell c = (MapTestScreenCell) tileLayer.getCell(j, i);
 						if (c == null || c.getTile() == null) continue;
-						if(ent.get(index) != 0) {
+						if (ent.get(index) != 0) {
 							stop = true;
 							break;
 						}
 						ent.set(index, (float) c.getTile().getId());
 					}
-					if(stop) break;
+					if (stop) break;
 				}
 				//System.out.println("après"+ent);
-				if(stop) break;
+				if (stop) break;
 			}
 
 			this.restored.add(value);
@@ -324,13 +327,13 @@ public class MapTestScreen extends AbstractMap {
 		MapObject object = this.objects.getEntry(entity);
 		//vérifie si suppression possible
 		String check = this.checkDelete(object);
-		if(check != null) return check;
+		if (check != null) return check;
 		//suppression
 		boolean removed = super.removeEntity(entity) == null;
 		//si supprimé
-		if(removed){
+		if (removed) {
 			if (entity instanceof GameExit) this.hasExit = false;
-			if(object.getPosition().y >= 0 && object.getPosition().x >= 0) {
+			if (object.getPosition().y >= 0 && object.getPosition().x >= 0) {
 				//ajoute à l'historique si pas déjà concerné
 				this.manager.add(EditorActionFactory.entity(ActionTypes.REMOVE_ENTITY, this, object));
 				//libère l'id
@@ -343,20 +346,22 @@ public class MapTestScreen extends AbstractMap {
 
 	/**
 	 * Vérifie si la suppression est possible
+	 *
 	 * @param mapObject entité (MapObject)
 	 * @return true si c'est possible
 	 */
 	private String checkDelete(MapObject mapObject) {
+		if (mapObject == null || mapObject.getEntity() == null) return null;
 		int parentID = mapObject.getEntity().getID();
 		ArrayList<Integer> ids = new ArrayList<>();
 		ids.add(parentID);
-		if(mapObject.getEntity() instanceof ContainersManager){
+		if (mapObject.getEntity() instanceof ContainersManager) {
 			HashMap<Vector2, GameObject> parents;
 			//récupère les enfants
 			parents = this.getParentObject(mapObject.getPosition(), mapObject.getEntity(), false, true);
 			//garde les ids des enigmaContainer
-			for (GameObject son :parents.values()) {
-				if(son instanceof EnigmaContainer) ids.add(son.getID());
+			for (GameObject son : parents.values()) {
+				if (son instanceof EnigmaContainer) ids.add(son.getID());
 			}
 		}
 
@@ -364,29 +369,29 @@ public class MapTestScreen extends AbstractMap {
 		//vérifie si utilisé dans une énigme
 		for (EnigmaContainer container : enigmaContainers) {
 			Iterator<Enigma> allEnigmas = container.getAllEnigmas();
-			while (allEnigmas.hasNext()){
+			while (allEnigmas.hasNext()) {
 				Enigma enigma = allEnigmas.next();
 				//parcours des conditions
 				Iterator<Condition> allConditions = enigma.getAllConditions();
-				while(allConditions.hasNext()){
+				while (allConditions.hasNext()) {
 					Condition c = allConditions.next();
 					//si utilisé
 					int id = c.getEntity().getID();
-					if(c.getEntity() != null && ids.contains(id)) {
+					if (c.getEntity() != null && ids.contains(id)) {
 						//si parent a un pb
 						if (id == parentID) return LoadEntityError.USED_IN_ENIGMA_COND.message;
-						//si enfant
+							//si enfant
 						else return LoadEntityError.CHILD_HAD_ENIGMA_COND.message;
 					}
 				}
 
 				Iterator<Operation> allOperations = enigma.getAllOperations();
 				//parcours des opérations
-				while(allOperations.hasNext()){
+				while (allOperations.hasNext()) {
 					Operation o = allOperations.next();
 					//si utilisé
 					int id = o.getEntity().getID();
-					if(o.getEntity() != null && ids.contains(id))
+					if (o.getEntity() != null && ids.contains(id))
 						//si parent a un pb
 						if (id == parentID) return LoadEntityError.USED_IN_ENIGMA_OP.message;
 							//si enfant
@@ -434,7 +439,6 @@ public class MapTestScreen extends AbstractMap {
 	 * @author Louka DOZ
 	 * @author Loic SENECAT
 	 * @author Quentin RAMSAMY-AGEORGES
-	 *
 	 * @version 6.0 09/02/2020
 	 * @since 6.0 09/02/2020
 	 */
@@ -465,7 +469,6 @@ public class MapTestScreen extends AbstractMap {
 	 * @author Louka DOZ
 	 * @author Loic SENECAT
 	 * @author Quentin RAMSAMY-AGEORGES
-	 *
 	 * @version 6.0 09/02/2020
 	 * @since 6.0 09/02/2020
 	 */
@@ -484,7 +487,8 @@ public class MapTestScreen extends AbstractMap {
 
 		/**
 		 * Entité chargée avec un message d'erreur si aucune
-		 * @param entity L'entité placée
+		 *
+		 * @param entity  L'entité placée
 		 * @param message Message de placement
 		 */
 		LoadedEntity(@Nullable GameObject entity, @Nullable String message) {

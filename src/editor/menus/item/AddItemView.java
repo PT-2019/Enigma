@@ -10,26 +10,25 @@ import editor.popup.cases.CasePopUp;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 5.0
  * @since 5.0
  */
 public class AddItemView extends AbstractPopUpView {
 
-	private static final String TITLE = "Gérer les objets";
-
 	static final String MENU = "menu";
 	static final String ADD = "add";
 	static final String SEE = "see";
-
+	private static final String TITLE = "Gérer les objets";
+	private static AddItemView instance = null;
 	/**
 	 * Stockage des écrans
 	 */
 	private final AddItemAddView addItemAddView;
 	private final AddItemListView addItemListView;
 
-	public AddItemView(CasePopUp popUp) {
+	AddItemView(CasePopUp popUp) {
 		super(TITLE, popUp);
+		instance = this;
 
 		//ajout des écrans
 		AddItemSeeView addItemSeeView = new AddItemSeeView(this);
@@ -45,8 +44,13 @@ public class AddItemView extends AbstractPopUpView {
 		this.panel.add(addItemSeeView, SEE);
 	}
 
+	public static AddItemView getInstance() {
+		return instance;
+	}
+
 	/**
 	 * Retourne la vue pour ajouter des items
+	 *
 	 * @return la vue pour ajouter des items
 	 */
 	public AddItemAddView getAddItemAddView() {
@@ -60,6 +64,7 @@ public class AddItemView extends AbstractPopUpView {
 
 	@Override
 	public void invalidateDrawable() {
+		this.getCardLayout().show(this.getPanel(), AddItemView.MENU);
 		addItemListView.clean();
 		addItemListView.initComponent();
 	}

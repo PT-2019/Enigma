@@ -3,8 +3,6 @@ package common;
 import api.Application;
 import api.ui.base.WindowSize;
 import api.utils.annotations.NeedPatch;
-import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.backends.lwjgl.LwjglAWTCanvas;
 import common.hud.EnigmaButton;
 import common.hud.EnigmaLabel;
 import common.hud.EnigmaPanel;
@@ -75,20 +73,18 @@ public class DesktopLauncher implements Runnable {
 	 * @since 4.1
 	 */
 	private static DesktopLauncher launcher;
-
-	/**
-	 * La fenêtre du lancer
-	 *
-	 * @since 4.1
-	 */
-	private EnigmaWindow window;
-
 	/**
 	 * Tentative de patch des erreurs de la libgdx
 	 * Lancement et fermeture
 	 */
 	@NeedPatch
 	private static EnigmaWindow c;
+	/**
+	 * La fenêtre du lancer
+	 *
+	 * @since 4.1
+	 */
+	private EnigmaWindow window;
 
 	/**
 	 * Crée le lanceur de la version pc de l'application
@@ -160,14 +156,14 @@ public class DesktopLauncher implements Runnable {
 			try {
 				RUNNING_APP.stop();
 			} catch (Exception e) {
-				Logger.printError("DesktopLauncher","Fermeture de la libgdx ratée (last app).");
+				Logger.printError("DesktopLauncher", "Fermeture de la libgdx ratée (last app).");
 			}
 		}
 
 		try {
 			launcher.window.dispose();
-		} catch (Exception e){
-			Logger.printError("DesktopLauncher","Fermeture de la libgdx ratée (last window).");
+		} catch (Exception e) {
+			Logger.printError("DesktopLauncher", "Fermeture de la libgdx ratée (last window).");
 		}
 
 		System.exit(0);

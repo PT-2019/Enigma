@@ -4,7 +4,7 @@ import api.utils.annotations.Temporary;
 
 /**
  * Constantes à traduire et ajouter au language.
- *
+ * <p>
  * Date d'ajout : fin du sprint 6.
  */
 @Temporary(reason = "flemme, car possibles doublons et changer tout le temps et enums et json et ... clc et ça")
@@ -64,6 +64,12 @@ public interface NeedToBeTranslated {
 	String REMOVE_ENTITY = "Suppression de";
 	String ADD_ENIGMA = "Ajoute une énigme";
 	String REMOVE_ENIGMA = "Suppression d'une énigme";
+	String ADD_CONTENT = "Ajout de contenu";
+	String REMOVE_CONTENT = "Suppression de contenu";
+	String ADD_SUB_ENTITY = ADD_ENTITY;
+	String REMOVE_SUB_ENTITY = REMOVE_ENTITY;
+	String SET_HERO = "Ajout d'un héros.";
+	String UNSET_HERO = "Suppression d'un héros.";
 
 	//TODO: all
 

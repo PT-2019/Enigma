@@ -85,7 +85,7 @@ public class Answer extends Condition {
 
 	@Override
 	public String getEnigmaElementReadablePrint() {
-		return "["+gl.get(EnigmaField.INPUT_ANSWER)+": "+
-				gl.get(EnigmaField.ANSWER)+" = \"" + this.answer +"\" ]";
+		return "[" + gl.get(EnigmaField.INPUT_ANSWER) + ": " +
+				gl.get(EnigmaField.ANSWER) + " = \"" + this.answer + "\" ]";
 	}
 }

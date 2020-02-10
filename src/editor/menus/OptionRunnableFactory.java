@@ -2,12 +2,12 @@ package editor.menus;
 
 import api.utils.Utility;
 import editor.menus.content.SetContent;
+import editor.menus.enimas.ManageEnigmas;
 import editor.menus.item.AddItems;
+import editor.menus.name.SetName;
 import editor.menus.others.DefineAsHero;
 import editor.menus.others.Delete;
-import editor.menus.enimas.ManageEnigmas;
 import editor.menus.set.SetAccess;
-import editor.menus.name.SetName;
 import editor.menus.set.SetActivated;
 import editor.menus.set.SetLocked;
 
@@ -21,7 +21,6 @@ import java.util.ArrayList;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.0 01/02/2020
  * @since 6.0 01/02/2020
  */
@@ -29,18 +28,19 @@ public final class OptionRunnableFactory {
 
 	/**
 	 * Retourne tous les options runnable disponibles
+	 *
 	 * @return tous les options runnable disponibles
 	 */
 	@SuppressWarnings("unchecked")
-	public static ArrayList<Class<AvailableOptionRunnable>> getAll(){
+	public static ArrayList<Class<AvailableOptionRunnable>> getAll() {
 		ArrayList<Class<AvailableOptionRunnable>> all = new ArrayList<>();
 
-		for (Method m: OptionRunnableFactory.class.getMethods()) {
+		for (Method m : OptionRunnableFactory.class.getMethods()) {
 			//si c'est une bonne
-			if(m.getReturnType().getName().equals(Class.class.getName())
-					&& m.getDeclaringClass().equals(OptionRunnableFactory.class)){
+			if (m.getReturnType().getName().equals(Class.class.getName())
+					&& m.getDeclaringClass().equals(OptionRunnableFactory.class)) {
 				Class aClass = Utility.invokeMethod(m, Class.class);
-				if(aClass != null) all.add(aClass);
+				if (aClass != null) all.add(aClass);
 			}
 		}
 
@@ -48,53 +48,59 @@ public final class OptionRunnableFactory {
 	}
 
 	@SuppressWarnings("unused")
-	public static Class<? extends AvailableOptionRunnable> setAccess(){
+	public static Class<? extends AvailableOptionRunnable> setAccess() {
 		return SetAccess.class;
 	}
 
 	@SuppressWarnings("unused")
-	public static Class<? extends AvailableOptionRunnable> defineAsHero(){
+	public static Class<? extends AvailableOptionRunnable> defineAsHero() {
 		return DefineAsHero.class;
 	}
 
 	@SuppressWarnings("unused")
 	@Deprecated
-	public static Class<? extends AvailableOptionRunnable> defineAsNpc(){
+	public static Class<? extends AvailableOptionRunnable> defineAsNpc() {
 		return null;
 	}
 
 	@SuppressWarnings("unused")
-	public static Class<? extends AvailableOptionRunnable> delete(){
+	public static Class<? extends AvailableOptionRunnable> delete() {
 		return Delete.class;
 	}
 
 	@SuppressWarnings("unused")
 	@Deprecated
-	public static Class<? extends AvailableOptionRunnable> hidePassageRoom(){
+	public static Class<? extends AvailableOptionRunnable> hidePassageRoom() {
 		return null;
 	}
 
 	@SuppressWarnings("unused")
-	public static Class<? extends AvailableOptionRunnable> manageEnigmas(){
+	public static Class<? extends AvailableOptionRunnable> manageEnigmas() {
 		return ManageEnigmas.class;
 	}
 
 	@SuppressWarnings("unused")
-	public static Class<? extends AvailableOptionRunnable> addItems(){
+	public static Class<? extends AvailableOptionRunnable> addItems() {
 		return AddItems.class;
 	}
 
 	@SuppressWarnings("unused")
-	public static Class<? extends AvailableOptionRunnable> setContent(){
+	public static Class<? extends AvailableOptionRunnable> setContent() {
 		return SetContent.class;
 	}
 
 	@SuppressWarnings("unused")
-	public static Class<? extends AvailableOptionRunnable> setName(){ return SetName.class; }
+	public static Class<? extends AvailableOptionRunnable> setName() {
+		return SetName.class;
+	}
 
 	@SuppressWarnings("unused")
-	public static Class<? extends AvailableOptionRunnable> setLocked(){ return SetLocked.class; }
+	public static Class<? extends AvailableOptionRunnable> setLocked() {
+		return SetLocked.class;
+	}
 
 	@SuppressWarnings("unused")
-	public static Class<? extends AvailableOptionRunnable> setActivated(){ return SetActivated.class; }
+	public static Class<? extends AvailableOptionRunnable> setActivated() {
+		return SetActivated.class;
+	}
 }

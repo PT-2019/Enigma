@@ -2,6 +2,7 @@ package common.save.entities.serialization;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+import common.utils.IDFactory;
 
 import java.util.HashMap;
 
@@ -20,6 +21,7 @@ public class PlayerSerializableToJson extends EntitySerializable {
 	private String json;
 	private String key;
 
+	@SuppressWarnings("unused")
 	public PlayerSerializableToJson() {
 		//TOUTES LES VARIABLES DOIVENT ETRE INSTANCIEES EN DEHORS A CAUSE DE LA LIBGDX
 		//ET DE Json.fromJson qui fait des trucs bizarres avec une classe qui
@@ -30,13 +32,14 @@ public class PlayerSerializableToJson extends EntitySerializable {
 
 	/**
 	 * Une entité sérializable avec juste assez d'infos pour utiliser la fonction
-	 * {@link EntityFactory#createEntity(EntitySerializable, int, Vector2)}
+	 * {@link EntityFactory#createEntity(EntitySerializable, Integer, Vector2, IDFactory)}
 	 *
 	 * @param width     largeur
 	 * @param height    hauteur
 	 * @param className chemin classe entité
 	 * @since 5.0
 	 */
+	@SuppressWarnings("unused")
 	public PlayerSerializableToJson(int width, int height, String className, HashMap<String, Array<Float>> tiles) {
 		super(width, height, className, tiles);
 		this.key = "";
@@ -79,7 +82,7 @@ public class PlayerSerializableToJson extends EntitySerializable {
 
 	@Override
 	public String toString() {
-		return "PlayerSerializableToJson{ {" + super.toString()+ "} " +
+		return "PlayerSerializableToJson{ {" + super.toString() + "} " +
 				"json='" + json + '\'' +
 				", key='" + key + '\'' +
 				'}';

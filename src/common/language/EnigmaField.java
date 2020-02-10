@@ -9,7 +9,6 @@ import api.utils.Utility;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.0 03/02/2020
  * @since 6.0 03/02/2020
  */

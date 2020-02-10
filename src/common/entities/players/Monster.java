@@ -27,7 +27,7 @@ import java.util.HashMap;
  * @version 5.0 25/01/2020
  * @since 5.0 25/01/2020
  */
-public class Monster extends GameActorTextured implements Entity, Living,EntityGame {
+public class Monster extends GameActorTextured implements Entity, Living, EntityGame {
 
 	/**
 	 * Points de vie maximaux du joueur
@@ -184,7 +184,7 @@ public class Monster extends GameActorTextured implements Entity, Living,EntityG
 	}
 
 	@Override
-	public HashMap<SaveKey,String> getSave(){
+	public HashMap<SaveKey, String> getSave() {
 		HashMap<SaveKey, String> save = new HashMap<>();
 		save.put(PlayerSave.KEY, this.key);
 		save.put(PlayerSave.JSON, this.json);
@@ -197,7 +197,7 @@ public class Monster extends GameActorTextured implements Entity, Living,EntityG
 		this.key = data.get(PlayerSave.KEY.getKey(), String.class);
 		this.json = data.get(PlayerSave.JSON.getKey(), String.class);
 		this.name = data.get(PlayerSave.NAME.getKey(), String.class);
-		if(this.name.isEmpty()||this.name.isBlank()) this.name = this.key;
+		if (this.name.isEmpty() || this.name.isBlank()) this.name = this.key;
 	}
 
 	@Override
@@ -209,7 +209,7 @@ public class Monster extends GameActorTextured implements Entity, Living,EntityG
 	public void setJson(String json, String key) {
 		this.json = json;
 		this.key = key;
-		if(this.name.isEmpty()||this.name.isBlank()) this.name = this.key;
+		if (this.name == null || this.name.isEmpty() || this.name.isBlank()) this.name = this.key;
 	}
 
 	@Override

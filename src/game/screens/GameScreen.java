@@ -4,11 +4,9 @@ import api.libgdx.LibgdxScreen;
 import api.libgdx.actor.GameActor;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import common.entities.players.NpcGame;
 import common.entities.players.PlayerGame;
 import common.map.AbstractMap;
 import common.map.GameMap;
-import common.save.entities.serialization.PlayerFactory;
 import common.utils.Logger;
 import game.EnigmaGame;
 
@@ -59,10 +57,10 @@ public class GameScreen extends LibgdxScreen {
 			//compléter ici
 			ArrayList<GameActor> actors = this.map.getGameEntities();
 
-			for (GameActor actor: actors) {
-				if (actor instanceof PlayerGame){
-					((PlayerGame)actor).center();
-					this.listen(((PlayerGame)actor));
+			for (GameActor actor : actors) {
+				if (actor instanceof PlayerGame) {
+					((PlayerGame) actor).center();
+					this.listen(((PlayerGame) actor));
 				}
 			}
 
@@ -112,7 +110,7 @@ public class GameScreen extends LibgdxScreen {
 	@Override
 	public void show() {
 		super.show();
-		Gdx.gl20.glClearColor(0.20f,0.20f,0.20f,1.0f);
+		Gdx.gl20.glClearColor(0.20f, 0.20f, 0.20f, 1.0f);
 	}
 
 	@Override

@@ -85,7 +85,7 @@ public class Switch extends Activatable {
 	}
 
 	@Override
-	public HashMap<SaveKey,String> getSave(){
+	public HashMap<SaveKey, String> getSave() {
 		HashMap<SaveKey, String> save = new HashMap<>();
 		save.put(PlayerSave.ACTIVATED, String.valueOf(this.activated));
 		return save;

@@ -3,15 +3,21 @@ package editor.menus.name;
 import com.badlogic.gdx.Gdx;
 import common.entities.GameObject;
 import common.entities.types.Living;
-import common.hud.*;
+import common.hud.EnigmaButton;
+import common.hud.EnigmaLabel;
+import common.hud.EnigmaPanel;
+import common.hud.EnigmaTextField;
 import data.NeedToBeTranslated;
 import editor.menus.AbstractPopUpView;
 import editor.popup.cases.CasePopUp;
 import game.EnigmaGame;
 
-import javax.swing.*;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -30,7 +36,7 @@ public class AddNameView extends AbstractPopUpView {
 	private static final String TITLE = NeedToBeTranslated.TITLE_NAME;
 	private static final String SUBMIT = NeedToBeTranslated.SAVE;
 	private static final String NAME_SAVED = NeedToBeTranslated.NAME_SAVED;
-	private static final int PADDING = 10, WIDTH = AbstractPopUpView.WIDTH/2;
+	private static final int PADDING = 10, WIDTH = AbstractPopUpView.WIDTH / 2;
 
 	/*
 				 LABEL : SAISIR NOM

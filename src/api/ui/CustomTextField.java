@@ -4,8 +4,8 @@ import api.ui.base.CustomComponent;
 import api.ui.manager.CustomTextFieldManager;
 import api.ui.skin.CustomTextFieldUI;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JTextField;
+import java.awt.Graphics;
 
 /**
  * Un champ de texte de l'application
@@ -14,7 +14,6 @@ import java.awt.*;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.0 05/02/2020
  * @since 6.0 05/02/2020
  */
@@ -36,6 +35,7 @@ public class CustomTextField extends JTextField implements CustomComponent<Custo
 
 	/**
 	 * Champ de texte
+	 *
 	 * @param text contenu
 	 */
 	public CustomTextField(String text) {

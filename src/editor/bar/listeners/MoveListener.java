@@ -3,7 +3,6 @@ package editor.bar.listeners;
 import common.hud.EnigmaWindow;
 import data.EditorState;
 import editor.EditorLauncher;
-import game.screens.TestScreen;
 import org.jetbrains.annotations.Nullable;
 
 import java.awt.Component;
@@ -33,12 +32,12 @@ public class MoveListener extends MenuListener {
 		//si c'est déjà en move, alors on reset
 		if (EditorLauncher.containsState(EditorState.MOVE)) {
 			setActive(false);
-			EditorLauncher.clearStates(EditorState.ZOOM);
+			EditorLauncher.clearStates(EditorState.ZOOM, EditorState.SPECIAL_POPUP_DISABLED);
 		} else {
 			//si on active la gomme
 			setActive(true);
 			//si on est en mode zoom, alors on va pas en mode déplacement
-			EditorLauncher.clearStates(EditorState.ZOOM);
+			EditorLauncher.clearStates(EditorState.ZOOM, EditorState.SPECIAL_POPUP_DISABLED);
 			EditorLauncher.addState(EditorState.MOVE);
 		}
 	}

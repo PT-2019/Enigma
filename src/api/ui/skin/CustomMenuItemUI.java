@@ -59,7 +59,7 @@ public class CustomMenuItemUI extends BasicMenuItemUI implements CustomUI<Custom
 	 */
 	@SuppressWarnings("unchecked")
 	protected <T extends CustomMenuItemUI> T duplicate(T customMenuItemUI) {
-		T clone = null;
+		T clone;
 		try {
 			Constructor<?> c = customMenuItemUI.getClass().getDeclaredConstructor();
 			clone = (T) c.newInstance();

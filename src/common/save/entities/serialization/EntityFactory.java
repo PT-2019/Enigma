@@ -1,13 +1,12 @@
 package common.save.entities.serialization;
 
-import common.utils.IDFactory;
-import common.utils.Logger;
 import api.utils.Utility;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
 import common.entities.GameObject;
 import common.entities.players.EntityGame;
+import common.utils.IDFactory;
 import data.EntitiesCategories;
 import data.Layer;
 import org.jetbrains.annotations.Nullable;
@@ -128,9 +127,9 @@ public class EntityFactory {
 	/**
 	 * Crée une entité depuis une entité serializable
 	 *
-	 * @param entity une entité
-	 * @param id     son identifiant ou -1 si aucun. NULL pour attribution automatique
-	 * @param pos    sa position @Nullable
+	 * @param entity    une entité
+	 * @param id        son identifiant ou -1 si aucun. NULL pour attribution automatique
+	 * @param pos       sa position @Nullable
 	 * @param idFactory idFactory
 	 * @return un GameObject représentant l'entitée
 	 * @since 4.0
@@ -143,7 +142,7 @@ public class EntityFactory {
 			Constructor declaredConstructor = c.getDeclaredConstructor();
 			object = (GameObject) declaredConstructor.newInstance();
 			//id
-			if(id == null){
+			if (id == null) {
 				//attribution
 				idFactory.newID(object);
 			} else {
@@ -159,7 +158,7 @@ public class EntityFactory {
 			if (entity instanceof PlayerSerializableToJson && object instanceof EntityGame) {
 				PlayerSerializableToJson player = ((PlayerSerializableToJson) entity);
 				((EntityGame) object).setJson(player.getJson(), player.getKey());
-				Logger.printDebug("EntityFactory", "PlayerSerializable loaded.");
+				//Logger.printDebug("EntityFactory", "PlayerSerializable loaded.");
 			}
 
 			if (pos != null)

@@ -15,25 +15,26 @@ import common.hud.ui.EnigmaTextFieldUI;
  */
 public class EnigmaTextField extends CustomTextField {
 
-    /**
-     * Champ de texte vide
-     */
-    public EnigmaTextField() {
-        super();
-        this.setComponentUI(new EnigmaTextFieldUI());
-    }
+	/**
+	 * Champ de texte vide
+	 */
+	public EnigmaTextField() {
+		super();
+		this.setComponentUI(new EnigmaTextFieldUI());
+	}
 
-    /**
-     * Champ de texte
-     * @param text contenu
-     */
-    public EnigmaTextField(String text) {
-        super(text);
-        this.setComponentUI(new EnigmaTextFieldUI());
-    }
+	/**
+	 * Champ de texte
+	 *
+	 * @param text contenu
+	 */
+	public EnigmaTextField(String text) {
+		super(text);
+		this.setComponentUI(new EnigmaTextFieldUI());
+	}
 
-    @Override
-    public EnigmaTextFieldUI getComponentUI() {
-        return (EnigmaTextFieldUI) super.getComponentUI();
-    }
+	@Override
+	public EnigmaTextFieldUI getComponentUI() {
+		return (EnigmaTextFieldUI) super.getComponentUI();
+	}
 }

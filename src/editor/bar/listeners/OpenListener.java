@@ -10,10 +10,7 @@ import data.EnigmaScreens;
 import data.config.Config;
 import editor.popup.listeners.CaseListener;
 import game.EnigmaGame;
-import game.screens.TestScreen;
 
-import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 
@@ -24,7 +21,6 @@ import java.awt.event.ActionEvent;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.0
  * @since 3.0
  */
@@ -39,8 +35,8 @@ public class OpenListener extends MenuListener {
 		String map;
 		CaseListener.close();
 		if (!(map = EnigmaOptionPane.showMapChoiceDialog(this.window)).equals(CustomOptionPane.CANCEL)) {
-			String path =  Config.MAP_FOLDER + map + ".tmx";
-			Logger.printDebug("OpenListener#actionPerformed","ouverture de " + path);
+			String path = Config.MAP_FOLDER + map + ".tmx";
+			Logger.printDebug("OpenListener#actionPerformed", "ouverture de " + path);
 
 			//change la map avant de recharger
 			EnigmaGame.getCurrentScreen().setMap(path);

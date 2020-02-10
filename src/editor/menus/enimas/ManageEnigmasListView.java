@@ -47,9 +47,10 @@ public class ManageEnigmasListView extends AbstractSubPopUpView {
 
 	/**
 	 * Liste des objects contenus dans un object.
-	 * @param parent parent
+	 *
+	 * @param parent  parent
 	 * @param seeView vue d'un item
-	 * @param object enigma container
+	 * @param object  enigma container
 	 */
 	ManageEnigmasListView(AbstractPopUpView parent, ManageEnigmasSeeView seeView, GameObject object) {
 		super(TITLE, parent, false);
@@ -96,11 +97,11 @@ public class ManageEnigmasListView extends AbstractSubPopUpView {
 	@Override
 	public void initComponent() {
 		Iterator<Enigma> enigmas = this.object.getAllEnigmas();
-		EnigmaPanel panel = new EnigmaPanel(new GridLayout(1,1));
+		EnigmaPanel panel = new EnigmaPanel(new GridLayout(1, 1));
 		boolean first = true;
 		int i = 0;
 
-		while(enigmas.hasNext()){
+		while (enigmas.hasNext()) {
 			Enigma e = enigmas.next();
 			JCheckBox r = new JCheckBox(e.getTitle());
 			//on ajoute les boutons au groupe
@@ -117,7 +118,7 @@ public class ManageEnigmasListView extends AbstractSubPopUpView {
 			r.addItemListener(this.listener);
 			i++;
 		}
-		((GridLayout)panel.getLayout()).setRows(i);
+		((GridLayout) panel.getLayout()).setRows(i);
 
 		if (i == 0) {
 			panel.setLayout(new GridBagLayout());
@@ -144,7 +145,6 @@ public class ManageEnigmasListView extends AbstractSubPopUpView {
 	 * @author Louka DOZ
 	 * @author Loic SENECAT
 	 * @author Quentin RAMSAMY-AGEORGES
-	 *
 	 * @version 6.0 09/02/2020
 	 * @since 6.0 09/02/2020
 	 */
@@ -162,7 +162,7 @@ public class ManageEnigmasListView extends AbstractSubPopUpView {
 		public void itemStateChanged(ItemEvent e) {
 			EnigmaContainer container = (EnigmaContainer) object;
 			Iterator<Enigma> allEnigmas = container.getAllEnigmas();
-			while(allEnigmas.hasNext()){
+			while (allEnigmas.hasNext()) {
 				Enigma enigma = allEnigmas.next();
 				if (enigma.getTitle().equals(((JCheckBox) e.getSource()).getName())) {
 					seeView.setChecked(enigma);

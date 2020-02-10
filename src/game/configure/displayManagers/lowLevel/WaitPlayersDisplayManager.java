@@ -177,7 +177,7 @@ public class WaitPlayersDisplayManager implements DisplayManager {
 	}
 
 	/**
-	 * Rafraichir le contenu
+	 * Rafraîchir le contenu
 	 */
 	@Override
 	public void refreshContent() {
@@ -243,14 +243,14 @@ public class WaitPlayersDisplayManager implements DisplayManager {
 	}
 
 	/**
-	 * Rafraichir la barre de menu
+	 * Rafraîchir la barre de menu
 	 */
 	@Override
 	public void refreshRightBar() {
 	}
 
 	/**
-	 * Tout rafraichir
+	 * Tout Rafraîchir
 	 */
 	@Override
 	public void refreshAll() {

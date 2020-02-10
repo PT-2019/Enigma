@@ -19,7 +19,7 @@ import editor.popup.cases.CasePopUp;
  * @author Quentin RAMSAMY-AGEORGES
  * @version 5.0 25/01/2020
  * @since 5.0 25/01/2020
- *
+ * <p>
  * Plus besoin, maintenant si s'agît d'une opération d'une énigme.
  */
 @Deprecated

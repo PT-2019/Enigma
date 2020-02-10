@@ -1,7 +1,6 @@
 package common.entities.types;
 
 import common.enigmas.Enigma;
-import editor.bar.edition.actions.EditorActionParent;
 
 import java.util.Iterator;
 
@@ -16,7 +15,7 @@ import java.util.Iterator;
  * @see common.enigmas.Enigma
  * @since 2.0
  */
-public interface EnigmaContainer extends EditorActionParent<Enigma> {
+public interface EnigmaContainer {
 
 	/**
 	 * Ajouter une énigme

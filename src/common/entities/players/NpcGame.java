@@ -7,7 +7,7 @@ import api.libgdx.actor.GameActorAnimation;
  */
 public class NpcGame extends GameActorAnimation {
 
-    public NpcGame(){
-        this.setAnimationPaused(true);
-    }
+	public NpcGame() {
+		this.setAnimationPaused(true);
+	}
 }

@@ -1,16 +1,16 @@
 package common.save;
 
-import common.map.AbstractMap;
-import common.map.MapObjects;
-import common.utils.Logger;
 import api.utils.annotations.ConvenienceMethod;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import common.enigmas.Enigma;
 import common.entities.GameObject;
 import common.entities.types.EnigmaContainer;
+import common.map.AbstractMap;
+import common.map.MapObjects;
 import common.map.model.Map;
 import common.save.enigmas.EnigmaJsonReader;
 import common.save.enigmas.EnigmaJsonWriter;
+import common.utils.Logger;
 import common.utils.textures.TextureProxy;
 import data.config.Config;
 import editor.bar.edition.ActionsManager;
@@ -19,7 +19,6 @@ import game.EnigmaGame;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 
 /**
@@ -68,7 +67,6 @@ public class EmptyMapGenerator {
 	 * @param path     chemin du fichier sans l'extension
 	 * @param game     map tiled
 	 * @param entities liste des entités de la map
-	 *
 	 * @since 5.0
 	 */
 	public static void save(String path, TiledMap game, MapObjects entities) {
@@ -108,7 +106,6 @@ public class EmptyMapGenerator {
 	 * Recharge le jeu depuis une sauvegarde
 	 *
 	 * @param path chemin sauvegarde
-	 *
 	 * @since 5.0
 	 */
 	public static void load(String path) {
@@ -118,12 +115,11 @@ public class EmptyMapGenerator {
 	/**
 	 * Recharge le jeu depuis une sauvegarde
 	 *
-	 * @param path chemin sauvegarde
+	 * @param path  chemin sauvegarde
 	 * @param clear reset à l'état initial
-	 *
 	 * @since 6.0
 	 */
-	public static void load(String path, boolean clear){
+	public static void load(String path, boolean clear) {
 		Logger.printDebug("EmptyMapGenerator#load", path);
 
 		//------------ charge .tmx ------------
@@ -162,6 +158,6 @@ public class EmptyMapGenerator {
 		}
 
 		// clear de l'historique
-		if(clear) ActionsManager.reset();
+		if (clear) ActionsManager.reset();
 	}
 }

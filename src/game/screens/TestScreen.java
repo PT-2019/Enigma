@@ -1,6 +1,7 @@
 package game.screens;
 
 import api.libgdx.LibgdxScreen;
+import api.libgdx.ui.Toast;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
@@ -10,7 +11,6 @@ import data.config.Config;
 import editor.popup.TestMapControl;
 import game.EnigmaGame;
 import game.gui.CategoriesMenu;
-import api.libgdx.ui.Toast;
 import game.gui.EnigmaEditorToast;
 
 /**
@@ -27,7 +27,7 @@ public class TestScreen extends LibgdxScreen {
 
 	//si tu veux charger une map c'est ici sans passer par le launcher
 	//private static String MAP_PATH = "assets/map/map_system/EmptyMap.tmx";
-	private static String MAP_PATH = Config.MAP_FOLDER+"cocoa.tmx";
+	private static String MAP_PATH = Config.MAP_FOLDER + "cocoa.tmx";
 
 	/**
 	 * Stage de la map et du jeu
@@ -50,6 +50,15 @@ public class TestScreen extends LibgdxScreen {
 	 * Toast pour afficher info
 	 */
 	private Toast toast;
+
+	/**
+	 * Retourne le chemin de la map actuelle
+	 *
+	 * @return le chemin de la map
+	 */
+	public static String getMapPath() {
+		return MAP_PATH;
+	}
 
 	/**
 	 * Prépare les stages, la map et la caméra
@@ -165,20 +174,12 @@ public class TestScreen extends LibgdxScreen {
 	}
 
 	@Override
-	public void showToast(String message){
+	public void showToast(String message) {
 		this.toast.update(message);
 	}
 
 	@Override
 	public MapTestScreen getMap() {
 		return this.map;
-	}
-
-	/**
-	 * Retourne le chemin de la map actuelle
-	 * @return le chemin de la map
-	 */
-	public static String getMapPath() {
-		return MAP_PATH;
 	}
 }

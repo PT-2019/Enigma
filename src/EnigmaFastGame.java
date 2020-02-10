@@ -18,7 +18,9 @@ import java.awt.event.WindowEvent;
  * UNE CLASSE TEMPORAIRE POUR LANCER LE JEU RAPIDEMENT,
  * LANCE l'écran DE JEU
  *
+ * @author Jorys-Micke ALAÏS
  * @author Louka DOZ
+ * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  * @version 4.1
  * @since 4.0

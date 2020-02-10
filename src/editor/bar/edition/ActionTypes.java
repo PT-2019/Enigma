@@ -35,18 +35,17 @@ public enum ActionTypes {
 	 */
 	REMOVE_ENIGMA(NeedToBeTranslated.REMOVE_ENIGMA),
 
-	ADD_CONTENT(""),
-
-	REMOVE_CONTENT(""),
-
-	SET_HERO(""),
-
-	UNSET_HERO(""),
+	ADD_CONTENT(NeedToBeTranslated.ADD_CONTENT),
+	REMOVE_CONTENT(NeedToBeTranslated.REMOVE_CONTENT),
+	ADD_SUB_ENTITY(NeedToBeTranslated.ADD_SUB_ENTITY),
+	REMOVE_SUB_ENTITY(NeedToBeTranslated.REMOVE_SUB_ENTITY),
+	SET_HERO(NeedToBeTranslated.SET_HERO),
+	UNSET_HERO(NeedToBeTranslated.UNSET_HERO),
 	;
 
 	private final String value;
 
-	ActionTypes(String value){
+	ActionTypes(String value) {
 		this.value = value;
 	}
 

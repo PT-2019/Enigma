@@ -13,7 +13,6 @@ import java.util.Map;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.0 05/02/2020
  * @since 6.0 05/02/2020
  */
@@ -58,7 +57,7 @@ public class RoomUndiscovered extends Condition {
 
 	@Override
 	public String getEnigmaElementReadablePrint() {
-		return "["+ NeedToBeTranslated.ROOM_UNDISCOVERED_DESC+": "+
-				this.entity.getReadableName() + " (id="+this.entity.getID()+") ]";
+		return "[" + NeedToBeTranslated.ROOM_UNDISCOVERED_DESC + ": " +
+				this.entity.getReadableName() + " (id=" + this.entity.getID() + ") ]";
 	}
 }

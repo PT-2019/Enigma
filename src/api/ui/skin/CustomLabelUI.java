@@ -281,7 +281,7 @@ public class CustomLabelUI extends BasicLabelUI implements CustomUIHoverAndPress
 	/**
 	 * Définit tous les fonds (premier plan)
 	 *
-	 * @param foreground        fond
+	 * @param foreground fond
 	 */
 	public void setAllForegrounds(Color foreground) {
 		if (foreground == null)

@@ -73,9 +73,12 @@ class FromTmxToJson {
 			for (int i = 0; i < m.getRow(); i++) {
 				for (int j = 0; j < m.getCol(); j++) {
 					Texture entity = m.getCase(i * m.getCol() + j).getEntity(layer);
-					if(entity != null) sb.append(entity.getPosition());
-					else  if(m.getCase(i * m.getCol() + j).isWalkable()){ sb.append("2041");
-					} else { sb.append("0"); }
+					if (entity != null) sb.append(entity.getPosition());
+					else if (m.getCase(i * m.getCol() + j).isWalkable()) {
+						sb.append("2041");
+					} else {
+						sb.append("0");
+					}
 					sb.append(',');
 				}
 				sb.append('\n');

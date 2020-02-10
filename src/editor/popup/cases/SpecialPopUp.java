@@ -25,7 +25,6 @@ import java.awt.Rectangle;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.0
  * @since 4.0
  */

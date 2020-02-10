@@ -30,16 +30,15 @@ import java.awt.Insets;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.0 02/02/2020
  * @since 6.0 02/02/2020
  */
 public class ConditionPanel extends AbstractSubPopUpView implements Observer<GameObject> {
 
 	public static final String NOT_AVAILABLE_CONDITION = NeedToBeTranslated.NOT_AVAILABLE_CONDITION;
-	private static final String ASK_SELECT = NeedToBeTranslated.ASK_SELECT;
 	public static final String ASK_COND = NeedToBeTranslated.ASK_COND;
 	public static final String TITLE = NeedToBeTranslated.ADD_CONDITION;
+	private static final String ASK_SELECT = NeedToBeTranslated.ASK_SELECT;
 	private static final String INVALID_ENTITY = NeedToBeTranslated.INVALID_ENTITY;
 
 	/**
@@ -59,7 +58,7 @@ public class ConditionPanel extends AbstractSubPopUpView implements Observer<Gam
 		super("", parent, false);
 
 		this.groups = new ButtonGroup();
-		this.listener = new ConditionListener(parent, addView,this);
+		this.listener = new ConditionListener(addView, this);
 
 		EnigmaPanel panel = new EnigmaPanel();
 		panel.setLayout(new GridLayout(Conditions.values().length, 1));
@@ -155,7 +154,7 @@ public class ConditionPanel extends AbstractSubPopUpView implements Observer<Gam
 		}
 
 		if (object == null && wrong) {
-			msg += INVALID_ENTITY+" ";
+			msg += INVALID_ENTITY + " ";
 			msg += operations.restrict;
 			this.entityName.setText(msg);
 		} else if (object == null && operations != null) {

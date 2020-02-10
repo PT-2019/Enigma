@@ -2,11 +2,8 @@ package api.libgdx.actor;
 
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Polygon;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-
-import java.util.Arrays;
 
 /**
  * Méthode pour permettre des calculs sur des actors
@@ -57,8 +54,7 @@ public class GameActorUtilities {
 
 		if (target instanceof GameActor) {
 			poly2 = ((GameActor) target).getBounds();
-		}
-		else poly2 = getBounds(target);
+		} else poly2 = getBounds(target);
 
 		//correct coordinates
 		Vector2 coordinates = getAbsolutePosition(actor), autre = getAbsolutePosition(target);
@@ -82,7 +78,7 @@ public class GameActorUtilities {
 	 * @return true s'il y a collision sinon false
 	 * @since 4.0 20/12/2019
 	 */
-	public static boolean overlaps(Actor actor, Actor target,float movx,float movy) {
+	public static boolean overlaps(Actor actor, Actor target, float movx, float movy) {
 		//récupère le recouvrement (mis à jour)
 		Polygon poly1, poly2;
 
@@ -92,8 +88,7 @@ public class GameActorUtilities {
 
 		if (target instanceof GameActor) {
 			poly2 = ((GameActor) target).getBounds();
-		}
-		else poly2 = getBounds(target);
+		} else poly2 = getBounds(target);
 
 		//correct coordinates
 		Vector2 coordinates = getAbsolutePosition(actor), autre = getAbsolutePosition(target);

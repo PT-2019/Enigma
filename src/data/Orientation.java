@@ -1,4 +1,4 @@
-package api.enums;
+package data;
 
 /**
  * Déplacements possibles

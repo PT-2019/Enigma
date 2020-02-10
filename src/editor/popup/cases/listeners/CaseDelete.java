@@ -44,7 +44,7 @@ public class CaseDelete implements ActionListener {
 		if (this.current.getEntity() != null) {
 			//System.out.println("remove"+this.current.getEntity());
 			String s = this.current.removeEntity();
-			if(s != null){//error
+			if (s != null) {//error
 				EnigmaGame.getCurrentScreen().showToast(s);
 				return;
 			}

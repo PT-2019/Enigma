@@ -68,7 +68,25 @@ public enum SelectionsModes {
 		this.modes.addAll(Arrays.asList(modes));
 	}
 
+	/**
+	 * Retourne si le mode contient un autre mode. (inclut lui même)
+	 *
+	 * @param mode un mode
+	 * @return true si this contient mode.
+	 */
 	public boolean contains(SelectionsModes mode) {
-		return this.modes.contains(mode);
+		return this.modes.contains(mode) || mode.equals(this);
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder("{[" + this.name() + "]");
+		for (SelectionsModes mode : modes) {
+			sb.append(", [");
+			sb.append(mode.name());
+			sb.append("]");
+		}
+		sb.append("}");
+		return sb.toString();
 	}
 }

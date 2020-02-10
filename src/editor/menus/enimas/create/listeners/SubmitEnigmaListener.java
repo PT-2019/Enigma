@@ -4,6 +4,10 @@ import common.enigmas.Enigma;
 import common.entities.GameObject;
 import common.entities.types.EnigmaContainer;
 import common.utils.Logger;
+import editor.bar.edition.ActionTypes;
+import editor.bar.edition.ActionsManager;
+import editor.bar.edition.actions.EditorActionFactory;
+import editor.menus.AbstractPopUpView;
 import editor.menus.enimas.create.ManageEnigmaAddMenu;
 import editor.menus.enimas.create.ManageEnigmasAddView;
 
@@ -20,29 +24,32 @@ import java.util.Iterator;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.0 02/02/2020
  * @since 6.0 02/02/2020
  */
 public class SubmitEnigmaListener implements ActionListener {
 
 	private final ManageEnigmasAddView view;
+	private final AbstractPopUpView parent;
 	private final ManageEnigmaAddMenu menu;
 	private JTextField title;
 	private JTextArea description;
 
 	/**
 	 * Validation de la création de l'énigme
-	 * @param title titre
+	 *
+	 * @param title       titre
 	 * @param description description
-	 * @param view addView
-	 * @param menu addMenu
+	 * @param view        addView
+	 * @param parent      parent
+	 * @param menu        addMenu
 	 */
 	public SubmitEnigmaListener(JTextField title, JTextArea description, ManageEnigmasAddView view,
-	                                ManageEnigmaAddMenu menu) {
+	                            AbstractPopUpView parent, ManageEnigmaAddMenu menu) {
 		this.title = title;
 		this.description = description;
 		this.view = view;
+		this.parent = parent;
 		this.menu = menu;
 	}
 
@@ -64,12 +71,16 @@ public class SubmitEnigmaListener implements ActionListener {
 			}
 		}
 
-		this.menu.setTitleInvalid(false,"");
+		this.menu.setTitleInvalid(false, "");
 
 		eng.setDescription(this.description.getText());
 		eng.setTitle(title);
-		eng.setID(((GameObject)entity).getID());
+		eng.setID(((GameObject) entity).getID());
 		entity.addEnigma(eng);
+
+		//ajout à l'historique
+		ActionsManager.getInstance().add(EditorActionFactory.actionWithinAMenu(ActionTypes.ADD_ENIGMA, entity, eng));
+
 		Logger.printDebug("AddEnigma", eng.toLongString());
 
 		this.title.setText("");

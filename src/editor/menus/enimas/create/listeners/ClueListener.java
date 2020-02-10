@@ -1,9 +1,9 @@
 package editor.menus.enimas.create.listeners;
 
-import common.utils.Logger;
 import common.enigmas.Advice;
 import common.hud.EnigmaTextArea;
 import common.save.enigmas.EnigmaAttributes;
+import common.utils.Logger;
 import editor.menus.enimas.create.CluePanel;
 import editor.menus.enimas.create.ManageEnigmasAddView;
 
@@ -44,9 +44,9 @@ public class ClueListener implements ActionListener {
 
 		if (clue == null || clue.length() == 0) {
 			error = true;
-			this.cluePanel.setClueInvalid(true," (valeur invalide)");
+			this.cluePanel.setClueInvalid(true, " (valeur invalide)");
 		} else {
-			this.cluePanel.setClueInvalid(false,"");
+			this.cluePanel.setClueInvalid(false, "");
 		}
 
 		try {

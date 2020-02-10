@@ -1,11 +1,8 @@
 package common.map;
 
-import api.libgdx.actor.GameActor;
 import api.libgdx.utils.Border;
 import api.libgdx.utils.Bounds;
 import api.libgdx.utils.LibgdxUtility;
-import api.utils.AsciiColor;
-import api.utils.PrintColor;
 import api.utils.Utility;
 import api.utils.annotations.ConvenienceMethod;
 import com.badlogic.gdx.Gdx;
@@ -27,14 +24,12 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Array;
 import common.data.MapData;
 import common.entities.GameObject;
-import common.entities.players.Monster;
-import common.entities.players.NPC;
-import common.entities.special.GameExit;
 import common.entities.types.ContainersManager;
 import common.entities.types.IDInterface;
 import common.save.DataSave;
 import common.save.TmxProperties;
-import common.save.entities.serialization.*;
+import common.save.entities.serialization.EntityFactory;
+import common.save.entities.serialization.EntitySerializable;
 import common.utils.IDFactory;
 import common.utils.Logger;
 import data.Layer;
@@ -63,74 +58,75 @@ import static common.save.MapsNameUtils.WIDTH_P;
  * @version 6.1
  * @since 3.0
  */
+@SuppressWarnings("WeakerAccess")
 public abstract class AbstractMap extends Group implements EditorActionParent<GameObject> {
 
 	/**
-	 * Données propres à la map
-	 * @since 6.0
-	 */
-	protected MapData data;
-
-	/**
-	 * Les entités de la map
-	 * @since 6.0
-	 */
-	protected MapObjects objects;
-
-	/**
 	 * Dimensions d'un tile
+	 *
 	 * @since 3.0
 	 */
 	protected final int tileHeight, tileWidth;
-
 	/**
 	 * Dimensions de la map
+	 *
 	 * @since 3.0
 	 */
 	protected final int mapWidth, mapHeight;
-
 	/**
 	 * Dessinateur de la map
+	 *
 	 * @since 3.0
 	 */
 	protected final OrthogonalTiledMapRenderer map;
-
 	/**
 	 * Affichage de la grille.
+	 *
 	 * @since 3.0
 	 */
 	protected final Border border;
-
-	/**
-	 * Les limites de la map dans l'espace
-	 * @since 3.0
-	 */
-	protected Bounds mapBounds;
-
 	/**
 	 * Caméra de la map
+	 *
 	 * @since 3.0
 	 */
 	protected final OrthographicCamera camera;
-
+	/**
+	 * Les entités de la map
+	 *
+	 * @since 6.0
+	 */
+	protected final MapObjects objects;
+	/**
+	 * IDFactory
+	 *
+	 * @since 6.1
+	 */
+	protected final IDFactory idFactory;
+	/**
+	 * Données propres à la map
+	 *
+	 * @since 6.0
+	 */
+	protected MapData data;
+	/**
+	 * Les limites de la map dans l'espace
+	 *
+	 * @since 3.0
+	 */
+	protected Bounds mapBounds;
 	/**
 	 * Boolean pour activer l'affichage de la grille
+	 *
 	 * @since 4.0
 	 */
 	protected boolean showGrid;
-
-	/**
-	 * IDFactory
-	 * @since 6.1
-	 */
-	protected IDFactory idFactory;
 
 	/**
 	 * Le seul constructeur possible d'une map, ne fait rien
 	 *
 	 * @param path      chemin d'une map
 	 * @param unitScale taux de distortion
-	 *
 	 * @since 3.0
 	 */
 	AbstractMap(@NotNull final String path, final float unitScale) {
@@ -142,28 +138,28 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 	 *
 	 * @param path      chemin d'une map
 	 * @param unitScale taux de distortion
-	 *
 	 * @since 3.0
 	 */
-	AbstractMap(@NotNull final String path, final float unitScale,boolean isInit) {
+	AbstractMap(@NotNull final String path, final float unitScale, boolean isInit) {
 		// charge la map
 		TiledMap tiledMap = new TmxMapLoader().load(path);
 		this.map = new OrthogonalTiledMapRenderer(tiledMap, unitScale);
 		String data = null;
 
 		//TODO: if else à retirer lorsque TestScreen.MAP_PATH ne vaudra plus assets/map/map_system/EmptyMap.tmx
-		if(!path.equals("assets/map/map_system/EmptyMap.tmx")) {	//evite des exceptions, à effacer le moment venu
+		if (!path.equals("assets/map/map_system/EmptyMap.tmx")) {    //évite des exceptions, à effacer le moment venu
 			try {
+				//noinspection ConstantConditions
 				data = path.replace(Config.MAP_FOLDER, Config.MAP_DATA_FOLDER).replace(Config.MAP_EXTENSION, Config.DATA_EXTENSION);
 				this.data = DataSave.readMapData(data);
 			} catch (IOException e) {
 				Logger.printError("AbstractMap.java", "impossible de charger les données: " + data + " de la map: " + path);
 				//TODO: annuler le chargement
 				//TODO: a retirer, temporaire pour les anciennes maps
-				this.data = new MapData("à retirer","à retirer");
+				this.data = new MapData("à retirer", "à retirer");
 			}
-		}else{
-			this.data = new MapData("à retirer","à retirer");
+		} else {
+			this.data = new MapData("à retirer", "à retirer");
 		}
 
 		//sauvegarde des propriétés de la map
@@ -190,11 +186,61 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 
 		this.idFactory = new IDFactory();
 
-		if (isInit){
+		if (isInit) {
 			//initialise la map
 			this.init();
 		}
 	}
+
+	/**
+	 * Convertit la position sur la map en position sur la grille
+	 * <p>
+	 * Attention! La position  x,y est considérée comme étant toujours dans la map.
+	 *
+	 * @param posX coordonnées X
+	 * @param posY coordonnées Y
+	 * @param map  la map
+	 * @return la position sur la map
+	 */
+	public static Vector2 posToIndex(float posX, float posY, final AbstractMap map) {
+		Vector2 index = new Vector2();
+
+		posX /= map.getUnitScale();
+		posY /= map.getUnitScale();
+
+		float column = MathUtils.clamp(Math.round(posX / map.getTileWidth()), 0, map.getMapWidth() * map.getTileWidth());
+		float row = MathUtils.clamp(Math.round(posY / map.getTileHeight()), 0, map.getMapHeight() * map.getTileHeight());
+
+		index.x = column;
+		index.y = row;
+
+		return index;
+	}
+
+	// utils (static)
+
+	/**
+	 * Retourne une liste des propriétés contenant name
+	 *
+	 * @param name un name (tag name d'une property d'un .tmx)
+	 * @return une liste des propriétés contenant name
+	 * @since 5.0
+	 */
+	@SuppressWarnings({"", "WeakerAccess", "SameParameterValue"})
+	protected static ArrayList<MapProperties> getProperty(String name, AbstractMap map) {
+		ArrayList<MapProperties> props = new ArrayList<>();
+		for (MapLayer layer : map.getTiledMap().getLayers()) {
+			for (MapObject mapObject : layer.getObjects()) {
+				//object contient entité ?
+				if (name != null && name.equals(mapObject.getName())) {
+					props.add(mapObject.getProperties());
+				}
+			}
+		}
+		return props;
+	}
+
+	//initialisations
 
 	/**
 	 * Initialisation de la map.
@@ -211,35 +257,6 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 		//bounds
 		this.setMapBounds();
 	}
-
-	// utils (static)
-
-	/**
-	 * Convertit la position sur la map en position sur la grille
-	 *
-	 * Attention! La position  x,y est considérée comme étant toujours dans la map.
-	 *
-	 * @param posX coordonnées X
-	 * @param posY coordonnées Y
-	 * @param map la map
-	 * @return la position sur la map
-	 */
-	public static Vector2 posToIndex(float posX, float posY, final AbstractMap map) {
-		Vector2 index = new Vector2();
-
-		posX /= map.getUnitScale();
-		posY /= map.getUnitScale();
-
-		float column = MathUtils.clamp(Math.round(posX / map.getTileWidth()), 0, map.getMapWidth()*map.getTileWidth());
-		float row = MathUtils.clamp(Math.round(posY / map.getTileHeight()), 0, map.getMapHeight()*map.getTileHeight());
-
-		index.x = column;
-		index.y = row;
-
-		return index;
-	}
-
-	//initialisations
 
 	/**
 	 * Cette méthode transforme toutes les cellules de la map en MapLibgdxCell
@@ -279,7 +296,7 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 		String className;
 		EntitySerializable e;
 		for (MapProperties prop : entities) {
-			//PROPRIETES
+			//propriétés
 			width = Math.round(prop.get(TmxProperties.TMX_WIDTH, Float.class));
 			height = Math.round(prop.get(TmxProperties.TMX_HEIGHT, Float.class));
 			className = prop.get(TmxProperties.TMX_PROP_ENTITY_CLASS, String.class);
@@ -313,7 +330,7 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 				// on place les tiles
 				this.setFromSave(object, start);
 			} else {
-				//entitée temporaire, pas sur la map
+				//entité temporaire, pas sur la map
 				e = new EntitySerializable(width, height, className, new HashMap<>());
 				GameObject object = EntityFactory.createEntity(e, id, start, this.idFactory);
 
@@ -334,7 +351,7 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 	 * @since 4.0
 	 */
 	public void set(GameObject entity, Vector2 start) {
-		if(!this.objects.contains(entity))
+		if (!this.objects.contains(entity))
 			this.objects.put(start, entity);
 
 		//on parcours toutes les niveaux de la map et on y ajoute les tiles de l'entité
@@ -485,11 +502,11 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 							//récupère ses tiles
 							Array<Float> entitiesArray = entities.get(gameObject);
 							//????
-							if (entitiesArray != null ) {
-								if (LibgdxUtility.containsBottomLeftOrigin(gameObject, pos, j, i+1)) {
-									int offset =  LibgdxUtility.calculatesOffset(
+							if (entitiesArray != null) {
+								if (LibgdxUtility.containsBottomLeftOrigin(gameObject, pos, j, i + 1)) {
+									int offset = LibgdxUtility.calculatesOffset(
 											gameObject, //gameObject pour indexer selon sa largeur
-											new Vector2(j, i+1) //la case qui est dedans
+											new Vector2(j, i + 1) //la case qui est dedans
 									);
 									ind = (int) Math.ceil(entitiesArray.get(offset));
 									c.setEntity(gameObject);
@@ -499,8 +516,8 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 						}
 					}
 					//si l'id vaut zéro alors que c'est celle à supprimer, alors on la sauvegarde car c'est
-					//une entité de la sauvegarde donc qui ne connait plus ses tiles
-					if(ent.get(index) == 0 && c.getTile() != null){
+					//une entité de la sauvegarde donc qui ne connaît plus ses tiles
+					if (ent.get(index) == 0 && c.getTile() != null) {
 						ent.set(index, (float) c.getTile().getId());
 					}
 					c.setTile(this.map.getMap().getTileSets().getTile(ind));
@@ -512,35 +529,41 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 
 	/**
 	 * Renvoi toutes les entités qui font collision avec parent
-	 * @param start position parent
+	 *
+	 * @param start  position parent
 	 * @param entity parent
 	 * @return map des objects qui font collision avec parent mais ne sont pas ceux contenus dans parent
 	 * @since 5.2
 	 */
 	@ConvenienceMethod
-	protected HashMap<Vector2, GameObject> getParentObject(Vector2 start, GameObject entity){
+	protected HashMap<Vector2, GameObject> getParentObject(Vector2 start, GameObject entity) {
 		return getParentObject(start, entity, false, false);
 	}
 
 	/**
 	 * Renvoi toutes les entités qui font collision avec parent
-	 * @param start position parent
-	 * @param entity parent
+	 *
+	 * @param start      position parent
+	 * @param entity     parent
 	 * @param withDelete supprime toutes les entités contenues dans le parent
 	 * @return map des objects qui font collision avec parent mais ne sont pas ceux contenus dans parent
 	 * @since 5.2
 	 */
+	@SuppressWarnings("SameParameterValue")
 	@ConvenienceMethod
-	protected HashMap<Vector2, GameObject> getParentObject(Vector2 start, GameObject entity, boolean withDelete){
+	protected HashMap<Vector2, GameObject> getParentObject(Vector2 start, GameObject entity, boolean withDelete) {
 		return getParentObject(start, entity, withDelete, false);
 	}
 
+	// libgdx
+
 	/**
 	 * Renvoi toutes les entités qui font collision avec parent
-	 * @param start position parent
-	 * @param entity parent
+	 *
+	 * @param start      position parent
+	 * @param entity     parent
 	 * @param withDelete supprime toutes les entités contenues dans le parent
-	 * @param all mêmes les objets qui sont dans parent sont retournés
+	 * @param all        mêmes les objets qui sont dans parent sont retournés
 	 * @return map des objects qui font collision avec parent mais ne sont pas ceux contenus dans parent
 	 * @since 5.2
 	 */
@@ -569,15 +592,16 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 						}
 					} else {
 						//sinon on renvoi le conteneur
-						if(withDelete) Logger.printDebug("DeleteGetParent", item.toString() + "(" + ent + " overlaps " + other + ")");
+						if (withDelete)
+							Logger.printDebug("DeleteGetParent", item.toString() + "(" + ent + " overlaps " + other + ")");
 						obj.put(item.getKey(), object);
-						if(!all) return obj;
+						if (!all) return obj;
 					}
 				}
 			}
 		}
 
-		if(withDelete) {
+		if (withDelete) {
 			//suppression des contenus
 			for (Vector2 v : delete.keySet()) {
 				//delete
@@ -585,12 +609,12 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 			}
 		}
 
-		if(all){ obj.putAll(delete); }
+		if (all) {
+			obj.putAll(delete);
+		}
 
 		return obj;
 	}
-
-	// libgdx
 
 	@Override
 	public void act(float delta) {
@@ -605,6 +629,8 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 		//update borders
 		this.border.setProjectionMatrix(this.camera.combined);
 	}
+
+	//utils
 
 	/**
 	 * Dessine la map
@@ -628,39 +654,15 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 			this.border.draw();
 	}
 
-	//utils
-
 	/**
 	 * Affiche ou cache un niveau
 	 *
 	 * @param layer niveau
 	 * @param show  true pour afficher sinon false
 	 */
-	@SuppressWarnings("WeakerAccess")
 	public void showLayer(Layer layer, boolean show) {
 		MapLayer mapLayer = this.map.getMap().getLayers().get(layer.name());
 		if (mapLayer != null) mapLayer.setVisible(show);
-	}
-
-	/**
-	 * Retourne une liste des propriétés contenant name
-	 *
-	 * @param name un name (tag name d'une property d'un .tmx)
-	 * @return une liste des propriétés contenant name
-	 * @since 5.0
-	 */
-	@SuppressWarnings({"", "WeakerAccess", "SameParameterValue"})
-	protected static ArrayList<MapProperties> getProperty(String name, AbstractMap map) {
-		ArrayList<MapProperties> props = new ArrayList<>();
-		for (MapLayer layer : map.getTiledMap().getLayers()) {
-			for (MapObject mapObject : layer.getObjects()) {
-				//object contient entité ?
-				if (name != null && name.equals(mapObject.getName())) {
-					props.add(mapObject.getProperties());
-				}
-			}
-		}
-		return props;
 	}
 
 	/**
@@ -728,6 +730,7 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 
 	/**
 	 * Retourne la caméra de la map
+	 *
 	 * @return la caméra de la map
 	 */
 	public OrthographicCamera getCamera() {
@@ -735,15 +738,8 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 	}
 
 	/**
-	 * Retourne les limites de la map
-	 * @return les limites de la map
-	 */
-	public Bounds getMapBounds() {
-		return this.mapBounds;
-	}
-
-	/**
 	 * Définit les limites de la map
+	 *
 	 * @since 3.0
 	 */
 	protected void setMapBounds() {
@@ -756,6 +752,7 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 
 	/**
 	 * Retourne le dessinateur de la map
+	 *
 	 * @return le dessinateur de la map
 	 */
 	public OrthogonalTiledMapRenderer getMap() {
@@ -764,6 +761,7 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 
 	/**
 	 * Retourne la taille de la map, correction avec la caméra
+	 *
 	 * @return la taille de la map
 	 */
 	protected Rectangle getMapSize() {
@@ -811,11 +809,11 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 
 	/**
 	 * Retourne les entités de la map
-	 * @return les entités de la map
 	 *
+	 * @return les entités de la map
 	 * @since 6.0
 	 */
-	public MapObjects getEntities(){
+	public MapObjects getEntities() {
 		return this.objects;
 	}
 
@@ -831,6 +829,7 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 
 	/**
 	 * Libère un id
+	 *
 	 * @param object object a libérer
 	 * @since 6.0
 	 */
@@ -840,6 +839,7 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 
 	/**
 	 * Retourne les données de la partie
+	 *
 	 * @return Les données de la partie
 	 * @since 6.0
 	 */

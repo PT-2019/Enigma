@@ -1,31 +1,27 @@
 package common.map;
 
 import api.libgdx.actor.GameActor;
-import api.utils.Utility;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.MapLayer;
-import com.badlogic.gdx.maps.MapLayers;
-import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapProperties;
-import com.badlogic.gdx.maps.tiled.*;
-import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
-import common.enigmas.TileEvent;
-import common.enigmas.TileEventEnum;
-import common.entities.players.PlayerGame;
 import com.badlogic.gdx.utils.Array;
+import common.enigmas.TileEventEnum;
 import common.entities.GameObject;
-import common.entities.players.*;
+import common.entities.players.Monster;
+import common.entities.players.NPC;
+import common.entities.players.PlayerGame;
 import common.entities.special.GameExit;
 import common.save.TmxProperties;
-import common.save.entities.serialization.*;
+import common.save.entities.serialization.EntityFactory;
+import common.save.entities.serialization.EntitySerializable;
+import common.save.entities.serialization.MonsterFactory;
+import common.save.entities.serialization.NpcFactory;
+import common.save.entities.serialization.PlayerFactory;
 import common.utils.Logger;
 import data.Layer;
 import org.jetbrains.annotations.NotNull;
-import org.lwjgl.Sys;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,7 +44,7 @@ public class GameMap extends AbstractMap {
 	private ArrayList<GameActor> entities;
 
 	public GameMap(final String path, float unitScale) {
-		super(path, unitScale,false);
+		super(path, unitScale, false);
 
 		this.showLayer(Layer.COLLISION, true);
 
@@ -87,38 +83,36 @@ public class GameMap extends AbstractMap {
 	}
 
 	/**
-	 *  Définit si la case est accessible
-	 * @param posX coordonnées X
-	 * @param posY coordonnées Y
+	 * Définit si la case est accessible
+	 *
+	 * @param posX  coordonnées X
+	 * @param posY  coordonnées Y
 	 * @param actor
 	 * @return true = accessible, false = non accessible
 	 */
 	public boolean isWalkable(float posX, float posY, GameActor actor) {
-		Vector2 position = posToIndex(posX,posY,this);
+		Vector2 position = posToIndex(posX, posY, this);
 
 		TiledMapTileLayer tiledmap = (TiledMapTileLayer) this.map.getMap().getLayers().get(Layer.COLLISION.name());
-		TiledMapTileLayer.Cell c = tiledmap.getCell((int)position.x,(int)position.y);
+		TiledMapTileLayer.Cell c = tiledmap.getCell((int) position.x, (int) position.y);
 
-		if (c == null){
+		if (c == null) {
 
-		}else{
+		} else {
 			//si on retourne null alors il n'y a pas collision
-			if(c.getTile() != null){
-				return false;
-			}
+			return c.getTile() == null;
 		}
 		return true;
 	}
 
 	/**
-	 *
 	 * @param posX
 	 * @param posY
 	 * @param actor
 	 * @return
 	 */
-	public boolean doAction(float posX, float posY, GameActor actor, TileEventEnum action){
-		Vector2 position = posToIndex(posX,posY,this);
+	public boolean doAction(float posX, float posY, GameActor actor, TileEventEnum action) {
+		Vector2 position = posToIndex(posX, posY, this);
 
 		//convertit pos
 
@@ -133,10 +127,12 @@ public class GameMap extends AbstractMap {
 
 	/**
 	 * Permet de savoir si c'est possible de bouger un personnage en fonction des autres GameActor
+	 *
 	 * @param actor On va tester en fonction de cet actor
 	 * @return boolean true si collision false sinon
 	 */
-	public boolean collision(GameActor actor,float movx,float movy){
+	@SuppressWarnings({"unchecked", "UnusedAssignment"})
+	public boolean collision(GameActor actor, float movX, float movY) {
 		boolean result = false;
 
 		//on va itérer tout les actors connu sur la map
@@ -144,7 +140,7 @@ public class GameMap extends AbstractMap {
 		ArrayList<GameActor> actors = (ArrayList<GameActor>) this.entities.clone();
 		actors.remove(actor);
 		for (GameActor act : actors) {
-			if (actor.overlaps(act,movx,movy)){
+			if (actor.overlaps(act, movX, movY)) {
 				result = true;
 				break;
 			}
@@ -172,13 +168,13 @@ public class GameMap extends AbstractMap {
 		//Setup camera
 		this.map.setView(this.camera);
 
-		for (Layer layer : Layer.values()){
-			if (!this.map.getMap().getLayers().get(layer.name()).isVisible()/*== Layer.COLLISION*/ ){
+		for (Layer layer : Layer.values()) {
+			if (!this.map.getMap().getLayers().get(layer.name()).isVisible()/*== Layer.COLLISION*/) {
 				continue;
 			}
 			//render actors
 			for (GameActor entity : this.entities) {
-				if (entity.getLayer() == layer){
+				if (entity.getLayer() == layer) {
 					batch.end();
 					batch.begin();
 					entity.draw(batch, parentAlpha);
@@ -219,34 +215,34 @@ public class GameMap extends AbstractMap {
 	}
 
 
+	/**
+	 * Enlève l'entités vivante de la map et les actions comme la sortie
+	 *
+	 * @param entity l'entité à charger
+	 * @param start  le coin supérieur gauche ou commencer a placer des tiles
+	 * @since 4.0
+	 */
+	private void setEntityFromSave(GameObject entity, Vector2 start) {
 
-    /**
-     * Enlève l'entités vivante de la map et les actions comme la sortie
-     * @param entity l'entité à charger
-     * @param start  le coin supérieur gauche ou commencer a placer des tiles
-     * @since 4.0
-     */
-    private void setEntityFromSave(GameObject entity, Vector2 start) {
+		//on prends le layer où sont afficher les entités
+		MapLayer mapLayer = this.map.getMap().getLayers().get(Layer.FLOOR2.name());
+		TiledMapTileLayer tileLayer = (TiledMapTileLayer) mapLayer;
 
-        //on prends le layer où sont afficher les entités
-        MapLayer mapLayer = this.map.getMap().getLayers().get(Layer.FLOOR2.name());
-        TiledMapTileLayer tileLayer = (TiledMapTileLayer) mapLayer;
+		//calcul pour placer les tiles depuis x et y
+		//sachant que y est inversé, on part de la dernière tile et on remonte
+		//pas de problème pour x
+		for (int i = (int) start.y - 1, index = 0; i >= (start.y - entity.getGameObjectHeight()); i--) {
+			for (int j = (int) start.x; j < start.x + entity.getGameObjectWidth(); j++, index++) {
+				MapTestScreenCell c = (MapTestScreenCell) tileLayer.getCell(j, i);
+				if (c == null) continue;
+				c.setTile(null);
 
-        //calcul pour placer les tiles depuis x et y
-        //sachant que y est inversé, on part de la dernière tile et on remonte
-        //pas de problème pour x
-        for (int i = (int) start.y - 1, index = 0; i >= (start.y - entity.getGameObjectHeight()); i--) {
-            for (int j = (int) start.x; j < start.x + entity.getGameObjectWidth(); j++, index++) {
-                MapTestScreenCell c = (MapTestScreenCell) tileLayer.getCell(j, i);
-                if (c==null) continue;
-                c.setTile(null);
+				tileLayer.setCell(j, i, c);
+			}
+		}
+	}
 
-                tileLayer.setCell(j, i, c);
-            }
-        }
-    }
-
-    @Override
+	@Override
 	protected void initEntities() {
 		ArrayList<MapProperties> entities = getProperty(TmxProperties.TMX_PROP_ENTITY, this);
 		float x, y;
@@ -288,39 +284,39 @@ public class GameMap extends AbstractMap {
 				Logger.printDebugALL("MapTestScreen#initEntities", object + " " + start);
 
 				//on place pas les entités "vivantes" dans les tiles de la map
-				if (object instanceof NPC){
+				if (object instanceof NPC) {
 					NPC npc = (NPC) object;
 					GameActor entity;
 
 					if (npc.isHero()) {
 						entity = PlayerFactory.createPlayerGame(npc.getKey(), npc.getJson(), this);
 						npc.setHero(true);
-					}else{
+					} else {
 						//c'est un npc
-						entity = NpcFactory.createNpcGame(npc.getKey(),npc.getJson());
+						entity = NpcFactory.createNpcGame(npc.getKey(), npc.getJson());
 					}
 					this.addEntity(entity);
 					//on soustrait et augmente pour que ce soit à la bonne position
-					entity.setPosition((x+0.5f)*this.tileWidth*this.getUnitScale(),
-							(y-2)*this.tileHeight*this.getUnitScale());
+					entity.setPosition((x + 0.5f) * this.tileWidth * this.getUnitScale(),
+							(y - 2) * this.tileHeight * this.getUnitScale());
 					notdisplay = true;
-				}else if(object instanceof Monster){
+				} else if (object instanceof Monster) {
 					String path = prop.get("JSON", String.class);
 					String name = prop.get("KEY", String.class);
 
 					GameActor monster = MonsterFactory.createMonsterGame(name, path);
 					this.addEntity(monster);
-					monster.setPosition((x+0.5f)*this.tileWidth*this.getUnitScale(),
-							(y-2)*this.tileHeight*this.getUnitScale());
+					monster.setPosition((x + 0.5f) * this.tileWidth * this.getUnitScale(),
+							(y - 2) * this.tileHeight * this.getUnitScale());
 					notdisplay = true;
-				}else{
+				} else {
 					// on place les tiles
 					this.setFromSave(object, start);
 					if (object instanceof GameExit) notdisplay = true;
 				}
 				//this.added.put(start, object);
-				if (notdisplay){
-					this.setEntityFromSave(object,start);
+				if (notdisplay) {
+					this.setEntityFromSave(object, start);
 					notdisplay = false;
 				}
 

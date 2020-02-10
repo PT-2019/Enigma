@@ -67,7 +67,7 @@ public class CustomMenuUI extends BasicMenuUI implements CustomUI<CustomMenuUI>,
 	 */
 	@SuppressWarnings("unchecked")
 	protected <T extends CustomMenuUI> T duplicate(T customMenuUI) {
-		T clone = null;
+		T clone;
 		try {
 			Constructor<?> c = customMenuUI.getClass().getDeclaredConstructor();
 			clone = (T) c.newInstance();
@@ -176,7 +176,7 @@ public class CustomMenuUI extends BasicMenuUI implements CustomUI<CustomMenuUI>,
 	 *
 	 * @return fond popup du menu
 	 */
-	public Color getPopupBackground() {
+	private Color getPopupBackground() {
 		return popupBackground;
 	}
 
@@ -194,7 +194,7 @@ public class CustomMenuUI extends BasicMenuUI implements CustomUI<CustomMenuUI>,
 	 *
 	 * @return taille popup du menu
 	 */
-	public int getPopupBorderSize() {
+	private int getPopupBorderSize() {
 		return popupBorderSize;
 	}
 
@@ -217,7 +217,7 @@ public class CustomMenuUI extends BasicMenuUI implements CustomUI<CustomMenuUI>,
 	 * @see DefaultUIValues#LEFT_BORDER
 	 * @see DefaultUIValues#BOTTOM_BORDER
 	 */
-	public boolean[] getShowedPopupBorders() {
+	private boolean[] getShowedPopupBorders() {
 		return showedPopupBorders;
 	}
 

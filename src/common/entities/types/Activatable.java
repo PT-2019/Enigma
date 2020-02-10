@@ -41,21 +41,22 @@ public abstract class Activatable extends AbstractItem {
 	}
 
 	/**
-	 * Définit si l'object est activé
-	 * @param activated true si l'object est activé
-	 * @since 6.0
-	 */
-	public void setActivated(boolean activated) {
-		this.activated = activated;
-	}
-
-	/**
 	 * Indique si l'objet est activé
 	 *
 	 * @return true si l'objet est activé, false sinon
 	 */
 	public boolean isActivated() {
 		return this.activated;
+	}
+
+	/**
+	 * Définit si l'object est activé
+	 *
+	 * @param activated true si l'object est activé
+	 * @since 6.0
+	 */
+	public void setActivated(boolean activated) {
+		this.activated = activated;
 	}
 
 	@Override

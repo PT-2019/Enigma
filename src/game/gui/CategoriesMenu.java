@@ -128,7 +128,7 @@ public class CategoriesMenu extends Window implements InputAdapter, Disposable {
 		Array<EntitySerializable> entities = EntityFactory.getEntitiesByCategory(c);
 
 		boolean isRoom = false;
-		if(c.equals(EntitiesCategories.ROOMS)) isRoom = true;
+		if (c.equals(EntitiesCategories.ROOMS)) isRoom = true;
 
 		this.container.add().padTop(10).colspan(2).row();
 
@@ -146,7 +146,7 @@ public class CategoriesMenu extends Window implements InputAdapter, Disposable {
 					entity.addListener(textTooltip);
 				}
 				container.add(entity).minWidth(32).space(32);
-				if(isRoom) container.row();
+				if (isRoom) container.row();
 			}
 		}
 	}

@@ -19,50 +19,50 @@ import java.util.Map;
  */
 public class ShowRoom extends Operation {
 
-    public ShowRoom(Room object) {
-        super(object);
-    }
+	public ShowRoom(Room object) {
+		super(object);
+	}
 
-    /**
-     * @param attributes Attributs de la classe
-     * @throws IllegalArgumentException Si un attribut est manquant
-     */
-    public ShowRoom(Map<String, Object> attributes) {
-        super(attributes);
-    }
+	/**
+	 * @param attributes Attributs de la classe
+	 * @throws IllegalArgumentException Si un attribut est manquant
+	 */
+	public ShowRoom(Map<String, Object> attributes) {
+		super(attributes);
+	}
 
-    /**
-     * Effectue l'action
-     *
-     * @param p Joueur ayant mené à l'appel de cette méthode
-     */
-    @Override
-    @Deprecated
-    public void doOperation(Player p) {
-        this.run(p);
-    }
+	/**
+	 * Effectue l'action
+	 *
+	 * @param p Joueur ayant mené à l'appel de cette méthode
+	 */
+	@Override
+	@Deprecated
+	public void doOperation(Player p) {
+		this.run(p);
+	}
 
 
-    @Override
-    public void run(Player p) {
-        Room room = (Room) this.entity;
-        room.setShowed(false);
-    }
+	@Override
+	public void run(Player p) {
+		Room room = (Room) this.entity;
+		room.setShowed(false);
+	}
 
-    @Override
-    public String toString() {
-        return "[ShowRoom]";
-    }
+	@Override
+	public String toString() {
+		return "[ShowRoom]";
+	}
 
-    @Override
-    public String toLongString()  {
-        return "[ShowRoom  : entity = " + this.entity + "]";
-    }
+	@Override
+	public String toLongString() {
+		return "[ShowRoom  : entity = " + this.entity + "]";
+	}
 
-    @Override
-    public String getEnigmaElementReadablePrint() {
-        return "["+ NeedToBeTranslated.SHOW_ROOM_DESC +": "+
-                this.entity.getReadableName() + " (id="+this.entity.getID()+") ]";
-    }
+	@Override
+	public String getEnigmaElementReadablePrint() {
+		return "[" + NeedToBeTranslated.SHOW_ROOM_DESC + ": " +
+				this.entity.getReadableName() + " (id=" + this.entity.getID() + ") ]";
+	}
 }
 

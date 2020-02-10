@@ -19,7 +19,6 @@ import java.awt.event.ActionListener;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.0 08/02/2020
  * @since 6.0 08/02/2020
  */
@@ -32,6 +31,7 @@ public class ZoomListener implements ActionListener {
 
 	/**
 	 * Listener du zoom
+	 *
 	 * @param map la map
 	 */
 	public ZoomListener(AbstractMap map) {
@@ -49,6 +49,7 @@ public class ZoomListener implements ActionListener {
 			case NeedToBeTranslated.ZOOM_BASE: {
 				OrthographicCamera camera = this.map.getCamera();
 				camera.zoom = baseZoomValue;
+				camera.update();
 				EditorLauncher.removeState(EditorState.ZOOM);
 				break;
 			}
@@ -60,16 +61,19 @@ public class ZoomListener implements ActionListener {
 				float value = ratio * (mapHeight / this.map.getTileHeight()) / Config.RATIO_UNIT;
 				OrthographicCamera camera = this.map.getCamera();
 				camera.zoom = value;
+				camera.update();
 				//ajout l'état zoom
 				if (EditorLauncher.containsState(EditorState.NORMAL)) EditorLauncher.clearStates();
 				EditorLauncher.addState(EditorState.ZOOM);
 				break;
-			//zoom en jeu
-			} case NeedToBeTranslated.ZOOM_IN_GAME: {
+				//zoom en jeu
+			}
+			case NeedToBeTranslated.ZOOM_IN_GAME: {
 				OrthographicCamera camera = this.map.getCamera();
 				camera.zoom = Config.IN_GAME_ZOOM_VALUE;
+				camera.update();
 				//ajout l'état zoom
-				if(EditorLauncher.containsState(EditorState.NORMAL)) EditorLauncher.clearStates();
+				if (EditorLauncher.containsState(EditorState.NORMAL)) EditorLauncher.clearStates();
 				EditorLauncher.addState(EditorState.ZOOM);
 				break;
 			}
@@ -82,7 +86,7 @@ public class ZoomListener implements ActionListener {
 						selected = selected.replace("%", "");
 						//conversion en pourcentage
 						zoom = Integer.parseInt(selected) / 100f;
-						if(zoom < baseZoomValue){
+						if (zoom < baseZoomValue) {
 							zoom = baseZoomValue + (baseZoomValue - zoom);
 						} else if (zoom > baseZoomValue) {
 							zoom = baseZoomValue - (zoom - baseZoomValue);
@@ -97,9 +101,10 @@ public class ZoomListener implements ActionListener {
 					zoom = baseZoomValue;
 				}
 				camera.zoom = zoom;
-				if(zoom != baseZoomValue){
+				camera.update();
+				if (zoom != baseZoomValue) {
 					//ajout l'état zoom
-					if(EditorLauncher.containsState(EditorState.NORMAL)) EditorLauncher.clearStates();
+					if (EditorLauncher.containsState(EditorState.NORMAL)) EditorLauncher.clearStates();
 					EditorLauncher.addState(EditorState.ZOOM);
 				} else {
 					//désactive zoom

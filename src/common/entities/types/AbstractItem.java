@@ -98,14 +98,4 @@ public abstract class AbstractItem extends AbstractGameObject implements Item {
 
 	@Override
 	public abstract String toString();
-
-	@Override
-	public void add(Enigma arg, Object... args) {
-		this.addEnigma(arg);
-	}
-
-	@Override
-	public void remove(Enigma arg, Object... args) {
-		this.removeEnigma(arg);
-	}
 }

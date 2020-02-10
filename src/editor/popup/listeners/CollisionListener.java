@@ -13,7 +13,6 @@ import java.awt.event.ItemListener;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 4.0
  * @since 4.0
  */

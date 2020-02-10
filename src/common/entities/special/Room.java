@@ -64,7 +64,7 @@ public class Room extends AbstractGameObject implements ContainersManager {
 
 	@Override
 	public String toString() {
-		return super.toString()+" id="+this.id;
+		return super.toString() + " id=" + this.id;
 	}
 
 	@Override
@@ -74,6 +74,7 @@ public class Room extends AbstractGameObject implements ContainersManager {
 
 	/**
 	 * Retourne si la room a étée découverte
+	 *
 	 * @return true si la room a étée découverte
 	 * @since 6.0
 	 */
@@ -83,6 +84,7 @@ public class Room extends AbstractGameObject implements ContainersManager {
 
 	/**
 	 * Définit si la room a étée découverte
+	 *
 	 * @param discovered true si la room a étée découverte
 	 * @since 6.0
 	 */
@@ -92,6 +94,7 @@ public class Room extends AbstractGameObject implements ContainersManager {
 
 	/**
 	 * Retourne si la room est cachée, au sens que son contenu est caché
+	 *
 	 * @return true si la room est cachée, au sens que son contenu est caché
 	 * @since 6.0
 	 */
@@ -101,6 +104,7 @@ public class Room extends AbstractGameObject implements ContainersManager {
 
 	/**
 	 * Retourne si la room est cachée, au sens que son contenu est caché
+	 *
 	 * @param showed true si la room est cachée, au sens que son contenu est caché
 	 * @since 6.0
 	 */

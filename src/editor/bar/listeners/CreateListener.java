@@ -44,9 +44,9 @@ public class CreateListener extends MenuListener {
 	//TODO: louloukit
 	private static final String ALREADY_TAKEN = "déjà pris";
 	private static final String INVALID = "invalide";
-	private static final String NAME = NeedToBeTranslated.INPUT_NAME+" :";
-	private static final String WIDTH = NeedToBeTranslated.WIDTH +" :";
-	private static final String HEIGHT = NeedToBeTranslated.HEIGHT +" :";
+	private static final String NAME = NeedToBeTranslated.INPUT_NAME + " :";
+	private static final String WIDTH = NeedToBeTranslated.WIDTH + " :";
+	private static final String HEIGHT = NeedToBeTranslated.HEIGHT + " :";
 	private static final String EMPTY = NeedToBeTranslated.EMPTY;
 
 	/**
@@ -101,7 +101,7 @@ public class CreateListener extends MenuListener {
 		do {
 			int choice = EnigmaOptionPane.showOptionDialog(this.window, this.content, TITLE, choices);
 			//s'il ne veut pas/plus créer, on quitte
-			if(choice != CREATE_POS) break;
+			if (choice != CREATE_POS) break;
 
 			//récupération de la saisie
 			String mapName = Utility.normalize(this.nameF.getText());
@@ -110,56 +110,56 @@ public class CreateListener extends MenuListener {
 			try {
 				col = Integer.parseInt(this.widthF.getText());
 
-				if(col > Config.MAP_MAX_WIDTH){
+				if (col > Config.MAP_MAX_WIDTH) {
 					error = true;
-					this.width.setText(NeedToBeTranslated.WIDTH +" ("+"max "+Config.MAP_MAX_WIDTH+") :");
+					this.width.setText(NeedToBeTranslated.WIDTH + " (" + "max " + Config.MAP_MAX_WIDTH + ") :");
 				}
 
-				if(col <= 0) throw new NumberFormatException();
+				if (col <= 0) throw new NumberFormatException();
 
 				//reset
 				this.width.setText(WIDTH);
-			} catch (NumberFormatException ex){
+			} catch (NumberFormatException ex) {
 				error = true;
-				this.width.setText(NeedToBeTranslated.WIDTH +" ("+INVALID+") :");
+				this.width.setText(NeedToBeTranslated.WIDTH + " (" + INVALID + ") :");
 			}
 
 			//test height
 			try {
 				row = Integer.parseInt(this.heightF.getText());
 
-				if(row > Config.MAP_MAX_HEIGHT){
+				if (row > Config.MAP_MAX_HEIGHT) {
 					error = true;
-					this.height.setText(NeedToBeTranslated.HEIGHT +" ("+"max "+Config.MAP_MAX_HEIGHT+") :");
+					this.height.setText(NeedToBeTranslated.HEIGHT + " (" + "max " + Config.MAP_MAX_HEIGHT + ") :");
 				}
 
-				if(row <= 0) throw new NumberFormatException();
+				if (row <= 0) throw new NumberFormatException();
 
 				//reset
 				this.height.setText(HEIGHT);
-			} catch (NumberFormatException ex){
+			} catch (NumberFormatException ex) {
 				error = true;
-				this.height.setText(NeedToBeTranslated.HEIGHT +" ("+INVALID+") :");
+				this.height.setText(NeedToBeTranslated.HEIGHT + " (" + INVALID + ") :");
 			}
 
 			//test map
 			boolean mapNameError = false;
-			if(mapName.isEmpty()||mapName.isBlank()){
+			if (mapName.isEmpty() || mapName.isBlank()) {
 				error = true;
 				mapNameError = true;
-				this.nom.setText(NeedToBeTranslated.INPUT_NAME+" ("+EMPTY+") :");
+				this.nom.setText(NeedToBeTranslated.INPUT_NAME + " (" + EMPTY + ") :");
 			}
-			if(!mapNameError){
+			if (!mapNameError) {
 				//correction
 				mapName = Utility.escape(mapName);
 				this.nameF.setText(mapName);
 			}
 
 			//nom déjà pris
-			if(!mapNameError){
+			if (!mapNameError) {
 				for (String s : Utility.getAllMapName()) {
 					if (s.equals(mapName)) {
-						this.nom.setText(NeedToBeTranslated.INPUT_NAME+" ("+ALREADY_TAKEN+") :");
+						this.nom.setText(NeedToBeTranslated.INPUT_NAME + " (" + ALREADY_TAKEN + ") :");
 						error = true;
 						mapNameError = true;
 						break;
@@ -168,14 +168,14 @@ public class CreateListener extends MenuListener {
 			}
 
 			//reset
-			if(!mapNameError){
+			if (!mapNameError) {
 				this.nom.setText(NAME);
 			}
 
 			//aucune erreur, création
-			if(!error){
+			if (!error) {
 				//retire l'extension dans mapName
-				if(mapName.contains(Config.MAP_EXTENSION)) mapName = mapName.replaceAll(Config.MAP_EXTENSION, "");
+				if (mapName.contains(Config.MAP_EXTENSION)) mapName = mapName.replaceAll(Config.MAP_EXTENSION, "");
 				String path = Config.MAP_FOLDER + mapName + Config.MAP_EXTENSION;
 
 				//TODO: lis author

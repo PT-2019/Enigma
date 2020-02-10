@@ -80,7 +80,7 @@ public class DragAndDrop extends InputListener {
 		EditorLauncher.getInstance().getWindow().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 
 		//si zoom activé. Fin.
-		if(EditorLauncher.containsState(EditorState.ZOOM)){
+		if (EditorLauncher.containsState(EditorState.ZOOM)) {
 			Logger.printDebug("DragAndDrop#up", "En mode Zoom");
 
 			//fade out si pas placé
@@ -107,7 +107,7 @@ public class DragAndDrop extends InputListener {
 			MapTestScreen map = ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap();
 			//on regarde si on l'a mis sur la map
 			MapTestScreen.LoadedEntity loadedEntity = map.loadEntity(this.dragged.getEntity(), pos);
-			if(loadedEntity.entity == null){
+			if (loadedEntity.entity == null) {
 				//affiche l'erreur
 				message = loadedEntity.message;
 			} else {

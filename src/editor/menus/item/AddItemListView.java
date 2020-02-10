@@ -42,30 +42,20 @@ public class AddItemListView extends AbstractSubPopUpView implements Observer<Ga
 	private static final String ADD_ENTITY = "Ajouter entité";
 	private static final String NO_ITEMS = "Aucun item";
 
-	private final EnigmaButton see, add;
+	private final EnigmaButton see;
 	private ButtonGroup groups;
 	private ItemListener listener;
 
 	/**
 	 * Liste des objects contenus dans un object.
-	 * @param parent parent
+	 *
+	 * @param parent  parent
 	 * @param seeView vue d'un item
 	 */
 	AddItemListView(AbstractPopUpView parent, AddItemSeeView seeView) {
 		super(TITLE, parent, false);
 		this.groups = new ButtonGroup();
-		this.listener = new ItemListener() {
-			@Override
-			public void itemStateChanged(ItemEvent e) {
-				Container container = (Container) parent.getPopUp().getCell().getEntity();
-				for (Item item : container.getItems()) {
-					if (item.getID() == Integer.parseInt(((JCheckBox) e.getSource()).getName())) {
-						seeView.setChecked(item);
-						break;
-					}
-				}
-			}
-		};
+		this.listener = new SelectItem(parent, seeView);
 
 		see = new EnigmaButton(SEE_ENTITY);
 		see.addActionListener(new ShowCardLayout(AddItemView.SEE, parent));
@@ -77,11 +67,9 @@ public class AddItemListView extends AbstractSubPopUpView implements Observer<Ga
 		gbc.fill = GridBagConstraints.NONE;
 		gbc.insets = new Insets(10, 0, 0, 0);
 		this.footer.add(see, gbc);
-		add = new EnigmaButton(ADD_ENTITY);
+		EnigmaButton add = new EnigmaButton(ADD_ENTITY);
 		add.addActionListener(new ShowCardLayout(AddItemView.ADD, parent));
-		add.addActionListener(e -> {
-			DragAndDropBuilder.setForPopup(((AddItemView) parent).getAddItemAddView());
-		});
+		add.addActionListener(e -> DragAndDropBuilder.setForPopup(((AddItemView) parent).getAddItemAddView()));
 		gbc.gridx = 1;
 		gbc.gridy = 0;
 		gbc.weightx = 1;
@@ -143,6 +131,7 @@ public class AddItemListView extends AbstractSubPopUpView implements Observer<Ga
 		panelS.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 
 		this.content.add(panelS, BorderLayout.CENTER);
+		this.revalidate();
 	}
 
 
@@ -150,7 +139,41 @@ public class AddItemListView extends AbstractSubPopUpView implements Observer<Ga
 	public void update(GameObject object) {
 	}
 
-	public ButtonGroup getGroup() {
-		return groups;
+	/**
+	 * Listener de la sélection d'un item
+	 *
+	 * @author Jorys-Micke ALAÏS
+	 * @author Louka DOZ
+	 * @author Loic SENECAT
+	 * @author Quentin RAMSAMY-AGEORGES
+	 * @version 6.0 10/02/2020
+	 * @since 6.0 10/02/2020
+	 */
+	private static final class SelectItem implements ItemListener {
+
+		private final AbstractPopUpView parent;
+		private final AddItemSeeView seeView;
+
+		/**
+		 * Listener de la sélection d'un item
+		 *
+		 * @param parent  parent
+		 * @param seeView vue d'un item
+		 */
+		private SelectItem(AbstractPopUpView parent, AddItemSeeView seeView) {
+			this.parent = parent;
+			this.seeView = seeView;
+		}
+
+		@Override
+		public void itemStateChanged(ItemEvent e) {
+			Container container = (Container) parent.getPopUp().getCell().getEntity();
+			for (Item item : container.getItems()) {
+				if (item.getID() == Integer.parseInt(((JCheckBox) e.getSource()).getName())) {
+					seeView.setChecked(item);
+					break;
+				}
+			}
+		}
 	}
 }

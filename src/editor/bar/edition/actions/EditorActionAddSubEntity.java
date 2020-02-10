@@ -1,10 +1,10 @@
 package editor.bar.edition.actions;
 
-import common.enigmas.Enigma;
-import common.entities.types.EnigmaContainer;
+import common.entities.Consumable;
+import common.entities.types.Container;
 import editor.bar.edition.ActionTypes;
 import editor.bar.edition.EditorAction;
-import editor.menus.enimas.ManageEnigmasView;
+import editor.menus.item.AddItemView;
 
 /**
  * Ajout d'une entité
@@ -16,29 +16,29 @@ import editor.menus.enimas.ManageEnigmasView;
  * @version 5.0 29/01/2020
  * @since 5.0 29/01/2020
  */
-class EditorActionRemoveEnigma implements EditorAction {
+class EditorActionAddSubEntity implements EditorAction {
 
 	private final ActionTypes type;
-	private final EnigmaContainer entity;
-	private final Enigma enigma;
+	private final Container container;
+	private final Consumable consumable;
 
-	EditorActionRemoveEnigma(ActionTypes type, EnigmaContainer entity, Enigma enigma) {
+	EditorActionAddSubEntity(ActionTypes type, Container container, Consumable consumable) {
 		this.type = type;
-		this.entity = entity;
-		this.enigma = enigma;
+		this.container = container;
+		this.consumable = consumable;
 	}
 
 	@Override
 	public void doAction() {
-		this.entity.removeEnigma(this.enigma);
-		ManageEnigmasView instance = ManageEnigmasView.getInstance();
+		this.container.addItem(this.consumable);
+		AddItemView instance = AddItemView.getInstance();
 		if (instance != null) instance.invalidateDrawable();
 	}
 
 	@Override
 	public void undoAction() {
-		this.entity.addEnigma(this.enigma);
-		ManageEnigmasView instance = ManageEnigmasView.getInstance();
+		this.container.removeItem(this.consumable);
+		AddItemView instance = AddItemView.getInstance();
 		if (instance != null) instance.invalidateDrawable();
 	}
 
@@ -59,7 +59,7 @@ class EditorActionRemoveEnigma implements EditorAction {
 	 */
 	@Override
 	public Object getActor() {
-		return this.enigma;
+		return this.consumable;
 	}
 }
 

@@ -4,11 +4,16 @@ import api.utils.Observer;
 import common.entities.Consumable;
 import common.entities.GameObject;
 import common.entities.Item;
+import common.entities.NullGameObjet;
 import common.entities.types.Container;
 import common.hud.EnigmaButton;
 import common.hud.EnigmaLabel;
 import common.hud.EnigmaPanel;
 import common.map.MapTestScreen;
+import editor.bar.edition.ActionTypes;
+import editor.bar.edition.ActionsManager;
+import editor.bar.edition.EditorAction;
+import editor.bar.edition.actions.EditorActionFactory;
 import editor.menus.AbstractPopUpView;
 import editor.menus.AbstractSubPopUpView;
 import editor.popup.listeners.CaseListener;
@@ -29,7 +34,6 @@ import java.awt.event.ActionListener;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.0 02/02/2020
  * @since 6.0 02/02/2020
  */
@@ -100,14 +104,13 @@ public class AddItemAddView extends AbstractSubPopUpView implements Observer<Gam
 
 	@Override
 	public void clean() {
-		GameObject objNull = null;
-		this.update(objNull);
+		this.update(new NullGameObjet());
 		DragAndDropBuilder.setForPopup(null);
 		this.empty.setText(NO_ITEMS);
 	}
 
-	public EnigmaLabel getInfoLabel() {
-		return this.infoLabel;
+	@Override
+	public void initComponent() {
 	}
 
 	/**
@@ -117,7 +120,6 @@ public class AddItemAddView extends AbstractSubPopUpView implements Observer<Gam
 	 * @author Louka DOZ
 	 * @author Loic SENECAT
 	 * @author Quentin RAMSAMY-AGEORGES
-	 *
 	 * @version 6.0 02/02/2020
 	 * @since 6.0 02/02/2020
 	 */
@@ -138,6 +140,12 @@ public class AddItemAddView extends AbstractSubPopUpView implements Observer<Gam
 			if (entity instanceof Container) {
 				//ajout au container
 				((Container) entity).addItem((Item) addItemAddView.item);
+
+				//ajout à l'historique
+				EditorAction action = EditorActionFactory.actionWithinAMenu(ActionTypes.ADD_SUB_ENTITY,
+						entity, addItemAddView.item);
+				ActionsManager.getInstance().add(action);
+
 				//clean
 				this.addItemAddView.item = null;
 				this.addItemAddView.submit.setVisible(false);
@@ -150,9 +158,5 @@ public class AddItemAddView extends AbstractSubPopUpView implements Observer<Gam
 				this.parent.getCardLayout().show(parent.getPanel(), "menu");
 			}
 		}
-	}
-
-	@Override
-	public void initComponent() {
 	}
 }

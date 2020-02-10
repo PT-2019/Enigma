@@ -1,14 +1,19 @@
 package editor.menus.enimas.create.listeners;
 
-import common.enigmas.operation.*;
-import common.entities.special.Room;
-import common.utils.Logger;
 import com.badlogic.gdx.math.Vector2;
+import common.enigmas.operation.Give;
+import common.enigmas.operation.HideRoom;
+import common.enigmas.operation.Operation;
+import common.enigmas.operation.ShowRoom;
+import common.enigmas.operation.Summon;
+import common.enigmas.operation.Unlock;
 import common.entities.Entity;
 import common.entities.GameObject;
 import common.entities.Item;
+import common.entities.special.Room;
 import common.entities.types.Lockable;
 import common.map.MapTestScreen;
+import common.utils.Logger;
 import editor.menus.AbstractPopUpView;
 import editor.menus.enimas.create.ManageEnigmasAddView;
 import editor.menus.enimas.create.OperationPanel;
@@ -18,7 +23,6 @@ import game.EnigmaGame;
 import game.screens.TestScreen;
 
 import javax.swing.JRadioButton;
-import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -38,113 +42,133 @@ import java.awt.event.ItemListener;
  */
 public class OperationListener implements ActionListener, ItemListener {
 
-    /**
-     * parent, operations board
-     */
-    private final OperationPanel operationPanel;
-    private final ManageEnigmasAddView addView;
-    /**
-     * selected operation
-     */
-    private JRadioButton currentButton;
-    /**
-     * parent menu
-     **/
-    private AbstractPopUpView parent;
-    /**
-     * operation submited
-     **/
-    private boolean validate;
-    /**
-     * selected object
-     **/
-    private GameObject object;
+	/**
+	 * parent, operations board
+	 */
+	private final OperationPanel operationPanel;
+	private final ManageEnigmasAddView addView;
+	/**
+	 * selected operation
+	 */
+	private JRadioButton currentButton;
+	/**
+	 * parent menu
+	 **/
+	private AbstractPopUpView parent;
+	/**
+	 * operation submited
+	 **/
+	private boolean validate;
+	/**
+	 * selected object
+	 **/
+	private GameObject object;
 
-    public OperationListener(AbstractPopUpView parent, OperationPanel operationPanel, ManageEnigmasAddView addView) {
-        this.parent = parent;
-        this.operationPanel = operationPanel;
-        this.addView = addView;
-        this.object = null;
-        this.currentButton = null;
-        this.validate = false;
-    }
+	public OperationListener(AbstractPopUpView parent, OperationPanel operationPanel, ManageEnigmasAddView addView) {
+		this.parent = parent;
+		this.operationPanel = operationPanel;
+		this.addView = addView;
+		this.object = null;
+		this.currentButton = null;
+		this.validate = false;
+	}
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        Operation ope = null;
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Operation ope = null;
 
-        if (currentButton == null) {
-            operationPanel.getEntityName().setText(OperationPanel.ASK_OP);
-            return;
-        }
+		if (currentButton == null) {
+			operationPanel.getEntityName().setText(OperationPanel.ASK_OP);
+			return;
+		}
 
-        //TODO: on devrait pouvoir ajouter des nouvelles opérations plus facilement
-        // voir la classe Operations, le problème est le nombre variable d'argument du constructeur
-        // même si il y a toujours un object apparemment
+		//TODO: on devrait pouvoir ajouter des nouvelles opérations plus facilement
+		// voir la classe Operations, le problème est le nombre variable d'argument du constructeur
+		// même si il y a toujours un object apparemment
 
-        if (this.currentButton.getName().equals(Operations.GIVE.name())) {
-            if (this.object instanceof Item)
-                ope = new Give((Item) this.object);
-        } else if (this.currentButton.getName().equals(Operations.SUMMON.name())) {
-            if (this.object instanceof Entity)
-                ope = new Summon((Entity) this.object, parent.getPopUp().getCell());
-        } else if (this.currentButton.getName().equals(Operations.UNLOCK.name())) {
-            if (this.object instanceof Lockable)
-                ope = new Unlock((Lockable) this.object);
-        }else if (this.currentButton.getName().equals(Operations.SHOW_ROOM.name())) {
-            if (this.object instanceof Room)
-                ope = new ShowRoom((Room) this.object);
-        }else if (this.currentButton.getName().equals(Operations.HIDE_ROOM.name())) {
-            if (this.object instanceof Room)
-                ope = new HideRoom((Room) this.object);
-        } else {
-            this.operationPanel.getEntityName().setText(OperationPanel.NOT_AVAILABLE_OPERATION);
-        }
+		if (this.currentButton.getName().equals(Operations.GIVE.name())) {
+			if (this.object instanceof Item)
+				ope = new Give((Item) this.object);
+		} else if (this.currentButton.getName().equals(Operations.SUMMON.name())) {
+			if (this.object instanceof Entity)
+				ope = new Summon((Entity) this.object, parent.getPopUp().getCell());
+		} else if (this.currentButton.getName().equals(Operations.UNLOCK.name())) {
+			if (this.object instanceof Lockable)
+				ope = new Unlock((Lockable) this.object);
+		} else if (this.currentButton.getName().equals(Operations.SHOW_ROOM.name())) {
+			if (this.object instanceof Room)
+				ope = new ShowRoom((Room) this.object);
+		} else if (this.currentButton.getName().equals(Operations.HIDE_ROOM.name())) {
+			if (this.object instanceof Room)
+				ope = new HideRoom((Room) this.object);
+		} else {
+			this.operationPanel.getEntityName().setText(OperationPanel.NOT_AVAILABLE_OPERATION);
+		}
 
-        if (ope == null) return;
+		if (ope == null) return;
 
-        this.addView.getEnigma().addOperation(ope);
-        Logger.printDebug("OperationAdded", ope.toLongString());
-        this.validate = true;
-        this.operationPanel.clean();
-        this.addView.setCard(ManageEnigmasAddView.MENU, ManageEnigmasAddView.TITLE);
-    }
+		this.addView.getEnigma().addOperation(ope);
+		Logger.printDebug("OperationAdded", ope.toLongString());
+		this.validate = true;
+		this.operationPanel.clean();
+		this.addView.setCard(ManageEnigmasAddView.MENU, ManageEnigmasAddView.TITLE);
+	}
 
-    @Override
-    public void itemStateChanged(ItemEvent e) {
-        if (e.getStateChange() == ItemEvent.SELECTED) {
-            this.currentButton = (JRadioButton) e.getItem();
-            CaseListener.setAvailable(this.operationPanel);
-            Operations.lock(Operations.valueOf(currentButton.getName()), this.operationPanel);
-            this.operationPanel.update(this.object);
-            //DragAndDropBuilder.setForPopup(this.operationPanel);
-        }
-    }
+	@Override
+	public void itemStateChanged(ItemEvent e) {
+		this.setGameObject(null); //vide
+		if (e.getStateChange() == ItemEvent.SELECTED) {
+			//Bouton actuellement sélectionné
+			this.currentButton = (JRadioButton) e.getItem();
+			//verrouille l'accès a un second popup
+			CaseListener.setAvailable(this.operationPanel);
+			//active les bons modes de sélection
+			Operations.lock(Operations.valueOf(currentButton.getName()), this.operationPanel);
+			//préviens de l'activation
+			this.operationPanel.update(this.object);
+		}
+	}
 
-    public void clean() {
-        this.setGameObject(null);
-        this.currentButton = null;
-        Operations.unlock(null);
-    }
+	/**
+	 * Nettoyage
+	 */
+	public void clean() {
+		this.setGameObject(null);
+		this.currentButton = null;
+		Operations.unlock(null);
+	}
 
-    public JRadioButton getCurrentButton() {
-        return currentButton;
-    }
+	/**
+	 * Bouton actuellement sélectionné
+	 *
+	 * @return Bouton actuellement sélectionné
+	 */
+	public JRadioButton getCurrentButton() {
+		return currentButton;
+	}
 
-    public void setGameObject(GameObject object) {
-        if (this.object != null && !this.validate) {//si j'avais un object temporaire, je le supprime
-            //il existe déjà un object
-            Vector2 pos = this.object.getGameObjectPosition();
-            //this.object est un temporaire
-            if (pos == null || pos.x < 0 || pos.y < 0) {
-                MapTestScreen map = ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap();
-                //supprime de la map
-                map.removeEntity(this.object);
-                //l'id du temporaire est forcément le dernier donc transfert de l'id si besoin
-                if (object != null && object.getID() > this.object.getID())
-                    object.setID(this.object.getID());//transfert de l'ID du supprimé
-            }
-        }
-        this.object = object;
-    }
+	/**
+	 * Object sélectionné
+	 *
+	 * @param object Object sélectionné
+	 */
+	public void setGameObject(GameObject object) {
+		if (this.object != null && !this.validate) {//si j'avais un object temporaire, je le supprime
+			//il existe déjà un object
+			Vector2 pos = this.object.getGameObjectPosition();
+			//this.object est un temporaire
+			if (pos == null || pos.x < 0 || pos.y < 0) {
+				MapTestScreen map = ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap();
+				//supprime de la map
+				map.removeEntity(this.object);
+				//l'id du temporaire est forcément le dernier donc transfert de l'id si besoin
+				if (object != null && object.getID() > this.object.getID()) {
+					//libère l'id
+					map.freeId(object);
+					object.setID(this.object.getID());//transfert de l'ID du supprimé*/
+				}
+			}
+		}
+		this.object = object;
+	}
 }

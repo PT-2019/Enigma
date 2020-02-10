@@ -1,21 +1,21 @@
 package editor.menus.enimas.create.listeners;
 
-import common.enigmas.condition.RoomDiscovered;
-import common.enigmas.condition.RoomUndiscovered;
-import common.entities.special.Room;
-import common.utils.Logger;
 import com.badlogic.gdx.math.Vector2;
 import common.enigmas.condition.Activated;
 import common.enigmas.condition.Answer;
 import common.enigmas.condition.Condition;
 import common.enigmas.condition.HaveInHands;
 import common.enigmas.condition.HaveInInventory;
+import common.enigmas.condition.RoomDiscovered;
+import common.enigmas.condition.RoomUndiscovered;
 import common.entities.GameObject;
 import common.entities.Item;
+import common.entities.NullGameObjet;
+import common.entities.special.Room;
 import common.entities.types.Activatable;
 import common.entities.types.Content;
 import common.map.MapTestScreen;
-import editor.menus.AbstractPopUpView;
+import common.utils.Logger;
 import editor.menus.enimas.create.ConditionPanel;
 import editor.menus.enimas.create.Conditions;
 import editor.menus.enimas.create.ManageEnigmasAddView;
@@ -36,11 +36,9 @@ import java.awt.event.ItemListener;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.0 02/02/2020
- * @since 6.0 02/02/2020
- *
  * @see editor.menus.enimas.create.ConditionPanel
+ * @since 6.0 02/02/2020
  */
 public class ConditionListener implements ActionListener, ItemListener {
 
@@ -49,13 +47,9 @@ public class ConditionListener implements ActionListener, ItemListener {
 	 */
 	private final ConditionPanel panel;
 	/**
-	 * Attribut pour connaitre la condition choisi par l'utilisateur
+	 * Attribut pour connaître la condition choisi par l'utilisateur
 	 */
 	private JRadioButton currentButton;
-	/**
-	 * parent menu
-	 **/
-	private AbstractPopUpView parent;
 
 	private ManageEnigmasAddView addView;
 	/**
@@ -67,9 +61,8 @@ public class ConditionListener implements ActionListener, ItemListener {
 	 **/
 	private GameObject object;
 
-	public ConditionListener(AbstractPopUpView parent, ManageEnigmasAddView addView, ConditionPanel panel) {
+	public ConditionListener(ManageEnigmasAddView addView, ConditionPanel panel) {
 		this.addView = addView;
-		this.parent = parent;
 		this.panel = panel;
 		this.object = null;
 	}
@@ -100,10 +93,10 @@ public class ConditionListener implements ActionListener, ItemListener {
 		} else if (this.currentButton.getName().equals(Conditions.HAVE_IN_INVENTORY.name())) {
 			if (this.object instanceof Item)
 				cond = new HaveInInventory((Item) object);
-		}else if (this.currentButton.getName().equals(Conditions.ROOM_UNDISCOVERED.name())) {
+		} else if (this.currentButton.getName().equals(Conditions.ROOM_UNDISCOVERED.name())) {
 			if (this.object instanceof Room)
 				cond = new RoomUndiscovered((Room) object);
-		}else if (this.currentButton.getName().equals(Conditions.ROOM_DISCOVERED.name())) {
+		} else if (this.currentButton.getName().equals(Conditions.ROOM_DISCOVERED.name())) {
 			if (this.object instanceof Room)
 				cond = new RoomDiscovered((Room) object);
 		} else {
@@ -156,8 +149,12 @@ public class ConditionListener implements ActionListener, ItemListener {
 		this.object = object;
 	}
 
+	/**
+	 * clean du listener
+	 */
 	public void clean() {
 		this.setGameObject(null);
+		this.panel.update(new NullGameObjet());
 		Conditions.unlock(null);
 		this.currentButton = null;
 	}

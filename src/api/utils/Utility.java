@@ -20,7 +20,6 @@ import java.lang.reflect.Method;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -59,10 +58,9 @@ public class Utility implements Serializable {
 	 * Obtenir le nom de toutes les fichiers dans un dossier
 	 * Les noms sont issus des fichiers tmx présents
 	 *
-	 * @param folder dossier
-	 * @param extensions extensions voulues
+	 * @param folder          dossier
+	 * @param extensions      extensions voulues
 	 * @param removeExtension true pour supprimer les extensions
-	 *
 	 * @return Le nom des maps
 	 * @since 6.3
 	 */
@@ -140,7 +138,6 @@ public class Utility implements Serializable {
 	 *
 	 * @param string une chaîne
 	 * @return la chaîne échappée
-	 *
 	 * @since 6.3
 	 */
 	public static String escape(String string) {
@@ -478,9 +475,10 @@ public class Utility implements Serializable {
 
 	/**
 	 * Retourne true si l'object o extends ou implémente une classe
+	 *
 	 * @param aClass une classe
-	 * @param o un object
-	 * @param start point de départ de la recherche
+	 * @param o      un object
+	 * @param start  point de départ de la recherche
 	 * @return true si l'object o extends ou implémente une classe
 	 * @since 6.4
 	 */
@@ -506,8 +504,9 @@ public class Utility implements Serializable {
 
 	/**
 	 * Retourne true si l'object o extends ou implémente une classe
+	 *
 	 * @param aClass une classe
-	 * @param o un object
+	 * @param o      un object
 	 * @return true si l'object o extends ou implémente une classe
 	 * @since 6.4
 	 */

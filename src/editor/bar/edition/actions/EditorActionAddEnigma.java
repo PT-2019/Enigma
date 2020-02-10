@@ -16,13 +16,13 @@ import editor.menus.enimas.ManageEnigmasView;
  * @version 5.0 29/01/2020
  * @since 5.0 29/01/2020
  */
-class EditorActionRemoveEnigma implements EditorAction {
+class EditorActionAddEnigma implements EditorAction {
 
 	private final ActionTypes type;
 	private final EnigmaContainer entity;
 	private final Enigma enigma;
 
-	EditorActionRemoveEnigma(ActionTypes type, EnigmaContainer entity, Enigma enigma) {
+	EditorActionAddEnigma(ActionTypes type, EnigmaContainer entity, Enigma enigma) {
 		this.type = type;
 		this.entity = entity;
 		this.enigma = enigma;
@@ -30,14 +30,14 @@ class EditorActionRemoveEnigma implements EditorAction {
 
 	@Override
 	public void doAction() {
-		this.entity.removeEnigma(this.enigma);
+		this.entity.addEnigma(this.enigma);
 		ManageEnigmasView instance = ManageEnigmasView.getInstance();
 		if (instance != null) instance.invalidateDrawable();
 	}
 
 	@Override
 	public void undoAction() {
-		this.entity.addEnigma(this.enigma);
+		this.entity.removeEnigma(this.enigma);
 		ManageEnigmasView instance = ManageEnigmasView.getInstance();
 		if (instance != null) instance.invalidateDrawable();
 	}

@@ -18,7 +18,6 @@ import data.Layer;
 import data.TypeEntity;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.HashMap;
 
@@ -32,7 +31,7 @@ import java.util.HashMap;
  * @version 5.0 25/01/2020
  * @since 5.0 25/01/2020
  */
-public class NPC extends GameActorTextured implements Entity, Living, Container,EntityGame  {
+public class NPC extends GameActorTextured implements Entity, Living, Container, EntityGame {
 
 	/**
 	 * Points de vie maximaux du joueur
@@ -82,7 +81,7 @@ public class NPC extends GameActorTextured implements Entity, Living, Container,
 		this.items = new ArrayList<>();
 	}
 
-    /**
+	/**
 	 * @param id ID
 	 */
 	public NPC(int id) {
@@ -232,7 +231,7 @@ public class NPC extends GameActorTextured implements Entity, Living, Container,
 		//si chargement fini et si oui alors fini le chargement des items en récupérant selon ids.
 		SaveInventory.load(data.get(PlayerSave.INVENTORY.getKey(), String.class));
 		this.name = data.get(PlayerSave.NAME.getKey(), String.class);
-		if(this.name.isEmpty()||this.name.isBlank()) this.name = this.key;
+		if (this.name.isEmpty() || this.name.isBlank()) this.name = this.key;
 	}
 
 	/**
@@ -244,7 +243,7 @@ public class NPC extends GameActorTextured implements Entity, Living, Container,
 	public void setJson(String json, String key) {
 		this.json = json;
 		this.key = key;
-		if(this.name.isEmpty()||this.name.isBlank()) this.name= key;
+		if (this.name.isEmpty() || this.name.isBlank()) this.name = key;
 	}
 
 	@Override
@@ -262,13 +261,13 @@ public class NPC extends GameActorTextured implements Entity, Living, Container,
 		return this.items;
 	}
 
-    @Override
-    public String getJson() {
-        return json;
-    }
+	@Override
+	public String getJson() {
+		return json;
+	}
 
-    @Override
-    public String getKey() {
-        return key;
-    }
+	@Override
+	public String getKey() {
+		return key;
+	}
 }

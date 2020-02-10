@@ -113,7 +113,7 @@ public class CasePopUp extends AbstractPopUp {
 			for (AvailablePopUpOption option : AvailablePopUpOption.values()) {
 				if (AvailablePopUpOption.isAvailable(option, this.cell.getEntity())) {
 					AvailableOptionRunnable runnable = runnables.get(option);
-					if (runnable != null){
+					if (runnable != null) {
 						runnable.run();
 					}
 				}

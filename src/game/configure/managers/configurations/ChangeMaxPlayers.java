@@ -1,7 +1,6 @@
 package game.configure.managers.configurations;
 
 import api.ui.CustomButton;
-import api.ui.CustomOptionPane;
 import common.hud.EnigmaOptionPane;
 import data.config.GameConfiguration;
 import game.EnigmaGameLauncher;

@@ -18,7 +18,7 @@ import java.util.Arrays;
  */
 public enum EnigmaMenuBarMenus {
 	FILE(GameLanguage.gl.get(HUDFields.FILE),
-			EnigmaMenuBarItems.NEW,EnigmaMenuBarItems.OPEN, EnigmaMenuBarItems.SAVE,
+			EnigmaMenuBarItems.NEW, EnigmaMenuBarItems.OPEN, EnigmaMenuBarItems.SAVE,
 			EnigmaMenuBarItems.SAVE_AS, EnigmaMenuBarItems.EXPORT),
 	EDIT(GameLanguage.gl.get(HUDFields.EDIT), EnigmaMenuBarItems.REDO, EnigmaMenuBarItems.UNDO),
 	RUN(GameLanguage.gl.get(HUDFields.RUN), EnigmaMenuBarItems.START, EnigmaMenuBarItems.STOP),

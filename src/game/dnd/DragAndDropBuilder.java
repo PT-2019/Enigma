@@ -1,6 +1,5 @@
 package game.dnd;
 
-import common.utils.Logger;
 import api.utils.Observer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -8,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import common.entities.GameObject;
 import common.map.MapTestScreen;
+import common.utils.Logger;
 import data.EditorState;
 import editor.EditorLauncher;
 import game.EnigmaGame;
@@ -73,17 +73,18 @@ public class DragAndDropBuilder extends InputListener {
 
 	@Override
 	public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-		if (!EditorLauncher.containsState(EditorState.NORMAL)) {
-			//activation du dnd
-			EditorLauncher.clearStates(EditorState.ZOOM);
-			EditorLauncher.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-		} else if (forPopup != null) {
+		if (forPopup != null) {
 			Logger.printDebug("DnDBuilder", "Déplacement bloqué. Sélection.");
 			MapTestScreen map = ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap();
 			GameObject obj = map.loadEntity(this.container.getEntity(), null).entity;
 			forPopup.update(obj);
 			return true;
+		} else if (!EditorLauncher.containsState(EditorState.NORMAL)) {
+			//activation du dnd
+			EditorLauncher.clearStates(EditorState.ZOOM, EditorState.SPECIAL_POPUP_DISABLED);
+			EditorLauncher.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 		}
+
 		//Crée une copie de l'entité
 		DraggedEntity draggedEntity = new DraggedEntity(this.container);
 		Vector2 v = this.container.getAbsolutePosition();

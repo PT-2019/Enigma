@@ -40,7 +40,6 @@ public interface OptionPaneStyle {
 	 * Retourne le style de base d'un champ de saisie de l'option bane
 	 *
 	 * @return le champ de saisie auquel le style a été appliqué
-	 *
 	 * @since 6.0
 	 */
 	CustomTextField getTextFieldStyle();

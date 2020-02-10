@@ -16,83 +16,85 @@ import java.util.HashMap;
  * @since 6.0
  */
 public class MapData {
-    /**
-     * Auteur de la map
-     * Donné à l'instanciation, il ne doit, dans auncun cas, être changé plus tard
-     */
-    private String author;
-    /**
-     * Nom de la map
-     * Donnée à l'instanciation, elle ne doit, dans auncun cas, être changée plus tard
-     */
-    private String mapName;
+	/**
+	 * Attribut auteur
+	 */
+	public final static String AUTHOR = "author";
+	/**
+	 * Attribut nom de la partie
+	 */
+	public final static String MAP_NAME = "mapName";
+	/**
+	 * Auteur de la map
+	 * Donné à l'instanciation, il ne doit, dans auncun cas, être changé plus tard
+	 */
+	private String author;
+	/**
+	 * Nom de la map
+	 * Donnée à l'instanciation, elle ne doit, dans auncun cas, être changée plus tard
+	 */
+	private String mapName;
 
-    /**
-     * Attribut auteur
-     */
-    public final static String AUTHOR = "author";
-    /**
-     * Attribut nom de la partie
-     */
-    public final static String MAP_NAME = "mapName";
+	/**
+	 * @param author Auteur
+	 */
+	public MapData(String author, String mapName) {
+		this.author = author;
+		this.mapName = mapName;
+	}
 
-    /**
-     * @param author Auteur
-     */
-    public MapData(String author, String mapName) {
-        this.author = author;
-        this.mapName = mapName;
-    }
+	/**
+	 * @param data Valeurs des attributs
+	 */
+	public MapData(HashMap<String, String> data) {
+		ArrayList<String> dataName = new ArrayList<>();
+		dataName.add(MAP_NAME);
+		dataName.add(AUTHOR);
 
-    /**
-     * @param data Valeurs des attributs
-     */
-    public MapData(HashMap<String,String> data){
-        ArrayList<String> dataName = new ArrayList<>();
-        dataName.add(MAP_NAME);
-        dataName.add(AUTHOR);
+		for (String name : dataName) {
+			String get = data.get(name);
+			if (get != null) {
+				switch (name) {
+					case MAP_NAME:
+						this.mapName = get;
+						break;
+					case AUTHOR:
+						this.author = get;
+						break;
+				}
+			} else
+				throw new IllegalArgumentException("Attribut " + name + " manquant");
+		}
+	}
 
-        for(String name : dataName){
-            String get = data.get(name);
-            if(get != null){
-                switch(name){
-                    case MAP_NAME:
-                        this.mapName = get;
-                        break;
-                    case AUTHOR:
-                        this.author = get;
-                        break;
-                }
-            } else
-                throw new IllegalArgumentException("Attribut " + name + " manquant");
-        }
-    }
+	/**
+	 * Obtenir l'auteur
+	 *
+	 * @return L'auteur
+	 */
+	public String getAuthor() {
+		return this.author;
+	}
 
-    /**
-     * Obtenir l'auteur
-     * @return L'auteur
-     */
-    public String getAuthor(){
-        return this.author;
-    }
+	/**
+	 * Obtenir le nom de la map
+	 *
+	 * @return Nom de la map
+	 */
+	public String getMapName() {
+		return this.mapName;
+	}
 
-    /**
-     * Obtenir le nom de la map
-     * @return Nom de la map
-     */
-    public String getMapName(){
-        return this.mapName;
-    }
+	/**
+	 * Obtenir les données
+	 *
+	 * @return Données
+	 */
+	public HashMap<String, String> getData() {
+		HashMap<String, String> data = new HashMap<>();
+		data.put(AUTHOR, this.author);
+		data.put(MAP_NAME, this.mapName);
 
-    /**
-     * Obtenir les données
-     * @return Données
-     */
-    public HashMap<String,String> getData(){
-        HashMap<String,String> data = new HashMap<>();
-        data.put(AUTHOR, this.author);
-        data.put(MAP_NAME, this.mapName);
-
-        return data;
-    }
+		return data;
+	}
 }
