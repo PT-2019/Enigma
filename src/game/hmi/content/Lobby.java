@@ -4,7 +4,9 @@ import common.hud.EnigmaLabel;
 import common.hud.EnigmaPanel;
 import common.hud.EnigmaTextArea;
 import common.hud.ui.EnigmaLabelUI;
+import data.NeedToBeTranslated;
 import data.config.GameConfiguration;
+import data.config.GameConfigurationDeprecated;
 import data.config.UserConfiguration;
 import game.hmi.Content;
 
@@ -12,24 +14,54 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * Affichage pour l'attente de joueurs
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 6.0
+ * @since 6.0
+ */
 public class Lobby extends Content {
+    /**
+     * Instance
+     */
     private final static Lobby instance = new Lobby();
+    /**
+     * Affiche les informations de la partie
+     */
     private EnigmaTextArea game;
+    /**
+     * Affiche le nombre de joueurs actuels sur le nombre de joueurs nécessaires
+     */
     private EnigmaLabel players;
+    /**
+     * Liste des joueurs ayant rejoin
+     */
     private EnigmaPanel playersList;
+    /**
+     * Style de base du conteneur du nom des joueurs
+     */
     private EnigmaLabelUI nameNormalUI;
+    /**
+     * Style de base du conteneur qui indique si le joueur est le chef de la partie
+     */
     private EnigmaLabelUI leadNormalUI;
 
     /**
      * Textes
      */
-    private final static String NAME = "Nom";
-    private final static String MAP = "Map";
-    private final static String DESCRIPTION = "Description";
-    private final static String DURATION = "Durée";
-    private final static String PLAYER_WAIT = "En attente de joueurs";
-    private final static String LEADER_WAIT = "En attente du chef de la partie";
-    private final static String LEADER = "Chef";
+    private final static String NAME = NeedToBeTranslated.NAME;
+    private final static String MAP = NeedToBeTranslated.MAP;
+    private final static String DESCRIPTION = NeedToBeTranslated.DESCRIPTION;
+    private final static String DURATION = NeedToBeTranslated.DURATION;
+    private final static String PLAYER_WAIT = NeedToBeTranslated.PLAYER_WAIT;
+    private final static String LEADER_WAIT = NeedToBeTranslated.LEADER_WAIT;
+    private final static String LEADER = NeedToBeTranslated.LEADER;
+    private final static String NB_PLAYERS = NeedToBeTranslated.NB_PLAYERS;
+    private final static String AUTHOR = NeedToBeTranslated.AUTHOR;
 
     private Lobby() {
         super(new EnigmaPanel());
@@ -40,7 +72,7 @@ public class Lobby extends Content {
         this.playersList = new EnigmaPanel();
 
         this.content.setLayout(new GridLayout(1,2));
-        this.playersList.setLayout(new GridLayout(GameConfiguration.MAX_PLAYERS,1));
+        this.playersList.setLayout(new GridLayout(GameConfigurationDeprecated.MAX_PLAYERS,1));
 
         this.nameNormalUI = new EnigmaLabelUI();
         this.nameNormalUI.setAllBackgrounds(Color.GRAY);
@@ -56,6 +88,10 @@ public class Lobby extends Content {
         this.refresh(NO_PRECISED_STATE);
     }
 
+    /**
+     * Initialise le contenu
+     * Doit être normalement appelé qu'une fois, dans le constructeur
+     */
     @Override
     public void initContent() {
         EnigmaPanel playersComponent = new EnigmaPanel();
@@ -90,16 +126,18 @@ public class Lobby extends Content {
         this.content.add(gameComponent);
     }
 
+    /**
+     * Rafraichi l'affichage
+     * @param state Etat
+     */
     @Override
     public void refresh(int state) {
         Color red = new Color(200, 0, 0);
         Color blue = new Color(0, 136, 193);
         int borderSize = 6;
-        int totalPlayers = GameConfiguration.getInstance().getTotalPlayers();
-        int maxPlayers = GameConfiguration.getInstance().getMaxGamePlayers();
         GameConfiguration gameConfig = GameConfiguration.getInstance();
         String waitWhat = PLAYER_WAIT;
-        if(totalPlayers == maxPlayers)
+        if(gameConfig.getTotalPlayers() == gameConfig.getMaxPlayers())
             waitWhat = LEADER_WAIT;
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridy = 1;
@@ -110,16 +148,19 @@ public class Lobby extends Content {
 
         this.playersList.removeAll();
 
-        this.game.setText(NAME + ": " + gameConfig.getName() + "\n\n"
+        this.game.setText(NAME + ": " + gameConfig.getGameName() + "\n\n"
                 + DESCRIPTION + ": " + gameConfig.getDescription() + "\n\n"
-                + MAP + ": " + gameConfig.getMap() + "\n\n"
+                + LEADER + ": " + gameConfig.getOwner() + "\n\n"
+                + AUTHOR + ": " + gameConfig.getAuthor() + "\n\n"
+                + MAP + ": " + gameConfig.getMapName() + "\n\n"
+                + NB_PLAYERS + ": " + gameConfig.getMaxPlayers() + "\n\n"
                 + DURATION + ": " + gameConfig.getDuration() + " min"
         );
 
-        this.players.setText(waitWhat + ": " + totalPlayers + "/" + maxPlayers);
+        this.players.setText(waitWhat + ": " + gameConfig.getTotalPlayers() + "/" + gameConfig.getMaxPlayers());
 
         ArrayList<String> players = gameConfig.getAllPlayers();
-        for(int i = 0; i < GameConfiguration.MAX_PLAYERS; i++){
+        for(int i = 0; i < GameConfigurationDeprecated.MAX_PLAYERS; i++){
             EnigmaPanel playerContent = new EnigmaPanel();
             EnigmaLabel lead = new EnigmaLabel(LEADER);
             EnigmaLabel player = new EnigmaLabel();
@@ -159,6 +200,10 @@ public class Lobby extends Content {
         this.content.revalidate();
     }
 
+    /**
+     * Obtenir l'instance
+     * @return Instance
+     */
     public static Lobby getInstance(){
         return instance;
     }

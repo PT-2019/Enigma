@@ -1,14 +1,12 @@
 package game.configure.displayManagers.lowLevel;
 
-import common.entities.players.Player;
 import common.hud.EnigmaButton;
 import common.hud.EnigmaLabel;
 import common.hud.EnigmaPanel;
 import common.hud.ui.EnigmaButtonUI;
 import common.hud.ui.EnigmaLabelUI;
 import data.config.EnigmaUIValues;
-import data.config.GameConfiguration;
-import data.config.UserConfiguration;
+import data.config.GameConfigurationDeprecated;
 import game.configure.LaunchGameDisplay;
 import game.configure.managers.redirect.Redirect;
 import game.configure.managers.redirect.StartGameRedirect;
@@ -30,6 +28,7 @@ import java.awt.Insets;
  * @author Quentin RAMSAMY-AGEORGES
  * @version 3.0
  * @since 3.0
+ * @deprecated
  */
 public class WaitPlayersLeaderDisplayManager implements DisplayManager {
 
@@ -156,7 +155,7 @@ public class WaitPlayersLeaderDisplayManager implements DisplayManager {
 		content.setLayout(new GridBagLayout());
 		this.content.setLayout(new GridBagLayout());
 		this.gameInfo.setLayout(new GridLayout(infoCount, 1));
-		this.players.setLayout(new GridLayout(GameConfiguration.MAX_PLAYERS, 1));
+		this.players.setLayout(new GridLayout(GameConfigurationDeprecated.MAX_PLAYERS, 1));
 		int inset = 50;
 		int inset2 = 30;
 
@@ -195,7 +194,7 @@ public class WaitPlayersLeaderDisplayManager implements DisplayManager {
 		Color blue = new Color(50, 100, 200);
 		int infoCount = 6;
 		int borderSize = 4;
-		GameConfiguration gameConfig = GameConfiguration.getInstance();
+		GameConfigurationDeprecated gameConfig = GameConfigurationDeprecated.getInstance();
 		boolean[] bordersB = new boolean[4];
 		bordersB[EnigmaUIValues.BOTTOM_BORDER] = EnigmaUIValues.SHOWED_BORDER;
 
@@ -229,7 +228,7 @@ public class WaitPlayersLeaderDisplayManager implements DisplayManager {
 			}
 		}
 
-		for (int i = 0; i < GameConfiguration.MAX_PLAYERS; i++) {
+		for (int i = 0; i < GameConfigurationDeprecated.MAX_PLAYERS; i++) {
 			EnigmaLabel name = new EnigmaLabel();
 			if (i < gameConfig.getTotalPlayers()) {
 				/*String pName = gameConfig.getAllPlayers().get(i).getName();
@@ -239,7 +238,7 @@ public class WaitPlayersLeaderDisplayManager implements DisplayManager {
 					name.getComponentUI().setAllBackgrounds(blue, blue, blue);*/
 			}
 
-			if (i < GameConfiguration.MAX_PLAYERS - 1) {
+			if (i < GameConfigurationDeprecated.MAX_PLAYERS - 1) {
 				name.getComponentUI().setAllBorders(grey, grey, grey);
 				name.getComponentUI().setAllShowedBorders(bordersB, bordersB, bordersB);
 				name.getComponentUI().setAllBordersSize(borderSize, borderSize, borderSize);

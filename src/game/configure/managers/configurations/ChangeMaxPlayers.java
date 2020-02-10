@@ -1,9 +1,8 @@
 package game.configure.managers.configurations;
 
 import api.ui.CustomButton;
-import api.ui.CustomOptionPane;
 import common.hud.EnigmaOptionPane;
-import data.config.GameConfiguration;
+import data.config.GameConfigurationDeprecated;
 import game.EnigmaGameLauncher;
 import game.configure.LaunchGameDisplay;
 
@@ -19,6 +18,7 @@ import java.awt.event.MouseEvent;
  * @author Quentin RAMSAMY-AGEORGES
  * @version 6.0
  * @since 3.0
+ * @deprecated
  */
 public class ChangeMaxPlayers implements ChangeConfiguration {
 
@@ -27,15 +27,15 @@ public class ChangeMaxPlayers implements ChangeConfiguration {
 	 */
 	@Override
 	public void onChange() {
-		if (GameConfiguration.getInstance().isMultiPlayer()) {
-			CustomButton[] opt = new CustomButton[GameConfiguration.MAX_PLAYERS - 1];
+		if (GameConfigurationDeprecated.getInstance().isMultiPlayer()) {
+			CustomButton[] opt = new CustomButton[GameConfigurationDeprecated.MAX_PLAYERS - 1];
 			for (int i = 0; i < opt.length; i++)
 				opt[i] = EnigmaOptionPane.getStyle().getButtonStyle(Integer.toString(i + 2));
 			String value = EnigmaOptionPane.showChoicesDialog(EnigmaGameLauncher.getInstance().getWindow(), "Nombre de joueurs :", opt);
 
 			if (!value.equals(EnigmaOptionPane.CANCEL)) {
 				int valueInt = Integer.parseInt(value);
-				GameConfiguration.getInstance().setMaxGamePlayers(valueInt);
+				GameConfigurationDeprecated.getInstance().setMaxGamePlayers(valueInt);
 				LaunchGameDisplay.getInstance().refreshCurrentDisplay();
 			}
 		} else

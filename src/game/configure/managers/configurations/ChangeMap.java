@@ -1,7 +1,7 @@
 package game.configure.managers.configurations;
 
 import common.hud.EnigmaOptionPane;
-import data.config.GameConfiguration;
+import data.config.GameConfigurationDeprecated;
 import game.EnigmaGameLauncher;
 import game.configure.LaunchGameDisplay;
 
@@ -16,6 +16,7 @@ import java.awt.event.MouseEvent;
  * @author Quentin RAMSAMY-AGEORGES
  * @version 3.0
  * @since 3.0
+ * @deprecated
  */
 public class ChangeMap implements ChangeConfiguration {
 
@@ -27,7 +28,7 @@ public class ChangeMap implements ChangeConfiguration {
 		String value = EnigmaOptionPane.showInputDialog(EnigmaGameLauncher.getInstance().getWindow(), "Choisir une nouvelle map :");
 
 		if (!value.equals(EnigmaOptionPane.CANCEL)) {
-			GameConfiguration.getInstance().setMap(value);
+			GameConfigurationDeprecated.getInstance().setMap(value);
 			LaunchGameDisplay.getInstance().refreshCurrentDisplay();
 		}
 	}

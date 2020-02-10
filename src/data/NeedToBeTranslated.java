@@ -90,8 +90,8 @@ public interface NeedToBeTranslated {
 	String REPLACE_FILE = "Un fichier du même nom existe déjà, le remplacer?";
 	String REPLACE_GAME = "Une partie du même nom existe déjà, la remplacer?";
 	String REPLACE_MAP = "Une map du même nom existe déjà, la remplacer?";
-	String EXPORT = "Exportation";
-	String IMPORT = "Importation";
+	String EXPORTATION = "Exportation";
+	String IMPORTATION = "Importation";
 
 	//editor.bar.listener
 	String NAME_ALREADY_EXIST = "Ce nom existe déjà";
@@ -111,4 +111,41 @@ public interface NeedToBeTranslated {
 	String SAVE_ENDED = "Sauvegarde terminée";
 	String SAVE_CANCELED = "Sauvegarde annulée";
 	String SAVE_FAILED = "Erreur lors de la sauvegarde";
+
+	//game.hmi
+	String NAME = "Nom";
+	String MAP = "Map";
+	String DESCRIPTION = "Description";
+	String NB_PLAYERS = "Nombre de joueurs";
+	String DURATION = "Durée";
+	String MULTI_PLAYERS = "Multijoueurs";
+	String YES = "Oui";
+	String NO = "Non";
+	String NO_NAME = "La partie n'a pas de nom";
+	String NO_DURATION = "La partie n'a pas de durée";
+	String NO_MAP = "Aucune map séléctionnée";
+	String WRONG_DURATION = "La durée n'est pas valide";
+	String PLAYER_WAIT = "En attente de joueurs";
+	String LEADER_WAIT = "En attente du chef de la partie";
+	String LEADER = "Chef";
+	String AUTHOR = "Auteur";
+	String DELETE = "Supprimer";
+	String PLAY = "Jouer";
+	String ENTER_IP = "Entrez une adresse IP";
+	String YOUR_GAMES = "Vos parties";
+	String FIND = "Trouver une partie";
+	String JOIN = "Rejoindre";
+	String MORE = "Plus";
+	String EXPORT = "Exporter";
+	String DELETE_ERROR = "Erreur lors de la suppression";
+	String DELETE_CONFIRMATION = "Supprimer ?";
+	String NOT_ENOUGH_PLAYERS = "Nombre de joueurs insufisant";
+	String QUIT_CONFIRMATION = "Quitter?";
+	String LAUNCH = "Commencer";
+	String QUIT = "Quitter";
+	String CREATE = "Créer";
+	String IMPORT = "Importer";
+	String SOLO_TITLE = "Parties solo";
+	String MULTI_TITLE = "Multijoueurs";
+	String CREATE_TITLE = "Nouvelle partie";
 }

@@ -1,17 +1,28 @@
 package game.hmi.listener.redirect;
 
 import common.hud.EnigmaOptionPane;
+import data.NeedToBeTranslated;
 import game.EnigmaGameLauncher;
 import game.hmi.ContentManager;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Redirige vers l'affichage pour créer une partie
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 6.0
+ * @since 6.0
+ */
 public class CreateRedirectListener implements ActionListener {
     /**
      * Textes
      */
-    public final static String QUIT_CONFIRMATION = "Quitter?";
+    public final static String QUIT_CONFIRMATION = NeedToBeTranslated.QUIT_CONFIRMATION;
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {

@@ -9,38 +9,58 @@ import common.hud.EnigmaTextField;
 import common.hud.ui.EnigmaButtonUI;
 import common.save.DataSave;
 import common.utils.Logger;
+import data.NeedToBeTranslated;
 import data.config.Config;
 import data.config.EnigmaUIValues;
 import game.hmi.Content;
-import game.hmi.listener.action.DeleteListener;
-import game.hmi.listener.action.MoreListener;
-import game.hmi.listener.action.PlayListener;
+import game.hmi.listener.action.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Affichage des parties multijoueurs
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 6.0
+ * @since 6.0
+ */
 public class MultiPlayer extends Content {
+    /**
+     * Instance
+     */
     private final static MultiPlayer instance = new MultiPlayer();
+    /**
+     * Conteneur de l'affichage
+     */
     private EnigmaPanel contentComponent;
+    /**
+     * Conteneur de la liste des parties
+     */
     private EnigmaPanel listComponent;
 
     /**
      * Textes
      */
-    private final static String DELETE = "Supprimer";
-    private final static String PLAY = "Jouer";
-    private final static String NAME = "Nom";
-    private final static String AUTHOR = "Auteur";
-    private final static String MAP = "Map";
-    private final static String DESCRIPTION = "Description";
-    private final static String NB_PLAYERS = "Nombre de joueurs";
-    private final static String DURATION = "Durée";
-    private final static String ENTER_IP = "Entrez une adresse IP";
-    private final static String YOUR_GAMES = "Vos parties";
-    private final static String FIND = "Trouver une partie";
-    private final static String JOIN = "Rejoindre";
+    private final static String DELETE = NeedToBeTranslated.DELETE;
+    private final static String PLAY = NeedToBeTranslated.PLAY;
+    private final static String NAME = NeedToBeTranslated.NAME;
+    private final static String AUTHOR = NeedToBeTranslated.AUTHOR;
+    private final static String MAP = NeedToBeTranslated.MAP;
+    private final static String DESCRIPTION = NeedToBeTranslated.DESCRIPTION;
+    private final static String NB_PLAYERS = NeedToBeTranslated.NB_PLAYERS;
+    private final static String DURATION = NeedToBeTranslated.DURATION;
+    private final static String ENTER_IP = NeedToBeTranslated.ENTER_IP;
+    private final static String YOUR_GAMES = NeedToBeTranslated.YOUR_GAMES;
+    private final static String FIND = NeedToBeTranslated.FIND;
+    private final static String JOIN = NeedToBeTranslated.JOIN;
+    private final static String MORE = NeedToBeTranslated.MORE;
+    private final static String EXPORT = NeedToBeTranslated.EXPORT;
 
     private MultiPlayer() {
         super(new EnigmaPanel());
@@ -57,10 +77,15 @@ public class MultiPlayer extends Content {
         this.refresh(NO_PRECISED_STATE);
     }
 
+    /**
+     * Initialise le contenu
+     * Doit être normalement appelé qu'une fois, dans le constructeur
+     */
     @Override
     public void initContent() {
         Color blue = new Color(0, 136, 193);
         int borderSize = 1;
+        int borderSize2 = 6;
         int inset = 20;
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 1;
@@ -75,12 +100,18 @@ public class MultiPlayer extends Content {
         EnigmaLabel games = new EnigmaLabel(YOUR_GAMES);
         EnigmaPanel search = new EnigmaPanel();
         EnigmaTextField field = new EnigmaTextField();
+        EnigmaPanel fieldPadding = new EnigmaPanel();
         EnigmaLabel ip = new EnigmaLabel(ENTER_IP + ":");
         EnigmaButton join = new EnigmaButton(JOIN);
         JScrollPane scroll = new JScrollPane(this.listComponent);
         scroll.setBorder(BorderFactory.createEmptyBorder());
 
+        fieldPadding.setLayout(new BorderLayout());
+        fieldPadding.setBorder(BorderFactory.createMatteBorder(0,borderSize2,0,borderSize2,Color.GRAY));
         field.getComponentUI().setAllBackgrounds(Color.GRAY,Color.GRAY,Color.GRAY);
+        field.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        fieldPadding.add(field,BorderLayout.CENTER);
+
         ip.setHorizontalAlignment(SwingConstants.LEFT);
         search.setLayout(new GridBagLayout());
         find.setBorder(BorderFactory.createMatteBorder(0,0,borderSize,0, Color.WHITE));
@@ -90,6 +121,7 @@ public class MultiPlayer extends Content {
         join.getComponentUI().setAllBackgrounds(Color.GRAY,blue,blue);
         join.setBorderPainted(true);
         join.setBorder(BorderFactory.createMatteBorder(0,borderSize * 2,0,0,Color.DARK_GRAY));
+        join.addActionListener(new JoinListener(field));
 
         gbc2.gridx = 1;
         gbc2.gridy = 1;
@@ -104,7 +136,7 @@ public class MultiPlayer extends Content {
         gbc2.gridheight = 1;
         gbc2.weightx = 4;
         gbc2.weighty = 1;
-        search.add(field,gbc2);
+        search.add(fieldPadding,gbc2);
         gbc2.gridx = 2;
         gbc2.gridy = 2;
         gbc2.gridwidth = 1;
@@ -133,6 +165,10 @@ public class MultiPlayer extends Content {
         this.content.add(this.contentComponent,BorderLayout.CENTER);
     }
 
+    /**
+     * Rafraichi l'affichage
+     * @param state Etat
+     */
     @Override
     public void refresh(int state) {
         Color blue = new Color(0, 136, 193);
@@ -176,9 +212,11 @@ public class MultiPlayer extends Content {
                 EnigmaPanel eValues = new EnigmaPanel();
                 EnigmaPanel eButtons = new EnigmaPanel();
                 EnigmaPanel eMainButtons = new EnigmaPanel();
+                EnigmaPanel eSecondButtons = new EnigmaPanel();
                 EnigmaButton play = new EnigmaButton(PLAY);
                 EnigmaButton delete = new EnigmaButton(DELETE);
-                EnigmaButton more = new EnigmaButton("+");
+                EnigmaButton export = new EnigmaButton(EXPORT);
+                EnigmaButton more = new EnigmaButton(MORE);
                 EnigmaLabel name = new EnigmaLabel(NAME + ": " + data.getName());
                 EnigmaLabel description = new EnigmaLabel(DESCRIPTION + ": " + data.getDescription());
                 EnigmaLabel author = new EnigmaLabel(AUTHOR + ": " + data.getAuthor());
@@ -191,24 +229,28 @@ public class MultiPlayer extends Content {
                 play.addActionListener(new PlayListener(data));
                 delete.addActionListener(new DeleteListener(data));
                 more.addActionListener(new MoreListener(new SeeMore(data)));
+                export.addActionListener(new ExportListener(data));
 
                 element.setLayout(new GridLayout(1, 3));
                 eTexts.setLayout(new GridLayout(3, 1));
                 eValues.setLayout(new GridLayout(3, 1));
                 eButtons.setLayout(new GridBagLayout());
                 eMainButtons.setLayout(new GridLayout(2,1));
+                eSecondButtons.setLayout(new GridLayout(2,1));
 
                 eValues.setBorder(BorderFactory.createMatteBorder(0, borderSize2, 0, 0, Color.DARK_GRAY));
                 eButtons.setBorder(BorderFactory.createMatteBorder(0, borderSize2, 0, 0, Color.DARK_GRAY));
 
                 eMainButtons.add(play);
                 eMainButtons.add(delete);
+                eSecondButtons.add(more);
+                eSecondButtons.add(export);
                 gbc.gridx = 1;
                 gbc.weightx = 5;
                 eButtons.add(eMainButtons,gbc);
                 gbc.gridx = 2;
                 gbc.weightx = 1;
-                eButtons.add(more,gbc);
+                eButtons.add(eSecondButtons,gbc);
 
                 eTexts.add(name);
                 eTexts.add(description);
@@ -249,6 +291,10 @@ public class MultiPlayer extends Content {
                 more.setBorderPainted(true);
                 more.getComponentUI().setHoveredBackground(blue);
                 more.getComponentUI().setPressedBackground(blue);
+                export.setComponentUI(bui);
+                export.setBorderPainted(true);
+                export.getComponentUI().setHoveredBackground(blue);
+                export.getComponentUI().setPressedBackground(blue);
 
                 name.setBorder(BorderFactory.createMatteBorder(0, borderSize, 0, 0, Color.GRAY));
                 description.setBorder(BorderFactory.createMatteBorder(0, borderSize, 0, 0, Color.GRAY));
@@ -258,7 +304,8 @@ public class MultiPlayer extends Content {
                 duration.setBorder(BorderFactory.createMatteBorder(0, borderSize, 0, 0, Color.GRAY));
                 play.setBorder(BorderFactory.createMatteBorder(0, 0, borderSize2 / 2, 0, Color.DARK_GRAY));
                 delete.setBorder(BorderFactory.createMatteBorder(borderSize2 / 2, 0, 0, 0, Color.DARK_GRAY));
-                more.setBorder(BorderFactory.createMatteBorder(0, borderSize2, 0, 0, Color.DARK_GRAY));
+                more.setBorder(BorderFactory.createMatteBorder(0, borderSize2, borderSize2 / 2, 0, Color.DARK_GRAY));
+                export.setBorder(BorderFactory.createMatteBorder(borderSize2 / 2, borderSize2, 0, 0, Color.DARK_GRAY));
 
                 this.listComponent.add(element);
             }
@@ -268,6 +315,10 @@ public class MultiPlayer extends Content {
         this.listComponent.repaint();
     }
 
+    /**
+     * Obtenir l'instance
+     * @return Instance
+     */
     public static MultiPlayer getInstance(){
         return instance;
     }

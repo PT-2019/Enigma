@@ -9,31 +9,41 @@ import game.hmi.MHIManager;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
+/**
+ * Gestionnaire du bouton "jouer"
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 6.0
+ * @since 6.0
+ */
 public class PlayListener implements ActionListener {
+    /**
+     * Données de la partie
+     */
     private GameData game;
 
+    /**
+     * @param game Données de la partie
+     */
     public PlayListener(GameData game){
         this.game = game;
     }
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        GameConfiguration gameConfig = GameConfiguration.getInstance();
-        gameConfig.setName(this.game.getName());
-        gameConfig.setOwner(UserConfiguration.getInstance().getData().getName());
-        gameConfig.setMap(this.game.getMapName());
-        gameConfig.setMultiPlayer(this.game.isMultiPlayer());
-        gameConfig.setMaxGamePlayers(this.game.getMaxPlayers());
-        gameConfig.setDescription(this.game.getDescription());
-        gameConfig.setDuration(this.game.getDuration());
+        GameConfiguration.getInstance().set(this.game,
+                UserConfiguration.getInstance().getData().getName(),
+                new ArrayList<>()
+        );
 
-        if(this.game.isMultiPlayer() && !(ContentManager.getInstance().getState() == ContentManager.LOBBY_STATE)){
+        if(this.game.isMultiPlayer()){
             ContentManager.getInstance().refresh(ContentManager.LOBBY_STATE);
             ActionBar.getInstance().refresh(ActionBar.QUIT_AND_LAUNCH_STATE);
         }
-
-        if(ContentManager.getInstance().getState() == ContentManager.LOBBY_STATE)
-            MHIManager.getInstance().refresh(MHIManager.GAME_STATE);
     }
 }

@@ -5,7 +5,8 @@ import api.utils.Utility;
 import common.data.GameData;
 import common.hud.*;
 import common.hud.ui.EnigmaButtonUI;
-import common.utils.Logger;
+import data.NeedToBeTranslated;
+import data.config.Config;
 import data.config.EnigmaUIValues;
 import data.config.UserConfiguration;
 import game.EnigmaGameLauncher;
@@ -15,23 +16,83 @@ import game.hmi.listener.action.MultiOrSoloListener;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 
+/**
+ * Affichage pour la création de partie
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 6.0
+ * @since 6.0
+ */
 public class Create extends Content {
+    /**
+     * Instance
+     */
     private final static Create instance = new Create();
+    /**
+     * Pour entrer le nom de la partie
+     */
     private EnigmaTextField name;
+    /**
+     * Pour entrer la description
+     */
     private EnigmaTextArea description;
+    /**
+     * Gestionnaire du choix si multijoueurs ou non
+     */
     private RadioButtonManager multi;
+    /**
+     * Gestionnaire du choix du nombre de joueurs
+     */
     private RadioButtonManager players;
+    /**
+     * Pour entrer la durée
+     */
     private EnigmaTextField duration;
+    /**
+     * Pour selectionner la map
+     */
     private EnigmaLabel map;
+    /**
+     * Conteneur des boutons pour le nombre de joueurs
+     */
     private EnigmaPanel playersComponent;
+    /**
+     * Style des boutons
+     */
     private EnigmaButtonUI bui;
+    /**
+     * Bouton 1 joueur
+     */
     private EnigmaButton p1;
+    /**
+     * Bouton 2 joueur
+     */
     private EnigmaButton p2;
+    /**
+     * Bouton 3 joueur
+     */
     private EnigmaButton p3;
+    /**
+     * Bouton 4 joueur
+     */
     private EnigmaButton p4;
+    /**
+     * Bouton oui
+     */
     private EnigmaButton yes;
+    /**
+     * Bouton non
+     */
     private EnigmaButton no;
+    /**
+     * Etat actuel
+     */
+    private int state;
 
     /**
      * Etats
@@ -42,19 +103,19 @@ public class Create extends Content {
     /**
      * Textes
      */
-    private final static String NAME = "Nom";
-    private final static String MAP = "Map";
-    private final static String DESCRIPTION = "Description";
-    private final static String NB_PLAYERS = "Nombre de joueurs";
-    private final static String DURATION = "Durée";
-    private final static String MULTI_PLAYERS = "Multijoueurs";
-    private final static String YES = "Oui";
-    private final static String NO = "Non";
-    private final static String NO_NAME = "La partie n'a pas de nom";
-    private final static String NO_DURATION = "La partie n'a pas de durée";
-    private final static String NO_MAP = "Aucune map séléctionnée";
-    private final static String WRONG_DURATION = "La durée n'est pas valide";
-    private int state;
+    private final static String NAME = NeedToBeTranslated.NAME;
+    private final static String MAP = NeedToBeTranslated.MAP;
+    private final static String DESCRIPTION = NeedToBeTranslated.DESCRIPTION;
+    private final static String NB_PLAYERS = NeedToBeTranslated.NB_PLAYERS;
+    private final static String DURATION = NeedToBeTranslated.DURATION;
+    private final static String MULTI_PLAYERS = NeedToBeTranslated.MULTI_PLAYERS;
+    private final static String YES = NeedToBeTranslated.YES;
+    private final static String NO = NeedToBeTranslated.NO;
+    private final static String NO_NAME = NeedToBeTranslated.NO_NAME;
+    private final static String NAME_ALREADY_EXIST = NeedToBeTranslated.NAME_ALREADY_EXIST;
+    private final static String NO_DURATION = NeedToBeTranslated.NO_DURATION;
+    private final static String NO_MAP = NeedToBeTranslated.NO_MAP;
+    private final static String WRONG_DURATION = NeedToBeTranslated.WRONG_DURATION;
 
     private Create() {
         super(new EnigmaPanel());
@@ -94,6 +155,10 @@ public class Create extends Content {
         this.refresh(SOLO_STATE);
     }
 
+    /**
+     * Initialise le contenu
+     * Doit être normalement appelé qu'une fois, dans le constructeur
+     */
     @Override
     public void initContent() {
         int borderSize = 6;
@@ -107,12 +172,18 @@ public class Create extends Content {
         EnigmaPanel nameComponent = new EnigmaPanel();
         EnigmaPanel descriptionComponent = new EnigmaPanel();
         EnigmaPanel durationComponent = new EnigmaPanel();
+        EnigmaPanel namePadding = new EnigmaPanel();
+        EnigmaPanel descriptionPadding = new EnigmaPanel();
+        EnigmaPanel durationPadding = new EnigmaPanel();
 
         MultiOrSoloListener mosl = new MultiOrSoloListener();
         this.yes.addActionListener(mosl);
         this.no.addActionListener(mosl);
         this.map.addMouseListener(new MapSelectionListener(this.map));
 
+        namePadding.setLayout(new BorderLayout());
+        descriptionPadding.setLayout(new BorderLayout());
+        durationPadding.setLayout(new BorderLayout());
         nameComponent.setLayout(new BorderLayout());
         descriptionComponent.setLayout(new BorderLayout());
         durationComponent.setLayout(new BorderLayout());
@@ -149,6 +220,9 @@ public class Create extends Content {
         multiComponent.setBorder(BorderFactory.createMatteBorder(borderSize / 2 ,borderSize / 2,borderSize / 2,borderSize,Color.DARK_GRAY));
         this.playersComponent.setBorder(BorderFactory.createMatteBorder(borderSize / 2 ,borderSize / 2,borderSize / 2,borderSize,Color.DARK_GRAY));
         durationComponent.setBorder(BorderFactory.createMatteBorder(borderSize / 2 ,borderSize / 2,borderSize,borderSize,Color.DARK_GRAY));
+        namePadding.setBorder(BorderFactory.createMatteBorder(borderSize,borderSize,borderSize,borderSize,Color.GRAY));
+        descriptionPadding.setBorder(BorderFactory.createMatteBorder(borderSize,borderSize,borderSize,borderSize,Color.GRAY));
+        durationPadding.setBorder(BorderFactory.createMatteBorder(borderSize,borderSize,borderSize,borderSize,Color.GRAY));
 
         this.p1.setBorderPainted(true);
         this.p1.setBorder(BorderFactory.createMatteBorder(0 ,0,0,0,Color.DARK_GRAY));
@@ -158,7 +232,6 @@ public class Create extends Content {
         this.no.setBorder(BorderFactory.createMatteBorder(0 ,0,0, borderSize,Color.DARK_GRAY));
 
         multiComponent.setLayout(new GridLayout(1,2));
-
         multiComponent.add(this.no);
         multiComponent.add(this.yes);
 
@@ -171,9 +244,13 @@ public class Create extends Content {
         this.players.add(this.p4);
         this.players.setSelected(this.p1);
 
-        nameComponent.add(this.name,BorderLayout.CENTER);
-        descriptionComponent.add(this.description,BorderLayout.CENTER);
-        durationComponent.add(this.duration,BorderLayout.CENTER);
+        namePadding.add(this.name,BorderLayout.CENTER);
+        descriptionPadding.add(this.description,BorderLayout.CENTER);
+        durationPadding.add(this.duration,BorderLayout.CENTER);
+
+        nameComponent.add(namePadding,BorderLayout.CENTER);
+        descriptionComponent.add(descriptionPadding,BorderLayout.CENTER);
+        durationComponent.add(durationPadding,BorderLayout.CENTER);
 
         this.content.add(name);
         this.content.add(nameComponent);
@@ -189,6 +266,10 @@ public class Create extends Content {
         this.content.add(durationComponent);
     }
 
+    /**
+     * Rafraichi l'affichage
+     * @param state Etat
+     */
     @Override
     public void refresh(int state) {
         this.playersComponent.removeAll();
@@ -217,14 +298,30 @@ public class Create extends Content {
         this.playersComponent.repaint();
     }
 
+    /**
+     * Obtenir l'état actuel
+     * @return Etat actuel
+     */
     public int getState() {
         return this.state;
     }
 
+    /**
+     * Vérifie les informations entrées
+     * Se charge de prévenir l'utilisateur de ses erreurs
+     *
+     * @return true si les information rentrées sont justes, false sinon
+     */
     public boolean verify(){
 
-        if(this.name.getText().equals("")){
+        if(Utility.normalize(this.name.getText()).equals("")){
             EnigmaOptionPane.showAlert(EnigmaGameLauncher.getInstance().getWindow(),NO_NAME);
+            return false;
+        }
+
+        File file = new File(Config.GAME_DATA_FOLDER + this.name.getText() + Config.DATA_EXTENSION);
+        if(file.exists()){
+            EnigmaOptionPane.showAlert(EnigmaGameLauncher.getInstance().getWindow(),NAME_ALREADY_EXIST);
             return false;
         }
 
@@ -233,12 +330,12 @@ public class Create extends Content {
             return false;
         }
 
-        if(this.duration.getText().equals("")){
+        if(Utility.normalize(this.duration.getText()).equals("")){
             EnigmaOptionPane.showAlert(EnigmaGameLauncher.getInstance().getWindow(),NO_DURATION);
             return false;
         }else{
             try{
-                int i = Integer.parseInt(this.duration.getText());
+                int i = Integer.parseInt(Utility.normalize(this.duration.getText()));
             }catch (NumberFormatException e){
                 EnigmaOptionPane.showAlert(EnigmaGameLauncher.getInstance().getWindow(),WRONG_DURATION);
                 return false;
@@ -248,16 +345,24 @@ public class Create extends Content {
         return true;
     }
 
+    /**
+     * Obtenir les informations rentrées sous forme de données de partie
+     * @return Données
+     */
     public GameData getData(){
         return new GameData(Utility.normalize(this.name.getText()),
                 UserConfiguration.getInstance().getData().getName(),
                 this.map.getText(),
                 this.description.getText(),
-                Integer.parseInt(this.duration.getText()),
+                Integer.parseInt(Utility.normalize(this.duration.getText())),
                 Integer.parseInt(this.players.getSelectedButton().getText())
                 );
     }
 
+    /**
+     * Obtenir l'instance
+     * @return Instance
+     */
     public static Create getInstance(){
         return instance;
     }

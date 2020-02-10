@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
  * @author Quentin RAMSAMY-AGEORGES
  * @version 3.0
  * @since 3.0
+ * @deprecated
  */
 public class DeleteGameRedirect implements ActionListener {
 	@Override

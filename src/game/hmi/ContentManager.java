@@ -8,9 +8,29 @@ import game.hmi.content.Solo;
 
 import java.awt.*;
 
+/**
+ * Gestionnaire des contenus
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 6.0
+ * @since 6.0
+ */
 public class ContentManager extends Content {
+    /**
+     * Instance
+     */
     private final static ContentManager instance = new ContentManager();
+    /**
+     * Affichages
+     */
     private CardLayout layout;
+    /**
+     * Etat actuel
+     */
+    private int state;
 
     /**
      * Etats
@@ -19,7 +39,6 @@ public class ContentManager extends Content {
     public final static int MULTI_STATE = 1;
     public final static int CREATE_STATE = 2;
     public final static int LOBBY_STATE = 3;
-    private int state;
 
     private ContentManager() {
         super(new EnigmaPanel());
@@ -30,6 +49,10 @@ public class ContentManager extends Content {
         this.refresh(NO_PRECISED_STATE);
     }
 
+    /**
+     * Initialise le contenu
+     * Doit être normalement appelé qu'une fois, dans le constructeur
+     */
     @Override
     public void initContent() {
         this.content.setLayout(this.layout);
@@ -39,6 +62,10 @@ public class ContentManager extends Content {
         this.content.add(Lobby.getInstance().getContent(),String.valueOf(LOBBY_STATE));
     }
 
+    /**
+     * Rafraichi l'affichage
+     * @param state Etat
+     */
     @Override
     public void refresh(int state) {
         if (state > NO_PRECISED_STATE)
@@ -70,10 +97,18 @@ public class ContentManager extends Content {
         this.content.revalidate();
     }
 
+    /**
+     * Obtenir l'état actuel
+     * @return Etat actuel
+     */
     public int getState(){
         return this.state;
     }
 
+    /**
+     * Obtenir l'instance
+     * @return Instance
+     */
     public static ContentManager getInstance(){
         return instance;
     }

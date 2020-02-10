@@ -3,6 +3,7 @@ package game.hmi;
 import common.hud.EnigmaButton;
 import common.hud.EnigmaPanel;
 import common.hud.ui.EnigmaButtonUI;
+import data.NeedToBeTranslated;
 import data.config.EnigmaUIValues;
 import game.hmi.listener.redirect.CreateRedirectListener;
 import game.hmi.listener.redirect.MultiRedirectListener;
@@ -10,12 +11,40 @@ import game.hmi.listener.redirect.SoloRedirectListener;
 
 import java.awt.*;
 
+/**
+ * Barre de navigation
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 6.0
+ * @since 6.0
+ */
 public class NavBar extends Content {
+    /**
+     * Instance
+     */
     private final static NavBar instance = new NavBar();
+    /**
+     * Bouton pour les parties solo
+     */
     private EnigmaButton solo;
+    /**
+     * Bouron pour les parties multijoueurs
+     */
     private EnigmaButton multi;
+    /**
+     * Bouton pour créer une partie
+     */
     private EnigmaButton create;
+    /**
+     * Style normal d'un bouton
+     */
     private EnigmaButtonUI normalUI;
+    /**
+     * Style d'in bouton sélectionné
+     */
     private EnigmaButtonUI selectedUI;
 
     /**
@@ -28,9 +57,9 @@ public class NavBar extends Content {
     /**
      * Textes
      */
-    private final static String SOLO = "Parties solo";
-    private final static String MULTI = "Multijoueurs";
-    private final static String CREATE = "Nouvelle partie";
+    private final static String SOLO = NeedToBeTranslated.SOLO_TITLE;
+    private final static String MULTI = NeedToBeTranslated.MULTI_TITLE;
+    private final static String CREATE = NeedToBeTranslated.CREATE_TITLE;
 
     private NavBar() {
         super(new EnigmaPanel());
@@ -55,6 +84,10 @@ public class NavBar extends Content {
         this.refresh(NO_PRECISED_STATE);
     }
 
+    /**
+     * Initialise le contenu
+     * Doit être normalement appelé qu'une fois, dans le constructeur
+     */
     @Override
     public void initContent() {
         this.content.setLayout(new FlowLayout(FlowLayout.LEADING));
@@ -73,6 +106,10 @@ public class NavBar extends Content {
         this.content.add(this.create);
     }
 
+    /**
+     * Rafraichi l'affichage
+     * @param state Etat
+     */
     @Override
     public void refresh(int state) {
         this.solo.setComponentUI(this.normalUI);
@@ -95,6 +132,10 @@ public class NavBar extends Content {
         this.content.revalidate();
     }
 
+    /**
+     * Obtenir l'instance
+     * @return Instance
+     */
     public static NavBar getInstance(){
         return instance;
     }

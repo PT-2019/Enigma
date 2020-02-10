@@ -11,6 +11,7 @@ import common.hud.EnigmaPanel;
  * @author Quentin RAMSAMY-AGEORGES
  * @version 3.0
  * @since 3.0
+ * @deprecated
  */
 public interface DisplayManager {
 	/**

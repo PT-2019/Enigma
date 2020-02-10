@@ -4,13 +4,25 @@ import api.ui.CustomPanel;
 import common.hud.EnigmaPanel;
 import common.hud.EnigmaWindow;
 import common.language.GameLanguage;
-import data.config.GameConfiguration;
-import data.config.UserConfiguration;
 
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Gestionnaire le plus haut
+ * Gère l'affichage soit du jeu, soit des autres affichages (choisir partie, créer, ...)
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 6.0
+ * @since 6.0
+ */
 public class MHIManager extends Content {
+    /**
+     * Instance
+     */
     private final static MHIManager instance = new MHIManager();
 
     /**
@@ -26,6 +38,10 @@ public class MHIManager extends Content {
         this.refresh(CONFIGURE_STATE);
     }
 
+    /**
+     * Initialise le contenu
+     * Doit être normalement appelé qu'une fois, dans le constructeur
+     */
     @Override
     protected void initContent() {
         GridBagConstraints gbc = new GridBagConstraints();
@@ -54,6 +70,10 @@ public class MHIManager extends Content {
         this.content.add(ContentManager.getInstance().getContent(),gbc);
     }
 
+    /**
+     * Rafraichi l'affichage
+     * @param state Etat
+     */
     @Override
     public void refresh(int state) {
         switch (state){
@@ -65,10 +85,10 @@ public class MHIManager extends Content {
         }
     }
 
-    public CustomPanel getContent(){
-        return this.content;
-    }
-
+    /**
+     * Obtenir l'instance
+     * @return Instance
+     */
     public static MHIManager getInstance(){
         return instance;
     }

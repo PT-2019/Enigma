@@ -16,6 +16,7 @@ import java.awt.GridBagLayout;
  * @author Quentin RAMSAMY-AGEORGES
  * @version 3.0
  * @since 3.0
+ * @deprecated
  */
 public class LaunchGameDisplay {
 	/**
