@@ -1,9 +1,17 @@
 package game.hmi;
 
+import api.libgdx.utils.LoadGameLibgdxApplication;
 import api.ui.CustomPanel;
+import com.badlogic.gdx.Gdx;
 import common.hud.EnigmaPanel;
 import common.hud.EnigmaWindow;
 import common.language.GameLanguage;
+import common.save.EmptyMapGenerator;
+import data.EnigmaScreens;
+import data.config.Config;
+import data.config.GameConfiguration;
+import game.EnigmaGame;
+import game.screens.TestScreen;
 
 import javax.swing.*;
 import java.awt.*;
@@ -78,6 +86,10 @@ public class MHIManager extends Content {
     public void refresh(int state) {
         switch (state){
             case GAME_STATE:
+                String path = Config.MAP_FOLDER + GameConfiguration.getInstance().getMapName() + Config.MAP_EXTENSION;
+                /*((TestScreen) EnigmaGame.getCurrentScreen()).setMap(path);
+                EmptyMapGenerator.load(path);*/
+                Gdx.app.postRunnable(() -> EnigmaGame.setScreen(EnigmaScreens.GAME.name()));
                 break;
             case CONFIGURE_STATE:
             default:
@@ -91,16 +103,5 @@ public class MHIManager extends Content {
      */
     public static MHIManager getInstance(){
         return instance;
-    }
-
-    public static void main(String[] args){
-        GameLanguage.init();
-        EnigmaWindow w = new EnigmaWindow();
-        w.setIfAskBeforeClosing(false);
-        w.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        MHIManager mm = new MHIManager();
-        w.getContentSpace().setLayout(new BorderLayout());
-        w.getContentSpace().add(mm.getContent(),BorderLayout.CENTER);
-        w.setVisible(true);
     }
 }

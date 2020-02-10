@@ -5,6 +5,7 @@ import api.ui.CustomWindow;
 import common.hud.EnigmaWindow;
 import data.EnigmaScreens;
 import game.configure.LaunchGameDisplay;
+import game.hmi.MHIManager;
 
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
@@ -31,7 +32,7 @@ public class EnigmaGameLauncher implements Application {
 	private EnigmaGameLauncher() {
 		this.window = new EnigmaWindow();
 		this.window.setLayout(new BorderLayout());
-		this.gameScreen = LaunchGameDisplay.getInstance().getPanel();
+		this.gameScreen = MHIManager.getInstance().getContent();
 	}
 
 	/**

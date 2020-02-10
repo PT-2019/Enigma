@@ -44,6 +44,8 @@ public class PlayListener implements ActionListener {
         if(this.game.isMultiPlayer()){
             ContentManager.getInstance().refresh(ContentManager.LOBBY_STATE);
             ActionBar.getInstance().refresh(ActionBar.QUIT_AND_LAUNCH_STATE);
+        }else{
+            MHIManager.getInstance().refresh(MHIManager.GAME_STATE);
         }
     }
 }

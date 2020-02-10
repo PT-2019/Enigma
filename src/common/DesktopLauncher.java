@@ -121,7 +121,7 @@ public class DesktopLauncher implements Runnable {
 	private static void startApp(Application app) {
 		if (RUNNING_APP == null) {
 			if (c != null) {
-				c.close();
+				//c.close();
 				c = null;
 			}
 			RUNNING_APP = app;
