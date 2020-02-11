@@ -1,7 +1,7 @@
 package game.configure.managers.configurations;
 
 import common.hud.EnigmaOptionPane;
-import data.config.GameConfiguration;
+import data.config.GameConfigurationDeprecated;
 import game.EnigmaGameLauncher;
 import game.configure.LaunchGameDisplay;
 
@@ -17,6 +17,7 @@ import java.awt.event.MouseEvent;
  * @author Quentin RAMSAMY-AGEORGES
  * @version 3.0
  * @since 3.0
+ * @deprecated
  */
 public class ChangeName implements ChangeConfiguration {
 
@@ -28,7 +29,7 @@ public class ChangeName implements ChangeConfiguration {
 		String value = EnigmaOptionPane.showInputDialog(EnigmaGameLauncher.getInstance().getWindow(), "Nouveau nom de la partie :");
 		if (!value.equals(EnigmaOptionPane.CANCEL)) {
 			if (value.length() > 0 && value.length() < 50) {
-				GameConfiguration.getInstance().setName(value);
+				GameConfigurationDeprecated.getInstance().setName(value);
 				LaunchGameDisplay.getInstance().refreshCurrentDisplay();
 			} else
 				EnigmaOptionPane.showAlert(EnigmaGameLauncher.getInstance().getWindow(), new Dimension(1000, 250), "Impossible de changer le nom de la partie. Il est soit vide, soit supérieur à 50 caractères.");

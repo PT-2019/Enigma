@@ -2,14 +2,16 @@ package common.save;
 
 import api.ui.CustomWindow;
 import api.utils.Utility;
+import common.data.GameData;
 import common.hud.*;
 import common.utils.Logger;
 import data.NeedToBeTranslated;
 import data.config.Config;
 import editor.EditorLauncher;
 import game.EnigmaGame;
+import game.EnigmaGameLauncher;
+import game.hmi.ContentManager;
 
-import javax.swing.*;
 import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
@@ -32,11 +34,11 @@ public class ImportExport {
     private static final String REPLACE_FILE = NeedToBeTranslated.REPLACE_FILE;
     private static final String REPLACE_MAP = NeedToBeTranslated.REPLACE_MAP;
     private static final String REPLACE_GAME = NeedToBeTranslated.REPLACE_GAME;
-    private static final String EXPORT = NeedToBeTranslated.EXPORT;
+    private static final String EXPORT = NeedToBeTranslated.EXPORTATION;
     private static final String EXPORT_ENDED = NeedToBeTranslated.EXPORT_ENDED;
     private static final String EXPORT_ERROR = NeedToBeTranslated.EXPORT_ERROR;
     private static final String EXPORT_ABANDONED = NeedToBeTranslated.EXPORT_ABANDONED;
-    private static final String IMPORT = NeedToBeTranslated.IMPORT;
+    private static final String IMPORT = NeedToBeTranslated.IMPORTATION;
     private static final String IMPORT_ENDED = NeedToBeTranslated.IMPORT_ENDED;
     private static final String IMPORT_ERROR = NeedToBeTranslated.IMPORT_ERROR;
     private static final String IMPORT_ABANDONED = NeedToBeTranslated.IMPORT_ABANDONED;
@@ -185,15 +187,15 @@ public class ImportExport {
         public void run(){
             File file = new File(exportPath + mapName + Config.MAP_EXPORT_EXTENSION);
 
-            if(file.exists()) {
-                if(!EnigmaOptionPane.showConfirmDialog(EditorLauncher.getInstance().getWindow(),
-                        new Dimension(600,250),
-                        REPLACE_FILE)){
-                    throw new IllegalStateException("Export annulé");
-                }
-            }
-
             try {
+                if(file.exists()) {
+                    if(!EnigmaOptionPane.showConfirmDialog(EditorLauncher.getInstance().getWindow(),
+                            new Dimension(600,250),
+                            REPLACE_FILE)){
+                        throw new IllegalStateException("Export annulé");
+                    }
+                }
+
                 DataOutputStream writer = new DataOutputStream(new FileOutputStream(file));
                 String[] toWrite = new String[4];
                 toWrite[0] = mapName;
@@ -221,11 +223,26 @@ public class ImportExport {
                 }
 
                 writer.close();
-                EnigmaGame.getCurrentScreen().showToast(EXPORT_ENDED);
+                try {
+                    EnigmaGame.getCurrentScreen().showToast(EXPORT_ENDED);
+                }catch(NullPointerException ex) {
+                    EnigmaOptionPane.showAlert(EnigmaGameLauncher.getInstance().getWindow(), EXPORT_ENDED);
+                }
+
             } catch (IllegalStateException e){
-                EnigmaGame.getCurrentScreen().showToast(EXPORT_ABANDONED);
+                try {
+                    EnigmaGame.getCurrentScreen().showToast(EXPORT_ABANDONED);
+                }catch(NullPointerException ex) {
+                    EnigmaOptionPane.showAlert(EnigmaGameLauncher.getInstance().getWindow(), EXPORT_ABANDONED);
+                }
+
             } catch (IOException e) {
-                EnigmaGame.getCurrentScreen().showToast(EXPORT_ERROR);
+                try {
+                    EnigmaGame.getCurrentScreen().showToast(EXPORT_ERROR);
+                }catch(NullPointerException ex) {
+                    EnigmaOptionPane.showAlert(EnigmaGameLauncher.getInstance().getWindow(), EXPORT_ERROR);
+                }
+
                 Logger.printError("ImportExport.java","export map error: " + e.getMessage());
             }finally {
                 if(epp != null)
@@ -277,17 +294,17 @@ public class ImportExport {
 
         @Override
         public void run(){
-            File file = new File(exportPath + mapName + Config.GAME_EXPORT_EXTENSION);
-
-            if(file.exists()) {
-                if(!EnigmaOptionPane.showConfirmDialog(EditorLauncher.getInstance().getWindow(),
-                        new Dimension(600,250),
-                        REPLACE_FILE)){
-                    throw new IllegalStateException("Export annulé");
-                }
-            }
+            File file = new File(exportPath + this.gameName + Config.GAME_EXPORT_EXTENSION);
 
             try {
+                if(file.exists()) {
+                    if(!EnigmaOptionPane.showConfirmDialog(EditorLauncher.getInstance().getWindow(),
+                            new Dimension(600,250),
+                            REPLACE_FILE)){
+                        throw new IllegalStateException("Export annulé");
+                    }
+                }
+
                 DataOutputStream writer = new DataOutputStream(new FileOutputStream(file));
                 String[] toWrite = new String[6];
                 toWrite[0] = mapName;
@@ -317,11 +334,26 @@ public class ImportExport {
                 }
 
                 writer.close();
-                EnigmaGame.getCurrentScreen().showToast(EXPORT_ENDED);
+                try {
+                    EnigmaGame.getCurrentScreen().showToast(EXPORT_ENDED);
+                }catch(NullPointerException ex) {
+                    EnigmaOptionPane.showAlert(EnigmaGameLauncher.getInstance().getWindow(), EXPORT_ENDED);
+                }
+
             } catch (IllegalStateException e){
-                EnigmaGame.getCurrentScreen().showToast(EXPORT_ABANDONED);
+                try {
+                    EnigmaGame.getCurrentScreen().showToast(EXPORT_ABANDONED);
+                }catch(NullPointerException ex) {
+                    EnigmaOptionPane.showAlert(EnigmaGameLauncher.getInstance().getWindow(), EXPORT_ABANDONED);
+                }
+
             } catch (IOException e) {
-                EnigmaGame.getCurrentScreen().showToast(EXPORT_ERROR);
+                try {
+                    EnigmaGame.getCurrentScreen().showToast(EXPORT_ERROR);
+                }catch(NullPointerException ex) {
+                    EnigmaOptionPane.showAlert(EnigmaGameLauncher.getInstance().getWindow(), EXPORT_ERROR);
+                }
+
                 Logger.printError("ImportExport.java","export game error: " + e.getMessage());
             }finally {
                 if(epp != null)
@@ -409,14 +441,29 @@ public class ImportExport {
                     writer.write(read);
                     writer.close();
 
-                    EnigmaGame.getCurrentScreen().showToast(IMPORT_ENDED);
+                    try {
+                        EnigmaGame.getCurrentScreen().showToast(IMPORT_ENDED);
+                    }catch(NullPointerException ex) {
+                        EnigmaOptionPane.showAlert(EnigmaGameLauncher.getInstance().getWindow(), IMPORT_ENDED);
+                    }
+
                 } catch (EOFException e) {
                     reader.close();
                 }
             } catch (IllegalStateException e){
-                EnigmaGame.getCurrentScreen().showToast(IMPORT_ABANDONED);
+                try {
+                    EnigmaGame.getCurrentScreen().showToast(IMPORT_ABANDONED);
+                }catch(NullPointerException ex) {
+                    EnigmaOptionPane.showAlert(EnigmaGameLauncher.getInstance().getWindow(), IMPORT_ABANDONED);
+                }
+
             } catch (IOException | IllegalArgumentException e) {
-                EnigmaGame.getCurrentScreen().showToast(IMPORT_ERROR);
+                try {
+                    EnigmaGame.getCurrentScreen().showToast(IMPORT_ERROR);
+                }catch(NullPointerException ex) {
+                    EnigmaOptionPane.showAlert(EnigmaGameLauncher.getInstance().getWindow(), IMPORT_ERROR);
+                }
+
                 Logger.printError("ImportExport.java","import map error: " + e.getMessage());
             }finally {
                 if(epp != null)
@@ -457,7 +504,7 @@ public class ImportExport {
         @Override
         public void run() {
             try {
-                if (!importPath.endsWith(Config.MAP_EXPORT_EXTENSION))
+                if (!importPath.endsWith(Config.GAME_EXPORT_EXTENSION))
                     throw new IllegalArgumentException("Ce n'est pas un " + Config.GAME_EXPORT_EXTENSION);
 
                 FileInputStream file = new FileInputStream(importPath);
@@ -522,14 +569,40 @@ public class ImportExport {
                     writer.write(read);
                     writer.close();
 
-                    EnigmaGame.getCurrentScreen().showToast(IMPORT_ENDED);
+                    try {
+                        EnigmaGame.getCurrentScreen().showToast(IMPORT_ENDED);
+                    }catch(NullPointerException ex) {
+                        EnigmaOptionPane.showAlert(EnigmaGameLauncher.getInstance().getWindow(), IMPORT_ENDED);
+                    }
+
+                    try {
+                        GameData game = DataSave.readGameData(Config.GAME_DATA_FOLDER + gameName + Config.DATA_EXTENSION);
+
+                        if(game.isMultiPlayer())
+                            ContentManager.getInstance().refresh(ContentManager.MULTI_STATE);
+                        else
+                            ContentManager.getInstance().refresh(ContentManager.SOLO_STATE);
+                    }catch (IOException e){
+                        //ignore
+                    }
+
                 } catch (EOFException e) {
                     reader.close();
                 }
             } catch (IllegalStateException e){
-                EnigmaGame.getCurrentScreen().showToast(IMPORT_ABANDONED);
+                try {
+                    EnigmaGame.getCurrentScreen().showToast(IMPORT_ABANDONED);
+                }catch(NullPointerException ex) {
+                    EnigmaOptionPane.showAlert(EnigmaGameLauncher.getInstance().getWindow(), IMPORT_ABANDONED);
+                }
+
             } catch (IOException | IllegalArgumentException e) {
-                EnigmaGame.getCurrentScreen().showToast(IMPORT_ERROR);
+                try {
+                    EnigmaGame.getCurrentScreen().showToast(IMPORT_ERROR);
+                }catch(NullPointerException ex) {
+                    EnigmaOptionPane.showAlert(EnigmaGameLauncher.getInstance().getWindow(), IMPORT_ERROR);
+                }
+
                 Logger.printError("ImportExport.java","import game error: " + e.getMessage());
             }finally {
                 if(epp != null)

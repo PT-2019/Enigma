@@ -6,7 +6,7 @@ import common.hud.EnigmaPanel;
 import common.hud.ui.EnigmaButtonUI;
 import common.hud.ui.EnigmaLabelUI;
 import data.config.EnigmaUIValues;
-import data.config.GameConfiguration;
+import data.config.GameConfigurationDeprecated;
 import game.configure.LaunchGameDisplay;
 import game.configure.managers.configurations.ChangeConfiguration;
 import game.configure.managers.configurations.ChangeDescription;
@@ -35,6 +35,7 @@ import java.awt.Insets;
  * @author Quentin RAMSAMY-AGEORGES
  * @version 3.0
  * @since 3.0
+ * @deprecated
  */
 public class CreateGameDisplayManager implements DisplayManager {
 
@@ -202,7 +203,7 @@ public class CreateGameDisplayManager implements DisplayManager {
 		Color grey2 = new Color(220, 220, 220);
 		int infoCount = 6;
 		int borderSize = 4;
-		GameConfiguration gameConfig = GameConfiguration.getInstance();
+		GameConfigurationDeprecated gameConfig = GameConfigurationDeprecated.getInstance();
 		boolean[] bordersB = new boolean[4];
 		bordersB[EnigmaUIValues.BOTTOM_BORDER] = EnigmaUIValues.SHOWED_BORDER;
 

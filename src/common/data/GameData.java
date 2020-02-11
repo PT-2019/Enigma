@@ -12,7 +12,7 @@ import java.util.HashMap;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 6.0 01 fevrier 2020
+ * @version 6.1 01 fevrier 2020
  * @since 6.0
  */
 public class GameData {
@@ -160,13 +160,20 @@ public class GameData {
         return maxPlayers;
     }
 
-
     /**
      * Obtenir si multijoueurs
      * @return true si multijoueurs, false sinon
      */
     public boolean isMultiPlayer() {
         return (this.maxPlayers > 1);
+    }
+
+    /**
+     * Obtenir l'auteur
+     * @return L'auteur
+     */
+    public String getAuthor() {
+        return this.author;
     }
 
     /**

@@ -84,13 +84,6 @@ public class DesktopLauncher implements Runnable {
 	private EnigmaWindow window;
 
 	/**
-	 * Tentative de patch des erreurs de la libgdx
-	 * Lancement et fermeture
-	 */
-	@NeedPatch
-	private static EnigmaWindow c;
-
-	/**
 	 * Crée le lanceur de la version pc de l'application
 	 *
 	 * @since 4.0
@@ -120,10 +113,6 @@ public class DesktopLauncher implements Runnable {
 	 */
 	private static void startApp(Application app) {
 		if (RUNNING_APP == null) {
-			if (c != null) {
-				c.close();
-				c = null;
-			}
 			RUNNING_APP = app;
 			RUNNING_APP.start();
 			RUNNING_APP.getWindow().addWindowListener(new AppClosingManager());
@@ -139,10 +128,6 @@ public class DesktopLauncher implements Runnable {
 	 */
 	private static void closeRunningApp() {
 		if (RUNNING_APP != null) {
-			if (c != null) {
-				c.close();
-				c = null;
-			}
 			RUNNING_APP = null;
 			PLAY_BUTTON.setText(GAME);
 			EDIT_BUTTON.setText(EDITOR);
@@ -226,14 +211,6 @@ public class DesktopLauncher implements Runnable {
 		background.getComponentUI().setAllBorders(EnigmaUIValues.ENIGMA_COMBOBOX_BORDER);
 		background.setLayout(new CardLayout());
 		background.add(content, BorderLayout.CENTER);
-
-		//Cette chose charge la libgdx au lancement du jeu
-		//on ne peut pas directement l'attacher a this.window
-		//ULTRA CHIANT
-		c = new EnigmaWindow();
-		c.setIfAskBeforeClosing(false);
-		if (!System.getProperty("os.name").equals("Linux")) background.add(new EditorScreen(c, false));
-		else c = null;
 
 		GridBagConstraints gbc = new GridBagConstraints();
 

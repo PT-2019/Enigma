@@ -1,14 +1,12 @@
 package game.configure.displayManagers.lowLevel;
 
-import common.entities.players.Player;
 import common.hud.EnigmaButton;
 import common.hud.EnigmaLabel;
 import common.hud.EnigmaPanel;
 import common.hud.ui.EnigmaButtonUI;
 import common.hud.ui.EnigmaLabelUI;
 import data.config.EnigmaUIValues;
-import data.config.GameConfiguration;
-import data.config.UserConfiguration;
+import data.config.GameConfigurationDeprecated;
 import game.configure.LaunchGameDisplay;
 import game.configure.managers.redirect.Redirect;
 import game.configure.managers.redirect.StartGameRedirect;
@@ -30,6 +28,7 @@ import java.awt.Insets;
  * @author Quentin RAMSAMY-AGEORGES
  * @version 3.0
  * @since 3.0
+ * @deprecated
  */
 public class WaitPlayersLeaderDisplayManager implements DisplayManager {
 
@@ -156,7 +155,7 @@ public class WaitPlayersLeaderDisplayManager implements DisplayManager {
 		content.setLayout(new GridBagLayout());
 		this.content.setLayout(new GridBagLayout());
 		this.gameInfo.setLayout(new GridLayout(infoCount, 1));
-		this.players.setLayout(new GridLayout(GameConfiguration.MAX_PLAYERS, 1));
+		this.players.setLayout(new GridLayout(GameConfigurationDeprecated.MAX_PLAYERS, 1));
 		int inset = 50;
 		int inset2 = 30;
 
@@ -195,19 +194,19 @@ public class WaitPlayersLeaderDisplayManager implements DisplayManager {
 		Color blue = new Color(50, 100, 200);
 		int infoCount = 6;
 		int borderSize = 4;
-		GameConfiguration gameConfig = GameConfiguration.getInstance();
+		GameConfigurationDeprecated gameConfig = GameConfigurationDeprecated.getInstance();
 		boolean[] bordersB = new boolean[4];
 		bordersB[EnigmaUIValues.BOTTOM_BORDER] = EnigmaUIValues.SHOWED_BORDER;
 
 		String[] infos = new String[infoCount];
 		infos[0] = "Partie : " + gameConfig.getName();
 		infos[1] = "Description : " + gameConfig.getDescription();
-		Player owner = gameConfig.getOwner();
+		/*Player owner = gameConfig.getOwner();
 		//TODO: hum ???????????????, owner est null????
 		if (owner == null)
 			infos[2] = "Chef de groupe : NULL";
 		else
-			infos[2] = "Chef de groupe : " + owner.getName();
+			infos[2] = "Chef de groupe : " + owner.getName();*/
 		infos[3] = "Map : " + gameConfig.getMap();
 		infos[4] = "Durée : " + gameConfig.getDuration() + " min";
 		infos[5] = "Nombre de joueurs : " + gameConfig.getTotalPlayers() + "/" + gameConfig.getMaxGamePlayers();
@@ -229,17 +228,17 @@ public class WaitPlayersLeaderDisplayManager implements DisplayManager {
 			}
 		}
 
-		for (int i = 0; i < GameConfiguration.MAX_PLAYERS; i++) {
+		for (int i = 0; i < GameConfigurationDeprecated.MAX_PLAYERS; i++) {
 			EnigmaLabel name = new EnigmaLabel();
 			if (i < gameConfig.getTotalPlayers()) {
-				String pName = gameConfig.getAllPlayers().get(i).getName();
+				/*String pName = gameConfig.getAllPlayers().get(i).getName();
 				name.setText(pName);
 
 				if (pName.equals(UserConfiguration.getInstance().getData().getName()))
-					name.getComponentUI().setAllBackgrounds(blue, blue, blue);
+					name.getComponentUI().setAllBackgrounds(blue, blue, blue);*/
 			}
 
-			if (i < GameConfiguration.MAX_PLAYERS - 1) {
+			if (i < GameConfigurationDeprecated.MAX_PLAYERS - 1) {
 				name.getComponentUI().setAllBorders(grey, grey, grey);
 				name.getComponentUI().setAllShowedBorders(bordersB, bordersB, bordersB);
 				name.getComponentUI().setAllBordersSize(borderSize, borderSize, borderSize);

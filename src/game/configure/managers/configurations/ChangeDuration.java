@@ -1,7 +1,7 @@
 package game.configure.managers.configurations;
 
 import common.hud.EnigmaOptionPane;
-import data.config.GameConfiguration;
+import data.config.GameConfigurationDeprecated;
 import game.EnigmaGameLauncher;
 import game.configure.LaunchGameDisplay;
 
@@ -17,6 +17,7 @@ import java.awt.event.MouseEvent;
  * @author Quentin RAMSAMY-AGEORGES
  * @version 3.0
  * @since 3.0
+ * @deprecated
  */
 public class ChangeDuration implements ChangeConfiguration {
 
@@ -30,7 +31,7 @@ public class ChangeDuration implements ChangeConfiguration {
 			try {
 				int valueInt = Integer.parseInt(value);
 				if (valueInt > 0) {
-					GameConfiguration.getInstance().setDuration(valueInt);
+					GameConfigurationDeprecated.getInstance().setDuration(valueInt);
 					LaunchGameDisplay.getInstance().refreshCurrentDisplay();
 				} else
 					EnigmaOptionPane.showAlert(EnigmaGameLauncher.getInstance().getWindow(), new Dimension(1000, 250), "Impossible de changer la durée de la partie. Elle doit être supérieure à 0.");

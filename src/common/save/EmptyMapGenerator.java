@@ -1,5 +1,6 @@
 package common.save;
 
+import common.map.AbstractMap;
 import common.map.MapObjects;
 import common.utils.Logger;
 import api.utils.annotations.ConvenienceMethod;
@@ -117,10 +118,10 @@ public class EmptyMapGenerator {
 	 */
 	public static void load(String path) {
 		//------------ charge .tmx ------------
-		((TestScreen) EnigmaGame.getCurrentScreen()).setMap(path);
+		EnigmaGame.getCurrentScreen().setMap(path);
 
 		//------------ charge .json ------------
-		MapTestScreen map = ((TestScreen) EnigmaGame.getCurrentScreen()).getMap();
+		AbstractMap map = EnigmaGame.getCurrentScreen().getMap();
 		MapObjects entities = map.getEntities();
 
 		ArrayList<Enigma> enigmas;

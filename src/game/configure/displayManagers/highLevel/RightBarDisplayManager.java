@@ -21,6 +21,7 @@ import java.util.HashMap;
  * @author Quentin RAMSAMY-AGEORGES
  * @version 3.0
  * @since 3.0
+ * @deprecated
  */
 public class RightBarDisplayManager {
 
