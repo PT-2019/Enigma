@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.math.Vector2;
 import common.Dialog.DialogNode;
 import common.Dialog.EnigmaDialogPopup;
+import common.Dialog.ItemDialog;
 import common.enigmas.TileEventEnum;
 import common.entities.GameObject;
 import common.entities.consumable.Book;
@@ -166,11 +167,16 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
 			GameObject object = map.posToEntities((int)position.y,(int)position.x);
 			System.out.println(object);
 
+			EnigmaDialogPopup dialog = map.getEnigmaDialog();
+			DialogNode node = new DialogNode();
 			if (object instanceof Content){
-				EnigmaDialogPopup dialog = map.getEnigmaDialog();
-				DialogNode node = new DialogNode();
 				node.addText(((Content) object).getContent());
 				dialog.showDialog(node);
+			}else{
+				if (ItemDialog.getText(object) != null){
+					node.addText(ItemDialog.getText(object));
+					dialog.showDialog(node);
+				}
 			}
 		}
 

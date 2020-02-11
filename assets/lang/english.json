@@ -70,5 +70,7 @@
     summon: Summon
     location: at
     unlock: Unlock
+    lock: lock
+    desactivated: desactivated
   }
 }

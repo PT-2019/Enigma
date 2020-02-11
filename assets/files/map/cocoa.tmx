@@ -105,7 +105,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,2275,2276,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,2355,2356,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1104,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,284,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1104,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2115,2116,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -267,7 +267,7 @@
 0,2041,0,0,0,0,0,0,0,0,0,0,2041,0,0,0,0,0,2041,0,0,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,0,0,0,0,0,0,2041,0,0,0,0,0,0,0,0,0,
 0,2041,0,0,0,0,0,0,0,0,0,0,2041,2041,2041,2041,2041,2041,2041,0,0,2041,2041,2041,2041,2041,2041,2041,2041,0,0,0,0,2041,0,0,0,0,0,0,2041,0,0,0,0,0,0,0,0,0,
 0,2041,0,0,0,0,0,0,0,0,0,0,2041,2041,2041,2041,2041,2041,2041,0,0,2041,2041,2041,2041,2041,2041,2041,2041,0,0,0,0,2041,0,0,0,0,0,0,2041,0,0,0,0,0,0,0,0,0,
-0,2041,0,0,0,0,0,0,0,0,0,0,2041,2041,2041,2041,2041,2041,2041,0,0,2041,2041,2041,2041,2041,2041,2041,2041,0,0,0,0,2041,0,0,0,2041,0,0,2041,0,0,0,0,0,0,0,0,0,
+0,2041,0,0,0,0,2041,0,0,0,0,0,2041,2041,2041,2041,2041,2041,2041,0,0,2041,2041,2041,2041,2041,2041,2041,2041,0,0,0,0,2041,0,0,0,2041,0,0,2041,0,0,0,0,0,0,0,0,0,
 0,2041,0,0,0,0,0,0,0,0,0,0,2041,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2041,0,0,0,0,2041,0,0,0,0,0,0,2041,0,0,0,0,0,0,0,0,0,
 0,2041,0,0,0,0,0,0,0,0,0,0,2041,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2041,0,0,0,0,2041,2041,2041,2041,2041,2041,2041,2041,0,0,0,0,0,0,0,0,0,
 0,2041,0,0,0,0,0,0,0,0,0,0,2041,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2041,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -322,9 +322,9 @@
                 <property name="className" value="common.entities.players.Monster"/>
                 <property name="y2" value="40.0"/>
                 <property name="FLOOR2" value="4"/>
-                <property name="NAME" value=""/>
                 <property name="JSON" value="assets/entities/monsters/monsters.json"/>
                 <property name="KEY" value="rat"/>
+                <property name="NAME" value=""/>
             </properties>
         </object>
         <object height="2.0" id="15" name="entity" width="2.0" x="3.0" y="16.0">
@@ -332,11 +332,11 @@
                 <property name="className" value="common.entities.players.NPC"/>
                 <property name="y2" value="16.0"/>
                 <property name="FLOOR2" value="4"/>
-                <property name="NAME" value="Pire"/>
-                <property name="INVENTORY" value=""/>
-                <property name="HERO" value="true"/>
                 <property name="JSON" value="assets/entities/players/players.json"/>
                 <property name="KEY" value="Kil"/>
+                <property name="INVENTORY" value=""/>
+                <property name="HERO" value="true"/>
+                <property name="NAME" value="Pire"/>
             </properties>
         </object>
         <object height="1.0" id="16" name="entity" width="1.0" x="-16.0" y="-16.0">
@@ -350,9 +350,18 @@
                 <property name="className" value="common.entities.players.Monster"/>
                 <property name="y2" value="32.0"/>
                 <property name="FLOOR2" value="4"/>
-                <property name="NAME" value=""/>
                 <property name="JSON" value="assets/entities/monsters/monsters.json"/>
                 <property name="KEY" value="snake"/>
+                <property name="NAME" value=""/>
+            </properties>
+        </object>
+        <object height="1.0" id="21" name="entity" width="1.0" x="6.0" y="14.0">
+            <properties>
+                <property name="className" value="common.entities.items.Pane"/>
+                <property name="y2" value="14.0"/>
+                <property name="FLOOR2" value="1"/>
+                <property name="COLLISION" value="1"/>
+                <property name="CONTENT" value="Vous êtes stupide"/>
             </properties>
         </object>
         <object height="1.0" id="0" name="entity" width="1.0" x="10.0" y="33.0">
@@ -369,11 +378,11 @@
                 <property name="className" value="common.entities.players.NPC"/>
                 <property name="y2" value="19.0"/>
                 <property name="FLOOR2" value="4"/>
-                <property name="NAME" value=""/>
-                <property name="INVENTORY" value=""/>
-                <property name="HERO" value="false"/>
                 <property name="JSON" value="assets/entities/players/players.json"/>
                 <property name="KEY" value="Euphemia"/>
+                <property name="INVENTORY" value=""/>
+                <property name="HERO" value="false"/>
+                <property name="NAME" value=""/>
             </properties>
         </object>
         <object height="2.0" id="14" name="entity" width="2.0" x="21.0" y="11.0">
@@ -381,11 +390,11 @@
                 <property name="className" value="common.entities.players.NPC"/>
                 <property name="y2" value="11.0"/>
                 <property name="FLOOR2" value="4"/>
-                <property name="NAME" value="Zoé"/>
-                <property name="INVENTORY" value=""/>
-                <property name="HERO" value="false"/>
                 <property name="JSON" value="assets/entities/players/players.json"/>
                 <property name="KEY" value="Alexia"/>
+                <property name="INVENTORY" value=""/>
+                <property name="HERO" value="false"/>
+                <property name="NAME" value="Zoé"/>
             </properties>
         </object>
         <object height="1.0" id="9" name="entity" width="1.0" x="6.0" y="43.0">
@@ -469,7 +478,7 @@
                 <property name="y2" value="31.0"/>
                 <property name="FLOOR2" value="1"/>
                 <property name="COLLISION" value="1"/>
-                <property name="CONTENT" value="bienvenue gente issou.&#10;kl"/>
+                <property name="CONTENT" value="bienvenue gente issou.&amp;#10;kl"/>
             </properties>
         </object>
         <object height="1.0" id="20" name="entity" width="1.0" x="7.0" y="31.0">

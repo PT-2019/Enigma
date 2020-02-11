@@ -74,5 +74,7 @@
     summon: Invoque
     location: à
     unlock: Déverrouille
+    lock: Verrouillé
+    desactivated: désactivé
   }
 }

@@ -7,6 +7,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import common.entities.types.Content;
 
+/**
+ * Permet d'afficher les dialogues dans le Jeu
+ */
 public class EnigmaDialogPopup extends Window {
 
     /**
