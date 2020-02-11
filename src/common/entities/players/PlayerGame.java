@@ -23,13 +23,17 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
 	 * La map dans la laquelle est placé le joueur
 	 */
 	private GameMap map;
-
+	/**
+	 * Joueur
+	 */
+	private Player joueur;
 	/**
 	 * @param map
 	 */
 	public PlayerGame(GameMap map) {
 		this.setAnimationPaused(true);
 		this.map = map;
+		this.joueur=new Player();
 	}
 
 	/**
@@ -191,5 +195,9 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
 	@Override
 	public boolean scrolled(int i) {
 		return false;
+	}
+
+	public Player getPlayer() {
+		return this.joueur;
 	}
 }
