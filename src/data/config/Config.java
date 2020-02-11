@@ -2,7 +2,9 @@ package data.config;
 
 import api.Application;
 import api.utils.AsciiColor;
+import api.utils.ShortCuts;
 import api.utils.annotations.NeedPatch;
+import com.badlogic.gdx.Input;
 import common.language.Language;
 
 /**
@@ -64,6 +66,14 @@ public final class Config {
 	 * @since 5.1
 	 */
 	public static final Language DEFAULT = Language.FRENCH;
+
+	public static final ShortCuts SAVE = new ShortCuts(Input.Keys.S,Input.Keys.CONTROL_LEFT);
+
+	public static final ShortCuts SAVE_AS = new ShortCuts(Input.Keys.S,Input.Keys.CONTROL_LEFT,Input.Keys.ALT_LEFT);
+
+	public static final ShortCuts UNDO = new ShortCuts(Input.Keys.Z,Input.Keys.CONTROL_LEFT);
+
+	public static final ShortCuts REDO = new ShortCuts(Input.Keys.Y,Input.Keys.CONTROL_LEFT);
 
 	/**
 	 * Chemin du logo

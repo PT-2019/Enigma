@@ -7,8 +7,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.sun.jarsigner.ContentSignerParameters;
 import common.data.MapData;
 import common.hud.EnigmaOptionPane;
+import common.hud.EnigmaWindow;
 import common.map.MapTestScreen;
 import common.save.DataSave;
 import common.save.EmptyMapGenerator;
@@ -16,12 +18,16 @@ import common.utils.Logger;
 import data.config.Config;
 import editor.EditorLauncher;
 import editor.bar.edition.ActionsManager;
+import editor.bar.listeners.RedoListener;
 import editor.bar.listeners.SaveAsListener;
 import editor.bar.listeners.SaveListener;
+import editor.bar.listeners.UndoListener;
 import game.EnigmaGame;
 import game.screens.TestScreen;
 
-import java.awt.Window;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -44,7 +50,7 @@ public class TestMapControl implements InputProcessor {
 	/**
 	 * Pour savoir si la touche ctrl est enfoncé
 	 */
-	private boolean ispush;
+	private boolean ctrlpush;
 
 	/**
 	 * Pour savoir si la touche alt est enfoncé
@@ -62,13 +68,28 @@ public class TestMapControl implements InputProcessor {
 
 	private MapTestScreen map;
 
+	//pour les racourcis
+	private SaveListener save;
+
+	private SaveAsListener saveAs;
+
+	private RedoListener redo;
+
+	private UndoListener undo;
+
 	public TestMapControl(MapTestScreen map) {
 		camera = map.getCamera();
-		ispush = false;
+		ctrlpush = false;
 		this.map = map;
 		//changed to window
 		this.window = EditorLauncher.getInstance().getWindow();
 
+		Container contain = EditorLauncher.getInstance().getWindow().getContentPane();
+
+		save = new SaveListener((EnigmaWindow) this.window,contain);
+		saveAs = new SaveAsListener((EnigmaWindow) this.window,(JComponent)contain);
+		undo = new UndoListener((EnigmaWindow) this.window,contain);
+		redo = new RedoListener((EnigmaWindow) this.window,contain);;
 
 		this.menu = new EntityPopMenu(map.getMap().getMap(), camera);
 		//TODO: test pour vérifier que cela marche avec une window
@@ -80,52 +101,21 @@ public class TestMapControl implements InputProcessor {
 		if (keycode == Input.Keys.ALT_LEFT)
 			altpush = true;
 		else if (keycode == Input.Keys.CONTROL_LEFT)
-			ispush = true;
-		else if (keycode == Input.Keys.PLUS && ispush)
+			ctrlpush = true;
+		else if (keycode == Input.Keys.PLUS && ctrlpush)
 			this.plusCamera();
-		else if (keycode == Input.Keys.MINUS && ispush)
+		else if (keycode == Input.Keys.MINUS && ctrlpush)
 			this.minCamera();
-		else if(keycode == SAVE && ispush && !altpush){
-			MapTestScreen map = ((TestScreen) EnigmaGame.getCurrentScreen()).getMap();
-			EmptyMapGenerator.save(TestScreen.getMapPath().replace(Config.MAP_EXTENSION,""), map.getTiledMap(), map.getEntities());
-			EnigmaGame.getCurrentScreen().showToast(SaveListener.SAVE_ENDED);
-		}else if(keycode == UNDO && ispush){
-			ActionsManager manager = ActionsManager.getInstance();
-			manager.undo();
-		}else if(keycode == REDO && ispush){
-			ActionsManager manager = ActionsManager.getInstance();
-			manager.redo();
-		}else if(ispush && altpush && keycode == SAVE){
-			//enregistrer sous
-			String mapName = EnigmaOptionPane.showInputDialog((CustomWindow) this.window, SaveAsListener.MAP_NAME);
-			mapName = Utility.normalize(mapName);
-
-			for(String s : Utility.getAllMapName()) {
-				if (s.equals(mapName)){
-					if(!EnigmaOptionPane.showConfirmDialog((CustomWindow) this.window,SaveAsListener.REPLACE_MAP)){
-						return true;
-					}
-				}
-			}
-			HashMap<String,String> data = EnigmaGame.getCurrentScreen().getMap().getMapData().getData();
-			data.replace(MapData.MAP_NAME,mapName);
-
-			if (!mapName.equals(CustomOptionPane.CANCEL) && !mapName.equals("")) {
-				try {
-					DataSave.writeMapData(new MapData(data));
-				}catch (IOException e){
-					EnigmaGame.getCurrentScreen().showToast(SaveAsListener.SAVE_FAILED);
-					Logger.printError("SavAsListener.java","dave data : " + e.getMessage());
-				}
-
-				MapTestScreen map = ((TestScreen) EnigmaGame.getCurrentScreen()).getMap();
-				EmptyMapGenerator.save(Config.MAP_FOLDER + mapName, map.getTiledMap(), map.getEntities());
-				EnigmaGame.getCurrentScreen().showToast(SaveAsListener.SAVE_ENDED);
-			}else{
-				EnigmaGame.getCurrentScreen().showToast(SaveAsListener.SAVE_CANCELED);
-			}
+		else if(keycode == Config.SAVE.getMain() && ctrlpush && !altpush){
+			//on met un actionEvent sans importance car pas utilisé dans les actionPerformed
+			save.actionPerformed(new ActionEvent(new Object(),0,""));
+		}else if(keycode == Config.UNDO.getMain() && ctrlpush){
+			undo.actionPerformed(new ActionEvent(new Object(),0,""));
+		}else if(keycode == Config.REDO.getMain() && ctrlpush){
+			redo.actionPerformed(new ActionEvent(new Object(),0,""));
+		}else if(ctrlpush && altpush && keycode == Config.SAVE_AS.getMain()){
+			saveAs.actionPerformed(new ActionEvent(new Object(),0,""));
 		}
-
 
 		return false;
 	}
@@ -149,7 +139,7 @@ public class TestMapControl implements InputProcessor {
 			camera.update();
 			return true;
 		}else if (keycode == Input.Keys.CONTROL_LEFT) {
-			ispush = false;
+			ctrlpush = false;
 			return true;
 		}else if (keycode == Input.Keys.ALT_LEFT){
 			altpush = false;
