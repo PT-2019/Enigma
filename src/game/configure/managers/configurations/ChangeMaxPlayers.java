@@ -20,6 +20,7 @@ import java.awt.event.MouseEvent;
  * @since 3.0
  * @deprecated
  */
+@Deprecated
 public class ChangeMaxPlayers implements ChangeConfiguration {
 
 	/**

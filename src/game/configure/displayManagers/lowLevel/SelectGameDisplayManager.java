@@ -35,6 +35,7 @@ import java.awt.Insets;
  * @since 3.0
  * @deprecated
  */
+@Deprecated
 public class SelectGameDisplayManager implements DisplayManager {
 
 	/**

@@ -1,35 +1,21 @@
 package editor.popup;
 
-import api.ui.CustomOptionPane;
-import api.ui.CustomWindow;
-import api.utils.Utility;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.sun.jarsigner.ContentSignerParameters;
-import common.data.MapData;
-import common.hud.EnigmaOptionPane;
 import common.hud.EnigmaWindow;
 import common.map.MapTestScreen;
-import common.save.DataSave;
-import common.save.EmptyMapGenerator;
-import common.utils.Logger;
 import data.config.Config;
 import editor.EditorLauncher;
-import editor.bar.edition.ActionsManager;
 import editor.bar.listeners.RedoListener;
 import editor.bar.listeners.SaveAsListener;
 import editor.bar.listeners.SaveListener;
 import editor.bar.listeners.UndoListener;
-import game.EnigmaGame;
-import game.screens.TestScreen;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.io.IOException;
-import java.util.HashMap;
 
 /**
  * Controleur des différents évènement sur la map de l'éditeur

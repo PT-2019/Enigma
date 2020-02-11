@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
  * @since 3.0
  * @deprecated
  */
+@Deprecated
 public class Redirect implements ActionListener {
 	private String redirect;
 

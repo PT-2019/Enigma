@@ -19,6 +19,7 @@ import java.awt.event.MouseEvent;
  * @since 3.0
  * @deprecated
  */
+@Deprecated
 public class ChangeType implements ChangeConfiguration {
 
 	/**

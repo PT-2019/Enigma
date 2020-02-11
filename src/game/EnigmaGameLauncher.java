@@ -57,18 +57,18 @@ public class EnigmaGameLauncher implements Application {
 	 */
 	@Override
 	public void start() {
-		if (this.gameScreen != null)
+		if(this.gameScreen != null) {
 			this.window.remove(this.gameScreen);
-		this.window.setLayout(new BorderLayout());
+			this.gameScreen = new JPanel();
+		}
 		this.setContentToGameConfig();
-		System.out.println("---");
 		EnigmaGame.setStartScreen(EnigmaScreens.GAME);
-		this.window.add(this.gameScreen, BorderLayout.CENTER);
 		this.window.setVisible(true);
 	}
 
 	public void setContentToGameConfig(){
 		this.gameScreen = MHIManager.getInstance().getContent();
+		this.window.add(this.gameScreen, BorderLayout.CENTER);
 	}
 
 	public void setContentToGame(String mapPath){
@@ -81,6 +81,7 @@ public class EnigmaGameLauncher implements Application {
 			EmptyMapGenerator.load(GameScreen.getMapPath());
 		});
 		LoadGameLibgdxApplication.load(this.gameScreen, window);
+		this.window.add(this.gameScreen, BorderLayout.CENTER);
 	}
 
 	@Override

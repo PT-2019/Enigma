@@ -37,6 +37,7 @@ import java.awt.Insets;
  * @since 3.0
  * @deprecated
  */
+@Deprecated
 public class CreateGameDisplayManager implements DisplayManager {
 
 	/**

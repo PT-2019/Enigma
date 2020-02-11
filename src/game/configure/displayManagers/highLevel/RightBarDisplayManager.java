@@ -23,6 +23,7 @@ import java.util.HashMap;
  * @since 3.0
  * @deprecated
  */
+@Deprecated
 public class RightBarDisplayManager {
 
 	/**

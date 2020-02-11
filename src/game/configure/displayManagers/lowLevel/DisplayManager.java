@@ -13,6 +13,7 @@ import common.hud.EnigmaPanel;
  * @since 3.0
  * @deprecated
  */
+@Deprecated
 public interface DisplayManager {
 	/**
 	 * Rafraichir le contenu
