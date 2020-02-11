@@ -30,10 +30,6 @@ public class DialogNode extends Dialog{
         }
     }
 
-    public void addRight(Dialog d){
-        right = d;
-    }
-
     public Dialog getRight(){
         return this.right;
     }

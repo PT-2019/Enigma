@@ -18,6 +18,12 @@ public class EnigmaDialogPopup extends Window {
 
     private Label text;
 
+    /**
+     * String qui représente comment son codé les retours à la ligne dans le
+     * fichier de sauvegarde de la map
+     */
+    private static String NEW_LINE = "&#10;";
+
     public EnigmaDialogPopup() {
         super("", LibgdxUtility.loadSkin("assets/files/atlas/dialog.json","assets/files/atlas/uiskin.atlas"));
 
@@ -39,23 +45,15 @@ public class EnigmaDialogPopup extends Window {
 
     /**
      * Afficher le dialogue au départ
-     * @param content
+     * @param dialog
      */
-    public void showDialog(Content content){
-        dialog = new DialogNode();
-        dialog.addText(content.getContent());
-        text.setText(dialog.getText());
-        this.setVisible(true);
-    }
+    public void showDialog(Dialog dialog){
+        this.dialog = dialog;
+        String dialogText = dialog.getText();
+        //pour avoir des saut de ligne
+        dialogText = dialogText.replace(NEW_LINE,"\n");
+        text.setText(dialogText);
 
-    /**
-     * méthode de test
-     * @param content
-     */
-    public void showDialog(String content){
-        dialog = new DialogNode();
-        dialog.addText(content);
-        text.setText(dialog.getText());
         this.setVisible(true);
     }
 

@@ -8,7 +8,7 @@ public abstract class Dialog {
     /**
      * Nombre maximum de caractère par noeud
      */
-    protected static int MAX_CHAR = 30;
+    protected static int MAX_CHAR = 150;
 
     protected String text;
 

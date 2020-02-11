@@ -374,4 +374,8 @@ public class GameMap extends AbstractMap {
 	public ArrayList<GameActor> getGameEntities() {
 		return entities;
 	}
+
+	public EnigmaDialogPopup getEnigmaDialog() {
+		return enigmaDialog;
+	}
 }

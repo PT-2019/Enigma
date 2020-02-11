@@ -6,12 +6,17 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.math.Vector2;
+import common.Dialog.DialogNode;
+import common.Dialog.EnigmaDialogPopup;
 import common.enigmas.TileEventEnum;
 import common.entities.GameObject;
+import common.entities.consumable.Book;
+import common.entities.types.Content;
 import common.map.AbstractMap;
 import common.map.GameMap;
 import data.Direction;
 import data.keys.CameraKeys;
+import org.lwjgl.Sys;
 
 /**
  * Cette classe permet de déplacer le joueur et d'actionner son animation
@@ -132,7 +137,7 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
 		}
 
 		//interaction du joueur avec le milieu
-		if (Input.Keys.E == i || Input.Keys.ENTER == i) {
+		if (Input.Keys.E == i) {
 			float tmpX,tmpY;
 
 			if(facedDirection == Direction.BOTTOM){
@@ -160,6 +165,20 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
 			Vector2 position = AbstractMap.posToIndex(tmpX,tmpY,map);
 			GameObject object = map.posToEntities((int)position.y,(int)position.x);
 			System.out.println(object);
+
+			if (object instanceof Content){
+				EnigmaDialogPopup dialog = map.getEnigmaDialog();
+				DialogNode node = new DialogNode();
+				node.addText(((Content) object).getContent());
+				dialog.showDialog(node);
+			}
+		}
+
+		if (Input.Keys.ENTER == i){
+			EnigmaDialogPopup dialog = map.getEnigmaDialog();
+			if(dialog.isVisible()){
+				dialog.nextPart();
+			}
 		}
 		return false;
 	}
