@@ -11,6 +11,8 @@ import data.EnigmaScreens;
 import data.config.Config;
 import data.config.GameConfiguration;
 import game.EnigmaGame;
+import game.EnigmaGameLauncher;
+import game.screens.GameScreen;
 import game.screens.TestScreen;
 
 import javax.swing.*;
@@ -87,9 +89,7 @@ public class MHIManager extends Content {
         switch (state){
             case GAME_STATE:
                 String path = Config.MAP_FOLDER + GameConfiguration.getInstance().getMapName() + Config.MAP_EXTENSION;
-                /*((TestScreen) EnigmaGame.getCurrentScreen()).setMap(path);
-                EmptyMapGenerator.load(path);*/
-                Gdx.app.postRunnable(() -> EnigmaGame.setScreen(EnigmaScreens.GAME.name()));
+                EnigmaGameLauncher.getInstance().setContentToGame(path);
                 break;
             case CONFIGURE_STATE:
             default:

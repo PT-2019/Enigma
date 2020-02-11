@@ -134,4 +134,12 @@ public abstract class LibgdxScreen implements Screen, InputAdapter, IGameLogic {
 	 * @since 4.0
 	 */
 	public abstract AbstractMap getMap();
+
+	/**
+	 * Définit la map de l'écran
+	 *
+	 * @param absolutePath chemin
+	 * @return true si map changée sinon false, pas changée si c'est déjà la bonne
+	 */
+	public abstract boolean setMap(String absolutePath);
 }

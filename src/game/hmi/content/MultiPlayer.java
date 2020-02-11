@@ -114,6 +114,7 @@ public class MultiPlayer extends Content {
 
         ip.setHorizontalAlignment(SwingConstants.LEFT);
         search.setLayout(new GridBagLayout());
+        search.setPreferredSize(new Dimension(search.getPreferredSize().width,80));
         find.setBorder(BorderFactory.createMatteBorder(0,0,borderSize,0, Color.WHITE));
         games.setBorder(BorderFactory.createMatteBorder(0,0,borderSize,0, Color.WHITE));
         join.getComponentUI().setAllShowedBorders(EnigmaUIValues.ALL_BORDER_HIDDEN,EnigmaUIValues.ALL_BORDER_HIDDEN,EnigmaUIValues.ALL_BORDER_HIDDEN);
@@ -150,7 +151,7 @@ public class MultiPlayer extends Content {
         gbc.insets = new Insets(0,0,0,0);
         this.contentComponent.add(find,gbc);
         gbc.gridy = 2;
-        gbc.weighty = 8;
+        gbc.weighty = 1;
         gbc.insets = new Insets(0,0,inset,0);
         this.contentComponent.add(search,gbc);
         gbc.gridy = 3;

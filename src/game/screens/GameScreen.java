@@ -115,7 +115,29 @@ public class GameScreen extends LibgdxScreen {
 		Gdx.gl20.glClearColor(0.20f,0.20f,0.20f,1.0f);
 	}
 
+	/**
+	 * Définit la map de l'écran
+	 *
+	 * @param absolutePath chemin
+	 * @return true si map changée sinon false, pas changée si c'est déjà la bonne
+	 */
+	public boolean setMap(String absolutePath) {
+		if (!absolutePath.equals(MAP_PATH)) {
+			MAP_PATH = absolutePath;
+			return true;
+		}
+		return false;
+	}
+
 	public AbstractMap getMap() {
 		return this.map;
+	}
+
+	/**
+	 * Retourne le chemin de la map actuelle
+	 * @return le chemin de la map
+	 */
+	public static String getMapPath() {
+		return MAP_PATH;
 	}
 }
