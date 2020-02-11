@@ -4,6 +4,7 @@ import api.libgdx.LibgdxScreen;
 import api.libgdx.actor.GameActor;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import common.Dialog.EnigmaDialogPopup;
 import common.entities.players.NpcGame;
 import common.entities.players.PlayerGame;
 import common.map.AbstractMap;
@@ -65,6 +66,12 @@ public class GameScreen extends LibgdxScreen {
 					this.listen(((PlayerGame)actor));
 				}
 			}
+
+			this.hud.addActor(p);
+
+			p.showDialog("irelandire\nlandi" +
+					"chinehcinehcnechiencehcienceihcien");
+			p.nextPart();
 
 			//écoute des inputProcessor et des listeners
 			this.listen(this.hud);

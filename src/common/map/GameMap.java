@@ -13,6 +13,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import common.Dialog.EnigmaDialogPopup;
 import common.enigmas.TileEvent;
 import common.enigmas.TileEventEnum;
 import common.entities.Entity;
@@ -48,6 +49,8 @@ public class GameMap extends AbstractMap {
 	 */
 	private ArrayList<GameActor> entities;
 
+	private EnigmaDialogPopup enigmaDialog;
+
 	public GameMap(final String path, float unitScale) {
 		super(path, unitScale,false);
 
@@ -60,6 +63,7 @@ public class GameMap extends AbstractMap {
 		this.loadTileEvents();
 
 		this.entities = new ArrayList<>();
+		this.enigmaDialog = new EnigmaDialogPopup();
 
 		this.init();
 	}
