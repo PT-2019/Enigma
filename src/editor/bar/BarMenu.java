@@ -74,23 +74,6 @@ public class BarMenu extends EnigmaMenuBar {
 	}
 
 	/**
-	 * Retourne un item de la barre depuis son nom
-	 *
-	 * @param itemName un nom d'item
-	 * @return l'item ou null
-	 * @since 6.2
-	 */
-	public EnigmaMenuItem getItem(EnigmaMenuBarItems itemName) {
-		for (Component menu : new Array.ArrayIterator<>(this.getMenus())) {
-			for (Object item : ((EnigmaMenu) menu).getItems()) {
-				if (!(item instanceof EnigmaMenuItem)) continue;
-				if (itemName.name.equals(((EnigmaMenuItem) item).getText())) return (EnigmaMenuItem) item;
-			}
-		}
-		return null;
-	}
-
-	/**
 	 * Active/Désactive tous les menus sauf exceptions
 	 *
 	 * @param enable     true pour activer sinon false pour désactiver

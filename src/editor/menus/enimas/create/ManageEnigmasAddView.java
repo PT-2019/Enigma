@@ -1,10 +1,12 @@
 package editor.menus.enimas.create;
 
+import api.ui.base.ResetComponent;
 import common.enigmas.Enigma;
 import common.entities.GameObject;
 import common.entities.types.EnigmaContainer;
 import common.hud.EnigmaButton;
 import common.map.MapTestScreenCell;
+import data.NeedToBeTranslated;
 import editor.menus.AbstractPopUpView;
 import editor.menus.AbstractSubPopUpView;
 import editor.menus.enimas.ManageEnigmasView;
@@ -15,6 +17,7 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.swing.JPanel;
 import java.awt.CardLayout;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -34,27 +37,36 @@ public class ManageEnigmasAddView extends AbstractSubPopUpView {
 	/**
 	 * Textes à traduire
 	 */
-	public static final String TITLE = "Créer une énigme";
+	public static final String TITLE = NeedToBeTranslated.CREATE_ENIGMA;
+	static final String SAVE = NeedToBeTranslated.SAVE_ENIGMA;
+	static final String ADD_CLUE = NeedToBeTranslated.ADD_CLUE;
+	static final String ADD_COND = NeedToBeTranslated.ADD_COND;
+	static final String ADD_OP = NeedToBeTranslated.ADD_OP;
+
 	/**
 	 * CardLayout
 	 */
 	public static final String MENU = "menu";
-	static final String SAVE = "Sauvegarder Enigme";
-	static final String ADD_CLUE = "Ajouter un indice";
-	static final String ADD_COND = "Ajouter une condition";
-	static final String ADD_OP = "Ajouter une conséquence";
 	static final String CLUE = "clue";
 	static final String OPERATION = "operation";
 	static final String CONDITION = "condition";
+
+	/**
+	 * Object auquel on ajoute l'énigme
+	 */
 	private final GameObject object;
+
 	/**
 	 * Listener de la "fermeture"
 	 */
 	private final CustomBackToMenu customBackToMenu;
 	/**
-	 * Enigme que l'utilisateur va créer
+	 * énigme que l'utilisateur va créer
 	 */
 	private Enigma enigma;
+	/**
+	 * cardLayout
+	 */
 	private CardLayout layout;
 	/**
 	 * Composant principal de la fenêtre
@@ -77,10 +89,10 @@ public class ManageEnigmasAddView extends AbstractSubPopUpView {
 		super(TITLE, parent, true);
 		this.object = object;
 
-		EnigmaButton prev = menuPopUp.getPrev();
-		prev.removeActionListener(menuPopUp.getBackToMenu());
-		customBackToMenu = new CustomBackToMenu(this, parent);
-		prev.addActionListener(customBackToMenu);
+		EnigmaButton prev = this.menuPopUp.getPrev();
+		prev.removeActionListener(this.menuPopUp.getBackToMenu());
+		this.customBackToMenu = new CustomBackToMenu(this, parent);
+		prev.addActionListener(this.customBackToMenu);
 
 		//attributs
 		this.layout = new CardLayout();
@@ -109,9 +121,22 @@ public class ManageEnigmasAddView extends AbstractSubPopUpView {
 	public void clean() {
 		//on remet le menu de création de base
 		this.layout.show(this.panel, MENU);
+		this.clearChildren();
 		this.onMenu = true;
 		//forPopup
+		CaseListener.setAvailable(null);
 		DragAndDropBuilder.setForPopup(null);
+	}
+
+	/**
+	 * Appelle clean sur les enfants
+	 */
+	private void clearChildren(){
+		//clean des composants
+		for (Component components:this.panel.getComponents()) {
+			if(!(components instanceof ResetComponent)) continue;
+			((ResetComponent)components).clean();
+		}
 	}
 
 	/**
@@ -189,16 +214,18 @@ public class ManageEnigmasAddView extends AbstractSubPopUpView {
 
 				//on met le parent
 				CardLayout layout = this.parent.getCardLayout();
-				CaseListener.setAvailable(null);
 				layout.show(this.parent.getPanel(), MENU);
 
+				//reset de l'énigme
 				this.addView.enigma = new Enigma();
 
+				//up du parent
 				this.parent.invalidateDrawable();
 
 				//Reset l'éditor dans son état avant ouverture
 				DragAndDropBuilder.setForPopup(null);
 			} else {
+				this.addView.clearChildren();
 				//sinon retourne sur le menu
 				this.addView.setCard(MENU, ManageEnigmasAddView.TITLE);
 			}

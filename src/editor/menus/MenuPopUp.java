@@ -124,10 +124,10 @@ public class MenuPopUp extends EnigmaPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent actionEvent) {
-			reset.clean();
-			CardLayout layout = parent.getCardLayout();
+			this.reset.clean();
+			CardLayout layout = this.parent.getCardLayout();
 			CaseListener.setAvailable(null);
-			layout.show(parent.getPanel(), MENU);
+			layout.show(this.parent.getPanel(), MENU);
 		}
 	}
 }

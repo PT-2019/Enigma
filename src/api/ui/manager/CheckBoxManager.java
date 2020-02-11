@@ -6,7 +6,7 @@ import api.ui.skin.CustomButtonUI;
 import java.util.ArrayList;
 
 /**
- * Observateur des interactions avec des combo-box
+ * Observateur des interactions avec des check-box
  *
  * @author Jorys-Micke ALAÏS
  * @author Louka DOZ

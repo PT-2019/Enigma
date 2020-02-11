@@ -31,7 +31,7 @@ public class MapData {
 	private String author;
 	/**
 	 * Nom de la map
-	 * Donnée à l'instanciation, elle ne doit, dans auncun cas, être changée plus tard
+	 * Donnée à l'instanciation, elle ne doit, dans aucun cas, être changée plus tard
 	 */
 	private String mapName;
 

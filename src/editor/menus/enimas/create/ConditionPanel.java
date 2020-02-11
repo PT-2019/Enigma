@@ -24,7 +24,7 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 
 /**
- * Menu d'ajout d'une énigme
+ * Menu d'ajout d'une condition d'une énigme
  *
  * @author Jorys-Micke ALAÏS
  * @author Louka DOZ
@@ -35,29 +35,41 @@ import java.awt.Insets;
  */
 public class ConditionPanel extends AbstractSubPopUpView implements Observer<GameObject> {
 
+	/**
+	 * Textes
+	 */
 	public static final String NOT_AVAILABLE_CONDITION = NeedToBeTranslated.NOT_AVAILABLE_CONDITION;
 	public static final String ASK_COND = NeedToBeTranslated.ASK_COND;
 	public static final String TITLE = NeedToBeTranslated.ADD_CONDITION;
 	private static final String ASK_SELECT = NeedToBeTranslated.ASK_SELECT;
 	private static final String INVALID_ENTITY = NeedToBeTranslated.INVALID_ENTITY;
+	private static final String SUBMIT = NeedToBeTranslated.SUBMIT;
 
 	/**
 	 * Les informations sur l'entité sur laquelle l'opération sera faite
 	 */
 	private final EnigmaLabel entityName, selection;
+
 	/**
 	 * Groupe des bouton de choix de l'opération
 	 */
-	private ButtonGroup groups;
+	private final ButtonGroup groups;
 	/**
 	 * Observateur de ce menu
 	 */
 	private ConditionListener listener;
 
+	/**
+	 * Menu d'ajout d'une condition d'une énigme
+	 * @param parent parent
+	 * @param addView addView
+	 */
 	ConditionPanel(AbstractPopUpView parent, ManageEnigmasAddView addView) {
 		super("", parent, false);
 
+		//Groupe des bouton de choix de l'opération
 		this.groups = new ButtonGroup();
+		//listener de la sélection d'une opération
 		this.listener = new ConditionListener(addView, this);
 
 		EnigmaPanel panel = new EnigmaPanel();
@@ -65,10 +77,11 @@ public class ConditionPanel extends AbstractSubPopUpView implements Observer<Gam
 
 		for (Conditions cond : Conditions.values()) {
 			JRadioButton r = new JRadioButton(cond.value);
+			//tooltip
 			r.setToolTipText(cond.tooltip);
 			r.setName(cond.name());
 			//on ajoute les boutons au groupe
-			groups.add(r);
+			this.groups.add(r);
 			//ajoute les boutons au panneau
 			panel.add(r);
 			//listener pour les boutons
@@ -78,9 +91,9 @@ public class ConditionPanel extends AbstractSubPopUpView implements Observer<Gam
 		EnigmaPanel p2 = new EnigmaPanel();
 		p2.setLayout(new GridBagLayout());
 
-		EnigmaButton submit = new EnigmaButton("Valider");
-		submit.addActionListener(listener);
-		selection = new EnigmaLabel();
+		EnigmaButton submit = new EnigmaButton(SUBMIT);
+		submit.addActionListener(this.listener);
+		this.selection = new EnigmaLabel();
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridx = 0;
 		gbc.gridy = 0;
@@ -88,16 +101,16 @@ public class ConditionPanel extends AbstractSubPopUpView implements Observer<Gam
 		gbc.weighty = 0;
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.insets = new Insets(15, 0, 0, 0);
-		p2.add(selection, gbc);
+		p2.add(this.selection, gbc);
 
-		entityName = new EnigmaLabel(ASK_COND);
-		entityName.getComponentUI().setAllForegrounds(Color.YELLOW, Color.YELLOW, Color.YELLOW);
+		this.entityName = new EnigmaLabel(ASK_COND);
+		this.entityName.getComponentUI().setAllForegrounds(Color.YELLOW, Color.YELLOW, Color.YELLOW);
 		gbc.gridx = 0;
 		gbc.gridy = 1;
 		gbc.weightx = 0;
 		gbc.weighty = 0;
 		gbc.fill = GridBagConstraints.BOTH;
-		p2.add(entityName, gbc);
+		p2.add(this.entityName, gbc);
 
 		gbc.gridx = 0;
 		gbc.gridy = 2;
@@ -122,7 +135,6 @@ public class ConditionPanel extends AbstractSubPopUpView implements Observer<Gam
 		this.listener.clean();
 		this.groups.clearSelection();
 		DragAndDropBuilder.setForPopup(null);
-		//EnigmaView.setAvailable(null);
 	}
 
 	@Override
@@ -167,6 +179,10 @@ public class ConditionPanel extends AbstractSubPopUpView implements Observer<Gam
 		}
 	}
 
+	/**
+	 * Renvoi le label avec le message de la sélection de l'entité
+	 * @return le label avec le message de la sélection de l'entité
+	 */
 	public EnigmaLabel getEntityName() {
 		return this.entityName;
 	}

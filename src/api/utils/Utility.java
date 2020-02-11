@@ -4,9 +4,12 @@ import api.utils.annotations.ConvenienceClass;
 import api.utils.annotations.ConvenienceMethod;
 import common.utils.Logger;
 
+import java.awt.Component;
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.Window;
 import java.io.BufferedReader;
 import java.io.File;
@@ -26,10 +29,11 @@ import java.util.Map;
  * Tout un paquet de méthodes utiles
  *
  * @author Quentin RAMSAMY-AGEORGES
- * @version 6.4
+ * @version 6.5
  * @since 2.0 27 novembre 2019
  */
 @ConvenienceClass
+@SuppressWarnings("unused")
 public class Utility implements Serializable {
 
 	/**
@@ -431,7 +435,7 @@ public class Utility implements Serializable {
 	}
 
 	/**
-	 * Affichage de message concernant le débuggage
+	 * Affichage de message concernant le débogage
 	 *
 	 * @param className nom de la classe
 	 * @param message   message
@@ -512,5 +516,22 @@ public class Utility implements Serializable {
 	 */
 	public static boolean hasClass(Class<?> aClass, Object o) {
 		return hasClass(aClass, o, new Class[]{o.getClass()});
+	}
+
+	/**
+	 * Renvoi la position pour aligner le composant au centre
+	 * @param frame un composant
+	 * @return la position pour aligner le composant au centre
+	 * @since 6.5
+	 */
+	public static Point getAlignCenterPosition(Component frame) {
+		Rectangle screenSize = frame.getGraphicsConfiguration().getBounds();
+		int sizeW = screenSize.width;
+		int sizeH = screenSize.height;
+		int windowPosX;
+		int windowPosY;
+		windowPosX = (sizeW - frame.getWidth()) / 2;
+		windowPosY = (sizeH - frame.getHeight()) / 2;
+		return new Point(windowPosX + screenSize.x, windowPosY + screenSize.y);
 	}
 }

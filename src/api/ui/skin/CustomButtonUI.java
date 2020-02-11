@@ -262,12 +262,14 @@ public class CustomButtonUI extends BasicButtonUI implements CustomUIHoverAndPre
 	private void paintBorder(Graphics g, AbstractButton b, Color borderColor, int borderSize, boolean[] showedBorders) {
 		g.setColor(borderColor);
 		for (int i = 0; i < 4; i++) {
-			if (i == DefaultUIValues.TOP_BORDER && showedBorders[i]) g.fillRect(0, 0, b.getWidth(), borderSize);
+			if (i == DefaultUIValues.TOP_BORDER && showedBorders[i])
+				g.fillRect(0, 0, b.getWidth(), borderSize);
 			if (i == DefaultUIValues.RIGHT_BORDER && showedBorders[i])
 				g.fillRect(b.getWidth() - borderSize, 0, b.getWidth(), b.getHeight());
 			if (i == DefaultUIValues.BOTTOM_BORDER && showedBorders[i])
 				g.fillRect(0, b.getHeight() - borderSize, b.getWidth(), b.getHeight());
-			if (i == DefaultUIValues.LEFT_BORDER && showedBorders[i]) g.fillRect(0, 0, borderSize, b.getHeight());
+			if (i == DefaultUIValues.LEFT_BORDER && showedBorders[i])
+				g.fillRect(0, 0, borderSize, b.getHeight());
 		}
 	}
 

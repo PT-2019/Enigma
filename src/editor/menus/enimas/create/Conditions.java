@@ -25,11 +25,11 @@ import org.jetbrains.annotations.Nullable;
  */
 public enum Conditions {
 	ACTIVATED(NeedToBeTranslated.ACTIVATED_DESC, NeedToBeTranslated.ACTIVATED_RES, SelectionsModes.MAP),
-	ANSWER(NeedToBeTranslated.ANSWER_DESC, NeedToBeTranslated.ANSWER_RES, SelectionsModes.ALL),
-	ROOM_DISCOVERED(NeedToBeTranslated.ROOM_DISCOVERED_DESC, NeedToBeTranslated.ROOM_DISCOVERED_RES, SelectionsModes.MAP),
-	ROOM_UNDISCOVERED(NeedToBeTranslated.ROOM_UNDISCOVERED_DESC, NeedToBeTranslated.ROOM_UNDISCOVERED_RES, SelectionsModes.MAP),
-	HAVE_IN_HANDS(NeedToBeTranslated.HAVE_IN_HANDS_DESC, NeedToBeTranslated.HAVE_IN_HANDS_RES, SelectionsModes.MAP_AND_POPUP),
-	HAVE_IN_INVENTORY(NeedToBeTranslated.HAVE_IN_INVENTORY_DESC, NeedToBeTranslated.HAVE_IN_INVENTORY_RES, SelectionsModes.MAP_AND_POPUP),
+	ANSWER(NeedToBeTranslated.ANSWER_DESC, NeedToBeTranslated.ANSWER_RES, SelectionsModes.ALL, false),
+	ROOM_DISCOVERED(NeedToBeTranslated.ROOM_DISCOVERED_DESC, NeedToBeTranslated.ROOM_ONLY, SelectionsModes.MAP),
+	ROOM_UNDISCOVERED(NeedToBeTranslated.ROOM_UNDISCOVERED_DESC, NeedToBeTranslated.ROOM_ONLY, SelectionsModes.MAP),
+	HAVE_IN_HANDS(NeedToBeTranslated.HAVE_IN_HANDS_DESC, NeedToBeTranslated.ITEMS_ONLY, SelectionsModes.MAP_AND_POPUP),
+	HAVE_IN_INVENTORY(NeedToBeTranslated.HAVE_IN_INVENTORY_DESC, NeedToBeTranslated.ITEMS_ONLY, SelectionsModes.MAP_AND_POPUP),
 	;
 
 	/**
@@ -43,21 +43,46 @@ public enum Conditions {
 	public final String value;
 
 	/**
-	 * ignore
+	 * true si condition disponible
+	 */
+	public final boolean available;
+
+	/**
+	 * tooltip
 	 */
 	public final String tooltip;
+
 	/**
 	 * Message si la condition n'est pas respectée
 	 */
 	public final String restrict;
+
 	/**
 	 * Possible de sélectionner depuis le menu
 	 */
 	public final SelectionsModes menuDrag;
 
+	/**
+	 * Conditions
+	 * @param value description
+	 * @param restrict message si la condition n'est pas respectée
+	 * @param menuDrag mode de sélection de l'entité si besoin
+	 */
 	Conditions(String value, String restrict, SelectionsModes menuDrag) {
+		this(value, restrict, menuDrag, true);
+	}
+
+	/**
+	 * Conditions
+	 * @param value description
+	 * @param restrict message si la condition n'est pas respectée
+	 * @param menuDrag mode de sélection de l'entité si besoin
+	 * @param available true si condition disponible
+	 */
+	Conditions(String value, String restrict, SelectionsModes menuDrag, boolean available) {
 		this.value = value;
-		this.tooltip = "";
+		this.available = available;
+		this.tooltip = value;
 		this.restrict = restrict;
 		this.menuDrag = menuDrag;
 	}
@@ -66,11 +91,13 @@ public enum Conditions {
 	 * Déverrouille la condition actuelle. L'éditor est débloqué.
 	 * Par exemple le drag and drop depuis le menu peu être désactivé.
 	 *
-	 * @param conditions condition
+	 * @param conditions une condition ou null pour la condition actuelle
 	 */
 	public static void unlock(@Nullable Conditions conditions) {
 		if (conditions != null) {
 			conditions.unlock();
+		} else if(Conditions.locked != null){
+			Conditions.locked.unlock();
 		}
 	}
 
@@ -82,9 +109,9 @@ public enum Conditions {
 	 * @param observer   observer
 	 */
 	public static void lock(@NotNull Conditions conditions, Observer<GameObject> observer) {
-		unlock(locked);
-		locked = conditions;
-		locked.lock(observer);
+		Conditions.unlock(Conditions.locked);//unlock de l'ancienne condition
+		Conditions.locked = conditions;
+		Conditions.locked.lock(observer);
 	}
 
 	/**
@@ -95,12 +122,12 @@ public enum Conditions {
 	 */
 	private void lock(Observer<GameObject> observer) {
 		//capture du drag and drop
-		if (menuDrag.contains(SelectionsModes.MENU)) {
+		if (this.menuDrag.contains(SelectionsModes.MENU)) {
 			DragAndDropBuilder.setForPopup(observer);
 		}
 
 		//désactivation de la sélection depuis la map
-		if (!menuDrag.contains(SelectionsModes.MAP)) {
+		if (!this.menuDrag.contains(SelectionsModes.MAP)) {
 			if (EditorLauncher.containsState(EditorState.NORMAL)) {
 				EditorLauncher.clearStates();
 			}
@@ -119,7 +146,7 @@ public enum Conditions {
 		}
 
 		//débloque la sélection de la map
-		if (!menuDrag.contains(SelectionsModes.MAP)) {
+		if (!this.menuDrag.contains(SelectionsModes.MAP)) {
 			EditorLauncher.removeState(EditorState.SPECIAL_POPUP_DISABLED);
 		}
 	}
@@ -132,17 +159,17 @@ public enum Conditions {
 	 */
 	public boolean isValid(GameObject object) {
 		//cette méthode n'est pas géniale, on a écrit à la main les conditions
-		if (this.equals(ACTIVATED)) {
+		if (this.equals(Conditions.ACTIVATED)) {
 			return object instanceof Activatable;
-		} else if (this.equals(ANSWER)) {
+		} else if (this.equals(Conditions.ANSWER)) {
 			return false;
-		} else if (this.equals(HAVE_IN_HANDS)) {
+		} else if (this.equals(Conditions.HAVE_IN_HANDS)) {
 			return object instanceof Consumable;
-		} else if (this.equals(HAVE_IN_INVENTORY)) {
+		} else if (this.equals(Conditions.HAVE_IN_INVENTORY)) {
 			return object instanceof Consumable;
-		} else if (this.equals(ROOM_DISCOVERED)) {
+		} else if (this.equals(Conditions.ROOM_DISCOVERED)) {
 			return object instanceof Room;
-		} else if (this.equals(ROOM_UNDISCOVERED)) {
+		} else if (this.equals(Conditions.ROOM_UNDISCOVERED)) {
 			return object instanceof Room;
 		}
 

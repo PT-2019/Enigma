@@ -21,6 +21,7 @@ import editor.menus.enimas.create.Operations;
 import editor.popup.listeners.CaseListener;
 import game.EnigmaGame;
 import game.screens.TestScreen;
+import org.jetbrains.annotations.Nullable;
 
 import javax.swing.JRadioButton;
 import java.awt.event.ActionEvent;
@@ -46,6 +47,7 @@ public class OperationListener implements ActionListener, ItemListener {
 	 * parent, operations board
 	 */
 	private final OperationPanel operationPanel;
+
 	private final ManageEnigmasAddView addView;
 	/**
 	 * selected operation
@@ -56,7 +58,7 @@ public class OperationListener implements ActionListener, ItemListener {
 	 **/
 	private AbstractPopUpView parent;
 	/**
-	 * operation submited
+	 * operation submitted
 	 **/
 	private boolean validate;
 	/**
@@ -77,40 +79,48 @@ public class OperationListener implements ActionListener, ItemListener {
 	public void actionPerformed(ActionEvent e) {
 		Operation ope = null;
 
-		if (currentButton == null) {
-			operationPanel.getEntityName().setText(OperationPanel.ASK_OP);
+		if (this.currentButton == null) {
+			this.operationPanel.getEntityName().setText(OperationPanel.ASK_OP);
 			return;
 		}
 
-		//TODO: on devrait pouvoir ajouter des nouvelles opérations plus facilement
-		// voir la classe Operations, le problème est le nombre variable d'argument du constructeur
-		// même si il y a toujours un object apparemment
+		String selectedOperation = this.currentButton.getName();
 
-		if (this.currentButton.getName().equals(Operations.GIVE.name())) {
+		//en fonction du bouton radio actionné on choisi la bonne opération
+
+		//give
+		if (selectedOperation.equals(Operations.GIVE.name())) {
 			if (this.object instanceof Item)
 				ope = new Give((Item) this.object);
-		} else if (this.currentButton.getName().equals(Operations.SUMMON.name())) {
+		//summon
+		} else if (selectedOperation.equals(Operations.SUMMON.name())) {
 			if (this.object instanceof Entity)
 				ope = new Summon((Entity) this.object, parent.getPopUp().getCell());
-		} else if (this.currentButton.getName().equals(Operations.UNLOCK.name())) {
+		//unlock
+		} else if (selectedOperation.equals(Operations.UNLOCK.name())) {
 			if (this.object instanceof Lockable)
 				ope = new Unlock((Lockable) this.object);
-		} else if (this.currentButton.getName().equals(Operations.SHOW_ROOM.name())) {
+		//room
+		} else if (selectedOperation.equals(Operations.SHOW_ROOM.name())) {
 			if (this.object instanceof Room)
 				ope = new ShowRoom((Room) this.object);
-		} else if (this.currentButton.getName().equals(Operations.HIDE_ROOM.name())) {
+		} else if (selectedOperation.equals(Operations.HIDE_ROOM.name())) {
 			if (this.object instanceof Room)
 				ope = new HideRoom((Room) this.object);
-		} else {
+		} else { //sinon condition non disponible
 			this.operationPanel.getEntityName().setText(OperationPanel.NOT_AVAILABLE_OPERATION);
 		}
 
 		if (ope == null) return;
 
+		//ajoute la opération
 		this.addView.getEnigma().addOperation(ope);
 		Logger.printDebug("OperationAdded", ope.toLongString());
+		//condition ajoutée
 		this.validate = true;
+		//suppression des info
 		this.operationPanel.clean();
+		//retour menu
 		this.addView.setCard(ManageEnigmasAddView.MENU, ManageEnigmasAddView.TITLE);
 	}
 
@@ -133,9 +143,16 @@ public class OperationListener implements ActionListener, ItemListener {
 	 * Nettoyage
 	 */
 	public void clean() {
+		//libère l'object temporaire
 		this.setGameObject(null);
-		this.currentButton = null;
+		//déverrouille l'éditeur
 		Operations.unlock(null);
+		//supprime la sélection
+		this.currentButton = null;
+		//condition plus validée
+		this.validate = false;
+		//reset du panneau des opérations
+		this.operationPanel.update((GameObject) null);
 	}
 
 	/**
@@ -152,7 +169,7 @@ public class OperationListener implements ActionListener, ItemListener {
 	 *
 	 * @param object Object sélectionné
 	 */
-	public void setGameObject(GameObject object) {
+	public void setGameObject(@Nullable GameObject object) {
 		if (this.object != null && !this.validate) {//si j'avais un object temporaire, je le supprime
 			//il existe déjà un object
 			Vector2 pos = this.object.getGameObjectPosition();
@@ -160,15 +177,25 @@ public class OperationListener implements ActionListener, ItemListener {
 			if (pos == null || pos.x < 0 || pos.y < 0) {
 				MapTestScreen map = ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap();
 				//supprime de la map
+				int id = this.object.getID();
 				map.removeEntity(this.object);
 				//l'id du temporaire est forcément le dernier donc transfert de l'id si besoin
-				if (object != null && object.getID() > this.object.getID()) {
+				if (object != null && object.getID() > id) {
 					//libère l'id
 					map.freeId(object);
-					object.setID(this.object.getID());//transfert de l'ID du supprimé*/
+					object.setID(id);//transfert de l'ID du supprimé*/
+				} else {
+					//on veut supprimer l'object
+					map.freeId(this.object);
 				}
 			}
 		}
 		this.object = object;
+	}
+
+	@Override
+	public String toString() {
+		return "OperationListener{" + "currentButton=" + (currentButton==null?"":currentButton.getName()) +
+				", validate=" + validate + ", object=" + object + '}';
 	}
 }

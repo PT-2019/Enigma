@@ -79,8 +79,8 @@ public abstract class AbstractSubPopUpView extends EnigmaPanel implements ResetC
 		this.footer.add(this.infoLabel, gbc);
 
 		this.setLayout(new BorderLayout());
-		menuPopUp = new MenuPopUp(title, "", parent, this, showBack);
-		this.add(menuPopUp, BorderLayout.NORTH);
+		this.menuPopUp = new MenuPopUp(title, "", parent, this, showBack);
+		this.add(this.menuPopUp, BorderLayout.NORTH);
 		this.add(this.content, BorderLayout.CENTER);
 		this.add(this.footer, BorderLayout.SOUTH);
 	}

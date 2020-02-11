@@ -49,6 +49,7 @@ public class SaveListener extends MenuListener {
 
 		MapTestScreen map = ((TestScreen) EnigmaGame.getCurrentScreen()).getMap();
 		EmptyMapGenerator.save(TestScreen.getMapPath().replace(Config.MAP_EXTENSION, ""), map.getTiledMap(), map.getEntities());
+		map.freeId(null); //libères les ids temporaires
 
 		//TODO: message ok
 	}

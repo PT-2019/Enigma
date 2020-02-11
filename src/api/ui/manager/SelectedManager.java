@@ -20,7 +20,7 @@ public final class SelectedManager extends MouseAdapter {
 
 	private MultipleButtonManager manager;
 
-	public SelectedManager(MultipleButtonManager manager) {
+	SelectedManager(MultipleButtonManager manager) {
 		this.manager = manager;
 	}
 

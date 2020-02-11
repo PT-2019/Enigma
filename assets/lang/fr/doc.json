@@ -1,0 +1,41 @@
+[
+  {
+    title: Home
+    docItems: [
+      {
+        type: TITLE
+        content: [
+          Home
+        ]
+      },
+      {
+        type: MESSAGE
+        content : [
+          "Bienvenue dans l'éditeur de maps d'Enigma.\n"
+          "\n"
+          "Vous trouverez ici, une aide pour créer des escapes games.\n"
+          "\n"
+          "Amusez-vous bien !\n"
+          "\n"
+          "L'équipe de développement d'Enigma."
+        ]
+      }
+    ]
+  },
+  {
+    title: Salles
+    docItems: []
+  },
+  {
+    title: Personnages
+    docItems: []
+  },
+  {
+    title: Objets
+    docItems: []
+  }
+  {
+    title: Enigmes
+    docItems: []
+  }
+]

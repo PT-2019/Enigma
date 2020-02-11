@@ -38,25 +38,37 @@ public interface NeedToBeTranslated {
 	String ADD_CONDITION = "Ajouter une Condition à l'énigme";
 	String INVALID_ENTITY = "Entité Invalide.";
 
+	//Opération Panel
+
+	//String NOT_SELECTED = "Vous n'avez pas encore choisi d'entité";
+	String ASK_OP = "Veuillez sélectionner une opération.";
+	String NOT_AVAILABLE_OPERATION = "Opération non disponible";
+	String ADD_OPERATION = "Ajouter une Opération à l'énigme";
+
 	//Conditions
 
 	String ACTIVATED_DESC = "Un object doit être activé";
-	String ACTIVATED_RES = "Seulement un objet activable.";
+	String ACTIVATED_RES = "Seulement un objet actionnable.";
 
 	String ANSWER_DESC = "Demander au joueur une réponse";
 	String ANSWER_RES = "";
 
 	String HAVE_IN_HANDS_DESC = "Avoir l'objet dans ses mains";
-	String HAVE_IN_HANDS_RES = "Objects uniquement (clef, livre, ...)";
+	String ITEMS_ONLY = "Objects uniquement (clef, livre, ...)";
 
 	String HAVE_IN_INVENTORY_DESC = "Avoir l'objet dans l'inventaire";
-	String HAVE_IN_INVENTORY_RES = "Objects uniquement (clef, livre, ...)";
 
 	String ROOM_DISCOVERED_DESC = "Salle doit être découverte";
-	String ROOM_DISCOVERED_RES = "Salles uniquement";
+	String ROOM_ONLY = "Salles uniquement";
 
 	String ROOM_UNDISCOVERED_DESC = "Salle ne doit pas être découverte.";
-	String ROOM_UNDISCOVERED_RES = "Salles uniquement";
+
+	//ManageEnigmasAddView
+
+	String CREATE_ENIGMA = "Créer une énigme";
+	String SAVE_ENIGMA = "Sauvegarder énigme";
+	String ADD_COND = "Ajouter une condition";
+	String ADD_OP = "Ajouter une conséquence";
 
 	//ActionTypes
 
@@ -93,23 +105,19 @@ public interface NeedToBeTranslated {
 	//Operations
 
 	String GIVE_DESC = "Donne un object à l'utilisateur";
-	String GIVE_RES = "Objects uniquement (livre...).";
-
 
 	String SUMMON_DESC = "Invoque une entité";
 	String SUMMON_RES = "Seulement des personnages, pas de héros.";
 
 
-	String UNLOCK_DESC = "Dévérouille un object";
-	String UNLOCK_RES = "Seulement un object \"Décors\" fermable.";
+	String UNLOCK_DESC = "Déverrouille un object";
+	String UNLOCK_RES = "Seulement un object \"Décors\" verrouillable.";
 
 
 	String HIDE_ROOM_DESC = "Cacher une salle";
-	String HIDE_ROOM_RES = "Seulement une salle.";
 
 
 	String SHOW_ROOM_DESC = "Afficher une salle";
-	String SHOW_ROOM_RES = "Seulement une salle.";
 
 	// DragAndDrop
 
@@ -158,4 +166,19 @@ public interface NeedToBeTranslated {
 
 	//ManageEnigmasSeeView
 	String DELETE = "Supprimer";
+	String CONFIRM = "Confirmer";
+
+	//AddItemAddView
+	String ADD_ITEM = "Ajouter un objet";
+
+	//SelectionsModes
+	String MENU_ONLY = "menu uniquement";
+	String MAP_ONLY = "carte uniquement";
+	String POPUP_ONLY = "contenu uniquement";
+	String MAP_AND_MENU = "carte et menu";
+	String MENU_AND_POPUP = "menu et contenu";
+	String MAP_AND_POPUP =	"carte et contenu";
+	String MAP_AND_MENU_AND_POPUP = "carte, menu et contenu";
+	String NO_MODE = "Spécial";
+	String ALL_MODES = "carte, menu et contenu";
 }

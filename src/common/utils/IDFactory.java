@@ -37,7 +37,7 @@ public class IDFactory {
 	 *
 	 * @since 2.0
 	 */
-	private ArrayList<IDInterface> list;
+	private ArrayList<IDInterface> list, tmp;
 	/**
 	 * Compteur des ids
 	 *
@@ -77,6 +77,7 @@ public class IDFactory {
 	public void reset() {
 		this.list = new ArrayList<>();
 		this.deleted = new ArrayList<>();
+		this.tmp = new ArrayList<>();
 		this.count = BASE_NORMAL;
 		this.countReverse = BASE_REVERSE;
 	}
@@ -204,20 +205,42 @@ public class IDFactory {
 	 * Libère l'id d'un object
 	 *
 	 * @param object  un object
-	 * @param deleted si l'id doit être rendu disponible doit suppression définitive
+	 * @param deleted si l'id doit être rendu disponible soit une suppression définitive
+	 *                sinon l'objet et son id sont gardés en cache {@link #clearCache()}
 	 * @since 6.0
 	 */
 	public void free(IDInterface object, boolean deleted) {
-		if (!list.contains(object)) return;
+		if (!this.list.contains(object)){
+			IDInterface elementByID = getElementByID(object.getID());
+			if(elementByID instanceof NullIDInterfaceObject) return;
+			this.free(elementByID, deleted);
+			return;
+		}
 
 		//ajoute aux ids libres
 		if (deleted) {
-			this.deleted.add(object.getID());
+			//pas de doublons
+			if(!this.deleted.contains(object.getID()))
+				this.deleted.add(object.getID());
 			//retire l'id
 			object.setID(ID_FACTORY_NO_ID);
-		}
 
-		this.list.remove(object);//suppression
+			//suppression
+			this.list.remove(object);
+		} else if(!this.tmp.contains(object)) {
+			//garde les objets et leurs ids en cache
+			this.tmp.add(object);
+		}
+	}
+
+	/**
+	 * Vide le cache (=libère définitivement les ids)
+	 */
+	public void clearCache() {
+		for (IDInterface idInterface : this.tmp) {
+			this.free(idInterface, true);
+		}
+		this.tmp.clear();
 	}
 
 	/**

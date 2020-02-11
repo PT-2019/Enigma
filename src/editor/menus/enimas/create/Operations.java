@@ -26,10 +26,10 @@ import org.jetbrains.annotations.Nullable;
  * @since 5.0 25/01/2020
  */
 public enum Operations {
-	GIVE(NeedToBeTranslated.GIVE_DESC, NeedToBeTranslated.GIVE_RES, SelectionsModes.MENU_AND_POPUP),
-	SUMMON(NeedToBeTranslated.SUMMON_DESC, NeedToBeTranslated.SUMMON_RES, SelectionsModes.MAP_AND_MENU),
-	SHOW_ROOM(NeedToBeTranslated.SHOW_ROOM_DESC, NeedToBeTranslated.SHOW_ROOM_RES, SelectionsModes.MAP_AND_MENU),
-	HIDE_ROOM(NeedToBeTranslated.HIDE_ROOM_DESC, NeedToBeTranslated.HIDE_ROOM_RES, SelectionsModes.MAP_AND_MENU),
+	GIVE(NeedToBeTranslated.GIVE_DESC, NeedToBeTranslated.ITEMS_ONLY, SelectionsModes.MENU_AND_POPUP),
+	SUMMON(NeedToBeTranslated.SUMMON_DESC, NeedToBeTranslated.SUMMON_RES, SelectionsModes.MENU),
+	SHOW_ROOM(NeedToBeTranslated.SHOW_ROOM_DESC, NeedToBeTranslated.ROOM_ONLY, SelectionsModes.MAP),
+	HIDE_ROOM(NeedToBeTranslated.HIDE_ROOM_DESC, NeedToBeTranslated.ROOM_ONLY, SelectionsModes.MAP),
 	UNLOCK(NeedToBeTranslated.UNLOCK_DESC, NeedToBeTranslated.UNLOCK_RES, SelectionsModes.MAP),
 	;
 
@@ -42,22 +42,48 @@ public enum Operations {
 	 * Operation
 	 */
 	public final String value;
+
 	/**
-	 * ignore
+	 * true si condition disponible
+	 */
+	public final boolean available;
+
+	/**
+	 * tooltip
 	 */
 	public final String tooltip;
+
 	/**
 	 * Message si la condition n'est pas respectée
 	 */
 	public final String restrict;
+
 	/**
 	 * Possible de sélectionner depuis le menu
 	 */
 	public final SelectionsModes menuDrag;
 
+	/**
+	 * Opérations
+	 * @param value description
+	 * @param restrict message si la condition n'est pas respectée
+	 * @param menuDrag mode de sélection de l'entité si besoin
+	 */
 	Operations(String value, String restrict, SelectionsModes menuDrag) {
+		this(value, restrict, menuDrag, true);
+	}
+
+	/**
+	 * Opérations
+	 * @param value description
+	 * @param restrict message si la condition n'est pas respectée
+	 * @param menuDrag mode de sélection de l'entité si besoin
+	 * @param available true si condition disponible
+	 */
+	Operations(String value, String restrict, SelectionsModes menuDrag, boolean available) {
 		this.value = value;
-		this.tooltip = "";
+		this.available = available;
+		this.tooltip = value;
 		this.restrict = restrict;
 		this.menuDrag = menuDrag;
 	}
@@ -71,6 +97,8 @@ public enum Operations {
 	public static void unlock(@Nullable Operations operations) {
 		if (operations != null) {
 			operations.unlock();
+		} else if(Operations.locked != null){
+			Operations.locked.unlock();
 		}
 	}
 
@@ -84,9 +112,9 @@ public enum Operations {
 	 * @param observer   observer
 	 */
 	public static void lock(@NotNull Operations operations, Observer<GameObject> observer) {
-		unlock(locked);
-		locked = operations;
-		locked.lock(observer);
+		Operations.unlock(Operations.locked);//unlock de la condition actuelle
+		Operations.locked = operations;
+		Operations.locked.lock(observer);
 	}
 
 	/**
@@ -134,20 +162,18 @@ public enum Operations {
 	 */
 	public boolean isValid(GameObject object) {
 		//cette méthode n'est pas géniale, on a écrit à la main les conditions
-		if (this.equals(GIVE)) {
+		if (this.equals(Operations.GIVE)) {
 			return (object instanceof NeedContainer);
-		} else if (this.equals(SUMMON)) {
+		} else if (this.equals(Operations.SUMMON)) {
 			if (object instanceof Living) {
-				if (object instanceof NPC) {
-					return !((NPC) object).isHero();
-				}
+				if (object instanceof NPC) return !((NPC) object).isHero();
 				return true;
 			}
-		} else if (this.equals(UNLOCK)) {
+		} else if (this.equals(Operations.UNLOCK)) {
 			return (object instanceof Lockable);
-		} else if (this.equals(SHOW_ROOM)) {
+		} else if (this.equals(Operations.SHOW_ROOM)) {
 			return (object instanceof Room);
-		} else if (this.equals(HIDE_ROOM)) {
+		} else if (this.equals(Operations.HIDE_ROOM)) {
 			return (object instanceof Room);
 		}
 

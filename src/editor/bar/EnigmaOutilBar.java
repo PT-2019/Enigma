@@ -34,6 +34,7 @@ import java.awt.event.ItemListener;
 public class EnigmaOutilBar extends EnigmaPanel {
 
 	private static final Color COLOR = Color.decode("#bfbfbf");
+	//aucune traduction
 	private static final String FIT_BUTTON = "Zoom fit", IN_GAME_BUTTON = "Zoom in-game";
 
 	public EnigmaOutilBar(EnigmaWindow window) {

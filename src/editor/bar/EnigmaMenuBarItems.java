@@ -5,6 +5,7 @@ import common.language.HUDFields;
 import editor.bar.listeners.CreateListener;
 import editor.bar.listeners.ExportListener;
 import editor.bar.listeners.OpenListener;
+import editor.bar.listeners.ReadDocumentation;
 import editor.bar.listeners.RedoListener;
 import editor.bar.listeners.SaveAsListener;
 import editor.bar.listeners.SaveListener;
@@ -42,7 +43,7 @@ public enum EnigmaMenuBarItems {
 	@Deprecated
 	SHOW_CALQUES("show calque", null, false),
 
-	DOC(GameLanguage.gl.get(HUDFields.DOC), null, false),
+	DOC(GameLanguage.gl.get(HUDFields.DOC), ReadDocumentation.class),
 	SUPPORT(GameLanguage.gl.get(HUDFields.SUPPORT), null, false);
 
 	/**

@@ -17,6 +17,7 @@ import java.awt.Insets;
 public interface EnigmaUIValues {
 
 	Font ENIGMA_FONT = new Font("Monospaced", Font.BOLD, 15);
+	Font ENIGMA_TITLE_FONT = new Font("Monospaced", Font.BOLD, 50);
 	boolean[] ALL_BORDERS_SHOWED = {true, true, true, true};
 	boolean[] ALL_BORDER_HIDDEN = {false, false, false, false};
 	boolean SHOWED_BORDER = true;

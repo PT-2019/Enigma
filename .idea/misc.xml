@@ -15,13 +15,14 @@
     <file url="file://$PROJECT_DIR$/assets/entities.json" />
     <file url="file://$PROJECT_DIR$/assets/entities/players/players.json" />
     <file url="file://$PROJECT_DIR$/assets/items.json" />
-    <file url="file://$PROJECT_DIR$/assets/lang/english.json" />
-    <file url="file://$PROJECT_DIR$/assets/lang/french.json" />
+    <file url="file://$PROJECT_DIR$/assets/lang/en/base.json" />
+    <file url="file://$PROJECT_DIR$/assets/lang/fr/base.json" />
+    <file url="file://$PROJECT_DIR$/assets/lang/fr/doc.json" />
     <file url="file://$PROJECT_DIR$/assets/rooms.json" />
   </component>
   <component name="LibGDXNonSkins">
     <file url="file://$PROJECT_DIR$/assets/actions.json" />
-    <file url="file://$PROJECT_DIR$/assets/lang/english.json" />
+    <file url="file://$PROJECT_DIR$/assets/lang/en/base.json" />
     <file url="file://$PROJECT_DIR$/assets/rooms.json" />
   </component>
   <component name="LibGDXSkins">

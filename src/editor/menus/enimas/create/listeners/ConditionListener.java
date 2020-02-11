@@ -10,7 +10,6 @@ import common.enigmas.condition.RoomDiscovered;
 import common.enigmas.condition.RoomUndiscovered;
 import common.entities.GameObject;
 import common.entities.Item;
-import common.entities.NullGameObjet;
 import common.entities.special.Room;
 import common.entities.types.Activatable;
 import common.entities.types.Content;
@@ -22,6 +21,7 @@ import editor.menus.enimas.create.ManageEnigmasAddView;
 import editor.popup.listeners.CaseListener;
 import game.EnigmaGame;
 import game.screens.TestScreen;
+import org.jetbrains.annotations.Nullable;
 
 import javax.swing.JRadioButton;
 import java.awt.event.ActionEvent;
@@ -53,7 +53,7 @@ public class ConditionListener implements ActionListener, ItemListener {
 
 	private ManageEnigmasAddView addView;
 	/**
-	 * operation submited
+	 * operation submitted
 	 **/
 	private boolean validate;
 	/**
@@ -65,74 +65,102 @@ public class ConditionListener implements ActionListener, ItemListener {
 		this.addView = addView;
 		this.panel = panel;
 		this.object = null;
+		this.currentButton = null;
+		this.validate = false;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Condition cond = null;
 
+		//si pas de sélection
 		if (currentButton == null) {
 			panel.getEntityName().setText(ConditionPanel.ASK_COND);
 			return;
 		}
 
-		//TODO: on devrait pouvoir ajouter des nouvelles opérations plus facilement
-		// voir la classe Conditions, le problème est le nombre variable d'argument du constructeur
-		// même si il y a toujours un object apparemment
+		String selectedCondition = this.currentButton.getName();
 
-		//en fonction du bouton radio actionné on choisi différente opération
-		if (this.currentButton.getName().equals(Conditions.ACTIVATED.name())) {
+		//en fonction du bouton radio actionné on choisi la bonne condition
+
+		//activé
+		if (selectedCondition.equals(Conditions.ACTIVATED.name())) {
 			if (this.object instanceof Activatable)
 				cond = new Activated((Activatable) this.object);
-		} else if (this.currentButton.getName().equals(Conditions.ANSWER.name())) {
+		//réponse
+		} else if (selectedCondition.equals(Conditions.ANSWER.name())) {
 			if (this.object instanceof Content)
 				cond = new Answer((Content) object, "");
-		} else if (this.currentButton.getName().equals(Conditions.HAVE_IN_HANDS.name())) {
+		//avoir
+		} else if (selectedCondition.equals(Conditions.HAVE_IN_HANDS.name())) {
 			if (this.object instanceof Item)
 				cond = new HaveInHands((Item) object);
-		} else if (this.currentButton.getName().equals(Conditions.HAVE_IN_INVENTORY.name())) {
+		} else if (selectedCondition.equals(Conditions.HAVE_IN_INVENTORY.name())) {
 			if (this.object instanceof Item)
 				cond = new HaveInInventory((Item) object);
-		} else if (this.currentButton.getName().equals(Conditions.ROOM_UNDISCOVERED.name())) {
+		//room
+		} else if (selectedCondition.equals(Conditions.ROOM_UNDISCOVERED.name())) {
 			if (this.object instanceof Room)
 				cond = new RoomUndiscovered((Room) object);
-		} else if (this.currentButton.getName().equals(Conditions.ROOM_DISCOVERED.name())) {
+		} else if (selectedCondition.equals(Conditions.ROOM_DISCOVERED.name())) {
 			if (this.object instanceof Room)
 				cond = new RoomDiscovered((Room) object);
+		//sinon condition non disponible
 		} else {
 			this.panel.getEntityName().setText(ConditionPanel.NOT_AVAILABLE_CONDITION);
 		}
 
 		if (cond == null) return;
 
+		//ajoute la condition
 		this.addView.getEnigma().addCondition(cond);
 		Logger.printDebug("ConditionAdded", cond.toLongString());
+		//condition ajoutée
 		this.validate = true;
+		//suppression des info
 		this.panel.clean();
+		//retour menu
 		this.addView.setCard(ManageEnigmasAddView.MENU, ManageEnigmasAddView.TITLE);
 	}
 
 	@Override
 	public void itemStateChanged(ItemEvent e) {
 		if (e.getStateChange() == ItemEvent.SELECTED) {
-			currentButton = (JRadioButton) e.getItem();
-			if (currentButton.getName().equals(Conditions.ANSWER.name())) {
-				//TODO: saisie réponse
-				this.panel.getEntityName().setText(ConditionPanel.NOT_AVAILABLE_CONDITION);
-			} else {
-				Conditions.lock(Conditions.valueOf(currentButton.getName()), this.panel);
+			//Bouton actuellement sélectionné
+			this.currentButton = (JRadioButton) e.getItem();
+
+			//récupère la condition
+			Conditions conditions = Conditions.valueOf(this.currentButton.getName());
+
+			//si disponible
+			if(conditions.available){
+				//verrouille l'accès a un second popup
 				CaseListener.setAvailable(this.panel);
+				//active les bons modes de sélection
+				Conditions.lock(Conditions.valueOf(currentButton.getName()), this.panel);
+				//préviens de l'activation
 				this.panel.update(this.object);
-				//DragAndDropBuilder.setForPopup(this.panel);
+			} else {
+				this.panel.getEntityName().setText(ConditionPanel.NOT_AVAILABLE_CONDITION);
 			}
 		}
 	}
 
+	/**
+	 * Bouton actuellement sélectionné
+	 *
+	 * @return Bouton actuellement sélectionné
+	 */
 	public JRadioButton getCurrentButton() {
 		return this.currentButton;
 	}
 
-	public void setGameObject(GameObject object) {
+	/**
+	 * Object sélectionné
+	 *
+	 * @param object Object sélectionné
+	 */
+	public void setGameObject(@Nullable GameObject object) {
 		if (this.object != null && !this.validate) {//si j'avais un object temporaire, je le supprime
 			//il existe déjà un object
 			Vector2 pos = this.object.getGameObjectPosition();
@@ -140,10 +168,17 @@ public class ConditionListener implements ActionListener, ItemListener {
 			if (pos == null || pos.x < 0 || pos.y < 0) {
 				MapTestScreen map = ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap();
 				//supprime de la map
+				int id = this.object.getID();
 				map.removeEntity(this.object);
 				//l'id du temporaire est forcément le dernier donc transfert de l'id si besoin
-				if (object != null && object.getID() > this.object.getID())
-					object.setID(this.object.getID());//transfert de l'ID du supprimé
+				if (object != null && object.getID() > id) {
+					//libère l'id
+					map.freeId(object);
+					object.setID(id);//transfert de l'ID du supprimé*/
+				} else {
+					//on veut supprimer l'object
+					map.freeId(this.object);
+				}
 			}
 		}
 		this.object = object;
@@ -153,9 +188,15 @@ public class ConditionListener implements ActionListener, ItemListener {
 	 * clean du listener
 	 */
 	public void clean() {
+		//libère l'object temporaire
 		this.setGameObject(null);
-		this.panel.update(new NullGameObjet());
+		//déverrouille l'éditeur
 		Conditions.unlock(null);
+		//supprime la sélection
 		this.currentButton = null;
+		//condition plus validée
+		this.validate = false;
+		//reset du panneau des conditions
+		this.panel.update((GameObject) null);
 	}
 }

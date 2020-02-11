@@ -15,7 +15,7 @@ import java.util.Iterator;
 
 /**
  * Il s'agit d'un écran du jeu mais qui remplit toutes les fonctionnalités
- * d'un jeu entier : phase initialisation et libération et la gameloop.
+ * d'un jeu entier : phase initialisation et libération et la GameLoop.
  * <p>
  * Les méthodes de la libgdx sont cachés au mieux.
  *
@@ -28,6 +28,7 @@ import java.util.Iterator;
  * @see InputAdapter
  * @since 3.0
  */
+@SuppressWarnings("unused")
 public abstract class LibgdxScreen implements Screen, InputAdapter, IGameLogic {
 
 	/**
@@ -53,7 +54,7 @@ public abstract class LibgdxScreen implements Screen, InputAdapter, IGameLogic {
 	public void display(boolean display) {
 	}
 
-	/* listen méthods */
+	/* méthodes d'écoute */
 
 	/**
 	 * When a event happens, if no one before was concerned

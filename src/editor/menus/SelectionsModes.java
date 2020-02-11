@@ -1,5 +1,7 @@
 package editor.menus;
 
+import data.NeedToBeTranslated;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -17,49 +19,56 @@ public enum SelectionsModes {
 	/**
 	 * Depuis la map ("utiliser cette entité")
 	 */
-	MAP("carte uniquement"),
+	MAP(NeedToBeTranslated.MAP_ONLY),
 	/**
 	 * Depuis le menu (la liste des entités/librairie)
 	 */
-	MENU("menu uniquement"),
+	MENU(NeedToBeTranslated.MENU_ONLY),
 	/**
 	 * Depuis un popup par exemple d'une entité qui en contient d'autres
 	 */
-	POPUP("contenu uniquement"),
+	POPUP(NeedToBeTranslated.POPUP_ONLY),
 
 	//combinaisons (utiles)
 
 	/**
 	 * Un nouveau ou un object existant
 	 */
-	MAP_AND_MENU("carte et menu", MAP, MENU),
+	MAP_AND_MENU(NeedToBeTranslated.MAP_AND_MENU, MAP, MENU),
 
 	/**
 	 * Un objet d'un conteneur
 	 */
-	MENU_AND_POPUP("menu et contenu", MENU, POPUP),
+	MENU_AND_POPUP(NeedToBeTranslated.MENU_AND_POPUP, MENU, POPUP),
 
 	/**
 	 * Seulement un object existant
 	 */
-	MAP_AND_POPUP("carte et contenu", MAP, POPUP),
+	MAP_AND_POPUP(NeedToBeTranslated.MAP_AND_POPUP, MAP, POPUP),
 
 	/**
 	 * Peu importe
 	 */
-	MAP_AND_MENU_AND_POPUP("carte, menu et contenu", MAP, MENU, POPUP),
+	MAP_AND_MENU_AND_POPUP(NeedToBeTranslated.MAP_AND_MENU_AND_POPUP, MAP, MENU, POPUP),
 
 	/**
 	 * Aucune restriction
 	 */
-	NONE("Spécial"),
+	NONE(NeedToBeTranslated.NO_MODE),
 
 	/**
 	 * Map, menu ou inventaire
 	 */
-	ALL("carte, menu et contenu");
+	ALL(NeedToBeTranslated.ALL_MODES);
 
+	/**
+	 * modes autorisés
+	 */
 	public final ArrayList<SelectionsModes> modes;
+
+	/**
+	 * description du mode
+	 */
 	public final String msg;
 
 	SelectionsModes(String msg, SelectionsModes... modes) {

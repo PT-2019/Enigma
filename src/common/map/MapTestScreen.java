@@ -165,7 +165,7 @@ public class MapTestScreen extends AbstractMap {
 
 			//instancie l'entité
 			object = EntityFactory.createEntity(entity, null, start, this.idFactory);
-			Logger.printDebug("MapTestScreen#loadEntity", object.toString() + " " + object.getID());
+			Logger.printDebug("MapTestScreen#loadEntity(tmp)", object.toString() + " " + object.getID());
 
 			//ajout à la liste des entités de la map
 			this.objects.put(start, object);
