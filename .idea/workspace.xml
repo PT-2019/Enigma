@@ -6,58 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="ae09cfc3-8c68-40f7-a6e1-cb32552840e9" name="Default Changelist" comment="fix">
       <change beforePath="$PROJECT_DIR$/.idea/dictionaries/Quentin_Ra.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/Quentin_Ra.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/entities.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/entities/monsters/monsters.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/entities/monsters/monsters.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/files/atlas/uiskin.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/atlas/uiskin.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/files/data/BigFactory.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/data/BigFactory.tmx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/files/map/cocoa.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/map/cocoa.tmx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/files/map/zoe.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/map/zoe.tmx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/lang/fr/doc.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/lang/fr/doc.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/libgdx/LibgdxGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/libgdx/LibgdxGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/ui/CustomLabel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/ui/CustomLabel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/ui/manager/CheckBoxManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/ui/manager/CheckBoxManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/ui/manager/RadioButtonManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/ui/manager/RadioButtonManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/ui/manager/SelectedManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/ui/manager/SelectedManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/ui/skin/CustomButtonUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/ui/skin/CustomButtonUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/ui/skin/CustomComboBoxUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/ui/skin/CustomComboBoxUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/ui/skin/CustomLabelUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/ui/skin/CustomLabelUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/ui/skin/CustomMenuBarUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/ui/skin/CustomMenuBarUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/ui/skin/CustomMenuItemUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/ui/skin/CustomMenuItemUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/ui/skin/CustomMenuUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/ui/skin/CustomMenuUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/ui/skin/CustomPanelUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/ui/skin/CustomPanelUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/ui/skin/CustomPopupMenuUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/ui/skin/CustomPopupMenuUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/ui/skin/CustomTextAreaUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/ui/skin/CustomTextAreaUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/ui/skin/CustomTextFieldUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/ui/skin/CustomTextFieldUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/ui/skin/base/states/CustomUIFocusedAndHover.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/ui/skin/base/states/CustomUIFocusedAndHover.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/ui/skin/base/states/CustomUISelected.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/ui/skin/base/states/CustomUISelected.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/utils/Utility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/utils/Utility.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/hud/EnigmaLabel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/hud/EnigmaLabel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/hud/ui/EnigmaJComboBoxUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/hud/ui/EnigmaJComboBoxUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/save/enigmas/EnigmaJsonReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/save/enigmas/EnigmaJsonReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/save/entities/serialization/EntityFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/save/entities/serialization/EntityFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/NeedToBeTranslated.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/NeedToBeTranslated.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/config/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/config/Config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/config/EnigmaUIValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/config/EnigmaUIValues.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/bar/EnigmaMenuBarItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/EnigmaMenuBarItems.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/bar/EnigmaOutilBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/EnigmaOutilBar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/bar/Outil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/Outil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/bar/listeners/CreateListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/listeners/CreateListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/bar/listeners/ExportListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/listeners/ExportListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/bar/listeners/OpenListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/listeners/OpenListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/bar/doc/DocumentationTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/doc/DocumentationTypes.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/editor/bar/listeners/ReadDocumentation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/listeners/ReadDocumentation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/bar/listeners/SaveAsListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/listeners/SaveAsListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/bar/listeners/SaveListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/listeners/SaveListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/bar/listeners/StartSimulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/listeners/StartSimulation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/menus/name/AddNameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/menus/name/AddNameView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/menus/name/SetName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/menus/name/SetName.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/popup/cases/CasePopUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/popup/cases/CasePopUp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/popup/cases/SpecialPopUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/popup/cases/SpecialPopUp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/popup/listeners/CaseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/popup/listeners/CaseListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/popup/listeners/ZoomListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/popup/listeners/ZoomListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/gui/EnigmaEditorToast.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/gui/EnigmaEditorToast.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/screens/TestScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/screens/TestScreen.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/libs/packer/" />
@@ -97,9 +50,9 @@
       <list>
         <option value="AnnotationType" />
         <option value="Interface" />
-        <option value="Enum" />
         <option value="Singleton" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -154,15 +107,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/api/ui/manager/SelectedManager.java" />
-        <option value="$PROJECT_DIR$/src/api/ui/skin/base/states/CustomUISelected.java" />
-        <option value="$PROJECT_DIR$/src/api/net/Readme.md" />
-        <option value="$PROJECT_DIR$/src/api/net/utils/NetUtility.java" />
-        <option value="$PROJECT_DIR$/src/editor/bar/listeners/SupportListener.java" />
-        <option value="$PROJECT_DIR$/src/editor/popup/cases/SpecialPopUp.java" />
-        <option value="$PROJECT_DIR$/assets/entities.json" />
-        <option value="$PROJECT_DIR$/assets/entities/monsters/monsters.json" />
-        <option value="$PROJECT_DIR$/assets/files/map/zoe.tmx" />
         <option value="$PROJECT_DIR$/assets/files/map/cocoa.tmx" />
         <option value="$PROJECT_DIR$/src/editor/menus/name/SetName.java" />
         <option value="$PROJECT_DIR$/src/editor/menus/EnigmaWindowListener.java" />
@@ -178,7 +122,6 @@
         <option value="$PROJECT_DIR$/src/api/ui/skin/CustomMenuUI.java" />
         <option value="$PROJECT_DIR$/src/api/ui/skin/CustomPanelUI.java" />
         <option value="$PROJECT_DIR$/src/api/ui/skin/CustomPopupMenuUI.java" />
-        <option value="$PROJECT_DIR$/src/api/ui/skin/CustomTextAreaUI.java" />
         <option value="$PROJECT_DIR$/src/api/ui/skin/CustomTextFieldUI.java" />
         <option value="$PROJECT_DIR$/src/common/save/entities/serialization/EntityFactory.java" />
         <option value="$PROJECT_DIR$/src/common/save/enigmas/EnigmaJsonReader.java" />
@@ -205,6 +148,16 @@
         <option value="$PROJECT_DIR$/assets/files/atlas/uiskin.json" />
         <option value="$PROJECT_DIR$/src/editor/bar/listeners/OpenListener.java" />
         <option value="$PROJECT_DIR$/src/common/hud/ui/EnigmaJComboBoxUI.java" />
+        <option value="$PROJECT_DIR$/src/Ts.java" />
+        <option value="$PROJECT_DIR$/src/api/utils/ListFonts.java" />
+        <option value="$PROJECT_DIR$/src/api/ui/FontsNames.java" />
+        <option value="$PROJECT_DIR$/src/data/config/EnigmaUIValues.java" />
+        <option value="$PROJECT_DIR$/src/api/ui/skin/CustomTextAreaUI.java" />
+        <option value="$PROJECT_DIR$/src/editor/bar/doc/DocumentationTypes.java" />
+        <option value="$PROJECT_DIR$/src/editor/bar/listeners/ReadDocumentation.java" />
+        <option value="$PROJECT_DIR$/assets/lang/fr/doc.json" />
+        <option value="$PROJECT_DIR$/src/common/enigmas/Enigma.java" />
+        <option value="$PROJECT_DIR$/src/common/enigmas/operation/Operation.java" />
       </list>
     </option>
   </component>
@@ -220,6 +173,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -227,17 +182,10 @@
               <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
               <item name="Enigma" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="ProjectViewState">
@@ -341,6 +289,20 @@
         <option name="com.soywiz.korge.intellij.UpdateResourceBeforeRunTask" enabled="false" />
       </method>
     </configuration>
+    <configuration name="ListFonts" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="api.utils.ListFonts" />
+      <module name="Enigma" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="api.utils.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="com.soywiz.korge.intellij.UpdateResourceBeforeRunTask" enabled="false" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="Enigma" />
@@ -370,10 +332,12 @@
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.FromTmxToJson$MainFromRoomToJson" />
       <item itemvalue="JUnit.TestIDFactory" />
+      <item itemvalue="Application.ListFonts" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.ListFonts" />
         <item itemvalue="Application.FromTmxToJson$MainFromRoomToJson" />
         <item itemvalue="JUnit.TestIDFactory" />
       </list>
@@ -447,7 +411,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28883496" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2936893" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -678,103 +642,6 @@
     <state x="619" y="195" width="672" height="626" key="search.everywhere.popup/1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/api/ui/skin/CustomLabelUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="86" column="52" selection-start-line="86" selection-start-column="52" selection-end-line="86" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/ui/skin/CustomComboBoxUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="88" lean-forward="true" selection-start-line="88" selection-end-line="88" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/ui/skin/CustomButtonUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="134" column="66" lean-forward="true" selection-start-line="134" selection-start-column="8" selection-end-line="134" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/ui/skin/CustomPanelUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="107" column="65" lean-forward="true" selection-start-line="107" selection-start-column="8" selection-end-line="107" selection-end-column="65" />
-          <folding>
-            <element signature="e#3062#3092#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/ui/skin/CustomPopupMenuUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="77" column="56" selection-start-line="77" selection-start-column="56" selection-end-line="77" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/ui/skin/CustomTextAreaUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="131" column="55" selection-start-line="131" selection-start-column="55" selection-end-line="131" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/ui/skin/CustomMenuUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="70" column="51" selection-start-line="70" selection-start-column="51" selection-end-line="70" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/save/entities/serialization/EntityFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2108">
-          <caret line="138" column="70" lean-forward="true" selection-start-line="138" selection-start-column="70" selection-end-line="138" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/ui/skin/CustomTextFieldUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="135" lean-forward="true" selection-start-line="135" selection-end-line="135" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/save/enigmas/EnigmaJsonReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="41">
-          <caret line="235" selection-start-line="235" selection-end-line="235" />
-          <folding>
-            <element signature="e#8029#8059#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.base/java/lang/Class.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="2544" column="26" selection-start-line="2544" selection-start-column="26" selection-end-line="2544" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/utils/Utility.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="331" column="16" lean-forward="true" selection-start-line="331" selection-start-column="16" selection-end-line="331" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/bar/BarMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-234">
-          <caret line="55" column="27" selection-start-line="55" selection-start-column="27" selection-end-line="55" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/editor/bar/EnigmaMenuBarMenus.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -876,13 +743,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/game/gui/NoMapScreen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="38" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/gui/NoMapScreen.java" />
     <entry file="file://$PROJECT_DIR$/src/data/config/Config.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="693">
@@ -992,13 +853,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/config/EnigmaUIValues.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="16" column="17" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.base/java/lang/String.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="174">
@@ -1052,13 +906,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/api/ui/CustomColors.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="531">
-          <caret line="59" column="45" selection-start-line="59" selection-start-column="30" selection-end-line="59" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.desktop/java/awt/Color.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="281">
@@ -1073,6 +920,137 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2305#2335#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/ui/CustomColors.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="25" column="41" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/utils/Utility.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5219">
+          <caret line="331" column="16" lean-forward="true" selection-start-line="331" selection-start-column="16" selection-end-line="331" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Ts.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="32" column="5" lean-forward="true" selection-start-line="9" selection-start-column="4" selection-end-line="32" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/ui/FontsNames.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="50" selection-start-line="25" selection-start-column="50" selection-end-line="25" selection-end-column="50" />
+          <folding>
+            <element signature="e#358#359#0" expanded="true" />
+            <element signature="e#388#389#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/utils/ListFonts.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="13" column="3" lean-forward="true" selection-start-line="13" selection-start-column="3" selection-end-line="13" selection-end-column="3" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/config/EnigmaUIValues.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="18" column="43" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/ui/skin/CustomTextAreaUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="71" column="32" selection-start-line="71" selection-start-column="32" selection-end-line="71" selection-end-column="32" />
+          <folding>
+            <element signature="e#6196#6197#0" expanded="true" />
+            <element signature="e#6219#6220#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/bar/doc/DocumentationTypes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/enigmas/operation/Give.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="53" column="7" lean-forward="true" selection-start-line="53" selection-start-column="7" selection-end-line="53" selection-end-column="7" />
+          <folding>
+            <element signature="e#935#936#0" expanded="true" />
+            <element signature="e#953#954#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/enigmas/operation/Operation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="74" column="25" selection-start-line="74" selection-start-column="25" selection-end-line="74" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/lang/fr/doc.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="905">
+          <caret line="138" column="6" selection-start-line="138" selection-start-column="6" selection-end-line="138" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/enigmas/operation/Summon.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="105" column="5" lean-forward="true" selection-start-line="105" selection-start-column="5" selection-end-line="105" selection-end-column="5" />
+          <folding>
+            <element signature="e#2540#2541#0" expanded="true" />
+            <element signature="e#2580#2581#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/enigmas/TileEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="667">
+          <caret line="101" column="19" lean-forward="true" selection-start-line="101" selection-start-column="19" selection-end-line="101" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/enigmas/Enigma.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="190" column="24" lean-forward="true" selection-start-line="190" selection-start-column="24" selection-end-line="190" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/bar/listeners/ReadDocumentation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="353">
+          <caret line="281" column="29" selection-start-line="281" selection-start-column="29" selection-end-line="281" selection-end-column="29" />
+          <folding>
+            <element signature="e#10063#10064#0" expanded="true" />
+            <element signature="e#10123#10124#0" expanded="true" />
           </folding>
         </state>
       </provider>

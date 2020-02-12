@@ -20,6 +20,7 @@ import editor.bar.doc.DocumentationTypes;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.WindowConstants;
 import java.awt.BorderLayout;
@@ -27,10 +28,12 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.Point;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -70,7 +73,7 @@ public class ReadDocumentation extends MenuListener {
 	 */
 	private static final Color BASE_PANEL_COLOR = new JPanel().getBackground();
 	private static final Color BASE_PRESSED_COLOR = Color.BLACK;
-	private static final Color TEXT_COLOR = CustomColors.STEEL_BLUE;
+	//private static final Color TEXT_COLOR = CustomColors.STEEL_BLUE;
 
 	/**
 	 * La fenêtre de documentation
@@ -188,14 +191,14 @@ public class ReadDocumentation extends MenuListener {
 			//survol
 			categories.setToolTipText(documentationCategory.getToolTip());
 			//listener
-			category.addActionListener(new ShowCategory(content, manager));
-			//charge le contenu
-			loadContent(documentationCategory, content);
+			category.addActionListener(new ShowCategory(content, documentationCategory, this));
 			//manager
 			manager.add(category);
 			//ajout
 			categories.add(category);
 		}
+
+		manager.getSelected()[0].doClick();
 	}
 
 	/**
@@ -204,8 +207,13 @@ public class ReadDocumentation extends MenuListener {
 	 * @param content panneau dans lequel charger
 	 */
 	private void loadContent(DocumentationFile documentationCategory, EnigmaPanel content) {
+		final Color BACKGROUND = CustomColors.TILED_GRAY_DARK, FOREGROUND = Color.WHITE;
+		final Font TXT = new Font("Calibri", Font.BOLD, 15);
+		final Font TITLE_F = new Font("Calibri", Font.BOLD, 40);
+		final Font TITLE_SMALL_F = new Font("Calibri", Font.BOLD, 25);
+
 		EnigmaPanel panel = new EnigmaPanel(new GridBagLayout());
-		panel.getComponentUI().setAllBackgrounds(BASE_PANEL_COLOR);
+		panel.getComponentUI().setAllBackgrounds(BACKGROUND);
 
 		//contraintes générales
 		GridBagConstraints gdc = new GridBagConstraints();
@@ -222,13 +230,15 @@ public class ReadDocumentation extends MenuListener {
 			DocumentationFile.DocItems items = docItems.get(i);
 			DocumentationTypes documentationTypes = DocumentationTypes.valueOf(items.getType());
 			switch (documentationTypes){
-				case TITLE:
+				case TITLE: case TITLE_SMALL:
 					EnigmaLabel title = new EnigmaLabel(items.getContent()[0]);
 					title.setHorizontalAlignment(EnigmaLabel.LEFT);
 					//style
-					title.getComponentUI().setAllBackgrounds(BASE_PANEL_COLOR);
+					title.getComponentUI().setAllBackgrounds(BACKGROUND);
+					if(documentationTypes.equals(DocumentationTypes.TITLE_SMALL))
+						title.getComponentUI().setFont(TITLE_SMALL_F);
+					else title.getComponentUI().setFont(TITLE_F);
 					title.getComponentUI().setAllForegrounds(BASE_PRESSED_COLOR);
-					title.getComponentUI().setFont(EnigmaUIValues.ENIGMA_TITLE_FONT);
 					//add
 					gdc.gridy = i;
 					panel.add(title, gdc);
@@ -243,8 +253,9 @@ public class ReadDocumentation extends MenuListener {
 					//Style
 					area.setEditable(false);
 					area.setWrapStyleWord(true);
-					area.getComponentUI().setAllBackgrounds(BASE_PANEL_COLOR);
-					area.getComponentUI().setAllForegrounds(TEXT_COLOR);
+					area.getComponentUI().setFont(TXT);
+					area.getComponentUI().setAllBackgrounds(BACKGROUND);
+					area.getComponentUI().setAllForegrounds(FOREGROUND);
 					area.setMargin(new Insets(10,10,10,10));
 					//add
 					gdc.gridy = i;
@@ -254,8 +265,8 @@ public class ReadDocumentation extends MenuListener {
 					EnigmaLabel icon = new EnigmaLabel(new ImageIcon(items.getContent()[0]));
 					icon.setHorizontalAlignment(EnigmaLabel.CENTER);
 					//style
-					icon.getComponentUI().setAllBackgrounds(BASE_PANEL_COLOR);
-					icon.getComponentUI().setAllForegrounds(BASE_PRESSED_COLOR);
+					icon.getComponentUI().setAllBackgrounds(BACKGROUND);
+					icon.getComponentUI().setAllForegrounds(FOREGROUND);
 					icon.getComponentUI().setFont(EnigmaUIValues.ENIGMA_TITLE_FONT);
 					//add
 					gdc.gridy = i;
@@ -265,7 +276,10 @@ public class ReadDocumentation extends MenuListener {
 		}
 
 		//la clef du card layout est le contenu du bouton
-		content.add(panel, documentationCategory.getTitle());
+		content.removeAll();
+		content.setLayout(new BorderLayout());
+		content.add(panel, BorderLayout.CENTER);
+		content.revalidate();
 	}
 
 	@Override
@@ -287,16 +301,18 @@ public class ReadDocumentation extends MenuListener {
 	private static final class ShowCategory implements ActionListener {
 
 		private final EnigmaPanel content;
-		private final RadioButtonManager manager;
+		private final DocumentationFile docFile;
+		private final ReadDocumentation reader;
 
-		ShowCategory(EnigmaPanel content, RadioButtonManager manager) {
+		ShowCategory(EnigmaPanel content, DocumentationFile docFile, ReadDocumentation reader) {
 			this.content = content;
-			this.manager = manager;
+			this.docFile = docFile;
+			this.reader = reader;
 		}
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			((CardLayout)this.content.getLayout()).show(this.content, e.getActionCommand());
+			this.reader.loadContent(this.docFile, this.content);
 		}
 	}
 }

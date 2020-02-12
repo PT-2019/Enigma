@@ -17,6 +17,11 @@ public enum DocumentationTypes {
 	 */
 	TITLE(),
 	/**
+	 * Un titre suivi d'une icône.
+	 * Contient deux éléments de contenu, le texte puis l'icône.
+ 	 */
+	TITLE_SMALL(),
+	/**
 	 * Un message représente plusieurs éléments de contenus.
 	 */
 	MESSAGE(),

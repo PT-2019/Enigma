@@ -69,6 +69,7 @@ public class CustomTextAreaUI extends BasicTextAreaUI implements CustomUIFocused
 	public void paintTextArea(Graphics g, JComponent c) {
 		Graphics brush = g.create();
 		JTextArea ta = (JTextArea) c;
+		c.setFont(this.getFont());
 		ta.setBorder(BorderFactory.createEmptyBorder());
 		if (ta.hasFocus()) {
 			ta.setBackground(this.focusedBackground);
