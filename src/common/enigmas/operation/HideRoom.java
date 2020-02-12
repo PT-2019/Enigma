@@ -1,5 +1,7 @@
 package common.enigmas.operation;
 
+import common.enigmas.reporting.EnigmaReport;
+import common.enigmas.reporting.OperationReport;
 import common.entities.players.Player;
 import common.entities.special.Room;
 import data.NeedToBeTranslated;
@@ -44,9 +46,10 @@ public class HideRoom extends Operation {
 
 
 	@Override
-	public void run(Player p) {
+	public EnigmaReport run(Player p) {
 		Room room = (Room) this.entity;
 		room.setShowed(false);
+		return new EnigmaReport(OperationReport.DONE, true); //opération ok
 	}
 
 	@Override

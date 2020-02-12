@@ -1,6 +1,8 @@
 package common.enigmas.operation;
 
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import common.enigmas.reporting.EnigmaReport;
+import common.enigmas.reporting.OperationReport;
 import common.entities.Entity;
 import common.entities.players.Player;
 import common.language.EnigmaField;
@@ -95,14 +97,10 @@ public class Summon extends Operation {
 		this.run(p);
 	}
 
-	/**
-	 * Effectue l'action
-	 *
-	 * @param p Joueur ayant mené à l'appel de cette méthode
-	 */
 	@Override
-	public void run(Player p) {
+	public EnigmaReport run(Player p) {
 		this.spawn.setEntity(this.entity);
+		return new EnigmaReport(OperationReport.DONE, true); //opération ok
 	}
 
 	/**

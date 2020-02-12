@@ -1,5 +1,7 @@
 package common.enigmas.condition;
 
+import common.enigmas.reporting.EnigmaReport;
+import common.enigmas.reporting.ConditionReport;
 import common.entities.players.Player;
 import common.entities.types.Activatable;
 import common.language.EnigmaField;
@@ -43,9 +45,9 @@ public class Activated extends Condition {
 	 * @return true si la condtion est satisfaite, false sinon
 	 */
 	@Override
-	public boolean verify(Player p) {
+	public EnigmaReport verify(Player p) {
 		Activatable a = (Activatable) this.entity;
-		return a.isActivated();
+		return new EnigmaReport(ConditionReport.DONE, a.isActivated());
 	}
 
 	/**

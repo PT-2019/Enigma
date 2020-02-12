@@ -1,5 +1,7 @@
 package common.enigmas.condition;
 
+import common.enigmas.reporting.EnigmaReport;
+import common.enigmas.reporting.ConditionReport;
 import common.entities.players.Player;
 import common.entities.special.Room;
 import data.NeedToBeTranslated;
@@ -30,9 +32,9 @@ public class RoomUndiscovered extends Condition {
 	}
 
 	@Override
-	public boolean verify(Player p) {
+	public EnigmaReport verify(Player p) {
 		Room r = (Room) this.entity;
-		return !r.isDiscovered();
+		return new EnigmaReport(ConditionReport.DONE, !r.isDiscovered());
 	}
 
 	/**

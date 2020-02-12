@@ -98,6 +98,7 @@ public class TileEvent {
 	 * @param player Joueur concerné
 	 */
 	public void onUse(Player player) {
+		//TODO: choisi un message et le retourner
 		for (Enigma e : this.onUse)
 			e.verifyConditions(player);
 	}
