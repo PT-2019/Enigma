@@ -45,10 +45,15 @@ public class HaveInHands extends Condition {
 	@Override
 	public boolean verify(Player p) {
 		Item i = (Item) this.entity;
-		if (p.holdSomething()) {
-			return p.getItemInHand().equals(i);
-		}
-		return false;
+		boolean is = false;
+
+		if (p.holdItemInLeftHand())
+			is = (p.getItemInLeftHand().equals(i));
+
+		if(!is && p.holdItemInRightHand())
+			is = (p.getItemInRightHand().equals(i));
+
+		return is;
 	}
 
 	/**

@@ -1,6 +1,7 @@
 package common.entities.special;
 
 import common.entities.Item;
+import common.entities.consumable.Key;
 
 import java.util.ArrayList;
 
@@ -20,7 +21,7 @@ public class Inventory {
 	/**
 	 * Maximum d'items stockables
 	 */
-	public final static int MAX_ITEMS = 20;
+	public final static int MAX_ITEMS = 15;
 	/***
 	 * Items de l'inventaire
 	 */
@@ -117,5 +118,35 @@ public class Inventory {
 	 */
 	public boolean contains(Item i) {
 		return this.items.contains(i);
+	}
+
+	public void swap(int index1, int index2){
+		Item tmp = this.items.get(index1);
+		this.items.set(index1,this.items.get(index2));
+		this.items.set(index2,tmp);
+
+	}
+
+	/**
+	 * L'inventaire est-il plein?
+	 * @return true si l'inventaire est plein, false sinon
+	 */
+	public boolean isFull(){
+		return (this.items.size() == MAX_ITEMS);
+	}
+
+	/**
+	 * L'inventaire est-il vide?
+	 * @return true si l'inventaire est vide, false sinon
+	 */
+	public boolean isEmpty(){
+		return this.items.isEmpty();
+	}
+
+	public static void main(String[] r){
+		Inventory i = new Inventory();
+		i.add(new Key(0));
+		i.add(new Key(1));
+		System.out.println(i.getItems());
 	}
 }

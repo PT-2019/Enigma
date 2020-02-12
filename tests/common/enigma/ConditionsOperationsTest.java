@@ -32,7 +32,7 @@ public class ConditionsOperationsTest {
        e.verifyConditions(p);
        bu.interactsWith(p);
        p.getInventory().add(bu);
-       p.setItemInHand(b);
+       p.setItemInRightHand(b);
        e.verifyConditions(p);
        System.out.println(p.getInventory().getItems().toString());
     }

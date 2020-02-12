@@ -62,9 +62,14 @@ public class Player extends GameActorTextured implements Entity, Living {
 	private Inventory inventory;
 
 	/**
-	 * Main
+	 * Main droite
 	 */
-	private Item hand;
+	private Item rightHand;
+
+	/**
+	 * Main gauche
+	 */
+	private Item leftHand;
 
 	public Player() {
 		this(-1);
@@ -87,7 +92,6 @@ public class Player extends GameActorTextured implements Entity, Living {
 		this.bounds = new Rectangle();
 		this.tiles = new HashMap<>();
 		this.inventory = new Inventory();
-		this.hand = null;
 	}
 
 	/**
@@ -102,7 +106,6 @@ public class Player extends GameActorTextured implements Entity, Living {
 		this.tiles = new HashMap<>();
 		this.name = name;
 		this.inventory = new Inventory();
-		this.hand = null;
 	}
 
 	@Override
@@ -202,18 +205,62 @@ public class Player extends GameActorTextured implements Entity, Living {
 		return GameLanguage.gl.get(GameFields.PLAYER);
 	}
 
-	public Item getItemInHand() {
-		return hand;
+	/**
+	 * Obtenir l'objet dans la main droite
+	 * @return Objet dans la main droite, null si il n'y en a pas
+	 */
+	public Item getItemInRightHand() {
+		return rightHand;
 	}
 
-	public void setItemInHand(Item hand) {
-		this.hand = hand;
+	/**
+	 * Obtenir l'objet dans la main gauche
+	 * @return Objet dans la main gauche, null si il n'y en a pas
+	 */
+	public Item getItemInLeftHand() {
+		return leftHand;
 	}
 
-	public boolean holdSomething() {
-		return (this.hand != null);
+	/**
+	 * Définir l'objet dans la main droite
+	 * null pour dire qu'il ne tien rien
+	 *
+	 * @param item Objet dans la main droite
+	 */
+	public void setItemInRightHand(Item item) {
+		this.rightHand = item;
 	}
 
+	/**
+	 * Définir l'objet dans la main gauche
+	 * null pour dire qu'il ne tien rien
+	 *
+	 * @param item Objet dans la main gauche
+	 */
+	public void setItemInLeftHand(Item item) {
+		this.leftHand = item;
+	}
+
+	/**
+	 * Est-ce que le joueur tiens un objet dans sa main droite
+	 * @return true s'il tiens un objet dans sa main droite, false sinon
+	 */
+	public boolean holdItemInRightHand() {
+		return (this.rightHand != null);
+	}
+
+	/**
+	 * Est-ce que le joueur tiens un objet dans sa main gauche
+	 * @return true s'il tiens un objet dans sa main gauche, false sinon
+	 */
+	public boolean holdItemInLeftHand() {
+		return (this.leftHand != null);
+	}
+
+	/**
+	 * Obtenir l'inventaire
+	 * @return Inventaire
+	 */
 	public Inventory getInventory() {
 		return inventory;
 	}

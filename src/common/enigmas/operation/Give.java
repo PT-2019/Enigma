@@ -55,10 +55,6 @@ public class Give extends Operation {
 	@Override
 	public void run(Player p) {
 		Item i = (Item) this.entity;
-		if (p.holdSomething())
-			p.getInventory().add(i);
-		else
-			p.setItemInHand(i);
 	}
 
 	/**
