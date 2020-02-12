@@ -3,6 +3,8 @@ package editor.popup.cases;
 import api.utils.Utility;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import common.entities.GameObject;
+import common.entities.types.Living;
 import common.hud.EnigmaPanel;
 import common.map.MapTestScreenCell;
 import data.Layer;
@@ -10,12 +12,14 @@ import data.NeedToBeTranslated;
 import editor.EditorLauncher;
 import editor.menus.AvailableOptionRunnable;
 import editor.menus.AvailablePopUpOption;
+import editor.menus.Drawable;
 import editor.menus.OptionRunnableFactory;
 import editor.popup.cases.listeners.EntityChoseListener;
 import editor.popup.cases.panel.NavigationPanel;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Rectangle;
@@ -24,7 +28,7 @@ import java.util.EnumMap;
 /**
  * Fenêtre qui est afficher lorsqu'on clique sur une case
  */
-public class CasePopUp extends AbstractPopUp {
+public class CasePopUp extends AbstractPopUp implements Drawable {
 
 	/**
 	 * Largeur, hauteur de la dialog.
@@ -92,12 +96,24 @@ public class CasePopUp extends AbstractPopUp {
 		TiledMapTileLayer currentLayer = cell.getLayer();
 		this.setTitle(Layer.valueOf(currentLayer.getName()).name);
 
-		if (this.cell.getEntity() == null) {
+		//rempli avec l'entité
+		GameObject entity = this.cell.getEntity();
+		if (entity == null) {
 			this.navigation.setText(NeedToBeTranslated.NO_ENTITY);
 		} else {
-			this.navigation.setText(this.cell.getEntity().getReadableName());
+			if(entity instanceof Living){
+				String name = ((Living) entity).getName();
+				if(name == null || name.isBlank() || name.isEmpty()){
+					this.navigation.setText(entity.getReadableName());
+				} else {
+					this.navigation.setText(name);
+				}
+			} else {
+				this.navigation.setText(entity.getReadableName());
+			}
 			fillPanel();
 		}
+
 		int index = this.tileMap.getLayers().getIndex(currentLayer.getName());
 		this.navigation.displayNavBouton(index, this.tileMap.getLayers());
 		this.add(navigation);
@@ -159,5 +175,25 @@ public class CasePopUp extends AbstractPopUp {
 
 	public NavigationPanel getNavigation() {
 		return navigation;
+	}
+
+	@Override
+	public void invalidateDrawable() {
+		GameObject entity = this.cell.getEntity();
+		if(entity instanceof Living){
+			Living living = (Living) entity;
+			String name = living.getName();
+			if(name != null && !name.isBlank() && !name.isEmpty()){
+				this.navigation.setText(name);
+			} else {
+				//TODO: fix avec getKey de Loïc
+				this.navigation.setText(entity.getReadableName());
+			}
+		}
+	}
+
+	@Override
+	public Container getDrawable() {
+		return null;
 	}
 }

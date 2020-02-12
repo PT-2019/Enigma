@@ -3,6 +3,8 @@ package editor.popup.cases;
 import api.utils.Utility;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import common.entities.GameObject;
+import common.entities.types.Living;
 import common.hud.EnigmaButton;
 import common.hud.EnigmaPanel;
 import common.map.MapTestScreenCell;
@@ -78,10 +80,20 @@ public class SpecialPopUp extends AbstractPopUp {
 		this.setTitle(Layer.valueOf(currentLayer.getName()).name);
 
 		//rempli avec l'entité
-		if (this.cell.getEntity() == null) {
-			this.navigation.setText("Aucune entité");
+		GameObject entity = this.cell.getEntity();
+		if (entity == null) {
+			this.navigation.setText(NeedToBeTranslated.NO_ENTITY);
 		} else {
-			this.navigation.setText(this.cell.getEntity().getReadableName());
+			if(entity instanceof Living){
+				String name = ((Living) entity).getName();
+				if(name == null || name.isBlank() || name.isEmpty()){
+					this.navigation.setText(entity.getReadableName());
+				} else {
+					this.navigation.setText(name);
+				}
+			} else {
+				this.navigation.setText(entity.getReadableName());
+			}
 		}
 
 		//affichage du layer

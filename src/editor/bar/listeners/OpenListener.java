@@ -10,6 +10,7 @@ import data.EnigmaScreens;
 import data.config.Config;
 import editor.popup.listeners.CaseListener;
 import game.EnigmaGame;
+import org.jetbrains.annotations.Nullable;
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -26,7 +27,13 @@ import java.awt.event.ActionEvent;
  */
 public class OpenListener extends MenuListener {
 
-	public OpenListener(EnigmaWindow window, Component parent) {
+	/**
+	 * Observateur de l'ouverture de la map
+	 *
+	 * @param window window
+	 * @param parent parent (bouton, menuItem, ...) @Nullable
+	 */
+	public OpenListener(EnigmaWindow window, @Nullable Component parent) {
 		super(window, parent);
 	}
 
@@ -49,6 +56,9 @@ public class OpenListener extends MenuListener {
 			});
 
 			//TODO: message ok
+
+			//préviens map chargée aux autres
+			MapLoaded.getInstance().setMapLoaded(true);
 		}
 	}
 }

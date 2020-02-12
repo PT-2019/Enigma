@@ -1,5 +1,6 @@
 package editor.bar;
 
+import api.ui.CustomColors;
 import api.utils.Utility;
 import common.hud.EnigmaButton;
 import common.hud.EnigmaPanel;
@@ -33,7 +34,7 @@ import java.awt.event.ItemListener;
  */
 public class EnigmaOutilBar extends EnigmaPanel {
 
-	private static final Color COLOR = Color.decode("#bfbfbf");
+	private static final Color COLOR = CustomColors.TILED_GRAY;
 	//aucune traduction
 	private static final String FIT_BUTTON = "Zoom fit", IN_GAME_BUTTON = "Zoom in-game";
 

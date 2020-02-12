@@ -11,6 +11,7 @@ import editor.bar.listeners.SaveAsListener;
 import editor.bar.listeners.SaveListener;
 import editor.bar.listeners.StartSimulation;
 import editor.bar.listeners.StopSimulation;
+import editor.bar.listeners.SupportListener;
 import editor.bar.listeners.UndoListener;
 
 import java.awt.event.ActionListener;
@@ -28,14 +29,14 @@ import java.awt.event.ActionListener;
 public enum EnigmaMenuBarItems {
 	NEW(GameLanguage.gl.get(HUDFields.CREATE), CreateListener.class),
 	OPEN(GameLanguage.gl.get(HUDFields.OPEN), OpenListener.class),
-	SAVE(GameLanguage.gl.get(HUDFields.SAVE), SaveListener.class),
-	SAVE_AS(GameLanguage.gl.get(HUDFields.SAVE_AS), SaveAsListener.class),
-	EXPORT(GameLanguage.gl.get(HUDFields.EXPORT), ExportListener.class),
+	SAVE(GameLanguage.gl.get(HUDFields.SAVE), SaveListener.class, false),
+	SAVE_AS(GameLanguage.gl.get(HUDFields.SAVE_AS), SaveAsListener.class, false),
+	EXPORT(GameLanguage.gl.get(HUDFields.EXPORT), ExportListener.class, false),
 
 	REDO(GameLanguage.gl.get(HUDFields.REDO), RedoListener.class, false),
 	UNDO(GameLanguage.gl.get(HUDFields.UNDO), UndoListener.class, false),
 
-	START(GameLanguage.gl.get(HUDFields.START), StartSimulation.class),
+	START(GameLanguage.gl.get(HUDFields.START), StartSimulation.class, false),
 	STOP(GameLanguage.gl.get(HUDFields.STOP), StopSimulation.class, false),
 
 	@Deprecated
@@ -44,7 +45,7 @@ public enum EnigmaMenuBarItems {
 	SHOW_CALQUES("show calque", null, false),
 
 	DOC(GameLanguage.gl.get(HUDFields.DOC), ReadDocumentation.class),
-	SUPPORT(GameLanguage.gl.get(HUDFields.SUPPORT), null, false);
+	SUPPORT(GameLanguage.gl.get(HUDFields.SUPPORT), SupportListener.class);
 
 	/**
 	 * nom

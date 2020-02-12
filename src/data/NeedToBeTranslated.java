@@ -83,6 +83,9 @@ public interface NeedToBeTranslated {
 	String SET_HERO = "Ajout d'un héros.";
 	String UNSET_HERO = "Suppression d'un héros.";
 
+	//SetName
+	String SET_NAME = "Changer nom";
+
 	//TODO: all
 
 	//ActionsManagerType
@@ -181,4 +184,12 @@ public interface NeedToBeTranslated {
 	String MAP_AND_MENU_AND_POPUP = "carte, menu et contenu";
 	String NO_MODE = "Spécial";
 	String ALL_MODES = "carte, menu et contenu";
+
+	//SupportListener
+	String SUPPORT_MESSAGE = "Vous pouvez demander de l'aide sur le forum d'Enigma.";
+	String OPEN_LINK_FAILED = "Echec de l'ouverture par l'application.\n";
+
+	//testScreen
+	String OPEN_MAP = "Ouvrir une map";
+	String NEW_MAP = "Nouvelle map";
 }

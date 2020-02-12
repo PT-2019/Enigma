@@ -29,7 +29,7 @@ import static common.language.GameLanguage.gl;
 public enum Outil {
 	NEW(gl.get(HUDFields.CREATE), new ImageIcon("assets/icon/new.png"), CreateListener.class),
 	OPEN(gl.get(HUDFields.OPEN), new ImageIcon("assets/icon/open.png"), OpenListener.class),
-	SAVE(gl.get(HUDFields.SAVE), new ImageIcon("assets/icon/save.png"), true, SaveListener.class),
+	SAVE(gl.get(HUDFields.SAVE), new ImageIcon("assets/icon/noSave.png"), true, SaveListener.class),
 	UNDO(gl.get(HUDFields.UNDO), new ImageIcon("assets/icon/noUndo.png"), UndoListener.class),
 	REDO(gl.get(HUDFields.REDO), new ImageIcon("assets/icon/noRedo.png"), true, RedoListener.class),
 	BRUSH(gl.get(HUDFields.BRUSH), new ImageIcon("assets/icon/brush.png"), BrushListener.class),
@@ -39,6 +39,8 @@ public enum Outil {
 	public static ImageIcon SEPARATOR = new ImageIcon("assets/icon/sep.png");
 	public static ImageIcon UNDO_OK = new ImageIcon("assets/icon/undo.png");
 	public static ImageIcon REDO_OK = new ImageIcon("assets/icon/redo.png");
+	public static ImageIcon SAVE_OK = new ImageIcon("assets/icon/save.png");
+	public static ImageIcon SAVE_KO = new ImageIcon("assets/icon/noSave.png");
 	public static ImageIcon UNDO_KO = new ImageIcon("assets/icon/noUndo.png");
 	public static ImageIcon REDO_KO = new ImageIcon("assets/icon/noRedo.png");
 

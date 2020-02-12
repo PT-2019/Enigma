@@ -95,6 +95,7 @@ public class CaseListener extends ClickListener {
 	 * Ferme tous les popups
 	 */
 	public static void close() {
+		if(CaseListener.caseListener == null) return;
 		CasePopUp popUp = CaseListener.caseListener.popUp;
 		if (popUp != null) {
 			popUp.clean();

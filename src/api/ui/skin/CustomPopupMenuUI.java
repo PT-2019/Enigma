@@ -3,6 +3,7 @@ package api.ui.skin;
 import api.ui.base.DefaultUIValues;
 import api.ui.skin.base.CustomUI;
 import api.ui.skin.base.states.CustomUIPopup;
+import api.utils.Utility;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
@@ -74,13 +75,7 @@ public class CustomPopupMenuUI extends BasicPopupMenuUI implements CustomUI<Cust
 	 */
 	@SuppressWarnings("unchecked")
 	protected <T extends CustomPopupMenuUI> T duplicate(T customPopupMenuUI) {
-		T clone;
-		try {
-			Constructor<?> c = customPopupMenuUI.getClass().getDeclaredConstructor();
-			clone = (T) c.newInstance();
-		} catch (InstantiationException | NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-			throw new IllegalStateException(e);
-		}
+		T clone = (T) Utility.instance(customPopupMenuUI.getClass());
 
 		clone.setPopupBorder(this.getPopupBorder());
 		clone.setPopupBackground(this.getPopupBackground());

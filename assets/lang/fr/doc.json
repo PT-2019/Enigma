@@ -1,11 +1,11 @@
 [
   {
-    title: Home
+    title: Accueil
     docItems: [
       {
         type: TITLE
         content: [
-          Home
+          Documentation d'Enigma
         ]
       },
       {
@@ -20,7 +20,17 @@
           "L'équipe de développement d'Enigma."
         ]
       }
+      {
+        type: IMAGE
+        content : [
+          "assets/files/doc/exemple.png"
+        ]
+      }
     ]
+  },
+  {
+    title: Modes de dessin
+    docItems: []
   },
   {
     title: Salles
@@ -38,4 +48,8 @@
     title: Enigmes
     docItems: []
   }
+  {
+    title: Simulation
+    docItems: []
+  },
 ]

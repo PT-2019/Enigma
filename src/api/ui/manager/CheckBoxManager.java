@@ -26,7 +26,7 @@ public final class CheckBoxManager implements MultipleButtonManager {
 	@Override
 	public void add(CustomButton b) {
 		if (b.getComponentUI() == null) b.setComponentUI(new CustomButtonUI());
-		b.addMouseListener(new SelectedManager(this));
+		b.addActionListener(new SelectedManager(this));
 	}
 
 	@Override

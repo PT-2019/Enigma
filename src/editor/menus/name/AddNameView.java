@@ -127,6 +127,8 @@ public class AddNameView extends AbstractPopUpView {
 			this.entity.setName(this.field.getText());
 			this.parent.dispose();//supprime fenêtre
 			EnigmaGame.getCurrentScreen().showToast(NAME_SAVED);
+			//up du nom
+			this.parent.popUp.invalidateDrawable();
 			this.parent.popUp.setVisible(true);
 		}
 	}

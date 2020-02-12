@@ -39,7 +39,7 @@ public final class RadioButtonManager implements MultipleButtonManager {
 	public void add(CustomButton b) {
 		if (b.getComponentUI() == null) b.setComponentUI(new CustomButtonUI());
 		if(selected == null && setFirstSelected) setSelected(b);
-		b.addMouseListener(new SelectedManager(this));
+		b.addActionListener(new SelectedManager(this));
 	}
 
 	@Override

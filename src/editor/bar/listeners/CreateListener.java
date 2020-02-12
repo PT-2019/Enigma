@@ -189,6 +189,9 @@ public class CreateListener extends MenuListener {
 
 				if (EnigmaGame.getCurrentScreen().setMap(path))
 					Gdx.app.postRunnable(() -> EnigmaGame.reload(EnigmaScreens.TEST.name()));
+
+				//préviens map chargée aux autres
+				MapLoaded.getInstance().setMapLoaded(true);
 			}
 		} while (error);
 	}

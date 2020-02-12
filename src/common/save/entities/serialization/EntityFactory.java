@@ -134,48 +134,41 @@ public class EntityFactory {
 	 * @return un GameObject représentant l'entitée
 	 * @since 4.0
 	 */
-	@SuppressWarnings("unchecked")
 	public static GameObject createEntity(EntitySerializable entity, Integer id, @Nullable Vector2 pos, IDFactory idFactory) {
 		GameObject object;
-		try {
-			Class c = Class.forName(entity.getClassName());
-			Constructor declaredConstructor = c.getDeclaredConstructor();
-			object = (GameObject) declaredConstructor.newInstance();
-			//id
-			if (id == null) {
-				//attribution
-				idFactory.newID(object);
-			} else {
-				idFactory.malloc(object, id);
-			}
-			//location
-			object.setDimension(entity.getWidth(), entity.getHeight());
+		object = (GameObject) Utility.instance(entity.getClassName());
 
-			//pas top, ajoute les informations en plus
-			//on devrait faire une méthode qui demande a l'entité s'il elle veut
-			//ajouter des infos et une interface plutôt que donner direct NPC
-			//mais j'ai flemme et manque de temps là ~#rush
-			if (entity instanceof PlayerSerializableToJson && object instanceof EntityGame) {
-				PlayerSerializableToJson player = ((PlayerSerializableToJson) entity);
-				((EntityGame) object).setJson(player.getJson(), player.getKey());
-				//Logger.printDebug("EntityFactory", "PlayerSerializable loaded.");
-			}
+		//id
+		if (id == null) {
+			//attribution
+			idFactory.newID(object);
+		} else {
+			idFactory.malloc(object, id);
+		}
+		//location
+		object.setDimension(entity.getWidth(), entity.getHeight());
 
-			if (pos != null)
-				object.setGameObjectPosition(pos);
-			//layers
-			for (Layer l : Layer.values()) {
-				//récupère les tiles de l'entités pour ce niveau
-				Array<Float> entities = entity.getTiles(l);
+		//pas top, ajoute les informations en plus
+		//on devrait faire une méthode qui demande a l'entité s'il elle veut
+		//ajouter des infos et une interface plutôt que donner direct NPC
+		//mais j'ai flemme et manque de temps là ~#rush
+		if (entity instanceof PlayerSerializableToJson && object instanceof EntityGame) {
+			PlayerSerializableToJson player = ((PlayerSerializableToJson) entity);
+			((EntityGame) object).setJson(player.getJson(), player.getKey());
+			//Logger.printDebug("EntityFactory", "PlayerSerializable loaded.");
+		}
 
-				//si pas de tiles a mettre sur ce layer, on passe au suivant
-				if (entities == null) continue;
+		if (pos != null)
+			object.setGameObjectPosition(pos);
+		//layers
+		for (Layer l : Layer.values()) {
+			//récupère les tiles de l'entités pour ce niveau
+			Array<Float> entities = entity.getTiles(l);
 
-				object.setTiles(entities, l);
-			}
-		} catch (IllegalAccessException | InstantiationException | NoSuchMethodException
-				| InvocationTargetException | ClassNotFoundException e) {
-			throw new IllegalStateException("EntityFactory create instance failed" + e);
+			//si pas de tiles a mettre sur ce layer, on passe au suivant
+			if (entities == null) continue;
+
+			object.setTiles(entities, l);
 		}
 
 		return object;

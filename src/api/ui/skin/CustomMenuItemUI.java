@@ -6,6 +6,7 @@ import api.ui.skin.base.CustomUIBackground;
 import api.ui.skin.base.CustomUICursor;
 import api.ui.skin.base.CustomUIFont;
 import api.ui.skin.base.CustomUIForeground;
+import api.utils.Utility;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
@@ -15,8 +16,6 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 
 /**
  * Style de base d'un élément d'un menu
@@ -59,13 +58,7 @@ public class CustomMenuItemUI extends BasicMenuItemUI implements CustomUI<Custom
 	 */
 	@SuppressWarnings("unchecked")
 	protected <T extends CustomMenuItemUI> T duplicate(T customMenuItemUI) {
-		T clone;
-		try {
-			Constructor<?> c = customMenuItemUI.getClass().getDeclaredConstructor();
-			clone = (T) c.newInstance();
-		} catch (InstantiationException | NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-			throw new IllegalStateException(e);
-		}
+		T clone = (T) Utility.instance(customMenuItemUI.getClass());
 
 		clone.setCursor(this.getCursor());
 		clone.setBackground(this.getBackground());

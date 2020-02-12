@@ -1,6 +1,7 @@
 package editor.bar.listeners;
 
 import api.ui.CustomOptionPane;
+import api.utils.Observer;
 import api.utils.Utility;
 import com.badlogic.gdx.Gdx;
 import common.data.MapData;
@@ -29,10 +30,12 @@ import java.io.IOException;
  * @version 6.0 01/02/2020
  * @since 6.0 01/02/2020
  */
-public class SaveAsListener extends MenuListener {
+public class SaveAsListener extends MenuListener  implements Observer<MapLoaded> {
 
 	public SaveAsListener(EnigmaWindow window, JComponent parent) {
 		super(window, parent);
+		MapLoaded instance = MapLoaded.getInstance();
+		instance.addObserver(this);
 	}
 
 	@Override
@@ -87,4 +90,8 @@ public class SaveAsListener extends MenuListener {
 		}
 	}
 
+	@Override
+	public void update(MapLoaded object) {
+		this.parent.setEnabled(object.isMapLoaded());
+	}
 }

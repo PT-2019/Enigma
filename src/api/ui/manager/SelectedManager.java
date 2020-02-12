@@ -2,6 +2,8 @@ package api.ui.manager;
 
 import api.ui.CustomButton;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -16,7 +18,7 @@ import java.awt.event.MouseEvent;
  * @version 4.0
  * @since 3.0
  */
-public final class SelectedManager extends MouseAdapter {
+public final class SelectedManager extends MouseAdapter implements ActionListener {
 
 	private MultipleButtonManager manager;
 
@@ -27,5 +29,10 @@ public final class SelectedManager extends MouseAdapter {
 	@Override
 	public void mouseClicked(MouseEvent mouseEvent) {
 		this.manager.setSelected((CustomButton) mouseEvent.getSource());
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		this.manager.setSelected((CustomButton) e.getSource());
 	}
 }

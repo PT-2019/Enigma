@@ -7,6 +7,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.Align;
 import common.enigmas.Enigma;
 import common.entities.GameObject;
+import data.config.Config;
 import editor.bar.edition.ActionTypes;
 import editor.bar.edition.ActionsManager;
 import editor.bar.edition.ActionsManagerType;
@@ -23,27 +24,13 @@ import editor.bar.edition.ActionsManagerType;
  */
 public class EnigmaEditorToast extends Toast implements Observer<ActionsManager> {
 
-	//dans fichier config (toutes constantes)
-	/**
-	 * Json
-	 *
-	 * @since 6.0
-	 */
-	private static final String JSON_PATH = "assets/files/atlas/uiskin.json";
-	/**
-	 * Fichier skin
-	 *
-	 * @since 6.0
-	 */
-	private static final String SKIN_PATH = "assets/files/atlas/uiskin.atlas";
-
 	private static final float BASE_FADE_IN_DELAY = 0.3f, BASE_FADE_OUT_DELAY = 0.5f, DELAY = 1f;
 
 	/**
 	 * Crée le toast de l'éditor
 	 */
 	public EnigmaEditorToast() {
-		super(JSON_PATH, SKIN_PATH, "");
+		super(Config.JSON_PATH, Config.SKIN_PATH, "");
 
 		//this.setBackground("default-select-selection"); // <-- cyan/bleu
 		this.setBackground("default-round-down");

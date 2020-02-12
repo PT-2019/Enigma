@@ -1,5 +1,6 @@
 package editor.bar.listeners;
 
+import api.utils.Observer;
 import com.badlogic.gdx.Gdx;
 import common.hud.EnigmaMenuItem;
 import common.hud.EnigmaWindow;
@@ -26,7 +27,7 @@ import java.awt.event.ActionEvent;
  * @version 6.0 08/02/2020
  * @since 6.0 08/02/2020
  */
-public class StartSimulation extends MenuListener {
+public class StartSimulation extends MenuListener  implements Observer<MapLoaded> {
 
 	private static final String STOP = EnigmaMenuBarItems.STOP.name;
 
@@ -38,6 +39,8 @@ public class StartSimulation extends MenuListener {
 	 */
 	public StartSimulation(EnigmaWindow window, Component parent) {
 		super(window, parent);
+		MapLoaded instance = MapLoaded.getInstance();
+		instance.addObserver(this);
 	}
 
 	@Override
@@ -64,6 +67,11 @@ public class StartSimulation extends MenuListener {
 				}
 			}
 		}
+	}
+
+	@Override
+	public void update(MapLoaded object) {
+		this.parent.setEnabled(object.isMapLoaded());
 	}
 
 	/**

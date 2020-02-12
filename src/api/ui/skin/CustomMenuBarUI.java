@@ -4,6 +4,7 @@ import api.ui.base.DefaultUIValues;
 import api.ui.skin.base.CustomUI;
 import api.ui.skin.base.CustomUIBackground;
 import api.ui.skin.base.CustomUIBorder;
+import api.utils.Utility;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
@@ -104,20 +105,14 @@ public class CustomMenuBarUI extends BasicMenuBarUI implements CustomUI<CustomMe
 	/**
 	 * Crée une copie de l'ui d'une barre de menus
 	 *
-	 * @param customButtonUI l'ui d'une barre de menus
+	 * @param customMenuBarUI l'ui d'une barre de menus
 	 * @param <T>            qui doit extends CustomMenuBarUI
 	 * @return une copie de l'ui d'une barre de menus
 	 * @throws IllegalStateException si une copie échoue a être crée
 	 */
 	@SuppressWarnings("unchecked")
-	protected <T extends CustomMenuBarUI> T duplicate(T customButtonUI) {
-		T clone;
-		try {
-			Constructor<?> c = customButtonUI.getClass().getDeclaredConstructor();
-			clone = (T) c.newInstance();
-		} catch (InstantiationException | NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-			throw new IllegalStateException(e);
-		}
+	protected <T extends CustomMenuBarUI> T duplicate(T customMenuBarUI) {
+		T clone = (T) Utility.instance(customMenuBarUI.getClass());
 
 		clone.setBackground(this.getBackground());
 		clone.setBorder(this.getBorder());

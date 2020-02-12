@@ -322,8 +322,8 @@
                 <property name="className" value="common.entities.players.Monster"/>
                 <property name="y2" value="40.0"/>
                 <property name="FLOOR2" value="4"/>
-                <property name="KEY" value="rat"/>
-                <property name="NAME" value="rat"/>
+                <property name="KEY" value="Rat"/>
+                <property name="NAME" value="Rat"/>
                 <property name="JSON" value="assets/entities/monsters/monsters.json"/>
             </properties>
         </object>

@@ -1,5 +1,6 @@
 package editor.bar.listeners;
 
+import api.utils.Observer;
 import common.data.MapData;
 import common.hud.EnigmaOptionPane;
 import common.hud.EnigmaWindow;
@@ -23,10 +24,12 @@ import java.io.IOException;
  * @version 6.0 01/02/2020
  * @since 6.0 01/02/2020
  */
-public class ExportListener extends MenuListener {
+public class ExportListener extends MenuListener implements Observer<MapLoaded> {
 
 	public ExportListener(EnigmaWindow window, JComponent parent) {
 		super(window, parent);
+		MapLoaded instance = MapLoaded.getInstance();
+		instance.addObserver(this);
 	}
 
 	@Override
@@ -64,5 +67,10 @@ public class ExportListener extends MenuListener {
 			}
 			//TODO: afficher ok
 		}
+	}
+
+	@Override
+	public void update(MapLoaded object) {
+		this.parent.setEnabled(object.isMapLoaded());
 	}
 }

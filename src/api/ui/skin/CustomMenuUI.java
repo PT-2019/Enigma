@@ -6,6 +6,7 @@ import api.ui.skin.base.CustomUIBackground;
 import api.ui.skin.base.CustomUICursor;
 import api.ui.skin.base.CustomUIFont;
 import api.ui.skin.base.CustomUIForeground;
+import api.utils.Utility;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -67,13 +68,7 @@ public class CustomMenuUI extends BasicMenuUI implements CustomUI<CustomMenuUI>,
 	 */
 	@SuppressWarnings("unchecked")
 	protected <T extends CustomMenuUI> T duplicate(T customMenuUI) {
-		T clone;
-		try {
-			Constructor<?> c = customMenuUI.getClass().getDeclaredConstructor();
-			clone = (T) c.newInstance();
-		} catch (InstantiationException | NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-			throw new IllegalStateException(e);
-		}
+		T clone = (T) Utility.instance(customMenuUI.getClass());
 
 		clone.setCursor(this.getCursor());
 		clone.setAllBackgrounds(this.getBackground(), this.getHoveredBackground());

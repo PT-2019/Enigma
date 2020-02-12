@@ -1,12 +1,15 @@
 package editor.popup.listeners;
 
+import api.utils.Observer;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import common.map.AbstractMap;
+import common.utils.Logger;
 import data.EditorState;
 import data.NeedToBeTranslated;
 import data.config.Config;
 import editor.EditorLauncher;
+import editor.bar.listeners.MapLoaded;
 import org.jetbrains.annotations.NotNull;
 
 import java.awt.event.ActionEvent;
@@ -22,12 +25,17 @@ import java.awt.event.ActionListener;
  * @version 6.0 08/02/2020
  * @since 6.0 08/02/2020
  */
-public class ZoomListener implements ActionListener {
+public class ZoomListener implements ActionListener, Observer<MapLoaded> {
 
 	/**
 	 * Map
 	 */
 	private final AbstractMap map;
+
+	/**
+	 * Zoom possible
+	 */
+	private boolean canZoom;
 
 	/**
 	 * Listener du zoom
@@ -36,10 +44,17 @@ public class ZoomListener implements ActionListener {
 	 */
 	public ZoomListener(AbstractMap map) {
 		this.map = map;
+		MapLoaded instance = MapLoaded.getInstance();
+		instance.addObserver(this);
+		this.canZoom = instance.isMapLoaded();
 	}
 
 	@Override
 	public void actionPerformed(@NotNull ActionEvent e) {
+		if(!this.canZoom){
+			Logger.printDebug("ZoomListener","Zoom bloquée.");
+			return;
+		}
 		String selected = e.getActionCommand();
 		//valeur de base du zoom
 		float baseZoomValue = Config.BASE_ZOOM_VALUE;
@@ -113,5 +128,10 @@ public class ZoomListener implements ActionListener {
 
 			}
 		}
+	}
+
+	@Override
+	public void update(MapLoaded object) {
+		this.canZoom = object.isMapLoaded();
 	}
 }

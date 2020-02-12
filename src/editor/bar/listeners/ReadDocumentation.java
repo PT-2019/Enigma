@@ -1,11 +1,13 @@
 package editor.bar.listeners;
 
+import api.ui.CustomColors;
 import api.ui.base.DefaultUIValues;
 import api.ui.manager.RadioButtonManager;
 import api.utils.Utility;
 import common.hud.EnigmaButton;
 import common.hud.EnigmaLabel;
 import common.hud.EnigmaPanel;
+import common.hud.EnigmaTextArea;
 import common.hud.EnigmaWindow;
 import common.hud.ui.EnigmaButtonUI;
 import common.language.GameLanguage;
@@ -19,7 +21,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.WindowConstants;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -51,7 +52,7 @@ public class ReadDocumentation extends MenuListener {
 	/**
 	 * Size
 	 */
-	private static final int WIDTH = 700, HEIGHT = 500;
+	private static final int WIDTH = 850, HEIGHT = 600;
 	private static final int WIDTH_CATEGORIES = 200, HEIGHT_CATEGORIES = 500;
 
 	/**
@@ -69,6 +70,7 @@ public class ReadDocumentation extends MenuListener {
 	 */
 	private static final Color BASE_PANEL_COLOR = new JPanel().getBackground();
 	private static final Color BASE_PRESSED_COLOR = Color.BLACK;
+	private static final Color TEXT_COLOR = CustomColors.STEEL_BLUE;
 
 	/**
 	 * La fenêtre de documentation
@@ -186,7 +188,7 @@ public class ReadDocumentation extends MenuListener {
 			//survol
 			categories.setToolTipText(documentationCategory.getToolTip());
 			//listener
-			category.addActionListener(new ShowCategory(content));
+			category.addActionListener(new ShowCategory(content, manager));
 			//charge le contenu
 			loadContent(documentationCategory, content);
 			//manager
@@ -204,7 +206,15 @@ public class ReadDocumentation extends MenuListener {
 	private void loadContent(DocumentationFile documentationCategory, EnigmaPanel content) {
 		EnigmaPanel panel = new EnigmaPanel(new GridBagLayout());
 		panel.getComponentUI().setAllBackgrounds(BASE_PANEL_COLOR);
+
+		//contraintes générales
 		GridBagConstraints gdc = new GridBagConstraints();
+		gdc.anchor = GridBagConstraints.WEST;
+		gdc.gridwidth = 1;
+		gdc.weightx = 1;
+		gdc.gridx = 0;
+		gdc.insets = new Insets(10,20,10,20);
+		gdc.fill = GridBagConstraints.HORIZONTAL;
 
 		//ajoute le contenu
 		ArrayList<DocumentationFile.DocItems> docItems = documentationCategory.getDocItems();
@@ -214,6 +224,7 @@ public class ReadDocumentation extends MenuListener {
 			switch (documentationTypes){
 				case TITLE:
 					EnigmaLabel title = new EnigmaLabel(items.getContent()[0]);
+					title.setHorizontalAlignment(EnigmaLabel.LEFT);
 					//style
 					title.getComponentUI().setAllBackgrounds(BASE_PANEL_COLOR);
 					title.getComponentUI().setAllForegrounds(BASE_PRESSED_COLOR);
@@ -223,7 +234,7 @@ public class ReadDocumentation extends MenuListener {
 					panel.add(title, gdc);
 					break;
 				case MESSAGE:
-					JTextArea area = new JTextArea();
+					EnigmaTextArea area = new EnigmaTextArea();
 					StringBuilder sb = new StringBuilder();
 					for (String s :items.getContent()) {
 						sb.append(s);
@@ -231,16 +242,29 @@ public class ReadDocumentation extends MenuListener {
 					area.setText(sb.toString());
 					//Style
 					area.setEditable(false);
+					area.setWrapStyleWord(true);
+					area.getComponentUI().setAllBackgrounds(BASE_PANEL_COLOR);
+					area.getComponentUI().setAllForegrounds(TEXT_COLOR);
 					area.setMargin(new Insets(10,10,10,10));
 					//add
 					gdc.gridy = i;
 					panel.add(area, gdc);
 					break;
 				case IMAGE:
+					EnigmaLabel icon = new EnigmaLabel(new ImageIcon(items.getContent()[0]));
+					icon.setHorizontalAlignment(EnigmaLabel.CENTER);
+					//style
+					icon.getComponentUI().setAllBackgrounds(BASE_PANEL_COLOR);
+					icon.getComponentUI().setAllForegrounds(BASE_PRESSED_COLOR);
+					icon.getComponentUI().setFont(EnigmaUIValues.ENIGMA_TITLE_FONT);
+					//add
+					gdc.gridy = i;
+					panel.add(icon, gdc);
 					break;
 			}
 		}
 
+		//la clef du card layout est le contenu du bouton
 		content.add(panel, documentationCategory.getTitle());
 	}
 
@@ -263,9 +287,11 @@ public class ReadDocumentation extends MenuListener {
 	private static final class ShowCategory implements ActionListener {
 
 		private final EnigmaPanel content;
+		private final RadioButtonManager manager;
 
-		ShowCategory(EnigmaPanel content) {
+		ShowCategory(EnigmaPanel content, RadioButtonManager manager) {
 			this.content = content;
+			this.manager = manager;
 		}
 
 		@Override

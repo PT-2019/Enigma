@@ -272,8 +272,12 @@ public interface CustomUISelected<T extends CustomUI> extends CustomUI<T> {
 	void setAllSelectedBackgrounds(Color selectedBackground, Color selectedHoveredBackground,
 	                               Color selectedPressedBackground);
 
+	void setAllSelectedBackgrounds(Color selectedBackground);
+
 	void setAllSelectedForegrounds(Color selectedForeground, Color selectedHoveredForeground,
 	                               Color selectedPressedForeground);
+
+	void setAllSelectedForegrounds(Color selectedForeground);
 
 	void setAllSelectedBorders(Color selectedBorder, Color selectedHoveredBorder, Color selectedPressedBorder);
 }

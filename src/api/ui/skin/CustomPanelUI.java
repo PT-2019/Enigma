@@ -2,6 +2,7 @@ package api.ui.skin;
 
 import api.ui.base.DefaultUIValues;
 import api.ui.skin.base.states.CustomUIHoverAndPressed;
+import api.utils.Utility;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
@@ -97,20 +98,14 @@ public class CustomPanelUI extends BasicPanelUI implements CustomUIHoverAndPress
 	/**
 	 * Crée une copie de l'ui d'un panel
 	 *
-	 * @param customButtonUI l'ui d'un panel
+	 * @param customPanelUI l'ui d'un panel
 	 * @param <T>            qui doit extends CustomPanelUI
 	 * @return une copie de l'ui d'un panel
 	 * @throws IllegalStateException si une copie échoue a être crée
 	 */
 	@SuppressWarnings("unchecked")
-	protected <T extends CustomPanelUI> T duplicate(T customButtonUI) {
-		T clone;
-		try {
-			Constructor<?> c = customButtonUI.getClass().getDeclaredConstructor();
-			clone = (T) c.newInstance();
-		} catch (InstantiationException | NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-			throw new IllegalStateException(e);
-		}
+	protected <T extends CustomPanelUI> T duplicate(T customPanelUI) {
+		T clone = (T) Utility.instance(customPanelUI.getClass());
 
 		clone.setCursor(this.getCursor());
 		clone.setAllBackgrounds(this.getBackground(), this.getHoveredBackground(), this.getPressedBackground());

@@ -12,7 +12,7 @@ import common.language.Language;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 6.3
+ * @version 6.4
  * @since 4.0
  */
 public final class Config {
@@ -191,10 +191,32 @@ public final class Config {
 	 * @since 6.3
 	 */
 	public static final int MAP_MAX_WIDTH = 300, MAP_MAX_HEIGHT = 300;
+
+	/**
+	 * Lien vers le github du projet
+	 *
+	 * @since 6.4
+	 */
+	public static final String GITHUB_LINK = "https://github.com/PT-2019/Enigma";
+
 	/**
 	 * Taux de rafraîchissement d'images par seconde
 	 *
 	 * @since 6.3
 	 */
 	private static final int FPS_RATE = 45;
+
+	/**
+	 * Json
+	 *
+	 * @since 6.0
+	 */
+	public static final String JSON_PATH = "assets/files/atlas/uiskin.json";
+
+	/**
+	 * Fichier skin
+	 *
+	 * @since 6.0
+	 */
+	public static final String SKIN_PATH = "assets/files/atlas/uiskin.atlas";
 }

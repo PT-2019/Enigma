@@ -2,6 +2,7 @@ package api.utils;
 
 import api.utils.annotations.ConvenienceClass;
 import api.utils.annotations.ConvenienceMethod;
+import com.badlogic.gdx.utils.Array;
 import common.utils.Logger;
 
 import java.awt.Component;
@@ -28,7 +29,11 @@ import java.util.Map;
 /**
  * Tout un paquet de méthodes utiles
  *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
+ *
  * @version 6.5
  * @since 2.0 27 novembre 2019
  */
@@ -263,12 +268,16 @@ public class Utility implements Serializable {
 	@ConvenienceMethod
 	public static Object instance(Class<?> aClass) {
 		Object object;
+		Constructor declaredConstructor = null;
 		try {
-			Constructor declaredConstructor = aClass.getDeclaredConstructor();
-			object = declaredConstructor.newInstance();
+			 declaredConstructor = aClass.getDeclaredConstructor();
+			 object = declaredConstructor.newInstance();
 		} catch (IllegalAccessException | InstantiationException | NoSuchMethodException
 				| InvocationTargetException e) {
-			throw new IllegalStateException("create instance failed" + e);
+			String message = "Create instance failed. Error \""+e.getCause()
+					+"\" in "+declaredConstructor;
+			if(declaredConstructor == null) message = "Constructor not found."+e;
+			throw new IllegalStateException(message);
 		}
 		return object;
 	}
@@ -285,13 +294,20 @@ public class Utility implements Serializable {
 	@ConvenienceMethod
 	public static Object instance(Class<?> aClass, Object value) {
 		Object object;
+		Constructor declaredConstructor = null;
 		try {
-			Constructor declaredConstructor = aClass.getDeclaredConstructor(value.getClass());
+			try {
+				declaredConstructor = aClass.getDeclaredConstructor(value.getClass());
+			} catch (NoSuchMethodException | SecurityException e) {
+				return instance(aClass, value, null);
+			}
 			object = declaredConstructor.newInstance(value);
-		} catch (IllegalAccessException | InstantiationException | NoSuchMethodException
-				| InvocationTargetException e) {
-			throw new IllegalStateException("Utility. create instance failed" + e);
+		} catch (IllegalAccessException | InstantiationException | InvocationTargetException e) {
+			String message = "Create instance failed. Error \""+e.getCause()
+					+"\" in "+declaredConstructor;
+			throw new IllegalStateException(message);
 		}
+
 		return object;
 	}
 
@@ -299,7 +315,7 @@ public class Utility implements Serializable {
 	 * Retourne une instance d'une classe
 	 *
 	 * @param aClass une classe avec un constructeur ayant 1 argument
-	 * @param args   les arguments du constructeur
+	 * @param args   les arguments du constructeur, null pour terminer si besoin
 	 * @return une instance de la classe
 	 * @throws IllegalStateException si une erreur survient
 	 * @since 6.0
@@ -307,26 +323,25 @@ public class Utility implements Serializable {
 	@ConvenienceMethod
 	public static Object instance(Class<?> aClass, Object... args) {
 		Object object;
+		Constructor<?> selected = null;
 		try {
 			//récupération des classes
 			if (args != null && args.length > 0) {
 				//récupération des classes
-				Class<?>[] classes = new Class[args.length];
+				Array<Class<?>> classes = new Array<>();
 				for (int i = 0; i < args.length; i++) {
-					classes[i] = args[i].getClass();
+					if(args[i] != null) classes.add(args[i].getClass());
 				}
-
-				Constructor<?> selected = null;
 
 				//Regarde tous les constructeurs
 				boolean valid;
 				for (Constructor<?> constructor : aClass.getDeclaredConstructors()) {
 					Class<?>[] params = constructor.getParameterTypes();
 					//même nombre de paramètres
-					if (params.length != classes.length) continue;
+					if (params.length != classes.size) continue;
 					valid = false;
 					for (int i = 0; i < params.length; i++) {
-						Class<?> c = classes[i];
+						Class<?> c = classes.get(i);
 						while (c != null) {
 							if (c.getName().equals(params[i].getName())) break;
 							c = c.getSuperclass();
@@ -351,7 +366,9 @@ public class Utility implements Serializable {
 			}
 		} catch (IllegalAccessException | InstantiationException | NoSuchMethodException
 				| InvocationTargetException e) {
-			throw new IllegalStateException("Utility. create instance failed" + e);
+			String message = "Create instance failed. Error \""+e.getCause()
+					+"\" in "+selected;
+			throw new IllegalStateException(message);
 		}
 		return object;
 	}

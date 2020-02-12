@@ -5,6 +5,7 @@ import api.ui.skin.base.CustomUIFont;
 import api.ui.skin.base.CustomUIForeground;
 import api.ui.skin.base.states.CustomUIHoverAndPressed;
 import api.ui.skin.base.states.CustomUISelected;
+import api.utils.Utility;
 
 import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
@@ -131,13 +132,7 @@ public class CustomButtonUI extends BasicButtonUI implements CustomUIHoverAndPre
 	 */
 	@SuppressWarnings("unchecked")
 	protected <T extends CustomButtonUI> T duplicate(T customButtonUI) {
-		T clone;
-		try {
-			Constructor<?> c = customButtonUI.getClass().getDeclaredConstructor();
-			clone = (T) c.newInstance();
-		} catch (InstantiationException | NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-			throw new IllegalStateException(e);
-		}
+		T clone = (T) Utility.instance(customButtonUI.getClass());
 
 		clone.setCursor(this.getCursor());
 		clone.setAllBackgrounds(this.getBackground(), this.getHoveredBackground(), this.getPressedBackground());
@@ -331,6 +326,14 @@ public class CustomButtonUI extends BasicButtonUI implements CustomUIHoverAndPre
 		this.foreground = foreground;
 		this.hoveredForeground = hoveredForeground;
 		this.pressedForeground = pressedForeground;
+	}
+
+	public void setAllForegrounds(Color foreground) {
+		if (foreground == null)
+			throw new NullPointerException("Les arguments ne peuvent pas être null");
+		this.foreground = foreground;
+		this.hoveredForeground = foreground;
+		this.pressedForeground = foreground;
 	}
 
 	//
@@ -612,6 +615,24 @@ public class CustomButtonUI extends BasicButtonUI implements CustomUIHoverAndPre
 		this.selectedForeground = selectedForeground;
 		this.selectedHoveredForeground = selectedHoveredForeground;
 		this.selectedPressedForeground = selectedPressedForeground;
+	}
+
+	@Override
+	public void setAllSelectedBackgrounds(Color selectedBackground) {
+		if (selectedBackground == null)
+			throw new NullPointerException("Les arguments ne peuvent pas être null");
+		this.selectedBackground = selectedBackground;
+		this.selectedHoveredBackground = selectedBackground;
+		this.selectedPressedBackground = selectedBackground;
+	}
+
+	@Override
+	public void setAllSelectedForegrounds(Color selectedForeground) {
+		if (selectedForeground == null)
+			throw new NullPointerException("Les arguments ne peuvent pas être null");
+		this.selectedForeground = selectedForeground;
+		this.selectedHoveredForeground = selectedForeground;
+		this.selectedPressedForeground = selectedForeground;
 	}
 
 	@Override
