@@ -13,4 +13,11 @@ public class DialogText extends Dialog {
     public void addText(String text) {
         this.text = text;
     }
+
+    @Override
+    public void addText(String text, String[] choice) {
+        this.text = text;
+        this.choice = choice;
+        this.isChoice = true;
+    }
 }

@@ -1,6 +1,5 @@
 package common.Dialog;
 
-import common.enigmas.Enigma;
 import common.entities.GameObject;
 import common.entities.items.Chest;
 import common.entities.items.Door;

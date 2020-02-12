@@ -5,9 +5,14 @@ package common.Dialog;
  *  de caractère. La classe Dialog
  */
 public class DialogNode extends Dialog{
-
+    /**
+     * composant gauche de la branche
+     */
     private Dialog left;
 
+    /**
+     * composant droite de la branche
+     */
     private Dialog right;
 
     public DialogNode(){
@@ -28,6 +33,25 @@ public class DialogNode extends Dialog{
             }
             this.right.addText(text.substring(MAX_CHAR));
         }
+    }
+
+    @Override
+    public void addText(String text, String[] choice) {
+        if (text.length() <= MAX_CHAR){
+            this.text = text;
+        }else{
+            //pour l'instant fonctionne uniquement pour un dialogue simple
+            this.text = text.substring(0,MAX_CHAR);
+            //on test pour svoir si il faut créer une branche ou une feuille
+            if (text.length() - MAX_CHAR*2 <= 0){
+                this.right = new DialogText();
+            } else{
+                this.right = new DialogNode();
+            }
+            this.right.addText(text.substring(MAX_CHAR));
+        }
+        this.choice = choice;
+        isChoice = true;
     }
 
     public Dialog getRight(){

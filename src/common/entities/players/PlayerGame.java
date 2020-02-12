@@ -65,127 +65,129 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
 		//position actuelle
 		float x = this.getX();
 		float y = this.getY();
+		//pour passer la main au controlleur du dialogue
+		if(!map.getEnigmaDialog().isVisible()){
+			if (CameraKeys.CAMERA_LEFT.isKey(i)) {
+				//on vérifie que la case où l'on compte se rendre est disponible
 
-		if (CameraKeys.CAMERA_LEFT.isKey(i)) {
-			//on vérifie que la case où l'on compte se rendre est disponible
+				if (map.isWalkable(x - PlayerGame.SPEED, y, this)
+						&& (!map.collision(this,-PlayerGame.SPEED,0))) {
 
-			if (map.isWalkable(x - PlayerGame.SPEED, y, this)
-					&& (!map.collision(this,-PlayerGame.SPEED,0))) {
+					this.setPosition(x - PlayerGame.SPEED, y);
+					//pour changer de sprite proprement
+					if (isAnimationPaused() || this.facedDirection != Direction.LEFT) {
+						this.setKeyFrame(3);
+					}
+					//pour centrer la caméra sur le personnage
+					this.getStage().getCamera().translate(-PlayerGame.SPEED, 0, 0);
 
-				this.setPosition(x - PlayerGame.SPEED, y);
-				//pour changer de sprite proprement
-				if (isAnimationPaused() || this.facedDirection != Direction.LEFT) {
-					this.setKeyFrame(3);
+					this.setFacedDirection(Direction.LEFT);
+					//l'animation n'est plus en pause pour la faire tourner
+					this.setAnimationPaused(false);
+					this.setAnimationLooping(true);
+				}else{
+					this.setKeyFrame(5);
+					this.setFacedDirection(Direction.LEFT);
 				}
-				//pour centrer la caméra sur le personnage
-				this.getStage().getCamera().translate(-PlayerGame.SPEED, 0, 0);
+			} else if (CameraKeys.CAMERA_RIGHT.isKey(i)) {
+				if (map.isWalkable(x + PlayerGame.SPEED, y, this) &&
+						(!map.collision(this,PlayerGame.SPEED,0)) ) {
 
-				this.setFacedDirection(Direction.LEFT);
-				//l'animation n'est plus en pause pour la faire tourner
-				this.setAnimationPaused(false);
-				this.setAnimationLooping(true);
-			}else{
-				this.setKeyFrame(5);
-				this.setFacedDirection(Direction.LEFT);
+					this.setPosition(x + PlayerGame.SPEED, y);
+					if (isAnimationPaused() || this.facedDirection != Direction.RIGHT) {
+						this.setKeyFrame(6);
+					}
+					this.getStage().getCamera().translate(PlayerGame.SPEED, 0, 0);
+					this.setFacedDirection(Direction.RIGHT);
+					this.setAnimationPaused(false);
+					this.setAnimationLooping(true);
+				}else{
+					this.setKeyFrame(8);
+					this.setFacedDirection(Direction.RIGHT);
+				}
+			} else if (CameraKeys.CAMERA_UP.isKey(i)) {
+				if (map.isWalkable(x, y + PlayerGame.SPEED, this) &&
+						(!map.collision(this,0,+PlayerGame.SPEED))) {
+
+					this.setPosition(x, y + PlayerGame.SPEED);
+					if (isAnimationPaused() || this.facedDirection != Direction.TOP) {
+						this.setKeyFrame(9);
+					}
+					this.getStage().getCamera().translate(0, PlayerGame.SPEED, 0);
+					this.setFacedDirection(Direction.TOP);
+					this.setAnimationPaused(false);
+					this.setAnimationLooping(true);
+				}else{
+					this.setKeyFrame(11);
+					this.setFacedDirection(Direction.TOP);
+				}
+			} else if (CameraKeys.CAMERA_DOWN.isKey(i)) {
+				if (map.isWalkable(x, y - PlayerGame.SPEED, this)
+						&& (!map.collision(this,0,-PlayerGame.SPEED))) {
+					this.setPosition(x, y - PlayerGame.SPEED);
+					if (isAnimationPaused() || this.facedDirection != Direction.BOTTOM) {
+						this.setKeyFrame(0);
+					}
+					this.getStage().getCamera().translate(0, -PlayerGame.SPEED, 0);
+					this.setFacedDirection(Direction.BOTTOM);
+					this.setAnimationPaused(false);
+					this.setAnimationLooping(true);
+				}else{
+					this.setKeyFrame(2);
+					this.setFacedDirection(Direction.BOTTOM);
+				}
 			}
-		} else if (CameraKeys.CAMERA_RIGHT.isKey(i)) {
-			if (map.isWalkable(x + PlayerGame.SPEED, y, this) &&
-					(!map.collision(this,PlayerGame.SPEED,0)) ) {
 
-				this.setPosition(x + PlayerGame.SPEED, y);
-				if (isAnimationPaused() || this.facedDirection != Direction.RIGHT) {
-					this.setKeyFrame(6);
-				}
-				this.getStage().getCamera().translate(PlayerGame.SPEED, 0, 0);
-				this.setFacedDirection(Direction.RIGHT);
-				this.setAnimationPaused(false);
-				this.setAnimationLooping(true);
-			}else{
-				this.setKeyFrame(8);
-				this.setFacedDirection(Direction.RIGHT);
-			}
-		} else if (CameraKeys.CAMERA_UP.isKey(i)) {
-			if (map.isWalkable(x, y + PlayerGame.SPEED, this) &&
-					(!map.collision(this,0,+PlayerGame.SPEED))) {
+			//interaction du joueur avec le milieu
+			if (Input.Keys.E == i) {
+				float tmpX,tmpY;
 
-				this.setPosition(x, y + PlayerGame.SPEED);
-				if (isAnimationPaused() || this.facedDirection != Direction.TOP) {
-					this.setKeyFrame(9);
+				if(facedDirection == Direction.BOTTOM){
+					tmpX = this.getX();
+					tmpY = this.getY() - PlayerGame.SPEED;
+				} else if (facedDirection == Direction.TOP) {
+
+					tmpX = this.getX();
+					tmpY = this.getY() + PlayerGame.SPEED;
+				}else if (facedDirection == Direction.RIGHT) {
+					tmpX = this.getX() + PlayerGame.SPEED;
+					tmpY = this.getY();
+				}else{
+					tmpX = this.getX() - PlayerGame.SPEED;
+					tmpY = this.getY();
 				}
-				this.getStage().getCamera().translate(0, PlayerGame.SPEED, 0);
-				this.setFacedDirection(Direction.TOP);
-				this.setAnimationPaused(false);
-				this.setAnimationLooping(true);
-			}else{
-				this.setKeyFrame(11);
-				this.setFacedDirection(Direction.TOP);
-			}
-		} else if (CameraKeys.CAMERA_DOWN.isKey(i)) {
-			if (map.isWalkable(x, y - PlayerGame.SPEED, this)
-					&& (!map.collision(this,0,-PlayerGame.SPEED))) {
-				this.setPosition(x, y - PlayerGame.SPEED);
-				if (isAnimationPaused() || this.facedDirection != Direction.BOTTOM) {
-					this.setKeyFrame(0);
+
+				GameActor entityGame = map.collisionEntityGame(this,tmpX - this.getX(),tmpY - this.getY());
+				if (entityGame != null){
+					System.out.println(entityGame);
 				}
-				this.getStage().getCamera().translate(0, -PlayerGame.SPEED, 0);
-				this.setFacedDirection(Direction.BOTTOM);
-				this.setAnimationPaused(false);
-				this.setAnimationLooping(true);
-			}else{
-				this.setKeyFrame(2);
-				this.setFacedDirection(Direction.BOTTOM);
+
+				map.doAction(tmpX,tmpY,this, TileEventEnum.ON_USE);
+				//on récupère l'objet sur lequelle on a intéragit
+				Vector2 position = AbstractMap.posToIndex(tmpX,tmpY,map);
+				GameObject object = map.posToEntities((int)position.y,(int)position.x);
+				System.out.println(object);
+
+				//toute cette partie permet d'afficher le dialogue des objets si ils en ont
+				if (object instanceof Content){
+					EnigmaDialogPopup dialog = map.getEnigmaDialog();
+					DialogNode node = new DialogNode();
+					String[] choice = new String[2];
+					choice[0] = "issou";
+					choice[1] = "monster";
+					node.addText(((Content) object).getContent(),choice);
+					dialog.showDialog(node,map);
+				}else{
+					EnigmaDialogPopup dialog = map.getEnigmaDialog();
+					DialogNode node = new DialogNode();
+					if (ItemDialog.getText(object) != null){
+						node.addText(ItemDialog.getText(object));
+						dialog.showDialog(node,map);
+					}
+				}
 			}
 		}
 
-		//interaction du joueur avec le milieu
-		if (Input.Keys.E == i) {
-			float tmpX,tmpY;
-
-			if(facedDirection == Direction.BOTTOM){
-				tmpX = this.getX();
-				tmpY = this.getY() - PlayerGame.SPEED;
-			} else if (facedDirection == Direction.TOP) {
-
-				tmpX = this.getX();
-				tmpY = this.getY() + PlayerGame.SPEED;
-			}else if (facedDirection == Direction.RIGHT) {
-				tmpX = this.getX() + PlayerGame.SPEED;
-				tmpY = this.getY();
-			}else{
-				tmpX = this.getX() - PlayerGame.SPEED;
-				tmpY = this.getY();
-			}
-
-			GameActor entityGame = map.collisionEntityGame(this,tmpX - this.getX(),tmpY - this.getY());
-			if (entityGame != null){
-				System.out.println(entityGame);
-			}
-
-			map.doAction(tmpX,tmpY,this, TileEventEnum.ON_USE);
-			//on récupère l'objet sur lequelle on a intéragit
-			Vector2 position = AbstractMap.posToIndex(tmpX,tmpY,map);
-			GameObject object = map.posToEntities((int)position.y,(int)position.x);
-			System.out.println(object);
-
-			EnigmaDialogPopup dialog = map.getEnigmaDialog();
-			DialogNode node = new DialogNode();
-			if (object instanceof Content){
-				node.addText(((Content) object).getContent());
-				dialog.showDialog(node);
-			}else{
-				if (ItemDialog.getText(object) != null){
-					node.addText(ItemDialog.getText(object));
-					dialog.showDialog(node);
-				}
-			}
-		}
-
-		if (Input.Keys.ENTER == i){
-			EnigmaDialogPopup dialog = map.getEnigmaDialog();
-			if(dialog.isVisible()){
-				dialog.nextPart();
-			}
-		}
 		return false;
 	}
 

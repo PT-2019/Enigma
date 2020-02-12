@@ -67,9 +67,11 @@ public class GameScreen extends LibgdxScreen {
 				}
 			}
 
+			//ajoute l'acteur des dialogues
 			this.hud.addActor(map.getEnigmaDialog());
 
 			//écoute des inputProcessor et des listeners
+			this.listen(map.getEnigmaDialog());
 			this.listen(this.hud);
 			this.listen(this.main);
 		} catch (Exception e) {

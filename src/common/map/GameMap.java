@@ -50,6 +50,12 @@ public class GameMap extends AbstractMap {
 	private ArrayList<GameActor> entities;
 
 	private EnigmaDialogPopup enigmaDialog;
+	/**
+	 * Resultat suite à un dialogue
+	 *
+	 */
+	//todo pour l'instant c'est un string peut être changé cela
+	private String resultDialog;
 
 	public GameMap(final String path, float unitScale) {
 		super(path, unitScale,false);
@@ -377,5 +383,13 @@ public class GameMap extends AbstractMap {
 
 	public EnigmaDialogPopup getEnigmaDialog() {
 		return enigmaDialog;
+	}
+
+	public void setResult(String s){
+		this.resultDialog = s;
+	}
+
+	public String getResult(){
+		return resultDialog;
 	}
 }
