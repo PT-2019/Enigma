@@ -5,6 +5,7 @@ import common.entities.Consumable;
 import common.entities.GameObject;
 import common.entities.special.Room;
 import common.entities.types.Activatable;
+import common.entities.types.Content;
 import editor.menus.SelectionsModes;
 import game.dnd.DragAndDropBuilder;
 import org.jetbrains.annotations.NotNull;
@@ -127,7 +128,7 @@ public enum Conditions {
 		if (this.equals(ACTIVATED)) {
 			return object instanceof Activatable;
 		} else if (this.equals(ANSWER)) {
-			return false;
+			return object instanceof Content;
 		} else if (this.equals(HAVE_IN_HANDS)) {
 			return object instanceof Consumable;
 		} else if (this.equals(HAVE_IN_INVENTORY)) {

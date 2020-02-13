@@ -68,7 +68,6 @@ public class OperationPanel extends AbstractSubPopUpView implements Observer<Gam
 		this.musicPanel = new MusicPanel[2];
 		int index = 0;
 		EnigmaPanel panel = new EnigmaPanel();
-		//panel.setLayout(new GridLayout(Operations.values().length, 1));
 		GridBagLayout gb = new GridBagLayout();
 		panel.setLayout(gb);
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -82,8 +81,6 @@ public class OperationPanel extends AbstractSubPopUpView implements Observer<Gam
 		gbc.insets = new Insets(0,0,0,0);
 		gbc.anchor = GridBagConstraints.WEST;
 		gbc.fill = GridBagConstraints.BOTH;
-		//pour ouvrir le sélecteur de musique
-		JLabel open = new JLabel(OperationPanel.BUT_MUS);
 
 		for (Operations op : Operations.values()) {
 			JRadioButton r = new JRadioButton(op.value);

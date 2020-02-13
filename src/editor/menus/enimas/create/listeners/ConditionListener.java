@@ -16,9 +16,7 @@ import common.entities.types.Activatable;
 import common.entities.types.Content;
 import common.map.MapTestScreen;
 import editor.menus.AbstractPopUpView;
-import editor.menus.enimas.create.ConditionPanel;
-import editor.menus.enimas.create.Conditions;
-import editor.menus.enimas.create.ManageEnigmasAddView;
+import editor.menus.enimas.create.*;
 import editor.popup.listeners.CaseListener;
 import game.EnigmaGame;
 import game.screens.TestScreen;
@@ -66,6 +64,10 @@ public class ConditionListener implements ActionListener, ItemListener {
 	 * selected object
 	 **/
 	private GameObject object;
+	/**
+	 * Réponse si on veut créer une condition Answer
+	 */
+	private String answer;
 
 	public ConditionListener(AbstractPopUpView parent, ManageEnigmasAddView addView, ConditionPanel panel) {
 		this.addView = addView;
@@ -92,8 +94,8 @@ public class ConditionListener implements ActionListener, ItemListener {
 			if (this.object instanceof Activatable)
 				cond = new Activated((Activatable) this.object);
 		} else if (this.currentButton.getName().equals(Conditions.ANSWER.name())) {
-			if (this.object instanceof Content)
-				cond = new Answer((Content) object, "");
+			if (this.object instanceof Content && answer != null)
+				cond = new Answer((Content) object, answer);
 		} else if (this.currentButton.getName().equals(Conditions.HAVE_IN_HANDS.name())) {
 			if (this.object instanceof Item)
 				cond = new HaveInHands((Item) object);
@@ -122,15 +124,21 @@ public class ConditionListener implements ActionListener, ItemListener {
 	@Override
 	public void itemStateChanged(ItemEvent e) {
 		if (e.getStateChange() == ItemEvent.SELECTED) {
-			currentButton = (JRadioButton) e.getItem();
-			if (currentButton.getName().equals(Conditions.ANSWER.name())) {
-				//TODO: saisie réponse
-				this.panel.getEntityName().setText(ConditionPanel.NOT_AVAILABLE_CONDITION);
-			} else {
-				Conditions.lock(Conditions.valueOf(currentButton.getName()), this.panel);
-				CaseListener.setAvailable(this.panel);
-				this.panel.update(this.object);
-				//DragAndDropBuilder.setForPopup(this.panel);
+			this.currentButton = (JRadioButton) e.getItem();
+			CaseListener.setAvailable(this.panel);
+			Conditions.lock(Conditions.valueOf(currentButton.getName()), this.panel);
+			this.panel.update(this.object);
+
+			if (this.currentButton.getParent() instanceof ChoicePanel) {
+				ChoicePanel parent = (ChoicePanel) this.currentButton.getParent();
+				parent.dispLink();
+			}
+			//DragAndDropBuilder.setForPopup(this.panel)
+		}else{
+			if (this.currentButton != null){
+				if (this.currentButton.getParent() instanceof ChoicePanel) {
+					((ChoicePanel) this.currentButton.getParent()).remove();
+				}
 			}
 		}
 	}
@@ -160,5 +168,16 @@ public class ConditionListener implements ActionListener, ItemListener {
 		this.setGameObject(null);
 		Conditions.unlock(null);
 		this.currentButton = null;
+	}
+	public void setAnswer(String answer){
+		this.answer = answer;
+	}
+
+	public String getAnswer() {
+		return answer;
+	}
+
+	public GameObject getObject() {
+		return object;
 	}
 }
