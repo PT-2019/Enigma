@@ -7,12 +7,15 @@ import com.badlogic.gdx.utils.Array;
 import common.entities.Entity;
 import common.entities.Item;
 import common.entities.special.Inventory;
+import common.entities.types.Container;
 import common.entities.types.Living;
 import common.language.GameFields;
 import common.language.GameLanguage;
 import data.Layer;
 import data.TypeEntity;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.HashMap;
 
@@ -28,7 +31,7 @@ import java.util.HashMap;
  * @see common.entities.types.Living
  * @since 2.0
  */
-public class Player extends GameActorTextured implements Entity, Living {
+public class Player extends GameActorTextured implements Entity, Living, Container {
 
 	/**
 	 * Points de vie maximaux du joueur
@@ -228,7 +231,10 @@ public class Player extends GameActorTextured implements Entity, Living {
 	 * @param item Objet dans la main droite
 	 */
 	public void setItemInRightHand(Item item) {
+		Item tmp = this.rightHand;
 		this.rightHand = item;
+		if(tmp != null)
+			this.addItem(tmp);
 	}
 
 	/**
@@ -238,7 +244,10 @@ public class Player extends GameActorTextured implements Entity, Living {
 	 * @param item Objet dans la main gauche
 	 */
 	public void setItemInLeftHand(Item item) {
+		Item tmp = this.leftHand;
 		this.leftHand = item;
+		if(tmp != null)
+			this.addItem(tmp);
 	}
 
 	/**
@@ -263,5 +272,47 @@ public class Player extends GameActorTextured implements Entity, Living {
 	 */
 	public Inventory getInventory() {
 		return inventory;
+	}
+
+	/**
+	 * Ajoute un item
+	 *
+	 * @param item un item
+	 * @return true si ajouté sans problèmes
+	 */
+	@Override
+	public boolean addItem(Item item) {
+		if(!this.inventory.isFull())
+			this.inventory.add(item);
+		else if(!this.holdItemInRightHand())
+			this.setItemInRightHand(item);
+		else if(!this.holdItemInLeftHand())
+			this.setItemInLeftHand(item);
+		else
+			return false;
+
+		return true;
+	}
+
+	/**
+	 * Retire un item
+	 *
+	 * @param item un item
+	 * @return true si retiré sans problèmes
+	 */
+	@Override
+	public boolean removeItem(Item item) {
+		this.inventory.remove(item);
+		return true;
+	}
+
+	/**
+	 * Retourne les items contenus
+	 *
+	 * @return retourne les items contenus
+	 */
+	@Override
+	public ArrayList<Item> getItems() {
+		return new ArrayList<>(Arrays.asList(this.inventory.getItems()));
 	}
 }

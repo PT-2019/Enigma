@@ -44,6 +44,8 @@ public class Door extends AbstractItem implements Passage, Lockable {
 	 * Pièce 2
 	 */
 	private Room room2;
+	private String atlasName;
+	private String atlasPath;
 
 	/**
 	 * Crée une porte
@@ -106,6 +108,38 @@ public class Door extends AbstractItem implements Passage, Lockable {
 	@Override
 	public boolean isLocked() {
 		return this.locked;
+	}
+
+	/**
+	 * Chemin vers l'atlas
+	 *
+	 * @return Chemin vers l'atlas
+	 */
+	@Override
+	public String getAtlasPath() {
+		return this.atlasPath;
+	}
+
+	/**
+	 * Nom de la région dans l'atlas
+	 *
+	 * @return Nom de la région dans l'atlas
+	 */
+	@Override
+	public String getAtlasRegionName() {
+		return this.atlasName;
+	}
+
+	/**
+	 * Définie les données de l'atlas
+	 *
+	 * @param atlasPath Chemin vers l'atlas
+	 * @param atlasName Nom de la région dans l'atlas
+	 */
+	@Override
+	public void setAtlas(String atlasPath, String atlasName) {
+		this.atlasPath = atlasPath;
+		this.atlasName = atlasName;
 	}
 
 	//toString

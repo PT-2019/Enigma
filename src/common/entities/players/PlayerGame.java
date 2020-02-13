@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.math.Vector2;
 import common.enigmas.TileEventEnum;
 import common.entities.GameObject;
+import common.entities.consumable.Key;
+import common.entities.special.Inventory;
 import common.map.AbstractMap;
 import common.map.GameMap;
 import data.Direction;
@@ -216,6 +218,7 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
 
 	@Override
 	public boolean keyTyped(char c) {
+
 		return false;
 	}
 

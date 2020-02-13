@@ -39,6 +39,8 @@ public class Floor extends AbstractItem {
 	 * ID
 	 */
 	private int id;
+	private String atlasPath;
+	private String atlasName;
 
 	public Floor() {
 		this.enigmas = new ArrayList<Enigma>();
@@ -140,6 +142,38 @@ public class Floor extends AbstractItem {
 	@Override
 	public void setID(int id) {
 		this.id = id;
+	}
+
+	/**
+	 * Chemin vers l'atlas
+	 *
+	 * @return Chemin vers l'atlas
+	 */
+	@Override
+	public String getAtlasPath() {
+		return this.atlasPath;
+	}
+
+	/**
+	 * Nom de la région dans l'atlas
+	 *
+	 * @return Nom de la région dans l'atlas
+	 */
+	@Override
+	public String getAtlasRegionName() {
+		return this.atlasName;
+	}
+
+	/**
+	 * Définie les données de l'atlas
+	 *
+	 * @param atlasPath Chemin vers l'atlas
+	 * @param atlasName Nom de la région dans l'atlas
+	 */
+	@Override
+	public void setAtlas(String atlasPath, String atlasName) {
+		this.atlasPath = atlasPath;
+		this.atlasName = atlasName;
 	}
 
 	/**

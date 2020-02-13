@@ -19,6 +19,8 @@ import java.util.EnumMap;
  * @since 4.0 24/12/2019
  */
 public class Key extends AbstractConsumable implements NeedContainer {
+	private String atlasPath;
+	private String atlasName;
 
 	/**
 	 * Crée un clef
@@ -59,5 +61,37 @@ public class Key extends AbstractConsumable implements NeedContainer {
 	@Override
 	public String getReadableName() {
 		return GameLanguage.gl.get(GameFields.KEY);
+	}
+
+	/**
+	 * Chemin vers l'atlas
+	 *
+	 * @return Chemin vers l'atlas
+	 */
+	@Override
+	public String getAtlasPath() {
+		return this.atlasPath;
+	}
+
+	/**
+	 * Nom de la région dans l'atlas
+	 *
+	 * @return Nom de la région dans l'atlas
+	 */
+	@Override
+	public String getAtlasRegionName() {
+		return this.atlasName;
+	}
+
+	/**
+	 * Définie les données de l'atlas
+	 *
+	 * @param atlasPath Chemin vers l'atlas
+	 * @param atlasName Nom de la région dans l'atlas
+	 */
+	@Override
+	public void setAtlas(String atlasPath, String atlasName) {
+		this.atlasPath = atlasPath;
+		this.atlasName = atlasName;
 	}
 }

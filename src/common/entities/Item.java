@@ -49,4 +49,23 @@ public interface Item extends EnigmaContainer, Entity, NeedContainerManager {
 	default float getGameObjectHeight() {
 		return 1f;
 	}
+
+	/**
+	 * Chemin vers l'atlas
+	 * @return Chemin vers l'atlas
+	 */
+	String getAtlasPath();
+
+	/**
+	 * Nom de la région dans l'atlas
+	 * @return Nom de la région dans l'atlas
+	 */
+	String getAtlasRegionName();
+
+	/**
+	 * Définie les données de l'atlas
+	 * @param atlasPath Chemin vers l'atlas
+	 * @param atlasName Nom de la région dans l'atlas
+	 */
+	void setAtlas(String atlasPath, String atlasName);
 }

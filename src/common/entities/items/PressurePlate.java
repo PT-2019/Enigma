@@ -33,6 +33,8 @@ public class PressurePlate extends Activatable {
 	 * Texture de l'objet
 	 */
 	private Texture texture;
+	private String atlasName;
+	private String atlasPath;
 
 	public PressurePlate() {
 		super(false);
@@ -126,6 +128,38 @@ public class PressurePlate extends Activatable {
 	@Override
 	public boolean isActivated() {
 		return this.activated;
+	}
+
+	/**
+	 * Chemin vers l'atlas
+	 *
+	 * @return Chemin vers l'atlas
+	 */
+	@Override
+	public String getAtlasPath() {
+		return this.atlasPath;
+	}
+
+	/**
+	 * Nom de la région dans l'atlas
+	 *
+	 * @return Nom de la région dans l'atlas
+	 */
+	@Override
+	public String getAtlasRegionName() {
+		return this.atlasName;
+	}
+
+	/**
+	 * Définie les données de l'atlas
+	 *
+	 * @param atlasPath Chemin vers l'atlas
+	 * @param atlasName Nom de la région dans l'atlas
+	 */
+	@Override
+	public void setAtlas(String atlasPath, String atlasName) {
+		this.atlasPath = atlasPath;
+		this.atlasName = atlasName;
 	}
 
 	/**

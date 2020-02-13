@@ -31,6 +31,8 @@ public class Book extends AbstractConsumable implements Content {
 	 * @since 2.0
 	 */
 	private String content;
+	private String atlasPath;
+	private String atlasName;
 
 	/**
 	 * Crée un livre
@@ -62,6 +64,38 @@ public class Book extends AbstractConsumable implements Content {
 	@Override
 	public String getContent() {
 		return this.content;
+	}
+
+	/**
+	 * Chemin vers l'atlas
+	 *
+	 * @return Chemin vers l'atlas
+	 */
+	@Override
+	public String getAtlasPath() {
+		return this.atlasPath;
+	}
+
+	/**
+	 * Nom de la région dans l'atlas
+	 *
+	 * @return Nom de la région dans l'atlas
+	 */
+	@Override
+	public String getAtlasRegionName() {
+		return this.atlasName;
+	}
+
+	/**
+	 * Définie les données de l'atlas
+	 *
+	 * @param atlasPath Chemin vers l'atlas
+	 * @param atlasName Nom de la région dans l'atlas
+	 */
+	@Override
+	public void setAtlas(String atlasPath, String atlasName) {
+		this.atlasPath = atlasPath;
+		this.atlasName = atlasName;
 	}
 
 	//toString

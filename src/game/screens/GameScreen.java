@@ -2,15 +2,18 @@ package game.screens;
 
 import api.libgdx.LibgdxScreen;
 import api.libgdx.actor.GameActor;
+import api.libgdx.utils.LibgdxUtility;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import common.entities.players.NpcGame;
 import common.entities.players.PlayerGame;
+import common.entities.special.InventoryDisplay;
 import common.map.AbstractMap;
 import common.map.GameMap;
 import common.save.entities.serialization.PlayerFactory;
 import common.utils.Logger;
 import game.EnigmaGame;
+import javafx.scene.control.Skin;
 
 import java.util.ArrayList;
 
@@ -45,6 +48,11 @@ public class GameScreen extends LibgdxScreen {
 	 */
 	private GameMap map;
 
+	/**
+	 * Textes
+	 */
+	private final static String INVENTORY = "Inventaire";
+
 	@Override
 	public void init() {
 		try {
@@ -69,6 +77,10 @@ public class GameScreen extends LibgdxScreen {
 			//écoute des inputProcessor et des listeners
 			this.listen(this.hud);
 			this.listen(this.main);
+
+			this.hud.addActor(new InventoryDisplay(INVENTORY,
+					LibgdxUtility.loadSkin("assets/files/atlas/uiskin.json","assets/files/atlas/uiskin.atlas")
+			));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
