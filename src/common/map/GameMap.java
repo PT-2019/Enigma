@@ -350,7 +350,8 @@ public class GameMap extends AbstractMap {
 	}
 
 	public void launchMusic(){
-    	this.music.getMusic().play();
+    	if (this.music != null)
+    		this.music.getMusic().play();
 	}
 
 	public ArrayList<GameActor> getGameEntities() {
