@@ -48,6 +48,7 @@ public interface NeedToBeTranslated {
 
 	String ANSWER_DESC = "Demander au joueur une réponse";
 	String ANSWER_RES = "";
+	String ANSWER = "Entrer la réponse";
 
 	String HAVE_IN_HANDS_DESC = "Avoir l'objet dans ses mains";
 	String HAVE_IN_HANDS_RES = "Objects uniquement (clef, livre, ...)";
