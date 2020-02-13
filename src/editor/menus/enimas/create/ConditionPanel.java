@@ -41,6 +41,7 @@ public class ConditionPanel extends AbstractSubPopUpView implements Observer<Gam
 	public static final String ASK_COND = NeedToBeTranslated.ASK_COND;
 	public static final String TITLE = NeedToBeTranslated.ADD_CONDITION;
 	private static final String INVALID_ENTITY = NeedToBeTranslated.INVALID_ENTITY;
+	private static final String ANSWER_CHOICE = NeedToBeTranslated.ANSWER;
 
 	/**
 	 * Les informations sur l'entité sur laquelle l'opération sera faite
@@ -55,6 +56,11 @@ public class ConditionPanel extends AbstractSubPopUpView implements Observer<Gam
 	 */
 	private ConditionListener listener;
 
+	/**
+	 * Panneau pour choisir la réponse dans une condition answer
+	 */
+	private ChoicePanel choicePanel;
+
 	ConditionPanel(AbstractPopUpView parent, ManageEnigmasAddView addView) {
 		super("", parent, false);
 
@@ -68,6 +74,11 @@ public class ConditionPanel extends AbstractSubPopUpView implements Observer<Gam
 			JRadioButton r = new JRadioButton(cond.value);
 			r.setToolTipText(cond.tooltip);
 			r.setName(cond.name());
+			if (cond == Conditions.ANSWER ) {
+				this.choicePanel = new ChoicePanel(ANSWER_CHOICE, r, this);
+				panel.add(this.choicePanel);
+			}
+
 			//on ajoute les boutons au groupe
 			groups.add(r);
 			//ajoute les boutons au panneau
@@ -122,6 +133,7 @@ public class ConditionPanel extends AbstractSubPopUpView implements Observer<Gam
 		this.entityName.setText(ASK_COND);
 		this.listener.clean();
 		this.groups.clearSelection();
+		this.choicePanel.remove();
 		DragAndDropBuilder.setForPopup(null);
 		//EnigmaView.setAvailable(null);
 	}
@@ -166,6 +178,14 @@ public class ConditionPanel extends AbstractSubPopUpView implements Observer<Gam
 		} else {
 			this.entityName.setText(msg);
 		}
+	}
+
+	/**
+	 * Méthode spécialement pour créer une answer, on a besoin d'une réponse à cette condition
+	 * @param object
+	 */
+	public void update(String object){
+
 	}
 
 	public EnigmaLabel getEntityName() {
