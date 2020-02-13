@@ -12,22 +12,33 @@ public class InventoryDisplay extends Window {
     public InventoryDisplay(String title, Skin skin) {
         super(title, skin);
         Player p = new Player(0);
-        p.addItem(new Key(1));
+        Key k = new Key(1);
+        k.setAtlas("assets/files/atlas/items.atlas","key");
+        p.addItem(k);
         this.showInventory(p);
     }
 
     public boolean showInventory(Container c){
+        int j = 0;
         Table table = new Table();
         table.setFillParent(true);
+
         for(Item i : c.getItems()){
-            System.out.println(i);
-            Stack s = new Stack();
-            s.add(new Image(
-                  new TextureAtlas("assets/files/atlas/items.atlas").findRegion("key")
-             ));
-            table.add(s);
-            table.add();
+            if(i == null)
+                table.add();
+            else {
+                Stack s = new Stack();
+                s.add(new Image(
+                        new TextureAtlas(i.getAtlasPath()).findRegion(i.getAtlasRegionName())
+                ));
+                table.add(s);
+            }
+
+            if(j > 0 && (Inventory.MAX_ITEMS % j) == 0)
+                table.row();
+            j++;
         }
+
         this.addActor(table);
 
         return true;

@@ -226,4 +226,17 @@ public class EntityFactory {
 		PlayerFactory() {
 		}
 	}
+
+	private static final class ItemFactory {
+		/**
+		 * hashmap locale des entités chargés pour {@link Json#fromJson(Class, String)}
+		 **/
+		private Array<ItemSerializableToJson> content = new Array<>();
+
+		/**
+		 * constructeur par défaut pour new Instance de {@link Json#fromJson(Class, String)}
+		 **/
+		ItemFactory() {
+		}
+	}
 }
