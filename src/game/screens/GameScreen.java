@@ -91,8 +91,12 @@ public class GameScreen extends LibgdxScreen {
 
 	@Override
 	public void render() {
+		try{
 		this.main.draw();
 		this.hud.draw();
+		}catch (Exception e){
+			e.printStackTrace();
+		}
 	}
 
 	@Override

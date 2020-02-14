@@ -6,6 +6,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
+import common.enigmas.condition.Answer;
 import common.entities.types.Content;
 import common.map.GameMap;
 
@@ -17,6 +18,10 @@ public class EnigmaDialogPopup extends Window implements InputProcessor {
     private static String SKIN_PATH = "assets/files/atlas/inventory.json";
 
     private static String ATLAS_PATH = "assets/files/atlas/inventory.atlas";
+
+    private static String SKIN_PATH2 = "assets/files/atlas/uiskin.json";
+
+    private static String ATLAS_PATH2 = "assets/files/atlas/uiskin.atlas";
     /**
      * String qui représente comment son codé les retours à la ligne dans le
      * fichier de sauvegarde de la map
@@ -63,6 +68,12 @@ public class EnigmaDialogPopup extends Window implements InputProcessor {
     private int current;
 
     private Label enter;
+    /**
+     * Pour savoir si c'est une question
+     */
+    private boolean isAnswer;
+
+    private TextField answer;
 
     public EnigmaDialogPopup() {
         super("",LibgdxUtility.loadSkin(SKIN_PATH,ATLAS_PATH));
@@ -82,7 +93,14 @@ public class EnigmaDialogPopup extends Window implements InputProcessor {
         enter = new Label("Appuyer sur Entrée pour continuer", getSkin());
         container.add(text).expand().top().fillX().padTop(25).padLeft(15);
         container.row();
-        container.add(enter).expandX().padBottom(20);
+
+        if (isAnswer){
+            answer = new TextField("",LibgdxUtility.loadSkin(SKIN_PATH2,ATLAS_PATH2));
+            container.add(answer).expandX().padBottom(20);
+
+        }else{
+            container.add(enter).expandX().padBottom(20);
+        }
 
         this.add(container).expand().fill();
     }
@@ -122,6 +140,17 @@ public class EnigmaDialogPopup extends Window implements InputProcessor {
         this.add(container).expand().fill();
     }
 
+    public void showAnswer(Answer answer){
+        this.clear();
+        String text = answer.getContent();
+        dialog = new DialogNode();
+        dialog.addText(text);
+        isAnswer = true;
+        init();
+        this.text.setText(text);
+        this.setVisible(true);
+    }
+
     /**
      * Afficher le dialogue au départ
      * @param dialog
@@ -129,12 +158,13 @@ public class EnigmaDialogPopup extends Window implements InputProcessor {
     public void showDialog(Dialog dialog,GameMap map){
         this.dialog = dialog;
         this.map = map;
+        this.isAnswer = false;
 
         if(dialog.isChoice){
             this.clear();
             initChoice(dialog);
         }else{
-            clear();
+            this.clear();
             init();
         }
         String dialogText = dialog.getText();
@@ -161,6 +191,11 @@ public class EnigmaDialogPopup extends Window implements InputProcessor {
                 return;
             }
         }
+
+        //on met le résultat dans la map
+        if (isAnswer){
+            map.setResult(answer.getText());
+        }
         //le dialogue est fini
         this.setVisible(false);
     }
@@ -183,6 +218,7 @@ public class EnigmaDialogPopup extends Window implements InputProcessor {
             }
         }
         //on met dans la map le résultat de l'opération
+        //TODO surement mettre le résultat autre part
         map.setResult(String.valueOf(choice));
         //le dialogue est fini
         this.setVisible(false);
@@ -216,6 +252,10 @@ public class EnigmaDialogPopup extends Window implements InputProcessor {
 
     @Override
     public boolean keyUp(int i) {
+        //Pour pas que la touche qui permette d'afficher le popup ce mette dans le Textfield
+        if (isAnswer){
+            this.getStage().setKeyboardFocus(this.answer);
+        }
         return false;
     }
 

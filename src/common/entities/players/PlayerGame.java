@@ -10,6 +10,7 @@ import common.Dialog.DialogNode;
 import common.Dialog.EnigmaDialogPopup;
 import common.Dialog.ItemDialog;
 import common.enigmas.TileEventEnum;
+import common.enigmas.condition.Answer;
 import common.entities.GameObject;
 import common.entities.consumable.Book;
 import common.entities.types.Content;
@@ -136,6 +137,13 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
 					this.setKeyFrame(2);
 					this.setFacedDirection(Direction.BOTTOM);
 				}
+			}
+
+			if (Input.Keys.R == i) {
+				EnigmaDialogPopup dialog = map.getEnigmaDialog();
+				Book book = new Book();
+				book.addContent("Quel est le meilleur pays au monde ?");
+				dialog.showAnswer(new Answer(book,"chine"));
 			}
 
 			//interaction du joueur avec le milieu

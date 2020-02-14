@@ -18,7 +18,7 @@
   com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
     default: { font: default-font, },
     title: { font: default-font }
-  }
+  },
 
   "com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle": {
     back: {
