@@ -4,10 +4,9 @@ import api.Application;
 import api.libgdx.utils.LoadGameLibgdxApplication;
 import api.ui.CustomWindow;
 import common.hud.EnigmaWindow;
-import common.save.EmptyMapGenerator;
+import common.utils.runnable.StartGameRunnable;
 import data.EnigmaScreens;
 import game.hmi.MHIManager;
-import game.screens.GameScreen;
 
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
@@ -17,13 +16,27 @@ import java.awt.BorderLayout;
  *
  * @author Louka DOZ
  * @author Quentin RAMSAMY-AGEORGES
- * @version 4.1
+ * @version 6.0
  * @since 4.0
  */
 public class EnigmaGameLauncher implements Application {
 
+	/**
+	 * instance unique
+	 * @since 4.0
+	 */
 	private static EnigmaGameLauncher launcher;
+
+	/**
+	 * Fenêtre de l'éditeur
+	 * @since 4.0
+	 */
 	private CustomWindow window;
+
+	/**
+	 * écran du jeu
+	 * @since 6.0
+	 */
 	private JPanel gameScreen;
 
 	/**
@@ -61,26 +74,35 @@ public class EnigmaGameLauncher implements Application {
 			this.window.remove(this.gameScreen);
 			this.gameScreen = new JPanel();
 		}
+		//Affiche l'écran de configuration de partie
 		this.setContentToGameConfig();
+		//écran du jeu a afficher
 		EnigmaGame.setStartScreen(EnigmaScreens.GAME);
+		//affiche fenêtre
 		this.window.setVisible(true);
 	}
 
+	/**
+	 * Lance l'écran de configuration de partie
+	 * @since 6.0
+	 */
+	@SuppressWarnings("WeakerAccess")
 	public void setContentToGameConfig(){
 		this.gameScreen = MHIManager.getInstance().getContent();
 		this.window.add(this.gameScreen, BorderLayout.CENTER);
 	}
 
+	/**
+	 * Lance le jeu
+	 * @param mapPath chemin de la map
+	 * @since 6.0
+	 */
 	public void setContentToGame(String mapPath){
-		EnigmaGame.setOnLoad(() -> {
-			//change la map
-			EnigmaGame.getCurrentScreen().setMap(mapPath);
-			//recharge écran avec la nouvelle map
-			EnigmaGame.reload(EnigmaScreens.GAME.name());
-			//charge les entités sur la bonne map !
-			EmptyMapGenerator.load(GameScreen.getMapPath());
-		});
+		//méthode a exécuter au lancement
+		EnigmaGame.setOnLoad(new StartGameRunnable(mapPath));
+		//charge la libgdx
 		LoadGameLibgdxApplication.load(this.gameScreen, window);
+		//affiche
 		this.window.add(this.gameScreen, BorderLayout.CENTER);
 	}
 

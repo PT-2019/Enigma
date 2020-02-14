@@ -2,7 +2,6 @@ package game;
 
 import api.libgdx.LibgdxGame;
 import api.ui.CustomWindow;
-import api.utils.annotations.NeedPatch;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import data.EnigmaScreens;
@@ -16,46 +15,42 @@ import game.screens.TestScreen;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 3.0 14 décembre 2019
+ * @version 6.0
  * @since 2.0
  */
 public class EnigmaGame extends LibgdxGame {
 
-	//instance unique
+	/**
+	 * Instance unique
+	 * @since 2.0
+	 */
 	private static EnigmaGame enigmaGame;
+
 	/**
 	 * Le screen a lancer au début du jeu
+	 * @since 3.0
 	 */
 	private static EnigmaScreens startScreen = EnigmaScreens.GAME;
-	private static Runnable onLoad;
-
-	//on charge ici le joueur et tout ce qui vit indépendamment des écrans
-	//....
 
 	/**
-	 * Il s'agit d'une singleton.
-	 *
-	 * @return l'instance unique du jeu
+	 * Exécutable lancé après initialisation de la libgdx
+	 * @since 6.0
 	 */
-	public static EnigmaGame getInstance() {
-		if (enigmaGame == null)
-			enigmaGame = new EnigmaGame();
-		return enigmaGame;
-	}
+	private static Runnable onLoad = null;
 
-	public static void setStartScreen(EnigmaScreens screen) {
-		startScreen = screen;
-	}
-
-	public static void setOnLoad(Runnable r) {
-		onLoad = r;
+	/**
+	 * Empêche la création extérieure.
+	 * @since 6.0
+	 */
+	private EnigmaGame(){
 	}
 
 	@Override
-	@NeedPatch
 	public void start() {
+		//garde l'instance
 		enigmaGame = this;
 
+		//définit le niveau de log
 		Gdx.app.setLogLevel(Application.LOG_ERROR | Application.LOG_DEBUG);
 
 		//ajout des screens disponibles
@@ -70,20 +65,49 @@ public class EnigmaGame extends LibgdxGame {
 		EnigmaGame.setScreen(EnigmaGame.startScreen.name());
 
 		//lance onLoad
-		onLoad.run();
+		if(EnigmaGame.onLoad != null) EnigmaGame.onLoad.run();
 	}
 
 	@Override
 	public void stop() {
+		free();
 	}
 
 	@Override
-	public void free() {
-
+	public void free() {//aucune ressource à libérer
 	}
 
 	@Override
-	public CustomWindow getWindow() {
-		return null;
+	public CustomWindow getWindow() { return null; }
+
+	/**
+	 * Il s'agit d'une singleton.
+	 *
+	 * @return l'instance unique du jeu
+	 *
+	 * @since 2.0
+	 */
+	public static EnigmaGame getInstance() {
+		if (EnigmaGame.enigmaGame == null)
+			EnigmaGame.enigmaGame = new EnigmaGame();
+		return EnigmaGame.enigmaGame;
+	}
+
+	/**
+	 * écran affiché après initialisation de la libgdx
+	 * @param screen écran affiché après initialisation de la libgdx
+	 * @since 3.0
+	 */
+	public static void setStartScreen(EnigmaScreens screen) {
+		EnigmaGame.startScreen = screen;
+	}
+
+	/**
+	 * Exécutable lancé après initialisation de la libgdx
+	 * @param r Exécutable lancé après initialisation de la libgdx
+	 */
+	@SuppressWarnings("WeakerAccess")
+	public static void setOnLoad(Runnable r) {
+		EnigmaGame.onLoad = r;
 	}
 }

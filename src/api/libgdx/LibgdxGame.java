@@ -24,6 +24,7 @@ import java.util.HashMap;
 public abstract class LibgdxGame extends Game implements Application {
 
 	private static LibgdxGame libgdxGame;
+
 	/**
 	 * Conserve tous les écran qui ont étés instanciés et donc déjà chargés.
 	 * <p>
