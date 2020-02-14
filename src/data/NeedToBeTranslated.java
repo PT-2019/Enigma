@@ -10,6 +10,8 @@ import api.utils.annotations.Temporary;
 @Temporary(reason = "flemme, car possibles doublons et changer tout le temps et enums et json et ... clc et ça")
 public interface NeedToBeTranslated {
 
+	String WITH = "avec";
+
 	//case popup
 	String NO_ENTITY = "Aucune entité";
 
@@ -47,11 +49,17 @@ public interface NeedToBeTranslated {
 
 	//Conditions
 
+	String MUSIC = "Jouer un son";
+	String CHANGE_MAIN_MUSIC = "Change la musique ambiante";
+
 	String ACTIVATED_DESC = "Un object doit être activé";
 	String ACTIVATED_RES = "Seulement un objet actionnable.";
 
 	String ANSWER_DESC = "Demander au joueur une réponse";
 	String ANSWER_RES = "";
+	String ANSWER = "Taper la réponse";
+	String ANSWER_SELECT = "Réponse présente";
+	String ANSWER_UNSELECT = "Réponse manquante";
 
 	String HAVE_IN_HANDS_DESC = "Avoir l'objet dans ses mains";
 	String ITEMS_ONLY = "Objects uniquement (clef, livre, ...)";

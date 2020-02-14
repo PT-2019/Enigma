@@ -2,6 +2,7 @@ package editor.menus.enimas.create;
 
 import api.utils.Observer;
 import api.utils.Utility;
+import common.enigmas.condition.Condition;
 import common.entities.GameObject;
 import common.hud.EnigmaButton;
 import common.hud.EnigmaLabel;
@@ -44,6 +45,9 @@ public class ConditionPanel extends AbstractSubPopUpView implements Observer<Gam
 	private static final String ASK_SELECT = NeedToBeTranslated.ASK_SELECT;
 	private static final String INVALID_ENTITY = NeedToBeTranslated.INVALID_ENTITY;
 	private static final String SUBMIT = NeedToBeTranslated.SUBMIT;
+	public static final String ANSWER_CHOICE = NeedToBeTranslated.ANSWER;
+    private static final String ANSWER_SELECTED = NeedToBeTranslated.ANSWER_SELECT;
+    private static final String ANSWER_UNSELECTED = NeedToBeTranslated.ANSWER_UNSELECT;
 
 	/**
 	 * Les informations sur l'entité sur laquelle l'opération sera faite
@@ -60,6 +64,11 @@ public class ConditionPanel extends AbstractSubPopUpView implements Observer<Gam
 	private ConditionListener listener;
 
 	/**
+	 * Panneau pour choisir la réponse dans une condition answer
+	 */
+	private ChoicePanel choicePanel;
+
+	/**
 	 * Menu d'ajout d'une condition d'une énigme
 	 * @param parent parent
 	 * @param addView addView
@@ -73,7 +82,19 @@ public class ConditionPanel extends AbstractSubPopUpView implements Observer<Gam
 		this.listener = new ConditionListener(addView, this);
 
 		EnigmaPanel panel = new EnigmaPanel();
-		panel.setLayout(new GridLayout(Conditions.values().length, 1));
+		GridBagLayout gb = new GridBagLayout();
+		panel.setLayout(gb);
+		GridBagConstraints gbc = new GridBagConstraints();
+		int x=0,y=0;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 1;
+		gbc.gridx = x;
+		gbc.gridy = y;
+		gbc.weightx = 1;
+		gbc.weighty = 1;
+		gbc.insets = new Insets(0,0,0,0);
+		gbc.anchor = GridBagConstraints.WEST;
+		gbc.fill = GridBagConstraints.BOTH;
 
 		for (Conditions cond : Conditions.values()) {
 			JRadioButton r = new JRadioButton(cond.value);
@@ -83,7 +104,14 @@ public class ConditionPanel extends AbstractSubPopUpView implements Observer<Gam
 			//on ajoute les boutons au groupe
 			this.groups.add(r);
 			//ajoute les boutons au panneau
-			panel.add(r);
+			if (cond == Conditions.ANSWER ) {
+				this.choicePanel = new ChoicePanel(ANSWER_CHOICE,r, this);
+				panel.add(this.choicePanel,gbc);
+			}else{
+				panel.add(r,gbc);
+			}
+			y++;
+			gbc.gridy = y;
 			//listener pour les boutons
 			r.addItemListener(this.listener);
 		}
@@ -134,6 +162,7 @@ public class ConditionPanel extends AbstractSubPopUpView implements Observer<Gam
 		this.entityName.setText(ASK_COND);
 		this.listener.clean();
 		this.groups.clearSelection();
+		this.choicePanel.remove();
 		DragAndDropBuilder.setForPopup(null);
 	}
 
@@ -173,10 +202,38 @@ public class ConditionPanel extends AbstractSubPopUpView implements Observer<Gam
 			this.entityName.setText(ASK_SELECT + " (" + operations.menuDrag.msg + ")");
 		} else if (object != null) {
 			msg += object.getReadableName() + " (id=" + object.getID() + ")";
+			//si c'est une answer il faut rajouter les informations sur le texte
+			if (operations == Conditions.ANSWER){
+                if (this.listener.getAnswer() != null){
+                    msg += ANSWER_SELECTED;
+                }else{
+                    msg += ANSWER_UNSELECTED;
+                }
+            }
 			this.entityName.setText(msg);
 		} else {
 			this.entityName.setText(msg);
 		}
+	}
+
+	/**
+	 * Méthode spécialement pour créer une answer, on a besoin d'une réponse à cette condition
+	 * @param object
+	 */
+	public void update(String object){
+		this.listener.setAnswer(object);
+        String msg = "";
+
+		if (this.listener.getObject() != null){
+		    msg = this.entityName.getText();
+		    msg = msg.replace(ANSWER_SELECTED,"");
+			msg = msg.replace(ANSWER_UNSELECTED,"");
+		    msg += ANSWER_SELECTED;
+            this.entityName.setText(msg);
+        }else {
+		    msg += ANSWER_SELECTED;
+            this.entityName.setText(msg);
+        }
 	}
 
 	/**

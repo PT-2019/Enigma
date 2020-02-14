@@ -2,7 +2,11 @@ package game.screens;
 
 import api.libgdx.LibgdxScreen;
 import api.libgdx.actor.GameActor;
+import api.utils.Utility;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.backends.lwjgl.audio.Mp3;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import common.entities.players.PlayerGame;
 import common.map.AbstractMap;
@@ -11,6 +15,7 @@ import common.utils.Logger;
 import game.EnigmaGame;
 
 import java.util.ArrayList;
+import java.util.logging.FileHandler;
 
 /**
  * écran du jeu
@@ -45,31 +50,28 @@ public class GameScreen extends LibgdxScreen {
 
 	@Override
 	public void init() {
-		try {
-			this.main = new Stage();
-			this.hud = new Stage();
+		this.main = new Stage();
+		this.hud = new Stage();
 
-			this.map = new GameMap(MAP_PATH, 2.5f);
-			//ajout au stage
-			this.main.addActor(this.map);
-			this.map.showGrid(false);
+		this.map = new GameMap(MAP_PATH, 2.5f);
+		//ajout au stage
+		this.main.addActor(this.map);
+		this.map.showGrid(false);
 
-			//compléter ici
-			ArrayList<GameActor> actors = this.map.getGameEntities();
+		//compléter ici
+		ArrayList<GameActor> actors = this.map.getGameEntities();
 
-			for (GameActor actor : actors) {
-				if (actor instanceof PlayerGame) {
-					((PlayerGame) actor).center();
-					this.listen(((PlayerGame) actor));
-				}
+		for (GameActor actor : actors) {
+			if (actor instanceof PlayerGame){
+				((PlayerGame) actor).center();
+				this.listen(((PlayerGame) actor));
 			}
-
-			//écoute des inputProcessor et des listeners
-			this.listen(this.hud);
-			this.listen(this.main);
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
+
+		this.map.launchMusic();
+		//écoute des inputProcessor et des listeners
+		this.listen(this.hud);
+		this.listen(this.main);
 	}
 
 	@Override//géré par input processor

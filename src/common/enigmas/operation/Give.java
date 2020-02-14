@@ -38,17 +38,6 @@ public class Give extends Operation {
 		super(attributes);
 	}
 
-	/**
-	 * Effectue l'action
-	 *
-	 * @param p Joueur ayant mené à l'appel de cette méthode
-	 */
-	@Override
-	@Deprecated
-	public void doOperation(Player p) {
-		this.run(p);
-	}
-
 	@Override
 	public EnigmaReport run(Player p) {
 		Item i = (Item) this.entity;

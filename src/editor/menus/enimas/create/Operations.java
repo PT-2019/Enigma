@@ -32,6 +32,8 @@ public enum Operations {
 	SHOW_ROOM(NeedToBeTranslated.SHOW_ROOM_DESC, NeedToBeTranslated.ROOM_ONLY, SelectionsModes.MAP),
 	HIDE_ROOM(NeedToBeTranslated.HIDE_ROOM_DESC, NeedToBeTranslated.ROOM_ONLY, SelectionsModes.MAP),
 	UNLOCK(NeedToBeTranslated.UNLOCK_DESC, NeedToBeTranslated.UNLOCK_RES, SelectionsModes.MAP),
+	SOUND("Lancer un son", "Seulement une musique.", null, SelectionsModes.MUSIC),
+	MAINMUSIC("Changer la musique principale", "Seulement une musique.", null, SelectionsModes.MUSIC),
 	;
 
 	/**
@@ -184,7 +186,7 @@ public enum Operations {
 	 * @param object gameObject
 	 * @return true si le gameObject respecte les conditions de l'opération
 	 */
-	public boolean isValid(GameObject object) {
+	public boolean //isValid(GameObject object) {
 		//cette méthode n'est pas géniale, on a écrit à la main les conditions
 		if (this.equals(Operations.GIVE)) {
 			return (object instanceof NeedContainer);
@@ -199,6 +201,10 @@ public enum Operations {
 			return (object instanceof Room);
 		} else if (this.equals(Operations.HIDE_ROOM)) {
 			return (object instanceof Room);
+		}else if(this.equals(Operations.SOUND)){
+			return true;
+		}else if(this.equals(Operations.MAINMUSIC)){
+			return true;
 		}
 
 		return false;

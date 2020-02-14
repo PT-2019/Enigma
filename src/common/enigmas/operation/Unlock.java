@@ -45,12 +45,6 @@ public class Unlock extends Operation {
 	 * @param p Joueur ayant mené à l'appel de cette méthode
 	 */
 	@Override
-	@Deprecated
-	public void doOperation(Player p) {
-		this.run(p);
-	}
-
-	@Override
 	public EnigmaReport run(Player p) {
 		Lockable l = (Lockable) this.entity;
 		l.unlock();

@@ -2,6 +2,7 @@ package editor.menus.enimas.create;
 
 import api.utils.Observer;
 import api.utils.Utility;
+import common.enigmas.operation.Operation;
 import common.entities.GameObject;
 import common.hud.EnigmaButton;
 import common.hud.EnigmaLabel;
@@ -46,6 +47,9 @@ public class OperationPanel extends AbstractSubPopUpView implements Observer<Gam
 	public static final String TITLE = NeedToBeTranslated.ADD_OPERATION;
 	private static final String INVALID_ENTITY = NeedToBeTranslated.INVALID_ENTITY;
 	private static final String SUBMIT = NeedToBeTranslated.SUBMIT;
+	//todo: !!!!
+	public static final String BUT_MUS = "Choisir musique";
+	public static final String BUT_SOUND = "Choisir son";
 
 	/**
 	 * Les informations sur l'entité sur laquelle l'opération sera faite
@@ -60,23 +64,51 @@ public class OperationPanel extends AbstractSubPopUpView implements Observer<Gam
 	 */
 	private OperationListener listener;
 
+	private MusicPanel[] musicPanel;
+
 	OperationPanel(AbstractPopUpView parent, ManageEnigmasAddView addView) {
 		super("", parent, false);
 
 		this.groups = new ButtonGroup();
 		this.listener = new OperationListener(parent, this, addView);
-
+		this.musicPanel = new MusicPanel[2];
+		int index = 0;
 		EnigmaPanel panel = new EnigmaPanel();
-		panel.setLayout(new GridLayout(Operations.values().length, 1));
+		GridBagLayout gb = new GridBagLayout();
+		panel.setLayout(gb);
+		GridBagConstraints gbc = new GridBagConstraints();
+		int x=0,y=0;
+		gbc.gridwidth = 1;
+		gbc.gridheight = 1;
+		gbc.gridx = x;
+		gbc.gridy = y;
+		gbc.weightx = 1;
+		gbc.weighty = 1;
+		gbc.insets = new Insets(0,0,0,0);
+		gbc.anchor = GridBagConstraints.WEST;
+		gbc.fill = GridBagConstraints.BOTH;
 
 		for (Operations op : Operations.values()) {
 			JRadioButton r = new JRadioButton(op.value);
-			r.setToolTipText(op.tooltip);
+			r.setToolTipText(op.name());
 			r.setName(op.name());
 			//on ajoute les boutons au groupe
 			groups.add(r);
-			//ajoute les boutons au panneau
-			panel.add(r);
+
+			if (op == Operations.SOUND ) {
+				this.musicPanel[index] = new MusicPanel(OperationPanel.BUT_SOUND, r, this, op);
+				panel.add(musicPanel[index], gbc);
+				index++;
+			}else if(op == Operations.MAINMUSIC){
+				this.musicPanel[index] = new MusicPanel(OperationPanel.BUT_MUS, r, this, op);
+				panel.add(musicPanel[index], gbc);
+				index++;
+			}else{
+				//ajoute les boutons au panneau
+				panel.add(r,gbc);
+			}
+			y++;
+			gbc.gridy = y;
 			//listener pour les boutons
 			r.addItemListener(this.listener);
 		}
@@ -87,7 +119,7 @@ public class OperationPanel extends AbstractSubPopUpView implements Observer<Gam
 		EnigmaButton submit = new EnigmaButton(SUBMIT);
 		submit.addActionListener(listener);
 		selection = new EnigmaLabel();
-		GridBagConstraints gbc = new GridBagConstraints();
+		gbc = new GridBagConstraints();
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.weightx = 0;
@@ -132,6 +164,9 @@ public class OperationPanel extends AbstractSubPopUpView implements Observer<Gam
 		this.listener.clean();
 		this.entityName.setText(ASK_OP);
 		this.groups.clearSelection();
+		for (MusicPanel p: this.musicPanel) {
+			p.remove();
+		}
 		DragAndDropBuilder.setForPopup(null);
 	}
 

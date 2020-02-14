@@ -60,6 +60,10 @@ public class ConditionListener implements ActionListener, ItemListener {
 	 * selected object
 	 **/
 	private GameObject object;
+	/**
+	 * Réponse si on veut créer une condition Answer
+	 */
+	private String answer;
 
 	public ConditionListener(ManageEnigmasAddView addView, ConditionPanel panel) {
 		this.addView = addView;
@@ -89,8 +93,8 @@ public class ConditionListener implements ActionListener, ItemListener {
 				cond = new Activated((Activatable) this.object);
 		//réponse
 		} else if (selectedCondition.equals(Conditions.ANSWER.name())) {
-			if (this.object instanceof Content)
-				cond = new Answer((Content) object, "");
+			if (this.object instanceof Content && answer != null)
+				cond = new Answer((Content) object, answer);
 		//avoir
 		} else if (selectedCondition.equals(Conditions.HAVE_IN_HANDS.name())) {
 			if (this.object instanceof Item)
@@ -142,6 +146,17 @@ public class ConditionListener implements ActionListener, ItemListener {
 				this.panel.update(this.object);
 			} else {
 				this.panel.getEntityName().setText(ConditionPanel.NOT_AVAILABLE_CONDITION);
+			}
+
+			if (this.currentButton.getParent() instanceof ChoicePanel) {
+				ChoicePanel parent = (ChoicePanel) this.currentButton.getParent();
+				parent.dispLink();
+			}
+		} else {
+			if (this.currentButton != null){
+				if (this.currentButton.getParent() instanceof ChoicePanel) {
+					((ChoicePanel) this.currentButton.getParent()).remove();
+				}
 			}
 		}
 	}
@@ -198,5 +213,17 @@ public class ConditionListener implements ActionListener, ItemListener {
 		this.validate = false;
 		//reset du panneau des conditions
 		this.panel.update((GameObject) null);
+	}
+
+	public void setAnswer(String answer){
+		this.answer = answer;
+	}
+
+	public String getAnswer() {
+		return answer;
+	}
+
+	public GameObject getObject() {
+		return object;
 	}
 }

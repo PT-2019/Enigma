@@ -16,6 +16,7 @@ import common.map.MapTestScreen;
 import common.utils.Logger;
 import editor.menus.AbstractPopUpView;
 import editor.menus.enimas.create.ManageEnigmasAddView;
+import editor.menus.enimas.create.MusicPanel;
 import editor.menus.enimas.create.OperationPanel;
 import editor.menus.enimas.create.Operations;
 import editor.popup.listeners.CaseListener;
@@ -107,6 +108,21 @@ public class OperationListener implements ActionListener, ItemListener {
 		} else if (selectedOperation.equals(Operations.HIDE_ROOM.name())) {
 			if (this.object instanceof Room)
 				ope = new HideRoom((Room) this.object);
+		}else if(//this.currentButton.getName().equals(Operations.SOUND.name())){
+			if (this.object instanceof MusicEditor) {
+				ope = new LaunchSound((MusicEditor) this.object);
+				//on rajoute l"objet musique à la map pour pouvoir le sauvegarder dans le tmx
+				MapTestScreen map = ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap();
+				map.set(this.object, new Vector2(0, 0));
+			}
+		}else if(//this.currentButton.getName().equals(Operations.MAINMUSIC.name())){
+			if (this.object instanceof MusicEditor) {
+				((MusicEditor) this.object).setMainMusic(true);
+				ope = new ChangeMainMusic((MusicEditor) this.object);
+				MapTestScreen map = ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap();
+				//on met le vecteur à 0 car on s'en fiche de la position
+				map.set(this.object, new Vector2(0, 0));
+			}
 		} else { //sinon condition non disponible
 			this.operationPanel.getEntityName().setText(OperationPanel.NOT_AVAILABLE_OPERATION);
 		}
@@ -136,6 +152,17 @@ public class OperationListener implements ActionListener, ItemListener {
 			Operations.lock(Operations.valueOf(currentButton.getName()), this.operationPanel);
 			//préviens de l'activation
 			this.operationPanel.update(this.object);
+
+			if (this.currentButton.getParent() instanceof MusicPanel) {
+				MusicPanel parent = (MusicPanel) this.currentButton.getParent();
+				parent.dispLink();
+			}
+		}else{
+			if (this.currentButton != null){
+				if (this.currentButton.getParent() instanceof MusicPanel) {
+					((MusicPanel) this.currentButton.getParent()).remove();
+				}
+			}
 		}
 	}
 

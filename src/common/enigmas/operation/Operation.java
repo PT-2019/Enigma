@@ -50,14 +50,13 @@ public abstract class Operation implements EnigmaElementReadablePrint {
 
 		for (String a : attr) {
 			if (!attributes.containsKey(a))
-				throw new IllegalArgumentException("Attribut \"" + a + "\" abscent");
+				throw new IllegalArgumentException("Attribut \"" + a + "\" absent");
 
 			Object get = attributes.get(a);
 
-			switch (a) {
-				case EnigmaAttributes.ENTITY:
-					this.entity = EnigmaGame.getCurrentScreen().getMap().getEntities().getObjectByID(Integer.parseInt((String) get));
-					break;
+			if (EnigmaAttributes.ENTITY.equals(a)) {
+				this.entity = EnigmaGame.getCurrentScreen().getMap()
+						.getEntities().getObjectByID(Integer.parseInt((String) get));
 			}
 		}
 	}
@@ -68,7 +67,7 @@ public abstract class Operation implements EnigmaElementReadablePrint {
 	 * @param p Joueur ayant mené à l'appel de cette méthode
 	 */
 	@Deprecated
-	public abstract void doOperation(Player p);
+	public void doOperation(Player p){run(p);}
 
 	/**
 	 * Effectue l'action
@@ -94,7 +93,7 @@ public abstract class Operation implements EnigmaElementReadablePrint {
 	}
 
 	/**
-	 * Obtenir l'entité consernée par la condition
+	 * Obtenir l'entité concernée par la condition
 	 *
 	 * @return L'entité, null sinon
 	 */
@@ -103,7 +102,7 @@ public abstract class Operation implements EnigmaElementReadablePrint {
 	}
 
 	/**
-	 * Indiquer l'entité consernée par la condition
+	 * Indiquer l'entité concernée par la condition
 	 *
 	 * @param e Entité
 	 */

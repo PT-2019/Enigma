@@ -14,6 +14,8 @@ import common.entities.players.NPC;
 import common.entities.Entity;
 import common.entities.players.PlayerGame;
 import common.entities.special.GameExit;
+import common.entities.special.GameMusic;
+import common.entities.special.MusicEditor;
 import common.save.TmxProperties;
 import common.save.entities.serialization.EntityFactory;
 import common.save.entities.serialization.EntitySerializable;
@@ -43,6 +45,11 @@ public class GameMap extends AbstractMap {
 	 * Tableau des entités
 	 */
 	private ArrayList<GameActor> entities;
+
+	/**
+	 * Musique ambiante
+	 */
+	private GameMusic music;
 
 	public GameMap(final String path, float unitScale) {
 		super(path, unitScale, false);
@@ -335,6 +342,9 @@ public class GameMap extends AbstractMap {
 					monster.setPosition((x + 0.5f) * this.tileWidth * this.getUnitScale(),
 							(y - 2) * this.tileHeight * this.getUnitScale());
 					notdisplay = true;
+				}else if(object instanceof MusicEditor){
+					if (((MusicEditor) object).isMainMusic() && ((MusicEditor) object).isStarter())
+					this.music = new GameMusic(((MusicEditor) object).getPath());
 				}else{
 					if (object instanceof GameExit) notdisplay = true;
 				}
@@ -361,6 +371,11 @@ public class GameMap extends AbstractMap {
 				Logger.printDebug("(tmp) MapTestScreen#initEntities", object + " " + start);
 			}
 		}
+	}
+
+	public void launchMusic(){
+    	if (this.music != null)
+    		this.music.getMusic().play();
 	}
 
 	public ArrayList<GameActor> getGameEntities() {

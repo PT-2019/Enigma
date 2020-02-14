@@ -7,6 +7,9 @@ import common.hud.EnigmaMenuBar;
 import common.hud.EnigmaMenuItem;
 import common.hud.EnigmaWindow;
 import common.hud.ui.EnigmaMenuUI;
+import common.language.GameFields;
+import common.language.HUDFields;
+import data.EnigmaScreens;
 import data.config.EnigmaUIValues;
 
 import java.awt.Color;
@@ -26,6 +29,12 @@ import java.util.Arrays;
  * @since 3.0
  */
 public class BarMenu extends EnigmaMenuBar {
+
+	//3eme onglet
+	private EnigmaMenu music = new EnigmaMenu(gl.get(GameFields.MUSIC));
+	private EnigmaMenuItem chose = new EnigmaMenuItem(gl.get(HUDFields.CHOSE));
+	this.chose.addActionListener(new ChooseListener(window));
+
 
 	/**
 	 * Sauvegarde des menus particuliers si on veut les cacher

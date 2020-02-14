@@ -29,6 +29,10 @@ public enum SelectionsModes {
 	 */
 	POPUP(NeedToBeTranslated.POPUP_ONLY),
 
+	/**
+	 * Lorsqu'on veut choisir une musique
+	 */
+	MUSIC("musique uniquement"),
 	//combinaisons (utiles)
 
 	/**

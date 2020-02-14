@@ -850,4 +850,8 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 	public MapData getMapData() {
 		return this.data;
 	}
+
+	public IDFactory getIdFactory() {
+		return idFactory;
+	}
 }

@@ -8,6 +8,7 @@ import common.entities.types.Activatable;
 import data.EditorState;
 import data.NeedToBeTranslated;
 import editor.EditorLauncher;
+import common.entities.types.Content;
 import editor.menus.SelectionsModes;
 import editor.popup.listeners.CaseListener;
 import game.dnd.DragAndDropBuilder;
@@ -187,7 +188,7 @@ public enum Conditions {
 		if (this.equals(Conditions.ACTIVATED)) {
 			return object instanceof Activatable;
 		} else if (this.equals(Conditions.ANSWER)) {
-			return false;
+			return object instanceof Content;
 		} else if (this.equals(Conditions.HAVE_IN_HANDS)) {
 			return object instanceof Consumable;
 		} else if (this.equals(Conditions.HAVE_IN_INVENTORY)) {
