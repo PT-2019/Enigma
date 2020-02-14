@@ -72,12 +72,16 @@ public class Button extends Activatable {
 	public HashMap<SaveKey,String> getSave(){
 		HashMap<SaveKey, String> save = new HashMap<>();
 		save.put(PlayerSave.ACTIVATED, String.valueOf(this.activated));
+		save.put(PlayerSave.KEY, String.valueOf(this.atlasName));
+		save.put(PlayerSave.ATLAS, String.valueOf(this.atlasPath));
 		return save;
 	}
 
 	@Override
 	public void load(MapProperties data) {
 		this.activated = Boolean.parseBoolean(data.get(PlayerSave.ACTIVATED.getKey(), String.class));
+		this.atlasPath = data.get(PlayerSave.ATLAS.getKey(),String.class);
+		this.atlasName = data.get(PlayerSave.KEY.getKey(),String.class);
 	}
 
 	/**

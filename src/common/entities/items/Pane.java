@@ -95,12 +95,16 @@ public class Pane extends AbstractItem implements Content {
 	public HashMap<SaveKey,String> getSave(){
 		HashMap<SaveKey, String> save = new HashMap<>();
 		save.put(PlayerSave.CONTENT, this.content);
+		save.put(PlayerSave.KEY, String.valueOf(this.atlasName));
+		save.put(PlayerSave.ATLAS, String.valueOf(this.atlasPath));
 		return save;
 	}
 
 	@Override
 	public void load(MapProperties data) {
 		this.content = data.get(PlayerSave.CONTENT.getKey(), String.class);
+		this.atlasPath = data.get(PlayerSave.ATLAS.getKey(),String.class);
+		this.atlasName = data.get(PlayerSave.KEY.getKey(),String.class);
 	}
 
 	/**
