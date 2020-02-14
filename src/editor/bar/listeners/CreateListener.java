@@ -12,6 +12,7 @@ import common.save.EmptyMapGenerator;
 import data.EnigmaScreens;
 import data.NeedToBeTranslated;
 import data.config.Config;
+import data.config.UserConfiguration;
 import game.EnigmaGame;
 
 import javax.swing.JComponent;
@@ -32,14 +33,15 @@ public class CreateListener extends MenuListener {
 
 	private static final int CREATE_POS = 0, CANCEL_POS = 1;
 	private static final String CREATE = NeedToBeTranslated.CREATE, CANCEL = NeedToBeTranslated.CANCEL;
-	private static final Color ERROR = Color.YELLOW, BASE = EnigmaUIValues.ENIGMA_LABEL_FOREGROUND;
+	//TODO: erreur lors de la création
+	//private static final Color ERROR = Color.YELLOW, BASE = EnigmaUIValues.ENIGMA_LABEL_FOREGROUND;
 
 	/**
 	 * title
 	 */
 	private static final String TITLE = NeedToBeTranslated.CREATE_NEW_MAP;
 
-	private static final String ALREADY_TAKEN = NeedToBeTranslated.NAME_ALREADY_EXIST;
+	private static final String NAME_ALREADY_EXIST = NeedToBeTranslated.NAME_ALREADY_EXIST;
 	private static final String CREATE_ERROR = NeedToBeTranslated.CREATE_ERROR;
 
 	private static final String INVALID = "invalide";
@@ -180,7 +182,11 @@ public class CreateListener extends MenuListener {
 				String path = Config.MAP_FOLDER + mapName + Config.MAP_EXTENSION;
 
 				MapData data = new MapData(UserConfiguration.getInstance().getData().getName(),mapName);
-				DataSave.writeMapData(data);
+				try {
+					DataSave.writeMapData(data);
+				} catch (IOException ex) {
+					ex.printStackTrace();
+				}
 
 				EmptyMapGenerator.generate(path, col, row);
 

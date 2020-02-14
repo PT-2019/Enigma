@@ -27,10 +27,6 @@ import java.util.Arrays;
  */
 public class BarMenu extends EnigmaMenuBar {
 
-	private EnigmaMenuItem importMap = new EnigmaMenuItem(gl.get(HUDFields.IMPORT));
-	this.importMap.addActionListener(new ImportListener(window, this.importMap));
-
-
 	/**
 	 * Sauvegarde des menus particuliers si on veut les cacher
 	 *

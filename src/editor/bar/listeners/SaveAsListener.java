@@ -3,7 +3,6 @@ package editor.bar.listeners;
 import api.ui.CustomOptionPane;
 import api.utils.Observer;
 import api.utils.Utility;
-import com.badlogic.gdx.graphics.g3d.particles.ResourceData;
 import com.badlogic.gdx.Gdx;
 import common.data.MapData;
 import common.hud.EnigmaOptionPane;
@@ -21,7 +20,6 @@ import game.screens.TestScreen;
 import javax.swing.JComponent;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -39,11 +37,11 @@ public class SaveAsListener extends MenuListener  implements Observer<MapLoaded>
 	/**
 	 * Textes
 	 */
-	public static final String SAVE_ENDED = NeedToBeTranslated.SAVE_ENDED;
-	public static final String SAVE_CANCELED = NeedToBeTranslated.SAVE_CANCELED;
-	public static final String SAVE_FAILED = NeedToBeTranslated.SAVE_FAILED;
-	public static final String REPLACE_MAP = NeedToBeTranslated.REPLACE_MAP;
-	public static final String MAP_NAME = NeedToBeTranslated.MAP_NAME;
+	private static final String SAVE_ENDED = NeedToBeTranslated.SAVE_ENDED;
+	private static final String SAVE_CANCELED = NeedToBeTranslated.SAVE_CANCELED;
+	private static final String SAVE_FAILED = NeedToBeTranslated.SAVE_FAILED;
+	private static final String REPLACE_MAP = NeedToBeTranslated.REPLACE_MAP;
+	private static final String MAP_NAME = NeedToBeTranslated.MAP_NAME;
 
 	public SaveAsListener(EnigmaWindow window, JComponent parent) {
 		super(window, parent);

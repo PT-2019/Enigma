@@ -8,15 +8,13 @@ import common.hud.EnigmaWindow;
 import common.map.MapTestScreen;
 import data.config.Config;
 import data.EditorState;
-import data.config.Config;
 import editor.EditorLauncher;
 import editor.bar.listeners.RedoListener;
 import editor.bar.listeners.SaveAsListener;
 import editor.bar.listeners.SaveListener;
 import editor.bar.listeners.UndoListener;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JButton;
 import java.awt.event.ActionEvent;
 
 /**
@@ -31,47 +29,50 @@ import java.awt.event.ActionEvent;
  */
 public class TestMapControl implements InputAdapter {
 
-/**
- * Controlleur des différents évènement sur la map
- */
-public class TestMapControl implements InputProcessor {
-
-	//racourcis pour l'enregistrement
-	private static final int SAVE = Input.Keys.S;
-
-	private static final int UNDO = Input.Keys.Z;
-
-	private static final int REDO = Input.Keys.Y;
-
 	/**
 	 * Pour savoir si la touche ctrl est enfoncé
+	 * @since 2.0
 	 */
-	private boolean ctrlpush;
+	private boolean ctrlPush;
 
 	/**
 	 * Pour savoir si la touche alt est enfoncé
+	 * @since 6.0
 	 */
-	private boolean altpush;
+	private boolean altPush;
 
 	/**
 	 * Menu popup
+	 * @since 2.0
 	 */
 	private EntityPopMenu menu;
 
 	/**
 	 * Caméra
+	 * @since 2.0
 	 */
 	private OrthographicCamera camera;
 
-	private MapTestScreen map;
-
-	//pour les racourcis
+	//pour les raccourcis
+	/**
+	 * Sauvegarde
+	 * @since 6.0
+	 */
 	private SaveListener save;
-
+	/**
+	 * Sauvegarder sous
+	 * @since 6.0
+	 */
 	private SaveAsListener saveAs;
-
+	/**
+	 * Annuler retour arrière
+	 * @since 6.0
+	 */
 	private RedoListener redo;
-
+	/**
+	 * Retour arrière
+	 * @since 6.0
+	 */
 	private UndoListener undo;
 
 	/**
@@ -81,45 +82,42 @@ public class TestMapControl implements InputProcessor {
 	 */
 	public TestMapControl(MapTestScreen map) {
 		this.camera = map.getCamera();
-		this.ctrlpush = false;
-		this.map = map;
+		this.ctrlPush = false;
 		//changed to window
-		EnigmaWindow window = EditorLauncher.getInstance().getWindow();
+		EnigmaWindow window = (EnigmaWindow) EditorLauncher.getInstance().getWindow();
 
-		Container contain = EditorLauncher.getInstance().getWindow().getContentPane();
+		//raccourcis
+		this.save = new SaveListener(window, new JButton());
+		this.saveAs = new SaveAsListener(window, new JButton());
+		this.undo = new UndoListener(window, new JButton());
+		this.redo = new RedoListener(window, new JButton());
 
-		save = new SaveListener((EnigmaWindow) this.window,contain);
-		saveAs = new SaveAsListener((EnigmaWindow) this.window,(JComponent)contain);
-		undo = new UndoListener((EnigmaWindow) this.window,contain);
-		redo = new RedoListener((EnigmaWindow) this.window,contain);;
-
-		//changed to window
+		//menu clic droit
 		this.menu = new EntityPopMenu(map, (EnigmaWindow) EditorLauncher.getInstance().getWindow());
 	}
 
 	@Override
 	public boolean keyDown(int keycode) {
-
 		//alt activé
 		if (keycode == Input.Keys.ALT_LEFT)
-			altpush = true;
+			this.altPush = true;
 		//control activé
 		else if (keycode == Input.Keys.CONTROL_LEFT)
-			ctrlpush = true;
+			this.ctrlPush = true;
 		//zoom ou de-zoom
-		else if (keycode == Input.Keys.PLUS && ctrlpush)
+		else if (keycode == Input.Keys.PLUS && this.ctrlPush)
 			this.plusCamera();
-		else if (keycode == Input.Keys.MINUS && ctrlpush)
+		else if (keycode == Input.Keys.MINUS && this.ctrlPush)
 			this.minCamera();
-		else if(keycode == Config.SAVE.getMain() && ctrlpush && !altpush){
+		else if(keycode == Config.SAVE.getMain() &&this. ctrlPush && !this.altPush){
 			//on met un actionEvent sans importance car pas utilisé dans les actionPerformed
-			save.actionPerformed(new ActionEvent(new Object(),0,""));
-		}else if(keycode == Config.UNDO.getMain() && ctrlpush){
-			undo.actionPerformed(new ActionEvent(new Object(),0,""));
-		}else if(keycode == Config.REDO.getMain() && ctrlpush){
-			redo.actionPerformed(new ActionEvent(new Object(),0,""));
-		}else if(ctrlpush && altpush && keycode == Config.SAVE_AS.getMain()){
-			saveAs.actionPerformed(new ActionEvent(new Object(),0,""));
+			this.save.actionPerformed(new ActionEvent(new Object(),0,""));
+		}else if(keycode == Config.UNDO.getMain() && this.ctrlPush){
+			this.undo.actionPerformed(new ActionEvent(new Object(),0,""));
+		}else if(keycode == Config.REDO.getMain() && this.ctrlPush){
+			this.redo.actionPerformed(new ActionEvent(new Object(),0,""));
+		}else if(this.ctrlPush && this.altPush && keycode == Config.SAVE_AS.getMain()){
+			this.saveAs.actionPerformed(new ActionEvent(new Object(),0,""));
 		}
 
 		return false;
@@ -132,24 +130,24 @@ public class TestMapControl implements InputProcessor {
 			this.camera.update();
 			return true;
 		}else if (keycode == Input.Keys.RIGHT) {
-			this.camera.translate(CAMERA_OFFSET, 0);
+			this.camera.translate(Config.CAMERA_OFFSET, 0);
 			this.camera.update();
 			return true;
 		} else if (keycode == Input.Keys.UP) {
-			this.camera.translate(0, CAMERA_OFFSET);
+			this.camera.translate(0, Config.CAMERA_OFFSET);
 			this.camera.update();
 			return true;
 		}else if (keycode == Input.Keys.DOWN) {
-			this.camera.translate(0, -CAMERA_OFFSET);
+			this.camera.translate(0, -Config.CAMERA_OFFSET);
 			this.camera.update();
 			return true;
 		}//dés-activation control
 		else if (keycode == Input.Keys.CONTROL_LEFT) {
-			this.ctrlpush = false;
+			this.ctrlPush = false;
 			return true;
 		//dés-activation alt
 		}else if (keycode == Input.Keys.ALT_LEFT){
-			this.altpush = false;
+			this.altPush = false;
 			return true;
 		}
 		return false;

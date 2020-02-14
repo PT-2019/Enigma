@@ -4,6 +4,7 @@ import common.language.GameLanguage;
 import common.language.HUDFields;
 import editor.bar.listeners.CreateListener;
 import editor.bar.listeners.ExportListener;
+import editor.bar.listeners.ImportListener;
 import editor.bar.listeners.OpenListener;
 import editor.bar.listeners.ReadDocumentation;
 import editor.bar.listeners.RedoListener;
@@ -31,6 +32,7 @@ public enum EnigmaMenuBarItems {
 	OPEN(GameLanguage.gl.get(HUDFields.OPEN), OpenListener.class),
 	SAVE(GameLanguage.gl.get(HUDFields.SAVE), SaveListener.class, false),
 	SAVE_AS(GameLanguage.gl.get(HUDFields.SAVE_AS), SaveAsListener.class, false),
+	IMPORT(GameLanguage.gl.get(HUDFields.IMPORT), ImportListener.class, true),
 	EXPORT(GameLanguage.gl.get(HUDFields.EXPORT), ExportListener.class, false),
 
 	REDO(GameLanguage.gl.get(HUDFields.REDO), RedoListener.class, false),
@@ -69,5 +71,4 @@ public enum EnigmaMenuBarItems {
 		this.run = run;
 		this.enabled = enabled;
 	}
-
 }

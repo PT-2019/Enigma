@@ -1,13 +1,9 @@
 package editor.bar.listeners;
 
 import api.utils.Observer;
-import api.utils.Utility;
-import common.data.MapData;
 import common.hud.EnigmaButton;
-import common.hud.EnigmaOptionPane;
 import common.hud.EnigmaWindow;
 import common.map.MapTestScreen;
-import common.save.DataSave;
 import common.save.EmptyMapGenerator;
 import common.utils.Logger;
 import data.NeedToBeTranslated;
@@ -18,7 +14,6 @@ import game.screens.TestScreen;
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;
-import java.io.IOException;
 
 /**
  * Observateur de la sauvegarde (rapide) de la map.
@@ -35,7 +30,7 @@ public class SaveListener extends MenuListener implements Observer<MapLoaded> {
 	/**
 	 * Textes
 	 */
-	public static final String SAVE_ENDED = NeedToBeTranslated.SAVE_ENDED;
+	private static final String SAVE_ENDED = NeedToBeTranslated.SAVE_ENDED;
 
 	/**
 	 * Si on peut sauvegarder

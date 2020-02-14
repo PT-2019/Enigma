@@ -93,29 +93,33 @@ public class TestScreen extends LibgdxScreen {
 
 		//s'il y a une map
 		if(TestScreen.MAP_PATH != null && TestScreen.MAP_PATH.length() != 0){
-			//Création de la map
-			this.map = new MapTestScreen(MAP_PATH, 1f);
-			this.map.showGrid(true);
-			this.main.addActor(this.map); //ajout au stage
+			try {
+				//Création de la map
+				this.map = new MapTestScreen(MAP_PATH, 1f);
+				this.map.showGrid(true);
+				this.main.addActor(this.map); //ajout au stage
 
-			//menu des catégories
-			this.hud.addActor(new CategoriesMenu(dnd));
+				//menu des catégories
+				this.hud.addActor(new CategoriesMenu(dnd));
 
-			//cameras
-			this.main.setViewport(new ScreenViewport());
-			//centre map dans l'écran
-			this.main.getViewport().setCamera(this.map.getCamera());
-			this.main.getCamera().position.set(
-					this.map.getMapWidth() / 2 - CategoriesMenu.WIDTH / 2f,
-					this.map.getMapHeight() / 2, 0
-			);
+				//cameras
+				this.main.setViewport(new ScreenViewport());
+				//centre map dans l'écran
+				this.main.getViewport().setCamera(this.map.getCamera());
+				this.main.getCamera().position.set(
+						this.map.getMapWidth() / 2 - CategoriesMenu.WIDTH / 2f,
+						this.map.getMapHeight() / 2, 0
+				);
 
-			//crée le toast
-			this.toast = new EnigmaEditorToast();
-			this.hud.addActor(this.toast);//ajout au stage
+				//crée le toast
+				this.toast = new EnigmaEditorToast();
+				this.hud.addActor(this.toast);//ajout au stage
 
-			//listen la map en premier !
-			this.listen(new TestMapControl(this.map));
+				//listen la map en premier !
+				this.listen(new TestMapControl(this.map));
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		} else {
 			//crée le toast
 			this.toast = new EnigmaEditorToast();

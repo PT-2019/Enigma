@@ -1,19 +1,14 @@
 package editor.bar.listeners;
 
-import common.data.MapData;
-import common.hud.EnigmaOptionPane;
 import common.hud.EnigmaWindow;
 import common.save.ImportExport;
-import common.utils.Logger;
 import data.NeedToBeTranslated;
 import data.config.Config;
-import game.EnigmaGame;
 
-import javax.swing.*;
+import javax.swing.JComponent;
+import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.ActionEvent;
-import java.io.File;
-import java.io.IOException;
 
 /**
  * Observateur de l'exportation de la map

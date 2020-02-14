@@ -1,7 +1,6 @@
 package data;
 
 import api.utils.annotations.Temporary;
-import data.config.Config;
 
 /**
  * Constantes à traduire et ajouter au language.
@@ -82,8 +81,6 @@ public interface NeedToBeTranslated {
 	String SET_CONTENT = "Changement du contenu";
 	String ADD_SUB_ENTITY = ADD_ENTITY;
 	String REMOVE_SUB_ENTITY = REMOVE_ENTITY;
-	String SET_HERO = "Ajout d'un héros.";
-	String UNSET_HERO = "Suppression d'un héros.";
 
 	//SetName
 	String SET_NAME = "Changer nom";
@@ -224,7 +221,6 @@ public interface NeedToBeTranslated {
 	String SELECT_ENTITY = "Utiliser cette entité";
 
 	//createListener
-	String CREATE = "Créer";
 	String CANCEL = "Annuler";
 	String CREATE_NEW_MAP = "Création d'une nouvelle map.";
 	String WIDTH = "Largeur";
@@ -232,7 +228,6 @@ public interface NeedToBeTranslated {
 	String EMPTY = "Vide";
 
 	//ManageEnigmasSeeView
-	String DELETE = "Supprimer";
 	String CONFIRM = "Confirmer";
 
 	//AddItemAddView

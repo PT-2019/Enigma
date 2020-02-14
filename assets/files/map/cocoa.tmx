@@ -322,9 +322,9 @@
                 <property name="className" value="common.entities.players.Monster"/>
                 <property name="y2" value="40.0"/>
                 <property name="FLOOR2" value="4"/>
-                <property name="KEY" value="rat"/>
+                <property name="KEY" value="Rat"/>
                 <property name="JSON" value="assets/entities/monsters/monsters.json"/>
-                <property name="NAME" value=""/>
+                <property name="NAME" value="Rat"/>
             </properties>
         </object>
         <object height="2.0" id="15" name="entity" width="2.0" x="3.0" y="16.0">
@@ -334,9 +334,9 @@
                 <property name="FLOOR2" value="4"/>
                 <property name="KEY" value="Kil"/>
                 <property name="JSON" value="assets/entities/players/players.json"/>
-                <property name="NAME" value="Pire"/>
                 <property name="HERO" value="true"/>
                 <property name="INVENTORY" value=""/>
+                <property name="NAME" value="Pire"/>
             </properties>
         </object>
         <object height="1.0" id="16" name="entity" width="1.0" x="-16.0" y="-16.0">
@@ -350,9 +350,9 @@
                 <property name="className" value="common.entities.players.Monster"/>
                 <property name="y2" value="32.0"/>
                 <property name="FLOOR2" value="4"/>
-                <property name="KEY" value="snake"/>
+                <property name="KEY" value="Snake"/>
                 <property name="JSON" value="assets/entities/monsters/monsters.json"/>
-                <property name="NAME" value=""/>
+                <property name="NAME" value="Snake"/>
             </properties>
         </object>
         <object height="1.0" id="0" name="entity" width="1.0" x="10.0" y="33.0">
@@ -371,9 +371,9 @@
                 <property name="FLOOR2" value="4"/>
                 <property name="KEY" value="Euphemia"/>
                 <property name="JSON" value="assets/entities/players/players.json"/>
-                <property name="NAME" value=""/>
                 <property name="HERO" value="false"/>
                 <property name="INVENTORY" value=""/>
+                <property name="NAME" value="Euphemia"/>
             </properties>
         </object>
         <object height="2.0" id="14" name="entity" width="2.0" x="21.0" y="11.0">
@@ -383,9 +383,9 @@
                 <property name="FLOOR2" value="4"/>
                 <property name="KEY" value="Alexia"/>
                 <property name="JSON" value="assets/entities/players/players.json"/>
-                <property name="NAME" value="Zoé"/>
                 <property name="HERO" value="false"/>
                 <property name="INVENTORY" value=""/>
+                <property name="NAME" value="Zoé"/>
             </properties>
         </object>
         <object height="1.0" id="9" name="entity" width="1.0" x="6.0" y="43.0">
