@@ -10,6 +10,7 @@ import common.hud.EnigmaWindow;
 import common.map.MapTestScreen;
 import common.save.DataSave;
 import common.save.EmptyMapGenerator;
+import common.utils.EnigmaUtility;
 import common.utils.Logger;
 import data.NeedToBeTranslated;
 import data.EnigmaScreens;
@@ -55,7 +56,7 @@ public class SaveAsListener extends MenuListener  implements Observer<MapLoaded>
 		String mapName = EnigmaOptionPane.showInputDialog(this.window,MAP_NAME);
 		mapName = Utility.normalize(mapName);
 
-		for(String s : Utility.getAllMapName()) {
+		for(String s : EnigmaUtility.getAllMapNames()) {
 			if (s.equals(mapName)){
 				if(!EnigmaOptionPane.showConfirmDialog(this.window,REPLACE_MAP)){
 					return;

@@ -3,6 +3,7 @@ package editor.menus.enimas.create;
 import api.utils.Observer;
 import common.entities.GameObject;
 import common.entities.players.NPC;
+import common.entities.special.MusicEditor;
 import common.entities.special.Room;
 import common.entities.types.Living;
 import common.entities.types.Lockable;
@@ -28,12 +29,12 @@ import org.jetbrains.annotations.Nullable;
  */
 public enum Operations {
 	GIVE(NeedToBeTranslated.GIVE_DESC, NeedToBeTranslated.ITEMS_ONLY, SelectionsModes.MENU_AND_POPUP),
-	SUMMON(NeedToBeTranslated.SUMMON_DESC, NeedToBeTranslated.SUMMON_RES, SelectionsModes.MENU),
+	SUMMON(NeedToBeTranslated.SUMMON_DESC, NeedToBeTranslated.LIVING_ONLY, SelectionsModes.MENU),
 	SHOW_ROOM(NeedToBeTranslated.SHOW_ROOM_DESC, NeedToBeTranslated.ROOM_ONLY, SelectionsModes.MAP),
 	HIDE_ROOM(NeedToBeTranslated.HIDE_ROOM_DESC, NeedToBeTranslated.ROOM_ONLY, SelectionsModes.MAP),
-	UNLOCK(NeedToBeTranslated.UNLOCK_DESC, NeedToBeTranslated.UNLOCK_RES, SelectionsModes.MAP),
-	SOUND("Lancer un son", "Seulement une musique.", null, SelectionsModes.MUSIC),
-	MAINMUSIC("Changer la musique principale", "Seulement une musique.", null, SelectionsModes.MUSIC),
+	UNLOCK(NeedToBeTranslated.UNLOCK_DESC, NeedToBeTranslated.LOCKABLE_ONLY, SelectionsModes.MAP),
+	SOUND(NeedToBeTranslated.LAUNCH_SOUND, NeedToBeTranslated.MUSIC_ONLY, SelectionsModes.MUSIC),
+	MAIN_MUSIC(NeedToBeTranslated.CHANGE_MAIN_MUSIC, NeedToBeTranslated.MUSIC_ONLY, SelectionsModes.MUSIC),
 	;
 
 	/**
@@ -165,7 +166,7 @@ public enum Operations {
 		}
 
 		//débloque la sélection depuis la map
-		if (!menuDrag.contains(SelectionsModes.MAP)) {
+		if (!this.menuDrag.contains(SelectionsModes.MAP)) {
 			EditorLauncher.removeState(EditorState.SPECIAL_POPUP_DISABLED);
 		} else {
 			EditorLauncher.removeState(EditorState.SPECIAL_POPUP_ENABLED);
@@ -186,7 +187,7 @@ public enum Operations {
 	 * @param object gameObject
 	 * @return true si le gameObject respecte les conditions de l'opération
 	 */
-	public boolean //isValid(GameObject object) {
+	public boolean isValid(GameObject object) {
 		//cette méthode n'est pas géniale, on a écrit à la main les conditions
 		if (this.equals(Operations.GIVE)) {
 			return (object instanceof NeedContainer);
@@ -202,9 +203,9 @@ public enum Operations {
 		} else if (this.equals(Operations.HIDE_ROOM)) {
 			return (object instanceof Room);
 		}else if(this.equals(Operations.SOUND)){
-			return true;
-		}else if(this.equals(Operations.MAINMUSIC)){
-			return true;
+			return object instanceof MusicEditor;
+		}else if(this.equals(Operations.MAIN_MUSIC)){
+			return object instanceof MusicEditor;
 		}
 
 		return false;

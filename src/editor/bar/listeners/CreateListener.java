@@ -9,6 +9,7 @@ import common.hud.EnigmaTextField;
 import common.hud.EnigmaWindow;
 import common.save.DataSave;
 import common.save.EmptyMapGenerator;
+import common.utils.EnigmaUtility;
 import data.EnigmaScreens;
 import data.NeedToBeTranslated;
 import data.config.Config;
@@ -159,7 +160,7 @@ public class CreateListener extends MenuListener {
 
 			//nom déjà pris
 			if (!mapNameError) {
-				for (String s : Utility.getAllMapName()) {
+				for (String s : EnigmaUtility.getAllMapNames()) {
 					if (s.equals(mapName)) {
 						//this.nom.setText(NeedToBeTranslated.INPUT_NAME + " (" + ALREADY_TAKEN + ") :");
 						EnigmaOptionPane.showAlert(this.window, NAME_ALREADY_EXIST);

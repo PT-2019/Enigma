@@ -1,5 +1,6 @@
 package editor.bar;
 
+import common.language.GameFields;
 import common.language.GameLanguage;
 import common.language.HUDFields;
 
@@ -21,6 +22,7 @@ public enum EnigmaMenuBarMenus {
 			EnigmaMenuBarItems.NEW, EnigmaMenuBarItems.OPEN, EnigmaMenuBarItems.SAVE,
 			EnigmaMenuBarItems.SAVE_AS, EnigmaMenuBarItems.IMPORT , EnigmaMenuBarItems.EXPORT),
 	EDIT(GameLanguage.gl.get(HUDFields.EDIT), EnigmaMenuBarItems.REDO, EnigmaMenuBarItems.UNDO),
+	MUSIC(GameLanguage.gl.get(GameFields.MUSIC), EnigmaMenuBarItems.CHOOSE),
 	RUN(GameLanguage.gl.get(HUDFields.RUN), EnigmaMenuBarItems.START, EnigmaMenuBarItems.STOP),
 	HELP(GameLanguage.gl.get(HUDFields.HELP), EnigmaMenuBarItems.DOC, EnigmaMenuBarItems.SUPPORT),
 	;

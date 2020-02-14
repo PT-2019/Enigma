@@ -2,7 +2,6 @@ package editor.menus.enimas.create;
 
 import api.utils.Observer;
 import api.utils.Utility;
-import common.enigmas.condition.Condition;
 import common.entities.GameObject;
 import common.hud.EnigmaButton;
 import common.hud.EnigmaLabel;
@@ -122,7 +121,7 @@ public class ConditionPanel extends AbstractSubPopUpView implements Observer<Gam
 		EnigmaButton submit = new EnigmaButton(SUBMIT);
 		submit.addActionListener(this.listener);
 		this.selection = new EnigmaLabel();
-		GridBagConstraints gbc = new GridBagConstraints();
+		gbc = new GridBagConstraints();
 		gbc.gridx = 0;
 		gbc.gridy = 0;
 		gbc.weightx = 0;
@@ -218,7 +217,7 @@ public class ConditionPanel extends AbstractSubPopUpView implements Observer<Gam
 
 	/**
 	 * Méthode spécialement pour créer une answer, on a besoin d'une réponse à cette condition
-	 * @param object
+	 * @param object la réponse saisie
 	 */
 	public void update(String object){
 		this.listener.setAnswer(object);

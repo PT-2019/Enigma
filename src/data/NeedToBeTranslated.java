@@ -93,8 +93,6 @@ public interface NeedToBeTranslated {
 	//SetName
 	String SET_NAME = "Changer nom";
 
-	//TODO: all
-
 	//ActionsManagerType
 
 	//String ADDED = "Ajout";
@@ -110,6 +108,8 @@ public interface NeedToBeTranslated {
 	//enigma OptionPane
 
 	String ASK_SELECT_MAP = "Choisissez une map";
+	String ASK_SELECT_MUSIC = "Choisissez une musique";
+	String ASK_SELECT_SOUND = "Choisissez un son";
 
 	//ImportExport
 	String REPLACE_FILE = "Un fichier du même nom existe déjà, le remplacer?";
@@ -177,19 +177,16 @@ public interface NeedToBeTranslated {
 	//Operations
 
 	String GIVE_DESC = "Donne un object à l'utilisateur";
-
 	String SUMMON_DESC = "Invoque une entité";
-	String SUMMON_RES = "Seulement des personnages, pas de héros.";
-
-
 	String UNLOCK_DESC = "Déverrouille un object";
-	String UNLOCK_RES = "Seulement un object \"Décors\" verrouillable.";
-
-
 	String HIDE_ROOM_DESC = "Cacher une salle";
-
-
 	String SHOW_ROOM_DESC = "Afficher une salle";
+	String LAUNCH_SOUND = "Jouer un son";
+
+
+	String LOCKABLE_ONLY = "Seulement un object \"Décors\" verrouillable.";
+	String LIVING_ONLY = "Seulement des personnages, pas de héros.";
+	String MUSIC_ONLY = "Seulement une musique.";
 
 	// DragAndDrop
 

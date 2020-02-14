@@ -32,7 +32,8 @@ public enum SelectionsModes {
 	/**
 	 * Lorsqu'on veut choisir une musique
 	 */
-	MUSIC("musique uniquement"),
+	MUSIC(NeedToBeTranslated.MUSIC_ONLY),
+
 	//combinaisons (utiles)
 
 	/**

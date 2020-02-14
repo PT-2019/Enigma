@@ -8,6 +8,7 @@ import common.hud.EnigmaPanel;
 import common.hud.EnigmaTextField;
 import common.hud.ui.EnigmaButtonUI;
 import common.save.DataSave;
+import common.utils.EnigmaUtility;
 import common.utils.Logger;
 import data.NeedToBeTranslated;
 import data.config.Config;
@@ -175,7 +176,7 @@ public class MultiPlayer extends Content {
         Color blue = new Color(0, 136, 193);
         Color green = new Color(90, 191, 17);
         Color red = new Color(193, 7, 0);
-        ArrayList<String> games = Utility.getAllGameName();
+        ArrayList<String> games = EnigmaUtility.getAllGameName();
         int size = 4;
         int borderSize = 5;
         int borderSize2 = 2;

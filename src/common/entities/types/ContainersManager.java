@@ -56,6 +56,4 @@ public interface ContainersManager {
 	default ArrayList<MapObject> getContainers() {
 		return new ArrayList<>();
 	}
-
-
 }

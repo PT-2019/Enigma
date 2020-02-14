@@ -9,10 +9,10 @@ import api.ui.CustomWindow;
 import api.ui.base.DefaultUIValues;
 import api.ui.base.OptionPaneStyle;
 import api.ui.skin.CustomButtonUI;
-import api.utils.Utility;
 import api.utils.annotations.ConvenienceMethod;
 import common.hud.ui.EnigmaTextAreaUI;
 import common.hud.ui.EnigmaTextFieldUI;
+import common.utils.EnigmaUtility;
 import data.NeedToBeTranslated;
 
 import java.awt.Color;
@@ -146,39 +146,6 @@ public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyl
 		return showInputDialog(parent, message, new EnigmaOptionPane());
 	}
 
-	/**
-	 * Crée un popup de choix de map
-	 *
-	 * @param parent parent
-	 * @return le nom de la map sélectionnée
-	 * @since 5.0
-	 */
-	public static String showMapChoiceDialog(CustomWindow parent) {
-		return showMapChoiceDialog(parent, new EnigmaOptionPane());
-	}
-
-	/**
-	 * Crée un popup de choix pourla musique
-	 *
-	 * @param parent  parent
-	 * @return le nom de la map séléctionnée
-	 * @since 5.0
-	 */
-	public static String showMusicChoiceDialog(CustomWindow parent) {
-		return showMusicChoiceDialog(parent, new EnigmaOptionPane());
-	}
-
-	/**
-	 * Crée un popup de choix pour les sons
-	 *
-	 * @param parent  parent
-	 * @return le nom de la map séléctionnée
-	 * @since 5.0
-	 */
-	public static String showSoundChoiceDialog(CustomWindow parent) {
-		return showSoundChoiceDialog(parent, new EnigmaOptionPane());
-	}
-
 	// réécriture des méthodes static avec le bon style
 
 	/**
@@ -236,14 +203,13 @@ public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyl
 	 * Crée un popup de choix de map
 	 *
 	 * @param parent parent
-	 * @param size   taille
 	 * @return le nom de la map sélectionnée
 	 * @since 5.0
 	 */
 	@ConvenienceMethod
-	public static String showMapChoiceDialog(CustomWindow parent, Dimension size) {
-		return showListDialog(parent, NeedToBeTranslated.ASK_SELECT_MAP, size, Utility.getAllMapName(),
-				new EnigmaOptionPane());
+	public static String showMapChoiceDialog(CustomWindow parent) {
+		return showListDialog(parent, NeedToBeTranslated.ASK_SELECT_MAP, EnigmaOptionPane.BASIC_DIMENSION,
+				EnigmaUtility.getAllMapNames(), new EnigmaOptionPane());
 	}
 
 	/**
@@ -256,6 +222,30 @@ public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyl
 	 */
 	public static String showListDialog(CustomWindow parent, String title, Dimension size, ArrayList<String> choices) {
 		return showListDialog(parent, title, size, choices, new EnigmaOptionPane());
+	}
+
+	/**
+	 * Crée un popup de choix pour la musique
+	 *
+	 * @param parent  parent
+	 * @return le nom de la map sélectionnée
+	 * @since 5.0
+	 */
+	public static String showMusicChoiceDialog(CustomWindow parent) {
+		return showListDialog(parent, NeedToBeTranslated.ASK_SELECT_MUSIC, EnigmaOptionPane.BASIC_DIMENSION,
+				EnigmaUtility.getAllMusicName(), new EnigmaOptionPane());
+	}
+
+	/**
+	 * Crée un popup de choix pour les sons
+	 *
+	 * @param parent  parent
+	 * @return le nom de la map sélectionnée
+	 * @since 5.0
+	 */
+	public static String showSoundChoiceDialog(CustomWindow parent) {
+		return showListDialog(parent, NeedToBeTranslated.ASK_SELECT_SOUND, EnigmaOptionPane.BASIC_DIMENSION,
+				EnigmaUtility.getAllSoundName(), new EnigmaOptionPane());
 	}
 
 	/**

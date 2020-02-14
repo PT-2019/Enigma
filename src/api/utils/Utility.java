@@ -3,8 +3,6 @@ package api.utils;
 import api.utils.annotations.ConvenienceClass;
 import api.utils.annotations.ConvenienceMethod;
 import com.badlogic.gdx.utils.Array;
-import common.utils.Logger;
-import data.config.Config;
 
 import java.awt.Component;
 import java.awt.GraphicsConfiguration;
@@ -44,93 +42,6 @@ import java.util.Map;
 public class Utility implements Serializable {
 
 	/**
-	 * Obtenir le nom de toutes les maps en local
-	 * Les noms sont issus des fichiers tmx présents
-	 *
-	 * @return Le nom des maps
-	 * @since 6.1
-	 */
-	//TODO: move to real utility
-	public static ArrayList<String> getAllMapName() {
-		ArrayList<String> maps = new ArrayList<>();
-		File file = new File(Config.MAP_FOLDER);
-		String[] list = file.list();
-
-		if(list != null){
-			for(String s : list){
-				if(s.endsWith(Config.MAP_EXTENSION))
-					maps.add(s.replace(Config.MAP_EXTENSION,""));
-			}
-		}
-
-		Collections.sort(maps);
-		return maps;
-	}
-
-	/**
-	 * Obtenir le nom de toutes les parties en local
-	 * Les noms sont issus des fichiers tmx présents
-	 * @return Le nom des parties
-	 */
-	public static ArrayList<String> getAllGameName() {
-		ArrayList<String> maps = new ArrayList<>();
-		File file = new File(Config.GAME_DATA_FOLDER);
-		String[] list = file.list();
-
-		if(list != null){
-			for(String s : list){
-				if(s.endsWith(Config.DATA_EXTENSION))
-					maps.add(s.replace(Config.DATA_EXTENSION,""));
-			}
-		}
-
-		Collections.sort(maps);
-		return maps;
-	}
-
-	/**
-	 * Obtenir le nom de toutes les musiques en local
-	 * Les noms sont issus des fichiers tmx présents
-	 * @return Le nom des maps
-	 * @since 6.1
-	 */
-	//TODO: move to real utility
-	public static ArrayList<String> getAllMusicName(){
-		ArrayList<String> musics = new ArrayList<>();
-		File file = new File("assets/files/music/");
-		String[] list = file.list();
-
-		if(list != null){
-			for(String s : list){
-				if(s.endsWith(".mp3"))
-					musics.add(s.replace(".mp3",""));
-			}
-		}
-		return musics;
-	}
-
-	/**
-	 * Obtenir le nom de toutes les maps en local
-	 * Les noms sont issus des fichiers tmx présents
-	 * @return Le nom des maps
-	 * @since 6.1
-	 */
-	//TODO: move to real utility
-	public static ArrayList<String> getAllSoundName(){
-		ArrayList<String> sounds = new ArrayList<>();
-		File file = new File("assets/files/sound/");
-		String[] list = file.list();
-
-		if(list != null){
-			for(String s : list){
-				if(s.endsWith(".mp3"))
-					sounds.add(s.replace(".mp3",""));
-			}
-		}
-		return sounds;
-	}
-
-	/**
 	 * Obtenir le nom de toutes les fichiers dans un dossier
 	 * Les noms sont issus des fichiers tmx présents
 	 *
@@ -159,6 +70,9 @@ public class Utility implements Serializable {
 
 			}
 		}
+
+		Collections.sort(files);
+
 		return files;
 	}
 
@@ -524,7 +438,7 @@ public class Utility implements Serializable {
 	 * @param className nom de la classe
 	 * @param message   message
 	 * @since 5.2
-	 * @deprecated utiliser {@link Logger}
+	 * @deprecated
 	 */
 	@Deprecated
 	public static void printDebug(String className, String message) {

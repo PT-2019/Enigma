@@ -15,6 +15,7 @@ import common.entities.types.Activatable;
 import common.entities.types.Content;
 import common.map.MapTestScreen;
 import common.utils.Logger;
+import editor.menus.enimas.create.ChoicePanel;
 import editor.menus.enimas.create.ConditionPanel;
 import editor.menus.enimas.create.Conditions;
 import editor.menus.enimas.create.ManageEnigmasAddView;

@@ -1,34 +1,50 @@
 package editor.bar.listeners;
 
+import api.utils.Observer;
 import com.badlogic.gdx.math.Vector2;
-import common.data.MapData;
-import common.entities.GameObject;
 import common.entities.special.MusicEditor;
 import common.hud.EnigmaOptionPane;
 import common.hud.EnigmaWindow;
-import common.map.MapObject;
 import common.map.MapObjects;
 import common.map.MapTestScreen;
-import editor.menus.enimas.create.MusicPanel;
-import editor.menus.enimas.create.listeners.MusicListener;
 import game.EnigmaGame;
 import game.screens.TestScreen;
+import org.jetbrains.annotations.Nullable;
 
-import javax.swing.*;
+import javax.swing.JComponent;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
-public class ChooseListener extends MenuListener {
+/**
+ * Listener de la sélection de la musique principale
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ *
+ * @version 6.0 14/02/2020
+ * @since 6.0 14/02/2020
+ */
+public class ChooseListener extends MenuListener implements Observer<MapLoaded> {
 
-    public ChooseListener(EnigmaWindow window){
-        super(window);
+    /**
+     * Listener de la sélection de la musique principale
+     *
+     * @param window fenêtre
+     * @param component parent
+     */
+    public ChooseListener(EnigmaWindow window, @Nullable JComponent component){
+        super(window, component);
+        //besoin d'une map pour fonctionner
+        MapLoaded instance = MapLoaded.getInstance();
+        instance.addObserver(this);
     }
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
         String choice = EnigmaOptionPane.showMusicChoiceDialog(window);
-        if (!choice.equals(MusicListener.CANCEL)){
+        if (!choice.equals(EnigmaOptionPane.CANCEL)){
             MapTestScreen map = ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap();
 
             MusicEditor object = new MusicEditor(choice);
@@ -36,7 +52,7 @@ public class ChooseListener extends MenuListener {
             object.setMainMusic(true);
             object.setStarter(true);
 
-            //on cherche dans la map si il y a pas une autre mainmusic starter pour la virer
+            //on cherche dans la map si il y a pas une autre mainMusic starter pour la virer
             MapObjects data = map.getEntities();
             ArrayList<MusicEditor> musics = data.getAllObjectsByClass(MusicEditor.class,true);
             //lorsqu'on supprime une entité on supprime toute les entités au même endroit donc
@@ -57,6 +73,11 @@ public class ChooseListener extends MenuListener {
             //on met la nouvelle musique
             map.set(object,new Vector2(0,0));
         }
+    }
+
+    @Override
+    public void update(MapLoaded object) {
+        this.parent.setEnabled(object.isMapLoaded());
     }
 }
 

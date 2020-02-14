@@ -1,5 +1,7 @@
 package common.enigmas.operation;
 
+import common.enigmas.reporting.EnigmaReport;
+import common.enigmas.reporting.OperationReport;
 import common.entities.players.Player;
 import common.entities.special.GameMusic;
 import common.entities.special.MusicEditor;
@@ -43,8 +45,9 @@ public class LaunchSound extends Operation {
     }
 
     @Override
-    public void run(Player p) {
+    public EnigmaReport run(Player p) {
        this.musicGame.playSound((MusicEditor) this.entity);
+       return new EnigmaReport(OperationReport.DONE, true);
     }
 
     @Override

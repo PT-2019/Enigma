@@ -1,13 +1,12 @@
 package editor.menus.enimas.create.listeners;
 
 
+import api.ui.CustomOptionPane;
 import common.entities.special.MusicEditor;
 import common.hud.EnigmaOptionPane;
 import common.hud.EnigmaWindow;
 import common.map.MapTestScreen;
-import editor.menus.AbstractPopUpView;
 import editor.menus.enimas.create.MusicPanel;
-import editor.menus.enimas.create.OperationPanel;
 import editor.menus.enimas.create.Operations;
 import game.EnigmaGame;
 import game.screens.TestScreen;
@@ -17,14 +16,18 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import static common.language.GameLanguage.gl;
-
 /**
- * Controlleur pour afficher le choix de musique
+ * Contrôleur pour afficher le choix de musique
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ *
+ * @version 6.0
+ * @since 6.0
  */
 public class MusicListener implements MouseListener {
-
-    public static String CANCEL = "Annuler";
 
     private Operations operations;
 
@@ -35,14 +38,14 @@ public class MusicListener implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         String chose;
-        if (operations == Operations.MAINMUSIC){
+        if (this.operations == Operations.MAIN_MUSIC){
             chose = EnigmaOptionPane.showMusicChoiceDialog(new EnigmaWindow());
         }else {
             chose = EnigmaOptionPane.showSoundChoiceDialog(new EnigmaWindow());
         }
         Object tmp;
 
-        if (!chose.equals(MusicListener.CANCEL)){
+        if (!chose.equals(EnigmaOptionPane.CANCEL)){
             MusicEditor object = new MusicEditor(chose);
 
             tmp = e.getSource();

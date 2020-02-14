@@ -14,7 +14,7 @@ import common.language.Language;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 6.6
+ * @version 6.7
  * @since 4.0
  */
 public final class Config {
@@ -273,4 +273,25 @@ public final class Config {
 	 * @since 6.0
 	 */
 	public static final String SKIN_PATH = "assets/files/atlas/uiskin.atlas";
+
+	/**
+	 * Répertoire des musiques
+	 * @since 6.7
+	 */
+	public static final String MUSIC_FOLDER = "assets/files/music/";
+	/**
+	 * Extensions des musiques
+	 * @since 6.7
+	 */
+	public static final String[] MUSIC_EXTENSIONS = {".mp3"};
+	/**
+	 * Répertoire des sons
+	 * @since 6.7
+	 */
+	public static final String SOUND_FOLDER = "assets/files/sound/";
+	/**
+	 * Extensions des sons
+	 * @since 6.7
+	 */
+	public static final String[] SOUND_EXTENSIONS = {".mp3", ".wav"};
 }

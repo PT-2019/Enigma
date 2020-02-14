@@ -4,6 +4,7 @@ import api.ui.CustomWindow;
 import api.utils.Utility;
 import common.data.GameData;
 import common.hud.*;
+import common.utils.EnigmaUtility;
 import common.utils.Logger;
 import data.NeedToBeTranslated;
 import data.config.Config;
@@ -413,7 +414,7 @@ public class ImportExport {
                     //Récupération du nom
                     String mapName = ImportExport.readToString(reader,epp,value);
 
-                    for (String s : Utility.getAllMapName()) {
+                    for (String s : EnigmaUtility.getAllMapNames()) {
                         if (s.equals(mapName)) {
                             if (!EnigmaOptionPane.showConfirmDialog(EditorLauncher.getInstance().getWindow(),
                                     new Dimension(600, 250),
@@ -524,7 +525,7 @@ public class ImportExport {
                     String mapName = ImportExport.readToString(reader,epp,value);
                     String gameName = ImportExport.readToString(reader,epp,value);
 
-                    for (String s : Utility.getAllMapName()) {
+                    for (String s : EnigmaUtility.getAllMapNames()) {
                         if (s.equals(mapName)) {
                             if (!EnigmaOptionPane.showConfirmDialog(EditorLauncher.getInstance().getWindow(),
                                     new Dimension(600, 250),
@@ -535,7 +536,7 @@ public class ImportExport {
                     }
 
                     if(gameName.length() > 0) {
-                        for (String s : Utility.getAllGameName()) {
+                        for (String s :EnigmaUtility.getAllGameName()) {
                             if (s.equals(gameName)) {
                                 if (!EnigmaOptionPane.showConfirmDialog(EditorLauncher.getInstance().getWindow(),
                                         new Dimension(600, 250),

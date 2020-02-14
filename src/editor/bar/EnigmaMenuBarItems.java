@@ -2,6 +2,7 @@ package editor.bar;
 
 import common.language.GameLanguage;
 import common.language.HUDFields;
+import editor.bar.listeners.ChooseListener;
 import editor.bar.listeners.CreateListener;
 import editor.bar.listeners.ExportListener;
 import editor.bar.listeners.ImportListener;
@@ -37,6 +38,8 @@ public enum EnigmaMenuBarItems {
 
 	REDO(GameLanguage.gl.get(HUDFields.REDO), RedoListener.class, false),
 	UNDO(GameLanguage.gl.get(HUDFields.UNDO), UndoListener.class, false),
+
+	CHOOSE(GameLanguage.gl.get(HUDFields.CHOSE), ChooseListener.class, false ),
 
 	START(GameLanguage.gl.get(HUDFields.START), StartSimulation.class, false),
 	STOP(GameLanguage.gl.get(HUDFields.STOP), StopSimulation.class, false),

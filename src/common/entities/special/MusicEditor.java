@@ -14,6 +14,14 @@ import java.util.HashMap;
 /**
  * Cette classe permet de stocker une musique en tant que game object,
  * elle permet d'avoir toute les informations nécessaire pour lancer les musiques du jeu
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ *
+ * @version 6.0 14/02/2020
+ * @since 6.0 14/02/2020
  */
 public class MusicEditor extends AbstractGameObject {
 

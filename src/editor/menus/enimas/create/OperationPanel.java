@@ -2,7 +2,6 @@ package editor.menus.enimas.create;
 
 import api.utils.Observer;
 import api.utils.Utility;
-import common.enigmas.operation.Operation;
 import common.entities.GameObject;
 import common.hud.EnigmaButton;
 import common.hud.EnigmaLabel;
@@ -23,7 +22,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
 
 /**
@@ -99,7 +97,7 @@ public class OperationPanel extends AbstractSubPopUpView implements Observer<Gam
 				this.musicPanel[index] = new MusicPanel(OperationPanel.BUT_SOUND, r, this, op);
 				panel.add(musicPanel[index], gbc);
 				index++;
-			}else if(op == Operations.MAINMUSIC){
+			}else if(op == Operations.MAIN_MUSIC){
 				this.musicPanel[index] = new MusicPanel(OperationPanel.BUT_MUS, r, this, op);
 				panel.add(musicPanel[index], gbc);
 				index++;

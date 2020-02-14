@@ -1,15 +1,12 @@
 package common.entities.special;
 
-import common.entities.GameObject;
 import common.entities.types.AbstractGameObject;
 import common.entities.types.ContainersManager;
 import common.language.GameFields;
 import common.language.GameLanguage;
-import common.map.MapObject;
 import data.TypeEntity;
 
 import java.util.EnumMap;
-import java.util.HashMap;
 
 /**
  * Une pièce
@@ -25,8 +22,6 @@ public class Room extends AbstractGameObject implements ContainersManager {
 
 	private boolean discovered, showed;
 
-	private HashMap<GameObject, MapObject> containers;
-
 	/**
 	 * Crée une pièce
 	 *
@@ -36,7 +31,6 @@ public class Room extends AbstractGameObject implements ContainersManager {
 		super(-1);
 		this.discovered = false;
 		this.showed = true;
-		this.containers = new HashMap<>();
 	}
 
 	/**
@@ -51,7 +45,6 @@ public class Room extends AbstractGameObject implements ContainersManager {
 		this.setDimension(cols, rows);
 		this.discovered = false;
 		this.showed = true;
-		this.containers = new HashMap<>();
 	}
 
 	@Override
