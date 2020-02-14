@@ -33,8 +33,8 @@ public enum Operations {
 	SHOW_ROOM(NeedToBeTranslated.SHOW_ROOM_DESC, NeedToBeTranslated.ROOM_ONLY, SelectionsModes.MAP),
 	HIDE_ROOM(NeedToBeTranslated.HIDE_ROOM_DESC, NeedToBeTranslated.ROOM_ONLY, SelectionsModes.MAP),
 	UNLOCK(NeedToBeTranslated.UNLOCK_DESC, NeedToBeTranslated.LOCKABLE_ONLY, SelectionsModes.MAP),
-	SOUND(NeedToBeTranslated.LAUNCH_SOUND, NeedToBeTranslated.MUSIC_ONLY, SelectionsModes.MUSIC),
-	MAIN_MUSIC(NeedToBeTranslated.CHANGE_MAIN_MUSIC, NeedToBeTranslated.MUSIC_ONLY, SelectionsModes.MUSIC),
+	SOUND(NeedToBeTranslated.LAUNCH_SOUND, NeedToBeTranslated.NO_SOUND, SelectionsModes.MUSIC),
+	MAIN_MUSIC(NeedToBeTranslated.CHANGE_MAIN_MUSIC, NeedToBeTranslated.NO_MUSIC, SelectionsModes.MUSIC),
 	;
 
 	/**

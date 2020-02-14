@@ -4,7 +4,6 @@ import api.libgdx.LibgdxGame;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.lwjgl.LwjglAWTCanvas;
 import org.jetbrains.annotations.NotNull;
-import org.lwjgl.Sys;
 
 import javax.swing.JFrame;
 import java.awt.BorderLayout;
@@ -18,7 +17,7 @@ import java.awt.event.WindowListener;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 4.0
+ * @version 6.0
  * @since 1.0
  */
 public final class LoadGameLibgdxApplication<T extends LibgdxGame> {
@@ -56,6 +55,19 @@ public final class LoadGameLibgdxApplication<T extends LibgdxGame> {
 	 * @since 3.0
 	 */
 	public static void load(Container container, @NotNull JFrame frame) {
+		load(container, frame,  true);
+	}
+
+	/**
+	 * Charge l'application libgdx dans un composant SWING
+	 * <p>
+	 * For a JFrame, container should ne {@link JFrame#getContentPane()}.
+	 *
+	 * @param container conteneur de la libgdx qui va être chargée
+	 * @param frame     la fenêtre swing
+	 * @since 6.0
+	 */
+	public static void load(Container container, @NotNull JFrame frame, boolean addCloseListener){
 		if (Gdx.app != null) {//si déjà lancée
 			Gdx.app.postRunnable(() -> load(container, frame));
 			return;
@@ -80,7 +92,8 @@ public final class LoadGameLibgdxApplication<T extends LibgdxGame> {
 		//ajoute un Listener CloseWindowLibgdxApplication qui ferme l'application libgdx
 		//dès que la fenêtre est fermée
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		frame.addWindowListener(new CloseWindowLibgdxApplication(canvas));
+		CloseWindowLibgdxApplication closeListener = new CloseWindowLibgdxApplication(canvas);
+		if(addCloseListener) frame.addWindowListener(closeListener);
 		frame.revalidate();//met à jour
 	}
 

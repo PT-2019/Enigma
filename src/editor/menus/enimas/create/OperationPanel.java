@@ -9,6 +9,7 @@ import common.hud.EnigmaPanel;
 import data.NeedToBeTranslated;
 import editor.menus.AbstractPopUpView;
 import editor.menus.AbstractSubPopUpView;
+import editor.menus.SelectionsModes;
 import editor.menus.enimas.create.listeners.OperationListener;
 import editor.popup.listeners.CaseListener;
 import game.dnd.DragAndDropBuilder;
@@ -207,7 +208,9 @@ public class OperationPanel extends AbstractSubPopUpView implements Observer<Gam
 			msg += operations.restrict;
 			this.entityName.setText(msg);
 		} else if (object == null && operations != null) {
-			this.entityName.setText(ASK_SELECT + " (" + operations.menuDrag.msg + ")");
+			if(operations.menuDrag.contains(SelectionsModes.SPECIAL)){
+				this.entityName.setText(operations.restrict);
+			} else this.entityName.setText(ASK_SELECT + " (" + operations.menuDrag.msg + ")");
 		} else if (object != null) {
 			msg += object.getReadableName() + " (id=" + object.getID() + ")";
 			this.entityName.setText(msg);

@@ -3,7 +3,10 @@ package game;
 import api.Application;
 import api.libgdx.utils.LoadGameLibgdxApplication;
 import api.ui.CustomWindow;
+import api.utils.WindowClosing;
+import com.badlogic.gdx.Gdx;
 import common.hud.EnigmaWindow;
+import common.utils.Logger;
 import common.utils.runnable.StartGameRunnable;
 import data.EnigmaScreens;
 import game.hmi.MHIManager;
@@ -31,7 +34,7 @@ public class EnigmaGameLauncher implements Application {
 	 * Fenêtre de l'éditeur
 	 * @since 4.0
 	 */
-	private CustomWindow window;
+	private EnigmaWindow window;
 
 	/**
 	 * écran du jeu
@@ -88,6 +91,7 @@ public class EnigmaGameLauncher implements Application {
 	 */
 	@SuppressWarnings("WeakerAccess")
 	public void setContentToGameConfig(){
+		MHIManager.clear();
 		this.gameScreen = MHIManager.getInstance().getContent();
 		this.window.add(this.gameScreen, BorderLayout.CENTER);
 	}
@@ -98,12 +102,17 @@ public class EnigmaGameLauncher implements Application {
 	 * @since 6.0
 	 */
 	public void setContentToGame(String mapPath){
-		//méthode a exécuter au lancement
-		EnigmaGame.setOnLoad(new StartGameRunnable(mapPath));
-		//charge la libgdx
-		LoadGameLibgdxApplication.load(this.gameScreen, window);
+		if(Gdx.app == null) {
+			//méthode a exécuter au lancement
+			EnigmaGame.setOnLoad(new StartGameRunnable(mapPath));
+			//charge la libgdx
+			LoadGameLibgdxApplication.load(this.gameScreen, window);
+		} else {
+			Logger.printError("EnigmaGameLauncher", "Bizarre, le jeu est déjà démarré.");
+		}
 		//affiche
 		this.window.add(this.gameScreen, BorderLayout.CENTER);
+		this.window.addWindowListener((WindowClosing) e -> window.close());
 	}
 
 	@Override

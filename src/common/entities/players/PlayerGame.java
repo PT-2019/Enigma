@@ -30,7 +30,7 @@ public class PlayerGame extends GameActorAnimation implements InputAdapter {
 	/**
 	 * Vitesse de déplacement du personnage
 	 */
-	public static final int SPEED = 10;
+	public static final int SPEED = 5;
 
 	/**
 	 * La map dans la laquelle est placé le joueur

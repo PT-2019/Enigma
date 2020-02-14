@@ -47,7 +47,7 @@ public abstract class Condition implements EnigmaElementReadablePrint {
 
 		for (String a : attr) {
 			if (!attributes.containsKey(a))
-				throw new IllegalArgumentException("Attribut \"" + a + "\" abscent");
+				throw new IllegalArgumentException("Attribut \"" + a + "\" absent");
 
 			Object get = attributes.get(a);
 

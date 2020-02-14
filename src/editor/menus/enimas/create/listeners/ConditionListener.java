@@ -12,9 +12,9 @@ import common.entities.GameObject;
 import common.entities.Item;
 import common.entities.special.Room;
 import common.entities.types.Activatable;
-import common.entities.types.Content;
 import common.map.MapTestScreen;
 import common.utils.Logger;
+import common.utils.Question;
 import editor.menus.enimas.create.ChoicePanel;
 import editor.menus.enimas.create.ConditionPanel;
 import editor.menus.enimas.create.Conditions;
@@ -63,8 +63,10 @@ public class ConditionListener implements ActionListener, ItemListener {
 	private GameObject object;
 	/**
 	 * Réponse si on veut créer une condition Answer
+	 *
+	 * la question dont on attends une réponse
 	 */
-	private String answer;
+	private Question question;
 
 	public ConditionListener(ManageEnigmasAddView addView, ConditionPanel panel) {
 		this.addView = addView;
@@ -94,8 +96,9 @@ public class ConditionListener implements ActionListener, ItemListener {
 				cond = new Activated((Activatable) this.object);
 		//réponse
 		} else if (selectedCondition.equals(Conditions.ANSWER.name())) {
-			if (this.object instanceof Content && answer != null)
-				cond = new Answer((Content) object, answer);
+			if (addView.getEntity() instanceof GameObject && question != null)
+				//récupère la source et la question
+				cond = new Answer(addView.getEntity(), question);
 		//avoir
 		} else if (selectedCondition.equals(Conditions.HAVE_IN_HANDS.name())) {
 			if (this.object instanceof Item)
@@ -130,6 +133,7 @@ public class ConditionListener implements ActionListener, ItemListener {
 
 	@Override
 	public void itemStateChanged(ItemEvent e) {
+		this.setGameObject(null); //vide
 		if (e.getStateChange() == ItemEvent.SELECTED) {
 			//Bouton actuellement sélectionné
 			this.currentButton = (JRadioButton) e.getItem();
@@ -214,14 +218,16 @@ public class ConditionListener implements ActionListener, ItemListener {
 		this.validate = false;
 		//reset du panneau des conditions
 		this.panel.update((GameObject) null);
+		//answer
+		this.question = null;
 	}
 
-	public void setAnswer(String answer){
-		this.answer = answer;
+	public void setQuestion(Question question){
+		this.question = question;
 	}
 
-	public String getAnswer() {
-		return answer;
+	public boolean hasAnswer() {
+		return this.question != null;
 	}
 
 	public GameObject getObject() {

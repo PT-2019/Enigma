@@ -11,6 +11,7 @@ import common.entities.consumable.Book;
 import common.entities.items.Button;
 import common.entities.items.Door;
 import common.entities.players.Player;
+import common.utils.Question;
 
 public class ConditionsOperationsTest {
     public static void main(String[] args){
@@ -21,7 +22,7 @@ public class ConditionsOperationsTest {
         bu.setID(2);
         Player p = new Player(4);
 
-        e.addCondition(new Answer(b,"mdp"));
+        e.addCondition(new Answer(b,new Question("Mot de passe biach","mdp")));
         e.addCondition(new Activated(bu));
         e.addCondition(new HaveInHands(b));
         e.addCondition(new HaveInInventory(bu));

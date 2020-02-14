@@ -14,6 +14,7 @@ import api.ui.manager.window.ResizeTop;
 import api.ui.manager.window.Smaller;
 import api.ui.skin.CustomButtonUI;
 import api.ui.skin.CustomMenuBarUI;
+import api.utils.WindowClosing;
 import api.utils.annotations.ConvenienceMethod;
 import com.badlogic.gdx.utils.Array;
 import org.jetbrains.annotations.NotNull;
@@ -261,6 +262,9 @@ public class CustomWindow extends JFrame implements AbstractWindow {
 		this.menuBarShowedBorderConfiguration = bar.getComponentUI().getShowedBorders();
 	}
 
+	/**
+	 * Ferme la fenêtre
+	 */
 	public void close() {
 		if (!DECORATED) {
 			for (ActionListener e : this.close.getActionListeners()) {
@@ -287,13 +291,8 @@ public class CustomWindow extends JFrame implements AbstractWindow {
 			//ou la la la
 			this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 			//ou la la la on devrait créer une classe mais j'ai trop de javadoc déjà
-			this.addWindowListener(new WindowAdapter() {
-				@Override
-				public void windowClosing(WindowEvent e) {
-					listener.actionPerformed(new ActionEvent(e.getWindow(),
-							ActionEvent.ACTION_LAST, ""));
-				}
-			});
+			this.addWindowListener((WindowClosing) e -> listener.actionPerformed(new ActionEvent(e.getWindow(),
+					ActionEvent.ACTION_LAST, "")));
 		}
 	}
 

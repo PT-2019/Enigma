@@ -10,9 +10,11 @@ import common.save.entities.serialization.EntityFactory;
 import common.save.entities.serialization.EntitySerializable;
 import common.utils.dnd.DragAndDropDND;
 import common.utils.dnd.EntityContainer;
+import data.EnigmaScreens;
 import data.EntitiesCategories;
 import editor.bar.BarMenu;
 import editor.bar.EnigmaOutilBar;
+import game.EnigmaGame;
 import org.intellij.lang.annotations.MagicConstant;
 
 import javax.swing.JButton;

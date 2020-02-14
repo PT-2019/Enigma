@@ -6,9 +6,11 @@ import common.entities.GameObject;
 import common.hud.EnigmaButton;
 import common.hud.EnigmaLabel;
 import common.hud.EnigmaPanel;
+import common.utils.Question;
 import data.NeedToBeTranslated;
 import editor.menus.AbstractPopUpView;
 import editor.menus.AbstractSubPopUpView;
+import editor.menus.SelectionsModes;
 import editor.menus.enimas.create.listeners.ConditionListener;
 import editor.popup.listeners.CaseListener;
 import game.dnd.DragAndDropBuilder;
@@ -20,7 +22,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
 
 /**
@@ -198,12 +199,14 @@ public class ConditionPanel extends AbstractSubPopUpView implements Observer<Gam
 			msg += operations.restrict;
 			this.entityName.setText(msg);
 		} else if (object == null && operations != null) {
-			this.entityName.setText(ASK_SELECT + " (" + operations.menuDrag.msg + ")");
+			if(operations.menuDrag.contains(SelectionsModes.SPECIAL)){
+				this.entityName.setText(operations.restrict);
+			} else this.entityName.setText(ASK_SELECT + " (" + operations.menuDrag.msg + ")");
 		} else if (object != null) {
 			msg += object.getReadableName() + " (id=" + object.getID() + ")";
 			//si c'est une answer il faut rajouter les informations sur le texte
 			if (operations == Conditions.ANSWER){
-                if (this.listener.getAnswer() != null){
+                if (this.listener.hasAnswer()){//s'il y a une réponse
                     msg += ANSWER_SELECTED;
                 }else{
                     msg += ANSWER_UNSELECTED;
@@ -217,21 +220,41 @@ public class ConditionPanel extends AbstractSubPopUpView implements Observer<Gam
 
 	/**
 	 * Méthode spécialement pour créer une answer, on a besoin d'une réponse à cette condition
-	 * @param object la réponse saisie
+	 * @param question la question dont on attends une réponse
 	 */
-	public void update(String object){
-		this.listener.setAnswer(object);
+	public void update(Question question){
+		int show = 10;//affiche 10 caractères de la réponse
+
+		this.listener.setQuestion(question);
         String msg = "";
+        String rep;
+
+        //raccourci
+		String q = question.getQuestion();
 
 		if (this.listener.getObject() != null){
 		    msg = this.entityName.getText();
 		    msg = msg.replace(ANSWER_SELECTED,"");
 			msg = msg.replace(ANSWER_UNSELECTED,"");
 		    msg += ANSWER_SELECTED;
-            this.entityName.setText(msg);
+
+		    if(q.length() <= show){
+		    	rep = q;
+		    } else {
+		    	rep = q.substring(0, show)+"...";
+		    }
+
+            this.entityName.setText(msg+" ("+rep+")");
         }else {
 		    msg += ANSWER_SELECTED;
-            this.entityName.setText(msg);
+
+			if(q.length() <= show){
+				rep = q;
+			} else {
+				rep = q.substring(0, show)+"...";
+			}
+
+			this.entityName.setText(msg+" ("+rep+")");
         }
 	}
 

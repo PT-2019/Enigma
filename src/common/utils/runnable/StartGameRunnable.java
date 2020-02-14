@@ -2,6 +2,7 @@ package common.utils.runnable;
 
 import common.save.EmptyMapGenerator;
 import data.EnigmaScreens;
+import data.Layer;
 import game.EnigmaGame;
 import game.screens.GameScreen;
 
@@ -37,6 +38,7 @@ public class StartGameRunnable implements Runnable {
 		EnigmaGame.getCurrentScreen().setMap(mapPath);
 		//recharge écran avec la nouvelle map
 		EnigmaGame.reload(EnigmaScreens.GAME.name());
+		EnigmaGame.getCurrentScreen().getMap().showLayer(Layer.COLLISION, false);
 		//charge les entités sur la bonne map !
 		EmptyMapGenerator.load(GameScreen.getMapPath());
 	}

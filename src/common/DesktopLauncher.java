@@ -161,7 +161,11 @@ public class DesktopLauncher implements Runnable {
 		}
 
 		try {
-			launcher.window.dispose();
+			if(c != null){
+				c.close();
+			} else {
+				launcher.window.dispose();
+			}
 		} catch (Exception e) {
 			Logger.printError("DesktopLauncher", "Fermeture de la libgdx ratée (last window).");
 		}

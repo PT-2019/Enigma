@@ -1,7 +1,5 @@
 package editor.menus.enimas.create.listeners;
 
-
-import api.ui.CustomOptionPane;
 import common.entities.special.MusicEditor;
 import common.hud.EnigmaOptionPane;
 import common.hud.EnigmaWindow;
@@ -47,6 +45,7 @@ public class MusicListener implements MouseListener {
 
         if (!chose.equals(EnigmaOptionPane.CANCEL)){
             MusicEditor object = new MusicEditor(chose);
+            object.setTemp(true); //temporaire
 
             tmp = e.getSource();
             if (tmp instanceof JLabel){

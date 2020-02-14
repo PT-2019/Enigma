@@ -56,10 +56,9 @@ public interface NeedToBeTranslated {
 	String ACTIVATED_RES = "Seulement un objet actionnable.";
 
 	String ANSWER_DESC = "Demander au joueur une réponse";
-	String ANSWER_RES = "";
-	String ANSWER = "Taper la réponse";
-	String ANSWER_SELECT = "Réponse présente";
-	String ANSWER_UNSELECT = "Réponse manquante";
+	String ANSWER = "Créer une question";
+	String ANSWER_SELECT = "Question ajoutée";
+	String ANSWER_UNSELECT = "Aucune question";
 
 	String HAVE_IN_HANDS_DESC = "Avoir l'objet dans ses mains";
 	String ITEMS_ONLY = "Objects uniquement (clef, livre, ...)";
@@ -77,8 +76,6 @@ public interface NeedToBeTranslated {
 	String SAVE_ENIGMA = "Sauvegarder énigme";
 	String ADD_COND = "Ajouter une condition";
 	String ADD_OP = "Ajouter une conséquence";
-
-	String HIDE_ROOM = "Cacher une salle";
 
 	//ActionTypes
 
@@ -242,6 +239,7 @@ public interface NeedToBeTranslated {
 	String MENU_ONLY = "menu uniquement";
 	String MAP_ONLY = "carte uniquement";
 	String POPUP_ONLY = "contenu uniquement";
+	String ANSWER_ONLY = "réponse uniquement";
 	String MAP_AND_MENU = "carte et menu";
 	String MENU_AND_POPUP = "menu et contenu";
 	String MAP_AND_POPUP =	"carte et contenu";
@@ -267,4 +265,11 @@ public interface NeedToBeTranslated {
 	String ITEM_LIST = "Liste des objets";
 	String SEE_ITEM = "Voir l'objet sélectionnée";
 	String NO_ITEM = "Aucun item.";
+	String NO_MUSIC = "Aucune musique choisie.";
+	String NO_SOUND = "Aucun son choisi.";
+	String NO_ANSWER = "Aucune réponse saisie.";
+	String QUESTION = "question";
+	String ADD_QUESTION = "Créer une question";
+	String INPUT_QUESTION = "Question";
+	String INPUT_ANSWER = "Réponse";
 }

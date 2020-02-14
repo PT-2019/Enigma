@@ -113,6 +113,7 @@ public class OperationListener implements ActionListener, ItemListener {
 				ope = new HideRoom((Room) this.object);
 		}else if(selectedOperation.equals(Operations.SOUND.name())){
 			if (this.object instanceof MusicEditor) {
+				this.object.setTemp(false);//plus temporaire
 				ope = new LaunchSound((MusicEditor) this.object);
 				//on rajoute l"objet musique à la map pour pouvoir le sauvegarder dans le tmx
 				MapTestScreen map = ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap();
@@ -120,6 +121,7 @@ public class OperationListener implements ActionListener, ItemListener {
 			}
 		}else if(selectedOperation.equals(Operations.MAIN_MUSIC.name())){
 			if (this.object instanceof MusicEditor) {
+				this.object.setTemp(false);//plus temporaire
 				((MusicEditor) this.object).setMainMusic(true);
 				ope = new ChangeMainMusic((MusicEditor) this.object);
 				MapTestScreen map = ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap();

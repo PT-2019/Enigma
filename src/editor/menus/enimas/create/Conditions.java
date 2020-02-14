@@ -27,7 +27,7 @@ import org.jetbrains.annotations.Nullable;
  */
 public enum Conditions {
 	ACTIVATED(NeedToBeTranslated.ACTIVATED_DESC, NeedToBeTranslated.ACTIVATED_RES, SelectionsModes.MAP),
-	ANSWER(NeedToBeTranslated.ANSWER_DESC, NeedToBeTranslated.ANSWER_RES, SelectionsModes.ALL, false),
+	ANSWER(NeedToBeTranslated.ANSWER_DESC, NeedToBeTranslated.NO_ANSWER, SelectionsModes.ANSWER),
 	ROOM_DISCOVERED(NeedToBeTranslated.ROOM_DISCOVERED_DESC, NeedToBeTranslated.ROOM_ONLY, SelectionsModes.MAP),
 	ROOM_UNDISCOVERED(NeedToBeTranslated.ROOM_UNDISCOVERED_DESC, NeedToBeTranslated.ROOM_ONLY, SelectionsModes.MAP),
 	HAVE_IN_HANDS(NeedToBeTranslated.HAVE_IN_HANDS_DESC, NeedToBeTranslated.ITEMS_ONLY, SelectionsModes.MAP_AND_POPUP),

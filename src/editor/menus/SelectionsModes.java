@@ -30,9 +30,19 @@ public enum SelectionsModes {
 	POPUP(NeedToBeTranslated.POPUP_ONLY),
 
 	/**
+	 * Les modes spéciaux
+	 */
+	SPECIAL(""),
+
+	/**
 	 * Lorsqu'on veut choisir une musique
 	 */
-	MUSIC(NeedToBeTranslated.MUSIC_ONLY),
+	MUSIC(NeedToBeTranslated.MUSIC_ONLY, SPECIAL),
+
+	/**
+	 * Lorsqu'on veut demander une réponse
+	 */
+	ANSWER(NeedToBeTranslated.ANSWER_ONLY, SPECIAL),
 
 	//combinaisons (utiles)
 

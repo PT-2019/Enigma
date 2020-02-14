@@ -1,21 +1,11 @@
 package game.hmi;
 
-import api.libgdx.utils.LoadGameLibgdxApplication;
 import api.ui.CustomPanel;
-import com.badlogic.gdx.Gdx;
 import common.hud.EnigmaPanel;
-import common.hud.EnigmaWindow;
-import common.language.GameLanguage;
-import common.save.EmptyMapGenerator;
-import data.EnigmaScreens;
 import data.config.Config;
 import data.config.GameConfiguration;
-import game.EnigmaGame;
 import game.EnigmaGameLauncher;
-import game.screens.GameScreen;
-import game.screens.TestScreen;
 
-import javax.swing.*;
 import java.awt.*;
 
 /**
@@ -103,5 +93,15 @@ public class MHIManager extends Content {
      */
     public static MHIManager getInstance(){
         return instance;
+    }
+
+    /**
+     * Nettoie le MHIManager
+     */
+    public static void clear(){
+        MHIManager instance = getInstance();
+        instance.content = new CustomPanel();
+        instance.initContent();
+        instance.refresh(CONFIGURE_STATE);
     }
 }

@@ -34,7 +34,7 @@ import java.util.Map;
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  *
- * @version 6.5
+ * @version 6.7
  * @since 2.0 27 novembre 2019
  */
 @ConvenienceClass
@@ -569,5 +569,17 @@ public class Utility implements Serializable {
 			sb.append((char) Integer.parseInt(tmp.toString()));
 		}
 		return sb.toString();
+	}
+
+	/**
+	 * Retourne true si une string est différente de null, chaîne vide, est chaîne avec
+	 * caractères blancs uniquement
+	 * @param string une string
+	 * @return true si une string est différente de null, chaîne vide, est chaîne avec
+	 * caractères blancs uniquement
+	 * @since 6.7
+	 */
+	public static boolean isStringValid(String string) {
+		return string != null && !string.isEmpty() && !string.isBlank();
 	}
 }

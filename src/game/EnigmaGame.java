@@ -66,6 +66,8 @@ public class EnigmaGame extends LibgdxGame {
 
 		//lance onLoad
 		if(EnigmaGame.onLoad != null) EnigmaGame.onLoad.run();
+
+		EnigmaGame.onLoad = null;
 	}
 
 	@Override

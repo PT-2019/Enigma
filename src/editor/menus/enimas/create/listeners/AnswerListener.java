@@ -1,13 +1,14 @@
 package editor.menus.enimas.create.listeners;
 
-import common.enigmas.condition.Answer;
+import api.utils.Utility;
+import common.hud.EnigmaLabel;
 import common.hud.EnigmaOptionPane;
+import common.hud.EnigmaTextArea;
 import common.hud.EnigmaWindow;
-import common.map.MapTestScreen;
+import common.utils.Question;
+import data.NeedToBeTranslated;
+import editor.EditorLauncher;
 import editor.menus.enimas.create.ChoicePanel;
-import editor.menus.enimas.create.ConditionPanel;
-import game.EnigmaGame;
-import game.screens.TestScreen;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,19 +20,67 @@ import java.awt.event.MouseListener;
  */
 public class AnswerListener implements MouseListener {
 
-    public static final String CANCEL = "Annuler";
+    private static final String TITLE = NeedToBeTranslated.ADD_QUESTION;
+    private static final String QUESTION = NeedToBeTranslated.INPUT_QUESTION;
+    private static final String ANSWER = NeedToBeTranslated.INPUT_ANSWER;
+
+    /**
+     * Contenu du panel
+     */
+    private final Object[] content;
+
+    /**
+     * Champs de saisie de la réponse
+     */
+    private final EnigmaTextArea questionF, answerF;
+
+    /**
+     * Fenêtre de l'éditeur
+     */
+    private final EnigmaWindow window;
+
+    public AnswerListener(){
+        this.questionF = new EnigmaTextArea();
+        this.answerF = new EnigmaTextArea();
+
+        EnigmaLabel question = new EnigmaLabel(QUESTION);
+        EnigmaLabel answer = new EnigmaLabel(ANSWER);
+
+        this.content = new Object[]{
+                question, this.questionF,
+                answer, this.answerF,
+        };
+
+        this.window = (EnigmaWindow) EditorLauncher.getInstance().getWindow();
+    }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        String answer = "";
+       /* String answer;
         Object tmp;
         answer = EnigmaOptionPane.showInputDialog(new EnigmaWindow(), ConditionPanel.ANSWER_CHOICE);
 
-        if (!answer.equals(CANCEL)){
+        if (!answer.equals(CANCEL) && !answer.isEmpty() && !answer.isBlank()){
             tmp = e.getSource();
             if (tmp instanceof JLabel){
-                ChoicePanel panel =(ChoicePanel) ((JLabel) tmp).getParent();
-                panel.getParent().update(answer);
+                ChoicePanel panel = (ChoicePanel) ((JLabel) tmp).getParent();
+                panel.getParent().update(new Question("",answer));
+            }
+        }*/
+
+        String[] choices = {EnigmaOptionPane.CONFIRM};
+        int choice = EnigmaOptionPane.showOptionDialog(this.window, this.content, TITLE, choices);
+
+        if(choice == 0){//indice de confirmer
+            String question = this.questionF.getText();
+            String answer = this.answerF.getText();
+
+            if(Utility.isStringValid(question) && Utility.isStringValid(answer)){
+                Object tmp = e.getSource();
+                if (tmp instanceof JLabel){
+                    ChoicePanel panel = (ChoicePanel) ((JLabel) tmp).getParent();
+                    panel.getParent().update(new Question(question, answer));
+                }
             }
         }
     }
