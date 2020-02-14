@@ -11,6 +11,7 @@ import data.EditorState;
 import data.NeedToBeTranslated;
 import editor.EditorLauncher;
 import editor.menus.SelectionsModes;
+import editor.popup.listeners.CaseListener;
 import game.dnd.DragAndDropBuilder;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -135,6 +136,19 @@ public enum Operations {
 				EditorLauncher.clearStates();
 			}
 			EditorLauncher.addState(EditorState.SPECIAL_POPUP_DISABLED);
+		} else {//activation
+			if (EditorLauncher.containsState(EditorState.NORMAL)) {
+				EditorLauncher.clearStates();
+			}
+			EditorLauncher.addState(EditorState.SPECIAL_POPUP_ENABLED);
+		}
+
+		//active container
+		if (this.menuDrag.contains(SelectionsModes.POPUP)) {
+			if (EditorLauncher.containsState(EditorState.NORMAL)) {
+				EditorLauncher.clearStates();
+			}
+			EditorLauncher.addState(EditorState.SPECIAL_POPUP_CONTENT);
 		}
 	}
 
@@ -151,6 +165,16 @@ public enum Operations {
 		//débloque la sélection depuis la map
 		if (!menuDrag.contains(SelectionsModes.MAP)) {
 			EditorLauncher.removeState(EditorState.SPECIAL_POPUP_DISABLED);
+		} else {
+			EditorLauncher.removeState(EditorState.SPECIAL_POPUP_ENABLED);
+		}
+
+		//ferme le pop
+		CaseListener.close(CaseListener.ClosePopup.SECONDARY);
+
+		//désactive container
+		if (this.menuDrag.contains(SelectionsModes.POPUP)) {
+			EditorLauncher.removeState(EditorState.SPECIAL_POPUP_CONTENT);
 		}
 	}
 

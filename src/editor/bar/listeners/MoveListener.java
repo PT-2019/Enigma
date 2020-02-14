@@ -32,12 +32,13 @@ public class MoveListener extends MenuListener {
 		//si c'est déjà en move, alors on reset
 		if (EditorLauncher.containsState(EditorState.MOVE)) {
 			setActive(false);
-			EditorLauncher.clearStates(EditorState.ZOOM, EditorState.SPECIAL_POPUP_DISABLED);
+			//exception des persistants
+			EditorLauncher.clearStates(EditorState.PERSISTANT);
 		} else {
 			//si on active la gomme
 			setActive(true);
 			//si on est en mode zoom, alors on va pas en mode déplacement
-			EditorLauncher.clearStates(EditorState.ZOOM, EditorState.SPECIAL_POPUP_DISABLED);
+			EditorLauncher.clearStates(EditorState.PERSISTANT);
 			EditorLauncher.addState(EditorState.MOVE);
 		}
 	}

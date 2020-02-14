@@ -60,8 +60,6 @@
           "(cf image plus haut).\n"
         ]
       }
-      {type: IMAGE
-        content : ["assets/files/doc/entMenu.png"]}
       {type: TITLE_SMALL
         content: ["C. Déplacement"]},
       {type: MESSAGE
@@ -124,17 +122,52 @@
       }
     ]
   },
-  /*{
+  {
     title: Objets
     docItems: [
+      {type: TITLE
+        content: [Objets]},
+      {type: MESSAGE
+        content : [
+          "En construction\n"
+        ]
+      }
+    ]
+  }
+  {
+    title: Inventaire
+    docItems: [
+      {type: TITLE
+        content: [Inventaire]},
+      {type: MESSAGE
+        content : [
+          "En construction\n"
+        ]
+      }
     ]
   }
   {
     title: Enigmes
-    docItems: []
+    docItems: [
+      {type: TITLE
+        content: [Enigmes]},
+      {type: MESSAGE
+        content : [
+          "En construction\n"
+        ]
+      }
+    ]
   }
   {
     title: Simulation
-    docItems: []
-  },*/
+    docItems: [
+      {type: TITLE
+        content: [Simulation]},
+      {type: MESSAGE
+        content : [
+          "En construction\n"
+        ]
+      }
+    ]
+  },
 ]

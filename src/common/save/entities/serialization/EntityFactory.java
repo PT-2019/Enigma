@@ -11,8 +11,6 @@ import data.EntitiesCategories;
 import data.Layer;
 import org.jetbrains.annotations.Nullable;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -58,7 +56,7 @@ public class EntityFactory {
 	 */
 	public static void loadEntities(String path) {
 		Json j = new Json();
-		Array<? extends EntitySerializable> content = j.fromJson(EntityFactory.class, Utility.loadFile(path)).content;
+		Array<EntitySerializable> content = j.fromJson(EntityFactory.class, Utility.loadFile(path)).content;
 
 		//ajout a la factory des entités chargés
 		for (EntitySerializable entity : new Array.ArrayIterator<>(content)) {
@@ -74,21 +72,18 @@ public class EntityFactory {
 	}
 
 	/**
-	 * Charge les entités depuis un fichier json et le sauvegarde dans la classe.
+	 * Charge les joueurs depuis un fichier json et le sauvegarde dans la classe.
 	 * <p>
 	 * On peut les récupérer avec {@link #getEntitiesByCategory(EntitiesCategories)}
 	 *
 	 * @param path chemin du json
-	 * @since 5.0
+	 * @since 3.0
 	 */
-	public static void loadEntities(String path, boolean players) {
+	public static void loadPlayers(String path){
 		Json j = new Json();
-		Array<? extends EntitySerializable> content;
-		if (players) {
-			content = j.fromJson(PlayerFactory.class, Utility.loadFile(path)).content;
-		} else {
-			content = j.fromJson(EntityFactory.class, Utility.loadFile(path)).content;
-		}
+		Array<PlayerSerializableToJson> content;
+
+		content = j.fromJson(PlayerFactory.class, Utility.loadFile(path)).content;
 
 		//ajout a la factory des entités chargés
 		for (EntitySerializable entity : new Array.ArrayIterator<>(content)) {
@@ -150,7 +145,7 @@ public class EntityFactory {
 
 		//pas top, ajoute les informations en plus
 		//on devrait faire une méthode qui demande a l'entité s'il elle veut
-		//ajouter des infos et une interface plutôt que donner direct NPC
+		//ajouter des info et une interface plutôt que donner direct NPC
 		//mais j'ai flemme et manque de temps là ~#rush
 		if (entity instanceof PlayerSerializableToJson && object instanceof EntityGame) {
 			PlayerSerializableToJson player = ((PlayerSerializableToJson) entity);
@@ -176,7 +171,7 @@ public class EntityFactory {
 
 	private static final class PlayerFactory {
 		/**
-		 * hashmap locale des entités chargés pour {@link Json#fromJson(Class, String)}
+		 * hashMap locale des entités chargés pour {@link Json#fromJson(Class, String)}
 		 **/
 		private Array<PlayerSerializableToJson> content = new Array<>();
 

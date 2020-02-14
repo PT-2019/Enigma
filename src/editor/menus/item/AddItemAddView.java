@@ -185,6 +185,8 @@ public class AddItemAddView extends AbstractSubPopUpView implements Observer<Gam
 			GameObject entity = this.parent.getPopUp().getCell().getEntity();
 			if (entity instanceof Container) {
 				//ajout au container
+				//pas un objet temporaire
+				addItemAddView.item.setTemp(false);
 				((Container) entity).addItem((Item) addItemAddView.item);
 
 				//ajout à l'historique

@@ -45,8 +45,8 @@ public class StartSimulation extends MenuListener  implements Observer<MapLoaded
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		//Garde le mode zoom
-		EditorLauncher.clearStates(EditorState.ZOOM, EditorState.SPECIAL_POPUP_DISABLED);
+		//Garde les mode persistants
+		EditorLauncher.clearStates(EditorState.PERSISTANT);
 		//simulation
 		EditorLauncher.addState(EditorState.SIMULATION);
 

@@ -8,6 +8,10 @@ import common.hud.EnigmaLabel;
 import common.hud.EnigmaPanel;
 import common.hud.EnigmaTextField;
 import data.NeedToBeTranslated;
+import editor.bar.edition.ActionTypes;
+import editor.bar.edition.ActionsManager;
+import editor.bar.edition.EditorAction;
+import editor.bar.edition.actions.EditorActionFactory;
 import editor.menus.AbstractPopUpView;
 import editor.popup.cases.CasePopUp;
 import game.EnigmaGame;
@@ -47,6 +51,21 @@ public class AddNameView extends AbstractPopUpView {
 		 */
 
 	/**
+	 * instance du menu
+	 */
+	private static AddNameView instance;
+
+	/**
+	 * Champ de saisie du nom
+	 */
+	private final EnigmaTextField field;
+
+	/**
+	 * L'entité
+	 */
+	private final Living entity;
+
+	/**
 	 * La classe de base des vues de la popup
 	 *
 	 * @param popUp  parent
@@ -55,10 +74,12 @@ public class AddNameView extends AbstractPopUpView {
 	AddNameView(CasePopUp popUp, GameObject object) {
 		super(TITLE, popUp);
 
+		//instance du menu
+		instance = this;
 
-		Living entity;
-		if (object == null) entity = (Living) popUp.getCell().getEntity();
-		else entity = (Living) object;
+		//récupère la bonne entité
+		if (object == null) this.entity = (Living) popUp.getCell().getEntity();
+		else this.entity = (Living) object;
 
 		//components
 
@@ -68,13 +89,13 @@ public class AddNameView extends AbstractPopUpView {
 		input.getComponentUI().setAllForegrounds(Color.YELLOW, Color.YELLOW, Color.YELLOW);
 		input.setBorder(new EmptyBorder(PADDING, PADDING, PADDING, PADDING));
 		//input field
-		EnigmaTextField field = new EnigmaTextField();
-		field.setText(entity.getName());
-		field.getComponentUI().setAllBackgrounds(Color.WHITE, Color.WHITE, Color.WHITE);
-		field.getComponentUI().setAllForegrounds(Color.BLACK, Color.BLACK, Color.BLACK);
+		this.field = new EnigmaTextField();
+		this.field.setText(this.entity.getName());
+		this.field.getComponentUI().setAllBackgrounds(Color.WHITE, Color.WHITE, Color.WHITE);
+		this.field.getComponentUI().setAllForegrounds(Color.BLACK, Color.BLACK, Color.BLACK);
 		//submit button
 		EnigmaButton submit = new EnigmaButton(SUBMIT);
-		submit.addActionListener(new SubmitListener(this, entity, field));
+		submit.addActionListener(new SubmitListener(this));
 		//panel pour que submit ne prenne pas tout l'espace
 		EnigmaPanel tmp = new EnigmaPanel(new GridBagLayout());
 		tmp.setBorder(new EmptyBorder(PADDING, PADDING, PADDING, PADDING));
@@ -83,7 +104,7 @@ public class AddNameView extends AbstractPopUpView {
 		//addToContainer
 		back.add(input, BorderLayout.NORTH);
 		EnigmaPanel fieldP = new EnigmaPanel(new BorderLayout());
-		fieldP.add(field, BorderLayout.CENTER);
+		fieldP.add(this.field, BorderLayout.CENTER);
 		//fieldP.setBorder(new EmptyBorder(0, PADDING, 0, PADDING));
 		JScrollPane sc = new JScrollPane(fieldP);
 		sc.setBorder(new EmptyBorder(0, PADDING, 0, PADDING));
@@ -100,6 +121,11 @@ public class AddNameView extends AbstractPopUpView {
 	public void clean() {
 	}
 
+	@Override
+	public void invalidateDrawable() {
+		this.field.setText(this.entity.getName());
+	}
+
 	/**
 	 * Validation de la saisie
 	 *
@@ -113,23 +139,41 @@ public class AddNameView extends AbstractPopUpView {
 	private static class SubmitListener implements ActionListener {
 		private final AddNameView parent;
 		private final Living entity;
-		private final EnigmaTextField field;
 
-		SubmitListener(AddNameView parent, Living entity, EnigmaTextField field) {
+		SubmitListener(AddNameView parent) {
 			this.parent = parent;
-			this.entity = entity;
-			this.field = field;
+			this.entity = parent.entity;
 		}
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			//ajout du contenu
-			this.entity.setName(this.field.getText());
+			String name = this.parent.field.getText();
+			String old = this.entity.getName();
+			if(name.isEmpty() || name.isBlank()){
+				this.entity.setName(this.entity.getKey());//nom de base
+			} else {
+				this.entity.setName(name);
+			}
 			this.parent.dispose();//supprime fenêtre
 			EnigmaGame.getCurrentScreen().showToast(NAME_SAVED);
+
+			//ajout à l'historique
+			EditorAction setName = EditorActionFactory.actionWithinAMenu(
+					ActionTypes.SET_NAME, this.entity, old
+			);
+			ActionsManager.getInstance().add(setName);
+
 			//up du nom
 			this.parent.popUp.invalidateDrawable();
 			this.parent.popUp.setVisible(true);
 		}
+	}
+
+	/**
+	 * instance du menu pour changer de nom
+	 */
+	public static AddNameView getInstance(){
+		return instance;
 	}
 }

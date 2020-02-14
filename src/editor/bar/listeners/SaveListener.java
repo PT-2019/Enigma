@@ -34,7 +34,7 @@ public class SaveListener extends MenuListener implements Observer<MapLoaded> {
 	/**
 	 * Si on peut sauvegarder
 	 */
-	private final boolean canSave;
+	private boolean canSave;
 
 	public SaveListener(EnigmaWindow window, Component parent) {
 		super(window, parent);
@@ -46,7 +46,7 @@ public class SaveListener extends MenuListener implements Observer<MapLoaded> {
 	@Override
 	public void actionPerformed(ActionEvent actionEvent) {
 		if(!this.canSave){
-			Logger.printDebug("SaveListener","Save bloquée.");
+			Logger.printDebugALL("SaveListener","Save bloquée.");
 			return;
 		}
 		String author = EnigmaGame.getCurrentScreen().getMap().getMapData().getAuthor();
@@ -79,6 +79,7 @@ public class SaveListener extends MenuListener implements Observer<MapLoaded> {
 		if (loaded != null && loaded.isMapLoaded()) {
 			if (parent instanceof EnigmaButton) ((EnigmaButton) parent).setIcon(Outil.SAVE_OK);
 			else parent.setEnabled(true);
+			this.canSave = loaded.isMapLoaded();
 		} else {
 			if (parent instanceof EnigmaButton) ((EnigmaButton) parent).setIcon(Outil.SAVE_KO);
 			else parent.setEnabled(false);

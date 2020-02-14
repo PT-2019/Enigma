@@ -2,7 +2,16 @@ package common.save.entities.serialization;
 
 /**
  * Permet d'instancier un player et de définir son animation avec un Json
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ *
+ * @version 5.0
+ * @since 5.0
  */
+@SuppressWarnings({"unused","WeakerAccess"})
 public class PlayerSerializable {
 
 	/**
@@ -48,7 +57,7 @@ public class PlayerSerializable {
 	/**
 	 * Renvoi le nom du personnage
 	 *
-	 * @return
+	 * @return le nom du personnage
 	 */
 	public String getName() {
 		return name;

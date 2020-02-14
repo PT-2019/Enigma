@@ -3,7 +3,9 @@ package editor.bar.edition.actions;
 import common.enigmas.Enigma;
 import common.entities.Consumable;
 import common.entities.types.Container;
+import common.entities.types.Content;
 import common.entities.types.EnigmaContainer;
+import common.entities.types.Living;
 import common.map.AbstractMap;
 import common.map.MapObject;
 import editor.bar.edition.ActionTypes;
@@ -52,6 +54,11 @@ public final class EditorActionFactory {
 	 * @since 6.0
 	 */
 	public static EditorAction actionWithinAMenu(ActionTypes type, Object parent, Object object) {
+		//on recherche en fonction du type la classe a lancer
+		//on peut et à juste tord ce demander a quoi sert la méthode plus haut.
+		//il existe des méthodes dans utility pour généraliser tout ça mais
+		//pas pour tout de suite
+
 		if (type.equals(ActionTypes.REMOVE_ENIGMA)) {
 			return new EditorActionRemoveEnigma(type, (EnigmaContainer) parent, (Enigma) object);
 		} else if (type.equals(ActionTypes.ADD_ENIGMA)) {
@@ -60,8 +67,12 @@ public final class EditorActionFactory {
 			return new EditorActionAddSubEntity(type, (Container) parent, (Consumable) object);
 		} else if (type.equals(ActionTypes.REMOVE_SUB_ENTITY)) {
 			return new EditorActionRemoveSubEntity(type, (Container) parent, (Consumable) object);
+		} else if(type.equals(ActionTypes.SET_NAME)){
+			return new EditorActionSetName(type, (Living) parent, (String) object);
+		} else if(type.equals(ActionTypes.SET_CONTENT)){
+			return new EditorActionSetContent(type, (Content) parent, (String) object);
 		}
 
-		throw new IllegalArgumentException(type + " isn't an enigma action.");
+		throw new IllegalArgumentException(type + " isn't an actionWithinMenu.");
 	}
 }

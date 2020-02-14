@@ -46,12 +46,12 @@ public class EraserListener extends MenuListener {
 		if (EditorLauncher.containsState(EditorState.ERASE)) {
 			setActive(false);
 			//exception du zoom, passe en normal automatiquement si pas de zoom
-			EditorLauncher.clearStates(EditorState.ZOOM, EditorState.SPECIAL_POPUP_DISABLED);
+			EditorLauncher.clearStates(EditorState.PERSISTANT);
 		} else {
 			//si on active la gomme
 			setActive(true);
-			//exception du zoom
-			EditorLauncher.clearStates(EditorState.ZOOM, EditorState.SPECIAL_POPUP_DISABLED);
+			//exception des persistants
+			EditorLauncher.clearStates(EditorState.PERSISTANT);
 			//passe en "gomme"
 			EditorLauncher.addState(EditorState.ERASE);
 		}

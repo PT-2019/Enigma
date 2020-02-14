@@ -41,7 +41,7 @@ public class StopSimulation extends MenuListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		//rétablit l'état
-		EditorLauncher.clearStates(EditorState.ZOOM, EditorState.SPECIAL_POPUP_DISABLED);
+		EditorLauncher.clearStates(EditorState.PERSISTANT);//<=> remove(SIMULATION)
 
 		Gdx.app.postRunnable(new Stop());
 

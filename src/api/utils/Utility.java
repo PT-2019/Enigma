@@ -329,8 +329,8 @@ public class Utility implements Serializable {
 			if (args != null && args.length > 0) {
 				//récupération des classes
 				Array<Class<?>> classes = new Array<>();
-				for (int i = 0; i < args.length; i++) {
-					if(args[i] != null) classes.add(args[i].getClass());
+				for (Object arg : args) {
+					if (arg != null) classes.add(arg.getClass());
 				}
 
 				//Regarde tous les constructeurs
@@ -550,5 +550,43 @@ public class Utility implements Serializable {
 		windowPosX = (sizeW - frame.getWidth()) / 2;
 		windowPosY = (sizeH - frame.getHeight()) / 2;
 		return new Point(windowPosX + screenSize.x, windowPosY + screenSize.y);
+	}
+
+	/**
+	 * Retourne la version non échappée d'une string. tel que la string suivante.
+	 * "ZSdz ef e&#10;&#10;zse&#10;ev&#10;&#10;&#10;ez&#10;&#10;ze"
+	 *
+	 * @param asciiEscapedString un string contenant des caractères ascii échappés
+	 * @return un string sans caractères échappés
+	 * @since 6.6
+	 */
+	public static String asciiEscapedToNormalString(String asciiEscapedString){
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < asciiEscapedString.length(); i++) {
+			char read = asciiEscapedString.charAt(i);
+			if(read != '&'){
+				sb.append(read);
+				continue;
+			}
+			i++;//zap le &
+			read = asciiEscapedString.charAt(i);
+			if(asciiEscapedString.charAt(i) != '#'){
+				sb.append('&');
+				sb.append(read);
+				continue;
+			}
+			i++;//zap le #
+			//lis la valeur ascii
+			StringBuilder tmp = new StringBuilder();
+			char c = asciiEscapedString.charAt(i);
+			while(c != ';'){
+				i++;
+				tmp.append(c);
+				c = asciiEscapedString.charAt(i);
+			}
+			//re-transforme en char
+			sb.append((char) Integer.parseInt(tmp.toString()));
+		}
+		return sb.toString();
 	}
 }

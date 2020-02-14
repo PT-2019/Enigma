@@ -9,7 +9,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Controlleur qui consiste à définir l'objet pour la création d'énigmes
+ * Contrôleur qui consiste à définir l'objet pour la création d'énigmes
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ *
+ * @version 5.0
+ * @since 4.0
  *
  * @see CasePopUp
  */
@@ -21,7 +29,7 @@ public class SpecialPopListener implements ActionListener {
 	private AbstractPopUp popDispose;
 
 	/**
-	 * Popup qui garde en mémoire l'objet gameobject
+	 * Popup qui garde en mémoire l'objet gameObject
 	 */
 	private CasePopUp popup;
 
@@ -38,12 +46,11 @@ public class SpecialPopListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		EntityChoseListener obs = popup.getObserver();
-		obs.updateObserver(objectChose);
-		popDispose.dispose();
-		//CaseListener.setAvailable(null);
+		EntityChoseListener obs = this.popup.getObserver();
+		obs.updateObserver(this.objectChose);
+		this.popDispose.dispose();
 
-		if (popDispose instanceof SpecialPopUp)
-			((SpecialPopUp) popDispose).getCaseListener().setPop(null);
+		if (this.popDispose instanceof SpecialPopUp)
+			((SpecialPopUp) this.popDispose).getCaseListener().setPop(null);
 	}
 }

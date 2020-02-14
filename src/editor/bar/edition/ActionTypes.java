@@ -35,13 +35,25 @@ public enum ActionTypes {
 	 */
 	REMOVE_ENIGMA(NeedToBeTranslated.REMOVE_ENIGMA),
 
-	ADD_CONTENT(NeedToBeTranslated.ADD_CONTENT),
-	REMOVE_CONTENT(NeedToBeTranslated.REMOVE_CONTENT),
+	/**
+	 * Définition du contenu
+	 */
+	SET_CONTENT(NeedToBeTranslated.SET_CONTENT),
+
+	/**
+	 * Ajoute des entités
+	 */
 	ADD_SUB_ENTITY(NeedToBeTranslated.ADD_SUB_ENTITY),
+
+	/**
+	 * Retire des entités
+	 */
 	REMOVE_SUB_ENTITY(NeedToBeTranslated.REMOVE_SUB_ENTITY),
-	SET_HERO(NeedToBeTranslated.SET_HERO),
-	UNSET_HERO(NeedToBeTranslated.UNSET_HERO),
-	;
+
+	/**
+	 * Change nom
+	 */
+	SET_NAME(NeedToBeTranslated.SET_NAME);
 
 	private final String value;
 

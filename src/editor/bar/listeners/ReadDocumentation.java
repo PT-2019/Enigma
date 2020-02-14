@@ -20,7 +20,6 @@ import editor.bar.doc.DocumentationTypes;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.WindowConstants;
 import java.awt.BorderLayout;
@@ -33,7 +32,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
-import java.awt.Point;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -134,24 +132,19 @@ public class ReadDocumentation extends MenuListener {
 
 		//Scroll
 		JScrollPane categoriesScroll = new JScrollPane(categories);
-		JScrollPane contentScroll = new JScrollPane(content);
 		categoriesScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-		contentScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
 		categoriesScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		contentScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
 		//settings
 		categoriesScroll.setPreferredSize(new Dimension(WIDTH_CATEGORIES, HEIGHT_CATEGORIES));
-		contentScroll.setBackground(EnigmaUIValues.ENIGMA_PANEL_BACKGROUND);
 		categoriesScroll.setBackground(EnigmaUIValues.ENIGMA_PANEL_BACKGROUND);
 		content.getComponentUI().setAllBackgrounds(BASE_PANEL_COLOR);
 		categoriesScroll.setOpaque(true);
-		contentScroll.setOpaque(true);
 
 		//add
 		this.dialog.setLayout(new BorderLayout());
 		this.dialog.add(categoriesScroll, BorderLayout.WEST);
-		this.dialog.add(contentScroll, BorderLayout.CENTER);
+		this.dialog.add(content, BorderLayout.CENTER);
 	}
 
 	/**
@@ -191,7 +184,9 @@ public class ReadDocumentation extends MenuListener {
 			//survol
 			categories.setToolTipText(documentationCategory.getToolTip());
 			//listener
-			category.addActionListener(new ShowCategory(content, documentationCategory, this));
+			category.addActionListener(new ShowCategory(content));
+			//load
+			loadContent(documentationCategory, content);
 			//manager
 			manager.add(category);
 			//ajout
@@ -276,10 +271,10 @@ public class ReadDocumentation extends MenuListener {
 		}
 
 		//la clef du card layout est le contenu du bouton
-		content.removeAll();
-		content.setLayout(new BorderLayout());
-		content.add(panel, BorderLayout.CENTER);
-		content.revalidate();
+		JScrollPane contentScroll = new JScrollPane(panel);
+		contentScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		contentScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		content.add(contentScroll, documentationCategory.getTitle());
 	}
 
 	@Override
@@ -300,19 +295,27 @@ public class ReadDocumentation extends MenuListener {
 	 */
 	private static final class ShowCategory implements ActionListener {
 
-		private final EnigmaPanel content;
-		private final DocumentationFile docFile;
-		private final ReadDocumentation reader;
+		/**
+		 * Valeur minimale du scroll (pour le mettre tout en haut)
+		 */
+		private static final int MIN_VALUE = 0;
 
-		ShowCategory(EnigmaPanel content, DocumentationFile docFile, ReadDocumentation reader) {
+		private final EnigmaPanel content;
+
+		ShowCategory(EnigmaPanel content) {
 			this.content = content;
-			this.docFile = docFile;
-			this.reader = reader;
 		}
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			this.reader.loadContent(this.docFile, this.content);
+			((CardLayout)this.content.getLayout()).show(this.content, e.getActionCommand());
+
+			//reset du scroll
+			for (Component c :this.content.getComponents()) {
+				if(c instanceof JScrollPane){
+					((JScrollPane) c).getVerticalScrollBar().setValue(MIN_VALUE);
+				}
+			}
 		}
 	}
 }

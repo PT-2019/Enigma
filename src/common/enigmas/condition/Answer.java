@@ -52,7 +52,7 @@ public class Answer extends Condition {
 	 * Vérifie que la condition est satisfaite
 	 *
 	 * @param p Joueur ayant mené à l'appel de cette méthode
-	 * @return true si la condtion est satisfaite, false sinon
+	 * @return true si la condition est satisfaite, false sinon
 	 */
 	@Override
 	public EnigmaReport verify(Player p) {

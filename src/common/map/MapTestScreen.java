@@ -305,6 +305,7 @@ public class MapTestScreen extends AbstractMap {
 					for (int j = (int) start.x; j < start.x + value.getGameObjectWidth() && index < ent.size; j++, index++) {
 						MapTestScreenCell c = (MapTestScreenCell) tileLayer.getCell(j, i);
 						if (c == null || c.getTile() == null) continue;
+						if(c.getEntity() != value) continue; //vole pas les tiles des autres
 						if (ent.get(index) != 0) {
 							stop = true;
 							break;

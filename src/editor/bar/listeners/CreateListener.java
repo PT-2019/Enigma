@@ -44,7 +44,8 @@ public class CreateListener extends MenuListener {
 	//TODO: louloukit
 	private static final String ALREADY_TAKEN = "déjà pris";
 	private static final String INVALID = "invalide";
-	private static final String NAME = NeedToBeTranslated.INPUT_NAME + " :";
+
+	private static final String NAME = NeedToBeTranslated.INPUT_MAP_NAME + " :";
 	private static final String WIDTH = NeedToBeTranslated.WIDTH + " :";
 	private static final String HEIGHT = NeedToBeTranslated.HEIGHT + " :";
 	private static final String EMPTY = NeedToBeTranslated.EMPTY;
@@ -80,8 +81,8 @@ public class CreateListener extends MenuListener {
 
 		//input
 		this.nameF = new EnigmaTextField();
-		this.widthF = new EnigmaTextField();
-		this.heightF = new EnigmaTextField();
+		this.widthF = new EnigmaTextField("50");
+		this.heightF = new EnigmaTextField("50");
 
 		//content
 		this.content = new Object[]{

@@ -76,8 +76,7 @@ public interface NeedToBeTranslated {
 	String REMOVE_ENTITY = "Suppression de";
 	String ADD_ENIGMA = "Ajoute une énigme";
 	String REMOVE_ENIGMA = "Suppression d'une énigme";
-	String ADD_CONTENT = "Ajout de contenu";
-	String REMOVE_CONTENT = "Suppression de contenu";
+	String SET_CONTENT = "Changement du contenu";
 	String ADD_SUB_ENTITY = ADD_ENTITY;
 	String REMOVE_SUB_ENTITY = REMOVE_ENTITY;
 	String SET_HERO = "Ajout d'un héros.";
@@ -192,4 +191,15 @@ public interface NeedToBeTranslated {
 	//testScreen
 	String OPEN_MAP = "Ouvrir une map";
 	String NEW_MAP = "Nouvelle map";
+
+	//create
+	String INPUT_MAP_NAME = "Nom de la map";
+
+	//special popup
+	String CONTENT = "Contenu";
+
+	//addItemListView
+	String ITEM_LIST = "Liste des objets";
+	String SEE_ITEM = "Voir l'objet sélectionnée";
+	String NO_ITEM = "Aucun item.";
 }

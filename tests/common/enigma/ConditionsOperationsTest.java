@@ -16,7 +16,7 @@ public class ConditionsOperationsTest {
     public static void main(String[] args){
         Enigma e = new Enigma();
         Book b = new Book(0);
-        b.addContent("Mot de passe biach");
+        b.setContent("Mot de passe biach");
         Button bu = new Button(false);
         bu.setID(2);
         Player p = new Player(4);

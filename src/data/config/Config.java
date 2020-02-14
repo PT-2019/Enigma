@@ -12,7 +12,7 @@ import common.language.Language;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 6.4
+ * @version 6.5
  * @since 4.0
  */
 public final class Config {
@@ -64,6 +64,13 @@ public final class Config {
 	 * @since 5.1
 	 */
 	public static final Language DEFAULT = Language.FRENCH;
+
+	/**
+	 * Dossier contient les fichiers liés aux langues
+	 *
+	 * @since 6.5
+	 */
+	public static final String LANG_FOLDER = "assets/lang";
 
 	/**
 	 * Chemin du logo

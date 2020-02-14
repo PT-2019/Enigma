@@ -18,6 +18,7 @@ public class EnigmaReport {
 	 * Message sur la réalisation de l'action
 	 */
 	private Report report;
+
 	/**
 	 * true si l'action c'est faite sinon false
 	 */

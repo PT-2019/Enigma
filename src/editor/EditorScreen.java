@@ -73,7 +73,6 @@ public class EditorScreen extends JPanel {
 	 * @param bar    true s'il y a une barre de menus
 	 * @since 4.2
 	 */
-	@SuppressWarnings("WeakerAccess")
 	public EditorScreen(EnigmaWindow parent, boolean bar) {
 		this.setBackground(Color.RED);
 		this.setLayout(new BorderLayout());

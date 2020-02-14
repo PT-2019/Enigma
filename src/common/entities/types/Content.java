@@ -18,7 +18,7 @@ public interface Content {
 	 * @param content Contenu à ajouter
 	 * @since 1.0
 	 */
-	void addContent(String content);
+	void setContent(String content);
 
 	/**
 	 * Obtenir le contenu

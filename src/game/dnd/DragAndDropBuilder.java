@@ -77,11 +77,14 @@ public class DragAndDropBuilder extends InputListener {
 			Logger.printDebug("DnDBuilder", "Déplacement bloqué. Sélection.");
 			MapTestScreen map = ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap();
 			GameObject obj = map.loadEntity(this.container.getEntity(), null).entity;
+			if (obj != null) {
+				obj.setTemp(true);
+			}
 			forPopup.update(obj);
 			return true;
 		} else if (!EditorLauncher.containsState(EditorState.NORMAL)) {
 			//activation du dnd
-			EditorLauncher.clearStates(EditorState.ZOOM, EditorState.SPECIAL_POPUP_DISABLED);
+			EditorLauncher.clearStates(EditorState.PERSISTANT);
 			EditorLauncher.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 		}
 

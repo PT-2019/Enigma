@@ -165,7 +165,7 @@ public class ConditionListener implements ActionListener, ItemListener {
 			//il existe déjà un object
 			Vector2 pos = this.object.getGameObjectPosition();
 			//this.object est un temporaire
-			if (pos == null || pos.x < 0 || pos.y < 0) {
+			if (pos == null || this.object.isTemp()) {
 				MapTestScreen map = ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap();
 				//supprime de la map
 				int id = this.object.getID();

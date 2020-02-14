@@ -94,9 +94,10 @@ public class Chest extends AbstractItem implements Lockable, Container {
 
 	//toString
 
+
 	@Override
 	public String toString() {
-		return "Chest{" + "locked=" + locked + ", enigmas=" + enigmas + ", id=" + id + '}';
+		return "Chest{" + "locked=" + locked + ", items=" + items + ", enigmas=" + enigmas + ", id=" + id + '}';
 	}
 
 	@Override

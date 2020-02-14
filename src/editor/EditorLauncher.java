@@ -67,7 +67,7 @@ public class EditorLauncher implements Application {
 		EntityFactory.loadEntities("assets/rooms.json");
 		EntityFactory.loadEntities("assets/items.json");
 		EntityFactory.loadEntities("assets/decors.json");
-		EntityFactory.loadEntities("assets/entities.json", true);
+		EntityFactory.loadPlayers("assets/entities.json");
 		EntityFactory.loadEntities("assets/actions.json");
 	}
 
@@ -242,10 +242,19 @@ public class EditorLauncher implements Application {
 			ArrayList<EditorState> exceptionsList = new ArrayList<>(Arrays.asList(exceptions));
 			ArrayList<EditorState> remove = new ArrayList<>();
 
+			boolean persistant = false;
+			if(exceptionsList.contains(EditorState.PERSISTANT)) persistant = true;
+
 			//save des états à supprimer
 			for (EditorState state : states) {
 				if (exceptionsList.contains(state)) continue;
-				remove.add(state);
+				if(persistant){//si on ne doit pas supprimer les persistants
+					if(!state.persistant){ //si l'état n'est pas persistant
+						remove.add(state); //supprime
+					}
+				} else {
+					remove.add(state);//sinon supprime tout le monde
+				}
 			}
 
 			//suppression
@@ -254,7 +263,8 @@ public class EditorLauncher implements Application {
 			}
 
 			//désactive la simulation
-			if (remove.contains(EditorState.SIMULATION)) getInstance().editorScreen.simulationMode(false);
+			if (remove.contains(EditorState.SIMULATION))
+				getInstance().editorScreen.simulationMode(false);
 
 			return;
 		}

@@ -7,6 +7,7 @@ import common.entities.types.Container;
 import common.hud.EnigmaButton;
 import common.hud.EnigmaLabel;
 import common.hud.EnigmaPanel;
+import data.NeedToBeTranslated;
 import editor.menus.AbstractPopUpView;
 import editor.menus.AbstractSubPopUpView;
 import editor.menus.ShowCardLayout;
@@ -37,10 +38,10 @@ import java.util.ArrayList;
  */
 public class AddItemListView extends AbstractSubPopUpView implements Observer<GameObject> {
 
-	private static final String TITLE = "Liste des objets";
-	private static final String SEE_ENTITY = "Voir entité sélectionnée";
-	private static final String ADD_ENTITY = "Ajouter entité";
-	private static final String NO_ITEMS = "Aucun item";
+	private static final String TITLE = NeedToBeTranslated.ITEM_LIST;
+	private static final String SEE_ENTITY = NeedToBeTranslated.SEE_ITEM;
+	private static final String ADD_ENTITY =  NeedToBeTranslated.ADD_ITEM;
+	private static final String NO_ITEMS = NeedToBeTranslated.NO_ITEM;
 
 	private final EnigmaButton see;
 	private ButtonGroup groups;
@@ -57,8 +58,8 @@ public class AddItemListView extends AbstractSubPopUpView implements Observer<Ga
 		this.groups = new ButtonGroup();
 		this.listener = new SelectItem(parent, seeView);
 
-		see = new EnigmaButton(SEE_ENTITY);
-		see.addActionListener(new ShowCardLayout(AddItemView.SEE, parent));
+		this.see = new EnigmaButton(SEE_ENTITY);
+		this.see.addActionListener(new ShowCardLayout(AddItemView.SEE, parent));
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.gridx = 0;
 		gbc.gridy = 0;
@@ -66,7 +67,7 @@ public class AddItemListView extends AbstractSubPopUpView implements Observer<Ga
 		gbc.weighty = 1;
 		gbc.fill = GridBagConstraints.NONE;
 		gbc.insets = new Insets(10, 0, 0, 0);
-		this.footer.add(see, gbc);
+		this.footer.add(this.see, gbc);
 		EnigmaButton add = new EnigmaButton(ADD_ENTITY);
 		add.addActionListener(new ShowCardLayout(AddItemView.ADD, parent));
 		add.addActionListener(e -> DragAndDropBuilder.setForPopup(((AddItemView) parent).getAddItemAddView()));
@@ -104,7 +105,7 @@ public class AddItemListView extends AbstractSubPopUpView implements Observer<Ga
 			JCheckBox r = new JCheckBox(item.getReadableName() + " (id=" + item.getID() + ")");
 			//on ajoute les boutons au groupe
 			r.setToolTipText(item.getReadableName());
-			groups.add(r);
+			this.groups.add(r);
 			r.setName(item.getID() + "");
 			//ajoute les boutons au panneau
 			panel.add(r);
@@ -121,9 +122,9 @@ public class AddItemListView extends AbstractSubPopUpView implements Observer<Ga
 			EnigmaLabel empty = new EnigmaLabel(NO_ITEMS);
 			empty.getComponentUI().setAllForegrounds(Color.YELLOW, Color.YELLOW, Color.YELLOW);
 			panel.add(empty);
-			see.setVisible(false);
+			this.see.setVisible(false);
 		} else {
-			see.setVisible(true);
+			this.see.setVisible(true);
 		}
 
 		JScrollPane panelS = new JScrollPane(panel);
@@ -133,7 +134,6 @@ public class AddItemListView extends AbstractSubPopUpView implements Observer<Ga
 		this.content.add(panelS, BorderLayout.CENTER);
 		this.revalidate();
 	}
-
 
 	@Override
 	public void update(GameObject object) {
@@ -167,10 +167,10 @@ public class AddItemListView extends AbstractSubPopUpView implements Observer<Ga
 
 		@Override
 		public void itemStateChanged(ItemEvent e) {
-			Container container = (Container) parent.getPopUp().getCell().getEntity();
+			Container container = (Container) this.parent.getPopUp().getCell().getEntity();
 			for (Item item : container.getItems()) {
 				if (item.getID() == Integer.parseInt(((JCheckBox) e.getSource()).getName())) {
-					seeView.setChecked(item);
+					this.seeView.setChecked(item);
 					break;
 				}
 			}

@@ -30,6 +30,6 @@ public class BrushListener extends MenuListener {
 		EditorLauncher.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 
 		//garde le mode zoom, si pas de zoom, alors met en normal
-		EditorLauncher.clearStates(EditorState.ZOOM, EditorState.SPECIAL_POPUP_DISABLED);
+		EditorLauncher.clearStates(EditorState.PERSISTANT);
 	}
 }
