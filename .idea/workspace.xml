@@ -5,30 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3988e985-92ab-48ae-ab5d-41247abb4cd3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/files/data/BigBigMacFactory.tmx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/files/data/BigFactory.tmx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/files/data/cocoa.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/data/cocoa.tmx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/files/data/gigatest.tmx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/files/data/i.tmx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/files/data/zoe.tmx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/files/map/BigBigMacFactory.tmx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/files/map/BigFactory.tmx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/files/map/cocoa.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/map/cocoa.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/files/map/cocoa.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/map/cocoa.tmx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/files/map/gigatest.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/files/map/gigatest.tmx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/utils/Utility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/utils/Utility.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/NeedToBeTranslated.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/NeedToBeTranslated.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/bar/BarMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/BarMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/bar/EnigmaMenuBarItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/EnigmaMenuBarItems.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/bar/EnigmaMenuBarMenus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/EnigmaMenuBarMenus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/bar/listeners/CreateListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/listeners/CreateListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/bar/listeners/ImportListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/listeners/ImportListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/libgdx/LibgdxScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/libgdx/LibgdxScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/utils/ShortCuts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/utils/ShortCuts.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/config/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/config/Config.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/editor/bar/listeners/SaveAsListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/listeners/SaveAsListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/bar/listeners/SaveListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/listeners/SaveListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/editor/popup/TestMapControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/popup/TestMapControl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/screens/TestScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/screens/TestScreen.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/libs/packer/" />
@@ -128,9 +111,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/common/entities/GameObject.java" />
-        <option value="$PROJECT_DIR$/src/game/dnd/DragAndDropBuilder.java" />
-        <option value="$PROJECT_DIR$/src/common/entities/types/AbtractLivingEntity.java" />
         <option value="$PROJECT_DIR$/src/common/entities/players/Player.java" />
         <option value="$PROJECT_DIR$/src/common/entities/Entity.java" />
         <option value="$PROJECT_DIR$/src/common/entities/players/EntityGame.java" />
@@ -159,7 +139,6 @@
         <option value="$PROJECT_DIR$/src/editor/bar/listeners/MapLoaded.java" />
         <option value="$PROJECT_DIR$/src/common/entities/consumable/Book.java" />
         <option value="$PROJECT_DIR$/src/common/entities/items/Pane.java" />
-        <option value="$PROJECT_DIR$/src/data/config/Config.java" />
         <option value="$PROJECT_DIR$/src/common/language/Language.java" />
         <option value="$PROJECT_DIR$/src/editor/EditorLauncher.java" />
         <option value="$PROJECT_DIR$/src/common/save/entities/serialization/EntityFactory.java" />
@@ -174,11 +153,15 @@
         <option value="$PROJECT_DIR$/assets/files/map/cocoa.tmx" />
         <option value="$PROJECT_DIR$/src/common/save/entities/serialization/MonsterFactory.java" />
         <option value="$PROJECT_DIR$/src/game/screens/TestScreen.java" />
-        <option value="$PROJECT_DIR$/src/editor/popup/TestMapControl.java" />
         <option value="$PROJECT_DIR$/src/editor/bar/listeners/SaveListener.java" />
-        <option value="$PROJECT_DIR$/src/editor/bar/listeners/SaveAsListener.java" />
         <option value="$PROJECT_DIR$/src/editor/bar/listeners/ImportListener.java" />
         <option value="$PROJECT_DIR$/src/editor/bar/EnigmaMenuBarItems.java" />
+        <option value="$PROJECT_DIR$/src/data/config/Config.java" />
+        <option value="$PROJECT_DIR$/src/api/utils/ShortCuts.java" />
+        <option value="$PROJECT_DIR$/src/editor/bar/listeners/SaveAsListener.java" />
+        <option value="$PROJECT_DIR$/src/api/libgdx/LibgdxScreen.java" />
+        <option value="$PROJECT_DIR$/src/common/utils/runnable/RunActionPerformed.java" />
+        <option value="$PROJECT_DIR$/src/editor/popup/TestMapControl.java" />
       </list>
     </option>
   </component>
@@ -194,6 +177,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -201,12 +186,15 @@
               <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
               <item name="Enigma" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="ProjectViewState">
@@ -354,7 +342,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="ae09cfc3-8c68-40f7-a6e1-cb32552840e9" name="Default Changelist" comment="" />
+      <changelist id="3988e985-92ab-48ae-ab5d-41247abb4cd3" name="Default Changelist" comment="" />
       <created>1572716426843</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -416,7 +404,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25323623" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25728154" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -647,78 +635,6 @@
     <state x="619" y="195" width="672" height="626" key="search.everywhere.popup/1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/editor/menus/name/AddNameView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2550">
-          <caret line="173" column="43" selection-start-line="173" selection-start-column="43" selection-end-line="173" selection-end-column="43" />
-          <folding>
-            <element signature="e#3752#3753#0" expanded="true" />
-            <element signature="e#3771#3772#0" expanded="true" />
-            <element signature="e#4762#4763#0" expanded="true" />
-            <element signature="e#4784#4785#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/bar/edition/actions/EditorActionSetContent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="43" column="22" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1340#1341#0" expanded="true" />
-            <element signature="e#1363#1364#0" expanded="true" />
-            <element signature="e#1552#1553#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/menus/content/AddContentView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="78" column="24" selection-start-line="78" selection-start-column="24" selection-end-line="78" selection-end-column="24" />
-          <folding>
-            <element signature="e#3580#3581#0" expanded="true" />
-            <element signature="e#3631#3632#0" expanded="true" />
-            <element signature="e#4689#4690#0" expanded="true" />
-            <element signature="e#4711#4712#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/bar/edition/ActionsManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="171" column="9" lean-forward="true" selection-start-line="171" selection-start-column="9" selection-end-line="171" selection-end-column="9" />
-          <folding>
-            <element signature="e#1509#1510#0" expanded="true" />
-            <element signature="e#1537#1538#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/bar/listeners/ExportListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="896">
-          <caret line="73" column="38" selection-start-line="73" selection-start-column="38" selection-end-line="73" selection-end-column="38" />
-          <folding>
-            <element signature="e#2080#2081#0" expanded="true" />
-            <element signature="e#2131#2132#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/popup/listeners/ZoomListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-112">
-          <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
-          <folding>
-            <element signature="e#3621#3622#0" expanded="true" />
-            <element signature="e#3663#3664#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.base/java/lang/String.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="837">
@@ -808,13 +724,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/data/config/Config.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="65" column="48" lean-forward="true" selection-start-line="65" selection-start-column="48" selection-end-line="65" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/editor/EditorScreen.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -880,12 +789,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/files/map/cocoa.tmx">
-      <provider editor-type-id="com.soywiz.korge.intellij.editor.KorgeBothFileEditorProvider" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="178">
           <caret line="352" column="45" selection-start-line="352" selection-start-column="45" selection-end-line="352" selection-end-column="45" />
         </state>
       </provider>
+      <provider editor-type-id="com.soywiz.korge.intellij.editor.KorgeBothFileEditorProvider" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/api/libgdx/LibgdxGame.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -898,13 +807,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="244">
           <caret line="35" selection-start-line="35" selection-end-line="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/popup/TestMapControl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="92" column="60" lean-forward="true" selection-start-line="92" selection-start-column="60" selection-end-line="92" selection-end-column="60" />
         </state>
       </provider>
     </entry>
@@ -936,43 +838,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/files/map/TestSave.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/files/map/TestSave.json" />
     <entry file="file://$PROJECT_DIR$/assets/files/data/cocoa.tmx">
+      <provider selected="true" editor-type-id="text-editor" />
       <provider editor-type-id="com.soywiz.korge.intellij.editor.KorgeBothFileEditorProvider" />
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/files/data/TestSave.tmx">
-      <provider editor-type-id="com.soywiz.korge.intellij.editor.KorgeBothFileEditorProvider" />
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/files/map/TestSave.tmx">
-      <provider editor-type-id="com.soywiz.korge.intellij.editor.KorgeBothFileEditorProvider" />
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/files/data/zoe.tmx">
-      <provider editor-type-id="com.soywiz.korge.intellij.editor.KorgeBothFileEditorProvider" />
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/files/data/TestE.tmx">
-      <provider editor-type-id="com.soywiz.korge.intellij.editor.KorgeBothFileEditorProvider" />
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/files/data/Sal.tmx">
-      <provider editor-type-id="com.soywiz.korge.intellij.editor.KorgeBothFileEditorProvider" />
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/files/map/Sal.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/editor/bar/listeners/SaveAsListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="27" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/files/data/TestSave.tmx" />
+    <entry file="file://$PROJECT_DIR$/assets/files/map/TestSave.tmx" />
+    <entry file="file://$PROJECT_DIR$/assets/files/data/zoe.tmx" />
+    <entry file="file://$PROJECT_DIR$/assets/files/data/TestE.tmx" />
+    <entry file="file://$PROJECT_DIR$/assets/files/data/Sal.tmx" />
+    <entry file="file://$PROJECT_DIR$/assets/files/map/Sal.json" />
     <entry file="file://$PROJECT_DIR$/src/editor/bar/listeners/SaveListener.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="415">
@@ -1003,13 +879,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/files/map/gigatest.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/files/map/gigatest.tmx">
-      <provider editor-type-id="com.soywiz.korge.intellij.editor.KorgeBothFileEditorProvider" />
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/files/map/gigatest.json" />
+    <entry file="file://$PROJECT_DIR$/assets/files/map/gigatest.tmx" />
     <entry file="file://$PROJECT_DIR$/src/editor/bar/listeners/ImportListener.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-147">
@@ -1021,6 +892,80 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6">
           <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/libs/gdx.jar!/com/badlogic/gdx/Input.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="103" column="17" selection-start-line="103" selection-start-column="17" selection-end-line="103" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/config/Config.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="17" column="13" lean-forward="true" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/libgdx/ui/Toast.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="143" column="13" selection-start-line="143" selection-start-column="13" selection-end-line="143" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/libs/gdx.jar!/com/badlogic/gdx/graphics/GL20.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="323" column="9" selection-start-line="323" selection-start-column="9" selection-end-line="323" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/libgdx/LibgdxScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="101" column="22" selection-start-line="101" selection-start-column="22" selection-end-line="101" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/bar/listeners/SaveAsListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="54" selection-start-line="54" selection-end-line="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3100#3101#0" expanded="true" />
+            <element signature="e#3151#3152#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/utils/runnable/RunActionPerformed.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="34" column="88" selection-start-line="34" selection-start-column="88" selection-end-line="34" selection-end-column="88" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/popup/TestMapControl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="34" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/utils/ShortCuts.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1099">
+          <caret line="21" column="2" selection-start-line="21" selection-start-column="2" selection-end-line="21" selection-end-column="2" />
         </state>
       </provider>
     </entry>

@@ -6,6 +6,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import common.hud.EnigmaWindow;
 import common.map.MapTestScreen;
+import common.utils.runnable.RunActionPerformed;
 import data.config.Config;
 import data.EditorState;
 import editor.EditorLauncher;
@@ -15,7 +16,7 @@ import editor.bar.listeners.SaveListener;
 import editor.bar.listeners.UndoListener;
 
 import javax.swing.JButton;
-import java.awt.event.ActionEvent;
+import javax.swing.SwingUtilities;
 
 /**
  * Contrôleur des différents évènement sur la map de l'éditeur
@@ -109,15 +110,15 @@ public class TestMapControl implements InputAdapter {
 			this.plusCamera();
 		else if (keycode == Input.Keys.MINUS && this.ctrlPush)
 			this.minCamera();
-		else if(keycode == Config.SAVE.getMain() &&this. ctrlPush && !this.altPush){
-			//on met un actionEvent sans importance car pas utilisé dans les actionPerformed
-			this.save.actionPerformed(new ActionEvent(new Object(),0,""));
-		}else if(keycode == Config.UNDO.getMain() && this.ctrlPush){
-			this.undo.actionPerformed(new ActionEvent(new Object(),0,""));
-		}else if(keycode == Config.REDO.getMain() && this.ctrlPush){
-			this.redo.actionPerformed(new ActionEvent(new Object(),0,""));
-		}else if(this.ctrlPush && this.altPush && keycode == Config.SAVE_AS.getMain()){
-			this.saveAs.actionPerformed(new ActionEvent(new Object(),0,""));
+		else
+		if(Config.SAVE.check(keycode, this.ctrlPush, this.altPush)){
+			SwingUtilities.invokeLater(new RunActionPerformed(this.save, this));
+		}else if(Config.UNDO.check(keycode, this.ctrlPush, this.altPush)){
+			SwingUtilities.invokeLater(new RunActionPerformed(this.undo, this));
+		}else if(Config.REDO.check(keycode, this.ctrlPush, this.altPush)){
+			SwingUtilities.invokeLater(new RunActionPerformed(this.redo, this));
+		}else if( Config.SAVE_AS.check(keycode, this.ctrlPush, this.altPush)){
+			SwingUtilities.invokeLater(new RunActionPerformed(this.saveAs, this));
 		}
 
 		return false;

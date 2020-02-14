@@ -18,6 +18,7 @@ import game.EnigmaGame;
 import game.screens.TestScreen;
 
 import javax.swing.JComponent;
+import javax.swing.SwingUtilities;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.HashMap;

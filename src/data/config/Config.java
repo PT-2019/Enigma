@@ -14,7 +14,7 @@ import common.language.Language;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 6.5
+ * @version 6.6
  * @since 4.0
  */
 public final class Config {
@@ -24,6 +24,8 @@ public final class Config {
 	 * Elles sont composées de deux fichiers : .tmx (map) et .json (énigmes)
 	 *
 	 * @see #MAP_FOLDER_SAV
+	 *
+	 * @since 4.0
 	 */
 	public static final String MAP_FOLDER = "assets/files/map/";
 
@@ -72,12 +74,28 @@ public final class Config {
 	 */
 	public static final Language DEFAULT = Language.FRENCH;
 
+	/**
+	 * Raccourcis de sauvegarde
+	 * @since 6.6
+	 */
 	public static final ShortCuts SAVE = new ShortCuts(Input.Keys.S,Input.Keys.CONTROL_LEFT);
 
+	/**
+	 * Raccourcis de sauvegarder sous
+	 * @since 6.6
+	 */
 	public static final ShortCuts SAVE_AS = new ShortCuts(Input.Keys.S,Input.Keys.CONTROL_LEFT,Input.Keys.ALT_LEFT);
 
+	/**
+	 * Raccourcis de undo
+	 * @since 6.6
+	 */
 	public static final ShortCuts UNDO = new ShortCuts(Input.Keys.Z,Input.Keys.CONTROL_LEFT);
 
+	/**
+	 * Raccourcis de redo
+	 * @since 6.6
+	 */
 	public static final ShortCuts REDO = new ShortCuts(Input.Keys.Y,Input.Keys.CONTROL_LEFT);
 
 	/**
