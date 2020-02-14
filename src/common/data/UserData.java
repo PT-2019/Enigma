@@ -1,6 +1,7 @@
 package common.data;
 
-import java.util.ArrayList;
+import api.utils.annotations.ConvenienceMethod;
+
 import java.util.HashMap;
 
 /**
@@ -10,64 +11,63 @@ import java.util.HashMap;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 6.0
+ * @version 6.1
  * @since 6.0
  */
 public class UserData {
 
-    /**
-     * Nom
-     */
-    private String name;
+	/**
+	 * Map des données du fichier préférences
+	 */
+	private final HashMap<String, String> data;
 
-    /**
-     * Donnée sur le nom
-     */
-    private final static String NAME = "name";
+	/**
+	 * Données de l'utilisateur
+	 *
+	 * @param data Données
+	 * @since 6.0
+	 */
+	public UserData(HashMap<String, String> data) {
+		this.data = data;
 
-    /**
-     * @param name Nom
-     */
-    public UserData(String name){
-        this.name = name;
-    }
+		//vérifie que l'on a tout
+		for (UserPreferencesFields field : UserPreferencesFields.values()) {
+			if (!data.containsKey(field.value)) {
+				throw new IllegalArgumentException("Attribut " + field.value + " manquant");
+			}
+		}
+	}
 
-    /**
-     * @param data Données
-     */
-    public UserData(HashMap<String,String> data){
-        ArrayList<String> dataName = new ArrayList<>();
-        dataName.add(NAME);
+	/**
+	 * Obtenir les données
+	 *
+	 * @return Les données
+	 * @since 6.0
+	 */
+	public HashMap<String, String> getData() {
+		return new HashMap<>(this.data);//clone
+	}
 
-        for(String name : dataName){
-            String get = data.get(name);
-            if(get != null){
-                switch(name){
-                    case NAME:
-                        this.name = get;
-                        break;
-                }
-            } else
-                throw new IllegalArgumentException("Attribut " + name + " manquant");
-        }
-    }
+	/**
+	 * Obtenir le nom
+	 *
+	 * @return Le nom
+	 * @since 6.0
+	 */
+	@ConvenienceMethod
+	public String getName() {
+		return this.data.get(UserPreferencesFields.NAME.value);
+	}
 
-    /**
-     * Obtenir les données
-     * @return Les données
-     */
-    public HashMap<String,String> getData(){
-        HashMap<String,String> data = new HashMap<>();
-        data.put(NAME, this.name);
-
-        return data;
-    }
-
-    /**
-     * Obtenir le nom
-     * @return Le nom
-     */
-    public String getName(){
-        return this.name;
-    }
+	/**
+	 * Obtenir la donnée correspond à la clef
+	 *
+	 * @param key une clef
+	 * @return la donnée correspond à la clef
+	 * @see UserPreferencesFields
+	 * @since 6.1
+	 */
+	public String getValue(UserPreferencesFields key) {
+		return this.data.get(key.value);
+	}
 }

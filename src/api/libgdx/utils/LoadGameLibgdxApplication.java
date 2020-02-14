@@ -55,7 +55,7 @@ public final class LoadGameLibgdxApplication<T extends LibgdxGame> {
 	 * @since 3.0
 	 */
 	public static void load(Container container, @NotNull JFrame frame) {
-		load(container, frame,  true);
+		load(container, frame, true);
 	}
 
 	/**
@@ -67,7 +67,7 @@ public final class LoadGameLibgdxApplication<T extends LibgdxGame> {
 	 * @param frame     la fenêtre swing
 	 * @since 6.0
 	 */
-	public static void load(Container container, @NotNull JFrame frame, boolean addCloseListener){
+	public static void load(Container container, @NotNull JFrame frame, boolean addCloseListener) {
 		if (Gdx.app != null) {//si déjà lancée
 			Gdx.app.postRunnable(() -> load(container, frame));
 			return;
@@ -93,7 +93,7 @@ public final class LoadGameLibgdxApplication<T extends LibgdxGame> {
 		//dès que la fenêtre est fermée
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		CloseWindowLibgdxApplication closeListener = new CloseWindowLibgdxApplication(canvas);
-		if(addCloseListener) frame.addWindowListener(closeListener);
+		if (addCloseListener) frame.addWindowListener(closeListener);
 		frame.revalidate();//met à jour
 	}
 

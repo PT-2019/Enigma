@@ -18,6 +18,14 @@ public class ListFonts extends JComponent {
 			.getAvailableFontFamilyNames();
 	private Font[] font = new Font[FONTS_NAMES.length];
 
+	public static void main(String[] args) {
+		JFrame frame = new JFrame("Different Fonts");
+		frame.add(new JScrollPane(new ListFonts(),
+				ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS));
+		frame.setSize(350, 650);
+		frame.setVisible(true);
+	}
+
 	public void paintComponent(Graphics g) {
 		for (int i = 0; i < FONTS_NAMES.length; i++) {
 			if (font[i] == null) {
@@ -25,15 +33,8 @@ public class ListFonts extends JComponent {
 			}
 			g.setFont(font[i]);
 			int p = 15;
-			int q = 15+ (15 * i);
-			g.drawString(FONTS_NAMES[i],p,q);
+			int q = 15 + (15 * i);
+			g.drawString(FONTS_NAMES[i], p, q);
 		}
-	}
-	public static void main(String[] args) {
-		JFrame frame = new JFrame("Different Fonts");
-		frame.add(new JScrollPane(new ListFonts(),
-				ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS));
-		frame.setSize(350, 650);
-		frame.setVisible(true);
 	}
 }

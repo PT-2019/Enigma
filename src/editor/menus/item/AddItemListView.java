@@ -40,7 +40,7 @@ public class AddItemListView extends AbstractSubPopUpView implements Observer<Ga
 
 	private static final String TITLE = NeedToBeTranslated.ITEM_LIST;
 	private static final String SEE_ENTITY = NeedToBeTranslated.SEE_ITEM;
-	private static final String ADD_ENTITY =  NeedToBeTranslated.ADD_ITEM;
+	private static final String ADD_ENTITY = NeedToBeTranslated.ADD_ITEM;
 	private static final String NO_ITEMS = NeedToBeTranslated.NO_ITEM;
 
 	private final EnigmaButton see;

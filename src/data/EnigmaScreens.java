@@ -1,7 +1,5 @@
 package data;
 
-import java.util.prefs.AbstractPreferences;
-
 /**
  * Les écrans du jeu
  *
@@ -17,5 +15,5 @@ public enum EnigmaScreens {
 	TEST,
 	MENU,
 	INVENTORY,
-	SETTINGS;
+	SETTINGS
 }

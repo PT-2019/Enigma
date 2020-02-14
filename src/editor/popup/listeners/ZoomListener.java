@@ -51,8 +51,8 @@ public class ZoomListener implements ActionListener, Observer<MapLoaded> {
 
 	@Override
 	public void actionPerformed(@NotNull ActionEvent e) {
-		if(!this.canZoom){
-			Logger.printDebugALL("ZoomListener","Zoom bloquée.");
+		if (!this.canZoom) {
+			Logger.printDebugALL("ZoomListener", "Zoom bloquée.");
 			return;
 		}
 		String selected = e.getActionCommand();

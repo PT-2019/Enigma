@@ -11,7 +11,6 @@ import common.enigmas.TileEventEnum;
 import common.entities.GameObject;
 import common.entities.players.Monster;
 import common.entities.players.NPC;
-import common.entities.Entity;
 import common.entities.players.PlayerGame;
 import common.entities.special.GameExit;
 import common.entities.special.GameMusic;
@@ -158,18 +157,19 @@ public class GameMap extends AbstractMap {
 
 	/**
 	 * Renvoie EntityGame avec laquelle il a touché
+	 *
 	 * @param actor
 	 * @param movX
 	 * @param movY
 	 * @return
 	 */
-	public GameActor collisionEntityGame(GameActor actor,float movX,float movY){
+	public GameActor collisionEntityGame(GameActor actor, float movX, float movY) {
 		GameActor entity = null;
 
 		ArrayList<GameActor> actors = (ArrayList<GameActor>) this.entities.clone();
 		actors.remove(actor);
 		for (GameActor act : actors) {
-			if (actor.overlaps(act,movX,movY)){
+			if (actor.overlaps(act, movX, movY)) {
 				entity = act;
 				break;
 			}
@@ -242,13 +242,14 @@ public class GameMap extends AbstractMap {
 		}
 	}
 
-    /**
-     * Enlève l'entités vivante de la map et les actions comme la sortie
-     * @param entity l'entité à charger
-     * @param start  le coin supérieur gauche ou commencer a placer des tiles
-     * @since 4.0
-     */
-    private void setEntityFromSave(GameObject entity, Vector2 start) {
+	/**
+	 * Enlève l'entités vivante de la map et les actions comme la sortie
+	 *
+	 * @param entity l'entité à charger
+	 * @param start  le coin supérieur gauche ou commencer a placer des tiles
+	 * @since 4.0
+	 */
+	private void setEntityFromSave(GameObject entity, Vector2 start) {
 
 		//on prends le layer où sont afficher les entités
 		MapLayer mapLayer = this.map.getMap().getLayers().get(Layer.FLOOR2.name());
@@ -271,10 +272,10 @@ public class GameMap extends AbstractMap {
 	/**
 	 * Renvoi les entités présente sur cette case
 	 */
-	public GameObject posToEntities(int row, int col){
+	public GameObject posToEntities(int row, int col) {
 		MapLayer mapLayer = this.map.getMap().getLayers().get(Layer.FLOOR2.name());
 		TiledMapTileLayer tileLayer = (TiledMapTileLayer) mapLayer;
-		MapTestScreenCell c = (MapTestScreenCell) tileLayer.getCell(col,row);
+		MapTestScreenCell c = (MapTestScreenCell) tileLayer.getCell(col, row);
 		return c.getEntity();
 	}
 
@@ -336,23 +337,23 @@ public class GameMap extends AbstractMap {
 					entity.setPosition((x + 0.5f) * this.tileWidth * this.getUnitScale(),
 							(y - 2) * this.tileHeight * this.getUnitScale());
 					notdisplay = true;
-				}else if (object instanceof Monster) {
+				} else if (object instanceof Monster) {
 					GameActor monster = MonsterFactory.createMonsterGame(((Monster) object).getKey(), ((Monster) object).getJson());
 					this.addEntity(monster);
 					monster.setPosition((x + 0.5f) * this.tileWidth * this.getUnitScale(),
 							(y - 2) * this.tileHeight * this.getUnitScale());
 					notdisplay = true;
-				}else if(object instanceof MusicEditor){
+				} else if (object instanceof MusicEditor) {
 					if (((MusicEditor) object).isMainMusic() && ((MusicEditor) object).isStarter())
-					this.music = new GameMusic(((MusicEditor) object).getPath());
-				}else{
+						this.music = new GameMusic(((MusicEditor) object).getPath());
+				} else {
 					if (object instanceof GameExit) notdisplay = true;
 				}
 
-				if (notdisplay){
-					this.setEntityFromSave(object,start);
+				if (notdisplay) {
+					this.setEntityFromSave(object, start);
 					notdisplay = false;
-				}else{
+				} else {
 					// on place les tiles
 					this.setFromSave(object, start);
 				}
@@ -373,9 +374,9 @@ public class GameMap extends AbstractMap {
 		}
 	}
 
-	public void launchMusic(){
-    	if (this.music != null)
-    		this.music.getMusic().play();
+	public void launchMusic() {
+		if (this.music != null)
+			this.music.getMusic().play();
 	}
 
 	public ArrayList<GameActor> getGameEntities() {

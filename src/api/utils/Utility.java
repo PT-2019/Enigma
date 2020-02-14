@@ -33,7 +33,6 @@ import java.util.Map;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.7
  * @since 2.0 27 novembre 2019
  */
@@ -131,11 +130,8 @@ public class Utility implements Serializable {
 	 * @since 6.3
 	 */
 	public static String escape(String string) {
-		string = Normalizer.normalize(string, Normalizer.Form.NFD);
-		string = string.replaceAll("[^\\x00-\\x7F]", "");
-		string = string.replaceAll("[-+.^:,]", "");
+		string = normalize(string);
 		string = string.replaceAll("[^\\p{L}\\p{Z}]", "");
-		string = string.replaceAll("[\\n\\t ]", "");
 		return string;
 	}
 
@@ -251,13 +247,13 @@ public class Utility implements Serializable {
 		Object object;
 		Constructor declaredConstructor = null;
 		try {
-			 declaredConstructor = aClass.getDeclaredConstructor();
-			 object = declaredConstructor.newInstance();
+			declaredConstructor = aClass.getDeclaredConstructor();
+			object = declaredConstructor.newInstance();
 		} catch (IllegalAccessException | InstantiationException | NoSuchMethodException
 				| InvocationTargetException e) {
-			String message = "Create instance failed. Error \""+e.getCause()
-					+"\" in "+declaredConstructor;
-			if(declaredConstructor == null) message = "Constructor not found."+e;
+			String message = "Create instance failed. Error \"" + e.getCause()
+					+ "\" in " + declaredConstructor;
+			if (declaredConstructor == null) message = "Constructor not found." + e;
 			throw new IllegalStateException(message);
 		}
 		return object;
@@ -284,8 +280,8 @@ public class Utility implements Serializable {
 			}
 			object = declaredConstructor.newInstance(value);
 		} catch (IllegalAccessException | InstantiationException | InvocationTargetException e) {
-			String message = "Create instance failed. Error \""+e.getCause()
-					+"\" in "+declaredConstructor;
+			String message = "Create instance failed. Error \"" + e.getCause()
+					+ "\" in " + declaredConstructor;
 			throw new IllegalStateException(message);
 		}
 
@@ -347,8 +343,8 @@ public class Utility implements Serializable {
 			}
 		} catch (IllegalAccessException | InstantiationException | NoSuchMethodException
 				| InvocationTargetException e) {
-			String message = "Create instance failed. Error \""+e.getCause()
-					+"\" in "+selected;
+			String message = "Create instance failed. Error \"" + e.getCause()
+					+ "\" in " + selected;
 			throw new IllegalStateException(message);
 		}
 		return object;
@@ -518,6 +514,7 @@ public class Utility implements Serializable {
 
 	/**
 	 * Renvoi la position pour aligner le composant au centre
+	 *
 	 * @param frame un composant
 	 * @return la position pour aligner le composant au centre
 	 * @since 6.5
@@ -541,17 +538,17 @@ public class Utility implements Serializable {
 	 * @return un string sans caractères échappés
 	 * @since 6.6
 	 */
-	public static String asciiEscapedToNormalString(String asciiEscapedString){
+	public static String asciiEscapedToNormalString(String asciiEscapedString) {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < asciiEscapedString.length(); i++) {
 			char read = asciiEscapedString.charAt(i);
-			if(read != '&'){
+			if (read != '&') {
 				sb.append(read);
 				continue;
 			}
 			i++;//zap le &
 			read = asciiEscapedString.charAt(i);
-			if(asciiEscapedString.charAt(i) != '#'){
+			if (asciiEscapedString.charAt(i) != '#') {
 				sb.append('&');
 				sb.append(read);
 				continue;
@@ -560,7 +557,7 @@ public class Utility implements Serializable {
 			//lis la valeur ascii
 			StringBuilder tmp = new StringBuilder();
 			char c = asciiEscapedString.charAt(i);
-			while(c != ';'){
+			while (c != ';') {
 				i++;
 				tmp.append(c);
 				c = asciiEscapedString.charAt(i);
@@ -574,6 +571,7 @@ public class Utility implements Serializable {
 	/**
 	 * Retourne true si une string est différente de null, chaîne vide, est chaîne avec
 	 * caractères blancs uniquement
+	 *
 	 * @param string une string
 	 * @return true si une string est différente de null, chaîne vide, est chaîne avec
 	 * caractères blancs uniquement

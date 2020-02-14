@@ -96,22 +96,22 @@ public class OperationListener implements ActionListener, ItemListener {
 		if (selectedOperation.equals(Operations.GIVE.name())) {
 			if (this.object instanceof Item)
 				ope = new Give((Item) this.object);
-		//summon
+			//summon
 		} else if (selectedOperation.equals(Operations.SUMMON.name())) {
 			if (this.object instanceof Entity)
 				ope = new Summon((Entity) this.object, parent.getPopUp().getCell());
-		//unlock
+			//unlock
 		} else if (selectedOperation.equals(Operations.UNLOCK.name())) {
 			if (this.object instanceof Lockable)
 				ope = new Unlock((Lockable) this.object);
-		//room
+			//room
 		} else if (selectedOperation.equals(Operations.SHOW_ROOM.name())) {
 			if (this.object instanceof Room)
 				ope = new ShowRoom((Room) this.object);
 		} else if (selectedOperation.equals(Operations.HIDE_ROOM.name())) {
 			if (this.object instanceof Room)
 				ope = new HideRoom((Room) this.object);
-		}else if(selectedOperation.equals(Operations.SOUND.name())){
+		} else if (selectedOperation.equals(Operations.SOUND.name())) {
 			if (this.object instanceof MusicEditor) {
 				this.object.setTemp(false);//plus temporaire
 				ope = new LaunchSound((MusicEditor) this.object);
@@ -119,7 +119,7 @@ public class OperationListener implements ActionListener, ItemListener {
 				MapTestScreen map = ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap();
 				map.set(this.object, new Vector2(0, 0));
 			}
-		}else if(selectedOperation.equals(Operations.MAIN_MUSIC.name())){
+		} else if (selectedOperation.equals(Operations.MAIN_MUSIC.name())) {
 			if (this.object instanceof MusicEditor) {
 				this.object.setTemp(false);//plus temporaire
 				((MusicEditor) this.object).setMainMusic(true);
@@ -162,8 +162,8 @@ public class OperationListener implements ActionListener, ItemListener {
 				MusicPanel parent = (MusicPanel) this.currentButton.getParent();
 				parent.dispLink();
 			}
-		}else{
-			if (this.currentButton != null){
+		} else {
+			if (this.currentButton != null) {
 				if (this.currentButton.getParent() instanceof MusicPanel) {
 					((MusicPanel) this.currentButton.getParent()).remove();
 				}
@@ -227,7 +227,7 @@ public class OperationListener implements ActionListener, ItemListener {
 
 	@Override
 	public String toString() {
-		return "OperationListener{" + "currentButton=" + (currentButton==null?"":currentButton.getName()) +
+		return "OperationListener{" + "currentButton=" + (currentButton == null ? "" : currentButton.getName()) +
 				", validate=" + validate + ", object=" + object + '}';
 	}
 }

@@ -11,8 +11,6 @@ import javax.swing.JPopupMenu;
 import javax.swing.plaf.basic.BasicPopupMenuUI;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 
 /**
  * Style d'un popup de menu

@@ -17,7 +17,6 @@ import java.awt.event.ActionEvent;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.0 12/02/2020
  * @since 6.0 12/02/2020
  */
@@ -26,14 +25,14 @@ public final class OpenMapListener implements EventListener {
 	private final OpenListener open;
 
 	public OpenMapListener() {
-		this.open = new OpenListener((EnigmaWindow)EditorLauncher.getInstance().getWindow(), null);
+		this.open = new OpenListener((EnigmaWindow) EditorLauncher.getInstance().getWindow(), null);
 	}
 
 	@Override
 	public boolean handle(Event event) {
-		if(CheckEventType.isMouseClicked(event)) {
+		if (CheckEventType.isMouseClicked(event)) {
 			SwingUtilities.invokeLater(
-					() -> this.open.actionPerformed(new ActionEvent(this, 0,"")
+					() -> this.open.actionPerformed(new ActionEvent(this, 0, "")
 					)
 			);
 			return true;

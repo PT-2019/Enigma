@@ -64,7 +64,6 @@ public class CaseListener extends ClickListener {
 	 * Retourne l'écran monopolisant le 2ème popup ou null si aucun
 	 *
 	 * @return l'écran monopolisant le 2ème popup ou null si aucun
-	 *
 	 * @since 5.0
 	 */
 	public static Observer getAvailable() {
@@ -75,7 +74,6 @@ public class CaseListener extends ClickListener {
 	 * Définit l'écran monopolisant le 2ème popup ou null si aucun
 	 *
 	 * @param available l'écran monopolisant le 2ème popup ou null si aucun
-	 *
 	 * @since 5.0
 	 */
 	public static void setAvailable(Observer available) {
@@ -87,7 +85,6 @@ public class CaseListener extends ClickListener {
 	 *
 	 * @param observer écran
 	 * @return true si l'écran monopolisant le 2ème popup est cette écran
-	 *
 	 * @since 5.0
 	 */
 	public static boolean isNotAvailable(Observer observer) {
@@ -106,6 +103,7 @@ public class CaseListener extends ClickListener {
 
 	/**
 	 * Ferme tous les popups
+	 *
 	 * @since 6.1
 	 */
 	public static void close(ClosePopup closePopup) {
@@ -114,7 +112,7 @@ public class CaseListener extends ClickListener {
 		boolean all = closePopup.equals(ClosePopup.ALL);
 
 		//popup principal
-		if (all || closePopup.equals(ClosePopup.PRIMARY)){
+		if (all || closePopup.equals(ClosePopup.PRIMARY)) {
 			CasePopUp popUp = CaseListener.caseListener.popUp;
 			if (popUp != null) {
 				popUp.clean();
@@ -124,9 +122,9 @@ public class CaseListener extends ClickListener {
 		}
 
 		//popup secondaire
-		if(all || closePopup.equals(ClosePopup.SECONDARY)){
+		if (all || closePopup.equals(ClosePopup.SECONDARY)) {
 			SpecialPopUp pop = CaseListener.caseListener.pop;
-			if(pop != null){
+			if (pop != null) {
 				pop.dispose();
 				CaseListener.caseListener.pop = null;
 			}
@@ -153,10 +151,11 @@ public class CaseListener extends ClickListener {
 
 	/**
 	 * Supprime l'entité où on a cliqué
+	 *
 	 * @param event événement du clic
 	 * @since 6.1
 	 */
-	private void erase(InputEvent event){
+	private void erase(InputEvent event) {
 		CaseView actor = (CaseView) event.getTarget();
 		MapTestScreenCell cell = getRelevantEntity(actor);
 		if (cell != null && cell.getEntity() != null) {
@@ -176,6 +175,7 @@ public class CaseListener extends ClickListener {
 
 	/**
 	 * Ouvre un popup (spécial ou non) sur la case cliquée
+	 *
 	 * @param event événement du clic
 	 * @since 6.1
 	 */
@@ -214,7 +214,7 @@ public class CaseListener extends ClickListener {
 		if (this.enigmaCreate) {
 			boolean use = EditorLauncher.containsState(EditorState.SPECIAL_POPUP_ENABLED);
 			boolean content = EditorLauncher.containsState(EditorState.SPECIAL_POPUP_CONTENT);
-			if(!use && !content) return; //pas de deuxième popup autorisé
+			if (!use && !content) return; //pas de deuxième popup autorisé
 			this.pop = new SpecialPopUp(this.popUp, use, content, this);
 			this.pop.setCell(cell);
 			this.pop.display();
@@ -240,7 +240,6 @@ public class CaseListener extends ClickListener {
 	 * Booléen si on peut ouvrir autre fenêtre
 	 *
 	 * @param b true pour si on peut ouvrir autre fenêtre sinon false
-	 *
 	 * @since 3.0
 	 */
 	public void setEnigmaCreate(boolean b) {
@@ -249,6 +248,7 @@ public class CaseListener extends ClickListener {
 
 	/**
 	 * Définition du popup secondaire
+	 *
 	 * @param pop popup secondaire
 	 * @since 5.0
 	 */
@@ -261,7 +261,6 @@ public class CaseListener extends ClickListener {
 	 *
 	 * @param actor case view
 	 * @return la cellule contenant l'entité la plus intéressante
-	 *
 	 * @since 5.0
 	 */
 	private MapTestScreenCell getRelevantEntity(CaseView actor) {
@@ -304,6 +303,7 @@ public class CaseListener extends ClickListener {
 
 	/**
 	 * Ferme un popup
+	 *
 	 * @since 6.1
 	 */
 	public enum ClosePopup {

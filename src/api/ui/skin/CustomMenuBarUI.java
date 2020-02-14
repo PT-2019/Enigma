@@ -12,8 +12,6 @@ import javax.swing.JMenuBar;
 import javax.swing.plaf.basic.BasicMenuBarUI;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 
 /**
  * Barre customizable de menus
@@ -106,7 +104,7 @@ public class CustomMenuBarUI extends BasicMenuBarUI implements CustomUI<CustomMe
 	 * Crée une copie de l'ui d'une barre de menus
 	 *
 	 * @param customMenuBarUI l'ui d'une barre de menus
-	 * @param <T>            qui doit extends CustomMenuBarUI
+	 * @param <T>             qui doit extends CustomMenuBarUI
 	 * @return une copie de l'ui d'une barre de menus
 	 * @throws IllegalStateException si une copie échoue a être crée
 	 */

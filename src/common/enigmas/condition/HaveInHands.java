@@ -1,7 +1,7 @@
 package common.enigmas.condition;
 
-import common.enigmas.reporting.EnigmaReport;
 import common.enigmas.reporting.ConditionReport;
+import common.enigmas.reporting.EnigmaReport;
 import common.entities.Item;
 import common.entities.players.Player;
 import common.language.EnigmaField;

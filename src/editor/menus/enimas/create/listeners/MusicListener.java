@@ -9,8 +9,8 @@ import editor.menus.enimas.create.Operations;
 import game.EnigmaGame;
 import game.screens.TestScreen;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JLabel;
+import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -21,64 +21,64 @@ import java.awt.event.MouseListener;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.0
  * @since 6.0
  */
 public class MusicListener implements MouseListener {
 
-    private Operations operations;
+	private Operations operations;
 
-    public MusicListener(Operations ope){
-        this.operations = ope;
-    }
+	public MusicListener(Operations ope) {
+		this.operations = ope;
+	}
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        String chose;
-        if (this.operations == Operations.MAIN_MUSIC){
-            chose = EnigmaOptionPane.showMusicChoiceDialog(new EnigmaWindow());
-        }else {
-            chose = EnigmaOptionPane.showSoundChoiceDialog(new EnigmaWindow());
-        }
-        Object tmp;
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		String chose;
+		if (this.operations == Operations.MAIN_MUSIC) {
+			chose = EnigmaOptionPane.showMusicChoiceDialog(new EnigmaWindow());
+		} else {
+			chose = EnigmaOptionPane.showSoundChoiceDialog(new EnigmaWindow());
+		}
+		Object tmp;
 
-        if (!chose.equals(EnigmaOptionPane.CANCEL)){
-            MusicEditor object = new MusicEditor(chose);
-            object.setTemp(true); //temporaire
+		if (!chose.equals(EnigmaOptionPane.CANCEL)) {
+			MusicEditor object = new MusicEditor(chose);
+			object.setTemp(true); //temporaire
 
-            tmp = e.getSource();
-            if (tmp instanceof JLabel){
-                //pour avoir la factory de id
-                MapTestScreen map = ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap();
-                MusicPanel panel =(MusicPanel) ((JLabel) tmp).getParent();
-                map.getIdFactory().newID(object);
-                panel.getPanelOperation().update(object);
-            }
-        }
-    }
+			tmp = e.getSource();
+			if (tmp instanceof JLabel) {
+				//pour avoir la factory de id
+				MapTestScreen map = ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap();
+				MusicPanel panel = (MusicPanel) ((JLabel) tmp).getParent();
+				map.getIdFactory().newID(object);
+				panel.getPanelOperation().update(object);
+			}
+		}
+	}
 
-    @Override
-    public void mousePressed(MouseEvent e) {
+	@Override
+	public void mousePressed(MouseEvent e) {
 
-    }
+	}
 
-    @Override
-    public void mouseReleased(MouseEvent e) {}
+	@Override
+	public void mouseReleased(MouseEvent e) {
+	}
 
-    @Override
-    public void mouseEntered(MouseEvent e) {
-        if (e.getSource() instanceof JLabel){
-            JLabel label = (JLabel) e.getSource();
-            label.setForeground(new Color(203, 64, 249 ));
-        }
-    }
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		if (e.getSource() instanceof JLabel) {
+			JLabel label = (JLabel) e.getSource();
+			label.setForeground(new Color(203, 64, 249));
+		}
+	}
 
-    @Override
-    public void mouseExited(MouseEvent e) {
-        if (e.getSource() instanceof JLabel){
-            JLabel label = (JLabel) e.getSource();
-            label.setForeground(Color.BLACK);
-        }
-    }
+	@Override
+	public void mouseExited(MouseEvent e) {
+		if (e.getSource() instanceof JLabel) {
+			JLabel label = (JLabel) e.getSource();
+			label.setForeground(Color.BLACK);
+		}
+	}
 }

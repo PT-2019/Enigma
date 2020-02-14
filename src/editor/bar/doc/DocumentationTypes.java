@@ -7,7 +7,6 @@ package editor.bar.doc;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.0 11/02/2020
  * @since 6.0 11/02/2020
  */
@@ -19,7 +18,7 @@ public enum DocumentationTypes {
 	/**
 	 * Un titre suivi d'une icône.
 	 * Contient deux éléments de contenu, le texte puis l'icône.
- 	 */
+	 */
 	TITLE_SMALL(),
 	/**
 	 * Un message représente plusieurs éléments de contenus.

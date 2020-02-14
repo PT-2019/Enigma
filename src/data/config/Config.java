@@ -24,7 +24,6 @@ public final class Config {
 	 * Elles sont composées de deux fichiers : .tmx (map) et .json (énigmes)
 	 *
 	 * @see #MAP_FOLDER_SAV
-	 *
 	 * @since 4.0
 	 */
 	public static final String MAP_FOLDER = "assets/files/map/";
@@ -42,7 +41,13 @@ public final class Config {
 	/**
 	 * Données de l'utilisateur
 	 */
+	@Deprecated
 	public static final String USER_DATA_FILE_FOLDER = "assets/files/user/user.tmx";
+
+	/**
+	 * Données de l'utilisateur
+	 */
+	public static final String USER_DATA_FILE_NAME = "enigma";
 
 	/**
 	 * Le chemin pour trouver le fichier DTD depuis {@link #MAP_FOLDER}
@@ -76,27 +81,31 @@ public final class Config {
 
 	/**
 	 * Raccourcis de sauvegarde
+	 *
 	 * @since 6.6
 	 */
-	public static final ShortCuts SAVE = new ShortCuts(Input.Keys.S,Input.Keys.CONTROL_LEFT);
+	public static final ShortCuts SAVE = new ShortCuts(Input.Keys.S, Input.Keys.CONTROL_LEFT);
 
 	/**
 	 * Raccourcis de sauvegarder sous
+	 *
 	 * @since 6.6
 	 */
-	public static final ShortCuts SAVE_AS = new ShortCuts(Input.Keys.S,Input.Keys.CONTROL_LEFT,Input.Keys.ALT_LEFT);
+	public static final ShortCuts SAVE_AS = new ShortCuts(Input.Keys.S, Input.Keys.CONTROL_LEFT, Input.Keys.ALT_LEFT);
 
 	/**
 	 * Raccourcis de undo
+	 *
 	 * @since 6.6
 	 */
-	public static final ShortCuts UNDO = new ShortCuts(Input.Keys.Z,Input.Keys.CONTROL_LEFT);
+	public static final ShortCuts UNDO = new ShortCuts(Input.Keys.Z, Input.Keys.CONTROL_LEFT);
 
 	/**
 	 * Raccourcis de redo
+	 *
 	 * @since 6.6
 	 */
-	public static final ShortCuts REDO = new ShortCuts(Input.Keys.Y,Input.Keys.CONTROL_LEFT);
+	public static final ShortCuts REDO = new ShortCuts(Input.Keys.Y, Input.Keys.CONTROL_LEFT);
 
 	/**
 	 * Dossier contient les fichiers liés aux langues
@@ -252,46 +261,46 @@ public final class Config {
 	 * @since 6.4
 	 */
 	public static final String GITHUB_LINK = "https://github.com/PT-2019/Enigma";
-
-	/**
-	 * Taux de rafraîchissement d'images par seconde
-	 *
-	 * @since 6.3
-	 */
-	private static final int FPS_RATE = 45;
-
 	/**
 	 * Json
 	 *
 	 * @since 6.0
 	 */
 	public static final String JSON_PATH = "assets/files/atlas/uiskin.json";
-
 	/**
 	 * Fichier skin
 	 *
 	 * @since 6.0
 	 */
 	public static final String SKIN_PATH = "assets/files/atlas/uiskin.atlas";
-
 	/**
 	 * Répertoire des musiques
+	 *
 	 * @since 6.7
 	 */
 	public static final String MUSIC_FOLDER = "assets/files/music/";
 	/**
 	 * Extensions des musiques
+	 *
 	 * @since 6.7
 	 */
 	public static final String[] MUSIC_EXTENSIONS = {".mp3"};
 	/**
 	 * Répertoire des sons
+	 *
 	 * @since 6.7
 	 */
 	public static final String SOUND_FOLDER = "assets/files/sound/";
 	/**
 	 * Extensions des sons
+	 *
 	 * @since 6.7
 	 */
 	public static final String[] SOUND_EXTENSIONS = {".mp3", ".wav"};
+	/**
+	 * Taux de rafraîchissement d'images par seconde
+	 *
+	 * @since 6.3
+	 */
+	private static final int FPS_RATE = 45;
 }

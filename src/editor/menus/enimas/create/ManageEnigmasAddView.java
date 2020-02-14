@@ -38,15 +38,14 @@ public class ManageEnigmasAddView extends AbstractSubPopUpView {
 	 * Textes à traduire
 	 */
 	public static final String TITLE = NeedToBeTranslated.CREATE_ENIGMA;
-	static final String SAVE = NeedToBeTranslated.SAVE_ENIGMA;
-	static final String ADD_CLUE = NeedToBeTranslated.ADD_CLUE;
-	static final String ADD_COND = NeedToBeTranslated.ADD_COND;
-	static final String ADD_OP = NeedToBeTranslated.ADD_OP;
-
 	/**
 	 * CardLayout
 	 */
 	public static final String MENU = "menu";
+	static final String SAVE = NeedToBeTranslated.SAVE_ENIGMA;
+	static final String ADD_CLUE = NeedToBeTranslated.ADD_CLUE;
+	static final String ADD_COND = NeedToBeTranslated.ADD_COND;
+	static final String ADD_OP = NeedToBeTranslated.ADD_OP;
 	static final String CLUE = "clue";
 	static final String OPERATION = "operation";
 	static final String CONDITION = "condition";
@@ -131,11 +130,11 @@ public class ManageEnigmasAddView extends AbstractSubPopUpView {
 	/**
 	 * Appelle clean sur les enfants
 	 */
-	private void clearChildren(){
+	private void clearChildren() {
 		//clean des composants
-		for (Component components:this.panel.getComponents()) {
-			if(!(components instanceof ResetComponent)) continue;
-			((ResetComponent)components).clean();
+		for (Component components : this.panel.getComponents()) {
+			if (!(components instanceof ResetComponent)) continue;
+			((ResetComponent) components).clean();
 		}
 	}
 

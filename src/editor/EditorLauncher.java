@@ -8,12 +8,12 @@ import common.hud.EnigmaWindow;
 import common.save.entities.serialization.EntityFactory;
 import data.EditorState;
 import data.EnigmaScreens;
+import data.config.UserConfiguration;
 import editor.bar.edition.ActionsManager;
 import game.EnigmaGame;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.Cursor;
@@ -244,13 +244,13 @@ public class EditorLauncher implements Application {
 			ArrayList<EditorState> remove = new ArrayList<>();
 
 			boolean persistant = false;
-			if(exceptionsList.contains(EditorState.PERSISTANT)) persistant = true;
+			if (exceptionsList.contains(EditorState.PERSISTANT)) persistant = true;
 
 			//save des états à supprimer
 			for (EditorState state : states) {
 				if (exceptionsList.contains(state)) continue;
-				if(persistant){//si on ne doit pas supprimer les persistants
-					if(!state.persistant){ //si l'état n'est pas persistant
+				if (persistant) {//si on ne doit pas supprimer les persistants
+					if (!state.persistant) { //si l'état n'est pas persistant
 						remove.add(state); //supprime
 					}
 				} else {
@@ -300,6 +300,9 @@ public class EditorLauncher implements Application {
 		this.window.add(this.editorScreen, BorderLayout.CENTER);
 		//on démarre l'application
 		this.window.setVisible(true);
+
+		//charge la configuration utilisateur
+		UserConfiguration.getInstance();
 	}
 
 	@Override

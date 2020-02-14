@@ -834,7 +834,7 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 	 * @since 6.0
 	 */
 	public void freeId(IDInterface object) {
-		if(object == null){
+		if (object == null) {
 			this.idFactory.clearCache();
 		} else {
 			this.idFactory.free(object, true);

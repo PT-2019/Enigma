@@ -7,7 +7,6 @@ package common.enigmas.reporting;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.0 12/02/2020
  * @since 6.0 12/02/2020
  */
@@ -17,7 +16,7 @@ public enum ConditionReport implements EnigmaReport.Report {
 
 	private final String report;
 
-	ConditionReport(String report){
+	ConditionReport(String report) {
 		this.report = report;
 	}
 

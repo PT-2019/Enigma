@@ -177,7 +177,6 @@ public class Enigma implements ActionListener, IDInterface {
 	 * Vérifie que toutes les conditions sont satisfaites
 	 *
 	 * @param p Joueur ayant intéragit avec l'entité ayant appelé cette méthode
-	 *
 	 * @return un message d'une condition ou opération
 	 */
 	public EnigmaReport verifyConditions(Player p) {

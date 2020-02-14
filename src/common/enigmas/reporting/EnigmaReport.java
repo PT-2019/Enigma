@@ -8,7 +8,6 @@ package common.enigmas.reporting;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.0 12/02/2020
  * @since 6.0 12/02/2020
  */
@@ -39,7 +38,7 @@ public class EnigmaReport {
 	 * Le message retourné l'exécution d'une opération
 	 * ou d'une condition.
 	 *
-	 * @param report Message sur la réalisation de l'action
+	 * @param report    Message sur la réalisation de l'action
 	 * @param fulfilled true si l'action c'est faite sinon false
 	 */
 	public EnigmaReport(Report report, boolean fulfilled) {
@@ -49,25 +48,28 @@ public class EnigmaReport {
 
 	/**
 	 * Message sur la réalisation de l'action
+	 *
 	 * @return Message sur la réalisation de l'action
 	 */
-	public String getReport(){
+	public String getReport() {
 		return this.report.getReport();
 	}
 
 	/**
 	 * true si l'action c'est faite sinon false
+	 *
 	 * @return true si l'action c'est faite sinon false
 	 */
-	public boolean isFulfilled(){
+	public boolean isFulfilled() {
 		return this.fulfilled;
 	}
 
 	/**
 	 * true si l'action c'est faite sinon false
+	 *
 	 * @param fulfilled true si l'action c'est faite sinon false
 	 */
-	public void setFulfilled(boolean fulfilled){
+	public void setFulfilled(boolean fulfilled) {
 		this.fulfilled = fulfilled;
 	}
 
@@ -78,7 +80,6 @@ public class EnigmaReport {
 	 * @author Louka DOZ
 	 * @author Loic SENECAT
 	 * @author Quentin RAMSAMY-AGEORGES
-	 *
 	 * @version 6.0 12/02/2020
 	 * @since 6.0 12/02/2020
 	 */
@@ -86,6 +87,7 @@ public class EnigmaReport {
 
 		/**
 		 * Message sur la réalisation de l'action
+		 *
 		 * @return Message sur la réalisation de l'action
 		 */
 		String getReport();

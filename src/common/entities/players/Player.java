@@ -1,21 +1,13 @@
 package common.entities.players;
 
-import api.libgdx.actor.GameActorTextured;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.Array;
-import common.entities.Entity;
 import common.entities.Item;
 import common.entities.special.Inventory;
 import common.entities.types.AbstractLivingEntity;
-import common.entities.types.Living;
 import common.language.GameFields;
 import common.language.GameLanguage;
-import data.Layer;
 import data.TypeEntity;
 
 import java.util.EnumMap;
-import java.util.HashMap;
 
 /**
  * Définie un personnage contrôlable : un joueur

@@ -125,7 +125,7 @@ public class SupportListener extends MenuListener {
 			try {
 				NetUtility.openLinkInBrowser(e.getActionCommand());
 			} catch (Exception ex) {
-				Logger.printError("SupportListener","OpenLinkFailed");
+				Logger.printError("SupportListener", "OpenLinkFailed");
 				EnigmaGame.getCurrentScreen().showToast(OPEN_LINK_FAILED);
 			}
 		}

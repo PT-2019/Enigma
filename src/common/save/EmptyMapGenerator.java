@@ -1,8 +1,5 @@
 package common.save;
 
-import common.map.AbstractMap;
-import common.map.MapObjects;
-import common.utils.Logger;
 import api.utils.annotations.ConvenienceMethod;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import common.enigmas.Enigma;
@@ -66,9 +63,9 @@ public class EmptyMapGenerator {
 		//crée aussi le fichier d'énigmes
 		ArrayList<Enigma> e = new ArrayList<>();
 		try {
-			EnigmaJsonWriter.writeEnigmas(path.replace(Config.MAP_EXTENSION,"") + Config.ENIGMA_EXTENSION,e);
+			EnigmaJsonWriter.writeEnigmas(path.replace(Config.MAP_EXTENSION, "") + Config.ENIGMA_EXTENSION, e);
 		} catch (IOException ex) {
-			Logger.printError("EmptyMapGenerator.java",ex.toString());
+			Logger.printError("EmptyMapGenerator.java", ex.toString());
 		}
 	}
 

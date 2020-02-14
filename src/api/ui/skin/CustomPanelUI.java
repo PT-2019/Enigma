@@ -12,8 +12,6 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 
 /**
  * Crée un panneau customizable
@@ -99,7 +97,7 @@ public class CustomPanelUI extends BasicPanelUI implements CustomUIHoverAndPress
 	 * Crée une copie de l'ui d'un panel
 	 *
 	 * @param customPanelUI l'ui d'un panel
-	 * @param <T>            qui doit extends CustomPanelUI
+	 * @param <T>           qui doit extends CustomPanelUI
 	 * @return une copie de l'ui d'un panel
 	 * @throws IllegalStateException si une copie échoue a être crée
 	 */

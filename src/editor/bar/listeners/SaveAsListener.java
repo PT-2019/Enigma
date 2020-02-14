@@ -12,14 +12,13 @@ import common.save.DataSave;
 import common.save.EmptyMapGenerator;
 import common.utils.EnigmaUtility;
 import common.utils.Logger;
-import data.NeedToBeTranslated;
 import data.EnigmaScreens;
+import data.NeedToBeTranslated;
 import data.config.Config;
 import game.EnigmaGame;
 import game.screens.TestScreen;
 
 import javax.swing.JComponent;
-import javax.swing.SwingUtilities;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.HashMap;
@@ -34,7 +33,7 @@ import java.util.HashMap;
  * @version 6.0 01/02/2020
  * @since 6.0 01/02/2020
  */
-public class SaveAsListener extends MenuListener  implements Observer<MapLoaded> {
+public class SaveAsListener extends MenuListener implements Observer<MapLoaded> {
 
 	/**
 	 * Textes
@@ -53,26 +52,26 @@ public class SaveAsListener extends MenuListener  implements Observer<MapLoaded>
 
 	@Override
 	public void actionPerformed(ActionEvent actionEvent) {
-		String mapName = EnigmaOptionPane.showInputDialog(this.window,MAP_NAME);
+		String mapName = EnigmaOptionPane.showInputDialog(this.window, MAP_NAME);
 		mapName = Utility.normalize(mapName);
 
-		for(String s : EnigmaUtility.getAllMapNames()) {
-			if (s.equals(mapName)){
-				if(!EnigmaOptionPane.showConfirmDialog(this.window,REPLACE_MAP)){
+		for (String s : EnigmaUtility.getAllMapNames()) {
+			if (s.equals(mapName)) {
+				if (!EnigmaOptionPane.showConfirmDialog(this.window, REPLACE_MAP)) {
 					return;
 				}
 			}
 		}
 
-		HashMap<String,String> data = EnigmaGame.getCurrentScreen().getMap().getMapData().getData();
-		data.replace(MapData.MAP_NAME,mapName);
+		HashMap<String, String> data = EnigmaGame.getCurrentScreen().getMap().getMapData().getData();
+		data.replace(MapData.MAP_NAME, mapName);
 
 		if (!mapName.equals(CustomOptionPane.CANCEL) && !mapName.equals("")) {
 			try {
 				DataSave.writeMapData(new MapData(data));
-			}catch (IOException e){
+			} catch (IOException e) {
 				EnigmaGame.getCurrentScreen().showToast(SAVE_FAILED);
-				Logger.printError("SavAsListener.java","dave data : " + e.getMessage());
+				Logger.printError("SavAsListener.java", "dave data : " + e.getMessage());
 			}
 
 			String path = Config.MAP_FOLDER + mapName;
@@ -93,7 +92,7 @@ public class SaveAsListener extends MenuListener  implements Observer<MapLoaded>
 
 			//message ok
 			EnigmaGame.getCurrentScreen().showToast(SAVE_ENDED);
-		}else{
+		} else {
 			EnigmaGame.getCurrentScreen().showToast(SAVE_CANCELED);
 		}
 	}

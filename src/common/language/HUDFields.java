@@ -20,7 +20,7 @@ public enum HUDFields implements Field {
 	ROOMS, DECORS, OBJECTS, CHARACTERS, ACTIONS,
 	LAYER, FIRST_LAYER, OK, CANCEL, LEAVE, GAME_EXIT, CHOSE;
 
-    @Override
+	@Override
 	public String toString() {
 		return Utility.snakeCaseToCamelCase(this.name());
 	}

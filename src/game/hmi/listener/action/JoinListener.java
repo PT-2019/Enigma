@@ -19,26 +19,26 @@ import java.awt.event.ActionListener;
  * @since 6.0
  */
 public class JoinListener implements ActionListener {
-    /**
-     * Pour entre l'adresse IP
-     */
-    private EnigmaTextField field;
+	/**
+	 * Pour entre l'adresse IP
+	 */
+	private EnigmaTextField field;
 
-    /**
-     * @param field Composant où l'adresse IP est rentrée
-     */
-    public JoinListener(EnigmaTextField field){
-        this.field = field;
-    }
+	/**
+	 * @param field Composant où l'adresse IP est rentrée
+	 */
+	public JoinListener(EnigmaTextField field) {
+		this.field = field;
+	}
 
-    @Override
-    public void actionPerformed(ActionEvent actionEvent) {
-        //TODO : (lorsque multi disponible)
-        //Verifier la syntaxe
-        //Tenter de se connecter à l'addresse ip
-        //Récupérer les infos de la partie et les rentrer dans GameConfiguration
-        Logger.printDebug("JoinListener.java"," A tester : " + field.getText());
-        ContentManager.getInstance().refresh(ContentManager.LOBBY_STATE);
-        ActionBar.getInstance().refresh(ActionBar.QUIT_STATE);
-    }
+	@Override
+	public void actionPerformed(ActionEvent actionEvent) {
+		//TODO : (lorsque multi disponible)
+		//Verifier la syntaxe
+		//Tenter de se connecter à l'addresse ip
+		//Récupérer les infos de la partie et les rentrer dans GameConfiguration
+		Logger.printDebug("JoinListener.java", " A tester : " + field.getText());
+		ContentManager.getInstance().refresh(ContentManager.LOBBY_STATE);
+		ActionBar.getInstance().refresh(ActionBar.QUIT_STATE);
+	}
 }

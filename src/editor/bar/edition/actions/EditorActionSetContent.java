@@ -32,7 +32,7 @@ class EditorActionSetContent implements EditorAction {
 	public void doAction() {
 		this.content.setContent(this.newContent);
 		AddContentView instance = AddContentView.getInstance();
-		if(instance != null){
+		if (instance != null) {
 			//restaure le nom
 			instance.getPopUp().invalidateDrawable();
 			instance.invalidateDrawable();
@@ -43,7 +43,7 @@ class EditorActionSetContent implements EditorAction {
 	public void undoAction() {
 		this.content.setContent(this.oldContent);
 		AddContentView instance = AddContentView.getInstance();
-		if(instance != null){
+		if (instance != null) {
 			//restaure le nom
 			instance.getPopUp().invalidateDrawable();
 			instance.invalidateDrawable();

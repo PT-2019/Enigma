@@ -182,7 +182,7 @@ public class CreateListener extends MenuListener {
 				if (mapName.contains(Config.MAP_EXTENSION)) mapName = mapName.replaceAll(Config.MAP_EXTENSION, "");
 				String path = Config.MAP_FOLDER + mapName + Config.MAP_EXTENSION;
 
-				MapData data = new MapData(UserConfiguration.getInstance().getData().getName(),mapName);
+				MapData data = new MapData(UserConfiguration.getInstance().getData().getName(), mapName);
 				try {
 					DataSave.writeMapData(data);
 				} catch (IOException ex) {

@@ -56,13 +56,13 @@ public class Book extends AbstractConsumable implements Content {
 	//content
 
 	@Override
-	public void setContent(String content) {
-		this.content = content;
+	public String getContent() {
+		return this.content;
 	}
 
 	@Override
-	public String getContent() {
-		return this.content;
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 	//toString

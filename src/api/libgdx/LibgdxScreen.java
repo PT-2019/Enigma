@@ -11,7 +11,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.utils.Array;
 import common.map.AbstractMap;
 
-import javax.swing.SwingUtilities;
 import java.util.Iterator;
 
 /**

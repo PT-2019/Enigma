@@ -15,11 +15,9 @@ import java.awt.event.ActionListener;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 5.0
- * @since 4.0
- *
  * @see CasePopUp
+ * @since 4.0
  */
 public class SpecialPopListener implements ActionListener {
 

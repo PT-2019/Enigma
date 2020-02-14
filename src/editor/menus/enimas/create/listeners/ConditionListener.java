@@ -63,7 +63,7 @@ public class ConditionListener implements ActionListener, ItemListener {
 	private GameObject object;
 	/**
 	 * Réponse si on veut créer une condition Answer
-	 *
+	 * <p>
 	 * la question dont on attends une réponse
 	 */
 	private Question question;
@@ -94,26 +94,26 @@ public class ConditionListener implements ActionListener, ItemListener {
 		if (selectedCondition.equals(Conditions.ACTIVATED.name())) {
 			if (this.object instanceof Activatable)
 				cond = new Activated((Activatable) this.object);
-		//réponse
+			//réponse
 		} else if (selectedCondition.equals(Conditions.ANSWER.name())) {
 			if (addView.getEntity() instanceof GameObject && question != null)
 				//récupère la source et la question
 				cond = new Answer(addView.getEntity(), question);
-		//avoir
+			//avoir
 		} else if (selectedCondition.equals(Conditions.HAVE_IN_HANDS.name())) {
 			if (this.object instanceof Item)
 				cond = new HaveInHands((Item) object);
 		} else if (selectedCondition.equals(Conditions.HAVE_IN_INVENTORY.name())) {
 			if (this.object instanceof Item)
 				cond = new HaveInInventory((Item) object);
-		//room
+			//room
 		} else if (selectedCondition.equals(Conditions.ROOM_UNDISCOVERED.name())) {
 			if (this.object instanceof Room)
 				cond = new RoomUndiscovered((Room) object);
 		} else if (selectedCondition.equals(Conditions.ROOM_DISCOVERED.name())) {
 			if (this.object instanceof Room)
 				cond = new RoomDiscovered((Room) object);
-		//sinon condition non disponible
+			//sinon condition non disponible
 		} else {
 			this.panel.getEntityName().setText(ConditionPanel.NOT_AVAILABLE_CONDITION);
 		}
@@ -142,7 +142,7 @@ public class ConditionListener implements ActionListener, ItemListener {
 			Conditions conditions = Conditions.valueOf(this.currentButton.getName());
 
 			//si disponible
-			if(conditions.available){
+			if (conditions.available) {
 				//verrouille l'accès a un second popup
 				CaseListener.setAvailable(this.panel);
 				//active les bons modes de sélection
@@ -158,7 +158,7 @@ public class ConditionListener implements ActionListener, ItemListener {
 				parent.dispLink();
 			}
 		} else {
-			if (this.currentButton != null){
+			if (this.currentButton != null) {
 				if (this.currentButton.getParent() instanceof ChoicePanel) {
 					((ChoicePanel) this.currentButton.getParent()).remove();
 				}
@@ -222,7 +222,7 @@ public class ConditionListener implements ActionListener, ItemListener {
 		this.question = null;
 	}
 
-	public void setQuestion(Question question){
+	public void setQuestion(Question question) {
 		this.question = question;
 	}
 

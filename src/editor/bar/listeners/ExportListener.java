@@ -1,26 +1,15 @@
 package editor.bar.listeners;
 
 import api.utils.Observer;
-import api.libgdx.ui.Toast;
-import api.ui.CustomWindow;
 import common.data.MapData;
-import common.enigmas.Enigma;
-import common.hud.EnigmaOptionPane;
-import common.hud.EnigmaProgressPopup;
 import common.hud.EnigmaWindow;
 import common.save.ImportExport;
-import common.utils.Logger;
 import data.NeedToBeTranslated;
-import data.config.Config;
 import game.EnigmaGame;
-import game.gui.EnigmaEditorToast;
-import game.screens.TestScreen;
 
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import java.awt.event.ActionEvent;
-import java.io.File;
-import java.io.IOException;
 
 /**
  * Observateur de l'exportation de la map
@@ -62,8 +51,8 @@ public class ExportListener extends MenuListener implements Observer<MapLoaded> 
 				exportPath += "/";
 
 			//Sauvegarde avant d'exporter
-			new SaveListener(this.window,this.parent).save();
-			ImportExport.exportMap(data.getMapName(),exportPath);
+			new SaveListener(this.window, this.parent).save();
+			ImportExport.exportMap(data.getMapName(), exportPath);
 		}
 	}
 

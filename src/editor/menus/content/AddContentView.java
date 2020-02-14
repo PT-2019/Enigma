@@ -112,6 +112,15 @@ public class AddContentView extends AbstractPopUpView {
 		this.add(back);
 	}
 
+	/**
+	 * Instance du menu
+	 *
+	 * @return Instance du menu
+	 */
+	public static AddContentView getInstance() {
+		return instance;
+	}
+
 	@Override
 	public void clean() {
 	}
@@ -148,20 +157,12 @@ public class AddContentView extends AbstractPopUpView {
 			this.entity.setContent(this.parent.field.getText());
 
 			//ajout à l'historique
-			EditorAction setContent = EditorActionFactory.actionWithinAMenu(ActionTypes.SET_CONTENT, this.entity, oldContent );
+			EditorAction setContent = EditorActionFactory.actionWithinAMenu(ActionTypes.SET_CONTENT, this.entity, oldContent);
 			ActionsManager.getInstance().add(setContent);
 
 			this.parent.dispose();//supprime fenêtre
 			EnigmaGame.getCurrentScreen().showToast(CONTENT_SAVED);
 			this.parent.popUp.setVisible(true);
 		}
-	}
-
-	/**
-	 * Instance du menu
-	 * @return Instance du menu
-	 */
-	public static AddContentView getInstance() {
-		return instance;
 	}
 }

@@ -7,11 +7,10 @@ package common.save.entities.serialization;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 5.0
  * @since 5.0
  */
-@SuppressWarnings({"unused","WeakerAccess"})
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class PlayerSerializable {
 
 	/**

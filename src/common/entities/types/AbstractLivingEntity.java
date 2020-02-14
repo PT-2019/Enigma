@@ -6,7 +6,6 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import common.entities.Entity;
-import common.entities.players.EntityGame;
 import common.entities.players.Player;
 import data.Layer;
 import org.jetbrains.annotations.Nullable;
@@ -20,7 +19,6 @@ import java.util.HashMap;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.0 13/02/2020
  * @since 6.0 13/02/2020
  */
@@ -48,12 +46,6 @@ public abstract class AbstractLivingEntity extends GameActorTextured implements 
 	 * Nom
 	 */
 	protected String name;
-
-	/**
-	 * Entité temporaire
-	 */
-	private boolean temp;
-
 	/**
 	 * json
 	 */
@@ -62,13 +54,17 @@ public abstract class AbstractLivingEntity extends GameActorTextured implements 
 	 * clef
 	 */
 	protected String key;
+	/**
+	 * Entité temporaire
+	 */
+	private boolean temp;
 
 
 	/**
 	 * Abstraction d'une entité
 	 */
 	@SuppressWarnings("unused")
-	public AbstractLivingEntity(){
+	public AbstractLivingEntity() {
 		this(-1, null);
 	}
 
@@ -90,7 +86,7 @@ public abstract class AbstractLivingEntity extends GameActorTextured implements 
 
 	@Override
 	public void interactsWith(Player p) {
-		throw new UnsupportedOperationException("node codé. InteractWidth "+this.getClass().getName());
+		throw new UnsupportedOperationException("node codé. InteractWidth " + this.getClass().getName());
 	}
 
 	@Override

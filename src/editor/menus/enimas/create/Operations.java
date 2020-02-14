@@ -69,7 +69,8 @@ public enum Operations {
 
 	/**
 	 * Opérations
-	 * @param value description
+	 *
+	 * @param value    description
 	 * @param restrict message si la condition n'est pas respectée
 	 * @param menuDrag mode de sélection de l'entité si besoin
 	 */
@@ -79,9 +80,10 @@ public enum Operations {
 
 	/**
 	 * Opérations
-	 * @param value description
-	 * @param restrict message si la condition n'est pas respectée
-	 * @param menuDrag mode de sélection de l'entité si besoin
+	 *
+	 * @param value     description
+	 * @param restrict  message si la condition n'est pas respectée
+	 * @param menuDrag  mode de sélection de l'entité si besoin
 	 * @param available true si condition disponible
 	 */
 	Operations(String value, String restrict, SelectionsModes menuDrag, boolean available) {
@@ -101,7 +103,7 @@ public enum Operations {
 	public static void unlock(@Nullable Operations operations) {
 		if (operations != null) {
 			operations.unlock();
-		} else if(Operations.locked != null){
+		} else if (Operations.locked != null) {
 			Operations.locked.unlock();
 		}
 	}
@@ -202,9 +204,9 @@ public enum Operations {
 			return (object instanceof Room);
 		} else if (this.equals(Operations.HIDE_ROOM)) {
 			return (object instanceof Room);
-		}else if(this.equals(Operations.SOUND)){
+		} else if (this.equals(Operations.SOUND)) {
 			return object instanceof MusicEditor;
-		}else if(this.equals(Operations.MAIN_MUSIC)){
+		} else if (this.equals(Operations.MAIN_MUSIC)) {
 			return object instanceof MusicEditor;
 		}
 

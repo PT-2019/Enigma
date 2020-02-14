@@ -54,6 +54,7 @@ public class GameConfigurationDeprecated {
 	private String description;
 	/**
 	 * Chef de la partie
+	 *
 	 * @deprecated
 	 */
 	private Player owner2;
@@ -67,6 +68,7 @@ public class GameConfigurationDeprecated {
 	private String author;
 	/**
 	 * Liste des joueurs, y compris le chef de la partie
+	 *
 	 * @deprecated
 	 */
 	private ArrayList<Player> players2;

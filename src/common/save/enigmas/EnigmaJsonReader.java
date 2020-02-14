@@ -1,6 +1,5 @@
 package common.save.enigmas;
 
-import api.utils.Utility;
 import common.enigmas.Enigma;
 
 import java.io.BufferedReader;

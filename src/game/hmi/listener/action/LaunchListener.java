@@ -20,16 +20,16 @@ import java.awt.event.ActionListener;
  * @since 6.0
  */
 public class LaunchListener implements ActionListener {
-    /**
-     * Textes
-     */
-    public final static String NOT_ENOUGH_PLAYERS = NeedToBeTranslated.NOT_ENOUGH_PLAYERS;
+	/**
+	 * Textes
+	 */
+	public final static String NOT_ENOUGH_PLAYERS = NeedToBeTranslated.NOT_ENOUGH_PLAYERS;
 
-    @Override
-    public void actionPerformed(ActionEvent actionEvent) {
-        if(GameConfiguration.getInstance().isFull())
-            MHIManager.getInstance().refresh(MHIManager.GAME_STATE);
-        else
-            EnigmaOptionPane.showAlert(EnigmaGameLauncher.getInstance().getWindow(),NOT_ENOUGH_PLAYERS);
-    }
+	@Override
+	public void actionPerformed(ActionEvent actionEvent) {
+		if (GameConfiguration.getInstance().isFull())
+			MHIManager.getInstance().refresh(MHIManager.GAME_STATE);
+		else
+			EnigmaOptionPane.showAlert(EnigmaGameLauncher.getInstance().getWindow(), NOT_ENOUGH_PLAYERS);
+	}
 }

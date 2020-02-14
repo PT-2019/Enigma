@@ -12,7 +12,6 @@ import java.util.ArrayList;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.0
  * @since 6.0
  */
@@ -32,6 +31,7 @@ public final class EnigmaUtility {
 	/**
 	 * Obtenir le nom de toutes les parties en local
 	 * Les noms sont issus des fichiers tmx présents
+	 *
 	 * @return Le nom des parties
 	 * @since 6.0
 	 */
@@ -42,20 +42,22 @@ public final class EnigmaUtility {
 	/**
 	 * Obtenir le nom de toutes les musiques en local
 	 * Les noms sont issus des fichiers tmx présents
+	 *
 	 * @return Le nom des maps
 	 * @since 6.0
 	 */
-	public static ArrayList<String> getAllMusicName(){
+	public static ArrayList<String> getAllMusicName() {
 		return Utility.getAllFiles(Config.MUSIC_FOLDER, Config.MUSIC_EXTENSIONS, true);
 	}
 
 	/**
 	 * Obtenir le nom de toutes les maps en local
 	 * Les noms sont issus des fichiers tmx présents
+	 *
 	 * @return Le nom des maps
 	 * @since 6.0
 	 */
-	public static ArrayList<String> getAllSoundName(){
+	public static ArrayList<String> getAllSoundName() {
 		return Utility.getAllFiles(Config.SOUND_FOLDER, Config.SOUND_EXTENSIONS, true);
 	}
 

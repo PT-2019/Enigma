@@ -13,40 +13,41 @@ import api.ui.CustomPanel;
  * @since 6.0
  */
 public abstract class Content {
-    /**
-     * Contenu de l'affichage
-     */
-    protected CustomPanel content;
+	/**
+	 * Etat non précisé
+	 */
+	public final static int NO_PRECISED_STATE = -1;
+	/**
+	 * Contenu de l'affichage
+	 */
+	protected CustomPanel content;
 
-    /**
-     * Etat non précisé
-     */
-    public final static int NO_PRECISED_STATE = -1;
+	/**
+	 * @param content Contenu
+	 */
+	public Content(CustomPanel content) {
+		this.content = content;
+	}
 
-    /**
-     * @param content Contenu
-     */
-    public Content(CustomPanel content){
-        this.content = content;
-    }
+	/**
+	 * Initialise le contenu
+	 * Doit être normalement appelé qu'une fois, dans le constructeur
+	 */
+	protected abstract void initContent();
 
-    /**
-     * Initialise le contenu
-     * Doit être normalement appelé qu'une fois, dans le constructeur
-     */
-    protected abstract void initContent();
+	/**
+	 * Rafraichi l'affichage
+	 *
+	 * @param state Etat
+	 */
+	protected abstract void refresh(int state);
 
-    /**
-     * Rafraichi l'affichage
-     * @param state Etat
-     */
-    protected abstract void refresh(int state);
-
-    /**
-     * Obtenir le contenu de l'affichage
-     * @return Contenu
-     */
-    public CustomPanel getContent() {
-        return this.content;
-    }
+	/**
+	 * Obtenir le contenu de l'affichage
+	 *
+	 * @return Contenu
+	 */
+	public CustomPanel getContent() {
+		return this.content;
+	}
 }

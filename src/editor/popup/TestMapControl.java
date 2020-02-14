@@ -7,8 +7,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import common.hud.EnigmaWindow;
 import common.map.MapTestScreen;
 import common.utils.runnable.RunActionPerformed;
-import data.config.Config;
 import data.EditorState;
+import data.config.Config;
 import editor.EditorLauncher;
 import editor.bar.listeners.RedoListener;
 import editor.bar.listeners.SaveAsListener;
@@ -32,24 +32,28 @@ public class TestMapControl implements InputAdapter {
 
 	/**
 	 * Pour savoir si la touche ctrl est enfoncé
+	 *
 	 * @since 2.0
 	 */
 	private boolean ctrlPush;
 
 	/**
 	 * Pour savoir si la touche alt est enfoncé
+	 *
 	 * @since 6.0
 	 */
 	private boolean altPush;
 
 	/**
 	 * Menu popup
+	 *
 	 * @since 2.0
 	 */
 	private EntityPopMenu menu;
 
 	/**
 	 * Caméra
+	 *
 	 * @since 2.0
 	 */
 	private OrthographicCamera camera;
@@ -57,21 +61,25 @@ public class TestMapControl implements InputAdapter {
 	//pour les raccourcis
 	/**
 	 * Sauvegarde
+	 *
 	 * @since 6.0
 	 */
 	private SaveListener save;
 	/**
 	 * Sauvegarder sous
+	 *
 	 * @since 6.0
 	 */
 	private SaveAsListener saveAs;
 	/**
 	 * Annuler retour arrière
+	 *
 	 * @since 6.0
 	 */
 	private RedoListener redo;
 	/**
 	 * Retour arrière
+	 *
 	 * @since 6.0
 	 */
 	private UndoListener undo;
@@ -102,22 +110,21 @@ public class TestMapControl implements InputAdapter {
 		//alt activé
 		if (keycode == Input.Keys.ALT_LEFT)
 			this.altPush = true;
-		//control activé
+			//control activé
 		else if (keycode == Input.Keys.CONTROL_LEFT)
 			this.ctrlPush = true;
-		//zoom ou de-zoom
+			//zoom ou de-zoom
 		else if (keycode == Input.Keys.PLUS && this.ctrlPush)
 			this.plusCamera();
 		else if (keycode == Input.Keys.MINUS && this.ctrlPush)
 			this.minCamera();
-		else
-		if(Config.SAVE.check(keycode, this.ctrlPush, this.altPush)){
+		else if (Config.SAVE.check(keycode, this.ctrlPush, this.altPush)) {
 			SwingUtilities.invokeLater(new RunActionPerformed(this.save, this));
-		}else if(Config.UNDO.check(keycode, this.ctrlPush, this.altPush)){
+		} else if (Config.UNDO.check(keycode, this.ctrlPush, this.altPush)) {
 			SwingUtilities.invokeLater(new RunActionPerformed(this.undo, this));
-		}else if(Config.REDO.check(keycode, this.ctrlPush, this.altPush)){
+		} else if (Config.REDO.check(keycode, this.ctrlPush, this.altPush)) {
 			SwingUtilities.invokeLater(new RunActionPerformed(this.redo, this));
-		}else if( Config.SAVE_AS.check(keycode, this.ctrlPush, this.altPush)){
+		} else if (Config.SAVE_AS.check(keycode, this.ctrlPush, this.altPush)) {
 			SwingUtilities.invokeLater(new RunActionPerformed(this.saveAs, this));
 		}
 
@@ -130,7 +137,7 @@ public class TestMapControl implements InputAdapter {
 			this.camera.translate(-Config.CAMERA_OFFSET, 0);
 			this.camera.update();
 			return true;
-		}else if (keycode == Input.Keys.RIGHT) {
+		} else if (keycode == Input.Keys.RIGHT) {
 			this.camera.translate(Config.CAMERA_OFFSET, 0);
 			this.camera.update();
 			return true;
@@ -138,7 +145,7 @@ public class TestMapControl implements InputAdapter {
 			this.camera.translate(0, Config.CAMERA_OFFSET);
 			this.camera.update();
 			return true;
-		}else if (keycode == Input.Keys.DOWN) {
+		} else if (keycode == Input.Keys.DOWN) {
 			this.camera.translate(0, -Config.CAMERA_OFFSET);
 			this.camera.update();
 			return true;
@@ -146,8 +153,8 @@ public class TestMapControl implements InputAdapter {
 		else if (keycode == Input.Keys.CONTROL_LEFT) {
 			this.ctrlPush = false;
 			return true;
-		//dés-activation alt
-		}else if (keycode == Input.Keys.ALT_LEFT){
+			//dés-activation alt
+		} else if (keycode == Input.Keys.ALT_LEFT) {
 			this.altPush = false;
 			return true;
 		}

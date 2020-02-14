@@ -2,11 +2,7 @@ package game.screens;
 
 import api.libgdx.LibgdxScreen;
 import api.libgdx.actor.GameActor;
-import api.utils.Utility;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.backends.lwjgl.audio.Mp3;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import common.entities.players.PlayerGame;
 import common.map.AbstractMap;
@@ -15,7 +11,6 @@ import common.utils.Logger;
 import game.EnigmaGame;
 
 import java.util.ArrayList;
-import java.util.logging.FileHandler;
 
 /**
  * écran du jeu
@@ -48,6 +43,15 @@ public class GameScreen extends LibgdxScreen {
 	 */
 	private GameMap map;
 
+	/**
+	 * Retourne le chemin de la map actuelle
+	 *
+	 * @return le chemin de la map
+	 */
+	public static String getMapPath() {
+		return MAP_PATH;
+	}
+
 	@Override
 	public void init() {
 		this.main = new Stage();
@@ -62,7 +66,7 @@ public class GameScreen extends LibgdxScreen {
 		ArrayList<GameActor> actors = this.map.getGameEntities();
 
 		for (GameActor actor : actors) {
-			if (actor instanceof PlayerGame){
+			if (actor instanceof PlayerGame) {
 				((PlayerGame) actor).center();
 				this.listen(((PlayerGame) actor));
 			}
@@ -127,13 +131,5 @@ public class GameScreen extends LibgdxScreen {
 	@Override
 	public AbstractMap getMap() {
 		return this.map;
-	}
-
-	/**
-	 * Retourne le chemin de la map actuelle
-	 * @return le chemin de la map
-	 */
-	public static String getMapPath() {
-		return MAP_PATH;
 	}
 }

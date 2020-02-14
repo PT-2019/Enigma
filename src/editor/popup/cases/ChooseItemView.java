@@ -31,7 +31,6 @@ import java.util.ArrayList;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.0 13/02/2020
  * @since 6.0 13/02/2020
  */
@@ -113,7 +112,7 @@ public class ChooseItemView extends AbstractPopUpView {
 		EnigmaLabel title = new EnigmaLabel(TITLE);
 		title.setVerticalAlignment(EnigmaLabel.CENTER);
 		title.setHorizontalAlignment(EnigmaLabel.CENTER);
-		title.setBorder(BorderFactory.createEmptyBorder(10,0,10,0));
+		title.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
 		this.add(title, BorderLayout.NORTH);
 		this.add(listScrollable, BorderLayout.CENTER);
 		this.add(this.use, BorderLayout.SOUTH);
@@ -138,7 +137,7 @@ public class ChooseItemView extends AbstractPopUpView {
 		/**
 		 * Listener de la sélection d'un item
 		 *
-		 * @param parent  parent
+		 * @param parent         parent
 		 * @param chooseItemView vue d'un item
 		 */
 		private SelectItem(CasePopUp parent, ChooseItemView chooseItemView) {
@@ -158,7 +157,7 @@ public class ChooseItemView extends AbstractPopUpView {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if(chooseItemView.selected == null) return;
+			if (chooseItemView.selected == null) return;
 			EntityChoseListener obs = this.parent.getObserver();
 			obs.updateObserver(chooseItemView.selected);
 		}

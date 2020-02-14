@@ -12,7 +12,6 @@ import java.awt.event.WindowListener;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.0 13/02/2020
  * @since 6.0 13/02/2020
  */
@@ -23,6 +22,7 @@ public interface WindowClosing extends WindowListener {
 	/**
 	 * Appelée à la fermeture de la fenêtre
 	 * .addWindowListener((WindowClosing) e1 -> { /*code*\/ });
+	 *
 	 * @param e event
 	 */
 	@Override
@@ -30,10 +30,21 @@ public interface WindowClosing extends WindowListener {
 
 	//cache toutes les autres méthodes
 
-	default void windowOpened(WindowEvent e){}
-	default void windowClosed(WindowEvent e){}
-	default void windowIconified(WindowEvent e){}
-	default void windowDeiconified(WindowEvent e){}
-	default void windowActivated(WindowEvent e){}
-	default void windowDeactivated(WindowEvent e){}
+	default void windowOpened(WindowEvent e) {
+	}
+
+	default void windowClosed(WindowEvent e) {
+	}
+
+	default void windowIconified(WindowEvent e) {
+	}
+
+	default void windowDeiconified(WindowEvent e) {
+	}
+
+	default void windowActivated(WindowEvent e) {
+	}
+
+	default void windowDeactivated(WindowEvent e) {
+	}
 }

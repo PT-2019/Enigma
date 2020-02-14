@@ -210,9 +210,9 @@ public class IDFactory {
 	 * @since 6.0
 	 */
 	public void free(IDInterface object, boolean deleted) {
-		if (!this.list.contains(object)){
+		if (!this.list.contains(object)) {
 			IDInterface elementByID = getElementByID(object.getID());
-			if(elementByID instanceof NullIDInterfaceObject) return;
+			if (elementByID instanceof NullIDInterfaceObject) return;
 			this.free(elementByID, deleted);
 			return;
 		}
@@ -220,14 +220,14 @@ public class IDFactory {
 		//ajoute aux ids libres
 		if (deleted) {
 			//pas de doublons
-			if(!this.deleted.contains(object.getID()))
+			if (!this.deleted.contains(object.getID()))
 				this.deleted.add(object.getID());
 			//retire l'id
 			object.setID(ID_FACTORY_NO_ID);
 
 			//suppression
 			this.list.remove(object);
-		} else if(!this.tmp.contains(object)) {
+		} else if (!this.tmp.contains(object)) {
 			//garde les objets et leurs ids en cache
 			this.tmp.add(object);
 		}

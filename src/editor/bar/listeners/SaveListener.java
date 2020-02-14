@@ -47,9 +47,9 @@ public class SaveListener extends MenuListener implements Observer<MapLoaded> {
 	@Override
 	public void actionPerformed(ActionEvent actionEvent) {
 		//si on ne peut pas sauvegarder
-		if(!this.canSave){
+		if (!this.canSave) {
 			//quitte
-			Logger.printDebugALL("SaveListener","Save bloquée.");
+			Logger.printDebugALL("SaveListener", "Save bloquée.");
 			return;
 		}
 		//save
@@ -62,9 +62,9 @@ public class SaveListener extends MenuListener implements Observer<MapLoaded> {
 	 * Sauvegarde
 	 * Existe car utilisé par d'autres classes
 	 */
-	public void save(){
+	public void save() {
 		MapTestScreen map = ((TestScreen) EnigmaGame.getCurrentScreen()).getMap();
-		EmptyMapGenerator.save(TestScreen.getMapPath().replace(Config.MAP_EXTENSION,""), map.getTiledMap(), map.getEntities());
+		EmptyMapGenerator.save(TestScreen.getMapPath().replace(Config.MAP_EXTENSION, ""), map.getTiledMap(), map.getEntities());
 		map.freeId(null); //libères les ids temporaires
 	}
 

@@ -27,7 +27,7 @@ import java.awt.event.ActionEvent;
  * @version 6.0 08/02/2020
  * @since 6.0 08/02/2020
  */
-public class StartSimulation extends MenuListener  implements Observer<MapLoaded> {
+public class StartSimulation extends MenuListener implements Observer<MapLoaded> {
 
 	private static final String STOP = EnigmaMenuBarItems.STOP.name;
 

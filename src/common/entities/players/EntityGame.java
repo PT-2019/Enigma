@@ -7,7 +7,6 @@ package common.entities.players;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 5.0
  * @since 5.0
  */
@@ -15,14 +14,16 @@ public interface EntityGame {
 
 	/**
 	 * Définit le json et sa clef dedans
+	 *
 	 * @param json chemin json
-	 * @param key clef (name=?) dans le json
+	 * @param key  clef (name=?) dans le json
 	 * @since 5.0
 	 */
 	void setJson(String json, String key);
 
 	/**
 	 * Retourne le chemin du json
+	 *
 	 * @return le chemin du json
 	 * @since 5.0
 	 */
@@ -30,6 +31,7 @@ public interface EntityGame {
 
 	/**
 	 * Retourne la clef (name=?) dans le json
+	 *
 	 * @return la clef (name=?) dans le json
 	 * @since 5.0
 	 */

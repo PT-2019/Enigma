@@ -54,7 +54,7 @@ public interface CustomUIFocusedAndHover<T extends CustomUI> extends CustomUIFoc
 	/**
 	 * Définit les couleurs de tous fond
 	 *
-	 * @param background        fond
+	 * @param background fond
 	 */
 	void setAllBackgrounds(Color background);
 
@@ -70,7 +70,7 @@ public interface CustomUIFocusedAndHover<T extends CustomUI> extends CustomUIFoc
 	/**
 	 * Définit les couleurs au premier plan
 	 *
-	 * @param foreground        fond
+	 * @param foreground fond
 	 */
 	void setAllForegrounds(Color foreground);
 

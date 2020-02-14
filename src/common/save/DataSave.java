@@ -113,13 +113,14 @@ public class DataSave {
 		writer.close();
 	}
 
-    /**
-     * Ecrit les données d'une partie
-     * @param data Données
-     * @throws IOException En cas d'erreur d'écriture
-     */
-    public static void writeGameData(GameData data) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(Config.GAME_DATA_FOLDER + data.getName() + Config.DATA_EXTENSION)));
+	/**
+	 * Ecrit les données d'une partie
+	 *
+	 * @param data Données
+	 * @throws IOException En cas d'erreur d'écriture
+	 */
+	public static void writeGameData(GameData data) throws IOException {
+		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(Config.GAME_DATA_FOLDER + data.getName() + Config.DATA_EXTENSION)));
 
 		writer.write(HEADER);
 		writer.newLine();

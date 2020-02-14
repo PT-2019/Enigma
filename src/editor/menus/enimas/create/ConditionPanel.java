@@ -42,12 +42,12 @@ public class ConditionPanel extends AbstractSubPopUpView implements Observer<Gam
 	public static final String NOT_AVAILABLE_CONDITION = NeedToBeTranslated.NOT_AVAILABLE_CONDITION;
 	public static final String ASK_COND = NeedToBeTranslated.ASK_COND;
 	public static final String TITLE = NeedToBeTranslated.ADD_CONDITION;
+	public static final String ANSWER_CHOICE = NeedToBeTranslated.ANSWER;
 	private static final String ASK_SELECT = NeedToBeTranslated.ASK_SELECT;
 	private static final String INVALID_ENTITY = NeedToBeTranslated.INVALID_ENTITY;
 	private static final String SUBMIT = NeedToBeTranslated.SUBMIT;
-	public static final String ANSWER_CHOICE = NeedToBeTranslated.ANSWER;
-    private static final String ANSWER_SELECTED = NeedToBeTranslated.ANSWER_SELECT;
-    private static final String ANSWER_UNSELECTED = NeedToBeTranslated.ANSWER_UNSELECT;
+	private static final String ANSWER_SELECTED = NeedToBeTranslated.ANSWER_SELECT;
+	private static final String ANSWER_UNSELECTED = NeedToBeTranslated.ANSWER_UNSELECT;
 
 	/**
 	 * Les informations sur l'entité sur laquelle l'opération sera faite
@@ -70,7 +70,8 @@ public class ConditionPanel extends AbstractSubPopUpView implements Observer<Gam
 
 	/**
 	 * Menu d'ajout d'une condition d'une énigme
-	 * @param parent parent
+	 *
+	 * @param parent  parent
 	 * @param addView addView
 	 */
 	ConditionPanel(AbstractPopUpView parent, ManageEnigmasAddView addView) {
@@ -85,14 +86,14 @@ public class ConditionPanel extends AbstractSubPopUpView implements Observer<Gam
 		GridBagLayout gb = new GridBagLayout();
 		panel.setLayout(gb);
 		GridBagConstraints gbc = new GridBagConstraints();
-		int x=0,y=0;
+		int x = 0, y = 0;
 		gbc.gridwidth = 1;
 		gbc.gridheight = 1;
 		gbc.gridx = x;
 		gbc.gridy = y;
 		gbc.weightx = 1;
 		gbc.weighty = 1;
-		gbc.insets = new Insets(0,0,0,0);
+		gbc.insets = new Insets(0, 0, 0, 0);
 		gbc.anchor = GridBagConstraints.WEST;
 		gbc.fill = GridBagConstraints.BOTH;
 
@@ -104,11 +105,11 @@ public class ConditionPanel extends AbstractSubPopUpView implements Observer<Gam
 			//on ajoute les boutons au groupe
 			this.groups.add(r);
 			//ajoute les boutons au panneau
-			if (cond == Conditions.ANSWER ) {
-				this.choicePanel = new ChoicePanel(ANSWER_CHOICE,r, this);
-				panel.add(this.choicePanel,gbc);
-			}else{
-				panel.add(r,gbc);
+			if (cond == Conditions.ANSWER) {
+				this.choicePanel = new ChoicePanel(ANSWER_CHOICE, r, this);
+				panel.add(this.choicePanel, gbc);
+			} else {
+				panel.add(r, gbc);
 			}
 			y++;
 			gbc.gridy = y;
@@ -199,19 +200,19 @@ public class ConditionPanel extends AbstractSubPopUpView implements Observer<Gam
 			msg += operations.restrict;
 			this.entityName.setText(msg);
 		} else if (object == null && operations != null) {
-			if(operations.menuDrag.contains(SelectionsModes.SPECIAL)){
+			if (operations.menuDrag.contains(SelectionsModes.SPECIAL)) {
 				this.entityName.setText(operations.restrict);
 			} else this.entityName.setText(ASK_SELECT + " (" + operations.menuDrag.msg + ")");
 		} else if (object != null) {
 			msg += object.getReadableName() + " (id=" + object.getID() + ")";
 			//si c'est une answer il faut rajouter les informations sur le texte
-			if (operations == Conditions.ANSWER){
-                if (this.listener.hasAnswer()){//s'il y a une réponse
-                    msg += ANSWER_SELECTED;
-                }else{
-                    msg += ANSWER_UNSELECTED;
-                }
-            }
+			if (operations == Conditions.ANSWER) {
+				if (this.listener.hasAnswer()) {//s'il y a une réponse
+					msg += ANSWER_SELECTED;
+				} else {
+					msg += ANSWER_UNSELECTED;
+				}
+			}
 			this.entityName.setText(msg);
 		} else {
 			this.entityName.setText(msg);
@@ -220,46 +221,48 @@ public class ConditionPanel extends AbstractSubPopUpView implements Observer<Gam
 
 	/**
 	 * Méthode spécialement pour créer une answer, on a besoin d'une réponse à cette condition
+	 *
 	 * @param question la question dont on attends une réponse
 	 */
-	public void update(Question question){
+	public void update(Question question) {
 		int show = 10;//affiche 10 caractères de la réponse
 
 		this.listener.setQuestion(question);
-        String msg = "";
-        String rep;
+		String msg = "";
+		String rep;
 
-        //raccourci
+		//raccourci
 		String q = question.getQuestion();
 
-		if (this.listener.getObject() != null){
-		    msg = this.entityName.getText();
-		    msg = msg.replace(ANSWER_SELECTED,"");
-			msg = msg.replace(ANSWER_UNSELECTED,"");
-		    msg += ANSWER_SELECTED;
+		if (this.listener.getObject() != null) {
+			msg = this.entityName.getText();
+			msg = msg.replace(ANSWER_SELECTED, "");
+			msg = msg.replace(ANSWER_UNSELECTED, "");
+			msg += ANSWER_SELECTED;
 
-		    if(q.length() <= show){
-		    	rep = q;
-		    } else {
-		    	rep = q.substring(0, show)+"...";
-		    }
-
-            this.entityName.setText(msg+" ("+rep+")");
-        }else {
-		    msg += ANSWER_SELECTED;
-
-			if(q.length() <= show){
+			if (q.length() <= show) {
 				rep = q;
 			} else {
-				rep = q.substring(0, show)+"...";
+				rep = q.substring(0, show) + "...";
 			}
 
-			this.entityName.setText(msg+" ("+rep+")");
-        }
+			this.entityName.setText(msg + " (" + rep + ")");
+		} else {
+			msg += ANSWER_SELECTED;
+
+			if (q.length() <= show) {
+				rep = q;
+			} else {
+				rep = q.substring(0, show) + "...";
+			}
+
+			this.entityName.setText(msg + " (" + rep + ")");
+		}
 	}
 
 	/**
 	 * Renvoi le label avec le message de la sélection de l'entité
+	 *
 	 * @return le label avec le message de la sélection de l'entité
 	 */
 	public EnigmaLabel getEntityName() {

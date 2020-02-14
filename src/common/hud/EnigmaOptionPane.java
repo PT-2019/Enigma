@@ -14,8 +14,14 @@ import common.hud.ui.EnigmaTextAreaUI;
 import common.hud.ui.EnigmaTextFieldUI;
 import common.utils.EnigmaUtility;
 import data.NeedToBeTranslated;
+import data.config.EnigmaUIValues;
 
+import javax.swing.JTextPane;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
@@ -26,7 +32,7 @@ import java.util.ArrayList;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 6.0
+ * @version 6.2
  * @since 3.0
  */
 @SuppressWarnings("unused")
@@ -182,8 +188,23 @@ public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyl
 	 * @param options option (ok, confirmer, ...), par exemple un tableau de string
 	 * @return la position dans le tableau d'options choisie
 	 */
+	@ConvenienceMethod
 	public static int showOptionDialog(CustomWindow parent, Object message, String title, String[] options) {
-		return showOptionDialog(parent, message, title, options, new EnigmaOptionPane());
+		return showOptionDialog(parent, message, title, options, false);
+	}
+
+	/**
+	 * Affiche un popup personnalisé
+	 *
+	 * @param parent  parent
+	 * @param message possiblement un tableau, des composants a afficher dans le popup
+	 * @param title   titre de la fenêtre
+	 * @param options option (ok, confirmer, ...), par exemple un tableau de string
+	 * @return la position dans le tableau d'options choisie
+	 */
+	private static int showOptionDialog(CustomWindow parent, Object message, String title, String[] options,
+	                                    boolean preventDefault) {
+		return showOptionDialog(parent, message, title, options, preventDefault, new EnigmaOptionPane());
 	}
 
 	/**
@@ -227,9 +248,9 @@ public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyl
 	/**
 	 * Crée un popup de choix pour la musique
 	 *
-	 * @param parent  parent
+	 * @param parent parent
 	 * @return le nom de la map sélectionnée
-	 * @since 5.0
+	 * @since 6.1
 	 */
 	public static String showMusicChoiceDialog(CustomWindow parent) {
 		return showListDialog(parent, NeedToBeTranslated.ASK_SELECT_MUSIC, EnigmaOptionPane.BASIC_DIMENSION,
@@ -239,9 +260,9 @@ public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyl
 	/**
 	 * Crée un popup de choix pour les sons
 	 *
-	 * @param parent  parent
+	 * @param parent parent
 	 * @return le nom de la map sélectionnée
-	 * @since 5.0
+	 * @since 6.1
 	 */
 	public static String showSoundChoiceDialog(CustomWindow parent) {
 		return showListDialog(parent, NeedToBeTranslated.ASK_SELECT_SOUND, EnigmaOptionPane.BASIC_DIMENSION,
@@ -258,6 +279,43 @@ public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyl
 	 */
 	public static void showAlert(CustomWindow parent, Dimension size, String message) {
 		showAlert(parent, size, message, new EnigmaOptionPane());
+	}
+
+
+	/**
+	 * Demande la saisie d'un nom d'utilisateur
+	 *
+	 * @return le nom saisie ou une chaîne vide
+	 * @since 6.2
+	 */
+	@ConvenienceMethod
+	public static String showInputUserName() {
+		JTextPane msg = new JTextPane();
+		msg.setText(NeedToBeTranslated.NEW_USER);
+		msg.setEditable(false);
+		msg.setFont(EnigmaUIValues.ENIGMA_FONT);
+		msg.setBackground(EnigmaUIValues.ENIGMA_PANEL_BACKGROUND);
+		msg.setForeground(EnigmaUIValues.ENIGMA_LABEL_FOREGROUND);
+		StyledDocument doc = msg.getStyledDocument();
+		SimpleAttributeSet center = new SimpleAttributeSet();
+		StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+		doc.setParagraphAttributes(0, doc.getLength(), center, false);
+
+		EnigmaTextField nameF = new EnigmaTextField();
+		nameF.setComponentUI(EnigmaOptionPane.getStyle().getTextFieldStyle().getComponentUI());
+		nameF.setMinimumSize(new Dimension(0, 40));//height que je sens bien :p
+
+		String[] opts = new String[]{EnigmaOptionPane.CONFIRM};
+		Component[] content = {
+				msg, nameF,
+		};
+
+		if (EnigmaOptionPane.showOptionDialog(new EnigmaWindow(), content, NeedToBeTranslated.INPUT_NAME,
+				opts, true) == 0) {
+			return nameF.getText();
+		} else {
+			return "";
+		}
 	}
 
 	/**

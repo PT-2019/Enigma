@@ -28,6 +28,7 @@ public final class RadioButtonManager implements MultipleButtonManager {
 
 	/**
 	 * Observateur des interactions avec des boutons radio
+	 *
 	 * @param setFirstSelected premier est sélectionné
 	 */
 	public RadioButtonManager(boolean setFirstSelected) {
@@ -38,7 +39,7 @@ public final class RadioButtonManager implements MultipleButtonManager {
 	@Override
 	public void add(CustomButton b) {
 		if (b.getComponentUI() == null) b.setComponentUI(new CustomButtonUI());
-		if(selected == null && setFirstSelected) setSelected(b);
+		if (selected == null && setFirstSelected) setSelected(b);
 		b.addActionListener(new SelectedManager(this));
 	}
 
@@ -51,6 +52,7 @@ public final class RadioButtonManager implements MultipleButtonManager {
 
 	/**
 	 * Appelée automatiquement lorsque l'on appuie sur un bouton
+	 *
 	 * @param b un bouton
 	 */
 	@Override

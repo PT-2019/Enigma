@@ -242,7 +242,7 @@ public interface NeedToBeTranslated {
 	String ANSWER_ONLY = "réponse uniquement";
 	String MAP_AND_MENU = "carte et menu";
 	String MENU_AND_POPUP = "menu et contenu";
-	String MAP_AND_POPUP =	"carte et contenu";
+	String MAP_AND_POPUP = "carte et contenu";
 	String MAP_AND_MENU_AND_POPUP = "carte, menu et contenu";
 	String NO_MODE = "Spécial";
 	String ALL_MODES = "carte, menu et contenu";
@@ -272,4 +272,5 @@ public interface NeedToBeTranslated {
 	String ADD_QUESTION = "Créer une question";
 	String INPUT_QUESTION = "Question";
 	String INPUT_ANSWER = "Réponse";
+	String NEW_USER = "Bienvenue sur Enigma.\n Quel sera votre nom d'utilisateur ?\n";
 }

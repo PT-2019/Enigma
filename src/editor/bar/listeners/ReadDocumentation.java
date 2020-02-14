@@ -44,7 +44,6 @@ import java.util.ArrayList;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.0 11/02/2020
  * @since 6.0 11/02/2020
  */
@@ -94,7 +93,7 @@ public class ReadDocumentation extends MenuListener {
 		//préparation de la fenêtre
 		this.dialog = new JDialog(window);
 		//taille
-		this.dialog.setSize(WIDTH,HEIGHT);
+		this.dialog.setSize(WIDTH, HEIGHT);
 		//titre
 		this.dialog.setTitle(TITLE);
 		//icône enigma
@@ -115,6 +114,7 @@ public class ReadDocumentation extends MenuListener {
 		//rempli la fenêtre avec les valeurs lues
 		this.initDialog();
 	}
+
 	/**
 	 * Rempli
 	 */
@@ -125,7 +125,7 @@ public class ReadDocumentation extends MenuListener {
 
 		//layout
 		content.setLayout(new CardLayout());
-		categories.setLayout(new GridLayout(ROWS,1));
+		categories.setLayout(new GridLayout(ROWS, 1));
 
 		//rempli
 		this.fillCategories(categories, content);
@@ -151,7 +151,7 @@ public class ReadDocumentation extends MenuListener {
 	 * Crée le menu des catégories
 	 *
 	 * @param categories panneau des catégories
-	 * @param content panneau du contenu
+	 * @param content    panneau du contenu
 	 */
 	private void fillCategories(EnigmaPanel categories, EnigmaPanel content) {
 		final boolean[] SHOWED = new boolean[4];
@@ -177,7 +177,7 @@ public class ReadDocumentation extends MenuListener {
 		//un seul bouton sélectionné
 		RadioButtonManager manager = new RadioButtonManager(true);
 
-		for (DocumentationFile documentationCategory:this.doc) {
+		for (DocumentationFile documentationCategory : this.doc) {
 			EnigmaButton category = new EnigmaButton(documentationCategory.getTitle());
 			//ui
 			category.setComponentUI(buttonUI);
@@ -198,8 +198,9 @@ public class ReadDocumentation extends MenuListener {
 
 	/**
 	 * Charge la documentation d'une catégorie
+	 *
 	 * @param documentationCategory documentation d'une catégorie
-	 * @param content panneau dans lequel charger
+	 * @param content               panneau dans lequel charger
 	 */
 	private void loadContent(DocumentationFile documentationCategory, EnigmaPanel content) {
 		final Color BACKGROUND = CustomColors.TILED_GRAY_DARK, FOREGROUND = Color.WHITE;
@@ -216,7 +217,7 @@ public class ReadDocumentation extends MenuListener {
 		gdc.gridwidth = 1;
 		gdc.weightx = 1;
 		gdc.gridx = 0;
-		gdc.insets = new Insets(10,20,10,20);
+		gdc.insets = new Insets(10, 20, 10, 20);
 		gdc.fill = GridBagConstraints.HORIZONTAL;
 
 		//ajoute le contenu
@@ -224,13 +225,14 @@ public class ReadDocumentation extends MenuListener {
 		for (int i = 0; i < docItems.size(); i++) {
 			DocumentationFile.DocItems items = docItems.get(i);
 			DocumentationTypes documentationTypes = DocumentationTypes.valueOf(items.getType());
-			switch (documentationTypes){
-				case TITLE: case TITLE_SMALL:
+			switch (documentationTypes) {
+				case TITLE:
+				case TITLE_SMALL:
 					EnigmaLabel title = new EnigmaLabel(items.getContent()[0]);
 					title.setHorizontalAlignment(EnigmaLabel.LEFT);
 					//style
 					title.getComponentUI().setAllBackgrounds(BACKGROUND);
-					if(documentationTypes.equals(DocumentationTypes.TITLE_SMALL))
+					if (documentationTypes.equals(DocumentationTypes.TITLE_SMALL))
 						title.getComponentUI().setFont(TITLE_SMALL_F);
 					else title.getComponentUI().setFont(TITLE_F);
 					title.getComponentUI().setAllForegrounds(BASE_PRESSED_COLOR);
@@ -241,7 +243,7 @@ public class ReadDocumentation extends MenuListener {
 				case MESSAGE:
 					EnigmaTextArea area = new EnigmaTextArea();
 					StringBuilder sb = new StringBuilder();
-					for (String s :items.getContent()) {
+					for (String s : items.getContent()) {
 						sb.append(s);
 					}
 					area.setText(sb.toString());
@@ -251,7 +253,7 @@ public class ReadDocumentation extends MenuListener {
 					area.getComponentUI().setFont(TXT);
 					area.getComponentUI().setAllBackgrounds(BACKGROUND);
 					area.getComponentUI().setAllForegrounds(FOREGROUND);
-					area.setMargin(new Insets(10,10,10,10));
+					area.setMargin(new Insets(10, 10, 10, 10));
 					//add
 					gdc.gridy = i;
 					panel.add(area, gdc);
@@ -289,7 +291,6 @@ public class ReadDocumentation extends MenuListener {
 	 * @author Louka DOZ
 	 * @author Loic SENECAT
 	 * @author Quentin RAMSAMY-AGEORGES
-	 *
 	 * @version 6.0 11/02/2020
 	 * @since 6.0 11/02/2020
 	 */
@@ -308,11 +309,11 @@ public class ReadDocumentation extends MenuListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			((CardLayout)this.content.getLayout()).show(this.content, e.getActionCommand());
+			((CardLayout) this.content.getLayout()).show(this.content, e.getActionCommand());
 
 			//reset du scroll
-			for (Component c :this.content.getComponents()) {
-				if(c instanceof JScrollPane){
+			for (Component c : this.content.getComponents()) {
+				if (c instanceof JScrollPane) {
 					((JScrollPane) c).getVerticalScrollBar().setValue(MIN_VALUE);
 				}
 			}

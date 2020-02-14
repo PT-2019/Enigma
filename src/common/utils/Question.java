@@ -10,7 +10,6 @@ import api.utils.annotations.Immutable;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.0 14/02/2020
  * @since 6.0 14/02/2020
  */
@@ -25,9 +24,9 @@ public class Question {
 	 * Une question
 	 *
 	 * @param question question
-	 * @param answer réponse
+	 * @param answer   réponse
 	 */
-	public Question(String question, String answer){
+	public Question(String question, String answer) {
 		this.question = question;
 		this.answer = answer;
 	}

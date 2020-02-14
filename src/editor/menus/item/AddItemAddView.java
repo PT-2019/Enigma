@@ -45,8 +45,8 @@ public class AddItemAddView extends AbstractSubPopUpView implements Observer<Gam
 	 * Textes
 	 */
 	private static final String TITLE = NeedToBeTranslated.ADD_ITEM;
-	private static final String NO_ITEMS = NeedToBeTranslated.ASK_SELECT+" ("+NeedToBeTranslated.MENU_ONLY+")";
-	private static final String INVALID = NeedToBeTranslated.INVALID_ENTITY+" "+NeedToBeTranslated.ITEMS_ONLY;
+	private static final String NO_ITEMS = NeedToBeTranslated.ASK_SELECT + " (" + NeedToBeTranslated.MENU_ONLY + ")";
+	private static final String INVALID = NeedToBeTranslated.INVALID_ENTITY + " " + NeedToBeTranslated.ITEMS_ONLY;
 	private static final String SUBMIT = NeedToBeTranslated.CONFIRM;
 
 	/**
@@ -64,20 +64,22 @@ public class AddItemAddView extends AbstractSubPopUpView implements Observer<Gam
 
 	/**
 	 * True si la sélection a étée validée sinon false.
+	 *
 	 * @see #free(GameObject, MapTestScreen)
 	 */
 	private boolean submitted;
 
 	/**
 	 * Vue du menu d'ajout d'un item
+	 *
 	 * @param parent parent
-	 * @param list liste des items
+	 * @param list   liste des items
 	 */
 	AddItemAddView(AbstractPopUpView parent, AddItemListView list) {
 		super(TITLE, parent, true);
 
 		//attributs
-		this.submitted =  false;
+		this.submitted = false;
 		this.item = null;
 
 		//label de l'item choisi
@@ -121,10 +123,11 @@ public class AddItemAddView extends AbstractSubPopUpView implements Observer<Gam
 
 	/**
 	 * Libère un ressource
+	 *
 	 * @param object object
-	 * @param map map
+	 * @param map    map
 	 */
-	private void free(@Nullable GameObject object, MapTestScreen map){
+	private void free(@Nullable GameObject object, MapTestScreen map) {
 		if (this.item != null && !this.submitted) {//si j'avais un object temporaire, je le supprime
 			//il existe déjà un object
 			Vector2 pos = this.item.getGameObjectPosition();

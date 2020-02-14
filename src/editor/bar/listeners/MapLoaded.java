@@ -13,32 +13,31 @@ import java.util.ArrayList;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.0 12/02/2020
  * @since 6.0 12/02/2020
  */
 public class MapLoaded implements Subject<MapLoaded> {
 
+	private static MapLoaded instance = null;
 	private ArrayList<Observer<MapLoaded>> subjects;
 	private boolean mapLoaded;
-
-	private static MapLoaded instance = null;
-
-	/**
-	 * Une classe qui préviens ceux qui ont
-	 * besoin d'une map, qu'une map a étée chargée/est disponible.
-	 * @return l'instance unique
-	 */
-	public static MapLoaded getInstance() {
-		if(MapLoaded.instance == null){
-			MapLoaded.instance = new MapLoaded();
-		}
-		return MapLoaded.instance;
-	}
 
 	private MapLoaded() {
 		this.subjects = new ArrayList<>();
 		this.mapLoaded = false;
+	}
+
+	/**
+	 * Une classe qui préviens ceux qui ont
+	 * besoin d'une map, qu'une map a étée chargée/est disponible.
+	 *
+	 * @return l'instance unique
+	 */
+	public static MapLoaded getInstance() {
+		if (MapLoaded.instance == null) {
+			MapLoaded.instance = new MapLoaded();
+		}
+		return MapLoaded.instance;
 	}
 
 	@Override
@@ -53,25 +52,27 @@ public class MapLoaded implements Subject<MapLoaded> {
 
 	@Override
 	public void updateObserver(MapLoaded loaded) {
-		for (Observer<MapLoaded> obs: this.subjects){
+		for (Observer<MapLoaded> obs : this.subjects) {
 			obs.update(loaded);
 		}
 	}
 
 	/**
+	 * Retourne si la map est chargée ou non
+	 *
+	 * @return true si chargée
+	 */
+	public boolean isMapLoaded() {
+		return this.mapLoaded;
+	}
+
+	/**
 	 * Définit si la map est chargée ou non
+	 *
 	 * @param mapLoaded true si chargée
 	 */
 	public void setMapLoaded(boolean mapLoaded) {
 		this.mapLoaded = mapLoaded;
 		this.updateObserver(this);
-	}
-
-	/**
-	 * Retourne si la map est chargée ou non
-	 * @return true si chargée
-	 */
-	public boolean isMapLoaded() {
-		return this.mapLoaded;
 	}
 }

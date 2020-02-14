@@ -18,6 +18,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.util.ArrayList;
 
 /**
@@ -36,7 +37,6 @@ public class CustomOptionPane implements OptionPaneStyle {
 	/**
 	 * Choix de base : confirmer
 	 */
-	@SuppressWarnings("WeakerAccess")
 	public final static String CONFIRM = "Confirmer";
 	public final static String CANCEL = "Annuler";
 
@@ -634,7 +634,7 @@ public class CustomOptionPane implements OptionPaneStyle {
 		gbc.weightx = 1;
 		gbc.weighty = 0;
 
-		if(choices.size() <= MIN){
+		if (choices.size() <= MIN) {
 			mapsComponent.setLayout(new GridLayout(MIN, 1));
 		} else {
 			mapsComponent.setLayout(new GridLayout(choices.size(), 1));
@@ -709,20 +709,22 @@ public class CustomOptionPane implements OptionPaneStyle {
 	 * @return la position dans le tableau d'options choisie
 	 */
 	public static int showOptionDialog(CustomWindow parent, Object message, String title, String[] options) {
-		return showOptionDialog(parent, message, title, options, new CustomOptionPane());
+		return showOptionDialog(parent, message, title, options, false, new CustomOptionPane());
 	}
 
 	/**
 	 * Affiche un popup personnalisé
 	 *
-	 * @param parent  parent
-	 * @param message possiblement un tableau, des composants a afficher dans le popup
-	 * @param title   titre de la fenêtre
-	 * @param options option (ok, confirmer, ...), par exemple un tableau de string
+	 * @param parent         parent
+	 * @param message        possiblement un tableau, des composants a afficher dans le popup
+	 * @param title          titre de la fenêtre
+	 * @param options        option (ok, confirmer, ...), par exemple un tableau de string
+	 * @param preventDefault ne pas appliquer le style par défaut
+	 * @param style          style à appliquer
 	 * @return la position dans le tableau d'options choisie
 	 */
 	protected static int showOptionDialog(CustomWindow parent, Object message, String title, String[] options,
-	                                   OptionPaneStyle style) {
+	                                      boolean preventDefault, OptionPaneStyle style) {
 		CustomAlert window = style.getWindow();
 		window.setTitle(title);
 
@@ -741,21 +743,36 @@ public class CustomOptionPane implements OptionPaneStyle {
 			Object[] messageA = (Object[]) message;
 			questionComponent.setLayout(new GridLayout());
 			int sum = 0;
-			for (int i = 0; i < messageA.length; i++, sum++) {
-				Object o = messageA[i];
-				if (o instanceof CustomTextArea) {
-					((CustomTextArea) o).setComponentUI(style.getTextAreaStyle().getComponentUI());
-				} else if (o instanceof CustomLabel) {
-					((CustomLabel) o).setComponentUI(style.getLabelStyle("").getComponentUI());
-				} else if (o instanceof CustomButton) {
-					((CustomButton) o).setComponentUI(style.getButtonStyle("").getComponentUI());
-				} else if (o instanceof CustomTextField) {
-					((CustomTextField) o).setComponentUI(style.getTextFieldStyle().getComponentUI());
+			if (!preventDefault) {
+				for (int i = 0; i < messageA.length; i++, sum++) {
+					Object o = messageA[i];
+					if (o instanceof CustomTextArea) {
+						((CustomTextArea) o).setComponentUI(style.getTextAreaStyle().getComponentUI());
+					} else if (o instanceof CustomLabel) {
+						((CustomLabel) o).setComponentUI(style.getLabelStyle("").getComponentUI());
+					} else if (o instanceof CustomButton) {
+						((CustomButton) o).setComponentUI(style.getButtonStyle("").getComponentUI());
+					} else if (o instanceof CustomTextField) {
+						((CustomTextField) o).setComponentUI(style.getTextFieldStyle().getComponentUI());
+					}
+					questionComponent.add((Component) o);
 				}
-				questionComponent.add((Component) o);
+				((GridLayout) questionComponent.getLayout()).setRows(sum);
+				((GridLayout) questionComponent.getLayout()).setColumns(1);
+			} else {
+				//ajoute juste les composants
+				questionComponent.setLayout(new GridBagLayout());
+				GridBagConstraints gbc = new GridBagConstraints();
+				for (int i = 0; i < messageA.length; i++, sum++) {
+					gbc.fill = GridBagConstraints.HORIZONTAL;
+					gbc.weightx = 1;
+					gbc.gridwidth = 1;
+					gbc.gridx = 0;
+					gbc.insets = new Insets(5, 5, 5, 5);
+					gbc.gridy = i;
+					questionComponent.add((Component) messageA[i], gbc);
+				}
 			}
-			((GridLayout) questionComponent.getLayout()).setRows(sum);
-			((GridLayout) questionComponent.getLayout()).setColumns(1);
 		}
 
 		parent.setAlwaysOnTop(true);

@@ -67,9 +67,9 @@ public final class EditorActionFactory {
 			return new EditorActionAddSubEntity(type, (Container) parent, (Consumable) object);
 		} else if (type.equals(ActionTypes.REMOVE_SUB_ENTITY)) {
 			return new EditorActionRemoveSubEntity(type, (Container) parent, (Consumable) object);
-		} else if(type.equals(ActionTypes.SET_NAME)){
+		} else if (type.equals(ActionTypes.SET_NAME)) {
 			return new EditorActionSetName(type, (Living) parent, (String) object);
-		} else if(type.equals(ActionTypes.SET_CONTENT)){
+		} else if (type.equals(ActionTypes.SET_CONTENT)) {
 			return new EditorActionSetContent(type, (Content) parent, (String) object);
 		}
 

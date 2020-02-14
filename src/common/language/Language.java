@@ -34,7 +34,7 @@ public enum Language {
 
 	Language(String name, String folder) {
 		this.name = name;
-		this.json = folder+BASE_NAME+JSON;
-		this.doc = folder+DOCUMENTATION_NAME+JSON;
+		this.json = folder + BASE_NAME + JSON;
+		this.doc = folder + DOCUMENTATION_NAME + JSON;
 	}
 }

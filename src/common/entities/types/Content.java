@@ -13,18 +13,18 @@ package common.entities.types;
 public interface Content {
 
 	/**
-	 * Ajoute un contenu à l'objet
-	 *
-	 * @param content Contenu à ajouter
-	 * @since 1.0
-	 */
-	void setContent(String content);
-
-	/**
 	 * Obtenir le contenu
 	 *
 	 * @return le contenu, le contenu peut être vide
 	 * @since 1.0
 	 */
 	String getContent();
+
+	/**
+	 * Ajoute un contenu à l'objet
+	 *
+	 * @param content Contenu à ajouter
+	 * @since 1.0
+	 */
+	void setContent(String content);
 }

@@ -36,7 +36,7 @@ public class TestScreen extends LibgdxScreen {
 	/**
 	 * Couleur du fond (gris clari)
 	 */
-	private static final float BG_R=0.6f, BG_G=0.6f, BG_B=0.6f, BG_A = 1.0f;
+	private static final float BG_R = 0.6f, BG_G = 0.6f, BG_B = 0.6f, BG_A = 1.0f;
 	private static final String OPEN_MAP = NeedToBeTranslated.OPEN_MAP;
 	private static final String CREATE_MAP = NeedToBeTranslated.NEW_MAP;
 	//blanc
@@ -89,10 +89,10 @@ public class TestScreen extends LibgdxScreen {
 		this.dnd = new Stage();//Drag and drop
 
 		//Colorie l'écran en gris
-		Gdx.gl.glClearColor(BG_R, BG_G, BG_B , BG_A);
+		Gdx.gl.glClearColor(BG_R, BG_G, BG_B, BG_A);
 
 		//s'il y a une map
-		if(TestScreen.MAP_PATH != null && TestScreen.MAP_PATH.length() != 0){
+		if (TestScreen.MAP_PATH != null && TestScreen.MAP_PATH.length() != 0) {
 			try {
 				//Création de la map
 				this.map = new MapTestScreen(MAP_PATH, 1f);
@@ -212,6 +212,6 @@ public class TestScreen extends LibgdxScreen {
 	@Override
 	public void show() {
 		super.show();
-		Gdx.gl.glClearColor(BG_R, BG_G, BG_B , BG_A);
+		Gdx.gl.glClearColor(BG_R, BG_G, BG_B, BG_A);
 	}
 }

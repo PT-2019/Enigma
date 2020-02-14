@@ -117,6 +117,13 @@ public class AddNameView extends AbstractPopUpView {
 		this.setLocation(Gdx.graphics.getWidth() / 2 - getWidth() / 2, Gdx.graphics.getHeight() / 2 - getHeight() / 2);
 	}
 
+	/**
+	 * instance du menu pour changer de nom
+	 */
+	public static AddNameView getInstance() {
+		return instance;
+	}
+
 	@Override
 	public void clean() {
 	}
@@ -150,7 +157,7 @@ public class AddNameView extends AbstractPopUpView {
 			//ajout du contenu
 			String name = this.parent.field.getText();
 			String old = this.entity.getName();
-			if(name.isEmpty() || name.isBlank()){
+			if (name.isEmpty() || name.isBlank()) {
 				this.entity.setName(this.entity.getKey());//nom de base
 			} else {
 				this.entity.setName(name);
@@ -168,12 +175,5 @@ public class AddNameView extends AbstractPopUpView {
 			this.parent.popUp.invalidateDrawable();
 			this.parent.popUp.setVisible(true);
 		}
-	}
-
-	/**
-	 * instance du menu pour changer de nom
-	 */
-	public static AddNameView getInstance(){
-		return instance;
 	}
 }

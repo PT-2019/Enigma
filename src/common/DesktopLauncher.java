@@ -161,7 +161,7 @@ public class DesktopLauncher implements Runnable {
 		}
 
 		try {
-			if(c != null){
+			if (c != null) {
 				c.close();
 			} else {
 				launcher.window.dispose();

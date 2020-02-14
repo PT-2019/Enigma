@@ -14,7 +14,6 @@ import java.net.URL;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.0 12/02/2020
  * @since 6.0 12/02/2020
  */
@@ -23,14 +22,15 @@ public final class NetUtility {
 
 	/**
 	 * Ouvre un lien dans un navigateur
+	 *
 	 * @param link un lien
-	 * @throws IllegalStateException si l'opération n'est pas supporté
+	 * @throws IllegalStateException    si l'opération n'est pas supporté
 	 * @throws IllegalArgumentException si le lien est incorrect/invalide/non trouvé
 	 * @see Desktop
 	 */
-	public static void openLinkInBrowser(String link){
+	public static void openLinkInBrowser(String link) {
 		//test si disponible
-		if(!Desktop.isDesktopSupported())
+		if (!Desktop.isDesktopSupported())
 			throw new IllegalStateException("Open link is not supported.");
 
 		Desktop desktop = Desktop.getDesktop();

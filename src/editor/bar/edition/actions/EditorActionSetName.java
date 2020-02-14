@@ -32,7 +32,7 @@ class EditorActionSetName implements EditorAction {
 	public void doAction() {
 		this.entity.setName(this.newName);
 		AddNameView instance = AddNameView.getInstance();
-		if(instance != null){
+		if (instance != null) {
 			//restaure le nom
 			instance.getPopUp().invalidateDrawable();
 			instance.invalidateDrawable();
@@ -43,7 +43,7 @@ class EditorActionSetName implements EditorAction {
 	public void undoAction() {
 		this.entity.setName(this.oldName);
 		AddNameView instance = AddNameView.getInstance();
-		if(instance != null){
+		if (instance != null) {
 			//restaure le nom
 			instance.getPopUp().invalidateDrawable();
 			instance.invalidateDrawable();

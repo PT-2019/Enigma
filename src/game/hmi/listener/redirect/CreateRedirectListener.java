@@ -19,18 +19,18 @@ import java.awt.event.ActionListener;
  * @since 6.0
  */
 public class CreateRedirectListener implements ActionListener {
-    /**
-     * Textes
-     */
-    public final static String QUIT_CONFIRMATION = NeedToBeTranslated.QUIT_CONFIRMATION;
+	/**
+	 * Textes
+	 */
+	public final static String QUIT_CONFIRMATION = NeedToBeTranslated.QUIT_CONFIRMATION;
 
-    @Override
-    public void actionPerformed(ActionEvent actionEvent) {
-        if(ContentManager.getInstance().getState() != ContentManager.LOBBY_STATE)
-            ContentManager.getInstance().refresh(ContentManager.CREATE_STATE);
-        else{
-            if(EnigmaOptionPane.showConfirmDialog(EnigmaGameLauncher.getInstance().getWindow(),QUIT_CONFIRMATION))
-                ContentManager.getInstance().refresh(ContentManager.CREATE_STATE);
-        }
-    }
+	@Override
+	public void actionPerformed(ActionEvent actionEvent) {
+		if (ContentManager.getInstance().getState() != ContentManager.LOBBY_STATE)
+			ContentManager.getInstance().refresh(ContentManager.CREATE_STATE);
+		else {
+			if (EnigmaOptionPane.showConfirmDialog(EnigmaGameLauncher.getInstance().getWindow(), QUIT_CONFIRMATION))
+				ContentManager.getInstance().refresh(ContentManager.CREATE_STATE);
+		}
+	}
 }

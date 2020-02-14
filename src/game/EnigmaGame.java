@@ -22,27 +22,63 @@ public class EnigmaGame extends LibgdxGame {
 
 	/**
 	 * Instance unique
+	 *
 	 * @since 2.0
 	 */
 	private static EnigmaGame enigmaGame;
 
 	/**
 	 * Le screen a lancer au début du jeu
+	 *
 	 * @since 3.0
 	 */
 	private static EnigmaScreens startScreen = EnigmaScreens.GAME;
 
 	/**
 	 * Exécutable lancé après initialisation de la libgdx
+	 *
 	 * @since 6.0
 	 */
 	private static Runnable onLoad = null;
 
 	/**
 	 * Empêche la création extérieure.
+	 *
 	 * @since 6.0
 	 */
-	private EnigmaGame(){
+	private EnigmaGame() {
+	}
+
+	/**
+	 * Il s'agit d'une singleton.
+	 *
+	 * @return l'instance unique du jeu
+	 * @since 2.0
+	 */
+	public static EnigmaGame getInstance() {
+		if (EnigmaGame.enigmaGame == null)
+			EnigmaGame.enigmaGame = new EnigmaGame();
+		return EnigmaGame.enigmaGame;
+	}
+
+	/**
+	 * écran affiché après initialisation de la libgdx
+	 *
+	 * @param screen écran affiché après initialisation de la libgdx
+	 * @since 3.0
+	 */
+	public static void setStartScreen(EnigmaScreens screen) {
+		EnigmaGame.startScreen = screen;
+	}
+
+	/**
+	 * Exécutable lancé après initialisation de la libgdx
+	 *
+	 * @param r Exécutable lancé après initialisation de la libgdx
+	 */
+	@SuppressWarnings("WeakerAccess")
+	public static void setOnLoad(Runnable r) {
+		EnigmaGame.onLoad = r;
 	}
 
 	@Override
@@ -65,7 +101,7 @@ public class EnigmaGame extends LibgdxGame {
 		EnigmaGame.setScreen(EnigmaGame.startScreen.name());
 
 		//lance onLoad
-		if(EnigmaGame.onLoad != null) EnigmaGame.onLoad.run();
+		if (EnigmaGame.onLoad != null) EnigmaGame.onLoad.run();
 
 		EnigmaGame.onLoad = null;
 	}
@@ -80,36 +116,7 @@ public class EnigmaGame extends LibgdxGame {
 	}
 
 	@Override
-	public CustomWindow getWindow() { return null; }
-
-	/**
-	 * Il s'agit d'une singleton.
-	 *
-	 * @return l'instance unique du jeu
-	 *
-	 * @since 2.0
-	 */
-	public static EnigmaGame getInstance() {
-		if (EnigmaGame.enigmaGame == null)
-			EnigmaGame.enigmaGame = new EnigmaGame();
-		return EnigmaGame.enigmaGame;
-	}
-
-	/**
-	 * écran affiché après initialisation de la libgdx
-	 * @param screen écran affiché après initialisation de la libgdx
-	 * @since 3.0
-	 */
-	public static void setStartScreen(EnigmaScreens screen) {
-		EnigmaGame.startScreen = screen;
-	}
-
-	/**
-	 * Exécutable lancé après initialisation de la libgdx
-	 * @param r Exécutable lancé après initialisation de la libgdx
-	 */
-	@SuppressWarnings("WeakerAccess")
-	public static void setOnLoad(Runnable r) {
-		EnigmaGame.onLoad = r;
+	public CustomWindow getWindow() {
+		return null;
 	}
 }

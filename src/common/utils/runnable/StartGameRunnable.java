@@ -13,7 +13,6 @@ import game.screens.GameScreen;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.0
  * @since 6.0
  */
@@ -26,9 +25,10 @@ public class StartGameRunnable implements Runnable {
 
 	/**
 	 * Lance le jeu
+	 *
 	 * @param mapPath chemin de la map
 	 */
-	public StartGameRunnable(String mapPath){
+	public StartGameRunnable(String mapPath) {
 		this.mapPath = mapPath;
 	}
 

@@ -26,18 +26,21 @@ public class EnigmaGameLauncher implements Application {
 
 	/**
 	 * instance unique
+	 *
 	 * @since 4.0
 	 */
 	private static EnigmaGameLauncher launcher;
 
 	/**
 	 * Fenêtre de l'éditeur
+	 *
 	 * @since 4.0
 	 */
 	private EnigmaWindow window;
 
 	/**
 	 * écran du jeu
+	 *
 	 * @since 6.0
 	 */
 	private JPanel gameScreen;
@@ -73,7 +76,7 @@ public class EnigmaGameLauncher implements Application {
 	 */
 	@Override
 	public void start() {
-		if(this.gameScreen != null) {
+		if (this.gameScreen != null) {
 			this.window.remove(this.gameScreen);
 			this.gameScreen = new JPanel();
 		}
@@ -87,10 +90,11 @@ public class EnigmaGameLauncher implements Application {
 
 	/**
 	 * Lance l'écran de configuration de partie
+	 *
 	 * @since 6.0
 	 */
 	@SuppressWarnings("WeakerAccess")
-	public void setContentToGameConfig(){
+	public void setContentToGameConfig() {
 		MHIManager.clear();
 		this.gameScreen = MHIManager.getInstance().getContent();
 		this.window.add(this.gameScreen, BorderLayout.CENTER);
@@ -98,11 +102,12 @@ public class EnigmaGameLauncher implements Application {
 
 	/**
 	 * Lance le jeu
+	 *
 	 * @param mapPath chemin de la map
 	 * @since 6.0
 	 */
-	public void setContentToGame(String mapPath){
-		if(Gdx.app == null) {
+	public void setContentToGame(String mapPath) {
+		if (Gdx.app == null) {
 			//méthode a exécuter au lancement
 			EnigmaGame.setOnLoad(new StartGameRunnable(mapPath));
 			//charge la libgdx

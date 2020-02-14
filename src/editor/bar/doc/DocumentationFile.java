@@ -13,32 +13,32 @@ import java.util.Arrays;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.0 11/02/2020
  * @since 6.0 11/02/2020
  */
-@SuppressWarnings({"MismatchedQueryAndUpdateOfCollection","unused"})
+@SuppressWarnings({"MismatchedQueryAndUpdateOfCollection", "unused"})
 public final class DocumentationFile {
-
-	/**
-	 * Charge la documentation
-	 * @param path chemin
-	 * @return retourne le fichier lu. Un object par catégorie
-	 */
-	@SuppressWarnings("unchecked")
-	public static ArrayList<DocumentationFile> loadDocumentation(String path){
-		return new Json().fromJson(ArrayList.class, DocumentationFile.class, Utility.readFile(path));
-	}
 
 	private String tooltip = "";
 	private String title = "";
 	private ArrayList<DocItems> docItems = new ArrayList<>();
-
 	DocumentationFile() {
 	}
 
 	/**
+	 * Charge la documentation
+	 *
+	 * @param path chemin
+	 * @return retourne le fichier lu. Un object par catégorie
+	 */
+	@SuppressWarnings("unchecked")
+	public static ArrayList<DocumentationFile> loadDocumentation(String path) {
+		return new Json().fromJson(ArrayList.class, DocumentationFile.class, Utility.readFile(path));
+	}
+
+	/**
 	 * Retourne le contenu de la catégorie
+	 *
 	 * @return Retourne le contenu de la catégorie
 	 */
 	public ArrayList<DocItems> getDocItems() {
@@ -47,6 +47,7 @@ public final class DocumentationFile {
 
 	/**
 	 * Retourne le titre de la catégorie
+	 *
 	 * @return le titre de la catégorie
 	 */
 	public String getTitle() {
@@ -55,6 +56,7 @@ public final class DocumentationFile {
 
 	/**
 	 * Retourne un tooltip de la catégorie
+	 *
 	 * @return un tooltip de la catégorie
 	 */
 	public String getToolTip() {
@@ -73,7 +75,6 @@ public final class DocumentationFile {
 	 * @author Louka DOZ
 	 * @author Loic SENECAT
 	 * @author Quentin RAMSAMY-AGEORGES
-	 *
 	 * @version 6.0 11/02/2020
 	 * @since 6.0 11/02/2020
 	 */
@@ -82,10 +83,12 @@ public final class DocumentationFile {
 		private String type;
 		private String[] content;
 
-		DocItems(){}
+		DocItems() {
+		}
 
 		/**
 		 * Retourne le type de l'élément sous la forme d'un string
+		 *
 		 * @return le type de l'élément sous la forme d'un string
 		 * @see DocumentationTypes
 		 */
@@ -95,6 +98,7 @@ public final class DocumentationFile {
 
 		/**
 		 * Retourne le contenu de l'élément sous la forme d'un tableau de string
+		 *
 		 * @return le contenu de l'élément sous la forme d'un tableau de string
 		 */
 		public String[] getContent() {
@@ -103,6 +107,7 @@ public final class DocumentationFile {
 
 		@Override
 		public String toString() {
-			return "DocItems{" + "type='" + type + '\'' + ", content=" + Arrays.toString(content) + '}';			}
+			return "DocItems{" + "type='" + type + '\'' + ", content=" + Arrays.toString(content) + '}';
+		}
 	}
 }

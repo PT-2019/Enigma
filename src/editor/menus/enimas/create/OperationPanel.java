@@ -37,19 +37,18 @@ import java.awt.Insets;
  */
 public class OperationPanel extends AbstractSubPopUpView implements Observer<GameObject> {
 
+	public static final String ASK_OP = NeedToBeTranslated.ASK_OP;
+	public static final String NOT_AVAILABLE_OPERATION = NeedToBeTranslated.NOT_AVAILABLE_OPERATION;
+	public static final String TITLE = NeedToBeTranslated.ADD_OPERATION;
+	//todo: !!!!
+	public static final String BUT_MUS = "Choisir musique";
+	public static final String BUT_SOUND = "Choisir son";
 	/**
 	 * Textes
 	 */
 	private static final String ASK_SELECT = NeedToBeTranslated.ASK_SELECT;
-	public static final String ASK_OP = NeedToBeTranslated.ASK_OP;
-	public static final String NOT_AVAILABLE_OPERATION = NeedToBeTranslated.NOT_AVAILABLE_OPERATION;
-	public static final String TITLE = NeedToBeTranslated.ADD_OPERATION;
 	private static final String INVALID_ENTITY = NeedToBeTranslated.INVALID_ENTITY;
 	private static final String SUBMIT = NeedToBeTranslated.SUBMIT;
-	//todo: !!!!
-	public static final String BUT_MUS = "Choisir musique";
-	public static final String BUT_SOUND = "Choisir son";
-
 	/**
 	 * Les informations sur l'entité sur laquelle l'opération sera faite
 	 */
@@ -76,14 +75,14 @@ public class OperationPanel extends AbstractSubPopUpView implements Observer<Gam
 		GridBagLayout gb = new GridBagLayout();
 		panel.setLayout(gb);
 		GridBagConstraints gbc = new GridBagConstraints();
-		int x=0,y=0;
+		int x = 0, y = 0;
 		gbc.gridwidth = 1;
 		gbc.gridheight = 1;
 		gbc.gridx = x;
 		gbc.gridy = y;
 		gbc.weightx = 1;
 		gbc.weighty = 1;
-		gbc.insets = new Insets(0,0,0,0);
+		gbc.insets = new Insets(0, 0, 0, 0);
 		gbc.anchor = GridBagConstraints.WEST;
 		gbc.fill = GridBagConstraints.BOTH;
 
@@ -94,17 +93,17 @@ public class OperationPanel extends AbstractSubPopUpView implements Observer<Gam
 			//on ajoute les boutons au groupe
 			groups.add(r);
 
-			if (op == Operations.SOUND ) {
+			if (op == Operations.SOUND) {
 				this.musicPanel[index] = new MusicPanel(OperationPanel.BUT_SOUND, r, this, op);
 				panel.add(musicPanel[index], gbc);
 				index++;
-			}else if(op == Operations.MAIN_MUSIC){
+			} else if (op == Operations.MAIN_MUSIC) {
 				this.musicPanel[index] = new MusicPanel(OperationPanel.BUT_MUS, r, this, op);
 				panel.add(musicPanel[index], gbc);
 				index++;
-			}else{
+			} else {
 				//ajoute les boutons au panneau
-				panel.add(r,gbc);
+				panel.add(r, gbc);
 			}
 			y++;
 			gbc.gridy = y;
@@ -163,7 +162,7 @@ public class OperationPanel extends AbstractSubPopUpView implements Observer<Gam
 		this.listener.clean();
 		this.entityName.setText(ASK_OP);
 		this.groups.clearSelection();
-		for (MusicPanel p: this.musicPanel) {
+		for (MusicPanel p : this.musicPanel) {
 			p.remove();
 		}
 		DragAndDropBuilder.setForPopup(null);
@@ -204,11 +203,11 @@ public class OperationPanel extends AbstractSubPopUpView implements Observer<Gam
 		}
 
 		if (object == null && wrong) {
-			msg += INVALID_ENTITY+" ";
+			msg += INVALID_ENTITY + " ";
 			msg += operations.restrict;
 			this.entityName.setText(msg);
 		} else if (object == null && operations != null) {
-			if(operations.menuDrag.contains(SelectionsModes.SPECIAL)){
+			if (operations.menuDrag.contains(SelectionsModes.SPECIAL)) {
 				this.entityName.setText(operations.restrict);
 			} else this.entityName.setText(ASK_SELECT + " (" + operations.menuDrag.msg + ")");
 		} else if (object != null) {

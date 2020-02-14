@@ -1,8 +1,7 @@
 package common.enigmas.condition;
 
-import common.enigmas.reporting.EnigmaReport;
 import common.enigmas.reporting.ConditionReport;
-import common.entities.Entity;
+import common.enigmas.reporting.EnigmaReport;
 import common.entities.GameObject;
 import common.entities.players.Player;
 import common.entities.types.Content;
@@ -38,8 +37,8 @@ public class Answer extends Condition {
 	/**
 	 * Vérifie que l'utilisateur donne une réponse correcte
 	 *
-	 * @param ent entité qui pose la question
-	 * @param question  la question dont on attends une réponse
+	 * @param ent      entité qui pose la question
+	 * @param question la question dont on attends une réponse
 	 */
 	public Answer(EnigmaContainer ent, Question question) {
 		super((GameObject) ent);
@@ -90,6 +89,7 @@ public class Answer extends Condition {
 
 	/**
 	 * Retourne la question
+	 *
 	 * @return Question
 	 */
 	public Question getQuestion() {
@@ -98,7 +98,7 @@ public class Answer extends Condition {
 
 	public String getEnigmaElementReadablePrint() {
 		return "[" + gl.get(EnigmaField.INPUT_ANSWER) + ": " +
-				NeedToBeTranslated.QUESTION + " = \"" + this.question.getQuestion() + "\""+
+				NeedToBeTranslated.QUESTION + " = \"" + this.question.getQuestion() + "\"" +
 				gl.get(EnigmaField.ANSWER) + " = \"" + this.question.getAnswer() + "\" ]";
 	}
 

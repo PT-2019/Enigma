@@ -39,7 +39,7 @@ public enum EnigmaMenuBarItems {
 	REDO(GameLanguage.gl.get(HUDFields.REDO), RedoListener.class, false),
 	UNDO(GameLanguage.gl.get(HUDFields.UNDO), UndoListener.class, false),
 
-	CHOOSE(GameLanguage.gl.get(HUDFields.CHOSE), ChooseListener.class, false ),
+	CHOOSE(GameLanguage.gl.get(HUDFields.CHOSE), ChooseListener.class, false),
 
 	START(GameLanguage.gl.get(HUDFields.START), StartSimulation.class, false),
 	STOP(GameLanguage.gl.get(HUDFields.STOP), StopSimulation.class, false),

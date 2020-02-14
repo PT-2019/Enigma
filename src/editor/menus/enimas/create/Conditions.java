@@ -5,10 +5,10 @@ import common.entities.Consumable;
 import common.entities.GameObject;
 import common.entities.special.Room;
 import common.entities.types.Activatable;
+import common.entities.types.Content;
 import data.EditorState;
 import data.NeedToBeTranslated;
 import editor.EditorLauncher;
-import common.entities.types.Content;
 import editor.menus.SelectionsModes;
 import editor.popup.listeners.CaseListener;
 import game.dnd.DragAndDropBuilder;
@@ -66,7 +66,8 @@ public enum Conditions {
 
 	/**
 	 * Conditions
-	 * @param value description
+	 *
+	 * @param value    description
 	 * @param restrict message si la condition n'est pas respectée
 	 * @param menuDrag mode de sélection de l'entité si besoin
 	 */
@@ -76,9 +77,10 @@ public enum Conditions {
 
 	/**
 	 * Conditions
-	 * @param value description
-	 * @param restrict message si la condition n'est pas respectée
-	 * @param menuDrag mode de sélection de l'entité si besoin
+	 *
+	 * @param value     description
+	 * @param restrict  message si la condition n'est pas respectée
+	 * @param menuDrag  mode de sélection de l'entité si besoin
 	 * @param available true si condition disponible
 	 */
 	Conditions(String value, String restrict, SelectionsModes menuDrag, boolean available) {
@@ -98,7 +100,7 @@ public enum Conditions {
 	public static void unlock(@Nullable Conditions conditions) {
 		if (conditions != null) {
 			conditions.unlock();
-		} else if(Conditions.locked != null){
+		} else if (Conditions.locked != null) {
 			Conditions.locked.unlock();
 		}
 	}

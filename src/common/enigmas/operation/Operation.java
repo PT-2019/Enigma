@@ -1,7 +1,5 @@
 package common.enigmas.operation;
 
-import api.utils.Utility;
-import com.badlogic.gdx.math.Vector2;
 import common.enigmas.EnigmaElementReadablePrint;
 import common.enigmas.reporting.EnigmaReport;
 import common.entities.GameObject;
@@ -67,13 +65,14 @@ public abstract class Operation implements EnigmaElementReadablePrint {
 	 * @param p Joueur ayant mené à l'appel de cette méthode
 	 */
 	@Deprecated
-	public void doOperation(Player p){run(p);}
+	public void doOperation(Player p) {
+		run(p);
+	}
 
 	/**
 	 * Effectue l'action
 	 *
 	 * @param p Joueur ayant mené à l'appel de cette méthode
-	 *
 	 * @return bilan de l'exécution de l'opération
 	 */
 	public abstract EnigmaReport run(Player p);

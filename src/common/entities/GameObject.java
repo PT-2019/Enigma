@@ -128,6 +128,7 @@ public interface GameObject extends IDInterface {
 
 	/**
 	 * Retourne si un gameObject est temporaire
+	 *
 	 * @return true si temporaire
 	 * @since 6.0
 	 */
@@ -135,6 +136,7 @@ public interface GameObject extends IDInterface {
 
 	/**
 	 * Définit un gameObject comme étant temporaire
+	 *
 	 * @param temp true si temporaire
 	 * @since 6.0
 	 */

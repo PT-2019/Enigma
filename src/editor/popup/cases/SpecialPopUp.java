@@ -94,8 +94,8 @@ public class SpecialPopUp extends AbstractPopUp {
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setLayout(new GridLayout(ROW, COL));
 
-		if((use != content)){
-			this.setSize(WIDTH-100, HEIGHT);
+		if ((use != content)) {
+			this.setSize(WIDTH - 100, HEIGHT);
 		}
 	}
 
@@ -111,9 +111,9 @@ public class SpecialPopUp extends AbstractPopUp {
 		if (entity == null) {
 			this.navigation.setText(NeedToBeTranslated.NO_ENTITY);
 		} else {
-			if(entity instanceof Living){
+			if (entity instanceof Living) {
 				String name = ((Living) entity).getName();
-				if(name == null || name.isBlank() || name.isEmpty()){
+				if (name == null || name.isBlank() || name.isEmpty()) {
 					this.navigation.setText(entity.getReadableName());
 				} else {
 					this.navigation.setText(name);
@@ -146,22 +146,22 @@ public class SpecialPopUp extends AbstractPopUp {
 		this.panel = new EnigmaPanel(new GridBagLayout());
 		boolean contentOk = this.cell.getEntity() instanceof Container;
 		//si les deux
-		if(contentOk && this.use == this.content){
+		if (contentOk && this.use == this.content) {
 			GridBagConstraints gbc = new GridBagConstraints();
 			EnigmaButton use = new EnigmaButton(SELECT_ENTITY);
 			EnigmaButton content = new EnigmaButton(CONTENT);
 			content.addActionListener(new OpenContentChooseView(this.popUp, this.cell.getEntity()));
 			use.addActionListener(new SpecialPopListener(this, this.popUp, this.cell.getEntity()));
 			this.panel.add(use, gbc);
-			gbc.insets = new Insets(0,10,0,0);
+			gbc.insets = new Insets(0, 10, 0, 0);
 			this.panel.add(content, gbc);
-		//si use seulement
-		} else if(use){
+			//si use seulement
+		} else if (use) {
 			EnigmaButton use = new EnigmaButton(SELECT_ENTITY);
 			use.addActionListener(new SpecialPopListener(this, this.popUp, this.cell.getEntity()));
 			this.panel.add(use);
-		//si content seulement
-		}else if (contentOk){
+			//si content seulement
+		} else if (contentOk) {
 			EnigmaButton content = new EnigmaButton(CONTENT);
 			content.addActionListener(new OpenContentChooseView(this.popUp, this.cell.getEntity()));
 			this.panel.add(content);
@@ -187,7 +187,6 @@ public class SpecialPopUp extends AbstractPopUp {
 	 * @author Louka DOZ
 	 * @author Loic SENECAT
 	 * @author Quentin RAMSAMY-AGEORGES
-	 *
 	 * @version 6.0 13/02/2020
 	 * @since 6.0 13/02/2020
 	 */

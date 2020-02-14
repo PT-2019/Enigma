@@ -79,7 +79,7 @@ public class EntityFactory {
 	 * @param path chemin du json
 	 * @since 3.0
 	 */
-	public static void loadPlayers(String path){
+	public static void loadPlayers(String path) {
 		Json j = new Json();
 		Array<PlayerSerializableToJson> content;
 

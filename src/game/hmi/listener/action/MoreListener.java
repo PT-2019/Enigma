@@ -16,20 +16,20 @@ import java.awt.event.ActionListener;
  * @since 6.0
  */
 public class MoreListener implements ActionListener {
-    /**
-     * Elément contenant toutes les informations de la partie
-     */
-    private SeeMore more;
+	/**
+	 * Elément contenant toutes les informations de la partie
+	 */
+	private SeeMore more;
 
-    /**
-     * @param more Elément contenant toutes les informations de la partie
-     */
-    public MoreListener(SeeMore more){
-        this.more = more;
-    }
+	/**
+	 * @param more Elément contenant toutes les informations de la partie
+	 */
+	public MoreListener(SeeMore more) {
+		this.more = more;
+	}
 
-    @Override
-    public void actionPerformed(ActionEvent actionEvent) {
-        this.more.show(true);
-    }
+	@Override
+	public void actionPerformed(ActionEvent actionEvent) {
+		this.more.show(true);
+	}
 }

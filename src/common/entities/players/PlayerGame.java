@@ -10,7 +10,6 @@ import common.enigmas.TileEventEnum;
 import common.entities.GameObject;
 import common.map.AbstractMap;
 import common.map.GameMap;
-import common.utils.Logger;
 import data.Direction;
 import data.keys.CameraKeys;
 
@@ -143,32 +142,32 @@ public class PlayerGame extends GameActorAnimation implements InputAdapter {
 
 		//interaction du joueur avec le milieu
 		if (Input.Keys.E == i || Input.Keys.ENTER == i) {
-			float tmpX,tmpY;
+			float tmpX, tmpY;
 
-			if(facedDirection == Direction.BOTTOM){
+			if (facedDirection == Direction.BOTTOM) {
 				tmpX = this.getX();
 				tmpY = this.getY() - PlayerGame.SPEED;
 			} else if (facedDirection == Direction.TOP) {
 
 				tmpX = this.getX();
 				tmpY = this.getY() + PlayerGame.SPEED;
-			}else if (facedDirection == Direction.RIGHT) {
+			} else if (facedDirection == Direction.RIGHT) {
 				tmpX = this.getX() + PlayerGame.SPEED;
 				tmpY = this.getY();
-			}else{
+			} else {
 				tmpX = this.getX() - PlayerGame.SPEED;
 				tmpY = this.getY();
 			}
 
-			GameActor entityGame = map.collisionEntityGame(this,tmpX - this.getX(),tmpY - this.getY());
-			if (entityGame != null){
+			GameActor entityGame = map.collisionEntityGame(this, tmpX - this.getX(), tmpY - this.getY());
+			if (entityGame != null) {
 				System.out.println(entityGame);
 			}
 
-			map.doAction(tmpX,tmpY,this, TileEventEnum.ON_USE);
+			map.doAction(tmpX, tmpY, this, TileEventEnum.ON_USE);
 			//on récupère l'objet sur lequelle on a intéragit
-			Vector2 position = AbstractMap.posToIndex(tmpX,tmpY,map);
-			GameObject object = map.posToEntities((int)position.y,(int)position.x);
+			Vector2 position = AbstractMap.posToIndex(tmpX, tmpY, map);
+			GameObject object = map.posToEntities((int) position.y, (int) position.x);
 			System.out.println(object);
 		}
 		return false;

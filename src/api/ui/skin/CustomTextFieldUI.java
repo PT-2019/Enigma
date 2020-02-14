@@ -14,8 +14,6 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 
 /**
  * Style d'une champ de texte customizable
@@ -126,7 +124,7 @@ public class CustomTextFieldUI extends BasicTextFieldUI implements CustomUIFocus
 	 * Crée une copie de l'ui d'une zone de saisie
 	 *
 	 * @param customTextFieldUI l'ui d'une zone de saisie
-	 * @param <T>              qui doit extends CustomTextAreaUI
+	 * @param <T>               qui doit extends CustomTextAreaUI
 	 * @return une copie de l'ui d'une zone de saisie
 	 * @throws IllegalStateException si une copie échoue a être crée
 	 */

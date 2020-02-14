@@ -21,7 +21,7 @@ import java.util.HashMap;
  * @see Game
  * @since 3.0 03 december 2019
  */
-@SuppressWarnings({"unused","WeakerAccess"})
+@SuppressWarnings({"unused", "WeakerAccess"})
 public abstract class LibgdxGame extends Game implements Application {
 
 	private static LibgdxGame libgdxGame;
@@ -70,7 +70,7 @@ public abstract class LibgdxGame extends Game implements Application {
 	 * @param key nom du screen {@link #setScreen(String)}
 	 * @return l'instance de l'écran
 	 * @throws IllegalStateException si une exception est levée dans le constructeur ou lors de
-	 * son instantiation
+	 *                               son instantiation
 	 * @since 3.0 03 december 2019
 	 */
 	public static LibgdxScreen load(String key) {

@@ -10,7 +10,6 @@ import java.awt.event.ActionListener;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.0
  * @since 6.0
  */
@@ -21,11 +20,12 @@ public class RunActionPerformed implements Runnable {
 
 	/**
 	 * Lance la méthode actionPerformed sur un bouton
+	 *
 	 * @param actionListener listener
-	 * @param context appelant/contexte d'appel
+	 * @param context        appelant/contexte d'appel
 	 * @since 6.0
 	 */
-	public RunActionPerformed(ActionListener actionListener, Object context){
+	public RunActionPerformed(ActionListener actionListener, Object context) {
 		this.actionListener = actionListener;
 		this.context = context;
 	}

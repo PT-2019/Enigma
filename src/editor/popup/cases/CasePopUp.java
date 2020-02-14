@@ -101,9 +101,9 @@ public class CasePopUp extends AbstractPopUp implements Drawable {
 		if (entity == null) {
 			this.navigation.setText(NeedToBeTranslated.NO_ENTITY);
 		} else {
-			if(entity instanceof Living){
+			if (entity instanceof Living) {
 				String name = ((Living) entity).getName();
-				if(name == null || name.isBlank() || name.isEmpty()){
+				if (name == null || name.isBlank() || name.isEmpty()) {
 					this.navigation.setText(entity.getReadableName());
 				} else {
 					this.navigation.setText(name);
@@ -180,10 +180,10 @@ public class CasePopUp extends AbstractPopUp implements Drawable {
 	@Override
 	public void invalidateDrawable() {
 		GameObject entity = this.cell.getEntity();
-		if(entity instanceof Living){
+		if (entity instanceof Living) {
 			Living living = (Living) entity;
 			String name = living.getName();
-			if(name != null && !name.isBlank() && !name.isEmpty()){
+			if (name != null && !name.isBlank() && !name.isEmpty()) {
 				this.navigation.setText(name);
 			} else {
 				//TODO: fix avec getKey de Loïc
