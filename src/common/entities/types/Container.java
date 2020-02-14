@@ -14,6 +14,7 @@ import java.util.ArrayList;
  * @version 4.0 23/12/2019
  * @since 4.0 23/12/2019
  */
+@SuppressWarnings("UnusedReturnValue")
 public interface Container {
 
 	/**

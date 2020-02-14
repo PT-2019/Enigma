@@ -1,5 +1,7 @@
 package common.enigmas.condition;
 
+import common.enigmas.reporting.EnigmaReport;
+import common.enigmas.reporting.ConditionReport;
 import common.entities.Item;
 import common.entities.players.Player;
 import common.language.EnigmaField;
@@ -43,12 +45,12 @@ public class HaveInHands extends Condition {
 	 * @return true si la condtion est satisfaite, false sinon
 	 */
 	@Override
-	public boolean verify(Player p) {
+	public EnigmaReport verify(Player p) {
 		Item i = (Item) this.entity;
 		if (p.holdSomething()) {
-			return p.getItemInHand().equals(i);
+			return new EnigmaReport(ConditionReport.DONE, p.getItemInHand().equals(i));
 		}
-		return false;
+		return new EnigmaReport(ConditionReport.DONE);
 	}
 
 	/**
@@ -73,7 +75,7 @@ public class HaveInHands extends Condition {
 
 	@Override
 	public String getEnigmaElementReadablePrint() {
-		return "["+gl.get(EnigmaField.HAVE_IN_HANDS)+": "+
-				this.entity.getReadableName() + " (id="+this.entity.getID()+") ]";
+		return "[" + gl.get(EnigmaField.HAVE_IN_HANDS) + ": " +
+				this.entity.getReadableName() + " (id=" + this.entity.getID() + ") ]";
 	}
 }

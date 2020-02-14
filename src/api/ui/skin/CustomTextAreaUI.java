@@ -3,6 +3,7 @@ package api.ui.skin;
 import api.ui.base.DefaultUIValues;
 import api.ui.skin.base.CustomUIForeground;
 import api.ui.skin.base.states.CustomUIFocusedAndHover;
+import api.utils.Utility;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -68,6 +69,7 @@ public class CustomTextAreaUI extends BasicTextAreaUI implements CustomUIFocused
 	public void paintTextArea(Graphics g, JComponent c) {
 		Graphics brush = g.create();
 		JTextArea ta = (JTextArea) c;
+		c.setFont(this.getFont());
 		ta.setBorder(BorderFactory.createEmptyBorder());
 		if (ta.hasFocus()) {
 			ta.setBackground(this.focusedBackground);
@@ -128,13 +130,7 @@ public class CustomTextAreaUI extends BasicTextAreaUI implements CustomUIFocused
 	 */
 	@SuppressWarnings("unchecked")
 	protected <T extends CustomTextAreaUI> T duplicate(T customTextAreaUI) {
-		T clone;
-		try {
-			Constructor<?> c = customTextAreaUI.getClass().getDeclaredConstructor();
-			clone = (T) c.newInstance();
-		} catch (InstantiationException | NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-			throw new IllegalStateException(e);
-		}
+		T clone = (T) Utility.instance(customTextAreaUI.getClass());
 
 		clone.setCursor(this.getCursor());
 		clone.setAllBackgrounds(this.getBackground(), this.getHoveredBackground(), this.getFocusedBackground());
@@ -386,6 +382,24 @@ public class CustomTextAreaUI extends BasicTextAreaUI implements CustomUIFocused
 		this.foreground = foreground;
 		this.hoveredForeground = hoveredForeground;
 		this.focusedForeground = focusedForeground;
+	}
+
+	@Override
+	public void setAllBackgrounds(Color background) {
+		if (background == null)
+			throw new NullPointerException("Les arguments ne peuvent pas être null");
+		this.background = background;
+		this.hoveredBackground = background;
+		this.focusedBackground = background;
+	}
+
+	@Override
+	public void setAllForegrounds(Color foreground) {
+		if (foreground == null)
+			throw new NullPointerException("Les arguments ne peuvent pas être null");
+		this.foreground = foreground;
+		this.hoveredForeground = foreground;
+		this.focusedForeground = foreground;
 	}
 
 	@Override

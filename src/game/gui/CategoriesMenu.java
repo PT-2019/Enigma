@@ -127,11 +127,14 @@ public class CategoriesMenu extends Window implements InputAdapter, Disposable {
 		this.container.clear();
 		Array<EntitySerializable> entities = EntityFactory.getEntitiesByCategory(c);
 
+		boolean isRoom = false;
+		if (c.equals(EntitiesCategories.ROOMS)) isRoom = true;
+
 		this.container.add().padTop(10).colspan(2).row();
 
 		//on ajoute au minimum 12 cases, on met des entités dedans si on en a
 		for (int i = 0; i < 12 || i < entities.size; i++) {
-			if (i % 2 == 0) container.row();
+			if (!isRoom && i % 2 == 0) container.row();
 
 			if (i < entities.size) {
 				EntityContainer entity = new EntityContainer(entities.get(i), dnd);
@@ -143,6 +146,7 @@ public class CategoriesMenu extends Window implements InputAdapter, Disposable {
 					entity.addListener(textTooltip);
 				}
 				container.add(entity).minWidth(32).space(32);
+				if (isRoom) container.row();
 			}
 		}
 	}

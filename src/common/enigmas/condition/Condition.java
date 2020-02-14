@@ -1,6 +1,7 @@
 package common.enigmas.condition;
 
 import common.enigmas.EnigmaElementReadablePrint;
+import common.enigmas.reporting.EnigmaReport;
 import common.entities.GameObject;
 import common.entities.players.Player;
 import common.save.enigmas.EnigmaAttributes;
@@ -64,7 +65,7 @@ public abstract class Condition implements EnigmaElementReadablePrint {
 	 * @param p Joueur ayant mené à l'appel de cette méthode
 	 * @return true si la condtion est satisfaite, false sinon
 	 */
-	public abstract boolean verify(Player p);
+	public abstract EnigmaReport verify(Player p);
 
 	/**
 	 * Obtenir l'entité consernée par la condition

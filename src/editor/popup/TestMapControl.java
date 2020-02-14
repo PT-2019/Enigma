@@ -1,11 +1,13 @@
 package editor.popup;
 
+import api.libgdx.utils.InputAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import common.hud.EnigmaWindow;
 import common.map.MapTestScreen;
+import data.config.Config;
+import data.EditorState;
 import data.config.Config;
 import editor.EditorLauncher;
 import editor.bar.listeners.RedoListener;
@@ -18,13 +20,21 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 
 /**
- * Controleur des différents évènement sur la map de l'éditeur
+ * Contrôleur des différents évènement sur la map de l'éditeur
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 6.0
+ * @since 2.0
+ */
+public class TestMapControl implements InputAdapter {
+
+/**
+ * Controlleur des différents évènement sur la map
  */
 public class TestMapControl implements InputProcessor {
-
-	private static final float ZOOM_VALUE = 0.05f;
-
-	private static final int CAMERA_OFFSET = 32;
 
 	//racourcis pour l'enregistrement
 	private static final int SAVE = Input.Keys.S;
@@ -43,13 +53,14 @@ public class TestMapControl implements InputProcessor {
 	 */
 	private boolean altpush;
 
+	/**
+	 * Menu popup
+	 */
 	private EntityPopMenu menu;
 
-	//@Deprecated
-	//private JComponent component;
-
-	private Window window;
-
+	/**
+	 * Caméra
+	 */
 	private OrthographicCamera camera;
 
 	private MapTestScreen map;
@@ -63,12 +74,17 @@ public class TestMapControl implements InputProcessor {
 
 	private UndoListener undo;
 
+	/**
+	 * Contrôleur des différents évènement sur la map
+	 *
+	 * @param map map
+	 */
 	public TestMapControl(MapTestScreen map) {
-		camera = map.getCamera();
-		ctrlpush = false;
+		this.camera = map.getCamera();
+		this.ctrlpush = false;
 		this.map = map;
 		//changed to window
-		this.window = EditorLauncher.getInstance().getWindow();
+		EnigmaWindow window = EditorLauncher.getInstance().getWindow();
 
 		Container contain = EditorLauncher.getInstance().getWindow().getContentPane();
 
@@ -77,17 +93,20 @@ public class TestMapControl implements InputProcessor {
 		undo = new UndoListener((EnigmaWindow) this.window,contain);
 		redo = new RedoListener((EnigmaWindow) this.window,contain);;
 
-		this.menu = new EntityPopMenu(map.getMap().getMap(), camera);
-		//TODO: test pour vérifier que cela marche avec une window
+		//changed to window
+		this.menu = new EntityPopMenu(map, (EnigmaWindow) EditorLauncher.getInstance().getWindow());
 	}
 
 	@Override
 	public boolean keyDown(int keycode) {
 
+		//alt activé
 		if (keycode == Input.Keys.ALT_LEFT)
 			altpush = true;
+		//control activé
 		else if (keycode == Input.Keys.CONTROL_LEFT)
 			ctrlpush = true;
+		//zoom ou de-zoom
 		else if (keycode == Input.Keys.PLUS && ctrlpush)
 			this.plusCamera();
 		else if (keycode == Input.Keys.MINUS && ctrlpush)
@@ -109,57 +128,39 @@ public class TestMapControl implements InputProcessor {
 	@Override
 	public boolean keyUp(int keycode) {
 		if (keycode == Input.Keys.LEFT) {
-			camera.translate(-CAMERA_OFFSET, 0);
-			camera.update();
+			this.camera.translate(-Config.CAMERA_OFFSET, 0);
+			this.camera.update();
 			return true;
 		}else if (keycode == Input.Keys.RIGHT) {
-			camera.translate(CAMERA_OFFSET, 0);
-			camera.update();
+			this.camera.translate(CAMERA_OFFSET, 0);
+			this.camera.update();
 			return true;
 		} else if (keycode == Input.Keys.UP) {
-			camera.translate(0, CAMERA_OFFSET);
-			camera.update();
+			this.camera.translate(0, CAMERA_OFFSET);
+			this.camera.update();
 			return true;
 		}else if (keycode == Input.Keys.DOWN) {
-			camera.translate(0, -CAMERA_OFFSET);
-			camera.update();
+			this.camera.translate(0, -CAMERA_OFFSET);
+			this.camera.update();
 			return true;
-		}else if (keycode == Input.Keys.CONTROL_LEFT) {
-			ctrlpush = false;
+		}//dés-activation control
+		else if (keycode == Input.Keys.CONTROL_LEFT) {
+			this.ctrlpush = false;
 			return true;
+		//dés-activation alt
 		}else if (keycode == Input.Keys.ALT_LEFT){
-			altpush = false;
+			this.altpush = false;
 			return true;
 		}
-		return false;
-	}
-
-	@Override
-	public boolean keyTyped(char character) {
-		return false;
-	}
-
-	@Override
-	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 		return false;
 	}
 
 	@Override
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
 		if (button == Input.Buttons.RIGHT) {
-			menu.show(this.window, Gdx.input.getX(), Gdx.input.getY());
+			this.menu.show(EditorLauncher.getInstance().getMapPanel(), Gdx.input.getX(), Gdx.input.getY());
 			return true;
 		}
-		return false;
-	}
-
-	@Override
-	public boolean touchDragged(int screenX, int screenY, int pointer) {
-		return false;
-	}
-
-	@Override
-	public boolean mouseMoved(int screenX, int screenY) {
 		return false;
 	}
 
@@ -167,22 +168,41 @@ public class TestMapControl implements InputProcessor {
 	public boolean scrolled(int amount) {
 		if (Gdx.input.isKeyPressed(Input.Keys.CONTROL_LEFT)) {
 			if (amount == 1) {
-				this.camera.zoom += ZOOM_VALUE;
+				this.minCamera();
 			} else {
-				this.camera.zoom -= ZOOM_VALUE;
+				this.plusCamera();
 			}
+
+			if (this.camera.zoom == Config.BASE_ZOOM_VALUE) {
+				//mode normal
+				EditorLauncher.removeState(EditorState.ZOOM);
+			} else {
+				//sinon zoom
+				if (EditorLauncher.containsState(EditorState.NORMAL)) {
+					EditorLauncher.clearStates();
+				}
+				EditorLauncher.addState(EditorState.ZOOM);
+			}
+
 			this.camera.update();
-			return true;
+
+			return true; //géré
 		}
+
 		return false;
 	}
 
-
+	/**
+	 * Augmente le zoom
+	 */
 	private void plusCamera() {
-		camera.zoom -= ZOOM_VALUE;
+		this.camera.zoom -= Config.ZOOM_CHANGE_VALUE;
 	}
 
+	/**
+	 * Diminue le zoom
+	 */
 	private void minCamera() {
-		camera.zoom += ZOOM_VALUE;
+		this.camera.zoom += Config.ZOOM_CHANGE_VALUE;
 	}
 }

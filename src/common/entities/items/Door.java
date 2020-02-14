@@ -134,7 +134,7 @@ public class Door extends AbstractItem implements Passage, Lockable {
 	}
 
 	@Override
-	public HashMap<SaveKey,String> getSave(){
+	public HashMap<SaveKey, String> getSave() {
 		HashMap<SaveKey, String> save = new HashMap<>();
 		save.put(PlayerSave.LOCKED, String.valueOf(this.locked));
 		return save;

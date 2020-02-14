@@ -7,7 +7,10 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 /**
  * Bordures de la map LIBGDX
  *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
  * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
  * @version 3.0
  * @since 3.0
  */

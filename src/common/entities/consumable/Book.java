@@ -1,5 +1,6 @@
 package common.entities.consumable;
 
+import api.utils.Utility;
 import com.badlogic.gdx.maps.MapProperties;
 import common.entities.types.AbstractConsumable;
 import common.entities.types.Content;
@@ -55,7 +56,7 @@ public class Book extends AbstractConsumable implements Content {
 	//content
 
 	@Override
-	public void addContent(String content) {
+	public void setContent(String content) {
 		this.content = content;
 	}
 
@@ -88,7 +89,7 @@ public class Book extends AbstractConsumable implements Content {
 	}
 
 	@Override
-	public HashMap<SaveKey,String> getSave(){
+	public HashMap<SaveKey, String> getSave() {
 		HashMap<SaveKey, String> save = new HashMap<>();
 		save.put(PlayerSave.CONTENT, this.content);
 		return save;
@@ -96,6 +97,7 @@ public class Book extends AbstractConsumable implements Content {
 
 	@Override
 	public void load(MapProperties data) {
-		this.content = data.get(PlayerSave.CONTENT.getKey(), String.class);
+		//récupère la chaîne non échappée
+		this.content = Utility.asciiEscapedToNormalString(data.get(PlayerSave.CONTENT.getKey(), String.class));
 	}
 }

@@ -4,6 +4,7 @@ import api.ui.base.DefaultUIValues;
 import api.ui.skin.base.CustomUIFont;
 import api.ui.skin.base.CustomUIForeground;
 import api.ui.skin.base.states.CustomUIHoverAndPressed;
+import api.utils.Utility;
 
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
@@ -83,13 +84,7 @@ public class CustomLabelUI extends BasicLabelUI implements CustomUIHoverAndPress
 	 */
 	@SuppressWarnings("unchecked")
 	protected <T extends CustomLabelUI> T duplicate(T customLabelUI) {
-		T clone;
-		try {
-			Constructor<?> c = customLabelUI.getClass().getDeclaredConstructor();
-			clone = (T) c.newInstance();
-		} catch (InstantiationException | NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-			throw new IllegalStateException(e);
-		}
+		T clone = (T) Utility.instance(customLabelUI.getClass());
 
 		clone.setCursor(this.getCursor());
 		clone.setAllBackgrounds(this.getBackground(), this.getHoveredBackground(), this.getPressedBackground());
@@ -109,6 +104,7 @@ public class CustomLabelUI extends BasicLabelUI implements CustomUIHoverAndPress
 	@Override
 	public void paint(Graphics g, JComponent c) {
 		Graphics brush = g.create();
+		c.setFont(this.getFont());
 		JLabel l = (JLabel) c;
 		boolean[] borders;
 		if (this.pressed) {
@@ -281,7 +277,7 @@ public class CustomLabelUI extends BasicLabelUI implements CustomUIHoverAndPress
 	/**
 	 * Définit tous les fonds (premier plan)
 	 *
-	 * @param foreground        fond
+	 * @param foreground fond
 	 */
 	public void setAllForegrounds(Color foreground) {
 		if (foreground == null)
@@ -422,6 +418,15 @@ public class CustomLabelUI extends BasicLabelUI implements CustomUIHoverAndPress
 		this.showedBorders = showedBorders;
 		this.hoveredShowedBorders = hoveredShowedBorders;
 		this.pressedShowedBorders = pressedShowedBorders;
+	}
+
+	@Override
+	public void setAllShowedBorders(boolean[] showedBorders) {
+		if (showedBorders.length != 4)
+			throw new IllegalArgumentException("Les tableaux doivent être de 4 éléments");
+		this.showedBorders = showedBorders;
+		this.hoveredShowedBorders = showedBorders;
+		this.pressedShowedBorders = showedBorders;
 	}
 
 	@Override

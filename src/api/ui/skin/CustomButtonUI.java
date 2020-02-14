@@ -5,6 +5,7 @@ import api.ui.skin.base.CustomUIFont;
 import api.ui.skin.base.CustomUIForeground;
 import api.ui.skin.base.states.CustomUIHoverAndPressed;
 import api.ui.skin.base.states.CustomUISelected;
+import api.utils.Utility;
 
 import javax.swing.AbstractButton;
 import javax.swing.ImageIcon;
@@ -131,13 +132,7 @@ public class CustomButtonUI extends BasicButtonUI implements CustomUIHoverAndPre
 	 */
 	@SuppressWarnings("unchecked")
 	protected <T extends CustomButtonUI> T duplicate(T customButtonUI) {
-		T clone;
-		try {
-			Constructor<?> c = customButtonUI.getClass().getDeclaredConstructor();
-			clone = (T) c.newInstance();
-		} catch (InstantiationException | NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-			throw new IllegalStateException(e);
-		}
+		T clone = (T) Utility.instance(customButtonUI.getClass());
 
 		clone.setCursor(this.getCursor());
 		clone.setAllBackgrounds(this.getBackground(), this.getHoveredBackground(), this.getPressedBackground());
@@ -262,12 +257,14 @@ public class CustomButtonUI extends BasicButtonUI implements CustomUIHoverAndPre
 	private void paintBorder(Graphics g, AbstractButton b, Color borderColor, int borderSize, boolean[] showedBorders) {
 		g.setColor(borderColor);
 		for (int i = 0; i < 4; i++) {
-			if (i == DefaultUIValues.TOP_BORDER && showedBorders[i]) g.fillRect(0, 0, b.getWidth(), borderSize);
+			if (i == DefaultUIValues.TOP_BORDER && showedBorders[i])
+				g.fillRect(0, 0, b.getWidth(), borderSize);
 			if (i == DefaultUIValues.RIGHT_BORDER && showedBorders[i])
 				g.fillRect(b.getWidth() - borderSize, 0, b.getWidth(), b.getHeight());
 			if (i == DefaultUIValues.BOTTOM_BORDER && showedBorders[i])
 				g.fillRect(0, b.getHeight() - borderSize, b.getWidth(), b.getHeight());
-			if (i == DefaultUIValues.LEFT_BORDER && showedBorders[i]) g.fillRect(0, 0, borderSize, b.getHeight());
+			if (i == DefaultUIValues.LEFT_BORDER && showedBorders[i])
+				g.fillRect(0, 0, borderSize, b.getHeight());
 		}
 	}
 
@@ -329,6 +326,14 @@ public class CustomButtonUI extends BasicButtonUI implements CustomUIHoverAndPre
 		this.foreground = foreground;
 		this.hoveredForeground = hoveredForeground;
 		this.pressedForeground = pressedForeground;
+	}
+
+	public void setAllForegrounds(Color foreground) {
+		if (foreground == null)
+			throw new NullPointerException("Les arguments ne peuvent pas être null");
+		this.foreground = foreground;
+		this.hoveredForeground = foreground;
+		this.pressedForeground = foreground;
 	}
 
 	//
@@ -613,6 +618,24 @@ public class CustomButtonUI extends BasicButtonUI implements CustomUIHoverAndPre
 	}
 
 	@Override
+	public void setAllSelectedBackgrounds(Color selectedBackground) {
+		if (selectedBackground == null)
+			throw new NullPointerException("Les arguments ne peuvent pas être null");
+		this.selectedBackground = selectedBackground;
+		this.selectedHoveredBackground = selectedBackground;
+		this.selectedPressedBackground = selectedBackground;
+	}
+
+	@Override
+	public void setAllSelectedForegrounds(Color selectedForeground) {
+		if (selectedForeground == null)
+			throw new NullPointerException("Les arguments ne peuvent pas être null");
+		this.selectedForeground = selectedForeground;
+		this.selectedHoveredForeground = selectedForeground;
+		this.selectedPressedForeground = selectedForeground;
+	}
+
+	@Override
 	public void setAllSelectedBorders(Color selectedBorder, Color selectedHoveredBorder, Color selectedPressedBorder) {
 		this.selectedBorder = selectedBorder;
 		this.selectedHoveredBorder = selectedHoveredBorder;
@@ -750,6 +773,15 @@ public class CustomButtonUI extends BasicButtonUI implements CustomUIHoverAndPre
 		this.showedBorders = showedBorders;
 		this.hoveredShowedBorders = hoveredShowedBorders;
 		this.pressedShowedBorders = pressedShowedBorders;
+	}
+
+	@Override
+	public void setAllShowedBorders(boolean[] showedBorders) {
+		if (showedBorders.length != 4)
+			throw new IllegalArgumentException("Les tableaux doivent être de 4 éléments");
+		this.showedBorders = showedBorders;
+		this.hoveredShowedBorders = showedBorders;
+		this.pressedShowedBorders = showedBorders;
 	}
 
 	@Override

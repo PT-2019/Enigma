@@ -1,17 +1,16 @@
 package common.map;
 
+import api.utils.Utility;
 import com.badlogic.gdx.math.Vector2;
 import common.entities.GameObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 /**
  * Stocke des {@link common.entities.GameObject GameObjects} en fonction de leur tile d'appartenance
- *
+ * <p>
  * Patron de conception : Façade.
  *
  * @author Jorys-Micke ALAÏS
@@ -40,7 +39,6 @@ public class MapObjects {
 
 	/**
 	 * @param map Valeurs de départ
-	 *
 	 * @since 5.0
 	 */
 	public MapObjects(Map<Vector2, ArrayList<GameObject>> map) {
@@ -52,7 +50,6 @@ public class MapObjects {
 	 *
 	 * @param v  Vecteur
 	 * @param go Liste d'éléments
-	 *
 	 * @since 5.0
 	 */
 	public void put(Vector2 v, ArrayList<GameObject> go) {
@@ -64,7 +61,6 @@ public class MapObjects {
 	 *
 	 * @param v  Vecteur
 	 * @param go Elément
-	 *
 	 * @since 5.0
 	 */
 	public void put(Vector2 v, GameObject go) {
@@ -80,7 +76,6 @@ public class MapObjects {
 	 * Retire tous les éléments à tel vecteur
 	 *
 	 * @param v Vecteur
-	 *
 	 * @since 5.0
 	 */
 	public void remove(Vector2 v) {
@@ -92,7 +87,6 @@ public class MapObjects {
 	 *
 	 * @param v  Vecteur
 	 * @param go Elément
-	 *
 	 * @since 5.0
 	 */
 	public void remove(Vector2 v, GameObject go) {
@@ -104,7 +98,6 @@ public class MapObjects {
 	 *
 	 * @param go Elément
 	 * @return true si l'élément est contenu, false sinon
-	 *
 	 * @since 5.0
 	 */
 	public boolean contains(GameObject go) {
@@ -115,7 +108,6 @@ public class MapObjects {
 	 * Obtenir la taille
 	 *
 	 * @return La taille
-	 *
 	 * @since 5.0
 	 */
 	public int size() {
@@ -126,7 +118,6 @@ public class MapObjects {
 	 * Obtenir la liste complète
 	 *
 	 * @return Liste complète
-	 *
 	 * @since 5.0
 	 */
 	@SuppressWarnings("unchecked")
@@ -138,7 +129,6 @@ public class MapObjects {
 	 * Obtenir la liste complète, ceci est la map originale
 	 *
 	 * @return Liste complète, ceci est la map originale
-	 *
 	 * @since 6.0
 	 */
 	public HashMap<Vector2, ArrayList<GameObject>> getOriginalMap() {
@@ -150,7 +140,6 @@ public class MapObjects {
 	 *
 	 * @param v Vecteur
 	 * @return Les éléments
-	 *
 	 * @since 5.0
 	 */
 	public ArrayList<GameObject> getObjectsByVector(Vector2 v) {
@@ -160,9 +149,8 @@ public class MapObjects {
 	/**
 	 * Obtenir un vecteur de tel élément
 	 *
-	 * @param go Elément
+	 * @param go élément
 	 * @return Vecteur, null si l'éléments n'existe pas
-	 *
 	 * @since 5.0
 	 */
 	public Vector2 getVectorByObject(GameObject go) {
@@ -178,7 +166,6 @@ public class MapObjects {
 	 *
 	 * @param id ID
 	 * @return L'élément, null si aucun élément a cet ID
-	 *
 	 * @since 5.0
 	 */
 	public GameObject getObjectByID(int id) {
@@ -193,7 +180,22 @@ public class MapObjects {
 
 	/**
 	 * Obtenir tous les éléments d'une telle classe.
+	 * <p>
+	 * On regarde toutes les classes parent.
+	 * On regarde seulement les interfaces de première génération.
 	 *
+	 * @param t   Classe
+	 * @param <T> Type de la classe
+	 * @return Les éléments
+	 * @since 5.0
+	 */
+	public <T> ArrayList<T> getAllObjectsByClass(Class<T> t) {
+		return getAllObjectsByClass(t, true);
+	}
+
+	/**
+	 * Obtenir tous les éléments d'une telle classe.
+	 * <p>
 	 * On regarde toutes les classes parent.
 	 * On regarde seulement les interfaces de première génération.
 	 *
@@ -203,66 +205,51 @@ public class MapObjects {
 	 * @since 5.0
 	 */
 	@SuppressWarnings("unchecked")
-	public <T extends GameObject> ArrayList<T> getAllObjectsByClass(Class<T> t, boolean clone) {
+	public <T> ArrayList<T> getAllObjectsByClass(Class<T> t, boolean clone) {
 		ArrayList<GameObject> obj = new ArrayList<>();
 
-		Class<?> c;
-		boolean find;
 		for (Map.Entry<Vector2, ArrayList<GameObject>> map : this.objects.entrySet()) {
 			for (GameObject go : map.getValue()) {
-				find = false;
-				//Regarde toutes les classes parent
-				c = go.getClass();
-				while(c != null && !find){
-					if(c.getName().equals(t.getName())) break;
-					//regarde les interfaces
-					Class<?>[] interfaces = c.getInterfaces();
-					for (Class<?> anInterface:interfaces) {
-						//on regarde pas les supper interfaces, c'est notre limite
-						if(anInterface.getName().equals(t.getName())){
-							find = true;
-							break;
-						}
-					}
-					if(!find) c = c.getSuperclass();
-				}
 				//la classe a été trouvée
-				if(c != null) obj.add(go);
+				if (Utility.hasClass(t, go)) obj.add(go);
 			}
 		}
 
-		if(clone) return (ArrayList<T>) obj.clone();
+		if (clone) return (ArrayList<T>) obj.clone();
 		else return (ArrayList<T>) obj;
 	}
 
 	/**
 	 * Retourne une mapObject depuis une clef
+	 *
 	 * @param start une clef
 	 * @return une mapObject depuis une clef
 	 * @since 6.1
 	 */
 	public MapObjects getEntries(Vector2 start) {
-		if(!this.objects.containsKey(start)) return null;
+		if (!this.objects.containsKey(start)) return null;
 		MapObjects m = new MapObjects();
-		m.put(start,this.objects.get(start));
+		m.put(start, this.objects.get(start));
 		return m;
 	}
 
 	/**
 	 * Retourne une mapObject depuis une clef
+	 *
 	 * @param start une clef
 	 * @return une mapObject depuis une clef
 	 * @since 6.1
 	 */
 	public MapObject getFirstEntry(Vector2 start) {
-		if(!this.objects.containsKey(start)) return null;
+		if (!this.objects.containsKey(start)) return null;
 		ArrayList<GameObject> gameObjects = this.objects.get(start);
-		if(gameObjects.size() <= 0) return null;
+		if (gameObjects.size() <= 0) return null;
 		return new MapObject(start, gameObjects.get(0));
 	}
 
 	/**
 	 * Retourne un mapObject depuis une valeur
+	 *
 	 * @param object une valeur
 	 * @return un mapObject depuis une valeur
 	 * @throws IllegalArgumentException si pas dans la map
@@ -270,8 +257,8 @@ public class MapObjects {
 	 */
 	public MapObject getEntry(GameObject object) {
 		int id = object.getID();
-		for (Map.Entry<Vector2, ArrayList<GameObject>> entry:this.objects.entrySet()){
-			for (GameObject o :entry.getValue()) {
+		for (Map.Entry<Vector2, ArrayList<GameObject>> entry : this.objects.entrySet()) {
+			for (GameObject o : entry.getValue()) {
 				if (o.getID() == id)
 					return new MapObject(entry.getKey(), o);
 			}

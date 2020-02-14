@@ -1,5 +1,6 @@
 package editor.bar.listeners;
 
+import api.utils.Observer;
 import api.libgdx.ui.Toast;
 import api.ui.CustomWindow;
 import common.data.MapData;
@@ -15,8 +16,8 @@ import game.EnigmaGame;
 import game.gui.EnigmaEditorToast;
 import game.screens.TestScreen;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JComponent;
+import javax.swing.JFileChooser;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
@@ -28,11 +29,11 @@ import java.io.IOException;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.0 01/02/2020
  * @since 6.0 01/02/2020
  */
-public class ExportListener extends MenuListener {
+public class ExportListener extends MenuListener implements Observer<MapLoaded> {
+
 	/**
 	 * Textes
 	 */
@@ -40,6 +41,8 @@ public class ExportListener extends MenuListener {
 
 	public ExportListener(EnigmaWindow window, JComponent parent) {
 		super(window, parent);
+		MapLoaded instance = MapLoaded.getInstance();
+		instance.addObserver(this);
 	}
 
 	@Override
@@ -50,17 +53,22 @@ public class ExportListener extends MenuListener {
 		fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 		fileChooser.setDialogTitle(CHOOSE_DESTINATION_FOLDER);
 
-		if(fileChooser.showOpenDialog(this.parent) == JFileChooser.APPROVE_OPTION){
+		if (fileChooser.showOpenDialog(this.parent) == JFileChooser.APPROVE_OPTION) {
 			String exportPath = fileChooser.getSelectedFile().getAbsolutePath();
 
-			if(exportPath.contains("\\"))
+			if (exportPath.contains("\\"))
 				exportPath += "\\";
-			if(exportPath.contains("/"))
+			if (exportPath.contains("/"))
 				exportPath += "/";
 
 			//Sauvegarde avant d'exporter
 			new SaveListener(this.window,this.parent).save();
 			ImportExport.exportMap(data.getMapName(),exportPath);
 		}
+	}
+
+	@Override
+	public void update(MapLoaded object) {
+		this.parent.setEnabled(object.isMapLoaded());
 	}
 }

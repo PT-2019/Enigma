@@ -55,7 +55,6 @@ public class EnigmaJsonWriter {
 	 * @throws IOException              En cas d'erreur d'écriture
 	 * @throws IllegalArgumentException Si le fichier n'est pas un ".json"
 	 */
-	@SuppressWarnings("unchecked")
 	public static void writeEnigmas(String filePath, List<Enigma> enigmas) throws IOException {
 		if (!filePath.endsWith(".json"))
 			throw new IllegalArgumentException("Le fichier n'est pas dans un format valide \".json\"");

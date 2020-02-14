@@ -23,6 +23,7 @@ public class DefineAsNpc implements AvailableOptionRunnable {
 	/**
 	 * Parent
 	 */
+	@SuppressWarnings({"FieldCanBeLocal", "unused"})
 	private final CasePopUp parent;
 
 	/**

@@ -1,19 +1,13 @@
 package editor.menus.set;
 
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import common.entities.GameObject;
 import common.entities.types.Activatable;
-import common.hud.EnigmaPanel;
 import common.hud.ui.EnigmaJCheckBoxUI;
-import common.map.MapTestScreenCell;
-import data.Layer;
 import editor.menus.AbstractPopUpView;
 import editor.menus.AvailableOptionRunnable;
 import editor.menus.AvailablePopUpOption;
 import editor.menus.Drawable;
 import editor.popup.cases.CasePopUp;
-import editor.popup.listeners.PopItemListener;
 
 import javax.swing.JCheckBox;
 import java.awt.event.ItemEvent;

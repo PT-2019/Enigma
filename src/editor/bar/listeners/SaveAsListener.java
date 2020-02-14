@@ -1,8 +1,10 @@
 package editor.bar.listeners;
 
 import api.ui.CustomOptionPane;
+import api.utils.Observer;
 import api.utils.Utility;
 import com.badlogic.gdx.graphics.g3d.particles.ResourceData;
+import com.badlogic.gdx.Gdx;
 import common.data.MapData;
 import common.hud.EnigmaOptionPane;
 import common.hud.EnigmaWindow;
@@ -11,11 +13,12 @@ import common.save.DataSave;
 import common.save.EmptyMapGenerator;
 import common.utils.Logger;
 import data.NeedToBeTranslated;
+import data.EnigmaScreens;
 import data.config.Config;
 import game.EnigmaGame;
 import game.screens.TestScreen;
 
-import javax.swing.*;
+import javax.swing.JComponent;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,11 +31,11 @@ import java.util.HashMap;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.0 01/02/2020
  * @since 6.0 01/02/2020
  */
-public class SaveAsListener extends MenuListener {
+public class SaveAsListener extends MenuListener  implements Observer<MapLoaded> {
+
 	/**
 	 * Textes
 	 */
@@ -44,6 +47,8 @@ public class SaveAsListener extends MenuListener {
 
 	public SaveAsListener(EnigmaWindow window, JComponent parent) {
 		super(window, parent);
+		MapLoaded instance = MapLoaded.getInstance();
+		instance.addObserver(this);
 	}
 
 	@Override
@@ -70,12 +75,31 @@ public class SaveAsListener extends MenuListener {
 				Logger.printError("SavAsListener.java","dave data : " + e.getMessage());
 			}
 
+			String path = Config.MAP_FOLDER + mapName;
+
+			//sauvegarde
 			MapTestScreen map = ((TestScreen) EnigmaGame.getCurrentScreen()).getMap();
-			EmptyMapGenerator.save(Config.MAP_FOLDER + mapName, map.getTiledMap(), map.getEntities());
+			EmptyMapGenerator.save(path, map.getTiledMap(), map.getEntities());
+
+			//change la map avant de la recharger
+			EnigmaGame.getCurrentScreen().setMap(path + Config.MAP_EXTENSION);
+
+			Gdx.app.postRunnable(() -> {
+				//rechargement de la map
+				EnigmaGame.reload(EnigmaScreens.TEST.name());
+				//charge les entités sur la bonne map !
+				EmptyMapGenerator.load(path + Config.MAP_EXTENSION);
+			});
+
+			//message ok
 			EnigmaGame.getCurrentScreen().showToast(SAVE_ENDED);
 		}else{
 			EnigmaGame.getCurrentScreen().showToast(SAVE_CANCELED);
 		}
 	}
 
+	@Override
+	public void update(MapLoaded object) {
+		this.parent.setEnabled(object.isMapLoaded());
+	}
 }

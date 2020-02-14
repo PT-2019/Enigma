@@ -8,8 +8,6 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import data.Layer;
 
-import java.util.Arrays;
-
 /**
  * Crée un acteur basique qui peut gérer la collision.
  * <p>
@@ -66,8 +64,8 @@ public class GameActor extends Group {
 	 * @return true s'il y a collision sinon false
 	 * @since 4.0 20/12/2019
 	 */
-	public boolean overlaps(Actor actor,float x,float y) {
-		return GameActorUtilities.overlaps(this, actor,x,y);
+	public boolean overlaps(Actor actor, float x, float y) {
+		return GameActorUtilities.overlaps(this, actor, x, y);
 	}
 
 	/**
@@ -88,7 +86,7 @@ public class GameActor extends Group {
 	 * @since 4.0 20/12/2019
 	 */
 	public void setBounds() {
-		float w = getWidth()/2, h = getHeight()/2;
+		float w = getWidth() / 2, h = getHeight() / 2;
 		this.bounds = new Polygon(new float[]{0, 0, w, 0, w, h, 0, h});
 	}
 
@@ -116,11 +114,11 @@ public class GameActor extends Group {
 	 * @since 4.0 20/12/2019
 	 */
 	public void setBounds(int nbPoints) {
-		if (nbPoints == 4){
+		if (nbPoints == 4) {
 			this.setBounds();
 			return;
 		}
-		float w = getWidth()/2, h = getHeight()/2;
+		float w = getWidth() / 2, h = getHeight() / 2;
 
 		float[] points = new float[2 * nbPoints];
 

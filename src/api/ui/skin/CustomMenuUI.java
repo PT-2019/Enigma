@@ -6,6 +6,7 @@ import api.ui.skin.base.CustomUIBackground;
 import api.ui.skin.base.CustomUICursor;
 import api.ui.skin.base.CustomUIFont;
 import api.ui.skin.base.CustomUIForeground;
+import api.utils.Utility;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -67,13 +68,7 @@ public class CustomMenuUI extends BasicMenuUI implements CustomUI<CustomMenuUI>,
 	 */
 	@SuppressWarnings("unchecked")
 	protected <T extends CustomMenuUI> T duplicate(T customMenuUI) {
-		T clone = null;
-		try {
-			Constructor<?> c = customMenuUI.getClass().getDeclaredConstructor();
-			clone = (T) c.newInstance();
-		} catch (InstantiationException | NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-			throw new IllegalStateException(e);
-		}
+		T clone = (T) Utility.instance(customMenuUI.getClass());
 
 		clone.setCursor(this.getCursor());
 		clone.setAllBackgrounds(this.getBackground(), this.getHoveredBackground());
@@ -176,7 +171,7 @@ public class CustomMenuUI extends BasicMenuUI implements CustomUI<CustomMenuUI>,
 	 *
 	 * @return fond popup du menu
 	 */
-	public Color getPopupBackground() {
+	private Color getPopupBackground() {
 		return popupBackground;
 	}
 
@@ -194,7 +189,7 @@ public class CustomMenuUI extends BasicMenuUI implements CustomUI<CustomMenuUI>,
 	 *
 	 * @return taille popup du menu
 	 */
-	public int getPopupBorderSize() {
+	private int getPopupBorderSize() {
 		return popupBorderSize;
 	}
 
@@ -217,7 +212,7 @@ public class CustomMenuUI extends BasicMenuUI implements CustomUI<CustomMenuUI>,
 	 * @see DefaultUIValues#LEFT_BORDER
 	 * @see DefaultUIValues#BOTTOM_BORDER
 	 */
-	public boolean[] getShowedPopupBorders() {
+	private boolean[] getShowedPopupBorders() {
 		return showedPopupBorders;
 	}
 

@@ -23,6 +23,7 @@ public abstract class MenuListener implements ActionListener {
 
 	/**
 	 * Prototype de listener du menu
+	 *
 	 * @param window fenêtre
 	 * @param parent parent
 	 */

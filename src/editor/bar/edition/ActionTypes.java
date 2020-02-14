@@ -33,11 +33,31 @@ public enum ActionTypes {
 	 * Suppression d'une énigme
 	 * Affiche un message qui confirme la suppression
 	 */
-	REMOVE_ENIGMA(NeedToBeTranslated.REMOVE_ENIGMA);
+	REMOVE_ENIGMA(NeedToBeTranslated.REMOVE_ENIGMA),
+
+	/**
+	 * Définition du contenu
+	 */
+	SET_CONTENT(NeedToBeTranslated.SET_CONTENT),
+
+	/**
+	 * Ajoute des entités
+	 */
+	ADD_SUB_ENTITY(NeedToBeTranslated.ADD_SUB_ENTITY),
+
+	/**
+	 * Retire des entités
+	 */
+	REMOVE_SUB_ENTITY(NeedToBeTranslated.REMOVE_SUB_ENTITY),
+
+	/**
+	 * Change nom
+	 */
+	SET_NAME(NeedToBeTranslated.SET_NAME);
 
 	private final String value;
 
-	ActionTypes(String value){
+	ActionTypes(String value) {
 		this.value = value;
 	}
 

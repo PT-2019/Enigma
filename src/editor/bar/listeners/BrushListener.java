@@ -3,7 +3,7 @@ package editor.bar.listeners;
 import common.hud.EnigmaWindow;
 import data.EditorState;
 import editor.EditorLauncher;
-import game.screens.TestScreen;
+import org.jetbrains.annotations.Nullable;
 
 import java.awt.Component;
 import java.awt.Cursor;
@@ -21,13 +21,15 @@ import java.awt.event.ActionEvent;
  */
 public class BrushListener extends MenuListener {
 
-	public BrushListener(EnigmaWindow window, Component parent) {
+	public BrushListener(EnigmaWindow window, @Nullable Component parent) {
 		super(window, parent);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		EditorLauncher.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-		EditorLauncher.setState(EditorState.NORMAL);
+
+		//garde le mode zoom, si pas de zoom, alors met en normal
+		EditorLauncher.clearStates(EditorState.PERSISTANT);
 	}
 }

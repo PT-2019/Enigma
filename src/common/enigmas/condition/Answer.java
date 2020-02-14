@@ -1,5 +1,7 @@
 package common.enigmas.condition;
 
+import common.enigmas.reporting.EnigmaReport;
+import common.enigmas.reporting.ConditionReport;
 import common.entities.Entity;
 import common.entities.players.Player;
 import common.entities.types.Content;
@@ -50,13 +52,13 @@ public class Answer extends Condition {
 	 * Vérifie que la condition est satisfaite
 	 *
 	 * @param p Joueur ayant mené à l'appel de cette méthode
-	 * @return true si la condtion est satisfaite, false sinon
+	 * @return true si la condition est satisfaite, false sinon
 	 */
 	@Override
-	public boolean verify(Player p) {
+	public EnigmaReport verify(Player p) {
 		Content c = (Content) this.entity;
 		String answer = EnigmaOptionPane.showInputDialog(new EnigmaWindow(), c.getContent());
-		return (answer.equals(this.answer));
+		return new EnigmaReport(ConditionReport.DONE, (answer.equals(this.answer)));
 	}
 
 	/**
@@ -85,7 +87,7 @@ public class Answer extends Condition {
 
 	@Override
 	public String getEnigmaElementReadablePrint() {
-		return "["+gl.get(EnigmaField.INPUT_ANSWER)+": "+
-				gl.get(EnigmaField.ANSWER)+" = \"" + this.answer +"\" ]";
+		return "[" + gl.get(EnigmaField.INPUT_ANSWER) + ": " +
+				gl.get(EnigmaField.ANSWER) + " = \"" + this.answer + "\" ]";
 	}
 }

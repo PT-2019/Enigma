@@ -5,6 +5,7 @@ import api.ui.CustomButton;
 import api.ui.CustomLabel;
 import api.ui.CustomPanel;
 import api.ui.CustomTextArea;
+import api.ui.CustomTextField;
 import api.utils.annotations.ConvenienceClass;
 
 /**
@@ -14,7 +15,7 @@ import api.utils.annotations.ConvenienceClass;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 4.0 28/12/2019
+ * @version 6.0
  * @since 4.0 28/12/2019
  */
 @ConvenienceClass
@@ -34,6 +35,14 @@ public interface OptionPaneStyle {
 	 * @return le champ de saisie auquel le style a été appliqué
 	 */
 	CustomTextArea getTextAreaStyle();
+
+	/**
+	 * Retourne le style de base d'un champ de saisie de l'option bane
+	 *
+	 * @return le champ de saisie auquel le style a été appliqué
+	 * @since 6.0
+	 */
+	CustomTextField getTextFieldStyle();
 
 	/**
 	 * Retourne la fenêtre de l'option pane

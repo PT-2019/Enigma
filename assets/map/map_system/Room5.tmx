@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "../mapDtd.dtd">
-<map version="1.2" tiledversion="1.2.4" orientation="orthogonal" renderorder="right-down" width="15" height="6" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="1">
+<map version="1.2" tiledversion="2019.11.12" orientation="orthogonal" renderorder="right-down" width="15" height="6" tilewidth="16" tileheight="16" infinite="0" nextlayerid="3" nextobjectid="1">
  <tileset firstgid="1" name="0" tilewidth="16" tileheight="16" tilecount="48" columns="8">
   <image source="../tiles/ground/dungeon1.png" width="128" height="96"/>
  </tileset>
@@ -16,11 +16,11 @@
  <layer id="2" name="FLOOR1" width="15" height="6">
   <data encoding="csv">
 9,3,3,3,3,3,3,3,3,3,3,3,3,3,4,
-13,417,418,418,418,418,418,418,418,418,418,418,418,418,419,
-13,425,426,426,426,426,426,426,426,426,426,426,426,426,427,
-21,337,337,337,337,337,337,337,337,337,337,337,337,337,337,
-417,337,337,337,337,337,337,337,337,337,337,337,337,337,337,
-425,337,337,15,15,15,15,15,15,15,15,15,15,15,15
+0,417,418,418,418,418,418,418,418,418,418,418,418,418,419,
+0,425,426,426,426,426,426,426,426,426,426,426,426,426,427,
+0,337,337,337,337,337,337,337,337,337,337,337,337,337,337,
+0,337,337,337,337,337,337,337,337,337,337,337,337,337,337,
+0,337,337,15,15,15,15,15,15,15,15,15,15,15,15
 </data>
  </layer>
  <layer id="1" name="FLOOR2" width="15" height="6">
@@ -46,11 +46,11 @@
  <layer id="3" name="DECORATIONS2" width="15" height="6">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+21,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+419,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+427,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
  <layer id="4" name="COLLISION" width="15" height="6" visible="0" opacity="0.32">

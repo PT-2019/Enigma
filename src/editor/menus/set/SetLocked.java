@@ -51,7 +51,7 @@ public class SetLocked implements AvailableOptionRunnable {
 
 		//applique les changements
 		locked.addItemListener((e) -> {
-			if(e.getStateChange() == ItemEvent.SELECTED) lockable.lock();
+			if (e.getStateChange() == ItemEvent.SELECTED) lockable.lock();
 			else lockable.unlock();
 		});
 
@@ -69,7 +69,7 @@ public class SetLocked implements AvailableOptionRunnable {
 
 		//applique les changements
 		locked.addItemListener((e) -> {
-			if(e.getStateChange() == ItemEvent.SELECTED) lockable.lock();
+			if (e.getStateChange() == ItemEvent.SELECTED) lockable.lock();
 			else lockable.unlock();
 		});
 

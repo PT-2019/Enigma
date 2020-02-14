@@ -7,12 +7,13 @@ import api.ui.manager.CustomOptionPaneWindowManager;
 import api.ui.manager.RadioButtonManager;
 import api.ui.skin.CustomButtonUI;
 import api.ui.skin.CustomTextAreaUI;
+import api.ui.skin.CustomTextFieldUI;
 import api.utils.Utility;
 import common.hud.EnigmaButton;
-import common.hud.EnigmaOptionPane;
 import common.hud.ui.EnigmaButtonUI;
 
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.JScrollPane;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -112,7 +113,7 @@ public class CustomOptionPane implements OptionPaneStyle {
 	 *
 	 * @param window fenêtre
 	 * @param parent parent
-	 * @param rbm gestionnaire de radio boutons
+	 * @param rbm    gestionnaire de radio boutons
 	 */
 	public CustomOptionPane(CustomAlert window, CustomWindow parent, RadioButtonManager rbm) {
 		this.window = window;
@@ -152,6 +153,24 @@ public class CustomOptionPane implements OptionPaneStyle {
 		borders[DefaultUIValues.BOTTOM_BORDER] = true;
 		Color grey = new Color(100, 100, 100);
 		CustomTextAreaUI tui = ta.getComponentUI();
+		tui.setAllBackgrounds(grey, grey, grey);
+		tui.setAllBorders(null, Color.WHITE, Color.WHITE);
+		tui.setAllBordersSize(1, 1, 1);
+		tui.setAllShowedBorders(DefaultUIValues.ALL_BORDER_HIDDEN, borders, borders);
+		return ta;
+	}
+
+	/**
+	 * Retourne le style de base d'un champ de saisie de l'option bane
+	 *
+	 * @return le champ de saisie auquel le style a été appliqué
+	 */
+	private static CustomTextField getClassicTextField() {
+		CustomTextField ta = new CustomTextField();
+		boolean[] borders = DefaultUIValues.ALL_BORDER_HIDDEN;
+		borders[DefaultUIValues.BOTTOM_BORDER] = true;
+		Color grey = new Color(100, 100, 100);
+		CustomTextFieldUI tui = ta.getComponentUI();
 		tui.setAllBackgrounds(grey, grey, grey);
 		tui.setAllBorders(null, Color.WHITE, Color.WHITE);
 		tui.setAllBordersSize(1, 1, 1);
@@ -389,8 +408,8 @@ public class CustomOptionPane implements OptionPaneStyle {
 	/**
 	 * Crée un popup de choix de map
 	 *
-	 * @param parent  parent
-	 * @param style   style
+	 * @param parent parent
+	 * @param style  style
 	 * @return le nom de la map séléctionnée
 	 * @since 5.0
 	 */
@@ -419,12 +438,12 @@ public class CustomOptionPane implements OptionPaneStyle {
 
 		scroll.setBorder(BorderFactory.createLineBorder(Color.WHITE));
 		EnigmaButtonUI bui = new EnigmaButtonUI();
-		bui.setAllSelectedBackgrounds(Color.LIGHT_GRAY,Color.LIGHT_GRAY,Color.LIGHT_GRAY);
-		bui.setAllBackgrounds(bui.getBackground(),Color.LIGHT_GRAY,Color.LIGHT_GRAY);
-		bui.setAllBorders(null,null,null);
-		bui.setAllSelectedBorders(null,null,null);
-		bui.setAllForegrounds(Color.WHITE,Color.BLACK,Color.BLACK);
-		bui.setAllSelectedForegrounds(Color.BLACK,Color.BLACK,Color.BLACK);
+		bui.setAllSelectedBackgrounds(Color.LIGHT_GRAY, Color.LIGHT_GRAY, Color.LIGHT_GRAY);
+		bui.setAllBackgrounds(bui.getBackground(), Color.LIGHT_GRAY, Color.LIGHT_GRAY);
+		bui.setAllBorders(null, null, null);
+		bui.setAllSelectedBorders(null, null, null);
+		bui.setAllForegrounds(Color.WHITE, Color.BLACK, Color.BLACK);
+		bui.setAllSelectedForegrounds(Color.BLACK, Color.BLACK, Color.BLACK);
 
 		gbc.gridx = 1;
 		gbc.gridy = 1;
@@ -448,15 +467,15 @@ public class CustomOptionPane implements OptionPaneStyle {
 		}
 
 		window.getContentSpace().setLayout(new GridBagLayout());
-		window.getContentSpace().add(titleComponent,gbc);
+		window.getContentSpace().add(titleComponent, gbc);
 		gbc.gridy = 2;
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.weighty = 1;
-		window.getContentSpace().add(scroll,gbc);
+		window.getContentSpace().add(scroll, gbc);
 		gbc.gridy = 3;
 		gbc.fill = GridBagConstraints.NONE;
 		gbc.weighty = 0;
-		window.getContentSpace().add(confirmComponent,gbc);
+		window.getContentSpace().add(confirmComponent, gbc);
 		window.setModal(true);
 
 		optionPane.start();
@@ -621,20 +640,20 @@ public class CustomOptionPane implements OptionPaneStyle {
 	/**
 	 * Crée un popup avec une liste de choix.
 	 *
-	 * @param parent  parent
-	 * @param size taille
+	 * @param parent parent
+	 * @param size   taille
 	 * @return le nom du choix sélectionné
 	 * @since 6.0
 	 */
-	public static String showListDialog(CustomWindow parent, String title, Dimension size, ArrayList<String> choices){
+	public static String showListDialog(CustomWindow parent, String title, Dimension size, ArrayList<String> choices) {
 		return showListDialog(parent, title, size, choices, new CustomOptionPane());
 	}
 
 	/**
 	 * Crée un popup avec une liste de choix.
 	 *
-	 * @param parent  parent
-	 * @param size taille
+	 * @param parent parent
+	 * @param size   taille
 	 * @return le nom du choix sélectionné
 	 * @since 6.0
 	 */
@@ -664,12 +683,12 @@ public class CustomOptionPane implements OptionPaneStyle {
 
 		scroll.setBorder(BorderFactory.createLineBorder(Color.WHITE));
 		EnigmaButtonUI bui = new EnigmaButtonUI();
-		bui.setAllSelectedBackgrounds(Color.LIGHT_GRAY,Color.LIGHT_GRAY,Color.LIGHT_GRAY);
-		bui.setAllBackgrounds(bui.getBackground(),Color.LIGHT_GRAY,Color.LIGHT_GRAY);
-		bui.setAllBorders(null,null,null);
-		bui.setAllSelectedBorders(null,null,null);
-		bui.setAllForegrounds(Color.WHITE,Color.BLACK,Color.BLACK);
-		bui.setAllSelectedForegrounds(Color.BLACK,Color.BLACK,Color.BLACK);
+		bui.setAllSelectedBackgrounds(Color.LIGHT_GRAY, Color.LIGHT_GRAY, Color.LIGHT_GRAY);
+		bui.setAllBackgrounds(bui.getBackground(), Color.LIGHT_GRAY, Color.LIGHT_GRAY);
+		bui.setAllBorders(null, null, null);
+		bui.setAllSelectedBorders(null, null, null);
+		bui.setAllForegrounds(Color.WHITE, Color.BLACK, Color.BLACK);
+		bui.setAllSelectedForegrounds(Color.BLACK, Color.BLACK, Color.BLACK);
 
 		gbc.gridx = 1;
 		gbc.gridy = 1;
@@ -679,8 +698,8 @@ public class CustomOptionPane implements OptionPaneStyle {
 		gbc.weightx = 1;
 		gbc.weighty = 0;
 
-		mapsComponent.setLayout(new GridLayout(30,1));
-		for(String s : choices){
+		mapsComponent.setLayout(new GridLayout(30, 1));
+		for (String s : choices) {
 			EnigmaButton b = new EnigmaButton(s);
 			b.setComponentUI(bui);
 			mapsComponent.add(b);
@@ -688,15 +707,15 @@ public class CustomOptionPane implements OptionPaneStyle {
 		}
 
 		window.getContentSpace().setLayout(new GridBagLayout());
-		window.getContentSpace().add(titleComponent,gbc);
+		window.getContentSpace().add(titleComponent, gbc);
 		gbc.gridy = 2;
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.weighty = 1;
-		window.getContentSpace().add(scroll,gbc);
+		window.getContentSpace().add(scroll, gbc);
 		gbc.gridy = 3;
 		gbc.fill = GridBagConstraints.NONE;
 		gbc.weighty = 0;
-		window.getContentSpace().add(confirmComponent,gbc);
+		window.getContentSpace().add(confirmComponent, gbc);
 		window.setModal(true);
 
 		optionPane.start();
@@ -742,27 +761,27 @@ public class CustomOptionPane implements OptionPaneStyle {
 	/**
 	 * Affiche un popup personnalisé
 	 *
-	 * @param parent parent
+	 * @param parent  parent
 	 * @param message possiblement un tableau, des composants a afficher dans le popup
-	 * @param title titre de la fenêtre
+	 * @param title   titre de la fenêtre
 	 * @param options option (ok, confirmer, ...), par exemple un tableau de string
 	 * @return la position dans le tableau d'options choisie
 	 */
-	public static int showOptionDialog(CustomWindow parent, Object message, String title, String[] options){
+	public static int showOptionDialog(CustomWindow parent, Object message, String title, String[] options) {
 		return showOptionDialog(parent, message, title, options, new CustomOptionPane());
 	}
 
 	/**
 	 * Affiche un popup personnalisé
 	 *
-	 * @param parent parent
+	 * @param parent  parent
 	 * @param message possiblement un tableau, des composants a afficher dans le popup
-	 * @param title titre de la fenêtre
+	 * @param title   titre de la fenêtre
 	 * @param options option (ok, confirmer, ...), par exemple un tableau de string
 	 * @return la position dans le tableau d'options choisie
 	 */
-	protected static int showOptionDialog(CustomWindow parent, Object message, String title, String[] options,
-	                                      OptionPaneStyle style){
+	public static int showOptionDialog(CustomWindow parent, Object message, String title, String[] options,
+	                                   OptionPaneStyle style) {
 		CustomAlert window = style.getWindow();
 		window.setTitle(title);
 
@@ -770,43 +789,32 @@ public class CustomOptionPane implements OptionPaneStyle {
 		CustomOptionPane optionPane = new CustomOptionPane(window, parent);
 
 		CustomPanel answersComponent = style.getPanelStyle();
-		//answersComponent.setLayout(new GridLayout(options.length/2, 2));
-		for (String o:options) {
+		for (String o : options) {
 			CustomButton confirm = style.getButtonStyle(o);
 			confirm.addActionListener(new CustomOptionPaneButtonManager(optionPane));
 			answersComponent.add(confirm);
 		}
 
 		CustomPanel questionComponent = style.getPanelStyle();
-		if(message instanceof Object[]){
-			/*questionComponent.setLayout(new GridLayout(((Object[]) message).length,1));
-			for (Object o: (Object[]) message) {
-				if(o instanceof CustomTextArea){
-					((CustomTextArea) o).setComponentUI(style.getTextAreaStyle().getComponentUI());
-				} else if(o instanceof CustomLabel){
-					((CustomLabel) o).setComponentUI(style.getLabelStyle("").getComponentUI());
-				} else if(o instanceof CustomButton){
-					((CustomButton) o).setComponentUI(style.getButtonStyle("").getComponentUI());
-				}
-
-				questionComponent.add((Component) o);
-			}*/
+		if (message instanceof Object[]) {
 			Object[] messageA = (Object[]) message;
 			questionComponent.setLayout(new GridLayout());
 			int sum = 0;
 			for (int i = 0; i < messageA.length; i++, sum++) {
 				Object o = messageA[i];
-				if(o instanceof CustomTextArea){
+				if (o instanceof CustomTextArea) {
 					((CustomTextArea) o).setComponentUI(style.getTextAreaStyle().getComponentUI());
-				} else if(o instanceof CustomLabel){
+				} else if (o instanceof CustomLabel) {
 					((CustomLabel) o).setComponentUI(style.getLabelStyle("").getComponentUI());
-				} else if(o instanceof CustomButton){
+				} else if (o instanceof CustomButton) {
 					((CustomButton) o).setComponentUI(style.getButtonStyle("").getComponentUI());
+				} else if (o instanceof CustomTextField) {
+					((CustomTextField) o).setComponentUI(style.getTextFieldStyle().getComponentUI());
 				}
 				questionComponent.add((Component) o);
 			}
-			((GridLayout)questionComponent.getLayout()).setRows(sum);
-			((GridLayout)questionComponent.getLayout()).setColumns(1);
+			((GridLayout) questionComponent.getLayout()).setRows(sum);
+			((GridLayout) questionComponent.getLayout()).setColumns(1);
 		}
 
 		parent.setAlwaysOnTop(true);
@@ -826,7 +834,7 @@ public class CustomOptionPane implements OptionPaneStyle {
 		optionPane.start();
 
 		for (int i = 0; i < options.length; i++) {
-			if(optionPane.getAnswer().equals(options[i]))
+			if (optionPane.getAnswer().equals(options[i]))
 				return i;
 		}
 
@@ -851,6 +859,11 @@ public class CustomOptionPane implements OptionPaneStyle {
 	@Override
 	public CustomLabel getLabelStyle(String content) {
 		return new CustomLabel(content);
+	}
+
+	@Override
+	public CustomTextField getTextFieldStyle() {
+		return getClassicTextField();
 	}
 
 	/**
@@ -888,9 +901,9 @@ public class CustomOptionPane implements OptionPaneStyle {
 	 */
 	public void answer(String answer) {
 		if (this.input != null) this.answer = this.input.getText();
-		else if(this.rbm != null){
+		else if (this.rbm != null) {
 
-			if(this.rbm.getSelectedButton() != null)
+			if (this.rbm.getSelectedButton() != null)
 				this.answer = this.rbm.getSelectedButton().getText();
 			else
 				this.answer = CANCEL;

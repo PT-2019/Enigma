@@ -5,6 +5,7 @@ import api.ui.skin.base.CustomUI;
 import api.ui.skin.base.CustomUIBorder;
 import api.ui.skin.base.CustomUICursor;
 import api.ui.skin.base.CustomUIFont;
+import api.utils.Utility;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
@@ -84,13 +85,7 @@ public class CustomComboBoxUI extends BasicComboBoxUI implements CustomUI<Custom
 	 */
 	@SuppressWarnings("unchecked")
 	protected <T extends CustomComboBoxUI> T duplicate(T customComboBoxUI) {
-		T clone = null;
-		try {
-			Constructor<?> c = customComboBoxUI.getClass().getDeclaredConstructor();
-			clone = (T) c.newInstance();
-		} catch (InstantiationException | NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-			throw new IllegalStateException(e);
-		}
+		T clone = (T) Utility.instance(customComboBoxUI.getClass());
 
 		clone.setCursor(this.getCursor());
 		clone.setBorder(this.getBorder());
@@ -126,7 +121,7 @@ public class CustomComboBoxUI extends BasicComboBoxUI implements CustomUI<Custom
 	 * @param borderSize    ignore
 	 * @param showedBorders ignore
 	 */
-	public void paintBorder(JPanel p, Color borderColor, int borderSize, boolean[] showedBorders) {
+	private void paintBorder(JPanel p, Color borderColor, int borderSize, boolean[] showedBorders) {
 		int[] borders = new int[4];
 		for (int i = 0; i < borders.length; i++) {
 			if (showedBorders[i]) borders[i] = borderSize;
@@ -156,6 +151,7 @@ public class CustomComboBoxUI extends BasicComboBoxUI implements CustomUI<Custom
 	 *
 	 * @param labelUI l'ui utilisée par les labels pour le style des liste déroulantes
 	 */
+	@SuppressWarnings("WeakerAccess")
 	public void setLabelUI(CustomLabelUI labelUI) {
 		this.labelUI = labelUI;
 	}
@@ -174,6 +170,7 @@ public class CustomComboBoxUI extends BasicComboBoxUI implements CustomUI<Custom
 	 *
 	 * @param buttonUI l'ui utilisée par les boutons pour le style des liste déroulantes
 	 */
+	@SuppressWarnings("WeakerAccess")
 	public void setButtonUI(CustomButtonUI buttonUI) {
 		this.buttonUI = buttonUI;
 	}
@@ -192,6 +189,7 @@ public class CustomComboBoxUI extends BasicComboBoxUI implements CustomUI<Custom
 	 *
 	 * @param popupUI l'ui utilisée par les popup pour le style des liste déroulantes
 	 */
+	@SuppressWarnings("WeakerAccess")
 	public void setPopupUI(CustomPopupMenuUI popupUI) {
 		this.popupUI = popupUI;
 	}

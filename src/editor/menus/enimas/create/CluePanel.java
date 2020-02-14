@@ -25,7 +25,6 @@ import java.awt.Insets;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.0 02/02/2020
  * @since 6.0 02/02/2020
  */
@@ -103,8 +102,9 @@ public class CluePanel extends AbstractSubPopUpView {
 
 	/**
 	 * Indice invalide
+	 *
 	 * @param invalid true si invalide
-	 * @param info message si invalide
+	 * @param info    message si invalide
 	 */
 	public void setClueInvalid(boolean invalid, String info) {
 		if (invalid) {
@@ -121,8 +121,9 @@ public class CluePanel extends AbstractSubPopUpView {
 
 	/**
 	 * Valeur délais invalide
+	 *
 	 * @param invalid true si invalide
-	 * @param info message si invalide
+	 * @param info    message si invalide
 	 */
 	public void setTimeInvalid(boolean invalid, String info) {
 		if (invalid) {

@@ -1,8 +1,10 @@
 package common.hud;
 
+import api.ui.CustomAlert;
 import api.ui.CustomButton;
 import api.ui.CustomOptionPane;
 import api.ui.CustomPanel;
+import api.ui.CustomTextField;
 import api.ui.CustomWindow;
 import api.ui.base.DefaultUIValues;
 import api.ui.base.OptionPaneStyle;
@@ -10,6 +12,7 @@ import api.ui.skin.CustomButtonUI;
 import api.utils.Utility;
 import api.utils.annotations.ConvenienceMethod;
 import common.hud.ui.EnigmaTextAreaUI;
+import common.hud.ui.EnigmaTextFieldUI;
 import data.NeedToBeTranslated;
 
 import java.awt.Color;
@@ -26,10 +29,15 @@ import java.util.ArrayList;
  * @version 6.0
  * @since 3.0
  */
+@SuppressWarnings("unused")
 public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyle {
 
 	private EnigmaOptionPane() {
 		super(new EnigmaAlert());
+	}
+
+	protected EnigmaOptionPane(CustomAlert alert) {
+		super(alert);
 	}
 
 	/**
@@ -38,7 +46,7 @@ public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyl
 	 * @param text contenu du bouton
 	 * @return le bouton auquel le style a été appliqué
 	 */
-	public static CustomButton getClassicButton(String text) {
+	private static CustomButton getClassicButton(String text) {
 		boolean[] borders = new boolean[4];
 		borders[DefaultUIValues.BOTTOM_BORDER] = true;
 		Color grey = new Color(100, 100, 100);
@@ -63,6 +71,24 @@ public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyl
 		borders[DefaultUIValues.BOTTOM_BORDER] = true;
 		Color grey = new Color(100, 100, 100);
 		EnigmaTextAreaUI tui = ta.getComponentUI();
+		tui.setAllBackgrounds(grey, grey, grey);
+		tui.setAllBorders(null, Color.WHITE, Color.WHITE);
+		tui.setAllBordersSize(1, 1, 1);
+		tui.setAllShowedBorders(DefaultUIValues.ALL_BORDER_HIDDEN, borders, borders);
+		return ta;
+	}
+
+	/**
+	 * Retourne le style de base d'un champ de saisie de l'option bane
+	 *
+	 * @return le champ de saisie auquel le style a été appliqué
+	 */
+	private static EnigmaTextField getClassicTextField() {
+		EnigmaTextField ta = new EnigmaTextField();
+		boolean[] borders = DefaultUIValues.ALL_BORDER_HIDDEN;
+		borders[DefaultUIValues.BOTTOM_BORDER] = true;
+		Color grey = new Color(100, 100, 100);
+		EnigmaTextFieldUI tui = ta.getComponentUI();
 		tui.setAllBackgrounds(grey, grey, grey);
 		tui.setAllBorders(null, Color.WHITE, Color.WHITE);
 		tui.setAllBordersSize(1, 1, 1);
@@ -123,8 +149,8 @@ public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyl
 	/**
 	 * Crée un popup de choix de map
 	 *
-	 * @param parent  parent
-	 * @return le nom de la map séléctionnée
+	 * @param parent parent
+	 * @return le nom de la map sélectionnée
 	 * @since 5.0
 	 */
 	public static String showMapChoiceDialog(CustomWindow parent) {
@@ -161,13 +187,13 @@ public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyl
 	/**
 	 * Affiche un popup personnalisé
 	 *
-	 * @param parent parent
+	 * @param parent  parent
 	 * @param message possiblement un tableau, des composants a afficher dans le popup
-	 * @param title titre de la fenêtre
+	 * @param title   titre de la fenêtre
 	 * @param options option (ok, confirmer, ...), par exemple un tableau de string
 	 * @return la position dans le tableau d'options choisie
 	 */
-	public static int showOptionDialog(CustomWindow parent, Object message, String title, String[] options){
+	public static int showOptionDialog(CustomWindow parent, Object message, String title, String[] options) {
 		return showOptionDialog(parent, message, title, options, new EnigmaOptionPane());
 	}
 
@@ -187,9 +213,9 @@ public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyl
 	/**
 	 * Crée un popup de choix de map
 	 *
-	 * @param parent  parent
-	 * @param size taille
-	 * @return le nom de la map séléctionnée
+	 * @param parent parent
+	 * @param size   taille
+	 * @return le nom de la map sélectionnée
 	 * @since 5.0
 	 */
 	@ConvenienceMethod
@@ -201,8 +227,8 @@ public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyl
 	/**
 	 * Crée un popup avec une liste de choix.
 	 *
-	 * @param parent  parent
-	 * @param size taille
+	 * @param parent parent
+	 * @param size   taille
 	 * @return le nom du choix sélectionné
 	 * @since 5.0
 	 */
@@ -222,6 +248,16 @@ public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyl
 		showAlert(parent, size, message, new EnigmaOptionPane());
 	}
 
+	/**
+	 * Retourne le style de l'enigma option pane
+	 *
+	 * @return le style de l'enigma option pane
+	 * @since 6.0
+	 */
+	public static OptionPaneStyle getStyle() {
+		return new EnigmaOptionPane();
+	}
+
 	@Override
 	public CustomButton getButtonStyle(String text) {
 		return getClassicButton(text);
@@ -233,6 +269,11 @@ public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyl
 	}
 
 	@Override
+	public CustomTextField getTextFieldStyle() {
+		return getClassicTextField();
+	}
+
+	@Override
 	public CustomPanel getPanelStyle() {
 		return new EnigmaPanel();
 	}
@@ -240,14 +281,5 @@ public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyl
 	@Override
 	public EnigmaLabel getLabelStyle(String content) {
 		return new EnigmaLabel(content);
-	}
-
-	/**
-	 * Retourne le style de l'enigma option pane
-	 * @return le style de l'enigma option pane
-	 * @since 6.0
-	 */
-	public static OptionPaneStyle getStyle(){
-		return new EnigmaOptionPane();
 	}
 }

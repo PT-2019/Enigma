@@ -3,6 +3,7 @@ package common.enigmas.operation;
 import api.utils.Utility;
 import com.badlogic.gdx.math.Vector2;
 import common.enigmas.EnigmaElementReadablePrint;
+import common.enigmas.reporting.EnigmaReport;
 import common.entities.GameObject;
 import common.entities.players.Player;
 import common.save.enigmas.EnigmaAttributes;
@@ -73,8 +74,10 @@ public abstract class Operation implements EnigmaElementReadablePrint {
 	 * Effectue l'action
 	 *
 	 * @param p Joueur ayant mené à l'appel de cette méthode
+	 *
+	 * @return bilan de l'exécution de l'opération
 	 */
-	public abstract void run(Player p);
+	public abstract EnigmaReport run(Player p);
 
 	/**
 	 * Obtenir un EnumMap de l'objet avec ses attributs et leur état

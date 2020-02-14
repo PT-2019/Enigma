@@ -11,7 +11,6 @@ import data.config.Config;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.0 01/02/2020
  * @since 6.0 01/02/2020
  */
@@ -26,7 +25,7 @@ public final class Logger {
 	 */
 	@SuppressWarnings("ConstantConditions")
 	public static void printDebug(String className, String message) {
-		if(Config.APPLICATION_LOG >= Application.LOG_DEBUG)
+		if (Config.APPLICATION_LOG >= Application.LOG_DEBUG)
 			PrintColor.println(className + ":" + message, Config.DEBUG_COLOR);
 	}
 
@@ -39,7 +38,7 @@ public final class Logger {
 	 */
 	@SuppressWarnings("ConstantConditions")
 	public static void printError(String className, String message) {
-		if(Config.APPLICATION_LOG >= Application.LOG_ERROR)
+		if (Config.APPLICATION_LOG >= Application.LOG_ERROR)
 			PrintColor.println(className + ":" + message, Config.ERROR_COLOR);
 	}
 
@@ -52,7 +51,7 @@ public final class Logger {
 	 */
 	@SuppressWarnings("ConstantConditions")
 	public static void printDebugALL(String className, String message) {
-		if(Config.APPLICATION_LOG >= Application.DEBUG_ALL)
+		if (Config.APPLICATION_LOG >= Application.DEBUG_ALL)
 			PrintColor.println(className + ":" + message, Config.DEBUG_ALL_COLOR);
 
 

@@ -120,45 +120,50 @@ public class GameData {
         }
     }
 
-    /**
-     * Obtenir le nom de la map
-     * @return Nom de la map
-     */
-    public String getMapName(){
-        return this.mapName;
-    }
+	/**
+	 * Obtenir le nom de la map
+	 *
+	 * @return Nom de la map
+	 */
+	public String getMapName() {
+		return this.mapName;
+	}
 
-    /**
-     * Obtenir le nom
-     * @return Nom
-     */
-    public String getName(){
-        return this.name;
-    }
+	/**
+	 * Obtenir le nom
+	 *
+	 * @return Nom
+	 */
+	public String getName() {
+		return this.name;
+	}
 
-    /**
-     * Obtenir la description
-     * @return Description
-     */
-    public String getDescription() {
-        return description;
-    }
+	/**
+	 * Obtenir la description
+	 *
+	 * @return Description
+	 */
+	public String getDescription() {
+		return description;
+	}
 
-    /**
-     * Obtenir la durée
-     * @return Durée
-     */
-    public int getDuration() {
-        return duration;
-    }
+	/**
+	 * Obtenir la durée
+	 *
+	 * @return Durée
+	 */
+	public int getDuration() {
+		return duration;
+	}
 
-    /**
-     * Obtenir le nombre de joueurs maximum
-     * @return Nombre de joueurs maximum
-     */
-    public int getMaxPlayers() {
-        return maxPlayers;
-    }
+	/**
+	 * Obtenir le nombre de joueurs maximum
+	 *
+	 * @return Nombre de joueurs maximum
+	 */
+	public int getMaxPlayers() {
+		return maxPlayers;
+	}
 
     /**
      * Obtenir si multijoueurs
@@ -189,6 +194,6 @@ public class GameData {
         data.put(MAX_PLAYERS, String.valueOf(this.maxPlayers));
         data.put(DURATION, String.valueOf(this.duration));
 
-        return data;
-    }
+		return data;
+	}
 }

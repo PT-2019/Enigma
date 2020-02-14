@@ -1,6 +1,6 @@
 [
   {
-    name: rat,
+    name: Rat,
     path: "assets/entities/monsters/019.png",
     cols: 4
     rows: 4
@@ -10,7 +10,7 @@
     duration: 0.3f
   },
     {
-      name: snake,
+      name: Snake,
       path: "assets/entities/monsters/023s.png",
       cols: 4
       rows: 4

@@ -13,26 +13,31 @@ public interface Application {
 
 	/**
 	 * Affiche aucune info
+	 *
 	 * @since 6.0
 	 */
 	int LOG_NONE = 0;
 	/**
 	 * Affiche info debug
+	 *
 	 * @since 6.0
 	 */
 	int LOG_DEBUG = 3;
 	/**
 	 * Affiche info
+	 *
 	 * @since 6.0
 	 */
 	int LOG_INFO = 2;
 	/**
 	 * Affiche info d'erreurs
+	 *
 	 * @since 6.0
 	 */
 	int LOG_ERROR = 1;
 	/**
 	 * Affiche infos debug en plus
+	 *
 	 * @since 6.1
 	 */
 	int DEBUG_ALL = 5;

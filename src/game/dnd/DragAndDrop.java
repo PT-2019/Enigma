@@ -1,14 +1,15 @@
 package game.dnd;
 
 import api.libgdx.actor.GameActorUtilities;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import common.map.MapTestScreen;
+import common.utils.Logger;
 import data.EditorState;
+import data.NeedToBeTranslated;
 import editor.EditorLauncher;
 import game.EnigmaGame;
 import game.screens.TestScreen;
@@ -48,17 +49,17 @@ public class DragAndDrop extends InputListener {
 	 * @param dragged   L'entité déplacée
 	 * @param container Le menu qui contenait l'entité avant drag and drop
 	 */
-	public DragAndDrop(DraggedEntity dragged, EntityContainer container) {
+	DragAndDrop(DraggedEntity dragged, EntityContainer container) {
 		this.dragged = dragged;
 		this.container = container.getParent().getParent();
 		this.offsetX = 0;
 		this.offsetY = 0;
 	}
 
-	// Drag Strart
+	// Drag Start
 	@Override
 	public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-		if (this.dragged.isDraggable() && EditorLauncher.isState(EditorState.NORMAL)) {
+		if (this.dragged.isDraggable()) {
 			//cursor de drag
 			EditorLauncher.getInstance().getWindow().setCursor(new Cursor(Cursor.HAND_CURSOR));
 
@@ -78,24 +79,10 @@ public class DragAndDrop extends InputListener {
 		//reset cursor
 		EditorLauncher.getInstance().getWindow().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 
-		Vector2 pos = GameActorUtilities.getAbsolutePosition(dragged);//x,y de l'object bas gauche
-		//correction parce que je veux haut à gauche
-		pos.y += dragged.getHeight();
+		//si zoom activé. Fin.
+		if (EditorLauncher.containsState(EditorState.ZOOM)) {
+			Logger.printDebug("DragAndDrop#up", "En mode Zoom");
 
-		//si on la pas mis sur le menu donc partie de la map non visible car cachée par celui-ci
-		boolean retour = !GameActorUtilities.contains(this.container, pos);
-		if (retour) {//si pas caché
-			MapTestScreen map = ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap();
-			//on regarde si on l'a mis sur la map
-			retour = map.loadEntity(dragged.getEntity(), pos) != null;
-		} else {
-			Gdx.app.debug("DragAndDrop", "dans le menu");
-		}
-
-		if (retour) {//placé
-			//disparaît
-			this.dragged.remove();
-		} else {
 			//fade out si pas placé
 			this.dragged.addAction(
 					Actions.sequence(
@@ -104,7 +91,46 @@ public class DragAndDrop extends InputListener {
 							Actions.run(this.dragged::remove)
 					)
 			);
+
+			EnigmaGame.getCurrentScreen().showToast(NeedToBeTranslated.DRAG_AND_DROP_FAILED_ZOOM);
+			return;
 		}
+
+		Vector2 pos = GameActorUtilities.getAbsolutePosition(this.dragged);//x,y de l'object bas gauche
+		//correction parce que je veux haut à gauche
+		pos.y += this.dragged.getHeight();
+
+		//si on la pas mis sur le menu donc partie de la map non visible car cachée par celui-ci
+		boolean retour = !GameActorUtilities.contains(this.container, pos);
+		String message;
+		if (retour) {//si pas caché par le menu
+			MapTestScreen map = ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap();
+			//on regarde si on l'a mis sur la map
+			MapTestScreen.LoadedEntity loadedEntity = map.loadEntity(this.dragged.getEntity(), pos);
+			if (loadedEntity.entity == null) {
+				//affiche l'erreur
+				message = loadedEntity.message;
+			} else {
+				//si placé alors disparaît
+				this.dragged.remove();
+				return;
+			}
+		} else {
+			//dans le menu, affiche l'erreur
+			message = NeedToBeTranslated.DRAG_AND_DROP_FAILED_MENU;
+		}
+
+		//fade out si pas placé
+		this.dragged.addAction(
+				Actions.sequence(
+						Actions.fadeOut(0.2f),
+						Actions.hide(),
+						Actions.run(this.dragged::remove)
+				)
+		);
+
+		//message
+		EnigmaGame.getCurrentScreen().showToast(message);
 	}
 
 	// Drag

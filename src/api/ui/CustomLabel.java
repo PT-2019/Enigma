@@ -4,6 +4,7 @@ import api.ui.base.CustomComponent;
 import api.ui.manager.CustomLabelManager;
 import api.ui.skin.CustomLabelUI;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import java.awt.Graphics;
 
@@ -39,6 +40,19 @@ public class CustomLabel extends JLabel implements CustomComponent<CustomLabelUI
 	 */
 	public CustomLabel(String title) {
 		super(title);
+		this.addMouseListener(new CustomLabelManager(this));
+		this.setOpaque(true);
+		this.setHorizontalAlignment(JLabel.CENTER);
+		this.setComponentUI(new CustomLabelUI());
+	}
+
+	/**
+	 * Crée un label
+	 *
+	 * @param icon une icône
+	 */
+	public CustomLabel(ImageIcon icon) {
+		super(icon);
 		this.addMouseListener(new CustomLabelManager(this));
 		this.setOpaque(true);
 		this.setHorizontalAlignment(JLabel.CENTER);

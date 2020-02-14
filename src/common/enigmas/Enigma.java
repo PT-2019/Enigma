@@ -2,6 +2,7 @@ package common.enigmas;
 
 import common.enigmas.condition.Condition;
 import common.enigmas.operation.Operation;
+import common.enigmas.reporting.EnigmaReport;
 import common.entities.players.Player;
 import common.entities.types.IDInterface;
 import common.save.enigmas.EnigmaAttributes;
@@ -176,20 +177,27 @@ public class Enigma implements ActionListener, IDInterface {
 	 * Vérifie que toutes les conditions sont satisfaites
 	 *
 	 * @param p Joueur ayant intéragit avec l'entité ayant appelé cette méthode
+	 *
+	 * @return un message d'une condition ou opération
 	 */
-	public void verifyConditions(Player p) {
+	public EnigmaReport verifyConditions(Player p) {
+		EnigmaReport report = null;
 		for (Condition condition : this.conditions) {
 			//On teste que les conditions sont remplies, si ce n'est pas le cas, la méthode s'arrête là
-			if (!condition.verify(p)) {
+			report = condition.verify(p);
+			if (!report.isFulfilled()) {
 				System.out.println("Toutes les conditions n'ont pas été validées");
-				return;
+				System.out.println(report.getReport());
+				return report;
 			}
 		}
 
 		//On lance toutes les opérations de l'enigme
 		for (Operation operation : this.operations) {
-			operation.run(p);
+			report = operation.run(p);
 		}
+
+		return report; //TODO: on devrait stocker un report, le plus pertinent ? et le renvoyer
 	}
 
 	/**
@@ -511,7 +519,7 @@ public class Enigma implements ActionListener, IDInterface {
 	 * @return Texte représentant l'énigme
 	 */
 	public String toLongString() {
-		StringBuilder s = new StringBuilder("[Enigma ("+this.id+")  : title = \"" + this.title + "\", descrption = \"" + this.description + "\", type = \"" + this.type + "\", isKnown = " + this.isKnown() + ", currentAdviceIndex = " + this.currentAdvice + ", currentAdvice = " + this.getAdvice() + ", currentTextAdvice = \"" + this.getTextAdvice() + "\", allAdvices = {");
+		StringBuilder s = new StringBuilder("[Enigma (" + this.id + ")  : title = \"" + this.title + "\", descrption = \"" + this.description + "\", type = \"" + this.type + "\", isKnown = " + this.isKnown() + ", currentAdviceIndex = " + this.currentAdvice + ", currentAdvice = " + this.getAdvice() + ", currentTextAdvice = \"" + this.getTextAdvice() + "\", allAdvices = {");
 		int sizeA = this.advices.size() - 1;
 		int sizeC = this.conditions.size() - 1;
 		int sizeO = this.operations.size() - 1;

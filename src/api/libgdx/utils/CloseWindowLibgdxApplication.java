@@ -9,6 +9,8 @@ import java.util.ArrayList;
 /**
  * Ferme une fenêtre qui contient une application LIBGDX
  *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  * @version 4.0

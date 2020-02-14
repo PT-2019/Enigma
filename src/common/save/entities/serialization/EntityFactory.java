@@ -1,20 +1,16 @@
 package common.save.entities.serialization;
 
-import common.utils.IDFactory;
-import common.utils.Logger;
 import api.utils.Utility;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
 import common.entities.GameObject;
 import common.entities.players.EntityGame;
-import common.entities.players.NPC;
+import common.utils.IDFactory;
 import data.EntitiesCategories;
 import data.Layer;
 import org.jetbrains.annotations.Nullable;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -60,7 +56,7 @@ public class EntityFactory {
 	 */
 	public static void loadEntities(String path) {
 		Json j = new Json();
-		Array<? extends EntitySerializable> content = j.fromJson(EntityFactory.class, Utility.loadFile(path)).content;
+		Array<EntitySerializable> content = j.fromJson(EntityFactory.class, Utility.loadFile(path)).content;
 
 		//ajout a la factory des entités chargés
 		for (EntitySerializable entity : new Array.ArrayIterator<>(content)) {
@@ -76,21 +72,18 @@ public class EntityFactory {
 	}
 
 	/**
-	 * Charge les entités depuis un fichier json et le sauvegarde dans la classe.
+	 * Charge les joueurs depuis un fichier json et le sauvegarde dans la classe.
 	 * <p>
 	 * On peut les récupérer avec {@link #getEntitiesByCategory(EntitiesCategories)}
 	 *
 	 * @param path chemin du json
-	 * @since 5.0
+	 * @since 3.0
 	 */
-	public static void loadEntities(String path, boolean players) {
+	public static void loadPlayers(String path){
 		Json j = new Json();
-		Array<? extends EntitySerializable> content;
-		if (players) {
-			content = j.fromJson(PlayerFactory.class, Utility.loadFile(path)).content;
-		} else {
-			content = j.fromJson(EntityFactory.class, Utility.loadFile(path)).content;
-		}
+		Array<PlayerSerializableToJson> content;
+
+		content = j.fromJson(PlayerFactory.class, Utility.loadFile(path)).content;
 
 		//ajout a la factory des entités chargés
 		for (EntitySerializable entity : new Array.ArrayIterator<>(content)) {
@@ -129,55 +122,48 @@ public class EntityFactory {
 	/**
 	 * Crée une entité depuis une entité serializable
 	 *
-	 * @param entity une entité
-	 * @param id     son identifiant ou -1 si aucun. NULL pour attribution automatique
-	 * @param pos    sa position @Nullable
+	 * @param entity    une entité
+	 * @param id        son identifiant ou -1 si aucun. NULL pour attribution automatique
+	 * @param pos       sa position @Nullable
 	 * @param idFactory idFactory
 	 * @return un GameObject représentant l'entitée
 	 * @since 4.0
 	 */
-	@SuppressWarnings("unchecked")
 	public static GameObject createEntity(EntitySerializable entity, Integer id, @Nullable Vector2 pos, IDFactory idFactory) {
 		GameObject object;
-		try {
-			Class c = Class.forName(entity.getClassName());
-			Constructor declaredConstructor = c.getDeclaredConstructor();
-			object = (GameObject) declaredConstructor.newInstance();
-			//id
-			if(id == null){
-				//attribution
-				idFactory.newID(object);
-			} else {
-				idFactory.malloc(object, id);
-			}
-			//location
-			object.setDimension(entity.getWidth(), entity.getHeight());
+		object = (GameObject) Utility.instance(entity.getClassName());
 
-			//pas top, ajoute les informations en plus
-			//on devrait faire une méthode qui demande a l'entité s'il elle veut
-			//ajouter des infos et une interface plutôt que donner direct NPC
-			//mais j'ai flemme et manque de temps là ~#rush
-			if (entity instanceof PlayerSerializableToJson && object instanceof EntityGame) {
-				PlayerSerializableToJson player = ((PlayerSerializableToJson) entity);
-				((EntityGame) object).setJson(player.getJson(), player.getKey());
-				Logger.printDebug("EntityFactory", "PlayerSerializable loaded.");
-			}
+		//id
+		if (id == null) {
+			//attribution
+			idFactory.newID(object);
+		} else {
+			idFactory.malloc(object, id);
+		}
+		//location
+		object.setDimension(entity.getWidth(), entity.getHeight());
 
-			if (pos != null)
-				object.setGameObjectPosition(pos);
-			//layers
-			for (Layer l : Layer.values()) {
-				//récupère les tiles de l'entités pour ce niveau
-				Array<Float> entities = entity.getTiles(l);
+		//pas top, ajoute les informations en plus
+		//on devrait faire une méthode qui demande a l'entité s'il elle veut
+		//ajouter des info et une interface plutôt que donner direct NPC
+		//mais j'ai flemme et manque de temps là ~#rush
+		if (entity instanceof PlayerSerializableToJson && object instanceof EntityGame) {
+			PlayerSerializableToJson player = ((PlayerSerializableToJson) entity);
+			((EntityGame) object).setJson(player.getJson(), player.getKey());
+			//Logger.printDebug("EntityFactory", "PlayerSerializable loaded.");
+		}
 
-				//si pas de tiles a mettre sur ce layer, on passe au suivant
-				if (entities == null) continue;
+		if (pos != null)
+			object.setGameObjectPosition(pos);
+		//layers
+		for (Layer l : Layer.values()) {
+			//récupère les tiles de l'entités pour ce niveau
+			Array<Float> entities = entity.getTiles(l);
 
-				object.setTiles(entities, l);
-			}
-		} catch (IllegalAccessException | InstantiationException | NoSuchMethodException
-				| InvocationTargetException | ClassNotFoundException e) {
-			throw new IllegalStateException("EntityFactory create instance failed" + e);
+			//si pas de tiles a mettre sur ce layer, on passe au suivant
+			if (entities == null) continue;
+
+			object.setTiles(entities, l);
 		}
 
 		return object;
@@ -185,7 +171,7 @@ public class EntityFactory {
 
 	private static final class PlayerFactory {
 		/**
-		 * hashmap locale des entités chargés pour {@link Json#fromJson(Class, String)}
+		 * hashMap locale des entités chargés pour {@link Json#fromJson(Class, String)}
 		 **/
 		private Array<PlayerSerializableToJson> content = new Array<>();
 

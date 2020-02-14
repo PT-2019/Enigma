@@ -1,17 +1,11 @@
 package common.entities.players;
 
-import api.libgdx.actor.GameActorTextured;
 import com.badlogic.gdx.maps.MapProperties;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.Array;
-import common.entities.Entity;
-import common.entities.types.Living;
+import common.entities.types.AbstractLivingEntity;
 import common.language.GameFields;
 import common.language.GameLanguage;
 import common.save.entities.PlayerSave;
 import common.save.entities.SaveKey;
-import data.Layer;
 import data.TypeEntity;
 
 import java.util.EnumMap;
@@ -27,58 +21,29 @@ import java.util.HashMap;
  * @version 5.0 25/01/2020
  * @since 5.0 25/01/2020
  */
-public class Monster extends GameActorTextured implements Entity, Living,EntityGame {
+public class Monster extends AbstractLivingEntity implements EntityGame {
 
 	/**
 	 * Points de vie maximaux du joueur
 	 */
-	public final int MAX_MONSTER_PV = 10000;
-	/**
-	 * Point de vie du MONSTER
-	 */
-	private int pv;
-	/**
-	 * ID
-	 */
-	private int id;
-	/**
-	 * les tiles (a convertir en int)
-	 */
-	private HashMap<Layer, Array<Float>> tiles;
-	/**
-	 * Dimensions de l'object
-	 */
-	private Rectangle bounds;
-
-	private String json;
-
-	private String key;
-
-	/**
-	 * Nom du npc
-	 */
-	private String name;
+	private static final int MAX_MONSTER_PV = 100;
 
 	public Monster() {
 		this(-1);
 	}
 
 	/**
-	 * @param name Nom du npc
+	 * @param name Nom du monstre
 	 */
 	public Monster(String name) {
-		this(-1);
-		this.name = name;
+		this(-1, name);
 	}
 
 	/**
 	 * @param id ID
 	 */
 	public Monster(int id) {
-		this.pv = MAX_MONSTER_PV;
-		this.id = id;
-		this.bounds = new Rectangle();
-		this.tiles = new HashMap<>();
+		this(id, null);
 	}
 
 	/**
@@ -86,63 +51,11 @@ public class Monster extends GameActorTextured implements Entity, Living,EntityG
 	 * @param name Nom du joueur
 	 */
 	public Monster(int id, String name) {
+		super(id, name);
 		this.pv = MAX_MONSTER_PV;
-		this.id = id;
-		this.bounds = new Rectangle();
-		this.tiles = new HashMap<>();
-		this.name = name;
 	}
 
-	@Override
-	public void interactsWith(Player p) {
-		throw new UnsupportedOperationException("node codé. InteractWidth MONSTER");
-	}
-
-	@Override
-	public int getHP() {
-		return this.pv;
-	}
-
-	//size
-
-	@Override
-	public void setDimension(int width, int height) {
-		this.bounds.setSize(width, height);
-	}
-
-	@Override
-	public float getGameObjectWidth() {
-		return this.bounds.getWidth();
-	}
-
-	@Override
-	public float getGameObjectHeight() {
-		return this.bounds.getHeight();
-	}
-
-	//pos
-
-	@Override
-	public Vector2 getGameObjectPosition() {
-		return this.bounds.getPosition(new Vector2());
-	}
-
-	@Override
-	public void setGameObjectPosition(Vector2 pos) {
-		this.bounds.setPosition(pos);
-	}
-
-	//tiles
-
-	@Override
-	public Array<Float> getTiles(Layer layer) {
-		return this.tiles.get(layer);
-	}
-
-	@Override
-	public void setTiles(Array<Float> texture, Layer layer) {
-		this.tiles.put(layer, texture);
-	}
+	//implements
 
 	@Override
 	public EnumMap<TypeEntity, Boolean> getImplements() {
@@ -153,38 +66,15 @@ public class Monster extends GameActorTextured implements Entity, Living,EntityG
 		return imp;
 	}
 
-	//id
-
 	@Override
-	public int getID() {
-		return this.id;
+	public String getReadableName() {
+		return GameLanguage.gl.get(GameFields.MONSTER);
 	}
 
-	@Override
-	public void setID(int id) {
-		this.id = id;
-	}
+	// save
 
 	@Override
-	public String getName() {
-		return name;
-	}
-
-	@Override
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	//toString
-
-	@Override
-	public String toString() {
-		return "Monster{" + "MAX_PLAYER_PV=" + MAX_MONSTER_PV + ", pv=" + pv + ", id=" + id +
-				", tiles=" + tiles + ", bounds=" + bounds + '}';
-	}
-
-	@Override
-	public HashMap<SaveKey,String> getSave(){
+	public HashMap<SaveKey, String> getSave() {
 		HashMap<SaveKey, String> save = new HashMap<>();
 		save.put(PlayerSave.KEY, this.key);
 		save.put(PlayerSave.JSON, this.json);
@@ -197,26 +87,14 @@ public class Monster extends GameActorTextured implements Entity, Living,EntityG
 		this.key = data.get(PlayerSave.KEY.getKey(), String.class);
 		this.json = data.get(PlayerSave.JSON.getKey(), String.class);
 		this.name = data.get(PlayerSave.NAME.getKey(), String.class);
+		if (this.name.isEmpty() || this.name.isBlank()) this.name = this.key;
 	}
 
-	@Override
-	public String getReadableName() {
-		return GameLanguage.gl.get(GameFields.MONSTER);
-	}
+	//toString
 
 	@Override
-	public void setJson(String json, String key) {
-		this.json = json;
-		this.key = key;
-	}
-
-	@Override
-	public String getJson() {
-		return this.json;
-	}
-
-	@Override
-	public String getKey() {
-		return this.key;
+	public String toString() {
+		return "Monster{" + "MAX_PLAYER_PV=" + MAX_MONSTER_PV + ", pv=" + pv + ", id=" + id +
+				", tiles=" + tiles + ", bounds=" + bounds + '}';
 	}
 }

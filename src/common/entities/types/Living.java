@@ -1,5 +1,7 @@
 package common.entities.types;
 
+import common.entities.players.EntityGame;
+
 /**
  * Définie une entité comme mortelle donc vivante
  *
@@ -10,7 +12,7 @@ package common.entities.types;
  * @version 5.0
  * @since 2.0
  */
-public interface Living extends NeedContainerManager {
+public interface Living extends NeedContainerManager, EntityGame {
 
 	/**
 	 * Obtenir les points de vie de l'entité

@@ -45,6 +45,11 @@ public abstract class AbstractGameObject extends GameActorAnimation implements G
 	protected int id;
 
 	/**
+	 * object temporaire
+	 */
+	private boolean temp;
+
+	/**
 	 * Ce classe ne doit pas se retrouver ailleurs que dans un extends
 	 * <p>
 	 * Abstraction d'un GameObject
@@ -64,6 +69,7 @@ public abstract class AbstractGameObject extends GameActorAnimation implements G
 		this.bounds = new Rectangle();
 		this.id = id;
 		this.tiles = new HashMap<>();
+		this.temp = false;
 	}
 
 	@Override
@@ -111,5 +117,15 @@ public abstract class AbstractGameObject extends GameActorAnimation implements G
 	@Override
 	public void setID(int id) {
 		this.id = id;
+	}
+
+	@Override
+	public boolean isTemp() {
+		return this.temp;
+	}
+
+	@Override
+	public void setTemp(boolean temp) {
+		this.temp = temp;
 	}
 }

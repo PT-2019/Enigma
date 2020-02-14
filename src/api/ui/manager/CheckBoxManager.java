@@ -6,7 +6,7 @@ import api.ui.skin.CustomButtonUI;
 import java.util.ArrayList;
 
 /**
- * Observateur des interactions avec des combo-box
+ * Observateur des interactions avec des check-box
  *
  * @author Jorys-Micke ALAÏS
  * @author Louka DOZ
@@ -26,7 +26,7 @@ public final class CheckBoxManager implements MultipleButtonManager {
 	@Override
 	public void add(CustomButton b) {
 		if (b.getComponentUI() == null) b.setComponentUI(new CustomButtonUI());
-		b.addMouseListener(new SelectedManager(this));
+		b.addActionListener(new SelectedManager(this));
 	}
 
 	@Override

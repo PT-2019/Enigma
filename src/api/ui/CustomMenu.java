@@ -5,6 +5,7 @@ import api.ui.manager.CustomMenuManager;
 import api.ui.skin.CustomMenuUI;
 
 import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.util.ArrayList;
@@ -56,6 +57,12 @@ public class CustomMenu extends JMenu implements CustomComponent<CustomMenuUI> {
 	}
 
 	@Override
+	public JMenuItem add(JMenuItem menuItem) {
+		items.add(menuItem);
+		return super.add(menuItem);
+	}
+
+	@Override
 	public Component add(Component c) {
 		items.add(c);
 		return super.add(c);
@@ -84,6 +91,7 @@ public class CustomMenu extends JMenu implements CustomComponent<CustomMenuUI> {
 	 * @return les items d'un menu
 	 */
 	public Component[] getItems() {
-		return (Component[]) items.toArray();
+		Component[] comp = new Component[items.size()];
+		return items.toArray(comp);
 	}
 }

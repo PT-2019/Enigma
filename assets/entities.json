@@ -4,6 +4,7 @@
       className: common.entities.players.NPC
       path: assets/map/datas/players/p2.png
       json: assets/entities/players/players.json
+      hover: Jean
       key: Jean
       category: ENTITIES
       width: 2
@@ -22,6 +23,7 @@
       path: assets/map/datas/players/p3.png
       json: assets/entities/players/players.json
       key: Eri
+      hover: Eri
       category: ENTITIES
       width: 2
       height: 2
@@ -37,6 +39,7 @@
       path: assets/map/datas/players/p4.png
       json: assets/entities/players/players.json
       key: Euphemia
+      hover: Euphemia
       category: ENTITIES
       width: 2
       height: 2
@@ -52,6 +55,7 @@
       path: assets/map/datas/players/p5.png
       json: assets/entities/players/players.json
       key: Alexia
+      hover: Alexia
       category: ENTITIES
       width: 2
       height: 2
@@ -67,6 +71,7 @@
       path: assets/map/datas/players/p6.png
       json: assets/entities/players/players.json
       key: Kil
+      hover: Kil
       category: ENTITIES
       width: 2
       height: 2
@@ -82,6 +87,7 @@
       path: assets/map/datas/players/p7.png
       json: assets/entities/players/players.json
       key: Melanie
+      hover: Melanie
       category: ENTITIES
       width: 2
       height: 2
@@ -99,6 +105,7 @@
       path: assets/map/datas/players/p8.png
       json: assets/entities/players/players.json
       key: Joker
+      hover: Joker
       category: ENTITIES
       width: 2
       height: 2
@@ -114,6 +121,7 @@
       path: assets/map/datas/players/p9.png
       json: assets/entities/players/players.json
       key: Richard
+      hover: Richard
       category: ENTITIES
       width: 2
       height: 2
@@ -129,6 +137,7 @@
       path: assets/map/datas/players/p10.png
       json: assets/entities/players/players.json
       key: Jordan
+      hover: Jordan
       category: ENTITIES
       width: 2
       height: 2
@@ -146,6 +155,7 @@
       path: assets/map/datas/players/p12.png
       json: assets/entities/players/players.json
       key: Blonde
+      hover: Blonde
       category: ENTITIES
       width: 2
       height: 2
@@ -160,7 +170,8 @@
       className: common.entities.players.Monster
       path: assets/map/datas/players/mob1.png,
       json: assets/entities/monsters/monsters.json,
-      key: rat,
+      key: Rat,
+      hover: Rat
       category: ENTITIES
       width: 2
       height: 2
@@ -175,7 +186,8 @@
       className: common.entities.players.Monster
       path: assets/map/datas/players/mob2.png,
       json: assets/entities/monsters/monsters.json,
-      key: snake,
+      key: Snake,
+      hover: Snake
       category: ENTITIES
       width: 2
       height: 2

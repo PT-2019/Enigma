@@ -5,24 +5,23 @@ import common.map.MapObjects;
 import common.utils.Logger;
 import api.utils.annotations.ConvenienceMethod;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.math.Vector2;
 import common.enigmas.Enigma;
 import common.entities.GameObject;
 import common.entities.types.EnigmaContainer;
-import common.map.MapTestScreen;
+import common.map.AbstractMap;
+import common.map.MapObjects;
 import common.map.model.Map;
 import common.save.enigmas.EnigmaJsonReader;
 import common.save.enigmas.EnigmaJsonWriter;
+import common.utils.Logger;
 import common.utils.textures.TextureProxy;
 import data.config.Config;
 import editor.bar.edition.ActionsManager;
 import game.EnigmaGame;
-import game.screens.TestScreen;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 
 /**
@@ -32,7 +31,7 @@ import java.util.Iterator;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 4.0 23/12/2019
+ * @version 6.0
  * @since 4.0 23/12/2019
  */
 public class EmptyMapGenerator {
@@ -63,6 +62,8 @@ public class EmptyMapGenerator {
 		proxy.addTexture(16, "assets/map/Player.png", 80, 2105, 2105 + 6400);
 
 		SaveMap.saveMap(path, new Map(col, row), proxy.getTextures(), Config.MAP_FOLDER_SAV);
+
+		//crée aussi le fichier d'énigmes
 		ArrayList<Enigma> e = new ArrayList<>();
 		try {
 			EnigmaJsonWriter.writeEnigmas(path.replace(Config.MAP_EXTENSION,"") + Config.ENIGMA_EXTENSION,e);
@@ -77,6 +78,7 @@ public class EmptyMapGenerator {
 	 * @param path     chemin du fichier sans l'extension
 	 * @param game     map tiled
 	 * @param entities liste des entités de la map
+	 * @since 5.0
 	 */
 	public static void save(String path, TiledMap game, MapObjects entities) {
 		//----------------- fichier .tmx -----------------
@@ -87,7 +89,7 @@ public class EmptyMapGenerator {
 
 		//Récupère les énigmes
 		ArrayList<Enigma> enigmas = new ArrayList<>();
-		for (GameObject entity : entities.getAllObjectsByClass(GameObject.class, true)) {
+		for (GameObject entity : entities.getAllObjectsByClass(GameObject.class)) {
 			if (entity instanceof EnigmaContainer) {
 				Iterator<Enigma> enigmasRaw = ((EnigmaContainer) entity).getAllEnigmas();
 				while (enigmasRaw.hasNext()) {
@@ -115,8 +117,22 @@ public class EmptyMapGenerator {
 	 * Recharge le jeu depuis une sauvegarde
 	 *
 	 * @param path chemin sauvegarde
+	 * @since 5.0
 	 */
 	public static void load(String path) {
+		load(path, true);
+	}
+
+	/**
+	 * Recharge le jeu depuis une sauvegarde
+	 *
+	 * @param path  chemin sauvegarde
+	 * @param clear reset à l'état initial
+	 * @since 6.0
+	 */
+	public static void load(String path, boolean clear) {
+		Logger.printDebug("EmptyMapGenerator#load", path);
+
 		//------------ charge .tmx ------------
 		EnigmaGame.getCurrentScreen().setMap(path);
 
@@ -127,7 +143,6 @@ public class EmptyMapGenerator {
 		ArrayList<Enigma> enigmas;
 		ArrayList<Enigma> copy = new ArrayList<>();
 		path = path.substring(0, path.length() - 4) + ".json"; //retire l'extension tmx
-		Logger.printDebug("EmptyMapGenerator#load", path);
 		int id;
 		try {
 			enigmas = EnigmaJsonReader.readEnigmas(path);
@@ -154,6 +169,6 @@ public class EmptyMapGenerator {
 		}
 
 		// clear de l'historique
-		ActionsManager.reset();
+		if (clear) ActionsManager.reset();
 	}
 }

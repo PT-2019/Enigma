@@ -125,4 +125,18 @@ public interface GameObject extends IDInterface {
 	 */
 	default void load(MapProperties data) {
 	}
+
+	/**
+	 * Retourne si un gameObject est temporaire
+	 * @return true si temporaire
+	 * @since 6.0
+	 */
+	boolean isTemp();
+
+	/**
+	 * Définit un gameObject comme étant temporaire
+	 * @param temp true si temporaire
+	 * @since 6.0
+	 */
+	void setTemp(boolean temp);
 }

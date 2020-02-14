@@ -1,10 +1,9 @@
 package editor.menus.item;
 
-import common.utils.Logger;
 import api.utils.Utility;
-import common.entities.GameObject;
 import common.entities.Item;
 import common.hud.EnigmaPanel;
+import common.utils.Logger;
 import editor.menus.AbstractPopUpView;
 import editor.menus.AbstractSubPopUpView;
 import editor.menus.AvailableOptionRunnable;
@@ -24,7 +23,6 @@ import java.util.EnumMap;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 5.0
  * @since 5.0
  */
@@ -44,6 +42,7 @@ public class AddItemSeeView extends AbstractSubPopUpView implements Drawable {
 
 	/**
 	 * Vue de l'item sélectionné
+	 *
 	 * @param parent parent
 	 */
 	AddItemSeeView(AbstractPopUpView parent) {

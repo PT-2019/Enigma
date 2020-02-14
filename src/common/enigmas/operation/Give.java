@@ -1,5 +1,7 @@
 package common.enigmas.operation;
 
+import common.enigmas.reporting.EnigmaReport;
+import common.enigmas.reporting.OperationReport;
 import common.entities.Item;
 import common.entities.players.Player;
 import common.language.EnigmaField;
@@ -47,18 +49,15 @@ public class Give extends Operation {
 		this.run(p);
 	}
 
-	/**
-	 * Effectue l'action
-	 *
-	 * @param p Joueur ayant mené à l'appel de cette méthode
-	 */
 	@Override
-	public void run(Player p) {
+	public EnigmaReport run(Player p) {
 		Item i = (Item) this.entity;
 		if (p.holdSomething())
 			p.getInventory().add(i);
 		else
 			p.setItemInHand(i);
+
+		return new EnigmaReport(OperationReport.DONE, true); //opération ok
 	}
 
 	/**
@@ -83,7 +82,7 @@ public class Give extends Operation {
 
 	@Override
 	public String getEnigmaElementReadablePrint() {
-		return "["+gl.get(EnigmaField.GIVE)+": "+
-				this.entity.getReadableName() + " (id="+this.entity.getID()+") ]";
+		return "[" + gl.get(EnigmaField.GIVE) + ": " +
+				this.entity.getReadableName() + " (id=" + this.entity.getID() + ") ]";
 	}
 }

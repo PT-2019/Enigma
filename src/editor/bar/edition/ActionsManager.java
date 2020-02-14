@@ -6,7 +6,6 @@ import api.utils.annotations.ConvenienceMethod;
 import data.config.Config;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 /**
  * Conserve l'historique des actions effectuées.
@@ -22,42 +21,32 @@ public class ActionsManager implements Subject<ActionsManager> {
 
 	/**
 	 * Instance unique
+	 *
 	 * @since 5.0
 	 */
 	private static ActionsManager instance;
-
-	/**
-	 * Crée un historique des actions effectuées
-	 * @since 5.0
-	 */
-	public static ActionsManager getInstance() {
-		if(instance == null) instance = new ActionsManager();
-		return instance;
-	}
-
 	private volatile boolean isDoingAction;
-
 	/**
 	 * Liste des actions
+	 *
 	 * @since 5.0
 	 */
 	private ArrayList<EditorAction> undo, redo;
-
 	/**
 	 * Personnes qui souhaitent êtres notifiés d'un changement
 	 * dans l'historique.
+	 *
 	 * @since 5.1
 	 */
 	private ArrayList<Observer<ActionsManager>> obs;
-
 	/**
 	 * Dernière action effectuée
-	 *
 	 */
 	private LastAction last;
 
 	/**
 	 * Crée un historique des actions effectuées
+	 *
 	 * @since 5.0
 	 */
 	private ActionsManager() {
@@ -69,10 +58,29 @@ public class ActionsManager implements Subject<ActionsManager> {
 	}
 
 	/**
+	 * Crée un historique des actions effectuées
+	 *
+	 * @since 5.0
+	 */
+	public static ActionsManager getInstance() {
+		if (instance == null) instance = new ActionsManager();
+		return instance;
+	}
+
+	/**
+	 * Vide le manager
+	 *
+	 * @since 6.1
+	 */
+	@ConvenienceMethod
+	public static void reset() {
+		getInstance().clear();
+	}
+
+	/**
 	 * Annule une action, puis renvoi s'il est encore possible d'annuler une autre action.
 	 *
 	 * @return s'il est encore possible d'annuler une autre action après.
-	 *
 	 * @since 5.0
 	 */
 	public boolean undo() {
@@ -100,7 +108,6 @@ public class ActionsManager implements Subject<ActionsManager> {
 	 * Annule une annulation d'une action action, puis renvoi s'il est encore possible d'annuler une autre action.
 	 *
 	 * @return s'il est encore possible d'annuler une autre action après.
-	 *
 	 * @since 5.0
 	 */
 	public boolean redo() {
@@ -127,14 +134,14 @@ public class ActionsManager implements Subject<ActionsManager> {
 
 	/**
 	 * Ajoute une action
-	 * @param action une action
 	 *
+	 * @param action une action
 	 * @since 5.0
 	 */
 	public boolean add(EditorAction action) {
-		if(this.isDoingAction) return false;
+		if (this.isDoingAction) return false;
 
-		if(this.undo.size() >= Config.MAX_OF_UNDO - 1)
+		if (this.undo.size() >= Config.MAX_OF_UNDO - 1)
 			this.undo.remove(0); //remove first
 
 		//possible d'undo notre nouvelle action
@@ -156,11 +163,11 @@ public class ActionsManager implements Subject<ActionsManager> {
 	 *
 	 * @since 6.0
 	 */
-	public void clear(){
-		for (EditorAction action :this.undo) {
+	public void clear() {
+		for (EditorAction action : this.undo) {
 			action.clear();
 		}
-		for (EditorAction action: this.redo){
+		for (EditorAction action : this.redo) {
 			action.clear();
 		}
 		this.undo.clear();
@@ -173,7 +180,6 @@ public class ActionsManager implements Subject<ActionsManager> {
 	 * Retourne si redo est disponible
 	 *
 	 * @return true si redo est disponible
-	 *
 	 * @since 5.0
 	 */
 	public boolean isRedoAvailable() {
@@ -184,8 +190,7 @@ public class ActionsManager implements Subject<ActionsManager> {
 	 * Retourne si undo est disponible
 	 *
 	 * @return true si undo est disponible
-	 *
-	 *  @since 5.0
+	 * @since 5.0
 	 */
 	public boolean isUndoAvailable() {
 		return this.undo.size() > 0;
@@ -194,7 +199,8 @@ public class ActionsManager implements Subject<ActionsManager> {
 	/**
 	 * Ajout d'une personne qui souhaite êtres notifiée d'un changement
 	 * dans l'historique.
-	 *  @since 5.1
+	 *
+	 * @since 5.1
 	 */
 	@Override
 	public void addObserver(Observer<ActionsManager> obs) {
@@ -204,6 +210,7 @@ public class ActionsManager implements Subject<ActionsManager> {
 	/**
 	 * Retire d'une personne de celles notifiées d'un changement
 	 * dans l'historique.
+	 *
 	 * @since 5.1
 	 */
 	@Override
@@ -213,6 +220,7 @@ public class ActionsManager implements Subject<ActionsManager> {
 
 	/**
 	 * Appels des personnes car il y a eu un changement dans l'historique.
+	 *
 	 * @since 5.1
 	 */
 	@Override
@@ -223,18 +231,10 @@ public class ActionsManager implements Subject<ActionsManager> {
 	}
 
 	/**
-	 * Vide le manager
-	 * @since 6.1
-	 */
-	@ConvenienceMethod
-	public static void reset(){
-		getInstance().clear();
-	}
-
-	/**
 	 * Retourne la dernière action effectuée
-	 * @since 6.2
+	 *
 	 * @return la dernière action effectuée
+	 * @since 6.2
 	 */
 	public LastAction getLastAction() {
 		return this.last;

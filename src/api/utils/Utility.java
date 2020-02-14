@@ -2,12 +2,16 @@ package api.utils;
 
 import api.utils.annotations.ConvenienceClass;
 import api.utils.annotations.ConvenienceMethod;
+import com.badlogic.gdx.utils.Array;
 import common.utils.Logger;
 import data.config.Config;
 
+import java.awt.Component;
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.Window;
 import java.io.BufferedReader;
 import java.io.File;
@@ -19,26 +23,34 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.Normalizer;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Map;
 
 /**
  * Tout un paquet de méthodes utiles
  *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 6.2
+ *
+ * @version 6.5
  * @since 2.0 27 novembre 2019
  */
 @ConvenienceClass
+@SuppressWarnings("unused")
 public class Utility implements Serializable {
 
 	/**
 	 * Obtenir le nom de toutes les maps en local
 	 * Les noms sont issus des fichiers tmx présents
+	 *
 	 * @return Le nom des maps
 	 * @since 6.1
 	 */
 	//TODO: move to real utility
-	public static ArrayList<String> getAllMapName(){
+	public static ArrayList<String> getAllMapName() {
 		ArrayList<String> maps = new ArrayList<>();
 		File file = new File(Config.MAP_FOLDER);
 		String[] list = file.list();
@@ -78,19 +90,23 @@ public class Utility implements Serializable {
 	/**
 	 * Obtenir le nom de toutes les fichiers dans un dossier
 	 * Les noms sont issus des fichiers tmx présents
+	 *
+	 * @param folder          dossier
+	 * @param extensions      extensions voulues
+	 * @param removeExtension true pour supprimer les extensions
 	 * @return Le nom des maps
-	 * @since 6.1
+	 * @since 6.3
 	 */
-	public static ArrayList<String> getAllFiles(String folder, String[] extensions, boolean removeExtension){
+	public static ArrayList<String> getAllFiles(String folder, String[] extensions, boolean removeExtension) {
 		ArrayList<String> files = new ArrayList<>();
 		File file = new File(folder);
 		String[] list = file.list();
 
-		if(list != null){
-			for(String s : list){
-				for (String ext :extensions) {
-					if(s.endsWith(ext)){
-						if(removeExtension){
+		if (list != null) {
+			for (String s : list) {
+				for (String ext : extensions) {
+					if (s.endsWith(ext)) {
+						if (removeExtension) {
 							s = s.replace(ext, "");
 						}
 						files.add(s);
@@ -145,9 +161,25 @@ public class Utility implements Serializable {
 	public static String normalize(String string) {
 		string = Normalizer.normalize(string, Normalizer.Form.NFD);
 		string = string.replaceAll("[^\\x00-\\x7F]", "");
-		string = string.replaceAll("[-+.^:,\"']","");
+		string = string.replaceAll("[-+.^:,\"']", "");
 		string = string.replaceAll("[\\n\\t ]", "");
 		return string.trim();
+	}
+
+	/**
+	 * Cette méthode échappe une chaîne de caractère : supprime les caractères spéciaux et les nombres
+	 *
+	 * @param string une chaîne
+	 * @return la chaîne échappée
+	 * @since 6.3
+	 */
+	public static String escape(String string) {
+		string = Normalizer.normalize(string, Normalizer.Form.NFD);
+		string = string.replaceAll("[^\\x00-\\x7F]", "");
+		string = string.replaceAll("[-+.^:,]", "");
+		string = string.replaceAll("[^\\p{L}\\p{Z}]", "");
+		string = string.replaceAll("[\\n\\t ]", "");
+		return string;
 	}
 
 	/**
@@ -197,7 +229,7 @@ public class Utility implements Serializable {
 	@ConvenienceMethod
 	public static void printHashMap(Map<?, ?> hashMap) {
 		for (Map.Entry<?, ?> entry : hashMap.entrySet()) {
-			System.out.println(entry.getKey() + "->");
+			System.out.print(entry.getKey() + "-> ");
 			Object value = entry.getValue();
 			if (value instanceof ArrayList) {
 				System.out.println(Arrays.toString(((ArrayList) value).toArray()));
@@ -211,30 +243,32 @@ public class Utility implements Serializable {
 
 	/**
 	 * Appelle une méthode
-	 * @param m object méthode
+	 *
+	 * @param m         object méthode
 	 * @param className nom de la classe
-	 * @param <T> type de retour
+	 * @param <T>       type de retour
 	 * @return appel une méthode et retourne son résultat
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T> T invokeMethod(Method m, Class<T> className, Object ... args) {
+	public static <T> T invokeMethod(Method m, Class<T> className, Object... args) {
 		try {
 			return (T) m.invoke(className, args);
 		} catch (IllegalAccessException | InvocationTargetException e) {
-			throw new IllegalStateException("Invocation ratée."+e);
+			throw new IllegalStateException("Invocation ratée." + e);
 		}
 	}
 
 	/**
 	 * Appel une méthode depuis son nom en string
+	 *
 	 * @param methodName nom d'une méthode
-	 * @param object    class de la méthode
-	 * @param args arguments
-	 * @param <T> type du type de retour
+	 * @param object     class de la méthode
+	 * @param args       arguments
+	 * @param <T>        type du type de retour
 	 * @return type de retour
 	 * @since 4.1
 	 */
-	public static <T> T invokeMethod(String methodName, Class<T> object, Object ... args) {
+	public static <T> T invokeMethod(String methodName, Class<T> object, Object... args) {
 		methodName = normalize(methodName);
 
 		for (Method method : object.getDeclaredMethods()) {
@@ -258,12 +292,16 @@ public class Utility implements Serializable {
 	@ConvenienceMethod
 	public static Object instance(Class<?> aClass) {
 		Object object;
+		Constructor declaredConstructor = null;
 		try {
-			Constructor declaredConstructor = aClass.getDeclaredConstructor();
-			object = declaredConstructor.newInstance();
+			 declaredConstructor = aClass.getDeclaredConstructor();
+			 object = declaredConstructor.newInstance();
 		} catch (IllegalAccessException | InstantiationException | NoSuchMethodException
 				| InvocationTargetException e) {
-			throw new IllegalStateException("create instance failed" + e);
+			String message = "Create instance failed. Error \""+e.getCause()
+					+"\" in "+declaredConstructor;
+			if(declaredConstructor == null) message = "Constructor not found."+e;
+			throw new IllegalStateException(message);
 		}
 		return object;
 	}
@@ -280,63 +318,69 @@ public class Utility implements Serializable {
 	@ConvenienceMethod
 	public static Object instance(Class<?> aClass, Object value) {
 		Object object;
+		Constructor declaredConstructor = null;
 		try {
-			Constructor declaredConstructor = aClass.getDeclaredConstructor(value.getClass());
+			try {
+				declaredConstructor = aClass.getDeclaredConstructor(value.getClass());
+			} catch (NoSuchMethodException | SecurityException e) {
+				return instance(aClass, value, null);
+			}
 			object = declaredConstructor.newInstance(value);
-		} catch (IllegalAccessException | InstantiationException | NoSuchMethodException
-				| InvocationTargetException e) {
-			throw new IllegalStateException("Utility. create instance failed" + e);
+		} catch (IllegalAccessException | InstantiationException | InvocationTargetException e) {
+			String message = "Create instance failed. Error \""+e.getCause()
+					+"\" in "+declaredConstructor;
+			throw new IllegalStateException(message);
 		}
+
 		return object;
 	}
 
 	/**
 	 * Retourne une instance d'une classe
-	 * @param aClass une classe avec un constructeur ayant 1 argument
-	 * @param args  les arguments du constructeur
-	 * @return une instance de la classe
 	 *
+	 * @param aClass une classe avec un constructeur ayant 1 argument
+	 * @param args   les arguments du constructeur, null pour terminer si besoin
+	 * @return une instance de la classe
 	 * @throws IllegalStateException si une erreur survient
 	 * @since 6.0
 	 */
 	@ConvenienceMethod
-	public static Object instance(Class<?> aClass, Object ... args) {
+	public static Object instance(Class<?> aClass, Object... args) {
 		Object object;
+		Constructor<?> selected = null;
 		try {
 			//récupération des classes
-			if(args != null && args.length > 0) {
+			if (args != null && args.length > 0) {
 				//récupération des classes
-				Class<?>[] classes = new Class[args.length];
-				for (int i = 0; i < args.length; i++) {
-					classes[i] = args[i].getClass();
+				Array<Class<?>> classes = new Array<>();
+				for (Object arg : args) {
+					if (arg != null) classes.add(arg.getClass());
 				}
-
-				Constructor<?> selected = null;
 
 				//Regarde tous les constructeurs
 				boolean valid;
 				for (Constructor<?> constructor : aClass.getDeclaredConstructors()) {
 					Class<?>[] params = constructor.getParameterTypes();
 					//même nombre de paramètres
-					if(params.length != classes.length) continue;
+					if (params.length != classes.size) continue;
 					valid = false;
 					for (int i = 0; i < params.length; i++) {
-						Class<?> c = classes[i];
-						while(c != null){
-							if(c.getName().equals(params[i].getName())) break;
+						Class<?> c = classes.get(i);
+						while (c != null) {
+							if (c.getName().equals(params[i].getName())) break;
 							c = c.getSuperclass();
 						}
 						//un paramètre est pas bon
-						if(c == null) break;
+						if (c == null) break;
 						valid = true;
 					}
 					//si bon, on quitte
-					if(valid){
+					if (valid) {
 						selected = constructor;
 						break;
 					}
 				}
-				if(selected == null) throw  new NoSuchMethodException("<init>: No such constructor.");
+				if (selected == null) throw new NoSuchMethodException("<init>: No such constructor.");
 
 				//crée instance
 				object = selected.newInstance(args);
@@ -346,7 +390,9 @@ public class Utility implements Serializable {
 			}
 		} catch (IllegalAccessException | InstantiationException | NoSuchMethodException
 				| InvocationTargetException e) {
-			throw new IllegalStateException("Utility. create instance failed" + e);
+			String message = "Create instance failed. Error \""+e.getCause()
+					+"\" in "+selected;
+			throw new IllegalStateException(message);
 		}
 		return object;
 	}
@@ -430,12 +476,11 @@ public class Utility implements Serializable {
 	}
 
 	/**
-	 * Affichage de message concernant le débuggage
+	 * Affichage de message concernant le débogage
 	 *
 	 * @param className nom de la classe
 	 * @param message   message
 	 * @since 5.2
-	 *
 	 * @deprecated utiliser {@link Logger}
 	 */
 	@Deprecated
@@ -447,9 +492,7 @@ public class Utility implements Serializable {
 	 * Transforme un mot en SNAKE_CASE en CamelCase.
 	 *
 	 * @param name mot
-	 *
 	 * @return le mot en CamelCase
-	 *
 	 * @since 6.0
 	 */
 	@ConvenienceMethod
@@ -474,5 +517,100 @@ public class Utility implements Serializable {
 		}
 		return name.toLowerCase();
 	}
-}
 
+	/**
+	 * Retourne true si l'object o extends ou implémente une classe
+	 *
+	 * @param aClass une classe
+	 * @param o      un object
+	 * @param start  point de départ de la recherche
+	 * @return true si l'object o extends ou implémente une classe
+	 * @since 6.4
+	 */
+	private static boolean hasClass(Class<?> aClass, Object o, Class<?>[] start) {
+		if (start == null || start.length == 0) return false;
+
+		for (Class<?> value : start) {
+			//rien
+			if (value == null || value == Object.class) return false;
+
+			//trouvé
+			if (value.getName().equals(aClass.getName())) return true;
+
+			//sinon on regarde sa superclass
+			if (hasClass(aClass, o, new Class[]{value.getSuperclass()})) return true;
+
+			//sinon on regarde ses interfaces
+			if (hasClass(aClass, o, value.getInterfaces())) return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * Retourne true si l'object o extends ou implémente une classe
+	 *
+	 * @param aClass une classe
+	 * @param o      un object
+	 * @return true si l'object o extends ou implémente une classe
+	 * @since 6.4
+	 */
+	public static boolean hasClass(Class<?> aClass, Object o) {
+		return hasClass(aClass, o, new Class[]{o.getClass()});
+	}
+
+	/**
+	 * Renvoi la position pour aligner le composant au centre
+	 * @param frame un composant
+	 * @return la position pour aligner le composant au centre
+	 * @since 6.5
+	 */
+	public static Point getAlignCenterPosition(Component frame) {
+		Rectangle screenSize = frame.getGraphicsConfiguration().getBounds();
+		int sizeW = screenSize.width;
+		int sizeH = screenSize.height;
+		int windowPosX;
+		int windowPosY;
+		windowPosX = (sizeW - frame.getWidth()) / 2;
+		windowPosY = (sizeH - frame.getHeight()) / 2;
+		return new Point(windowPosX + screenSize.x, windowPosY + screenSize.y);
+	}
+
+	/**
+	 * Retourne la version non échappée d'une string. tel que la string suivante.
+	 * "ZSdz ef e&#10;&#10;zse&#10;ev&#10;&#10;&#10;ez&#10;&#10;ze"
+	 *
+	 * @param asciiEscapedString un string contenant des caractères ascii échappés
+	 * @return un string sans caractères échappés
+	 * @since 6.6
+	 */
+	public static String asciiEscapedToNormalString(String asciiEscapedString){
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < asciiEscapedString.length(); i++) {
+			char read = asciiEscapedString.charAt(i);
+			if(read != '&'){
+				sb.append(read);
+				continue;
+			}
+			i++;//zap le &
+			read = asciiEscapedString.charAt(i);
+			if(asciiEscapedString.charAt(i) != '#'){
+				sb.append('&');
+				sb.append(read);
+				continue;
+			}
+			i++;//zap le #
+			//lis la valeur ascii
+			StringBuilder tmp = new StringBuilder();
+			char c = asciiEscapedString.charAt(i);
+			while(c != ';'){
+				i++;
+				tmp.append(c);
+				c = asciiEscapedString.charAt(i);
+			}
+			//re-transforme en char
+			sb.append((char) Integer.parseInt(tmp.toString()));
+		}
+		return sb.toString();
+	}
+}

@@ -19,13 +19,13 @@ import editor.popup.cases.CasePopUp;
  * @author Quentin RAMSAMY-AGEORGES
  * @version 5.0 25/01/2020
  * @since 5.0 25/01/2020
- *
+ * <p>
  * Plus besoin, maintenant si s'agît d'une opération d'une énigme.
  */
 @Deprecated
 public class HidePassageRoom implements AvailableOptionRunnable {
 
-	private final static String HIDE = NeedToBeTranslated.HIDE_ROOM;
+	private final static String HIDE = NeedToBeTranslated.HIDE_ROOM_DESC;
 
 	/**
 	 * Parent

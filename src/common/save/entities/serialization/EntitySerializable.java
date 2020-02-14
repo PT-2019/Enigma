@@ -2,6 +2,7 @@ package common.save.entities.serialization;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+import common.utils.IDFactory;
 import data.EntitiesCategories;
 import data.Layer;
 
@@ -54,7 +55,7 @@ public class EntitySerializable {
 
 	/**
 	 * Une entité sérializable avec juste assez d'infos pour utiliser la fonction
-	 * {@link EntityFactory#createEntity(EntitySerializable, int, Vector2)}
+	 * {@link EntityFactory#createEntity(EntitySerializable, Integer, Vector2, IDFactory)}
 	 *
 	 * @param width     largeur
 	 * @param height    hauteur

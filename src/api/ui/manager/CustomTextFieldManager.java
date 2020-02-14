@@ -19,35 +19,35 @@ import java.awt.event.MouseEvent;
  */
 public final class CustomTextFieldManager extends MouseAdapter implements FocusListener {
 
-    private CustomTextField textField;
+	private CustomTextField textField;
 
-    public CustomTextFieldManager(CustomTextField textField) {
-        this.textField = textField;
-    }
+	public CustomTextFieldManager(CustomTextField textField) {
+		this.textField = textField;
+	}
 
-    @Override
-    public void mouseEntered(MouseEvent mouseEvent) {
-        if (this.textField.getComponentUI() != null) {
-            this.textField.getComponentUI().setIsHovered(true);
-            this.textField.repaint();
-        }
-    }
+	@Override
+	public void mouseEntered(MouseEvent mouseEvent) {
+		if (this.textField.getComponentUI() != null) {
+			this.textField.getComponentUI().setIsHovered(true);
+			this.textField.repaint();
+		}
+	}
 
-    @Override
-    public void mouseExited(MouseEvent mouseEvent) {
-        if (this.textField.getComponentUI() != null) {
-            this.textField.getComponentUI().setIsHovered(false);
-            this.textField.repaint();
-        }
-    }
+	@Override
+	public void mouseExited(MouseEvent mouseEvent) {
+		if (this.textField.getComponentUI() != null) {
+			this.textField.getComponentUI().setIsHovered(false);
+			this.textField.repaint();
+		}
+	}
 
-    @Override
-    public void focusGained(FocusEvent focusEvent) {
-        this.textField.repaint();
-    }
+	@Override
+	public void focusGained(FocusEvent focusEvent) {
+		this.textField.repaint();
+	}
 
-    @Override
-    public void focusLost(FocusEvent focusEvent) {
-        this.textField.repaint();
-    }
+	@Override
+	public void focusLost(FocusEvent focusEvent) {
+		this.textField.repaint();
+	}
 }

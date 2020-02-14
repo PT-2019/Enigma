@@ -2,35 +2,45 @@ package common.entities.players;
 
 import api.libgdx.actor.GameActor;
 import api.libgdx.actor.GameActorAnimation;
+import api.libgdx.utils.InputAdapter;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.math.Vector2;
 import common.enigmas.TileEventEnum;
 import common.entities.GameObject;
 import common.map.AbstractMap;
 import common.map.GameMap;
+import common.utils.Logger;
 import data.Direction;
 import data.keys.CameraKeys;
 
 /**
  * Cette classe permet de déplacer le joueur et d'actionner son animation
  *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ * @version 6.0
  * @see GameActorAnimation
+ * @since 5.0
  */
-public class PlayerGame extends GameActorAnimation implements InputProcessor {
+public class PlayerGame extends GameActorAnimation implements InputAdapter {
 
 	/**
 	 * Vitesse de déplacement du personnage
 	 */
 	public static final int SPEED = 10;
+
 	/**
 	 * La map dans la laquelle est placé le joueur
 	 */
 	private GameMap map;
 
 	/**
-	 * @param map
+	 * Cette classe permet de déplacer le joueur et d'actionner son animation
+	 *
+	 * @param map La map dans la laquelle est placé le joueur
 	 */
 	public PlayerGame(GameMap map) {
 		this.setAnimationPaused(true);
@@ -43,16 +53,16 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
 	public void center() {
 		Camera cam = this.getStage().getCamera();
 		//pour éviter un bug graphique on crée 2 variables
-		int posy = (int) (cam.position.y );
-		int posx = (int) (cam.position.x );
-		cam.translate(-posx + this.getX(),-posy + this.getY(),0);
+		int posy = (int) (cam.position.y);
+		int posx = (int) (cam.position.x);
+		cam.translate(-posx + this.getX(), -posy + this.getY(), 0);
 	}
 
 	/**
 	 * Actionné lorsqu'une touche est appuyé
 	 *
-	 * @param i
-	 * @return
+	 * @param i touche
+	 * @return true si événement géré
 	 */
 	@Override
 	public boolean keyDown(int i) {
@@ -64,7 +74,7 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
 			//on vérifie que la case où l'on compte se rendre est disponible
 
 			if (map.isWalkable(x - PlayerGame.SPEED, y, this)
-					&& (!map.collision(this,-PlayerGame.SPEED,0))) {
+					&& (!map.collision(this, -PlayerGame.SPEED, 0))) {
 
 				this.setPosition(x - PlayerGame.SPEED, y);
 				//pour changer de sprite proprement
@@ -78,13 +88,13 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
 				//l'animation n'est plus en pause pour la faire tourner
 				this.setAnimationPaused(false);
 				this.setAnimationLooping(true);
-			}else{
+			} else {
 				this.setKeyFrame(5);
 				this.setFacedDirection(Direction.LEFT);
 			}
 		} else if (CameraKeys.CAMERA_RIGHT.isKey(i)) {
 			if (map.isWalkable(x + PlayerGame.SPEED, y, this) &&
-					(!map.collision(this,PlayerGame.SPEED,0)) ) {
+					(!map.collision(this, PlayerGame.SPEED, 0))) {
 
 				this.setPosition(x + PlayerGame.SPEED, y);
 				if (isAnimationPaused() || this.facedDirection != Direction.RIGHT) {
@@ -94,13 +104,13 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
 				this.setFacedDirection(Direction.RIGHT);
 				this.setAnimationPaused(false);
 				this.setAnimationLooping(true);
-			}else{
+			} else {
 				this.setKeyFrame(8);
 				this.setFacedDirection(Direction.RIGHT);
 			}
 		} else if (CameraKeys.CAMERA_UP.isKey(i)) {
 			if (map.isWalkable(x, y + PlayerGame.SPEED, this) &&
-					(!map.collision(this,0,+PlayerGame.SPEED))) {
+					(!map.collision(this, 0, +PlayerGame.SPEED))) {
 
 				this.setPosition(x, y + PlayerGame.SPEED);
 				if (isAnimationPaused() || this.facedDirection != Direction.TOP) {
@@ -110,13 +120,13 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
 				this.setFacedDirection(Direction.TOP);
 				this.setAnimationPaused(false);
 				this.setAnimationLooping(true);
-			}else{
+			} else {
 				this.setKeyFrame(11);
 				this.setFacedDirection(Direction.TOP);
 			}
 		} else if (CameraKeys.CAMERA_DOWN.isKey(i)) {
 			if (map.isWalkable(x, y - PlayerGame.SPEED, this)
-					&& (!map.collision(this,0,-PlayerGame.SPEED))) {
+					&& (!map.collision(this, 0, -PlayerGame.SPEED))) {
 				this.setPosition(x, y - PlayerGame.SPEED);
 				if (isAnimationPaused() || this.facedDirection != Direction.BOTTOM) {
 					this.setKeyFrame(0);
@@ -125,7 +135,7 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
 				this.setFacedDirection(Direction.BOTTOM);
 				this.setAnimationPaused(false);
 				this.setAnimationLooping(true);
-			}else{
+			} else {
 				this.setKeyFrame(2);
 				this.setFacedDirection(Direction.BOTTOM);
 			}
@@ -167,7 +177,7 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
 	/**
 	 * Méthode qui est appelé par le stage associé, permet d'afficher les animations
 	 *
-	 * @param delta
+	 * @param delta interval de temps depuis dernier appel
 	 */
 	@Override
 	public void act(float delta) {
@@ -207,40 +217,5 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
 				this.setKeyFrame(11);
 			}
 		}
-	}
-
-	@Override
-	public boolean keyUp(int i) {
-		return false;
-	}
-
-	@Override
-	public boolean keyTyped(char c) {
-		return false;
-	}
-
-	@Override
-	public boolean touchDown(int i, int i1, int i2, int i3) {
-		return false;
-	}
-
-	@Override
-	public boolean touchUp(int i, int i1, int i2, int i3) {
-		return false;
-	}
-
-	@Override
-	public boolean touchDragged(int i, int i1, int i2) {
-		return false;
-	}
-
-	@Override
-	public boolean mouseMoved(int i, int i1) {
-		return false;
-	}
-
-	@Override
-	public boolean scrolled(int i) {
-		return false;
 	}
 }

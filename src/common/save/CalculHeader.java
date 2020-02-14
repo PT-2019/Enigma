@@ -21,38 +21,36 @@ public class CalculHeader {
 	 * @param tile     none
 	 * @param max_last none
 	 */
-	public static void dispInfo(int width, int height, int tile, int max_last) {
-		int nbcol = width / tile;
-		int nbligne;
+	private static void displayInfo(int width, int height, int tile, int max_last) {
+		int nbCol = width / tile;
+		int nbLigne;
 
 		if (width % tile != 0) {
-			System.out.println("Le tile ou la Longeur de l'image est mauvaise");
+			System.out.println("Le tile ou la Longueur de l'image est mauvaise");
 			return;
 		}
 
-		System.out.println("nombre de colonne :" + nbcol);
+		System.out.println("nombre de colonne :" + nbCol);
 
-		nbligne = height / tile;
+		nbLigne = height / tile;
 
 		if (height % tile != 0) {
 			System.out.println("Le tile ou la hauteur de l'image est mauvais");
 			return;
 		}
 
-		System.out.println("max de la texture :" + (nbcol * nbligne + max_last));
+		System.out.println("max de la texture :" + (nbCol * nbLigne + max_last));
 	}
 
 
 	//main for the test
 	public static void main(String[] args) {
-		CalculHeader t = new CalculHeader();
-
 		Scanner sc = new Scanner(System.in);
 
 		System.out.println("Hauteur de l'image :");
 		int height = sc.nextInt();
 
-		System.out.println("Longeur de l'image :");
+		System.out.println("Longueur de l'image :");
 		int width = sc.nextInt();
 
 		System.out.println("Tile de l'image :");
@@ -61,7 +59,7 @@ public class CalculHeader {
 		System.out.println("Maximum de la dernière texture :");
 		int max = sc.nextInt();
 
-		dispInfo(width, height, tile, max);
+		displayInfo(width, height, tile, max);
 	}
 }
 

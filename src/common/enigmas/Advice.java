@@ -1,7 +1,6 @@
 package common.enigmas;
 
 import common.language.EnigmaField;
-import common.language.GameLanguage;
 import common.save.enigmas.EnigmaAttributes;
 
 import java.util.HashMap;
@@ -150,8 +149,8 @@ public class Advice implements EnigmaElementReadablePrint {
 
 	@Override
 	public String getEnigmaElementReadablePrint() {
-		return "["+gl.get(EnigmaField.ADVICE)+":" +
-				gl.get(EnigmaField.ADVICE_CONTENT)+" = \""+this.advice+"\" "+
-				gl.get(EnigmaField.AFTER)+" "+this.delay+" "+gl.get(EnigmaField.DELAY_MESURE)+" ]";
+		return "[" + gl.get(EnigmaField.ADVICE) + ":" +
+				gl.get(EnigmaField.ADVICE_CONTENT) + " = \"" + this.advice + "\" " +
+				gl.get(EnigmaField.AFTER) + " " + this.delay + " " + gl.get(EnigmaField.DELAY_MESURE) + " ]";
 	}
 }

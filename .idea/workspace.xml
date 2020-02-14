@@ -5,12 +5,66 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ae09cfc3-8c68-40f7-a6e1-cb32552840e9" name="Default Changelist" comment="fix">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/Quentin_Ra.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/Quentin_Ra.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/libgdx/LibgdxGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/libgdx/LibgdxGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/EnigmaGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/EnigmaGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/EnigmaGameLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/EnigmaGameLauncher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/files/map/zoe.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/map/zoe.tmx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/lang/fr/doc.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/lang/fr/doc.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/utils/Utility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/utils/Utility.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/enigmas/condition/Answer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/enigmas/condition/Answer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/enigmas/reporting/EnigmaReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/enigmas/reporting/EnigmaReport.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/entities/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/GameObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/entities/consumable/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/consumable/Book.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/entities/items/Chest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/items/Chest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/entities/items/Pane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/items/Pane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/entities/players/EntityGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/players/EntityGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/entities/players/Monster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/players/Monster.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/entities/players/NPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/players/NPC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/entities/players/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/players/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/entities/types/AbstractGameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/types/AbstractGameObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/entities/types/Container.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/types/Container.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/entities/types/Content.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/types/Content.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/entities/types/Living.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/types/Living.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/map/MapTestScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/map/MapTestScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/save/entities/serialization/EntityFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/save/entities/serialization/EntityFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/save/entities/serialization/PlayerSerializable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/save/entities/serialization/PlayerSerializable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/EditorState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/EditorState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/NeedToBeTranslated.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/NeedToBeTranslated.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/config/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/config/Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/EditorLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/EditorLauncher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/EditorScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/EditorScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/bar/edition/ActionTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/edition/ActionTypes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/bar/edition/actions/EditorActionFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/edition/actions/EditorActionFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/bar/listeners/BrushListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/listeners/BrushListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/bar/listeners/CreateListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/listeners/CreateListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/bar/listeners/EraserListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/listeners/EraserListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/bar/listeners/MoveListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/listeners/MoveListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/bar/listeners/ReadDocumentation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/listeners/ReadDocumentation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/bar/listeners/SaveListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/listeners/SaveListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/bar/listeners/StartSimulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/listeners/StartSimulation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/bar/listeners/StopSimulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/listeners/StopSimulation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/menus/content/AddContentView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/menus/content/AddContentView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/menus/enimas/create/Conditions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/menus/enimas/create/Conditions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/menus/enimas/create/Operations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/menus/enimas/create/Operations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/menus/enimas/create/listeners/ConditionListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/menus/enimas/create/listeners/ConditionListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/menus/enimas/create/listeners/OperationListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/menus/enimas/create/listeners/OperationListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/menus/item/AddItemAddView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/menus/item/AddItemAddView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/menus/item/AddItemListView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/menus/item/AddItemListView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/menus/name/AddNameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/menus/name/AddNameView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/popup/cases/SpecialPopUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/popup/cases/SpecialPopUp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/popup/cases/listeners/SpecialPopListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/popup/cases/listeners/SpecialPopListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/popup/listeners/CaseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/popup/listeners/CaseListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/popup/listeners/ZoomListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/popup/listeners/ZoomListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/dnd/DragAndDropBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/dnd/DragAndDropBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/common/enigma/ConditionsOperationsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/common/enigma/ConditionsOperationsTest.java" afterDir="false" />
     </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <ignored path="$PROJECT_DIR$/libs/packer/" />
+    <ignored path="$PROJECT_DIR$/src/editor/menus/enimas/viewT/viewer/" />
+    <ignored path="$PROJECT_DIR$/src/game/Louka/" />
+    <ignored path="$PROJECT_DIR$/src/item/" />
+    <ignored path="$PROJECT_DIR$/src/start/" />
+    <ignored path="$PROJECT_DIR$/build/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -34,18 +88,52 @@
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="AnnotationType" />
         <option value="Singleton" />
-        <option value="Interface" />
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>need</find>
+      <find>getContainers</find>
+      <find>49</find>
+      <find>offset</find>
+      <find>Enigma#</find>
+      <find>.addEnigma</find>
+      <find>camera.zoom</find>
+      <find>21</find>
+      <find>save?</find>
+      <find>PlayerSerializable l</find>
+      <find>Book{enigmas=[], content='', id=19}</find>
+      <find>Veuillez sélectionner un objet</find>
+      <find>&quot;clean&quot;</find>
+      <find>menu</find>
+      <find>getGra</find>
+      <find>&quot;Jouer&quot;</find>
+      <find>fromJson</find>
+      <find>private</find>
+      <find>#</find>
+      <find>hsl</find>
+      <find>rat</find>
+      <find>sna</find>
+      <find>set</find>
+      <find>0.6f</find>
+      <find>snake</find>
+      <find>Table</find>
+      <find>ScrollPane</find>
+      <find>//</find>
+      <find>panel</find>
+      <find>²</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
@@ -64,10 +152,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/api/libgdx/LibgdxGame.java" />
-        <option value="$PROJECT_DIR$/src/game/EnigmaGame.java" />
-        <option value="$PROJECT_DIR$/src/common/utils/runnable/StartGameRunnable.java" />
-        <option value="$PROJECT_DIR$/src/game/EnigmaGameLauncher.java" />
+        <option value="$PROJECT_DIR$/src/data/EditorState.java" />
+        <option value="$PROJECT_DIR$/src/common/enigmas/condition/Answer.java" />
+        <option value="$PROJECT_DIR$/src/common/entities/types/Container.java" />
+        <option value="$PROJECT_DIR$/src/common/entities/items/Chest.java" />
+        <option value="$PROJECT_DIR$/src/editor/popup/cases/listeners/SpecialPopListener.java" />
+        <option value="$PROJECT_DIR$/src/editor/popup/cases/SpecialPopUp.java" />
+        <option value="$PROJECT_DIR$/src/api/utils/WindowClosing.java" />
+        <option value="$PROJECT_DIR$/src/editor/popup/cases/ChooseItemView.java" />
+        <option value="$PROJECT_DIR$/src/common/entities/types/AbstractGameObject.java" />
+        <option value="$PROJECT_DIR$/src/common/entities/GameObject.java" />
+        <option value="$PROJECT_DIR$/src/game/dnd/DragAndDropBuilder.java" />
+        <option value="$PROJECT_DIR$/src/common/entities/types/AbtractLivingEntity.java" />
+        <option value="$PROJECT_DIR$/src/common/entities/players/Player.java" />
+        <option value="$PROJECT_DIR$/src/common/entities/Entity.java" />
+        <option value="$PROJECT_DIR$/src/common/entities/players/EntityGame.java" />
+        <option value="$PROJECT_DIR$/src/common/entities/players/Monster.java" />
+        <option value="$PROJECT_DIR$/src/common/entities/players/NPC.java" />
+        <option value="$PROJECT_DIR$/src/editor/menus/enimas/create/listeners/OperationListener.java" />
+        <option value="$PROJECT_DIR$/src/editor/menus/item/AddItemAddView.java" />
+        <option value="$PROJECT_DIR$/src/editor/menus/enimas/create/listeners/ConditionListener.java" />
+        <option value="$PROJECT_DIR$/src/editor/menus/item/AddItemListView.java" />
+        <option value="$PROJECT_DIR$/src/editor/menus/enimas/create/Conditions.java" />
+        <option value="$PROJECT_DIR$/src/editor/popup/listeners/CaseListener.java" />
+        <option value="$PROJECT_DIR$/src/editor/menus/enimas/create/Operations.java" />
+        <option value="$PROJECT_DIR$/src/common/entities/types/AbstractLivingEntity.java" />
+        <option value="$PROJECT_DIR$/src/common/entities/types/Living.java" />
+        <option value="$PROJECT_DIR$/src/common/entities/Item.java" />
+        <option value="$PROJECT_DIR$/assets/items.json" />
+        <option value="$PROJECT_DIR$/src/game/gui/CategoriesMenu.java" />
+        <option value="$PROJECT_DIR$/src/common/save/entities/serialization/PlayerSerializable.java" />
+        <option value="$PROJECT_DIR$/src/common/map/MapTestScreen.java" />
+        <option value="$PROJECT_DIR$/src/editor/menus/name/AddNameView.java" />
+        <option value="$PROJECT_DIR$/src/editor/bar/edition/actions/EditorActionSetName.java" />
+        <option value="$PROJECT_DIR$/src/editor/bar/edition/ActionTypes.java" />
+        <option value="$PROJECT_DIR$/src/data/NeedToBeTranslated.java" />
+        <option value="$PROJECT_DIR$/src/editor/bar/edition/actions/EditorActionFactory.java" />
+        <option value="$PROJECT_DIR$/src/editor/bar/edition/actions/EditorActionSetContent.java" />
+        <option value="$PROJECT_DIR$/src/editor/menus/content/AddContentView.java" />
+        <option value="$PROJECT_DIR$/src/game/screens/TestScreen.java" />
+        <option value="$PROJECT_DIR$/src/editor/bar/listeners/SaveListener.java" />
+        <option value="$PROJECT_DIR$/src/editor/bar/listeners/MapLoaded.java" />
+        <option value="$PROJECT_DIR$/src/common/entities/consumable/Book.java" />
+        <option value="$PROJECT_DIR$/src/api/utils/Utility.java" />
+        <option value="$PROJECT_DIR$/src/common/entities/items/Pane.java" />
+        <option value="$PROJECT_DIR$/src/data/config/Config.java" />
+        <option value="$PROJECT_DIR$/src/common/language/Language.java" />
+        <option value="$PROJECT_DIR$/src/editor/EditorLauncher.java" />
+        <option value="$PROJECT_DIR$/src/common/save/entities/serialization/EntityFactory.java" />
+        <option value="$PROJECT_DIR$/src/editor/EditorScreen.java" />
+        <option value="$PROJECT_DIR$/src/api/libgdx/actor/GameActorAnimation.java" />
+        <option value="$PROJECT_DIR$/assets/files/atlas/uiskin.json" />
       </list>
     </option>
   </component>
@@ -89,6 +224,17 @@
             <path>
               <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
               <item name="Enigma" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Enigma" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Enigma" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="editor" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -123,11 +269,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
-      <recent name="api.ui.manager" />
-      <recent name="common.hud.ui" />
-      <recent name="common.hud" />
-      <recent name="common.language" />
-      <recent name="editor.menus.enimas" />
+      <recent name="editor.bar.edition.actions" />
+      <recent name="editor.popup.cases" />
+      <recent name="game.gui.listeners" />
+      <recent name="game.gui" />
+      <recent name="common.entities" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="common.utils" />
@@ -144,18 +290,18 @@
       <recent name="C:\Users\Quentin Ra\Desktop\EnigmaReal\src\editor\popup" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="editor.bar.edition.actions" />
+      <recent name="editor.bar.listeners" />
       <recent name="editor.menus.name" />
       <recent name="editor.menus.set" />
-      <recent name="editor.bar.listeners" />
       <recent name="" />
-      <recent name="general.entities.special" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Quentin Ra\Desktop\Enigma\src\editor\menus\enimas\viewT" />
-      <recent name="C:\Users\Quentin Ra\Desktop\Enigma\src\editor\menus\enimas\viewer" />
-      <recent name="C:\Users\Quentin Ra\Desktop\Enigma\src\editor\menus\enimas\create\listeners" />
-      <recent name="C:\Users\Quentin Ra\Desktop\Enigma\src\editor\menus\enimas" />
-      <recent name="C:\Users\Quentin Ra\Desktop\Enigma\src\editor\menus\enimas\listeners" />
+      <recent name="C:\Users\Quentin Ra\Desktop\Enigma\assets\lang\fr" />
+      <recent name="C:\Users\Quentin Ra\Desktop\Enigma\assets\lang\en" />
+      <recent name="$PROJECT_DIR$/assets/map/datas/rooms" />
+      <recent name="$PROJECT_DIR$/assets/map/map_system" />
+      <recent name="$PROJECT_DIR$/assets/map/map_system/players_system" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -232,8 +378,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.TestIDFactory" />
         <item itemvalue="Application.FromTmxToJson$MainFromRoomToJson" />
+        <item itemvalue="JUnit.TestIDFactory" />
       </list>
     </recent_temporary>
   </component>
@@ -274,6 +420,9 @@
       <workItem from="1580996029915" duration="1085000" />
       <workItem from="1580997773144" duration="1523000" />
       <workItem from="1580999350171" duration="582000" />
+      <workItem from="1581076648409" duration="1267000" />
+      <workItem from="1581087896017" duration="3715000" />
+      <workItem from="1581092351376" duration="2125000" />
     </task>
     <task id="LOCAL-00001" summary="fix">
       <created>1580590268008</created>
@@ -284,6 +433,11 @@
     </task>
     <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="MapObjectsTest_testGetAllObjectsByClassName - 2020.02.09 at 13h 53m 14s.xml">
+      <configuration name="MapObjectsTest.testGetAllObjectsByClassName" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -297,25 +451,26 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24919094" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24514563" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Capture Tool" order="2" />
+      <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
-      <window_info id="Designer" order="4" />
+      <window_info id="Capture Tool" order="4" />
       <window_info id="UI Designer" order="5" />
       <window_info id="Learn" order="6" />
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32949308" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32949308" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.36981568" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39976957" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32949308" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32949308" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.32949308" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" weight="0.32949308" />
+      <window_info anchor="bottom" id="Messages" order="9" weight="0.32949308" />
+      <window_info anchor="bottom" id="Inspection Results" order="10" weight="0.32949308" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.4516129" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -327,34 +482,35 @@
       <window_info anchor="right" id="Palette&#9;" order="8" />
     </layout>
     <layout-to-restore>
-      <window_info id="Image Layers" order="0" />
-      <window_info id="Designer" order="1" />
-      <window_info id="UI Designer" order="2" />
-      <window_info id="Learn" order="3" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28883496" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
       <window_info id="Capture Tool" order="4" />
-      <window_info id="Favorites" order="5" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="6" visible="true" weight="0.25" />
-      <window_info id="Structure" order="7" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="0" />
-      <window_info anchor="bottom" id="Version Control" order="1" />
-      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="3" weight="0.32949308" />
-      <window_info anchor="bottom" id="Message" order="4" />
-      <window_info anchor="bottom" id="Find" order="5" />
-      <window_info anchor="bottom" id="Run" order="6" weight="0.32949308" />
-      <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="10" />
-      <window_info anchor="right" id="Palette" order="0" />
-      <window_info anchor="right" id="Capture Analysis" order="1" />
-      <window_info anchor="right" id="Theme Preview" order="2" />
-      <window_info anchor="right" id="make" order="3" />
-      <window_info anchor="right" id="Palette&#9;" order="4" />
-      <window_info anchor="right" id="Maven" order="5" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="6" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="7" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="8" weight="0.25" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Learn" order="6" />
+      <window_info id="Favorites" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32949308" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.36981568" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32949308" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" weight="0.32949308" />
+      <window_info anchor="bottom" id="Messages" order="9" weight="0.32949308" />
+      <window_info anchor="bottom" id="Inspection Results" order="10" weight="0.32949308" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.4516129" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Maven" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="make" order="6" />
+      <window_info anchor="right" id="Capture Analysis" order="7" />
+      <window_info anchor="right" id="Palette&#9;" order="8" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -372,7 +528,14 @@
               <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
                 <collection />
               </option>
-              <option name="COLUMN_ORDER" />
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
             </State>
           </value>
         </entry>
@@ -396,7 +559,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Fix commit Loïc" />
     <MESSAGE value="fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix" />
+    <MESSAGE value="fix multi heroes" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix multi heroes" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2355" y="188" width="806" height="679" key="#Console" />
@@ -404,13 +568,15 @@
     <state x="2218" y="184" key="#com.intellij.execution.impl.EditConfigurationsDialog" />
     <state x="2218" y="184" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" />
     <state x="2218" y="184" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" />
-    <state x="766" y="244" width="380" height="564" key="#com.intellij.ide.util.MemberChooser" />
+    <state x="766" y="244" width="532" height="577" key="#com.intellij.ide.util.MemberChooser" />
     <state x="766" y="244" key="#com.intellij.ide.util.MemberChooser/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" />
     <state x="766" y="244" width="380" height="564" key="#com.intellij.ide.util.MemberChooser/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
     <state x="766" y="244" width="380" height="577" key="#com.intellij.ide.util.MemberChooser/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" />
-    <state x="691" y="310" width="530" height="445" key="#com.intellij.ide.util.PackageChooserDialog" />
+    <state x="766" y="244" width="532" height="577" key="#com.intellij.ide.util.MemberChooser/1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" />
+    <state x="948" y="296" width="530" height="445" key="#com.intellij.ide.util.PackageChooserDialog" />
     <state x="691" y="310" width="530" height="445" key="#com.intellij.ide.util.PackageChooserDialog/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
     <state x="691" y="310" width="530" height="445" key="#com.intellij.ide.util.PackageChooserDialog/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" />
+    <state x="948" y="296" key="#com.intellij.ide.util.PackageChooserDialog/1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" />
     <state x="1920" y="0" width="691" height="1050" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" />
     <state x="1920" y="0" width="691" height="1050" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
     <state x="295" y="31" width="852" height="807" key="CommitChangelistDialog2" />
@@ -418,44 +584,52 @@
     <state x="295" y="31" width="852" height="807" key="CommitChangelistDialog2/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
     <state x="2543" y="284" width="430" height="486" key="FileChooserDialogImpl" />
     <state x="2543" y="284" width="430" height="486" key="FileChooserDialogImpl/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
-    <state width="1878" height="261" key="GridCell.Tab.0.bottom" />
+    <state width="1878" height="276" key="GridCell.Tab.0.bottom" />
     <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" />
+    <state width="1878" height="261" key="GridCell.Tab.0.bottom/0.31.1920.1000/1920.0.1280.1024@0.31.1920.1000" />
+    <state width="1238" height="268" key="GridCell.Tab.0.bottom/0.31.1920.1000/1920.0.1280.1024@1920.0.1280.1024" />
     <state width="1878" height="276" key="GridCell.Tab.0.bottom/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" />
     <state width="1638" height="293" key="GridCell.Tab.0.bottom/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
     <state width="1638" height="327" key="GridCell.Tab.0.bottom/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" />
     <state width="1238" height="268" key="GridCell.Tab.0.bottom/1680.0.1280.1024/0.0.1680.1050@1680.0.1280.1024" />
     <state width="1878" height="339" key="GridCell.Tab.0.bottom/1920.0.1280.1024/0.0.1920.1080@0.0.1920.1080" />
-    <state width="1878" height="306" key="GridCell.Tab.0.bottom/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" />
+    <state width="1878" height="276" key="GridCell.Tab.0.bottom/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" />
     <state width="1638" height="276" key="GridCell.Tab.0.bottom/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" />
     <state width="1878" height="261" key="GridCell.Tab.0.bottom/1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" />
-    <state width="1878" height="261" key="GridCell.Tab.0.center" />
+    <state width="1878" height="276" key="GridCell.Tab.0.center" />
     <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" />
+    <state width="1878" height="261" key="GridCell.Tab.0.center/0.31.1920.1000/1920.0.1280.1024@0.31.1920.1000" />
+    <state width="1238" height="268" key="GridCell.Tab.0.center/0.31.1920.1000/1920.0.1280.1024@1920.0.1280.1024" />
     <state width="1878" height="276" key="GridCell.Tab.0.center/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" />
     <state width="1638" height="293" key="GridCell.Tab.0.center/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
     <state width="1638" height="327" key="GridCell.Tab.0.center/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" />
     <state width="1238" height="268" key="GridCell.Tab.0.center/1680.0.1280.1024/0.0.1680.1050@1680.0.1280.1024" />
     <state width="1878" height="339" key="GridCell.Tab.0.center/1920.0.1280.1024/0.0.1920.1080@0.0.1920.1080" />
-    <state width="1878" height="306" key="GridCell.Tab.0.center/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" />
+    <state width="1878" height="276" key="GridCell.Tab.0.center/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" />
     <state width="1638" height="276" key="GridCell.Tab.0.center/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" />
     <state width="1878" height="261" key="GridCell.Tab.0.center/1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" />
-    <state width="1878" height="261" key="GridCell.Tab.0.left" />
+    <state width="1878" height="276" key="GridCell.Tab.0.left" />
     <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" />
+    <state width="1878" height="261" key="GridCell.Tab.0.left/0.31.1920.1000/1920.0.1280.1024@0.31.1920.1000" />
+    <state width="1238" height="268" key="GridCell.Tab.0.left/0.31.1920.1000/1920.0.1280.1024@1920.0.1280.1024" />
     <state width="1878" height="276" key="GridCell.Tab.0.left/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" />
     <state width="1638" height="293" key="GridCell.Tab.0.left/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
     <state width="1638" height="327" key="GridCell.Tab.0.left/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" />
     <state width="1238" height="268" key="GridCell.Tab.0.left/1680.0.1280.1024/0.0.1680.1050@1680.0.1280.1024" />
     <state width="1878" height="339" key="GridCell.Tab.0.left/1920.0.1280.1024/0.0.1920.1080@0.0.1920.1080" />
-    <state width="1878" height="306" key="GridCell.Tab.0.left/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" />
+    <state width="1878" height="276" key="GridCell.Tab.0.left/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" />
     <state width="1638" height="276" key="GridCell.Tab.0.left/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" />
     <state width="1878" height="261" key="GridCell.Tab.0.left/1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" />
-    <state width="1878" height="261" key="GridCell.Tab.0.right" />
+    <state width="1878" height="276" key="GridCell.Tab.0.right" />
     <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" />
+    <state width="1878" height="261" key="GridCell.Tab.0.right/0.31.1920.1000/1920.0.1280.1024@0.31.1920.1000" />
+    <state width="1238" height="268" key="GridCell.Tab.0.right/0.31.1920.1000/1920.0.1280.1024@1920.0.1280.1024" />
     <state width="1878" height="276" key="GridCell.Tab.0.right/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" />
     <state width="1638" height="293" key="GridCell.Tab.0.right/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
     <state width="1638" height="327" key="GridCell.Tab.0.right/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" />
     <state width="1238" height="268" key="GridCell.Tab.0.right/1680.0.1280.1024/0.0.1680.1050@1680.0.1280.1024" />
     <state width="1878" height="339" key="GridCell.Tab.0.right/1920.0.1280.1024/0.0.1920.1080@0.0.1920.1080" />
-    <state width="1878" height="306" key="GridCell.Tab.0.right/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" />
+    <state width="1878" height="276" key="GridCell.Tab.0.right/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" />
     <state width="1638" height="276" key="GridCell.Tab.0.right/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" />
     <state width="1878" height="261" key="GridCell.Tab.0.right/1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" />
     <state x="321" y="94" width="1542" height="896" key="MergeDialog" />
@@ -472,7 +646,9 @@
     <state x="1926" y="104" key="SettingsEditor/1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" />
     <state width="498" height="445" key="SwitcherDM" />
     <state width="498" height="445" key="SwitcherDM/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" />
-    <state x="2468" y="343" key="com.intellij.ide.util.TipDialog" />
+    <state width="498" height="445" key="SwitcherDM/1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" />
+    <state x="626" y="358" key="com.intellij.ide.util.TipDialog" />
+    <state x="548" y="349" key="com.intellij.ide.util.TipDialog/0.31.1920.1000/1920.0.1280.1024@0.31.1920.1000" />
     <state x="626" y="358" key="com.intellij.ide.util.TipDialog/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" />
     <state x="2468" y="343" key="com.intellij.ide.util.TipDialog/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
     <state x="626" y="353" key="com.intellij.ide.util.TipDialog/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" />
@@ -481,10 +657,12 @@
     <state x="626" y="358" key="com.intellij.ide.util.TipDialog/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" />
     <state x="626" y="358" key="com.intellij.ide.util.TipDialog/1920.0.1680.1050/0.0.1920.1080@1920.0.1680.1050" />
     <state x="2468" y="343" key="com.intellij.ide.util.TipDialog/1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" />
-    <state x="578" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" />
+    <state x="578" y="329" width="441" height="162" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" />
     <state x="578" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" />
-    <state x="2530" y="232" width="455" height="591" key="com.intellij.testIntegration.createTest.CreateTestDialog" />
+    <state x="578" y="329" width="441" height="162" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.31.1920.1000/1920.0.1280.1024@0.31.1920.1000" />
+    <state x="2530" y="232" width="500" height="591" key="com.intellij.testIntegration.createTest.CreateTestDialog" />
     <state x="2530" y="232" width="455" height="591" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
+    <state x="2530" y="232" width="500" height="591" key="com.intellij.testIntegration.createTest.CreateTestDialog/1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" />
     <state x="2515" y="156" width="692" height="819" key="find.popup" />
     <state x="680" y="180" width="692" height="780" key="find.popup/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" />
     <state x="2515" y="156" width="692" height="819" key="find.popup/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
@@ -494,7 +672,8 @@
     <state x="619" y="242" width="672" height="677" key="run.anything.popup" />
     <state x="619" y="242" width="672" height="677" key="run.anything.popup/1920.0.1680.1050/0.0.1920.1080@0.0.1920.1080" />
     <state x="619" y="242" width="672" height="677" key="run.anything.popup/1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" />
-    <state x="619" y="195" width="672" height="626" key="search.everywhere.popup" />
+    <state x="2333" y="185" width="672" height="594" key="search.everywhere.popup" />
+    <state x="2333" y="185" width="672" height="594" key="search.everywhere.popup/0.31.1920.1000/1920.0.1280.1024@1920.0.1280.1024" />
     <state x="619" y="195" width="672" height="626" key="search.everywhere.popup/0.31.1920.1000/1920.0.1680.1050@0.31.1920.1000" />
     <state x="2462" y="172" width="672" height="658" key="search.everywhere.popup/0.31.1920.1000/1920.0.1680.1050@1920.0.1680.1050" />
     <state x="2462" y="172" width="672" height="658" key="search.everywhere.popup/1680.0.1280.1024/0.0.1680.1050@0.0.1680.1050" />
@@ -503,62 +682,452 @@
     <state x="619" y="195" width="672" height="626" key="search.everywhere.popup/1920.0.1920.1080/0.0.1920.1080@0.0.1920.1080" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/api/libgdx/LibgdxGame.java">
+    <entry file="file://$PROJECT_DIR$/src/editor/menus/item/AddItemAddView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1345">
-          <caret line="23" column="22" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
+        <state relative-caret-position="361">
+          <caret line="187" column="41" selection-start-line="187" selection-start-column="41" selection-end-line="187" selection-end-column="41" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/game/EnigmaGame.java">
+    <entry file="jar://$PROJECT_DIR$/libs/gdx.jar!/com/badlogic/gdx/scenes/scene2d/ui/Window.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1118">
-          <caret line="3" column="27" selection-start-line="3" selection-start-column="27" selection-end-line="3" selection-end-column="27" />
-          <folding>
-            <element signature="e#1624#1625#0" expanded="true" />
-            <element signature="e#1637#1638#0" expanded="true" />
-            <element signature="e#2277#2310#0" expanded="true" />
-            <element signature="e#2111#2112#0" expanded="true" />
-            <element signature="e#2128#2129#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-749">
+          <caret line="13" column="24" lean-forward="true" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
+    <entry file="file://$PROJECT_DIR$/assets/files/atlas/uiskin.atlas">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/files/atlas/uiskin.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/popup/cases/listeners/SpecialPopListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+        <state relative-caret-position="690">
+          <caret line="53" column="63" selection-start-line="53" selection-start-column="63" selection-end-line="53" selection-end-column="63" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/game/EnigmaGameLauncher.java">
+    <entry file="file://$PROJECT_DIR$/src/editor/menus/item/AddItemListView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="27" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
-          <folding>
-            <element signature="e#1630#1663#0" expanded="true" />
-            <element signature="e#2241#2242#0" expanded="true" />
-            <element signature="e#2267#2268#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="250">
+          <caret line="103" column="33" lean-forward="true" selection-start-line="103" selection-start-column="33" selection-end-line="103" selection-end-column="33" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/utils/runnable/StartGameRunnable.java">
+    <entry file="file://$PROJECT_DIR$/src/editor/popup/listeners/CaseListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="23" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
+        <state relative-caret-position="276">
+          <caret line="128" column="28" lean-forward="true" selection-start-line="128" selection-start-column="28" selection-end-line="128" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#392#393#0" expanded="true" />
-            <element signature="e#421#422#0" expanded="true" />
+            <element signature="e#7113#7114#0" expanded="true" />
+            <element signature="e#7141#7142#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/utils/IDFactory.java">
+    <entry file="file://$PROJECT_DIR$/src/editor/menus/enimas/create/Operations.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-17">
+        <state relative-caret-position="361">
+          <caret line="172" column="62" selection-start-line="172" selection-start-column="62" selection-end-line="172" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/menus/enimas/create/Conditions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="169" column="62" lean-forward="true" selection-start-line="168" selection-start-column="8" selection-end-line="169" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/entities/types/Living.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="7" lean-forward="true" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/entities/types/AbstractLivingEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1606">
+          <caret line="27" column="91" selection-start-line="27" selection-start-column="91" selection-end-line="27" selection-end-column="91" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1793#1794#0" expanded="true" />
+            <element signature="e#1814#1815#0" expanded="true" />
+            <element signature="e#2255#2256#0" expanded="true" />
+            <element signature="e#2296#2297#0" expanded="true" />
+            <element signature="e#2345#2346#0" expanded="true" />
+            <element signature="e#2381#2382#0" expanded="true" />
+            <element signature="e#2431#2432#0" expanded="true" />
+            <element signature="e#2468#2469#0" expanded="true" />
+            <element signature="e#2530#2531#0" expanded="true" />
+            <element signature="e#2582#2583#0" expanded="true" />
+            <element signature="e#2644#2645#0" expanded="true" />
+            <element signature="e#2679#2680#0" expanded="true" />
+            <element signature="e#2746#2747#0" expanded="true" />
+            <element signature="e#2781#2782#0" expanded="true" />
+            <element signature="e#2852#2853#0" expanded="true" />
+            <element signature="e#2889#2890#0" expanded="true" />
+            <element signature="e#2930#2931#0" expanded="true" />
+            <element signature="e#2951#2952#0" expanded="true" />
+            <element signature="e#2992#2993#0" expanded="true" />
+            <element signature="e#3011#3012#0" expanded="true" />
+            <element signature="e#3050#3051#0" expanded="true" />
+            <element signature="e#3068#3069#0" expanded="true" />
+            <element signature="e#3116#3117#0" expanded="true" />
+            <element signature="e#3139#3140#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/libs/gdx.jar!/com/badlogic/gdx/graphics/g2d/TextureAtlas.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="12" column="11" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/entities/Item.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/gui/CategoriesMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="78" column="23" lean-forward="true" selection-start-line="78" selection-start-column="23" selection-end-line="78" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/bar/listeners/EraserListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="48" column="35" lean-forward="true" selection-start-line="48" selection-start-column="35" selection-end-line="48" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/save/entities/serialization/PlayerSerializable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-761">
+          <caret line="6" column="20" lean-forward="true" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
+          <folding>
+            <element signature="e#273#317#0" expanded="true" />
+            <element signature="e#1103#1104#0" expanded="true" />
+            <element signature="e#1121#1122#0" expanded="true" />
+            <element signature="e#1149#1150#0" expanded="true" />
+            <element signature="e#1167#1168#0" expanded="true" />
+            <element signature="e#1192#1193#0" expanded="true" />
+            <element signature="e#1210#1211#0" expanded="true" />
+            <element signature="e#1235#1236#0" expanded="true" />
+            <element signature="e#1253#1254#0" expanded="true" />
+            <element signature="e#1285#1286#0" expanded="true" />
+            <element signature="e#1310#1311#0" expanded="true" />
+            <element signature="e#1342#1343#0" expanded="true" />
+            <element signature="e#1367#1368#0" expanded="true" />
+            <element signature="e#1393#1394#0" expanded="true" />
+            <element signature="e#1412#1413#0" expanded="true" />
+            <element signature="e#1443#1444#0" expanded="true" />
+            <element signature="e#1465#1466#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/items.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2040">
+          <caret line="120" column="21" lean-forward="true" selection-start-line="120" selection-start-column="21" selection-end-line="120" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/EditorState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="12" column="18" selection-start-line="12" selection-start-column="18" selection-end-line="12" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/map/MapTestScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="307" column="92" selection-start-line="307" selection-start-column="92" selection-end-line="307" selection-end-column="92" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/bar/edition/actions/EditorActionAddEnigma.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="8" selection-start-line="8" selection-end-line="17" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/menus/AbstractPopUpView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="101" column="16" selection-start-line="101" selection-start-column="16" selection-end-line="101" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/menus/name/SetName.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="639">
+          <caret line="58" column="17" selection-start-line="58" selection-start-column="17" selection-end-line="58" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/bar/edition/actions/EditorActionSetName.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="686">
+          <caret line="49" column="9" selection-start-line="49" selection-start-column="9" selection-end-line="49" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/bar/edition/ActionTypes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="40" column="48" lean-forward="true" selection-start-line="40" selection-start-column="48" selection-end-line="40" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/NeedToBeTranslated.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="78" column="39" selection-start-line="78" selection-start-column="39" selection-end-line="78" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/bar/edition/actions/EditorActionFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="91">
+          <caret line="59" column="32" lean-forward="true" selection-start-line="59" selection-start-column="32" selection-end-line="59" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/menus/name/AddNameView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2550">
+          <caret line="173" column="43" selection-start-line="173" selection-start-column="43" selection-end-line="173" selection-end-column="43" />
+          <folding>
+            <element signature="e#3752#3753#0" expanded="true" />
+            <element signature="e#3771#3772#0" expanded="true" />
+            <element signature="e#4762#4763#0" expanded="true" />
+            <element signature="e#4784#4785#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/bar/edition/actions/EditorActionSetContent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="43" column="22" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1340#1341#0" expanded="true" />
+            <element signature="e#1363#1364#0" expanded="true" />
+            <element signature="e#1552#1553#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/menus/content/AddContentView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="332">
+          <caret line="78" column="24" selection-start-line="78" selection-start-column="24" selection-end-line="78" selection-end-column="24" />
+          <folding>
+            <element signature="e#3580#3581#0" expanded="true" />
+            <element signature="e#3631#3632#0" expanded="true" />
+            <element signature="e#4689#4690#0" expanded="true" />
+            <element signature="e#4711#4712#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/bar/edition/ActionsManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="171" column="9" lean-forward="true" selection-start-line="171" selection-start-column="9" selection-end-line="171" selection-end-column="9" />
+          <folding>
+            <element signature="e#1509#1510#0" expanded="true" />
+            <element signature="e#1537#1538#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/save/EmptyMapGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="100" column="25" selection-start-line="100" selection-start-column="25" selection-end-line="100" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/bar/listeners/ExportListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="896">
+          <caret line="73" column="38" selection-start-line="73" selection-start-column="38" selection-end-line="73" selection-end-column="38" />
+          <folding>
+            <element signature="e#2080#2081#0" expanded="true" />
+            <element signature="e#2131#2132#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/popup/listeners/ZoomListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-112">
+          <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
+          <folding>
+            <element signature="e#3621#3622#0" expanded="true" />
+            <element signature="e#3663#3664#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-11.0.2/lib/src.zip!/java.base/java/lang/String.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="837">
+          <caret line="2949" column="25" selection-start-line="2949" selection-start-column="25" selection-end-line="2949" selection-end-column="25" />
+          <folding>
+            <element signature="e#119036#119037#0" expanded="true" />
+            <element signature="e#119098#119099#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/bar/listeners/MapLoaded.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1156">
+          <caret line="75" column="5" selection-start-line="75" selection-start-column="5" selection-end-line="75" selection-end-column="5" />
+          <folding>
+            <element signature="e#1598#1599#0" expanded="true" />
+            <element signature="e#1626#1627#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/bar/listeners/SaveListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="81" column="39" lean-forward="true" selection-start-line="81" selection-start-column="39" selection-end-line="81" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/utils/Utility.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="559" column="49" selection-start-line="559" selection-start-column="49" selection-end-line="559" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/entities/consumable/Book.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-810">
+          <caret line="26" column="58" selection-start-line="26" selection-start-column="58" selection-end-line="26" selection-end-column="58" />
+          <folding>
+            <element signature="e#1057#1058#0" expanded="true" />
+            <element signature="e#1086#1087#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/entities/items/Pane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="381">
+          <caret line="102" column="111" selection-start-line="102" selection-start-column="111" selection-end-line="102" selection-end-column="111" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/entities/types/Content.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/game/screens/TestScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="47" column="40" lean-forward="true" selection-start-line="47" selection-start-column="40" selection-end-line="47" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/save/entities/serialization/PlayerSerializableToJson.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
           <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/save/entities/serialization/EntitySerializable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+          <folding>
+            <element signature="e#3654#3655#0" expanded="true" />
+            <element signature="e#3696#3697#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/save/entities/serialization/EntityFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="85" column="43" selection-start-line="85" selection-start-column="43" selection-end-line="85" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/EditorLauncher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="64" lean-forward="true" selection-start-line="64" selection-end-line="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/language/Language.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="5" lean-forward="true" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/data/config/Config.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="65" column="48" lean-forward="true" selection-start-line="65" selection-start-column="48" selection-end-line="65" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/editor/EditorScreen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="74" column="7" selection-start-line="74" selection-start-column="7" selection-end-line="74" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/files/atlas/uiskin.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="2" lean-forward="true" selection-start-line="14" selection-start-column="2" selection-end-line="14" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/entities/players/PlayerGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="21" column="3" lean-forward="true" selection-start-line="21" selection-start-column="3" selection-end-line="21" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/api/libgdx/actor/GameActorAnimation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="148" column="58" selection-start-line="148" selection-start-column="58" selection-end-line="148" selection-end-column="58" />
         </state>
       </provider>
     </entry>

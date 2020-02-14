@@ -1,17 +1,19 @@
 package editor.bar;
 
-import com.badlogic.gdx.Gdx;
-import common.hud.*;
+import api.utils.Utility;
+import com.badlogic.gdx.utils.Array;
+import common.hud.EnigmaMenu;
+import common.hud.EnigmaMenuBar;
+import common.hud.EnigmaMenuItem;
+import common.hud.EnigmaWindow;
 import common.hud.ui.EnigmaMenuUI;
-import common.language.HUDFields;
-import data.EnigmaScreens;
 import data.config.EnigmaUIValues;
-import editor.bar.listeners.*;
-import game.EnigmaGame;
 
-import java.awt.*;
-
-import static common.language.GameLanguage.gl;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Barre du menu
@@ -20,84 +22,94 @@ import static common.language.GameLanguage.gl;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 6.1 30/01/2020
- * @since 5.0 30/01/2020
+ * @version 6.2
+ * @since 3.0
  */
 public class BarMenu extends EnigmaMenuBar {
-	//1er onglet
-	private EnigmaMenu file = new EnigmaMenu(gl.get(HUDFields.FILE));
-	private EnigmaMenuItem create = new EnigmaMenuItem(gl.get(HUDFields.CREATE));
-	private EnigmaMenuItem ouvrir = new EnigmaMenuItem(gl.get(HUDFields.OPEN));
-	private EnigmaMenuItem save = new EnigmaMenuItem(gl.get(HUDFields.SAVE));
-	private EnigmaMenuItem saveAs = new EnigmaMenuItem(gl.get(HUDFields.SAVE_AS));
-	private EnigmaMenuItem export = new EnigmaMenuItem(gl.get(HUDFields.EXPORT));
-	private EnigmaMenuItem importMap = new EnigmaMenuItem(gl.get(HUDFields.IMPORT));
-	//2eme onglet
-	private EnigmaMenu edit = new EnigmaMenu(gl.get(HUDFields.EDIT));
-	private EnigmaMenuItem redo = new EnigmaMenuItem(gl.get(HUDFields.REDO));
-	private EnigmaMenuItem undo = new EnigmaMenuItem(gl.get(HUDFields.UNDO));
-	//3eme onglet
-	private EnigmaMenu run = new EnigmaMenu(gl.get(HUDFields.RUN));
-	private EnigmaMenuItem runJeu = new EnigmaMenuItem(gl.get(HUDFields.START));
-	private EnigmaMenuItem finJeu = new EnigmaMenuItem(gl.get(HUDFields.STOP));
-	//4eme onglet
-	private EnigmaMenu help = new EnigmaMenu(gl.get(HUDFields.HELP));
-	private EnigmaMenuItem doc = new EnigmaMenuItem(gl.get(HUDFields.DOC));
-	private EnigmaMenuItem support = new EnigmaMenuItem(gl.get(HUDFields.SUPPORT));
 
+	private EnigmaMenuItem importMap = new EnigmaMenuItem(gl.get(HUDFields.IMPORT));
+	this.importMap.addActionListener(new ImportListener(window, this.importMap));
+
+
+	/**
+	 * Sauvegarde des menus particuliers si on veut les cacher
+	 *
+	 * @since 6.2
+	 */
+	private ArrayList<String> lastStated;
+
+	/**
+	 * Crée une barre de menus
+	 *
+	 * @param window fenêtre
+	 * @since 3.0
+	 */
 	public BarMenu(EnigmaWindow window) {
+		//attribut
+		this.lastStated = new ArrayList<>();
+		//ui
 		EnigmaMenuUI mui = new EnigmaMenuUI();
 		mui.setPopupBackground(Color.WHITE);
 		mui.setPopupBorderSize(1);
 		mui.setShowedPopupBorders(EnigmaUIValues.ALL_BORDERS_SHOWED);
 
-		this.file.setComponentUI(mui);
-		this.edit.setComponentUI(mui);
-		this.run.setComponentUI(mui);
-		this.help.setComponentUI(mui);
+		for (EnigmaMenuBarMenus menuCategory : EnigmaMenuBarMenus.values()) {
+			//crée le menu
+			EnigmaMenu menu = new EnigmaMenu(menuCategory.name);
+			//parcours des fils
+			for (EnigmaMenuBarItems itemCategory : menuCategory.items) {
+				//création
+				EnigmaMenuItem item = new EnigmaMenuItem(itemCategory.name);
+				//ajout listener
+				if (itemCategory.run != null) {
+					item.addActionListener((ActionListener) Utility.instance(itemCategory.run, window, item));
+				}
+				//définit l'état
+				item.setEnabled(itemCategory.enabled);
 
-		this.file.add(create);
-		this.file.add(ouvrir);
-		this.file.add(save);
-		this.file.add(saveAs);
-		this.file.add(export);
-		this.file.add(importMap);
+				//ajout des fils
+				menu.add(item);
+			}
+			//ajout de l'ui
+			menu.setComponentUI(mui);
+			//ajout à la barre
+			this.add(menu);
+		}
+	}
 
-		this.edit.add(undo);
-		this.edit.add(redo);
+	/**
+	 * Active/Désactive tous les menus sauf exceptions
+	 *
+	 * @param enable     true pour activer sinon false pour désactiver
+	 * @param exceptions nom des menus à ne pas désactiver
+	 * @since 6.2
+	 */
+	public void enableAll(boolean enable, String... exceptions) {
+		//Crée une liste comme ça c'est plus rapide
+		ArrayList<String> exceptionsList = new ArrayList<>();
+		if (exceptions != null && exceptions.length > 0) exceptionsList.addAll(Arrays.asList(exceptions));
+		//parcours des grand menus
+		for (Component c : new Array.ArrayIterator<>(this.getMenus())) {
+			if (!(c instanceof EnigmaMenu)) continue;
+			//parcours de leur contenu
+			for (Component cItem : ((EnigmaMenu) c).getItems()) {
+				if (!(cItem instanceof EnigmaMenuItem)) continue;
+				EnigmaMenuItem item = (EnigmaMenuItem) cItem;
+				//si je ne dois pas toucher à l'object
+				String text = item.getText();
+				boolean enabled = item.isEnabled();
+				if (exceptionsList.contains(text)) continue;
 
-		this.run.add(runJeu);
-		this.run.add(finJeu);
-
-		this.help.add(doc);
-		this.help.add(support);
-
-		this.add(file);
-		this.add(edit);
-		this.add(run);
-		this.add(help);
-
-		//listeners
-
-		this.create.addActionListener(new CreateListener(window, this.create));
-		this.ouvrir.addActionListener(new OpenListener(window, this.ouvrir));
-		this.save.addActionListener(new SaveListener(window, this.save));
-		this.saveAs.addActionListener(new SaveAsListener(window, this.saveAs));
-		this.export.addActionListener(new ExportListener(window, this.export));
-		this.importMap.addActionListener(new ImportListener(window, this.importMap));
-		this.undo.addActionListener(new UndoListener(window, this.undo));
-		this.redo.addActionListener(new RedoListener(window, this.redo));
-
-		this.runJeu.addActionListener((e -> {
-			Gdx.app.postRunnable(() -> EnigmaGame.setScreen(EnigmaScreens.GAME.name()));
-			this.finJeu.setEnabled(true);
-			this.runJeu.setEnabled(false);
-		}));
-		this.finJeu.addActionListener((e -> {
-			Gdx.app.postRunnable(() -> EnigmaGame.setScreen(EnigmaScreens.TEST.name()));
-			this.runJeu.setEnabled(true);
-			this.finJeu.setEnabled(false);
-		}));
-		this.finJeu.setEnabled(false);
+				//si bouton activé, et que je veux l'activer
+				//ou si bouton désactivé, et que je veux le désactiver
+				if (enable == enabled) {
+					lastStated.add(text);
+				} else {
+					//s'il était dans un état différent, alors je le rétablis pas
+					if (lastStated.contains(text)) lastStated.remove(text);
+					else item.setEnabled(enable);
+				}
+			}
+		}
 	}
 }

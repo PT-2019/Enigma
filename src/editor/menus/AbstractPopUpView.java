@@ -92,6 +92,15 @@ public abstract class AbstractPopUpView extends JDialog implements Drawable {
 
 	public abstract void clean();
 
+	@Override
+	@DoNothing
+	public Container getDrawable() {
+		return null;
+	}
+
+	@Override
+	public void invalidateDrawable() {
+	}
 
 	/**
 	 * Reset l'éditor dans son état avant ouverture
@@ -107,7 +116,7 @@ public abstract class AbstractPopUpView extends JDialog implements Drawable {
 
 		private final AbstractPopUpView parent;
 
-		public Close(AbstractPopUpView parent) {
+		Close(AbstractPopUpView parent) {
 			this.parent = parent;
 		}
 
@@ -117,12 +126,5 @@ public abstract class AbstractPopUpView extends JDialog implements Drawable {
 			DragAndDropBuilder.setForPopup(null);
 		}
 	}
-
-	@Override
-	@DoNothing
-	public Container getDrawable() { return null; }
-
-	@Override
-	public void invalidateDrawable(){}
 }
 

@@ -2,6 +2,7 @@ package editor.menus.name;
 
 import common.entities.GameObject;
 import common.hud.EnigmaButton;
+import data.NeedToBeTranslated;
 import editor.menus.AbstractPopUpView;
 import editor.menus.AvailableOptionRunnable;
 import editor.menus.AvailablePopUpOption;
@@ -22,9 +23,9 @@ import editor.popup.cases.CasePopUp;
 public class SetName implements AvailableOptionRunnable {
 
 	/**
-	 * Définit si la case est accessible ou non
+	 * Définit le nom du héros
 	 */
-	private static final String NAME = "Changer nom";
+	private static final String NAME = NeedToBeTranslated.SET_NAME;
 
 	private final CasePopUp parent;
 	private final EnigmaButton input;

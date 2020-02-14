@@ -50,7 +50,7 @@ public abstract class AbstractItem extends AbstractGameObject implements Item {
 	 */
 	protected AbstractItem(int id) {
 		super(id);
-		this.enigmas = new ArrayList<Enigma>();
+		this.enigmas = new ArrayList<>();
 	}
 
 	//Enigmas

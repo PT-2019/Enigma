@@ -3,6 +3,8 @@ package common.hud;
 import api.ui.CustomLabel;
 import common.hud.ui.EnigmaLabelUI;
 
+import javax.swing.ImageIcon;
+
 /**
  * Un label de l'application enigma
  *
@@ -30,6 +32,16 @@ public class EnigmaLabel extends CustomLabel {
 	 */
 	public EnigmaLabel(String title) {
 		super(title);
+		this.setComponentUI(new EnigmaLabelUI());
+	}
+
+	/**
+	 * Crée un label
+	 *
+	 * @param icon une icône
+	 */
+	public EnigmaLabel(ImageIcon icon) {
+		super(icon);
 		this.setComponentUI(new EnigmaLabelUI());
 	}
 

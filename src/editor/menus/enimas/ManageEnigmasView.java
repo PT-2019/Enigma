@@ -12,57 +12,54 @@ import editor.popup.cases.CasePopUp;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.0 02/02/2020
  * @since 6.0 02/02/2020
  */
 public class ManageEnigmasView extends AbstractPopUpView {
 
-	private static final String TITLE = "Gérer les énigmes";
-
 	/**
 	 * CardLayout
 	 */
-	static final String MENU = "menu", ADD = "add", SEE = "see";
-
+	public static final String MENU = "menu";
+	static final String ADD = "add";
+	static final String SEE = "see";
+	private static final String TITLE = "Gérer les énigmes";
+	private static ManageEnigmasView instance;
 	/**
 	 * Stockage des écrans
 	 */
-	private final ManageEnigmasAddView manageEnigmasAddView;
-	private final ManageEnigmasListView manageEnigmasListView;
+	private final ManageEnigmasAddView addView;
+	private final ManageEnigmasListView listView;
 
 	public ManageEnigmasView(CasePopUp popUp, GameObject object) {
 		super(TITLE, popUp);
+		instance = this;
 
-		if(object == null) object = popUp.getCell().getEntity();
+		if (object == null) object = popUp.getCell().getEntity();
 
 		//ajout des écrans
-		ManageEnigmasSeeView manageEnigmasSeeView = new ManageEnigmasSeeView(this);
-		this.manageEnigmasListView = new ManageEnigmasListView(this, manageEnigmasSeeView, object);
-		this.manageEnigmasAddView = new ManageEnigmasAddView(this, object);
+		this.addView = new ManageEnigmasAddView(this, object);
+		ManageEnigmasSeeView manageEnigmasSeeView = new ManageEnigmasSeeView(this, object);
+		this.listView = new ManageEnigmasListView(this, manageEnigmasSeeView, object);
 
 		//ajout au card Layout
-		this.panel.add(this.manageEnigmasListView, MENU);
-		this.panel.add(this.manageEnigmasAddView, ADD);
+		this.panel.add(this.listView, MENU);
+		this.panel.add(this.addView, ADD);
 		this.panel.add(manageEnigmasSeeView, SEE);
 	}
 
-	/**
-	 * Retourne la vue pour ajouter des items
-	 * @return la vue pour ajouter des items
-	 */
-	public ManageEnigmasAddView getManageEnigmaAddView() {
-		return this.manageEnigmasAddView;
+	public static ManageEnigmasView getInstance() {
+		return instance;
 	}
 
 	@Override
 	public void clean() {
-		this.manageEnigmasAddView.clean();
+		this.addView.clean();
 	}
 
 	@Override
 	public void invalidateDrawable() {
-		this.manageEnigmasListView.clean();
-		this.manageEnigmasListView.initComponent();
+		this.listView.clean();
+		this.listView.initComponent();
 	}
 }

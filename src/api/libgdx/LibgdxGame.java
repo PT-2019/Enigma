@@ -1,26 +1,27 @@
 package api.libgdx;
 
 import api.Application;
+import api.utils.Utility;
 import api.utils.annotations.ConvenienceMethod;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.math.Rectangle;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 
 /**
  * Lanceur de jeux vidéos
  *
  * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  * @version 4.2 26/12/2019
  * @see Game
  * @since 3.0 03 december 2019
  */
+@SuppressWarnings({"unused","WeakerAccess"})
 public abstract class LibgdxGame extends Game implements Application {
 
 	private static LibgdxGame libgdxGame;
@@ -68,7 +69,8 @@ public abstract class LibgdxGame extends Game implements Application {
 	 *
 	 * @param key nom du screen {@link #setScreen(String)}
 	 * @return l'instance de l'écran
-	 * @throws IllegalStateException si une exception est levée dans le contructeur ou lors de son instanciation
+	 * @throws IllegalStateException si une exception est levée dans le constructeur ou lors de
+	 * son instantiation
 	 * @since 3.0 03 december 2019
 	 */
 	public static LibgdxScreen load(String key) {
@@ -76,14 +78,8 @@ public abstract class LibgdxGame extends Game implements Application {
 			if (!added.containsKey(key)) {
 				throw new IllegalStateException("add screen first before load it");
 			} else {
-				try {
-					Constructor declaredConstructor = added.get(key).getDeclaredConstructor();
-					screens.put(key, (LibgdxScreen) declaredConstructor.newInstance());
-				} catch (IllegalAccessException | InstantiationException | NoSuchMethodException | InvocationTargetException e) {
-					Gdx.app.error("FilesManager", "create instance failed");
-
-					throw new IllegalStateException("create instance failed");
-				}
+				//instancie le screen
+				screens.put(key, (LibgdxScreen) Utility.instance(added.get(key)));
 			}
 		}
 
@@ -108,7 +104,7 @@ public abstract class LibgdxGame extends Game implements Application {
 	}
 
 	/**
-	 * Conserve un écran pour sa future instanciation
+	 * Conserve un écran pour sa future instantiation
 	 *
 	 * @param key    indice a associer à l'écran
 	 * @param screen la version .class d'un écran
@@ -199,7 +195,7 @@ public abstract class LibgdxGame extends Game implements Application {
 	}
 
 	/**
-	 * Chnage la taille de l'écran si on veut revenir de plein écran a l'ancienne
+	 * Change la taille de l'écran si on veut revenir de plein écran a l'ancienne
 	 * taille.
 	 * Doit être mis a jour par l'utilisateur.
 	 *
@@ -231,7 +227,7 @@ public abstract class LibgdxGame extends Game implements Application {
 	 * <p>
 	 * Ici les ressources du jeu sont crées. Les écrans sont ajoutés et chargés si voulu.
 	 * <p>
-	 * On doit définir l'écran courrant
+	 * On doit définir l'écran courant
 	 *
 	 * @see #addScreen(String, Class)
 	 * @see #load(String)

@@ -16,7 +16,6 @@ import java.awt.event.ActionEvent;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 5.0 01/02/2020
  * @since 5.0 01/02/2020
  */
@@ -26,6 +25,7 @@ public class UndoListener extends MenuListener implements Observer<ActionsManage
 
 	/**
 	 * Observateur du "revenir en arrière" ou UNDO
+	 *
 	 * @param window window
 	 * @param parent parent
 	 */
@@ -43,11 +43,11 @@ public class UndoListener extends MenuListener implements Observer<ActionsManage
 
 	@Override
 	public void update(ActionsManager object) {
-		if(object.isUndoAvailable()){
-			if(parent instanceof EnigmaButton) ((EnigmaButton)parent).setIcon(Outil.UNDO_OK);
+		if (object.isUndoAvailable()) {
+			if (parent instanceof EnigmaButton) ((EnigmaButton) parent).setIcon(Outil.UNDO_OK);
 			else parent.setEnabled(true);
 		} else {
-			if(parent instanceof EnigmaButton) ((EnigmaButton)parent).setIcon(Outil.UNDO_KO);
+			if (parent instanceof EnigmaButton) ((EnigmaButton) parent).setIcon(Outil.UNDO_KO);
 			else parent.setEnabled(false);
 		}
 	}

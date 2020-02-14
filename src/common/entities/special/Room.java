@@ -1,12 +1,15 @@
 package common.entities.special;
 
+import common.entities.GameObject;
 import common.entities.types.AbstractGameObject;
 import common.entities.types.ContainersManager;
 import common.language.GameFields;
 import common.language.GameLanguage;
+import common.map.MapObject;
 import data.TypeEntity;
 
 import java.util.EnumMap;
+import java.util.HashMap;
 
 /**
  * Une pièce
@@ -22,6 +25,8 @@ public class Room extends AbstractGameObject implements ContainersManager {
 
 	private boolean discovered, showed;
 
+	private HashMap<GameObject, MapObject> containers;
+
 	/**
 	 * Crée une pièce
 	 *
@@ -31,6 +36,7 @@ public class Room extends AbstractGameObject implements ContainersManager {
 		super(-1);
 		this.discovered = false;
 		this.showed = true;
+		this.containers = new HashMap<>();
 	}
 
 	/**
@@ -45,6 +51,7 @@ public class Room extends AbstractGameObject implements ContainersManager {
 		this.setDimension(cols, rows);
 		this.discovered = false;
 		this.showed = true;
+		this.containers = new HashMap<>();
 	}
 
 	@Override
@@ -57,7 +64,7 @@ public class Room extends AbstractGameObject implements ContainersManager {
 
 	@Override
 	public String toString() {
-		return super.toString()+" id="+this.id;
+		return super.toString() + " id=" + this.id;
 	}
 
 	@Override
@@ -67,6 +74,7 @@ public class Room extends AbstractGameObject implements ContainersManager {
 
 	/**
 	 * Retourne si la room a étée découverte
+	 *
 	 * @return true si la room a étée découverte
 	 * @since 6.0
 	 */
@@ -76,6 +84,7 @@ public class Room extends AbstractGameObject implements ContainersManager {
 
 	/**
 	 * Définit si la room a étée découverte
+	 *
 	 * @param discovered true si la room a étée découverte
 	 * @since 6.0
 	 */
@@ -85,6 +94,7 @@ public class Room extends AbstractGameObject implements ContainersManager {
 
 	/**
 	 * Retourne si la room est cachée, au sens que son contenu est caché
+	 *
 	 * @return true si la room est cachée, au sens que son contenu est caché
 	 * @since 6.0
 	 */
@@ -94,6 +104,7 @@ public class Room extends AbstractGameObject implements ContainersManager {
 
 	/**
 	 * Retourne si la room est cachée, au sens que son contenu est caché
+	 *
 	 * @param showed true si la room est cachée, au sens que son contenu est caché
 	 * @since 6.0
 	 */

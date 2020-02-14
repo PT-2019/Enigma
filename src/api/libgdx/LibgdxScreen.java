@@ -15,16 +15,20 @@ import java.util.Iterator;
 
 /**
  * Il s'agit d'un écran du jeu mais qui remplit toutes les fonctionnalités
- * d'un jeu entier : phase initialisation et libération et la gameloop.
+ * d'un jeu entier : phase initialisation et libération et la GameLoop.
  * <p>
  * Les méthodes de la libgdx sont cachés au mieux.
  *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
  * @version 6.0
  * @see #listen(InputProcessor)
  * @see InputAdapter
  * @since 3.0
  */
+@SuppressWarnings("unused")
 public abstract class LibgdxScreen implements Screen, InputAdapter, IGameLogic {
 
 	/**
@@ -50,7 +54,7 @@ public abstract class LibgdxScreen implements Screen, InputAdapter, IGameLogic {
 	public void display(boolean display) {
 	}
 
-	/* listen méthods */
+	/* méthodes d'écoute */
 
 	/**
 	 * When a event happens, if no one before was concerned
@@ -123,13 +127,16 @@ public abstract class LibgdxScreen implements Screen, InputAdapter, IGameLogic {
 
 	/**
 	 * Affiche un toast
+	 *
 	 * @param message message
 	 * @since 6.0
 	 */
-	public void showToast(String message){}
+	public void showToast(String message) {
+	}
 
 	/**
 	 * Retourne la map dans l'écran
+	 *
 	 * @return la map de l'écran
 	 * @since 4.0
 	 */
@@ -142,4 +149,5 @@ public abstract class LibgdxScreen implements Screen, InputAdapter, IGameLogic {
 	 * @return true si map changée sinon false, pas changée si c'est déjà la bonne
 	 */
 	public abstract boolean setMap(String absolutePath);
+
 }

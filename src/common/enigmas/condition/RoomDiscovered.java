@@ -1,5 +1,7 @@
 package common.enigmas.condition;
 
+import common.enigmas.reporting.EnigmaReport;
+import common.enigmas.reporting.ConditionReport;
 import common.entities.players.Player;
 import common.entities.special.Room;
 import data.NeedToBeTranslated;
@@ -13,7 +15,6 @@ import java.util.Map;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.0 05/02/2020
  * @since 6.0 05/02/2020
  */
@@ -31,9 +32,9 @@ public class RoomDiscovered extends Condition {
 	}
 
 	@Override
-	public boolean verify(Player p) {
+	public EnigmaReport verify(Player p) {
 		Room r = (Room) this.entity;
-		return r.isDiscovered();
+		return new EnigmaReport(ConditionReport.DONE, r.isDiscovered());
 	}
 
 	/**
@@ -58,7 +59,7 @@ public class RoomDiscovered extends Condition {
 
 	@Override
 	public String getEnigmaElementReadablePrint() {
-		return "["+ NeedToBeTranslated.ROOM_DISCOVERED_DESC+": "+
-				this.entity.getReadableName() + " (id="+this.entity.getID()+") ]";
+		return "[" + NeedToBeTranslated.ROOM_DISCOVERED_DESC + ": " +
+				this.entity.getReadableName() + " (id=" + this.entity.getID() + ") ]";
 	}
 }

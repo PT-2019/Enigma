@@ -6,15 +6,18 @@ import common.entities.GameObject;
 import common.hud.EnigmaButton;
 import common.hud.EnigmaLabel;
 import common.hud.EnigmaPanel;
+import data.NeedToBeTranslated;
 import editor.menus.AbstractPopUpView;
 import editor.menus.AbstractSubPopUpView;
-import editor.menus.enimas.create.listeners.ConditionListener;
 import editor.menus.enimas.create.listeners.OperationListener;
 import editor.popup.listeners.CaseListener;
 import game.dnd.DragAndDropBuilder;
 import org.jetbrains.annotations.Nullable;
 
-import javax.swing.*;
+import javax.swing.ButtonGroup;
+import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
@@ -34,12 +37,15 @@ import java.awt.Insets;
  */
 public class OperationPanel extends AbstractSubPopUpView implements Observer<GameObject> {
 
-	public static final String NOT_SELECTED = "Vous n'avez pas encore choisi d'entité";
-	public static final String ASK_SELECT = "Veuillez sélectionner un objet ";
-	public static final String ASK_OP = "Veuillez sélectionner une opération.";
-	public static final String NOT_AVAILABLE_OPERATION = "Opération non disponible";
-	private static final String INVALID_ENTITY = "Entité Invalide. ";
-	public static final String TITLE = "Ajouter une Opération à l'énigme";
+	/**
+	 * Textes
+	 */
+	private static final String ASK_SELECT = NeedToBeTranslated.ASK_SELECT;
+	public static final String ASK_OP = NeedToBeTranslated.ASK_OP;
+	public static final String NOT_AVAILABLE_OPERATION = NeedToBeTranslated.NOT_AVAILABLE_OPERATION;
+	public static final String TITLE = NeedToBeTranslated.ADD_OPERATION;
+	private static final String INVALID_ENTITY = NeedToBeTranslated.INVALID_ENTITY;
+	private static final String SUBMIT = NeedToBeTranslated.SUBMIT;
 
 	/**
 	 * Les informations sur l'entité sur laquelle l'opération sera faite
@@ -78,7 +84,7 @@ public class OperationPanel extends AbstractSubPopUpView implements Observer<Gam
 		EnigmaPanel p2 = new EnigmaPanel();
 		p2.setLayout(new GridBagLayout());
 
-		EnigmaButton submit = new EnigmaButton("Valider");
+		EnigmaButton submit = new EnigmaButton(SUBMIT);
 		submit.addActionListener(listener);
 		selection = new EnigmaLabel();
 		GridBagConstraints gbc = new GridBagConstraints();
@@ -123,8 +129,8 @@ public class OperationPanel extends AbstractSubPopUpView implements Observer<Gam
 	@Override
 	public void clean() {
 		this.selection.setText("");
-		this.entityName.setText(ASK_OP);
 		this.listener.clean();
+		this.entityName.setText(ASK_OP);
 		this.groups.clearSelection();
 		DragAndDropBuilder.setForPopup(null);
 	}
@@ -141,7 +147,7 @@ public class OperationPanel extends AbstractSubPopUpView implements Observer<Gam
 	 */
 	@Override
 	public void update(@Nullable GameObject object) {
-		if (!CaseListener.isAvailable(this)) return;
+		if (CaseListener.isNotAvailable(this)) return;
 
 		this.listener.setGameObject(object);
 		JRadioButton currentButton = this.listener.getCurrentButton();
@@ -164,11 +170,11 @@ public class OperationPanel extends AbstractSubPopUpView implements Observer<Gam
 		}
 
 		if (object == null && wrong) {
-			msg += INVALID_ENTITY;
+			msg += INVALID_ENTITY+" ";
 			msg += operations.restrict;
 			this.entityName.setText(msg);
 		} else if (object == null && operations != null) {
-			this.entityName.setText(ASK_SELECT + "(" + operations.menuDrag.msg + ")");
+			this.entityName.setText(ASK_SELECT + " (" + operations.menuDrag.msg + ")");
 		} else if (object != null) {
 			msg += object.getReadableName() + " (id=" + object.getID() + ")";
 			this.entityName.setText(msg);
@@ -179,9 +185,5 @@ public class OperationPanel extends AbstractSubPopUpView implements Observer<Gam
 
 	public EnigmaLabel getEntityName() {
 		return this.entityName;
-	}
-
-	public EnigmaLabel getSelection() {
-		return this.selection;
 	}
 }

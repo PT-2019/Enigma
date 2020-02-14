@@ -7,6 +7,7 @@ import com.badlogic.gdx.utils.Array;
 import common.entities.Entity;
 import common.entities.Item;
 import common.entities.special.Inventory;
+import common.entities.types.AbstractLivingEntity;
 import common.entities.types.Living;
 import common.language.GameFields;
 import common.language.GameLanguage;
@@ -28,33 +29,12 @@ import java.util.HashMap;
  * @see common.entities.types.Living
  * @since 2.0
  */
-public class Player extends GameActorTextured implements Entity, Living {
+public class Player extends AbstractLivingEntity {
 
 	/**
 	 * Points de vie maximaux du joueur
 	 */
-	public final int MAX_PLAYER_PV = 100;
-	/**
-	 * Point de vie du joueur
-	 */
-	private int pv;
-	/**
-	 * ID
-	 */
-	private int id;
-	/**
-	 * les tiles (a convertir en int)
-	 */
-	private HashMap<Layer, Array<Float>> tiles;
-	/**
-	 * Dimensions de l'object
-	 */
-	private Rectangle bounds;
-
-	/**
-	 * Nom du joueur
-	 */
-	private String name;
+	private static final int MAX_PLAYER_PV = 100;
 
 	/**
 	 * Inventaire
@@ -81,13 +61,7 @@ public class Player extends GameActorTextured implements Entity, Living {
 	 * @param id ID
 	 */
 	public Player(int id) {
-		super();
-		this.pv = MAX_PLAYER_PV;
-		this.id = id;
-		this.bounds = new Rectangle();
-		this.tiles = new HashMap<>();
-		this.inventory = new Inventory();
-		this.hand = null;
+		this(id, null);
 	}
 
 	/**
@@ -95,65 +69,17 @@ public class Player extends GameActorTextured implements Entity, Living {
 	 * @param name Nom du joueur
 	 */
 	public Player(int id, String name) {
-		super();
+		super(id, name);
 		this.pv = MAX_PLAYER_PV;
-		this.id = id;
-		this.bounds = new Rectangle();
-		this.tiles = new HashMap<>();
-		this.name = name;
 		this.inventory = new Inventory();
 		this.hand = null;
 	}
 
-	@Override
-	public void interactsWith(Player p) {
-		throw new UnsupportedOperationException("node codé. InteractWidth Player");
-	}
+	// implements
 
 	@Override
-	public int getHP() {
-		return this.pv;
-	}
-
-	//size
-
-	@Override
-	public void setDimension(int width, int height) {
-		this.bounds.setSize(width, height);
-	}
-
-	@Override
-	public float getGameObjectWidth() {
-		return this.bounds.getWidth();
-	}
-
-	@Override
-	public float getGameObjectHeight() {
-		return this.bounds.getHeight();
-	}
-
-	//pos
-
-	@Override
-	public Vector2 getGameObjectPosition() {
-		return this.bounds.getPosition(new Vector2());
-	}
-
-	@Override
-	public void setGameObjectPosition(Vector2 pos) {
-		this.bounds.setPosition(pos);
-	}
-
-	//tiles
-
-	@Override
-	public Array<Float> getTiles(Layer layer) {
-		return this.tiles.get(layer);
-	}
-
-	@Override
-	public void setTiles(Array<Float> texture, Layer layer) {
-		this.tiles.put(layer, texture);
+	public String getReadableName() {
+		return GameLanguage.gl.get(GameFields.PLAYER);
 	}
 
 	@Override
@@ -167,40 +93,7 @@ public class Player extends GameActorTextured implements Entity, Living {
 		return imp;
 	}
 
-	//id
-
-	@Override
-	public int getID() {
-		return this.id;
-	}
-
-	@Override
-	public void setID(int id) {
-		this.id = id;
-	}
-
-	@Override
-	public String getName() {
-		return name;
-	}
-
-	@Override
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	//toString
-
-	@Override
-	public String toString() {
-		return "Player{" + "MAX_PLAYER_PV=" + MAX_PLAYER_PV + ", pv=" + pv + ", id=" + id +
-				", tiles=" + tiles + ", bounds=" + bounds + '}';
-	}
-
-	@Override
-	public String getReadableName() {
-		return GameLanguage.gl.get(GameFields.PLAYER);
-	}
+	// inventory
 
 	public Item getItemInHand() {
 		return hand;
@@ -216,5 +109,13 @@ public class Player extends GameActorTextured implements Entity, Living {
 
 	public Inventory getInventory() {
 		return inventory;
+	}
+
+	//toString
+
+	@Override
+	public String toString() {
+		return "Player{" + "MAX_PLAYER_PV=" + MAX_PLAYER_PV + ", pv=" + pv + ", id=" + id +
+				", tiles=" + tiles + ", bounds=" + bounds + '}';
 	}
 }

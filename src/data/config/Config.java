@@ -10,8 +10,11 @@ import common.language.Language;
 /**
  * Fichier des configurations de l'application
  *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 6.1
+ * @version 6.5
  * @since 4.0
  */
 public final class Config {
@@ -55,7 +58,9 @@ public final class Config {
 
 	/**
 	 * Map sauvegardés par exemple dans les doc de l'utilisateur
-	 * Elles forment UN SEUL Fichier
+	 * Elles forment UN SEUL Fichier.
+	 * <p>
+	 * Cette valeur peut être changée dans les préférences.
 	 */
 	@NeedPatch
 	public static final String MAP_FOLDER_USER = MAP_FOLDER;
@@ -76,6 +81,13 @@ public final class Config {
 	public static final ShortCuts REDO = new ShortCuts(Input.Keys.Y,Input.Keys.CONTROL_LEFT);
 
 	/**
+	 * Dossier contient les fichiers liés aux langues
+	 *
+	 * @since 6.5
+	 */
+	public static final String LANG_FOLDER = "assets/lang";
+
+	/**
 	 * Chemin du logo
 	 *
 	 * @since 5.2
@@ -85,16 +97,18 @@ public final class Config {
 	/**
 	 * Nombre maximum de undo
 	 * Reset a chaque sauvegarde
+	 *
 	 * @since 6.0
 	 */
-	public static final int MAX_OF_UNDO = 20;
+	public static final int MAX_OF_UNDO = 35;
 
 	/**
 	 * Nombre maximum de redo
 	 * Reset a chaque sauvegarde
+	 *
 	 * @since 6.0
 	 */
-	public static final int MAX_OF_REDO = 20;
+	public static final int MAX_OF_REDO = 35;
 
 	/**
 	 * Le type de logs qui doivent être affichés
@@ -103,10 +117,9 @@ public final class Config {
 	 * @see Application#LOG_ERROR
 	 * @see Application#LOG_INFO
 	 * @see Application#LOG_NONE
-	 *
 	 * @since 6.0
 	 */
-	public static final int APPLICATION_LOG = Application.LOG_DEBUG|Application.LOG_ERROR;
+	public static final int APPLICATION_LOG = Application.LOG_DEBUG | Application.LOG_ERROR;
 
 	/**
 	 * Couleur des éléments affichés en mode DEBUG
@@ -128,28 +141,24 @@ public final class Config {
 	 * @since 6.1
 	 */
 	public static final AsciiColor DEBUG_ALL_COLOR = AsciiColor.CYAN;
-
 	/**
 	 * Extension des maps
 	 *
 	 * @since 6.1
 	 */
 	public static final String MAP_EXTENSION = ".tmx";
-
 	/**
 	 * Extension des mapData et gameData
 	 *
 	 * @since 6.0
 	 */
 	public static final String DATA_EXTENSION = ".tmx";
-
 	/**
 	 * Extension des énigmes
 	 *
 	 * @since 6.0
 	 */
 	public static final String ENIGMA_EXTENSION = ".json";
-
 	/**
 	 * Extension des fichier hors application
 	 *
@@ -170,4 +179,80 @@ public final class Config {
 	 * @since 6.0
 	 */
 	public static final String GAME_EXPORT_EXTENSION = APPLICATION_EXTENSION + "g";
+	/**
+	 * Ratio d'affichage pour afficher 100 tiles dans un écran
+	 *
+	 * @since 6.3
+	 */
+	public static final float ZOOM_RATIO_BY_HEIGHT = 1.84f, RATIO_HEIGHT = 881, RATIO_UNIT = 100;
+	/**
+	 * Valeur du zoom de base
+	 *
+	 * @since 6.3
+	 */
+	public static final float BASE_ZOOM_VALUE = 1.0f;
+	/**
+	 * Valeur de changement du zoom
+	 *
+	 * @since 6.3
+	 */
+	public static final float ZOOM_CHANGE_VALUE = 0.05f;
+	/**
+	 * Valeur du déplacement de la caméra
+	 *
+	 * @since 6.3
+	 */
+	public static final int CAMERA_OFFSET = 32;
+	/**
+	 * Valeur du zoom en jeu
+	 *
+	 * @since 6.3
+	 */
+	public static final float IN_GAME_ZOOM_VALUE = BASE_ZOOM_VALUE / 2f;
+	/**
+	 * Les valeurs du zoom
+	 *
+	 * @since 6.3
+	 */
+	public static final String[] ZOOM_VALUES = new String[]{"25%", "50%", "100%", "125%", "150%", "175%", "200%"};
+	/**
+	 * Valeur de base dans le tableau des valeurs du zoom
+	 *
+	 * @since 6.3
+	 */
+	public static final int ZOOM_VALUES_BASE_INDEX = 2;
+	/**
+	 * Taille max des map que l'on peut créer (inclus)
+	 *
+	 * @since 6.3
+	 */
+	public static final int MAP_MAX_WIDTH = 300, MAP_MAX_HEIGHT = 300;
+
+	/**
+	 * Lien vers le github du projet
+	 *
+	 * @since 6.4
+	 */
+	public static final String GITHUB_LINK = "https://github.com/PT-2019/Enigma";
+
+	/**
+	 * Taux de rafraîchissement d'images par seconde
+	 *
+	 * @since 6.3
+	 */
+	private static final int FPS_RATE = 45;
+
+	/**
+	 * Json
+	 *
+	 * @since 6.0
+	 */
+	public static final String JSON_PATH = "assets/files/atlas/uiskin.json";
+
+	/**
+	 * Fichier skin
+	 *
+	 * @since 6.0
+	 */
+	public static final String SKIN_PATH = "assets/files/atlas/uiskin.atlas";
 }

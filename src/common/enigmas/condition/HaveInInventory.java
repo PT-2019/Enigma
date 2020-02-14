@@ -1,5 +1,7 @@
 package common.enigmas.condition;
 
+import common.enigmas.reporting.EnigmaReport;
+import common.enigmas.reporting.ConditionReport;
 import common.entities.Item;
 import common.entities.players.Player;
 import common.language.EnigmaField;
@@ -43,9 +45,9 @@ public class HaveInInventory extends Condition {
 	 * @return true si la condtion est satisfaite, false sinon
 	 */
 	@Override
-	public boolean verify(Player p) {
+	public EnigmaReport verify(Player p) {
 		Item i = (Item) this.entity;
-		return p.getInventory().contains(i);
+		return new EnigmaReport(ConditionReport.DONE, p.getInventory().contains(i));
 	}
 
 	/**
@@ -70,7 +72,7 @@ public class HaveInInventory extends Condition {
 
 	@Override
 	public String getEnigmaElementReadablePrint() {
-		return "["+gl.get(EnigmaField.HAVE_IN_INVENTORY)+": "+
-				this.entity.getReadableName() + " (id="+this.entity.getID()+") ]";
+		return "[" + gl.get(EnigmaField.HAVE_IN_INVENTORY) + ": " +
+				this.entity.getReadableName() + " (id=" + this.entity.getID() + ") ]";
 	}
 }

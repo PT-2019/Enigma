@@ -94,9 +94,10 @@ public class Chest extends AbstractItem implements Lockable, Container {
 
 	//toString
 
+
 	@Override
 	public String toString() {
-		return "Chest{" + "locked=" + locked + ", enigmas=" + enigmas + ", id=" + id + '}';
+		return "Chest{" + "locked=" + locked + ", items=" + items + ", enigmas=" + enigmas + ", id=" + id + '}';
 	}
 
 	@Override
@@ -132,7 +133,7 @@ public class Chest extends AbstractItem implements Lockable, Container {
 	}
 
 	@Override
-	public HashMap<SaveKey,String> getSave(){
+	public HashMap<SaveKey, String> getSave() {
 		HashMap<SaveKey, String> save = new HashMap<>();
 		save.put(PlayerSave.LOCKED, String.valueOf(this.locked));
 		return save;

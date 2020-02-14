@@ -7,14 +7,14 @@ package editor.bar.edition;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
- * @version 6.0
+ * @version 6.1
  * @since 5.0 01/02/2020
  */
 public interface EditorAction {
 
 	/**
 	 * Retourne le type d'action
+	 *
 	 * @return le type d'action
 	 * @since 5.0
 	 */
@@ -36,8 +36,16 @@ public interface EditorAction {
 
 	/**
 	 * Supprime définitivement l'action
+	 *
 	 * @since 6.0
 	 */
 	void clear();
 
+	/**
+	 * Retourne l'object concerné par l'action
+	 *
+	 * @return l'object concerné par l'action
+	 * @since 6.1
+	 */
+	Object getActor();
 }
