@@ -1,43 +1,48 @@
 package common.entities.special;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import common.entities.Item;
+import common.entities.consumable.Book;
 import common.entities.consumable.Key;
 import common.entities.players.Player;
 import common.entities.types.Container;
 
+import java.util.ArrayList;
+
 public class InventoryDisplay extends Window {
-    public final static int ROW_LENGTH = 5;
+    private final static int ROW_LENGTH = 5;
+    private final static int ACTOR_WIDTH = 100;
+    private final static int ACTOR_HEIGHT = 100;
+    private final static int MARGIN = 2;
+    private ArrayList<Cell> cells;
 
     public InventoryDisplay(String title, Skin skin) {
         super(title, skin);
-
-        this.setSize(500,500);
+        this.cells = new ArrayList<>();
 
         Player p = new Player(0);
         Key k = new Key(1);
+        Book b = new Book(2);
         k.setAtlas("assets/files/atlas/items.atlas","key");
+        b.setAtlas("assets/files/atlas/items.atlas","redBook");
         p.addItem(k);
+        p.setItemInRightHand(b);
 
         this.showInventory(p);
     }
 
     public boolean showInventory(Container c){
         int j = 1;
+        int bottomSpace = 20;
         Table table = new Table();
-
         table.setFillParent(true);
         table.setDebug(true);
-        table.pad(2);
-        table.padLeft(3);
-        table.padTop(20);
 
-        int actorWidth = (int) (this.getWidth() / ROW_LENGTH);
-        int actorHeight = (int) (this.getHeight() / ((Inventory.MAX_ITEMS / ROW_LENGTH) + 1));
+        ArrayList<Item> items = c.getItems();
+        int rowNumber = items.size() / ROW_LENGTH;
 
-        /*if(c instanceof Player){
+        if(c instanceof Player){
             Player p = (Player) c;
             //mains
             if(p.holdItemInLeftHand()){
@@ -48,9 +53,12 @@ public class InventoryDisplay extends Window {
                                 .findRegion(i.getAtlasRegionName())
                 );
                 stack.add(img);
-                table.add(stack).pad(2).fill().expand().padBottom(20);
+                this.cells.add(table.add(stack).padBottom(bottomSpace));
             } else
-                table.add().pad(2).fill().expand().padBottom(20);
+                this.cells.add(table.add().padBottom(bottomSpace));
+
+            for(int i = 0; i < ROW_LENGTH - 2; i++)
+                table.add();
 
             if(p.holdItemInRightHand()){
                 Stack stack = new Stack();
@@ -60,15 +68,20 @@ public class InventoryDisplay extends Window {
                                 .findRegion(i.getAtlasRegionName())
                 );
                 stack.add(img);
-                table.add(stack).pad(2).fill().expand().padBottom(20);
+                this.cells.add(table.add(stack).padBottom(bottomSpace));
             } else
-                table.add().pad(2).fill().expand().padBottom(20);
+                this.cells.add(table.add().padBottom(bottomSpace));
 
             table.row();
-        }*/
+            rowNumber++;
+        }
+
+        int windowWidth = (ROW_LENGTH * ACTOR_WIDTH) + (MARGIN * 10 * ROW_LENGTH);
+        int windowHeight = (rowNumber * ACTOR_HEIGHT) + (MARGIN * 10 * rowNumber);
+        this.setSize(windowWidth,windowHeight);
 
         //inventaire
-        for(Item i : c.getItems()){
+        for(Item i : items){
             Stack stack = new Stack();
 
             if(i != null) {
@@ -77,14 +90,17 @@ public class InventoryDisplay extends Window {
                                 .findRegion(i.getAtlasRegionName())
                 );
                 stack.add(img);
-                table.add(stack).pad(2).width(actorWidth).height(actorHeight);
+                this.cells.add(table.add(stack).pad(MARGIN));
             } else
-                table.add().pad(2).width(actorWidth).height(actorHeight);
+                this.cells.add(table.add().pad(MARGIN));
 
             if((j % ROW_LENGTH) == 0)
                 table.row();
             j++;
         }
+
+        for(Cell cell : this.cells)
+            cell.width(ACTOR_WIDTH).height(ACTOR_HEIGHT);
 
         this.addActor(table);
 
