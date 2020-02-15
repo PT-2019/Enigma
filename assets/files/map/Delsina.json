@@ -7,7 +7,7 @@
                               {
                                    "common.enigmas.operation.Unlock": [
                                         {
-                                             "entities": "7"
+                                             "entities": "42"
                                         }
                                    ]
                               },
@@ -15,15 +15,7 @@
                               {
                                    "common.enigmas.operation.Unlock": [
                                         {
-                                             "entities": "6"
-                                        }
-                                   ]
-                              },
-
-                              {
-                                   "common.enigmas.operation.LaunchSound": [
-                                        {
-                                             "entities": "15"
+                                             "entities": "41"
                                         }
                                    ]
                               }
@@ -33,14 +25,14 @@
                          "description": "",
                          "advices": [
                          ],
-                         "id": "6",
-                         "title": "OpenDoor2",
+                         "id": "42",
+                         "title": "Start",
                          "type": "ON_USE",
                          "conditions": [
                               {
                                    "common.enigmas.condition.Activated": [
                                         {
-                                             "entities": "9"
+                                             "entities": "27"
                                         }
                                    ]
                               }
@@ -56,7 +48,7 @@
                               {
                                    "common.enigmas.operation.Unlock": [
                                         {
-                                             "entities": "7"
+                                             "entities": "41"
                                         }
                                    ]
                               },
@@ -64,7 +56,7 @@
                               {
                                    "common.enigmas.operation.Unlock": [
                                         {
-                                             "entities": "6"
+                                             "entities": "42"
                                         }
                                    ]
                               },
@@ -72,7 +64,7 @@
                               {
                                    "common.enigmas.operation.LaunchSound": [
                                         {
-                                             "entities": "14"
+                                             "entities": "26"
                                         }
                                    ]
                               }
@@ -82,47 +74,14 @@
                          "description": "",
                          "advices": [
                          ],
-                         "id": "7",
-                         "title": "OpenDoor",
+                         "id": "41",
+                         "title": "Start2",
                          "type": "ON_USE",
                          "conditions": [
                               {
                                    "common.enigmas.condition.Activated": [
                                         {
-                                             "entities": "9"
-                                        }
-                                   ]
-                              }
-                         ]
-                    }
-               ]
-          },
-
-          {
-               "common.enigmas.Enigma": [
-                    {
-                         "operations": [
-                              {
-                                   "common.enigmas.operation.Give": [
-                                        {
-                                             "entities": "11"
-                                        }
-                                   ]
-                              }
-                         ],
-                         "known": "false",
-                         "currentAdviceIndex": "-1",
-                         "description": "",
-                         "advices": [
-                         ],
-                         "id": "10",
-                         "title": "TestZ",
-                         "type": "ON_USE",
-                         "conditions": [
-                              {
-                                   "common.enigmas.condition.Activated": [
-                                        {
-                                             "entities": "8"
+                                             "entities": "27"
                                         }
                                    ]
                               }

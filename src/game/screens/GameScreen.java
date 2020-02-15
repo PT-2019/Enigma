@@ -8,6 +8,7 @@ import common.entities.players.PlayerGame;
 import common.map.AbstractMap;
 import common.map.GameMap;
 import common.utils.Logger;
+import data.config.Config;
 import game.EnigmaGame;
 
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ public class GameScreen extends LibgdxScreen {
 	/**
 	 * Chemin de la map du jeu
 	 */
-	private static String MAP_PATH = "assets/files/map/cocoa.tmx";
+	private static String MAP_PATH = "";
 
 	/**
 	 * Stage de la map et du jeu
@@ -57,22 +58,27 @@ public class GameScreen extends LibgdxScreen {
 		this.main = new Stage();
 		this.hud = new Stage();
 
-		this.map = new GameMap(MAP_PATH, 2.5f);
-		//ajout au stage
-		this.main.addActor(this.map);
-		this.map.showGrid(false);
+		if(MAP_PATH != null && !MAP_PATH.isEmpty()){
+			this.map = new GameMap(MAP_PATH, Config.UNIT_SCALE);
 
-		//compléter ici
-		ArrayList<GameActor> actors = this.map.getGameEntities();
+			//ajout au stage
+			this.main.addActor(this.map);
+			this.map.showGrid(false);
 
-		for (GameActor actor : actors) {
-			if (actor instanceof PlayerGame) {
-				((PlayerGame) actor).center();
-				this.listen(((PlayerGame) actor));
+			//compléter ici
+			ArrayList<GameActor> actors = this.map.getGameEntities();
+
+			for (GameActor actor : actors) {
+				if (actor instanceof PlayerGame) {
+					((PlayerGame) actor).center();
+					this.listen(((PlayerGame) actor));
+				}
 			}
+
+			this.map.launchMusic();
 		}
 
-		this.map.launchMusic();
+
 		//écoute des inputProcessor et des listeners
 		this.listen(this.hud);
 		this.listen(this.main);

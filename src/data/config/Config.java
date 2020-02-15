@@ -297,6 +297,13 @@ public final class Config {
 	 * @since 6.7
 	 */
 	public static final String[] SOUND_EXTENSIONS = {".mp3", ".wav"};
+
+	/**
+	 * UnitScale (zoom de la map pour atteindre du 32x32)
+	 *
+	 * @since 6.7
+	 */
+	public static final float UNIT_SCALE = 2.5f;
 	/**
 	 * Taux de rafraîchissement d'images par seconde
 	 *
