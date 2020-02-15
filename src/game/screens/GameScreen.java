@@ -4,6 +4,7 @@ import api.libgdx.LibgdxScreen;
 import api.libgdx.actor.GameActor;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import common.dialog.EnigmaDialogPopup;
 import common.entities.players.PlayerGame;
 import common.map.AbstractMap;
 import common.map.GameMap;
@@ -56,8 +57,8 @@ public class GameScreen extends LibgdxScreen {
 	public void init() {
 		this.main = new Stage();
 		this.hud = new Stage();
-
 		this.map = new GameMap(MAP_PATH, 2.5f);
+		EnigmaDialogPopup dialog = map.getEnigmaDialog();
 		//ajout au stage
 		this.main.addActor(this.map);
 		this.map.showGrid(false);
@@ -71,9 +72,10 @@ public class GameScreen extends LibgdxScreen {
 				this.listen(((PlayerGame) actor));
 			}
 		}
-
+		this.hud.addActor(dialog);
 		this.map.launchMusic();
 		//écoute des inputProcessor et des listeners
+		this.listen(dialog);
 		this.listen(this.hud);
 		this.listen(this.main);
 	}

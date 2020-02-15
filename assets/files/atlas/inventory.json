@@ -1,0 +1,28 @@
+{
+  //colors
+  com.badlogic.gdx.graphics.Color: {
+    green: { r: 0, g: 1, b: 0, a: 1, },
+    white: { r: 1, g: 1, b: 1, a: 1, },
+    red: { r: 1, g: 0, b: 0, a: 1, },
+    black: { r: 0, g: 0, b: 0, a: 1, },
+    yellow: { r:1, g:1, b: 0, a:1 },
+  },
+  com.badlogic.gdx.graphics.g2d.BitmapFont: { default-font: { file: default2.fnt } },
+
+  //window style
+  com.badlogic.gdx.scenes.scene2d.ui.Window$WindowStyle: {
+    default: { titleFont: default-font, background: panel },
+    background: { titleFont: default-font, background: panel },
+  },
+
+  com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
+    default: { font: default-font, },
+    title: { font: default-font }
+  },
+
+  "com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle": {
+    back: {
+      up: "back"
+    }
+  }
+}

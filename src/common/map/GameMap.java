@@ -7,6 +7,7 @@ import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+import common.dialog.EnigmaDialogPopup;
 import common.enigmas.TileEventEnum;
 import common.entities.GameObject;
 import common.entities.players.Monster;
@@ -50,6 +51,15 @@ public class GameMap extends AbstractMap {
 	 */
 	private GameMusic music;
 
+	private EnigmaDialogPopup enigmaDialog;
+
+	/**
+	 * Resultat suite à un dialogue
+	 *
+	 */
+	//todo pour l'instant c'est un string peut être changé cela
+	private String resultDialog;
+
 	public GameMap(final String path, float unitScale) {
 		super(path, unitScale, false);
 
@@ -62,6 +72,7 @@ public class GameMap extends AbstractMap {
 		this.loadTileEvents();
 
 		this.entities = new ArrayList<>();
+		this.enigmaDialog = new EnigmaDialogPopup();
 
 		this.init();
 	}
@@ -381,5 +392,13 @@ public class GameMap extends AbstractMap {
 
 	public ArrayList<GameActor> getGameEntities() {
 		return entities;
+	}
+
+	public void setResult(String resultDialog) {
+		this.resultDialog = resultDialog;
+	}
+
+	public EnigmaDialogPopup getEnigmaDialog() {
+		return enigmaDialog;
 	}
 }
