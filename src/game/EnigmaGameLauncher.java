@@ -1,10 +1,13 @@
 package game;
 
 import api.Application;
+import api.libgdx.utils.LoadGameLibgdxApplication;
 import api.ui.CustomWindow;
 import common.hud.EnigmaWindow;
+import common.save.EmptyMapGenerator;
 import data.EnigmaScreens;
-import game.configure.LaunchGameDisplay;
+import game.hmi.MHIManager;
+import game.screens.GameScreen;
 
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
@@ -31,7 +34,7 @@ public class EnigmaGameLauncher implements Application {
 	private EnigmaGameLauncher() {
 		this.window = new EnigmaWindow();
 		this.window.setLayout(new BorderLayout());
-		this.gameScreen = LaunchGameDisplay.getInstance().getPanel();
+		this.setContentToGameConfig();
 	}
 
 	/**
@@ -54,14 +57,31 @@ public class EnigmaGameLauncher implements Application {
 	 */
 	@Override
 	public void start() {
-		if (this.gameScreen != null)
+		if(this.gameScreen != null) {
 			this.window.remove(this.gameScreen);
-		this.window.setLayout(new BorderLayout());
-		//this.gameScreen = new JPanel();
-		//LoadGameLibgdxApplication.load(this.gameScreen, window);
+			this.gameScreen = new JPanel();
+		}
+		this.setContentToGameConfig();
 		EnigmaGame.setStartScreen(EnigmaScreens.GAME);
-		this.window.add(this.gameScreen, BorderLayout.CENTER);
 		this.window.setVisible(true);
+	}
+
+	public void setContentToGameConfig(){
+		this.gameScreen = MHIManager.getInstance().getContent();
+		this.window.add(this.gameScreen, BorderLayout.CENTER);
+	}
+
+	public void setContentToGame(String mapPath){
+		EnigmaGame.setOnLoad(() -> {
+			//change la map
+			EnigmaGame.getCurrentScreen().setMap(mapPath);
+			//recharge écran avec la nouvelle map
+			EnigmaGame.reload(EnigmaScreens.GAME.name());
+			//charge les entités sur la bonne map !
+			EmptyMapGenerator.load(GameScreen.getMapPath());
+		});
+		LoadGameLibgdxApplication.load(this.gameScreen, window);
+		this.window.add(this.gameScreen, BorderLayout.CENTER);
 	}
 
 	@Override

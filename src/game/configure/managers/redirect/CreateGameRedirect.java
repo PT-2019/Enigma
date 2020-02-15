@@ -14,7 +14,9 @@ import java.awt.event.ActionListener;
  * @author Quentin RAMSAMY-AGEORGES
  * @version 3.0
  * @since 3.0
+ * @deprecated
  */
+@Deprecated
 public class CreateGameRedirect implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent actionEvent) {

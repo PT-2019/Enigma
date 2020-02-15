@@ -27,6 +27,7 @@ public class EnigmaGame extends LibgdxGame {
 	 * Le screen a lancer au début du jeu
 	 */
 	private static EnigmaScreens startScreen = EnigmaScreens.GAME;
+	private static Runnable onLoad;
 
 	//on charge ici le joueur et tout ce qui vit indépendamment des écrans
 	//....
@@ -46,6 +47,10 @@ public class EnigmaGame extends LibgdxGame {
 		startScreen = screen;
 	}
 
+	public static void setOnLoad(Runnable r) {
+		onLoad = r;
+	}
+
 	@Override
 	@NeedPatch
 	public void start() {
@@ -63,6 +68,9 @@ public class EnigmaGame extends LibgdxGame {
 
 		//définit l'écran actuel de l'application
 		EnigmaGame.setScreen(EnigmaGame.startScreen.name());
+
+		//lance onLoad
+		onLoad.run();
 	}
 
 	@Override

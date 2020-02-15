@@ -15,7 +15,9 @@ import java.awt.event.ActionListener;
  * @author Quentin RAMSAMY-AGEORGES
  * @version 3.0
  * @since 3.0
+ * @deprecated
  */
+@Deprecated
 public class JoinGameRedirect implements ActionListener {
 	private CustomTextArea textArea;
 

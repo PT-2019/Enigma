@@ -1,6 +1,6 @@
 package game.configure.managers.redirect;
 
-import data.config.GameConfiguration;
+import data.config.GameConfigurationDeprecated;
 import game.configure.LaunchGameDisplay;
 
 import java.awt.event.ActionEvent;
@@ -15,14 +15,16 @@ import java.awt.event.ActionListener;
  * @author Quentin RAMSAMY-AGEORGES
  * @version 3.0
  * @since 3.0
+ * @deprecated
  */
+@Deprecated
 public class StartGameRedirect implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent actionEvent) {
-		if (!GameConfiguration.getInstance().isMultiPlayer()) {
+		if (!GameConfigurationDeprecated.getInstance().isMultiPlayer()) {
 			//TODO: lancer la bonne partie en fonction de GameConfiguration (solo)
-		} else if (!GameConfiguration.getInstance().isFull()) {
+		} else if (!GameConfigurationDeprecated.getInstance().isFull()) {
 			//TODO: lancer un serveur
 			LaunchGameDisplay.getInstance().showDisplay(LaunchGameDisplay.WAIT_PLAYERS_LEADER);
 		} else {

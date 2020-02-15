@@ -4,6 +4,7 @@ import api.libgdx.LibgdxGame;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.backends.lwjgl.LwjglAWTCanvas;
 import org.jetbrains.annotations.NotNull;
+import org.lwjgl.Sys;
 
 import javax.swing.JFrame;
 import java.awt.BorderLayout;

@@ -2,7 +2,7 @@ package game.configure.managers.configurations;
 
 import api.ui.CustomButton;
 import common.hud.EnigmaOptionPane;
-import data.config.GameConfiguration;
+import data.config.GameConfigurationDeprecated;
 import game.EnigmaGameLauncher;
 import game.configure.LaunchGameDisplay;
 
@@ -17,7 +17,9 @@ import java.awt.event.MouseEvent;
  * @author Quentin RAMSAMY-AGEORGES
  * @version 6.0
  * @since 3.0
+ * @deprecated
  */
+@Deprecated
 public class ChangeType implements ChangeConfiguration {
 
 	/**
@@ -33,7 +35,7 @@ public class ChangeType implements ChangeConfiguration {
 		String value = EnigmaOptionPane.showChoicesDialog(EnigmaGameLauncher.getInstance().getWindow(), "Partie multijoueurs?", opt);
 
 		if (!value.equals(EnigmaOptionPane.CANCEL)) {
-			GameConfiguration.getInstance().setMultiPlayer(value.equals(yes));
+			GameConfigurationDeprecated.getInstance().setMultiPlayer(value.equals(yes));
 			LaunchGameDisplay.getInstance().refreshCurrentDisplay();
 		}
 	}

@@ -12,7 +12,9 @@ import java.awt.event.MouseListener;
  * @author Quentin RAMSAMY-AGEORGES
  * @version 3.0
  * @since 3.0
+ * @deprecated
  */
+@Deprecated
 public interface ChangeConfiguration extends MouseListener {
 	/**
 	 * Si on souhaite changer

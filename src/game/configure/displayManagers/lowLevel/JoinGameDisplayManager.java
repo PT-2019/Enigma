@@ -27,7 +27,9 @@ import java.awt.Insets;
  * @author Quentin RAMSAMY-AGEORGES
  * @version 3.0
  * @since 3.0
+ * @deprecated
  */
+@Deprecated
 public class JoinGameDisplayManager implements DisplayManager {
 
 	/**

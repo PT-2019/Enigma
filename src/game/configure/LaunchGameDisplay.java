@@ -16,7 +16,9 @@ import java.awt.GridBagLayout;
  * @author Quentin RAMSAMY-AGEORGES
  * @version 3.0
  * @since 3.0
+ * @deprecated
  */
+@Deprecated
 public class LaunchGameDisplay {
 	/**
 	 * Affichage pour choisir une partie a lancer
