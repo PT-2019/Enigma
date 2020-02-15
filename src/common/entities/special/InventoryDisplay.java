@@ -11,15 +11,32 @@ import common.entities.types.Container;
 import java.util.ArrayList;
 
 public class InventoryDisplay extends Window {
-    private final static int ROW_LENGTH = 5;
-    private final static int ACTOR_WIDTH = 100;
-    private final static int ACTOR_HEIGHT = 100;
+    private final static int ACTOR_WIDTH = 80;
+    private final static int ACTOR_HEIGHT = 80;
     private final static int MARGIN = 2;
     private ArrayList<Cell> cells;
+    private Label name;
+    private Label quantity;
+    private TextButton throwButton;
+    private TextButton useButton;
+    private int rowLength;
+    private Item selected;
+
+    /**
+     * Textes
+     */
+    private static final String QUANTITY = "Quantité";
+    private static final String THROW = "Jeter";
+    private static final String USE = "Utiliser";
 
     public InventoryDisplay(String title, Skin skin) {
         super(title, skin);
         this.cells = new ArrayList<>();
+        this.rowLength = 5;
+        this.name = new Label("", this.getSkin());
+        this.quantity = new Label("", this.getSkin());
+        this.throwButton = new TextButton(THROW, this.getSkin());
+        this.useButton = new TextButton(USE, this.getSkin());
 
         Player p = new Player(0);
         Key k = new Key(1);
@@ -30,17 +47,21 @@ public class InventoryDisplay extends Window {
         p.setItemInRightHand(b);
 
         this.showInventory(p);
+        this.refreshInfo();
     }
 
     public boolean showInventory(Container c){
         int j = 1;
         int bottomSpace = 20;
-        Table table = new Table();
+        int tablePad = 10;
+        Table table = new Table(this.getSkin());
         table.setFillParent(true);
         table.setDebug(true);
+        table.bottom();
+        table.left();
+        table.pad(tablePad);
 
         ArrayList<Item> items = c.getItems();
-        int rowNumber = items.size() / ROW_LENGTH;
 
         if(c instanceof Player){
             Player p = (Player) c;
@@ -57,7 +78,7 @@ public class InventoryDisplay extends Window {
             } else
                 this.cells.add(table.add().padBottom(bottomSpace));
 
-            for(int i = 0; i < ROW_LENGTH - 2; i++)
+            for(int i = 2; i < this.rowLength; i++)
                 table.add();
 
             if(p.holdItemInRightHand()){
@@ -73,12 +94,7 @@ public class InventoryDisplay extends Window {
                 this.cells.add(table.add().padBottom(bottomSpace));
 
             table.row();
-            rowNumber++;
         }
-
-        int windowWidth = (ROW_LENGTH * ACTOR_WIDTH) + (MARGIN * 10 * ROW_LENGTH);
-        int windowHeight = (rowNumber * ACTOR_HEIGHT) + (MARGIN * 10 * rowNumber);
-        this.setSize(windowWidth,windowHeight);
 
         //inventaire
         for(Item i : items){
@@ -94,7 +110,7 @@ public class InventoryDisplay extends Window {
             } else
                 this.cells.add(table.add().pad(MARGIN));
 
-            if((j % ROW_LENGTH) == 0)
+            if((j % this.rowLength) == 0)
                 table.row();
             j++;
         }
@@ -102,8 +118,55 @@ public class InventoryDisplay extends Window {
         for(Cell cell : this.cells)
             cell.width(ACTOR_WIDTH).height(ACTOR_HEIGHT);
 
+        int cosplan = this.rowLength / 2;
+
+        table.row();
+        table.add(this.name).colspan(this.rowLength);
+        table.row();
+        table.add(this.quantity).colspan(this.rowLength);
+        table.row();
+        table.add(this.useButton).colspan(cosplan);
+        if((this.rowLength % 2) != 0) {
+            for(int i = (cosplan * 2); i < this.rowLength; i++)
+                table.add();
+        }
+        table.add(this.throwButton).colspan(cosplan);
+
         this.addActor(table);
+        this.setWidth(table.getPrefWidth());
+        this.setHeight(table.getPrefWidth() + 15);
 
         return true;
+    }
+
+    private void refreshInfo() {
+        if(this.selected != null) {
+            this.name.setText("");
+            this.quantity.setText(QUANTITY + ": " + "");
+            this.useButton.setDisabled(false);
+            this.throwButton.setDisabled(false);
+        } else {
+            this.name.setText("");
+            this.quantity.setText("");
+            this.useButton.setDisabled(true);
+            this.throwButton.setDisabled(true);
+        }
+    }
+
+    public void setSelectItem(Item i) {
+        this.selected = i;
+        this.refreshInfo();
+    }
+
+    public Item getSelectedItem() {
+        return this.selected;
+    }
+
+    public int getRowLength() {
+        return rowLength;
+    }
+
+    public void setRowLength(int rowLength) {
+        this.rowLength = rowLength;
     }
 }
