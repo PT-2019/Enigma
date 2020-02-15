@@ -29,12 +29,16 @@ public class PlayerGame extends GameActorAnimation implements InputAdapter {
 	/**
 	 * Vitesse de déplacement du personnage
 	 */
-	public static final int SPEED = 5;
+	public static final int SPEED = 7;
 
 	/**
 	 * La map dans la laquelle est placé le joueur
 	 */
 	private GameMap map;
+	/**
+	 * Joueur
+	 */
+	private Player joueur;
 
 	/**
 	 * Cette classe permet de déplacer le joueur et d'actionner son animation
@@ -44,6 +48,7 @@ public class PlayerGame extends GameActorAnimation implements InputAdapter {
 	public PlayerGame(GameMap map) {
 		this.setAnimationPaused(true);
 		this.map = map;
+		this.joueur=new Player();
 	}
 
 	/**
@@ -216,5 +221,13 @@ public class PlayerGame extends GameActorAnimation implements InputAdapter {
 				this.setKeyFrame(11);
 			}
 		}
+	}
+
+	/**
+	 * Retourne le joueur (model)
+	 * @return le joueur (model)
+	 */
+	public Player getPlayer() {
+		return this.joueur;
 	}
 }

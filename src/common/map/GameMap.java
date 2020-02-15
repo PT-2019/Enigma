@@ -7,6 +7,8 @@ import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+import common.enigmas.Enigma;
+import common.enigmas.TileEvent;
 import common.enigmas.TileEventEnum;
 import common.entities.GameObject;
 import common.entities.players.Monster;
@@ -22,11 +24,14 @@ import common.save.entities.serialization.MonsterFactory;
 import common.save.entities.serialization.NpcFactory;
 import common.save.entities.serialization.PlayerFactory;
 import common.utils.Logger;
+import common.entities.types.EnigmaContainer;
 import data.Layer;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  * Map de la libgdx
@@ -44,6 +49,10 @@ public class GameMap extends AbstractMap {
 	 * Tableau des entités
 	 */
 	private ArrayList<GameActor> entities;
+	/**
+	 * Tableau des énigmes
+	 */
+	private HashMap<Vector2, TileEvent> enigmes;
 
 	/**
 	 * Musique ambiante
@@ -55,28 +64,12 @@ public class GameMap extends AbstractMap {
 
 		this.showLayer(Layer.COLLISION, true);
 
-		//change les cellules de la map
-		this.initCells();
-
-		//hahsmap <Vector2, TileEvent> ???
-		this.loadTileEvents();
+		//init ? cell, ent, mapB
 
 		this.entities = new ArrayList<>();
+		this.enigmes = new HashMap<>();
 
-		this.init();
-	}
-
-	/**
-	 * Initialisation de la map.
-	 *
-	 * @since 6.0
-	 */
-	protected void init() {
-		//recharge les entités depuis sauvegarde
-		this.initEntities();
-
-		//bounds
-		this.setMapBounds();
+		this.loadTileEvents();
 	}
 
 	private void loadTileEvents() {
@@ -85,6 +78,21 @@ public class GameMap extends AbstractMap {
 		//alors on ajoute au TileEvent ses énigmes
 
 		//2,2 => 10 (Vector(2,2) , while => ajout au tile event) ajout du tout à la map
+
+		//trier les EnigmaContainer dans GameObject
+		for (Map.Entry<Vector2,ArrayList<GameObject>> a : this.objects.getAll().entrySet()){
+			TileEvent event = new TileEvent();
+			for (GameObject obj : a.getValue()){
+				if (obj instanceof EnigmaContainer){
+					//parcourir le event qui contient toute les enigmes
+					Iterator<Enigma> enigma = ((EnigmaContainer) obj).getAllEnigmas();
+					while(enigma.hasNext()){
+						event.add(enigma.next());
+					}
+				}
+			}
+			this.enigmes.put(a.getKey(),event);
+		}
 	}
 
 	/**
@@ -111,22 +119,30 @@ public class GameMap extends AbstractMap {
 	}
 
 	/**
-	 * @param posX
-	 * @param posY
+	 * Execute les actions sur une case
+	 * @param posX coordonnées x de la case
+	 * @param posY coordonnées y de la case
 	 * @param actor
+	 * @param action
 	 * @return
 	 */
-	public boolean doAction(float posX, float posY, GameActor actor, TileEventEnum action) {
-		Vector2 position = posToIndex(posX, posY, this);
-
+	public boolean doAction(float posX, float posY, PlayerGame actor, TileEventEnum action){
 		//convertit pos
+		Vector2 position = posToIndex(posX,posY,this);
 
-		//réceup actions case
-
-		//test type avec action
-
-		//lance
-
+		//récup actions case
+		for (Map.Entry<Vector2,TileEvent> e : this.enigmes.entrySet()){
+			if (position.equals(e.getKey())){
+				//test type avec action
+				if (action == TileEventEnum.ON_USE){
+					e.getValue().onUse(actor.getPlayer());
+				}else if (action == TileEventEnum.ON_ENTER){
+					e.getValue().onEnter(actor.getPlayer());
+				}else if (action == TileEventEnum.ON_EXIT){
+					e.getValue().onExit(actor.getPlayer());
+				}
+			}
+		}
 		return false;
 	}
 
@@ -184,6 +200,7 @@ public class GameMap extends AbstractMap {
 
 		//trier la liste des entités par position y, par plus grand y
 		//y = 0 <=> bas de la map
+        //entities.sort(entities.);
 	}
 
 	@SuppressWarnings("LibGDXFlushInsideLoop")

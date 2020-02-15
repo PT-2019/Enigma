@@ -43,6 +43,10 @@ public class TileEvent {
 	public void add(Enigma enigma) {
 		if (enigma.getType().equals(TileEventEnum.ON_ENTER))
 			this.addOnEnter(enigma);
+		else if (enigma.getType().equals(TileEventEnum.ON_USE))
+			this.addOnUse(enigma);
+		else if (enigma.getType().equals(TileEventEnum.ON_EXIT))
+			this.addOnExit(enigma);
 	}
 
 	/**
@@ -102,4 +106,5 @@ public class TileEvent {
 		for (Enigma e : this.onUse)
 			e.verifyConditions(player);
 	}
+
 }
