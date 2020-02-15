@@ -3,17 +3,19 @@ package common.Dialog;
 /**
  * On peut voir un dialogue comme un arbre, chaque noeud est limité à un certain nombre
  *  de caractère. La classe Dialog
+ *  trop complexe
  */
-public class DialogNode extends Dialog{
+@Deprecated
+public class DialogNode extends DialogTest{
     /**
      * composant gauche de la branche
      */
-    private Dialog left;
+    private DialogTest left;
 
     /**
      * composant droite de la branche
      */
-    private Dialog right;
+    private DialogTest right;
 
     public DialogNode(){
     }
@@ -27,7 +29,7 @@ public class DialogNode extends Dialog{
             this.text = text.substring(0,MAX_CHAR);
             //on test pour svoir si il faut créer une branche ou une feuille
             if (text.length() - MAX_CHAR*2 <= 0){
-                this.right = new DialogText();
+                this.right = new DialogTestText();
             } else{
                 this.right = new DialogNode();
             }
@@ -44,7 +46,7 @@ public class DialogNode extends Dialog{
             this.text = text.substring(0,MAX_CHAR);
             //on test pour svoir si il faut créer une branche ou une feuille
             if (text.length() - MAX_CHAR*2 <= 0){
-                this.right = new DialogText();
+                this.right = new DialogTestText();
             } else{
                 this.right = new DialogNode();
             }
@@ -54,11 +56,11 @@ public class DialogNode extends Dialog{
         isChoice = true;
     }
 
-    public Dialog getRight(){
+    public DialogTest getRight(){
         return this.right;
     }
 
-    public Dialog getLeft(){
+    public DialogTest getLeft(){
         return this.right;
     }
 }

@@ -4,9 +4,11 @@ import java.awt.*;
 
 /**
  * Cette classe ne contient pas de noeud, c'est la feuille de l'arbre de dialogue
+ * trop complexe
  */
-public class DialogText extends Dialog {
-    public DialogText(){
+@Deprecated
+public class DialogTestText extends DialogTest {
+    public DialogTestText(){
     }
 
     @Override

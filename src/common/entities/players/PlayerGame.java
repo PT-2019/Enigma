@@ -6,6 +6,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.math.Vector2;
+import common.Dialog.Dialog;
 import common.Dialog.DialogNode;
 import common.Dialog.EnigmaDialogPopup;
 import common.Dialog.ItemDialog;
@@ -143,7 +144,7 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
 				EnigmaDialogPopup dialog = map.getEnigmaDialog();
 				Book book = new Book();
 				book.addContent("Quel est le meilleur pays au monde ?");
-				dialog.showAnswer(new Answer(book,"chine"));
+				dialog.showAnswer(new Answer(book,"chine"),this.map);
 			}
 
 			//interaction du joueur avec le milieu
@@ -179,17 +180,15 @@ public class PlayerGame extends GameActorAnimation implements InputProcessor {
 				//toute cette partie permet d'afficher le dialogue des objets si ils en ont
 				if (object instanceof Content){
 					EnigmaDialogPopup dialog = map.getEnigmaDialog();
-					DialogNode node = new DialogNode();
 					String[] choice = new String[2];
 					choice[0] = "issou";
 					choice[1] = "monster";
-					node.addText(((Content) object).getContent(),choice);
+					Dialog node = new Dialog(((Content) object).getContent(),choice);
 					dialog.showDialog(node,map);
 				}else{
 					EnigmaDialogPopup dialog = map.getEnigmaDialog();
-					DialogNode node = new DialogNode();
 					if (ItemDialog.getText(object) != null){
-						node.addText(ItemDialog.getText(object));
+						Dialog node = new Dialog(ItemDialog.getText(object));
 						dialog.showDialog(node,map);
 					}
 				}
