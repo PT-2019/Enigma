@@ -1,4 +1,4 @@
-package common.entities.special;
+package common.entities.special.inventory;
 
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import common.enigmas.Enigma;

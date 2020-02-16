@@ -5,15 +5,12 @@ import api.libgdx.actor.GameActor;
 import api.libgdx.utils.LibgdxUtility;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import common.entities.players.NpcGame;
 import common.entities.players.PlayerGame;
-import common.entities.special.InventoryDisplay;
+import common.entities.special.inventory.InventoryDisplay;
 import common.map.AbstractMap;
 import common.map.GameMap;
-import common.save.entities.serialization.PlayerFactory;
 import common.utils.Logger;
 import game.EnigmaGame;
-import javafx.scene.control.Skin;
 
 import java.util.ArrayList;
 

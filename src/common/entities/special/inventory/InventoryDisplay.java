@@ -1,4 +1,4 @@
-package common.entities.special;
+package common.entities.special.inventory;
 
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
@@ -6,6 +6,9 @@ import common.entities.Item;
 import common.entities.consumable.Book;
 import common.entities.consumable.Key;
 import common.entities.players.Player;
+import common.entities.special.inventory.manager.Select;
+import common.entities.special.inventory.manager.Throw;
+import common.entities.special.inventory.manager.Use;
 import common.entities.types.Container;
 
 import java.util.ArrayList;
@@ -14,7 +17,6 @@ public class InventoryDisplay extends Window {
     private final static int ACTOR_WIDTH = 80;
     private final static int ACTOR_HEIGHT = 80;
     private final static int MARGIN = 2;
-    private ArrayList<Cell> cells;
     private Label name;
     private Label quantity;
     private TextButton throwButton;
@@ -31,12 +33,14 @@ public class InventoryDisplay extends Window {
 
     public InventoryDisplay(String title, Skin skin) {
         super(title, skin);
-        this.cells = new ArrayList<>();
         this.rowLength = 5;
         this.name = new Label("", this.getSkin());
         this.quantity = new Label("", this.getSkin());
         this.throwButton = new TextButton(THROW, this.getSkin());
         this.useButton = new TextButton(USE, this.getSkin());
+
+        this.throwButton.addListener(new Throw(this));
+        this.useButton.addListener(new Use(this));
 
         Player p = new Player(0);
         Key k = new Key(1);
@@ -51,12 +55,13 @@ public class InventoryDisplay extends Window {
     }
 
     public boolean showInventory(Container c){
+        this.selected = null;
         int j = 1;
         int bottomSpace = 20;
         int tablePad = 10;
+        ButtonGroup group = new ButtonGroup();
         Table table = new Table(this.getSkin());
         table.setFillParent(true);
-        table.setDebug(true);
         table.bottom();
         table.left();
         table.pad(tablePad);
@@ -65,58 +70,58 @@ public class InventoryDisplay extends Window {
 
         if(c instanceof Player){
             Player p = (Player) c;
+            Button buttonRight = new Button(this.getSkin());
+            Button buttonLeft = new Button(this.getSkin());
             //mains
             if(p.holdItemInLeftHand()){
-                Stack stack = new Stack();
                 Item i = p.getItemInLeftHand();
                 Image img = new Image(
                         new TextureAtlas(i.getAtlasPath())
                                 .findRegion(i.getAtlasRegionName())
                 );
-                stack.add(img);
-                this.cells.add(table.add(stack).padBottom(bottomSpace));
-            } else
-                this.cells.add(table.add().padBottom(bottomSpace));
+                buttonLeft.add(img).width(ACTOR_WIDTH).height(ACTOR_HEIGHT);
+                buttonLeft.addListener(new Select(this));
+                group.add(buttonLeft);
+            }
 
-            for(int i = 2; i < this.rowLength; i++)
-                table.add();
-
-            if(p.holdItemInRightHand()){
-                Stack stack = new Stack();
+            if(p.holdItemInRightHand()) {
                 Item i = p.getItemInRightHand();
                 Image img = new Image(
                         new TextureAtlas(i.getAtlasPath())
                                 .findRegion(i.getAtlasRegionName())
                 );
-                stack.add(img);
-                this.cells.add(table.add(stack).padBottom(bottomSpace));
-            } else
-                this.cells.add(table.add().padBottom(bottomSpace));
+                buttonRight.add(img).width(ACTOR_WIDTH).height(ACTOR_HEIGHT);
+                buttonRight.addListener(new Select(this));
+                group.add(buttonRight);
+            }
 
+            table.add(buttonLeft).padBottom(bottomSpace).width(ACTOR_WIDTH).height(ACTOR_HEIGHT);
+            for(int i = 2; i < this.rowLength; i++)
+                table.add();
+            table.add(buttonRight).padBottom(bottomSpace).width(ACTOR_WIDTH).height(ACTOR_HEIGHT);
             table.row();
         }
 
         //inventaire
         for(Item i : items){
-            Stack stack = new Stack();
+            Button button = new Button(this.getSkin());
 
             if(i != null) {
                 Image img = new Image(
                         new TextureAtlas(i.getAtlasPath())
                                 .findRegion(i.getAtlasRegionName())
                 );
-                stack.add(img);
-                this.cells.add(table.add(stack).pad(MARGIN));
-            } else
-                this.cells.add(table.add().pad(MARGIN));
+                button.add(img).width(ACTOR_WIDTH).height(ACTOR_HEIGHT);
+                button.addListener(new Select(this));
+                group.add(button);
+            }
+
+            table.add(button).pad(MARGIN).width(ACTOR_WIDTH).height(ACTOR_HEIGHT);
 
             if((j % this.rowLength) == 0)
                 table.row();
             j++;
         }
-
-        for(Cell cell : this.cells)
-            cell.width(ACTOR_WIDTH).height(ACTOR_HEIGHT);
 
         int cosplan = this.rowLength / 2;
 
@@ -153,7 +158,7 @@ public class InventoryDisplay extends Window {
         }
     }
 
-    public void setSelectItem(Item i) {
+    protected void setSelectItem(Item i) {
         this.selected = i;
         this.refreshInfo();
     }

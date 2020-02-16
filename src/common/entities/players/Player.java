@@ -6,7 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import common.entities.Entity;
 import common.entities.Item;
-import common.entities.special.Inventory;
+import common.entities.special.inventory.Inventory;
 import common.entities.types.Container;
 import common.entities.types.Living;
 import common.language.GameFields;
