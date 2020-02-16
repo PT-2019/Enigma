@@ -8,6 +8,7 @@ import common.dialog.EnigmaDialogPopup;
 import common.entities.players.PlayerGame;
 import common.map.AbstractMap;
 import common.map.GameMap;
+import common.timer.TimerFrame;
 import common.utils.Logger;
 import game.EnigmaGame;
 
@@ -72,7 +73,12 @@ public class GameScreen extends LibgdxScreen {
 				this.listen(((PlayerGame) actor));
 			}
 		}
+
 		this.hud.addActor(dialog);
+		//ecran de fin
+		this.hud.addActor(new EndScreen());
+		//timer
+		this.hud.addActor(new TimerFrame());
 		this.map.launchMusic();
 		//écoute des inputProcessor et des listeners
 		this.listen(dialog);

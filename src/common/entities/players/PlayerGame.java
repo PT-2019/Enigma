@@ -33,7 +33,7 @@ public class PlayerGame extends GameActorAnimation implements InputAdapter {
 	/**
 	 * Vitesse de déplacement du personnage
 	 */
-	public static final int SPEED = 5;
+	public static final int SPEED = 10;
 
 	/**
 	 * La map dans la laquelle est placé le joueur
@@ -164,9 +164,16 @@ public class PlayerGame extends GameActorAnimation implements InputAdapter {
 					tmpY = this.getY();
 				}
 
+				EnigmaDialogPopup dialog = map.getEnigmaDialog();
 				GameActor entityGame = map.collisionEntityGame(this, tmpX - this.getX(), tmpY - this.getY());
 				if (entityGame != null) {
 					System.out.println(entityGame);
+					//on affiche le dialogue de l'entité si elle en à un
+					if (entityGame instanceof NpcGame ){
+						dialog.showDialog(((NpcGame) entityGame).getDialog(), map);
+					}else if(entityGame instanceof MonsterGame){
+						dialog.showDialog(((MonsterGame) entityGame).getDialog(), map);
+					}
 				}
 
 				map.doAction(tmpX, tmpY, this, TileEventEnum.ON_USE);
@@ -177,11 +184,11 @@ public class PlayerGame extends GameActorAnimation implements InputAdapter {
 
 				//toute cette partie permet d'afficher le dialogue des objets si ils en ont
 				if (object instanceof Content) {
-					EnigmaDialogPopup dialog = map.getEnigmaDialog();
+					dialog = map.getEnigmaDialog();
 					Dialog node = new Dialog(((Content) object).getContent());
 					dialog.showDialog(node, map);
 				} else {
-					EnigmaDialogPopup dialog = map.getEnigmaDialog();
+					dialog = map.getEnigmaDialog();
 					if (ItemDialog.getText(object) != null) {
 						Dialog node = new Dialog(ItemDialog.getText(object));
 						dialog.showDialog(node, map);

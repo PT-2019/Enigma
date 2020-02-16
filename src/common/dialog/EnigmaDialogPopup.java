@@ -7,9 +7,7 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import common.enigmas.condition.Answer;
 import common.map.GameMap;
-import common.map.model.Map;
 import common.utils.Question;
-import org.lwjgl.Sys;
 
 /**
  * Permet d'afficher les dialogues dans le Jeu.
@@ -86,7 +84,7 @@ public class EnigmaDialogPopup extends Window implements InputProcessor {
      */
     private void init(){
         container = new Table(this.getSkin());
-        text = new Label("", getSkin());
+        text = new Label("", this.getSkin());
 
         enter = new Label("Appuyer sur Entrée pour continuer", getSkin());
         container.add(text).expand().top().fillX().padTop(25).padLeft(15);
@@ -150,11 +148,13 @@ public class EnigmaDialogPopup extends Window implements InputProcessor {
         isAnswer = true;
         this.map = map;
         init();
-        String dialogText = dialog.getCurrentText();
-        //pour avoir des saut de ligne
-        dialogText = dialogText.replace(NEW_LINE,"\n");
-        this.text.setText(dialogText);
-        this.setVisible(true);
+        if (!dialog.isFinish()){
+            String dialogText = dialog.getCurrentText();
+            //pour avoir des saut de ligne
+            dialogText = dialogText.replace(NEW_LINE,"\n");
+            this.text.setText(dialogText);
+            this.setVisible(true);
+        }
     }
 
     /**
@@ -193,11 +193,14 @@ public class EnigmaDialogPopup extends Window implements InputProcessor {
             this.clear();
             init();
         }
-        String dialogText = dialog.getCurrentText();
-        //pour avoir des saut de ligne
-        dialogText = dialogText.replace(NEW_LINE,"\n");
-        text.setText(dialogText);
-        this.setVisible(true);
+
+        if (!dialog.isFinish()){
+            String dialogText = dialog.getCurrentText();
+            //pour avoir des saut de ligne
+            dialogText = dialogText.replace(NEW_LINE,"\n");
+            text.setText(dialogText);
+            this.setVisible(true);
+        }
     }
 
     @Override

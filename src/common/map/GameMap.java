@@ -341,7 +341,7 @@ public class GameMap extends AbstractMap {
 						npc.setHero(true);
 					} else {
 						//c'est un npc
-						entity = NpcFactory.createNpcGame(npc.getKey(), npc.getJson());
+						entity = NpcFactory.createNpcGame(npc.getKey(), npc.getJson(),npc.getContent());
 					}
 					this.addEntity(entity);
 					//on soustrait et augmente pour que ce soit à la bonne position
@@ -349,7 +349,8 @@ public class GameMap extends AbstractMap {
 							(y - 2) * this.tileHeight * this.getUnitScale());
 					notdisplay = true;
 				} else if (object instanceof Monster) {
-					GameActor monster = MonsterFactory.createMonsterGame(((Monster) object).getKey(), ((Monster) object).getJson());
+					GameActor monster = MonsterFactory.createMonsterGame(((Monster) object).getKey(),
+							((Monster) object).getJson(),((Monster) object).getContent());
 					this.addEntity(monster);
 					monster.setPosition((x + 0.5f) * this.tileWidth * this.getUnitScale(),
 							(y - 2) * this.tileHeight * this.getUnitScale());
