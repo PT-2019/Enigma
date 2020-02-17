@@ -3,6 +3,8 @@ package api.utils;
 import api.utils.annotations.ConvenienceClass;
 import api.utils.annotations.ConvenienceMethod;
 import com.badlogic.gdx.utils.Array;
+import data.config.Config;
+import org.jetbrains.annotations.Nullable;
 
 import java.awt.Component;
 import java.awt.GraphicsConfiguration;
@@ -45,26 +47,30 @@ public class Utility implements Serializable {
 	 * Les noms sont issus des fichiers tmx présents
 	 *
 	 * @param folder          dossier
-	 * @param extensions      extensions voulues
+	 * @param extensions      extensions voulues, si null alors prends tout
 	 * @param removeExtension true pour supprimer les extensions
 	 * @return Le nom des maps
 	 * @since 6.3
 	 */
-	public static ArrayList<String> getAllFiles(String folder, String[] extensions, boolean removeExtension) {
+	public static ArrayList<String> getAllFiles(String folder, @Nullable String[] extensions, boolean removeExtension) {
 		ArrayList<String> files = new ArrayList<>();
 		File file = new File(folder);
 		String[] list = file.list();
 
 		if (list != null) {
 			for (String s : list) {
-				for (String ext : extensions) {
-					if (s.endsWith(ext)) {
-						if (removeExtension) {
-							s = s.replace(ext, "");
+				if(extensions != null) {
+					for (String ext : extensions) {
+						if (s.endsWith(ext)) {
+							if (removeExtension) {
+								s = s.replace(ext, "");
+							}
+							files.add(s);
+							break;
 						}
-						files.add(s);
-						break;
 					}
+				} else {
+					files.add(s);
 				}
 
 			}
@@ -254,7 +260,7 @@ public class Utility implements Serializable {
 			String message = "Create instance failed. Error \"" + e.getCause()
 					+ "\" in " + declaredConstructor;
 			if (declaredConstructor == null) message = "Constructor not found." + e;
-			throw new IllegalStateException(message);
+			throw new IllegalStateException(message, e);
 		}
 		return object;
 	}
@@ -579,5 +585,26 @@ public class Utility implements Serializable {
 	 */
 	public static boolean isStringValid(String string) {
 		return string != null && !string.isEmpty() && !string.isBlank();
+	}
+
+	/**
+	 * Retourne l'extension d'un fichier depuis son nom et son dossier
+	 * @param folder son dossier
+	 * @param fileName son nom
+	 * @return son extension
+	 * @throws IllegalArgumentException si problème
+	 */
+	public static String getExtension(String folder, String fileName) {
+		ArrayList<String> allFiles = Utility.getAllFiles(folder, null, false);
+		for (String file : allFiles) {
+			if(file.startsWith(fileName)){
+				StringBuilder extension = new StringBuilder();
+				for (int i = file.lastIndexOf("."); i < file.length() ; i++) {
+					extension.append(file.charAt(i));
+				}
+				return extension.toString();
+			}
+		}
+		throw new IllegalArgumentException("Erreur lors de la recherche. Fichier non trouvé.");
 	}
 }

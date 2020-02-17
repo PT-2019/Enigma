@@ -4,6 +4,7 @@ import api.utils.Utility;
 import com.badlogic.gdx.maps.MapProperties;
 import common.entities.types.AbstractItem;
 import common.entities.types.Content;
+import common.entities.types.ShowContent;
 import common.language.GameFields;
 import common.language.GameLanguage;
 import common.save.entities.PlayerSave;
@@ -26,7 +27,7 @@ import java.util.HashMap;
  * @see AbstractItem
  * @since 2.0
  */
-public class Pane extends AbstractItem implements Content {
+public class Pane extends AbstractItem implements Content, ShowContent {
 
 	/**
 	 * Contenu de l'objet

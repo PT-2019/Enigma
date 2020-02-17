@@ -87,9 +87,9 @@ public class Enigma implements ActionListener, IDInterface {
 		this.description = "";
 		this.known = false;
 		this.timer = new Timer(0, this);
-		this.conditions = new ArrayList<Condition>();
-		this.operations = new ArrayList<Operation>();
-		this.advices = new ArrayList<Advice>();
+		this.conditions = new ArrayList<>();
+		this.operations = new ArrayList<>();
+		this.advices = new ArrayList<>();
 		this.id = -1;
 		this.type = TileEventEnum.ON_USE;
 	}
@@ -104,9 +104,9 @@ public class Enigma implements ActionListener, IDInterface {
 		this.description = description;
 		this.known = false;
 		this.timer = new Timer(0, this);
-		this.conditions = new ArrayList<Condition>();
-		this.operations = new ArrayList<Operation>();
-		this.advices = new ArrayList<Advice>();
+		this.conditions = new ArrayList<>();
+		this.operations = new ArrayList<>();
+		this.advices = new ArrayList<>();
 		this.id = -1;
 		this.type = TileEventEnum.ON_USE;
 	}
@@ -179,24 +179,25 @@ public class Enigma implements ActionListener, IDInterface {
 	 * @param p Joueur ayant intéragit avec l'entité ayant appelé cette méthode
 	 * @return un message d'une condition ou opération
 	 */
-	public EnigmaReport verifyConditions(Player p) {
-		EnigmaReport report = null;
+	public ArrayList<EnigmaReport> verifyConditions(Player p) {
+		ArrayList<EnigmaReport> report = new ArrayList<>();
+		EnigmaReport tmp;
+		boolean conditionsOk = true;
 		for (Condition condition : this.conditions) {
 			//On teste que les conditions sont remplies, si ce n'est pas le cas, la méthode s'arrête là
-			report = condition.verify(p);
-			if (!report.isFulfilled()) {
-				System.out.println("Toutes les conditions n'ont pas été validées");
-				System.out.println(report.getReport());
-				return report;
+			tmp = condition.verify(p);
+			report.add(tmp);
+			if(!tmp.isFulfilled()) conditionsOk = false;
+		}
+
+		if(conditionsOk) {
+			//On lance toutes les opérations de l'enigme
+			for (Operation operation : this.operations) {
+				tmp = operation.run(p);
+				report.add(tmp);//ajoute tous les report
 			}
 		}
-
-		//On lance toutes les opérations de l'enigme
-		for (Operation operation : this.operations) {
-			report = operation.run(p);
-		}
-
-		return report; //TODO: on devrait stocker un report, le plus pertinent ? et le renvoyer
+		return report;
 	}
 
 	/**

@@ -25,11 +25,6 @@ import java.util.HashMap;
 public class MusicEditor extends AbstractGameObject {
 
 	/**
-	 * Dossier où sont stocker toute les musiques
-	 */
-	public final static String PATH = "assets/files/music/";
-	public final static String EXTENSION = ".mp3";
-	/**
 	 * Chemin de la musique
 	 */
 	private String path;
@@ -50,16 +45,16 @@ public class MusicEditor extends AbstractGameObject {
 		super(-1);
 	}
 
-	public MusicEditor(String path) {
-		this.path = MusicEditor.PATH + path + MusicEditor.EXTENSION;
-		this.name = path;
+	public MusicEditor(String path, String name) {
+		this.path = path;
+		this.name = name;
 		this.isMainMusic = false;
 		this.isStarter = false;
 	}
 
 	public MusicEditor(String path, int id) {
 		super(id);
-		this.path = MusicEditor.PATH + path + MusicEditor.EXTENSION;
+		this.path = path;
 		this.name = path;
 	}
 

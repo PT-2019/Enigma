@@ -9,6 +9,7 @@ import common.entities.players.PlayerGame;
 import common.map.AbstractMap;
 import common.map.GameMap;
 import common.utils.Logger;
+import data.config.Config;
 import game.EnigmaGame;
 
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class GameScreen extends LibgdxScreen {
 	/**
 	 * Chemin de la map du jeu
 	 */
-	private static String MAP_PATH = "assets/files/map/cocoa.tmx";
+	private static String MAP_PATH = "";
 
 	/**
 	 * Stage de la map et du jeu
@@ -57,25 +58,33 @@ public class GameScreen extends LibgdxScreen {
 	public void init() {
 		this.main = new Stage();
 		this.hud = new Stage();
-		this.map = new GameMap(MAP_PATH, 2.5f);
-		EnigmaDialogPopup dialog = map.getEnigmaDialog();
-		//ajout au stage
-		this.main.addActor(this.map);
-		this.map.showGrid(false);
 
-		//compléter ici
-		ArrayList<GameActor> actors = this.map.getGameEntities();
+		if(MAP_PATH != null && !MAP_PATH.isEmpty()){
+			this.map = new GameMap(MAP_PATH, Config.UNIT_SCALE);
+			EnigmaDialogPopup dialog = map.getEnigmaDialog();
 
-		for (GameActor actor : actors) {
-			if (actor instanceof PlayerGame) {
-				((PlayerGame) actor).center();
-				this.listen(((PlayerGame) actor));
+			//ajout au stage
+			this.main.addActor(this.map);
+			this.map.showGrid(false);
+
+			//compléter ici
+			ArrayList<GameActor> actors = this.map.getGameEntities();
+
+			for (GameActor actor : actors) {
+				if (actor instanceof PlayerGame) {
+					((PlayerGame) actor).center();
+					this.listen(((PlayerGame) actor));
+				}
 			}
+
+			this.hud.addActor(dialog);
+			this.map.launchMusic();
+
+			this.listen(dialog);
 		}
-		this.hud.addActor(dialog);
-		this.map.launchMusic();
+
+
 		//écoute des inputProcessor et des listeners
-		this.listen(dialog);
 		this.listen(this.hud);
 		this.listen(this.main);
 	}
@@ -108,6 +117,7 @@ public class GameScreen extends LibgdxScreen {
 	@Override
 	public void dispose() {
 		try {
+			this.map.getGameMusic().dispose();
 			this.main.dispose();
 			this.hud.dispose();
 		} catch (Exception e) {

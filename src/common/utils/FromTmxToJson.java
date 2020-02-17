@@ -195,6 +195,9 @@ class FromTmxToJson {
 			//System.out.println(fromRoomToJson("assets/map/map_system/Room8.tmx", "Room8"));
 			//System.out.println(fromRoomToJson("assets/map/map_system/Room9.tmx", "Room9"));
 			System.out.println(fromRoomToJson("assets/map/map_system/Room10.tmx", "Room10"));
+			System.out.println(fromRoomToJson("assets/map/map_system/Room11.tmx", "Room11"));
+			System.out.println(fromRoomToJson("assets/map/map_system/Room12.tmx", "Room12"));
+			System.out.println(fromRoomToJson("assets/map/map_system/Room13.tmx", "Room13"));
 		}
 	}
 

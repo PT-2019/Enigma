@@ -1,12 +1,17 @@
 package common.entities.consumable;
 
+import com.badlogic.gdx.maps.MapProperties;
 import common.entities.types.AbstractConsumable;
 import common.entities.types.NeedContainer;
 import common.language.GameFields;
 import common.language.GameLanguage;
+import common.save.entities.PlayerSave;
+import common.save.entities.SaveKey;
+import common.save.entities.SaveTiles;
 import data.TypeEntity;
 
 import java.util.EnumMap;
+import java.util.HashMap;
 
 /**
  * Une clef
@@ -59,5 +64,17 @@ public class Key extends AbstractConsumable implements NeedContainer {
 	@Override
 	public String getReadableName() {
 		return GameLanguage.gl.get(GameFields.KEY);
+	}
+
+	@Override
+	public HashMap<SaveKey, String> getSave() {
+		HashMap<SaveKey, String> save = new HashMap<>();
+		save.put(PlayerSave.ALT_TILES, SaveTiles.save(this.altTiles));
+		return save;
+	}
+
+	@Override
+	public void load(MapProperties data) {
+		this.altTiles = SaveTiles.load(data.get(PlayerSave.ALT_TILES.getKey(), String.class));
 	}
 }

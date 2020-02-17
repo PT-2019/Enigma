@@ -3,9 +3,6 @@ package editor.popup.listeners;
 import api.utils.Observer;
 import api.utils.WindowClosing;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.maps.MapLayers;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.Group;
@@ -13,11 +10,10 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.SnapshotArray;
-import common.entities.GameObject;
 import common.map.MapTestScreenCell;
+import common.utils.EnigmaUtility;
 import data.EditorState;
 import data.NeedToBeTranslated;
-import data.TypeEntity;
 import editor.EditorLauncher;
 import editor.popup.cases.CasePopUp;
 import editor.popup.cases.CaseView;
@@ -157,7 +153,7 @@ public class CaseListener extends ClickListener {
 	 */
 	private void erase(InputEvent event) {
 		CaseView actor = (CaseView) event.getTarget();
-		MapTestScreenCell cell = getRelevantEntity(actor);
+		MapTestScreenCell cell = EnigmaUtility.getRelevantEntity(actor.getCell(), this.popUp.getTileMap());
 		if (cell != null && cell.getEntity() != null) {
 			if (this.popUp != null && this.popUp.getCell() != null
 					&& this.popUp.getCell().getEntity() != null) {
@@ -208,7 +204,7 @@ public class CaseListener extends ClickListener {
 		}
 
 		CaseView actor = (CaseView) event.getTarget();
-		MapTestScreenCell cell = getRelevantEntity(actor);
+		MapTestScreenCell cell = EnigmaUtility.getRelevantEntity(actor.getCell(), this.popUp.getTileMap());
 
 		//on peut ouvrir une deuxième popup
 		if (this.enigmaCreate) {
@@ -256,50 +252,7 @@ public class CaseListener extends ClickListener {
 		this.pop = pop;
 	}
 
-	/**
-	 * Retourne la cellule contenant l'entité la plus intéressante
-	 *
-	 * @param actor case view
-	 * @return la cellule contenant l'entité la plus intéressante
-	 * @since 5.0
-	 */
-	private MapTestScreenCell getRelevantEntity(CaseView actor) {
-		MapTestScreenCell cell = actor.getCell();
 
-		//on parcours tout les layers à la recherche d'une entité
-		// pour afficher le panneau avec l'entité en premier
-		GameObject entity = actor.getCell().getEntity();
-		if (entity == null) {
-			TiledMap map = this.popUp.getTileMap();
-			MapLayers layers = map.getLayers();
-			MapTestScreenCell tmp;
-
-			for (int i = 0; i < 4; i++) {
-				TiledMapTileLayer layer = (TiledMapTileLayer) layers.get(i);
-				tmp = (MapTestScreenCell) layer.getCell(cell.getIndex() % layer.getWidth(),
-						cell.getIndex() / layer.getWidth());
-				if (tmp.getEntity() != null) {
-					cell = tmp;
-				}
-			}
-			//si ya déjà une entité mais c'est une pièce
-		} else if (entity.getImplements().get(TypeEntity.CONTAINER_MANAGER)) {//on regarde si on a quelque chose de mieux
-			TiledMap map = this.popUp.getTileMap();
-			MapLayers layers = map.getLayers();
-			MapTestScreenCell tmp;
-
-			for (int i = 0; i < 4; i++) {
-				TiledMapTileLayer layer = (TiledMapTileLayer) layers.get(i);
-				tmp = (MapTestScreenCell) layer.getCell(cell.getIndex() % layer.getWidth(),
-						cell.getIndex() / layer.getWidth());
-				if (tmp.getEntity() != null && !tmp.getEntity().getImplements().get(TypeEntity.CONTAINER_MANAGER)) {
-					cell = tmp;
-				}
-			}
-		}
-
-		return cell;
-	}
 
 	/**
 	 * Ferme un popup

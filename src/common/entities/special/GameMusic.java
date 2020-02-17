@@ -4,7 +4,10 @@ import api.utils.Observer;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.utils.Disposable;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
 
 /**
  * Classe qui gère les music à lancer dans le jeu et les sons
@@ -13,10 +16,10 @@ import org.jetbrains.annotations.NotNull;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 6.0
+ * @version 6.1
  * @since 6.0
  */
-public class GameMusic implements Observer {
+public class GameMusic implements Observer, Disposable {
 
 	/**
 	 * Musique en cours
@@ -29,9 +32,19 @@ public class GameMusic implements Observer {
 	private float volume;
 
 	/**
-	 * Son en cours
+	 * Sons en cours
 	 */
-	private Sound sound;
+	private ArrayList<Sound> sounds;
+
+	/**
+	 * Classe qui gère les music à lancer dans le jeu et les sons
+	 * @since 6.1
+	 */
+	public GameMusic(){
+		this.volume = 0.5f;
+		this.sounds = new ArrayList<>();
+		this.music = null;
+	}
 
 	/**
 	 * Classe qui gère les music à lancer dans le jeu et les sons
@@ -44,7 +57,7 @@ public class GameMusic implements Observer {
 		this.music.setLooping(true);
 		this.volume = 0.5f;
 		this.music.setVolume(this.volume);
-		this.sound = null;
+		this.sounds = new ArrayList<>();
 	}
 
 	/**
@@ -69,10 +82,10 @@ public class GameMusic implements Observer {
 	 * @since 6.0
 	 */
 	public void playSound(MusicEditor sound) {
-		//libère le son ?
-		if (this.sound != null) this.sound.dispose();
-		this.sound = Gdx.audio.newSound(Gdx.files.internal(sound.getPath()));
-		this.sound.play(this.volume);
+		Sound audio = Gdx.audio.newSound(Gdx.files.internal(sound.getPath()));
+		audio.play(this.volume);
+		//ajoute à la liste
+		this.sounds.add(audio);
 	}
 
 	/**
@@ -94,5 +107,25 @@ public class GameMusic implements Observer {
 	 */
 	public Music getMusic() {
 		return this.music;
+	}
+
+	/**
+	 * Libère les sons
+	 * @since 6.1
+	 */
+	@Override
+	public void dispose() {
+		for (Sound s: this.sounds) {
+			s.dispose();
+		}
+	}
+
+	/**
+	 * Retourne s'il y a une musique qui peut être jouée
+	 * @return true s'il y a une musique qui peut être jouée
+	 * @since 6.1
+	 */
+	public boolean hasMusic() {
+		return this.music != null;
 	}
 }

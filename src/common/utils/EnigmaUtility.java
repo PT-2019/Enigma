@@ -1,6 +1,12 @@
 package common.utils;
 
 import api.utils.Utility;
+import com.badlogic.gdx.maps.MapLayers;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import common.entities.GameObject;
+import common.map.MapTestScreenCell;
+import data.TypeEntity;
 import data.config.Config;
 
 import java.util.ArrayList;
@@ -62,4 +68,52 @@ public final class EnigmaUtility {
 	}
 
 
+	/**
+	 * Retourne la cellule contenant l'entité la plus intéressante
+	 *
+	 * @param cell cellule dont on veut l'entité la plus intéressante
+	 * @return la cellule contenant l'entité la plus intéressante
+	 * @since 5.0
+	 */
+	public static MapTestScreenCell getRelevantEntity(MapTestScreenCell cell, TiledMap map) {
+		MapTestScreenCell relevant = null;
+		final int LAYER_COUNT = 4;
+
+		//on parcours tout les layers à la recherche d'une entité
+		// pour afficher le panneau avec l'entité en premier
+		GameObject entity = cell.getEntity();
+		if (entity == null) {
+			MapLayers layers = map.getLayers();
+			MapTestScreenCell tmp;
+
+			for (int i = 0; i < LAYER_COUNT; i++) {
+				TiledMapTileLayer layer = (TiledMapTileLayer) layers.get(i);
+				tmp = (MapTestScreenCell) layer.getCell(cell.getIndex() % layer.getWidth(),
+						cell.getIndex() / layer.getWidth());
+				if (tmp.getEntity() != null) {
+					relevant = tmp;
+				}
+			}
+			//si ya déjà une entité mais c'est une pièce
+		} else if (entity.getImplements().get(TypeEntity.CONTAINER_MANAGER)) {
+			//on regarde si on a quelque chose de mieux
+			MapLayers layers = map.getLayers();
+			MapTestScreenCell tmp;
+
+			for (int i = 0; i < LAYER_COUNT; i++) {
+				TiledMapTileLayer layer = (TiledMapTileLayer) layers.get(i);
+				tmp = (MapTestScreenCell) layer.getCell(cell.getIndex() % layer.getWidth(),
+						cell.getIndex() / layer.getWidth());
+				if (tmp.getEntity() != null && !tmp.getEntity().getImplements().get(TypeEntity.CONTAINER_MANAGER)) {
+					relevant = tmp;
+				}
+			}
+		}
+
+		if(relevant == null){
+			relevant = cell;
+		}
+
+		return relevant;
+	}
 }
