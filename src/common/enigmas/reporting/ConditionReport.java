@@ -20,7 +20,8 @@ public enum ConditionReport implements Report {
 	FOUND_IN_INVENTORY("Le joueur a l'objet dans son inventaire.",SHOULD_NOT_BE_SHOWED),
 	NOT_IN_INVENTORY("Le joueur n'a pas l'objet dans son inventaire.",MAY_BE_SHOWED),
 	DISCOVERED("La pièce a été découverte.",SHOULD_NOT_BE_SHOWED),
-	UNDISCOVERED("La pièce n'a pas été découverte.",SHOULD_NOT_BE_SHOWED);
+	UNDISCOVERED("La pièce n'a pas été découverte.",SHOULD_NOT_BE_SHOWED),
+	NO_ANSWER("Aucune réponse saisie", SHOULD_NOT_BE_SHOWED);
 
 	/**
 	 * Rapport

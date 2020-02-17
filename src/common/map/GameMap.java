@@ -15,6 +15,8 @@ import common.dialog.EnigmaDialogPopup;
 import common.enigmas.Enigma;
 import common.enigmas.TileEvent;
 import common.enigmas.TileEventEnum;
+import common.enigmas.condition.Answer;
+import common.enigmas.reporting.ConditionReport;
 import common.enigmas.reporting.EnigmaReport;
 import common.enigmas.reporting.Report;
 import common.entities.Consumable;
@@ -230,6 +232,11 @@ public class GameMap extends AbstractMap {
 				EnigmaDialogPopup dialog = this.getEnigmaDialog();
 				Dialog node = new Dialog(stated);
 				dialog.showDialog(node, this);
+			} else if(report.equals(ConditionReport.NO_ANSWER)) {//demande réponse
+				EnigmaDialogPopup dialog = this.getEnigmaDialog();
+				//seul object du report noAnswer est l'answer
+				//TODO: answer laisse jeu état pas cohérent.
+				dialog.showAnswer((Answer) reports.get(0).getEntities().get(0), this);
 			}
 			//up des entités modifiées
 			Array<GameObject> allEntities = EnigmaReport.getAllEntities(reports);
@@ -291,8 +298,9 @@ public class GameMap extends AbstractMap {
 			if(report == null) return null;
 
 			//parcours des (de l'entité xD) entités modifiées
-			for (GameObject o : report.getEntities()) {
-				if (o instanceof ChangeState) {
+			for (Object obj : report.getEntities()) {
+				if (obj instanceof ChangeState) {
+					GameObject o = (GameObject) obj;
 					//met à jour son affichage
 					this.updateEntity(o);
 

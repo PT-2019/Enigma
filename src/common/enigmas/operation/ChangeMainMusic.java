@@ -5,6 +5,7 @@ import common.enigmas.reporting.OperationReport;
 import common.entities.players.Player;
 import common.entities.special.GameMusic;
 import common.entities.special.MusicEditor;
+import common.map.AbstractMap;
 import common.map.GameMap;
 import data.NeedToBeTranslated;
 import game.EnigmaGame;
@@ -59,7 +60,8 @@ public class ChangeMainMusic extends Operation {
 	public ChangeMainMusic(Map<String, Object> attributes) {
 		super(attributes);
 		//récupère le gestionnaire
-		this.musicGame = ((GameMap) EnigmaGame.getCurrentScreen().getMap()).getGameMusic();
+		AbstractMap map = EnigmaGame.getCurrentScreen().getMap();
+		if(map instanceof GameMap) this.musicGame = ((GameMap) map).getGameMusic();
 	}
 
 	@Override

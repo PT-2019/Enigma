@@ -1,9 +1,8 @@
 package common.dialog;
 
+import api.libgdx.utils.InputAdapter;
 import api.libgdx.utils.LibgdxUtility;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import common.enigmas.condition.Answer;
 import common.map.GameMap;
@@ -14,7 +13,7 @@ import data.keys.PlayerKeys;
  * Permet d'afficher les dialogues dans le Jeu.
  * Pour l'instant ne peut afficher que 2 choix
  */
-public class EnigmaDialogPopup extends Window implements InputProcessor {
+public class EnigmaDialogPopup extends Window implements InputAdapter {
     private static final String SKIN_PATH = "assets/files/atlas/inventory.json";
 
     private static final String ATLAS_PATH = "assets/files/atlas/inventory.atlas";
@@ -33,8 +32,6 @@ public class EnigmaDialogPopup extends Window implements InputProcessor {
      * dialogue que l'on va afficher
      */
     private Dialog dialog;
-
-    private GameMap map;
 
     /**
      * Layout de la fenêtre
@@ -68,9 +65,9 @@ public class EnigmaDialogPopup extends Window implements InputProcessor {
     /**
      * Pour savoir si c'est une question
      */
-    private boolean isAnswer;
+    private Answer answer;
 
-    private TextField answer;
+    private TextField answerF;
 
     public EnigmaDialogPopup() {
         super("", LibgdxUtility.loadSkin(SKIN_PATH,ATLAS_PATH));
@@ -91,9 +88,9 @@ public class EnigmaDialogPopup extends Window implements InputProcessor {
         container.add(text).expand().top().fillX().padTop(25).padLeft(15);
         container.row();
 
-        if (isAnswer){
-            answer = new TextField("",LibgdxUtility.loadSkin(SKIN_PATH2,ATLAS_PATH2));
-            container.add(answer).expandX().padBottom(20);
+        if (answer != null){
+            answerF = new TextField("",LibgdxUtility.loadSkin(SKIN_PATH2,ATLAS_PATH2));
+            container.add(answerF).expandX().padBottom(20);
 
         }else{
             container.add(enter).expandX().padBottom(20);
@@ -139,17 +136,16 @@ public class EnigmaDialogPopup extends Window implements InputProcessor {
 
     /**
      * Afficher une question
-     * @param answer
+     * @param answer affiche une question
      */
-    public void showAnswer(Answer answer,GameMap map){
+    public void showAnswer(Answer answer, GameMap map){
         this.clear();
         Question quest = answer.getQuestion();
         String text = quest.getQuestion();
-        dialog = new Dialog(text);
-        isAnswer = true;
-        this.map = map;
+        this.dialog = new Dialog(text);
+        this.answer = answer;
         init();
-        String dialogText = dialog.getCurrentText();
+        String dialogText = this.dialog.getCurrentText();
         //pour avoir des saut de ligne
         dialogText = dialogText.replace(NEW_LINE,"\n");
         this.text.setText(dialogText);
@@ -164,9 +160,11 @@ public class EnigmaDialogPopup extends Window implements InputProcessor {
         if (dialog.isFinish()){
             //le dialogue est fini
             this.setVisible(false);
-            //on met le résultat dans la map
-            if (isAnswer){
-                map.setResult(answer.getText());
+            //si c'était saisie de réponse
+            if (this.answer != null){
+                //on enregistre la réponse
+                this.answer.setAnswer(this.answerF.getText());
+                this.answer = null;
             }
         }else{
             String dialogText = dialog.getCurrentText();
@@ -182,8 +180,7 @@ public class EnigmaDialogPopup extends Window implements InputProcessor {
      */
     public void showDialog(Dialog dialog,GameMap map){
         this.dialog = dialog;
-        this.map = map;
-        this.isAnswer = false;
+        this.answer = null;
 
         if(dialog.isChoice()){
             this.clear();
@@ -224,39 +221,9 @@ public class EnigmaDialogPopup extends Window implements InputProcessor {
     @Override
     public boolean keyUp(int i) {
         //Pour pas que la touche qui permette d'afficher le popup ce mette dans le Textfield
-        if (isAnswer){
-            this.getStage().setKeyboardFocus(this.answer);
+        if (this.answer != null){
+            this.getStage().setKeyboardFocus(this.answerF);
         }
-        return false;
-    }
-
-    @Override
-    public boolean keyTyped(char c) {
-        return false;
-    }
-
-    @Override
-    public boolean touchDown(int i, int i1, int i2, int i3) {
-        return false;
-    }
-
-    @Override
-    public boolean touchUp(int i, int i1, int i2, int i3) {
-        return false;
-    }
-
-    @Override
-    public boolean touchDragged(int i, int i1, int i2) {
-        return false;
-    }
-
-    @Override
-    public boolean mouseMoved(int i, int i1) {
-        return false;
-    }
-
-    @Override
-    public boolean scrolled(int i) {
         return false;
     }
 }

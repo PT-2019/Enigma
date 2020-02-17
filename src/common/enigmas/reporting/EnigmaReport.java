@@ -31,7 +31,7 @@ public class EnigmaReport {
 	/**
 	 * Liste d'entitées concernées par un changement
 	 */
-	private ArrayList<GameObject> entities;
+	private ArrayList<Object> entities;
 
 	/**
 	 * Le message retourné l'exécution d'une opération
@@ -55,11 +55,11 @@ public class EnigmaReport {
 	 * @param fulfilled true si l'action c'est faite sinon false
 	 * @param entities Entités qui sont concernées par un changement
 	 */
-	public EnigmaReport(Report report, boolean fulfilled, GameObject ... entities) {
+	public EnigmaReport(Report report, boolean fulfilled, Object ... entities) {
 		this.report = report;
 		this.fulfilled = fulfilled;
 		this.entities = new ArrayList<>();
-		if(entities != null) for (GameObject e : entities) this.add(e);
+		if(entities != null) for (Object e : entities) this.add(e);
 	}
 
 	/**
@@ -83,8 +83,8 @@ public class EnigmaReport {
 	public static Array<GameObject> getAllEntities(ArrayList<EnigmaReport> reports) {
 		Array<GameObject> entities = new Array<>();
 		for (EnigmaReport r :reports) {
-			for (GameObject o:r.entities) {
-				entities.add(o);
+			for (Object o:r.entities) {
+				if(o instanceof GameObject) entities.add((GameObject) o);
 			}
 		}
 		return entities;
@@ -127,7 +127,7 @@ public class EnigmaReport {
 	 *
 	 * @param entity Entitée concernée par une modification
 	 */
-	public void add(GameObject entity){
+	public void add(Object entity){
 		this.entities.add(entity);
 	}
 
@@ -136,7 +136,7 @@ public class EnigmaReport {
 	 *
 	 * @param entity Entitée
 	 */
-	public void remove(GameObject entity){
+	public void remove(Object entity){
 		this.entities.remove(entity);
 	}
 
@@ -146,7 +146,7 @@ public class EnigmaReport {
 	 * @return entités
 	 */
 	@SuppressWarnings("unchecked")
-	public ArrayList<GameObject> getEntities() {
-		return (ArrayList<GameObject>) entities.clone();
+	public ArrayList<Object> getEntities() {
+		return (ArrayList<Object>) entities.clone();
 	}
 }

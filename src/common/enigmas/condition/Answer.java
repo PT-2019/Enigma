@@ -9,9 +9,14 @@ import common.entities.types.EnigmaContainer;
 import common.hud.EnigmaOptionPane;
 import common.hud.EnigmaWindow;
 import common.language.EnigmaField;
+import common.map.AbstractMap;
+import common.map.GameMap;
+import common.save.enigmas.EnigmaAttributes;
 import common.utils.Question;
 import data.NeedToBeTranslated;
+import game.EnigmaGame;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import static common.language.GameLanguage.gl;
@@ -29,10 +34,17 @@ import static common.language.GameLanguage.gl;
  */
 public class Answer extends Condition {
 
+	private static final String ANSWER = "answer", QUESTION = "question";
+
 	/**
 	 * Question
 	 */
 	private Question question;
+
+	/**
+	 * Réponse saisie
+	 */
+	private String answer;
 
 	/**
 	 * Vérifie que l'utilisateur donne une réponse correcte
@@ -43,6 +55,7 @@ public class Answer extends Condition {
 	public Answer(EnigmaContainer ent, Question question) {
 		super((GameObject) ent);
 		this.question = question;
+		this.answer = null;
 	}
 
 	/**
@@ -51,6 +64,21 @@ public class Answer extends Condition {
 	 */
 	public Answer(Map<String, Object> attributes) {
 		super(attributes);
+
+		//re-crée la question
+		if(attributes.containsKey(QUESTION) && attributes.containsKey(ANSWER)){
+			this.question = new Question((String)attributes.get(QUESTION), (String) attributes.get(ANSWER));
+		}
+
+		this.answer = null;
+	}
+
+	@Override
+	public HashMap<String, Object> objectToMap() {
+		HashMap<String, Object> object = super.objectToMap();
+		object.put(QUESTION, this.question.getQuestion());
+		object.put(ANSWER, this.question.getAnswer());
+		return object;
 	}
 
 	/**
@@ -61,8 +89,12 @@ public class Answer extends Condition {
 	 */
 	@Override
 	public EnigmaReport verify(Player p) {
-		String answer = EnigmaOptionPane.showInputDialog(new EnigmaWindow(), this.question.getQuestion());
-		if(answer.trim().contains(this.question.getAnswer().trim()))//s'il a donné une réponse qui contient la bonne
+		if(this.answer == null){
+			return new EnigmaReport(ConditionReport.NO_ANSWER, false, this);
+		}
+
+		//s'il a donné une réponse qui contient la bonne
+		if(this.answer.trim().contains(this.question.getAnswer().trim()))
 			return new EnigmaReport(ConditionReport.CORRECT_ANSWER, true);
 
 		return new EnigmaReport(ConditionReport.WRONG_ANSWER, false);
@@ -103,5 +135,11 @@ public class Answer extends Condition {
 				gl.get(EnigmaField.ANSWER) + " = \"" + this.question.getAnswer() + "\" ]";
 	}
 
-
+	/**
+	 * Définit la réponse de l'utilisateur
+	 * @param answer la réponse de l'utilisateur
+	 */
+	public void setAnswer(String answer) {
+		this.answer = answer;
+	}
 }

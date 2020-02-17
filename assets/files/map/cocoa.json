@@ -111,6 +111,43 @@
                     {
                          "operations": [
                               {
+                                   "common.enigmas.operation.ChangeMainMusic": [
+                                        {
+                                             "entities": "22",
+                                             "fulfilled": "false"
+                                        }
+                                   ]
+                              }
+                         ],
+                         "known": "false",
+                         "currentAdviceIndex": "-1",
+                         "fulfilled": "false",
+                         "description": "",
+                         "advices": [
+                         ],
+                         "id": "7",
+                         "title": "ChangerMusicByCode",
+                         "type": "ON_USE",
+                         "conditions": [
+                              {
+                                   "common.enigmas.condition.Answer": [
+                                        {
+                                             "question": "Code agent ?",
+                                             "answer": "42",
+                                             "entities": "7"
+                                        }
+                                   ]
+                              }
+                         ]
+                    }
+               ]
+          },
+
+          {
+               "common.enigmas.Enigma": [
+                    {
+                         "operations": [
+                              {
                                    "common.enigmas.operation.Unlock": [
                                         {
                                              "entities": "10",

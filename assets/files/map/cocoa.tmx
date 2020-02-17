@@ -189,11 +189,11 @@
                 <property name="className" value="common.entities.players.NPC"/>
                 <property name="y2" value="12.0"/>
                 <property name="FLOOR2" value="4"/>
-                <property name="NAME" value="Joker"/>
                 <property name="KEY" value="Joker"/>
+                <property name="JSON" value="assets/entities/players/players.json"/>
+                <property name="NAME" value="Joker"/>
                 <property name="HERO" value="true"/>
                 <property name="INVENTORY" value=""/>
-                <property name="JSON" value="assets/entities/players/players.json"/>
             </properties>
         </object>
         <object height="1.0" id="11" name="entity" width="1.0" x="-11.0" y="-11.0">
@@ -207,17 +207,17 @@
             <properties>
                 <property name="className" value="common.entities.consumable.Book"/>
                 <property name="y2" value="-13.0"/>
-                <property name="CONTENT" value=""/>
                 <property name="ALT_TILES" value=""/>
+                <property name="CONTENT" value=""/>
             </properties>
         </object>
         <object height="2.0" id="21" name="entity" width="2.0" x="-23.0" y="-23.0">
             <properties>
                 <property name="className" value="common.entities.players.Monster"/>
                 <property name="y2" value="-23.0"/>
-                <property name="NAME" value=""/>
                 <property name="KEY" value=""/>
                 <property name="JSON" value=""/>
+                <property name="NAME" value=""/>
             </properties>
         </object>
         <object height="0.0" id="20" name="entity" width="0.0" x="0.0" y="0.0">
@@ -225,9 +225,9 @@
                 <property name="className" value="common.entities.special.MusicEditor"/>
                 <property name="y2" value="0.0"/>
                 <property name="MAIN" value="true"/>
-                <property name="PATH" value="assets/files/music/Demented Nightmare MP3.mp3"/>
                 <property name="NAME" value="Demented Nightmare MP3"/>
                 <property name="STARTER" value="true"/>
+                <property name="PATH" value="assets/files/music/Demented Nightmare MP3.mp3"/>
             </properties>
         </object>
         <object height="0.0" id="19" name="entity" width="0.0" x="0.0" y="0.0">
@@ -235,9 +235,9 @@
                 <property name="className" value="common.entities.special.MusicEditor"/>
                 <property name="y2" value="0.0"/>
                 <property name="MAIN" value="false"/>
-                <property name="PATH" value="assets/files/sound/ouverture porte.mp3"/>
                 <property name="NAME" value="ouverture porte"/>
                 <property name="STARTER" value="false"/>
+                <property name="PATH" value="assets/files/sound/ouverture porte.mp3"/>
             </properties>
         </object>
         <object height="0.0" id="18" name="entity" width="0.0" x="0.0" y="0.0">
@@ -245,9 +245,9 @@
                 <property name="className" value="common.entities.special.MusicEditor"/>
                 <property name="y2" value="0.0"/>
                 <property name="MAIN" value="false"/>
-                <property name="PATH" value="assets/files/sound/ouverture porte.mp3"/>
                 <property name="NAME" value="ouverture porte"/>
                 <property name="STARTER" value="false"/>
+                <property name="PATH" value="assets/files/sound/ouverture porte.mp3"/>
             </properties>
         </object>
         <object height="0.0" id="15" name="entity" width="0.0" x="0.0" y="0.0">
@@ -255,9 +255,19 @@
                 <property name="className" value="common.entities.special.MusicEditor"/>
                 <property name="y2" value="0.0"/>
                 <property name="MAIN" value="false"/>
-                <property name="PATH" value="assets/files/sound/ouverture porte.mp3"/>
                 <property name="NAME" value="ouverture porte"/>
                 <property name="STARTER" value="false"/>
+                <property name="PATH" value="assets/files/sound/ouverture porte.mp3"/>
+            </properties>
+        </object>
+        <object height="0.0" id="22" name="entity" width="0.0" x="0.0" y="0.0">
+            <properties>
+                <property name="className" value="common.entities.special.MusicEditor"/>
+                <property name="y2" value="0.0"/>
+                <property name="MAIN" value="true"/>
+                <property name="NAME" value="Battle-Furious"/>
+                <property name="STARTER" value="false"/>
+                <property name="PATH" value="assets/files/music/Battle-Furious.mp3"/>
             </properties>
         </object>
         <object height="1.0" id="6" name="entity" width="1.0" x="16.0" y="12.0">
@@ -342,11 +352,11 @@
                 <property name="className" value="common.entities.players.NPC"/>
                 <property name="y2" value="22.0"/>
                 <property name="FLOOR2" value="4"/>
-                <property name="NAME" value="Blonde"/>
                 <property name="KEY" value="Blonde"/>
+                <property name="JSON" value="assets/entities/players/players.json"/>
+                <property name="NAME" value="Blonde"/>
                 <property name="HERO" value="false"/>
                 <property name="INVENTORY" value=""/>
-                <property name="JSON" value="assets/entities/players/players.json"/>
             </properties>
         </object>
         <object height="1.0" id="8" name="entity" width="1.0" x="11.0" y="3.0">
@@ -355,7 +365,7 @@
                 <property name="y2" value="3.0"/>
                 <property name="FLOOR2" value="1"/>
                 <property name="COLLISION" value="1"/>
-                <property name="LOCKED" value="false"/>
+                <property name="LOCKED" value="true"/>
                 <property name="ALT_TILES" value="{FLOOR2:[918,]COLLISION:[2041,]}"/>
             </properties>
         </object>

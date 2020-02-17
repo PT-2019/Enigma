@@ -73,6 +73,7 @@ public class GameMusic implements Observer, Disposable {
 		this.music.setLooping(true);
 		this.volume = 0.5f;
 		this.music.setVolume(this.volume);
+		this.music.play();
 	}
 
 	/**
