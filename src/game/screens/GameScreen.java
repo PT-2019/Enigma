@@ -78,7 +78,6 @@ public class GameScreen extends LibgdxScreen {
 			}
 
 			this.hud.addActor(dialog);
-			this.map.launchMusic();
 
 			this.listen(dialog);
 		}
@@ -117,6 +116,7 @@ public class GameScreen extends LibgdxScreen {
 	@Override
 	public void dispose() {
 		try {
+			MAP_PATH = "";
 			this.map.getGameMusic().dispose();
 			this.main.dispose();
 			this.hud.dispose();
@@ -129,6 +129,17 @@ public class GameScreen extends LibgdxScreen {
 	public void show() {
 		super.show();
 		Gdx.gl20.glClearColor(0.20f, 0.20f, 0.20f, 1.0f);
+
+		if(this.map != null) this.map.launchMusic();
+	}
+
+	@Override
+	public void hide() {
+		super.hide();
+
+		if(this.map != null && this.map.getGameMusic().hasMusic()){
+			this.map.getGameMusic().stop();
+		}
 	}
 
 	@Override

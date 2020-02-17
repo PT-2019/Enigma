@@ -128,4 +128,12 @@ public class GameMusic implements Observer, Disposable {
 	public boolean hasMusic() {
 		return this.music != null;
 	}
+
+	/**
+	 * Arrête la lecture des musiques
+	 */
+	public void stop() {
+		if(this.music != null && this.music.isPlaying()) this.music.stop();
+		this.dispose();
+	}
 }

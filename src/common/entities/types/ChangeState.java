@@ -42,4 +42,10 @@ public interface ChangeState {
 	 */
 	Array<Float> getTilesFromState(Layer layer);
 
+	/**
+	 * true pour être "automatiquement" re-dessiné au changement
+	 * @return true pour être "automatiquement" re-dessiné au changement
+	 */
+	boolean shouldAutomaticRepaint();
+
 }

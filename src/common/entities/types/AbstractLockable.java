@@ -34,6 +34,11 @@ public abstract class AbstractLockable extends AbstractItem implements Lockable,
 	protected boolean locked;
 
 	/**
+	 * Object déjà déverrouillé
+	 */
+	private boolean alreadyUnlocked;
+
+	/**
 	 * Crée une object verrouillable avec un id unique pour identifier ses énigmes
 	 *
 	 * @param id ID
@@ -77,9 +82,11 @@ public abstract class AbstractLockable extends AbstractItem implements Lockable,
 	public EnigmaReport changeState(PlayerGame actor, TileEventEnum event) {
 		if(event.equals(TileEventEnum.ON_USE)){
 			if(isLocked()){
-				return null;
-			} else {
-				return new EnigmaReport(ChangeStateReport.UNLOCK, true);
+				alreadyUnlocked = false;
+				return new EnigmaReport(ChangeStateReport.LOCKED, true, this);
+			} else if(!alreadyUnlocked) {
+				alreadyUnlocked = true;
+				return new EnigmaReport(ChangeStateReport.UNLOCK, true, this);
 			}
 		}
 		return null;
@@ -97,6 +104,11 @@ public abstract class AbstractLockable extends AbstractItem implements Lockable,
 		} else {
 			return this.altTiles.get(layer.name());
 		}
+	}
+
+	@Override
+	public boolean shouldAutomaticRepaint() {
+		return false;
 	}
 
 	//toString

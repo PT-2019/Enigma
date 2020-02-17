@@ -53,8 +53,9 @@ public abstract class Operation implements EnigmaElementReadablePrint {
 		attr.add(EnigmaAttributes.FULFILLED);
 
 		for (String a : attr) {
-			if (!attributes.containsKey(a))
+			if (!attributes.containsKey(a) && !a.equals(EnigmaAttributes.FULFILLED)) {//TODO: ...
 				throw new IllegalArgumentException("Attribut \"" + a + "\" absent");
+			}
 
 			Object get = attributes.get(a);
 

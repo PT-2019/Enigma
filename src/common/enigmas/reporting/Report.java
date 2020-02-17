@@ -28,6 +28,10 @@ public interface Report {
      * signifie qu'il existe peut être un intérêt à révéler le rapport au joueur
      */
     int MAY_BE_SHOWED = 1;
+    /**
+     * signifie qu'il existe un intérêt clair à révéler le rapport au joueur
+     */
+    int MUST_BE_SHOWED = 2;
 
     /**
      * Message sur la réalisation de l'action

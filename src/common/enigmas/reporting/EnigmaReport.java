@@ -1,5 +1,6 @@
 package common.enigmas.reporting;
 
+import com.badlogic.gdx.utils.Array;
 import common.entities.GameObject;
 
 import java.util.ArrayList;
@@ -37,12 +38,13 @@ public class EnigmaReport {
 	 * ou d'une condition.
 	 *
 	 * @param report Message sur la réalisation de l'action
-	 * @param entities Entitées qui sont concernées par un changement
+	 * @param entities Entités qui sont concernées par un changement
 	 */
 	public EnigmaReport(Report report, GameObject ... entities) {
 		this.report = report;
 		this.fulfilled = false;
-		for (GameObject e : entities) this.add(e);
+		this.entities = new ArrayList<>();
+		if(entities != null) for (GameObject e : entities) this.add(e);
 	}
 
 	/**
@@ -51,12 +53,41 @@ public class EnigmaReport {
 	 *
 	 * @param report    Message sur la réalisation de l'action
 	 * @param fulfilled true si l'action c'est faite sinon false
-	 * @param entities Entitées qui sont concernées par un changement
+	 * @param entities Entités qui sont concernées par un changement
 	 */
 	public EnigmaReport(Report report, boolean fulfilled, GameObject ... entities) {
 		this.report = report;
 		this.fulfilled = fulfilled;
-		for (GameObject e : entities) this.add(e);
+		this.entities = new ArrayList<>();
+		if(entities != null) for (GameObject e : entities) this.add(e);
+	}
+
+	/**
+	 * Retourne liste des rapports depuis liste des enigmaReport
+	 * @param reports liste des enigmaReport
+	 * @return liste des rapports depuis liste des enigmaReport
+	 */
+	public static ArrayList<Report> getAllReports(ArrayList<EnigmaReport> reports) {
+		ArrayList<Report> cpy = new ArrayList<>();
+		for (EnigmaReport r :reports) {
+			cpy.add(r.report);
+		}
+		return cpy;
+	}
+
+	/**
+	 * Retourne liste des entités depuis liste des enigmaReport
+	 * @param reports liste des enigmaReport
+	 * @return liste des entités depuis liste des enigmaReport
+	 */
+	public static Array<GameObject> getAllEntities(ArrayList<EnigmaReport> reports) {
+		Array<GameObject> entities = new Array<>();
+		for (EnigmaReport r :reports) {
+			for (GameObject o:r.entities) {
+				entities.add(o);
+			}
+		}
+		return entities;
 	}
 
 	/**
@@ -64,8 +95,8 @@ public class EnigmaReport {
 	 *
 	 * @return Message sur la réalisation de l'action
 	 */
-	public String getReport() {
-		return this.report.getReport();
+	public Report getReport() {
+		return this.report;
 	}
 
 	/**
@@ -92,7 +123,7 @@ public class EnigmaReport {
 	}
 
 	/**
-	 * Ajoute une entitée
+	 * Ajoute une entité
 	 *
 	 * @param entity Entitée concernée par une modification
 	 */
@@ -101,7 +132,7 @@ public class EnigmaReport {
 	}
 
 	/**
-	 * Supprime une entitée
+	 * Supprime une entité
 	 *
 	 * @param entity Entitée
 	 */
@@ -110,9 +141,9 @@ public class EnigmaReport {
 	}
 
 	/**
-	 * Retourne les entitées
+	 * Retourne les entités
 	 *
-	 * @return Entitées
+	 * @return entités
 	 */
 	@SuppressWarnings("unchecked")
 	public ArrayList<GameObject> getEntities() {

@@ -1,4 +1,144 @@
 {
      "Enigmas": [
+          {
+               "common.enigmas.Enigma": [
+                    {
+                         "operations": [
+                              {
+                                   "common.enigmas.operation.Unlock": [
+                                        {
+                                             "entities": "12",
+                                             "fulfilled": "false"
+                                        }
+                                   ]
+                              },
+
+                              {
+                                   "common.enigmas.operation.Unlock": [
+                                        {
+                                             "entities": "9",
+                                             "fulfilled": "false"
+                                        }
+                                   ]
+                              },
+
+                              {
+                                   "common.enigmas.operation.LaunchSound": [
+                                        {
+                                             "entities": "15",
+                                             "fulfilled": "false"
+                                        }
+                                   ]
+                              }
+                         ],
+                         "known": "false",
+                         "currentAdviceIndex": "-1",
+                         "fulfilled": "false",
+                         "description": "",
+                         "advices": [
+                         ],
+                         "id": "9",
+                         "title": "Open2",
+                         "type": "ON_USE",
+                         "conditions": [
+                              {
+                                   "common.enigmas.condition.Activated": [
+                                        {
+                                             "entities": "6"
+                                        }
+                                   ]
+                              }
+                         ]
+                    }
+               ]
+          },
+
+          {
+               "common.enigmas.Enigma": [
+                    {
+                         "operations": [
+                              {
+                                   "common.enigmas.operation.Unlock": [
+                                        {
+                                             "entities": "12",
+                                             "fulfilled": "false"
+                                        }
+                                   ]
+                              },
+
+                              {
+                                   "common.enigmas.operation.Unlock": [
+                                        {
+                                             "entities": "9",
+                                             "fulfilled": "false"
+                                        }
+                                   ]
+                              },
+
+                              {
+                                   "common.enigmas.operation.LaunchSound": [
+                                        {
+                                             "entities": "19",
+                                             "fulfilled": "false"
+                                        }
+                                   ]
+                              }
+                         ],
+                         "known": "false",
+                         "currentAdviceIndex": "-1",
+                         "fulfilled": "false",
+                         "description": "",
+                         "advices": [
+                         ],
+                         "id": "12",
+                         "title": "Open",
+                         "type": "ON_USE",
+                         "conditions": [
+                              {
+                                   "common.enigmas.condition.Activated": [
+                                        {
+                                             "entities": "6"
+                                        }
+                                   ]
+                              }
+                         ]
+                    }
+               ]
+          },
+
+          {
+               "common.enigmas.Enigma": [
+                    {
+                         "operations": [
+                              {
+                                   "common.enigmas.operation.Unlock": [
+                                        {
+                                             "entities": "10",
+                                             "fulfilled": "false"
+                                        }
+                                   ]
+                              }
+                         ],
+                         "known": "false",
+                         "currentAdviceIndex": "-1",
+                         "fulfilled": "false",
+                         "description": "",
+                         "advices": [
+                         ],
+                         "id": "10",
+                         "title": "UnlockInHand",
+                         "type": "ON_USE",
+                         "conditions": [
+                              {
+                                   "common.enigmas.condition.HaveInHands": [
+                                        {
+                                             "entities": "14"
+                                        }
+                                   ]
+                              }
+                         ]
+                    }
+               ]
+          }
      ]
 }

@@ -95,8 +95,10 @@ public class TileEvent {
 	 */
 	public ArrayList<EnigmaReport> onEnter(Player player) {
 		ArrayList<EnigmaReport> reports = new ArrayList<>();
-		for (Enigma e : this.onEnter)
-			reports.addAll(e.verifyConditions(player));
+		for (Enigma e : this.onEnter){
+			ArrayList<EnigmaReport> tmp = e.verifyConditions(player);
+			if(tmp != null) reports.addAll(tmp);
+		}
 
 		return reports;
 	}
@@ -108,8 +110,10 @@ public class TileEvent {
 	 */
 	public ArrayList<EnigmaReport> onExit(Player player) {
 		ArrayList<EnigmaReport> reports = new ArrayList<>();
-		for (Enigma e : this.onExit)
-			reports.addAll(e.verifyConditions(player));
+		for (Enigma e : this.onExit){
+			ArrayList<EnigmaReport> tmp = e.verifyConditions(player);
+			if(tmp != null) reports.addAll(tmp);
+		}
 
 		return reports;
 	}
@@ -124,7 +128,8 @@ public class TileEvent {
 	public ArrayList<EnigmaReport> onUse(Player player) {
 		ArrayList<EnigmaReport> reports = new ArrayList<>();
 		for (Enigma e : this.onUse) {
-			reports.addAll(e.verifyConditions(player));
+			ArrayList<EnigmaReport> tmp = e.verifyConditions(player);
+			if(tmp != null) reports.addAll(tmp);
 		}
 
 		return reports;

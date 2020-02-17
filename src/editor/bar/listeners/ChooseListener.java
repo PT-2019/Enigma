@@ -61,13 +61,18 @@ public class ChooseListener extends MenuListener implements Observer<MapLoaded> 
 			//lorsqu'on supprime une entité on supprime toute les entités au même endroit donc
 			// les musiques sont toutes placées au même endroit donc on va toutes les virer
 
+			ArrayList<MusicEditor> tmp = new ArrayList<>();
 			for (MusicEditor music : musics) {
 				if (music.isMainMusic() && music.isStarter()) {
-					musics.remove(music);
+					tmp.add(music);
 					//cela va détruire toutes les musiques
 					map.removeEntity(music);
 				}
 			}
+			for (MusicEditor m: tmp) {
+				musics.remove(m);
+			}
+			tmp.clear();
 			//on remet nos chères musiques sur la map
 			for (MusicEditor music : musics) {
 				map.set(music, new Vector2(0, 0));

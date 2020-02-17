@@ -61,10 +61,8 @@ public class Answer extends Condition {
 	 */
 	@Override
 	public EnigmaReport verify(Player p) {
-		Content c = (Content) this.entity;
-		//TODO: changer inclure réponse ...
-		String answer = EnigmaOptionPane.showInputDialog(new EnigmaWindow(), c.getContent());
-		if(answer.equals(this.question.getAnswer()))
+		String answer = EnigmaOptionPane.showInputDialog(new EnigmaWindow(), this.question.getQuestion());
+		if(answer.trim().contains(this.question.getAnswer().trim()))//s'il a donné une réponse qui contient la bonne
 			return new EnigmaReport(ConditionReport.CORRECT_ANSWER, true);
 
 		return new EnigmaReport(ConditionReport.WRONG_ANSWER, false);

@@ -31,6 +31,7 @@
                          "known": "false",
                          "currentAdviceIndex": "-1",
                          "description": "",
+                         "fulfilled": false,
                          "advices": [
                          ],
                          "id": "3",
@@ -82,6 +83,7 @@
                          "description": "",
                          "advices": [
                          ],
+                         "fulfilled": false,
                          "id": "4",
                          "title": "Open",
                          "type": "ON_USE",

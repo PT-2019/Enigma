@@ -51,7 +51,7 @@ public class Unlock extends Operation {
 			l.unlock();
 			this.fulfilled = true;
 		}
-		return new EnigmaReport(OperationReport.UNLOCKED, true); //opération ok
+		return new EnigmaReport(OperationReport.UNLOCKED, true, this.entity); //opération ok
 	}
 
 	/**

@@ -12,11 +12,11 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import common.dialog.Dialog;
 import common.dialog.EnigmaDialogPopup;
-import common.dialog.ItemDialog;
 import common.enigmas.Enigma;
 import common.enigmas.TileEvent;
 import common.enigmas.TileEventEnum;
 import common.enigmas.reporting.EnigmaReport;
+import common.enigmas.reporting.Report;
 import common.entities.Consumable;
 import common.entities.GameObject;
 import common.entities.players.Monster;
@@ -25,7 +25,6 @@ import common.entities.players.PlayerGame;
 import common.entities.special.GameExit;
 import common.entities.special.GameMusic;
 import common.entities.special.MusicEditor;
-import common.entities.types.Activatable;
 import common.entities.types.ChangeState;
 import common.entities.types.Container;
 import common.entities.types.Content;
@@ -195,14 +194,14 @@ public class GameMap extends AbstractMap {
 	public boolean doAction(float posX, float posY, PlayerGame actor, TileEventEnum action){
 		//convertit pos
 		Vector2 position = posToIndex(posX,posY,this);
-		//entité facée
-		final Array<GameObject> faced = new Array<>(new GameObject[]{posToEntities((int) position.y, (int) position.x)});
+		//entité en face
+		final GameObject current = posToEntities((int) position.y, (int) position.x);
 
 		//list des retours
 		ArrayList<EnigmaReport> reports = new ArrayList<>();
 
 		//up état jeu
-		updateGameMap(faced, actor, action);
+		String stated = updateGameMap(current, actor, action);
 
 		//récupère actions case
 		for (Map.Entry<Vector2, TileEvent> e : this.enigmes.entrySet()){
@@ -218,48 +217,86 @@ public class GameMap extends AbstractMap {
 			}
 		}
 
-		for (EnigmaReport r:reports) {
-			//TODO: les entités retournés par l'énigme, là j'ai mis un truc arbitraire EnigmaReport#getEntity ?
-			//up état jeu
-			updateGameMap(faced, actor, action);
+		if(!reports.isEmpty()){
+			Report.sort(EnigmaReport.getAllReports(reports));
+			//Récupère le report le plus important
+			Report report = reports.get(0).getReport();
+			//Affiche que si c'est au moins un peu important xD
+			if(report.getImportance() == Report.MUST_BE_SHOWED){
+				EnigmaDialogPopup dialog = this.getEnigmaDialog();
+				Dialog node = new Dialog(report.getReport());
+				dialog.showDialog(node, this);
+			} else if(stated != null && !stated.isEmpty()){
+				EnigmaDialogPopup dialog = this.getEnigmaDialog();
+				Dialog node = new Dialog(stated);
+				dialog.showDialog(node, this);
+			}
+			//up des entités modifiées
+			Array<GameObject> allEntities = EnigmaReport.getAllEntities(reports);
+			this.repaint(allEntities, current);
+		} else if(stated != null && !stated.isEmpty()){
+			EnigmaDialogPopup dialog = this.getEnigmaDialog();
+			Dialog node = new Dialog(stated);
+			dialog.showDialog(node, this);
 		}
 
 		return reports.isEmpty();
 	}
 
 	/**
-	 * Met à jour l'affichage des gameObjects
-	 *
-	 * @param object objects dont on doit changer/mettre à jour l'affichage
-	 * @param action action effectuée
+	 * Re-dessine les entités passées en argument
+	 * @param object les entités a re-dessiner. Instance de ChangeState uniquement.
+	 * @param current l'object current, forcément re-dessiné
 	 */
-	private void updateGameMap(Array<GameObject> object, PlayerGame actor, TileEventEnum action) {
-		if(action == TileEventEnum.ON_USE){
-			ArrayList<GameObject> reports = new ArrayList<>();
-			for (GameObject o : new Array.ArrayIterator<>(object)) {
-				if(o instanceof ChangeState){
-					//save
-					saveChild(o);
-					//change state
-					EnigmaReport report = ((ChangeState) o).changeState(actor, action);
-					if(report != null) reports.add(o);
-				} else if(o instanceof ShowContent){
-					EnigmaDialogPopup dialog = this.getEnigmaDialog();
-					Dialog node = new Dialog(((Content) o).getContent());
-					dialog.showDialog(node, this);
-				}
+	public void repaint(Array<GameObject> object, GameObject current){
+		for (GameObject o : new Array.ArrayIterator<>(object)) {
+			if(!(o instanceof ChangeState)) continue; //pas de repaint, si change pas
+			//save
+			saveChild(o);
+			//repaint si doit être re-dessiné
+			if(((ChangeState) o).shouldAutomaticRepaint() || o.equals(current)) {
+				this.updateEntity(o);
 			}
-			//les entités qui ont changé
-			for (GameObject o: reports) {
+		}
+	}
+
+	/**
+	 * Met à jour l'affichage des gameObjects.
+	 * Par exemple, on appuie sur 'e' devant un bouton, avant de lancer
+	 * ses énigmes, il faut changer son état (+affichage)
+	 *
+	 * @param entity objects dont on doit changer/mettre à jour l'affichage
+	 * @param action action effectuée
+	 * @param actor la personne qui fait l'action
+	 *
+	 * @return le message que l'on veux afficher
+	 */
+	private String updateGameMap(GameObject entity, PlayerGame actor, TileEventEnum action) {
+		if(action == TileEventEnum.ON_USE) {
+			EnigmaReport report = null;
+			//si c'est une entité qui change d'état
+			if (entity instanceof ChangeState) {
+				//save
+				saveChild(entity);
+				//change state
+				report = ((ChangeState) entity).changeState(actor, action);
+			//si c'est une entité dont on affiche le contenu
+			} else if (entity instanceof ShowContent) {
+				EnigmaDialogPopup dialog = this.getEnigmaDialog();
+				Dialog node = new Dialog(((Content) entity).getContent());
+				dialog.showDialog(node, this);
+			}
+
+			//si rien fait, on quitte
+			if(report == null) return null;
+
+			//parcours des (de l'entité xD) entités modifiées
+			for (GameObject o : report.getEntities()) {
 				if (o instanceof ChangeState) {
+					//met à jour son affichage
 					this.updateEntity(o);
 
 					EnigmaDialogPopup dialog = this.getEnigmaDialog();
-					//TODO: de-commenter, les messages temp de Loïc
-					/*if (ItemDialog.getText(o) != null) {
-						Dialog node = new Dialog(ItemDialog.getText(o));
-						dialog.showDialog(node, this);
-					}*/
 
 					if (o instanceof Container && !(o instanceof NPC)) {
 						//fake (affiche son inventaire pour prendre/retirer)
@@ -275,10 +312,16 @@ public class GameMap extends AbstractMap {
 
 						//supprime de la map
 						this.removeEntity(o);
+					} else {
+						String msg = report.getReport().getReport();
+						if (msg == null || msg.isEmpty()) continue;
+						return msg;
 					}
 				}
 			}
 		}
+
+		return null;
 	}
 
 	/**

@@ -82,9 +82,14 @@ public abstract class Activatable extends AbstractItem implements ChangeState {
 	public EnigmaReport changeState(PlayerGame actor, TileEventEnum event) {
 		if(event.equals(TileEventEnum.ON_USE)){
 			this.activated = !activated;
-			return new EnigmaReport(ChangeStateReport.DONE, true);
+			return new EnigmaReport(ChangeStateReport.DONE, true, this);
 		}
 		return null;
+	}
+
+	@Override
+	public boolean shouldAutomaticRepaint() {
+		return true;
 	}
 
 	@Override

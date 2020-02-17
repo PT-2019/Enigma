@@ -52,7 +52,7 @@ public class ShowRoom extends Operation {
 			room.setShowed(false);
 			this.fulfilled = true;
 		}
-		return new EnigmaReport(OperationReport.ROOM_SHOWED, true); //opération ok
+		return new EnigmaReport(OperationReport.ROOM_SHOWED, true, this.entity); //opération ok
 	}
 
 	@Override

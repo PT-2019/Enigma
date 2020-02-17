@@ -1,6 +1,8 @@
 package common.entities.types;
 
-import common.enigmas.reporting.EnigmaReport;
+import common.enigmas.reporting.Report;
+import common.language.EnigmaField;
+import common.language.GameLanguage;
 
 /**
  * Report des changement d'états
@@ -13,19 +15,28 @@ import common.enigmas.reporting.EnigmaReport;
  * @version 6.0 17/02/2020
  * @since 6.0 17/02/2020
  */
-public enum ChangeStateReport implements EnigmaReport.Report {
-	DONE(""),
-	UNLOCK("Ouvert"),
-	INVENTORY("Ajout dans l'inventaire");
+public enum ChangeStateReport implements Report {
+	//TODO: ces trucs sont pas utiles, pour l'instant. A déplacer aussi dans NeedToBeTranslated.
+	DONE("", SHOULD_NOT_BE_SHOWED),
+	UNLOCK(GameLanguage.gl.get(EnigmaField.UNLOCK), MUST_BE_SHOWED),
+	INVENTORY("Ajout dans l'inventaire", SHOULD_NOT_BE_SHOWED),
+	LOCKED(GameLanguage.gl.get(EnigmaField.LOCK), MUST_BE_SHOWED);
 
 	private final String value;
+	private final int importance;
 
-	ChangeStateReport(String value) {
+	ChangeStateReport(String value, int importance) {
 		this.value = value;
+		this.importance = importance;
 	}
 
 	@Override
 	public String getReport() {
 		return this.value;
+	}
+
+	@Override
+	public int getImportance() {
+		return importance;
 	}
 }

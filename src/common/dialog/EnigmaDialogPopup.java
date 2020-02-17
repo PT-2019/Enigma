@@ -8,6 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import common.enigmas.condition.Answer;
 import common.map.GameMap;
 import common.utils.Question;
+import data.keys.PlayerKeys;
 
 /**
  * Permet d'afficher les dialogues dans le Jeu.
@@ -202,15 +203,15 @@ public class EnigmaDialogPopup extends Window implements InputProcessor {
     public boolean keyDown(int i) {
         //si la fenête est visible alors on contrôle le dialogue
         if (isVisible()){
-            if (Input.Keys.ENTER == i){
+            if (PlayerKeys.PLAYER_USE.isKey(i)){
                 this.nextPart();
             }
             if (dialog.isChoice()){
-                if (Input.Keys.LEFT == i || Input.Keys.Q == i){
+                if (PlayerKeys.PLAYER_LEFT.isKey(i)){
                     img[current].setDrawable(skin,"rect");
                     current = 0;
                     img[current].setDrawable(skin,"arrow1");
-                }else if(Input.Keys.RIGHT == i || Input.Keys.D == i){
+                }else if(PlayerKeys.PLAYER_RIGHT.isKey(i)){
                     img[current].setDrawable(skin,"rect");
                     current = 1;
                     img[current].setDrawable(skin,"arrow1");

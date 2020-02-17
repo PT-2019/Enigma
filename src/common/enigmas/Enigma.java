@@ -189,9 +189,10 @@ public class Enigma implements ActionListener, IDInterface {
 	 * Vérifie que toutes les conditions sont satisfaites
 	 *
 	 * @param p Joueur ayant intéragit avec l'entité ayant appelé cette méthode
-	 * @return un message d'une condition ou opération
+	 * @return un message d'une condition ou opération. null si énigme terminée
 	 */
 	public ArrayList<EnigmaReport> verifyConditions(Player p) {
+		if(isFulfilled()) return null;//si terminée, on quitte
 		ArrayList<EnigmaReport> report = new ArrayList<>();
 		EnigmaReport tmp;
 		boolean conditionsOk = true;
@@ -203,11 +204,20 @@ public class Enigma implements ActionListener, IDInterface {
 		}
 
 		if(conditionsOk) {
+			//vide les reports pour garder que ce qu'il y a de mieux dans opérations
+			report.clear();
+
 			//On lance toutes les opérations de l'enigme
 			for (Operation operation : this.operations) {
 				tmp = operation.run(p);
+				if(!tmp.isFulfilled()) conditionsOk = false;
 				report.add(tmp);//ajoute tous les report
 			}
+
+			if(!conditionsOk) return report;
+
+			//énigme terminée
+			this.fulfilled = true;
 		}
 		return report;
 	}

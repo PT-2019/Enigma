@@ -12,13 +12,13 @@ package common.enigmas.reporting;
  */
 public enum OperationReport implements Report {
 	MAIN_MUSIC_CHANGED("La musique principale changée.",SHOULD_NOT_BE_SHOWED),
-	GIVEN("Un objet a été donné.",MAY_BE_SHOWED),
-	INVENTORY_FULL("L'inventaire est plein.",2),
-	ROOM_HIDDEN("Une salle a été cachée.",SHOULD_NOT_BE_SHOWED),
+	GIVEN("Un objet a été donné.", MUST_BE_SHOWED),
+	INVENTORY_FULL("L'inventaire est plein.", MUST_BE_SHOWED),
+	ROOM_HIDDEN("Une salle a été cachée.", SHOULD_NOT_BE_SHOWED),
 	ROOM_SHOWED("Une salle a été dévoilée.",MAY_BE_SHOWED),
-	SOUND_LAUNCHED("Un son a été lancé.",SHOULD_NOT_BE_SHOWED),
-	ENTITY_SPAWNED("Une entitée est apparue.",SHOULD_NOT_BE_SHOWED),
-	UNLOCKED("Quelque chose a été déverrouillé",MAY_BE_SHOWED);
+	SOUND_LAUNCHED("Un son a été lancé.", SHOULD_NOT_BE_SHOWED),
+	ENTITY_SPAWNED("Une entité est apparue.",SHOULD_NOT_BE_SHOWED),
+	UNLOCKED("Quelque chose a été déverrouillé", MUST_BE_SHOWED);
 
 	/**
 	 * Rapport

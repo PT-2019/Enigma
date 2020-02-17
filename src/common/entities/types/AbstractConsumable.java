@@ -138,7 +138,7 @@ public abstract class AbstractConsumable extends AbstractGameObject implements C
 			//ajoute cet item
 			//return que c'est ok
 			this.addedToInventory = true;
-			return new EnigmaReport(ChangeStateReport.INVENTORY, true);
+			return new EnigmaReport(ChangeStateReport.INVENTORY, true, this);
 		}
 		return null;
 	}
@@ -155,5 +155,10 @@ public abstract class AbstractConsumable extends AbstractGameObject implements C
 		} else {
 			return this.altTiles.get(layer.name());
 		}
+	}
+
+	@Override
+	public boolean shouldAutomaticRepaint() {
+		return true;
 	}
 }

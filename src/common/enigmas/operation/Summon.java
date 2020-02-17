@@ -92,7 +92,7 @@ public class Summon extends Operation {
 			this.spawn.setEntity(this.entity);
 			this.fulfilled = true;
 		}
-		return new EnigmaReport(OperationReport.ENTITY_SPAWNED, true); //opération ok
+		return new EnigmaReport(OperationReport.ENTITY_SPAWNED, true, this.entity); //opération ok
 	}
 
 	/**
