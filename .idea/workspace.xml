@@ -5,19 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3988e985-92ab-48ae-ab5d-41247abb4cd3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/files/map/cocoa.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/map/cocoa.tmx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/dialog/Dialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/dialog/Dialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/dialog/EnigmaDialogPopup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/dialog/EnigmaDialogPopup.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/players/Monster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/players/Monster.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/players/MonsterGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/players/MonsterGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/players/NPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/players/NPC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/players/NpcGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/players/NpcGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/players/PlayerGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/players/PlayerGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/map/GameMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/map/GameMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/save/entities/serialization/MonsterFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/save/entities/serialization/MonsterFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/save/entities/serialization/NpcFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/save/entities/serialization/NpcFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/lang/en/base.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/lang/en/base.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/lang/fr/base.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/lang/fr/base.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/language/EnigmaField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/language/EnigmaField.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/NeedToBeTranslated.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/NeedToBeTranslated.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/menus/enimas/create/OperationPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/menus/enimas/create/OperationPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/menus/enimas/create/Operations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/menus/enimas/create/Operations.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game/screens/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/screens/GameScreen.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -179,7 +173,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.EnigmaFastGame">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="EnigmaFastGame" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="EnigmaFastGame" />
       <module name="Enigma" />
@@ -294,7 +288,14 @@
       <option name="project" value="LOCAL" />
       <updated>1580590268008</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="dialogue entité, timer">
+      <created>1581889053232</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1581889053232</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -345,7 +346,8 @@
     <MESSAGE value="Fix commit Loïc" />
     <MESSAGE value="fix" />
     <MESSAGE value="fix multi heroes" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix multi heroes" />
+    <MESSAGE value="dialogue entité, timer" />
+    <option name="LAST_COMMIT_MESSAGE" value="dialogue entité, timer" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2355" y="188" width="806" height="679" key="#Console" />

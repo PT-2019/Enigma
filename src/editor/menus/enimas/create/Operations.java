@@ -35,6 +35,7 @@ public enum Operations {
 	UNLOCK(NeedToBeTranslated.UNLOCK_DESC, NeedToBeTranslated.LOCKABLE_ONLY, SelectionsModes.MAP),
 	SOUND(NeedToBeTranslated.LAUNCH_SOUND, NeedToBeTranslated.NO_SOUND, SelectionsModes.MUSIC),
 	MAIN_MUSIC(NeedToBeTranslated.CHANGE_MAIN_MUSIC, NeedToBeTranslated.NO_MUSIC, SelectionsModes.MUSIC),
+	END_GAME(NeedToBeTranslated.END_GAME, "", SelectionsModes.NONE),
 	;
 
 	/**

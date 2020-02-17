@@ -46,6 +46,11 @@ public class GameScreen extends LibgdxScreen {
 	private GameMap map;
 
 	/**
+	 * Screen de fin
+	 */
+	private static EndScreen endScreen;
+
+	/**
 	 * Retourne le chemin de la map actuelle
 	 *
 	 * @return le chemin de la map
@@ -60,6 +65,7 @@ public class GameScreen extends LibgdxScreen {
 		this.hud = new Stage();
 		this.map = new GameMap(MAP_PATH, 2.5f);
 		EnigmaDialogPopup dialog = map.getEnigmaDialog();
+		endScreen = new EndScreen();
 		//ajout au stage
 		this.main.addActor(this.map);
 		this.map.showGrid(false);
@@ -76,7 +82,7 @@ public class GameScreen extends LibgdxScreen {
 
 		this.hud.addActor(dialog);
 		//ecran de fin
-		this.hud.addActor(new EndScreen());
+		this.hud.addActor(this.endScreen);
 		//timer
 		this.hud.addActor(new TimerFrame());
 		this.map.launchMusic();
@@ -139,5 +145,9 @@ public class GameScreen extends LibgdxScreen {
 	@Override
 	public AbstractMap getMap() {
 		return this.map;
+	}
+
+	public static EndScreen getEndScreen(){
+		return endScreen;
 	}
 }
