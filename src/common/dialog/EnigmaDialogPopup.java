@@ -7,22 +7,20 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import common.enigmas.condition.Answer;
 import common.map.GameMap;
-import common.map.model.Map;
 import common.utils.Question;
-import org.lwjgl.Sys;
 
 /**
  * Permet d'afficher les dialogues dans le Jeu.
  * Pour l'instant ne peut afficher que 2 choix
  */
 public class EnigmaDialogPopup extends Window implements InputProcessor {
-    private static String SKIN_PATH = "assets/files/atlas/inventory.json";
+    private static final String SKIN_PATH = "assets/files/atlas/inventory.json";
 
-    private static String ATLAS_PATH = "assets/files/atlas/inventory.atlas";
+    private static final String ATLAS_PATH = "assets/files/atlas/inventory.atlas";
 
-    private static String SKIN_PATH2 = "assets/files/atlas/uiskin.json";
+    private static final String SKIN_PATH2 = "assets/files/atlas/uiskin.json";
 
-    private static String ATLAS_PATH2 = "assets/files/atlas/uiskin.atlas";
+    private static final String ATLAS_PATH2 = "assets/files/atlas/uiskin.atlas";
 
     /**
      * String qui représente comment son codé les retours à la ligne dans le
@@ -61,7 +59,7 @@ public class EnigmaDialogPopup extends Window implements InputProcessor {
      */
     private Skin skin;
     /**
-     * Indice de l'image actuellemet sélectionné
+     * Indice de l'image actuellement sélectionné
      */
     private int current;
 
@@ -204,7 +202,6 @@ public class EnigmaDialogPopup extends Window implements InputProcessor {
     public boolean keyDown(int i) {
         //si la fenête est visible alors on contrôle le dialogue
         if (isVisible()){
-            System.out.println("issou");
             if (Input.Keys.ENTER == i){
                 this.nextPart();
             }

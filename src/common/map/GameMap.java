@@ -10,7 +10,9 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+import common.dialog.Dialog;
 import common.dialog.EnigmaDialogPopup;
+import common.dialog.ItemDialog;
 import common.enigmas.Enigma;
 import common.enigmas.TileEvent;
 import common.enigmas.TileEventEnum;
@@ -26,6 +28,7 @@ import common.entities.special.MusicEditor;
 import common.entities.types.Activatable;
 import common.entities.types.ChangeState;
 import common.entities.types.Container;
+import common.entities.types.Content;
 import common.entities.types.ShowContent;
 import common.save.TmxProperties;
 import common.save.entities.serialization.EntityFactory;
@@ -241,22 +244,36 @@ public class GameMap extends AbstractMap {
 					EnigmaReport report = ((ChangeState) o).changeState(actor, action);
 					if(report != null) reports.add(o);
 				} else if(o instanceof ShowContent){
-					System.out.println("Affiche content de "+o.getReadableName());
+					EnigmaDialogPopup dialog = this.getEnigmaDialog();
+					Dialog node = new Dialog(((Content) o).getContent());
+					dialog.showDialog(node, this);
 				}
 			}
 			//les entités qui ont changé
 			for (GameObject o: reports) {
-				if(o instanceof ChangeState){
+				if (o instanceof ChangeState) {
 					this.updateEntity(o);
 
-					if(o instanceof Container && !(o instanceof NPC)){
-						System.out.println("Affichage de l'inventaire de "+o.getReadableName());
-					} else
+					EnigmaDialogPopup dialog = this.getEnigmaDialog();
+					//TODO: de-commenter, les messages temp de Loïc
+					/*if (ItemDialog.getText(o) != null) {
+						Dialog node = new Dialog(ItemDialog.getText(o));
+						dialog.showDialog(node, this);
+					}*/
 
-					if(o instanceof Consumable){
-						System.out.println("Ajoute dans l'inventaire "+o.getReadableName());
+					if (o instanceof Container && !(o instanceof NPC)) {
+						//fake (affiche son inventaire pour prendre/retirer)
+						Dialog node = new Dialog("Affichage de l'inventaire (fake) de " + o.getReadableName());
+						dialog.showDialog(node, this);
+					} else if (o instanceof Consumable) {
 						//ajout
+						//...
 
+						//préviens
+						Dialog node = new Dialog("Ajoute dans l'inventaire (fake) " + o.getReadableName());
+						dialog.showDialog(node, this);
+
+						//supprime de la map
 						this.removeEntity(o);
 					}
 				}

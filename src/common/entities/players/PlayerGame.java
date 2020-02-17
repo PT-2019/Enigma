@@ -3,20 +3,12 @@ package common.entities.players;
 import api.libgdx.actor.GameActor;
 import api.libgdx.actor.GameActorAnimation;
 import api.libgdx.utils.InputAdapter;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.math.Vector2;
-import common.dialog.Dialog;
-import common.dialog.EnigmaDialogPopup;
-import common.dialog.ItemDialog;
 import common.enigmas.TileEventEnum;
-import common.entities.GameObject;
-import common.entities.types.Content;
-import common.map.AbstractMap;
 import common.map.GameMap;
 import common.utils.Logger;
 import data.Direction;
-import data.keys.CameraKeys;
+import data.keys.PlayerKeys;
 
 /**
  * Cette classe permet de déplacer le joueur et d'actionner son animation
@@ -111,22 +103,25 @@ public class PlayerGame extends GameActorAnimation implements InputAdapter {
 	 * @return true si événement géré
 	 */
 	@Override
-	public boolean keyDown a(int i) {
-
+	public boolean keyDown(int i) {
 		if(!map.getEnigmaDialog().isVisible()){
 			//TODO: interdit de faire input et update en même temps !
-			if (CameraKeys.CAMERA_LEFT.isKey(i)) {
+			if (PlayerKeys.PLAYER_LEFT.isKey(i)) {
 				this.upPlayer(-PlayerGame.SPEED, 0, 3, 5, Direction.LEFT);
-			} else if (CameraKeys.CAMERA_RIGHT.isKey(i)) {
+				return true;
+			} else if (PlayerKeys.PLAYER_RIGHT.isKey(i)) {
 				this.upPlayer(PlayerGame.SPEED, 0, 6, 8, Direction.RIGHT);
-			} else if (CameraKeys.CAMERA_UP.isKey(i)) {
+				return true;
+			} else if (PlayerKeys.PLAYER_UP.isKey(i)) {
 				this.upPlayer(0, PlayerGame.SPEED, 9, 11, Direction.TOP);
-			} else if (CameraKeys.CAMERA_DOWN.isKey(i)) {
+				return true;
+			} else if (PlayerKeys.PLAYER_DOWN.isKey(i)) {
 				this.upPlayer(0, -PlayerGame.SPEED, 0, 2, Direction.BOTTOM);
+				return true;
 			}
 
 			//interaction du joueur avec le milieu
-			if (Input.Keys.E == i || Input.Keys.ENTER == i) {
+			if (PlayerKeys.PLAYER_USE.isKey(i)) {
 				float tmpX, tmpY;
 
 				if (facedDirection == Direction.BOTTOM) {
@@ -152,27 +147,27 @@ public class PlayerGame extends GameActorAnimation implements InputAdapter {
 				//doAction
 				this.map.doAction(tmpX, tmpY, this, TileEventEnum.ON_USE);
 
-				//TODO: tmp
-				//on récupère l'objet sur lequelle on a intéragit
-				Vector2 position = AbstractMap.posToIndex(tmpX, tmpY, map);
-				GameObject object = map.posToEntities((int) position.y, (int) position.x);
-				System.out.println(object);
-
-				//toute cette partie permet d'afficher le dialogue des objets si ils en ont
-				if (object instanceof Content) {
-					EnigmaDialogPopup dialog = map.getEnigmaDialog();
-					Dialog node = new Dialog(((Content) object).getContent());
-					dialog.showDialog(node, map);
-				} else {
-					EnigmaDialogPopup dialog = map.getEnigmaDialog();
-					if (ItemDialog.getText(object) != null) {
-						Dialog node = new Dialog(ItemDialog.getText(object));
-						dialog.showDialog(node, map);
-					}
-				}
+				return true;
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * Change le sprite
+	 * @param min minimum pour effectuer le changement
+	 * @param start sprite de départ
+	 * @param idle sprite de base
+	 */
+	private void setSprite(int min, int start, int idle){
+		//on contrôle les sprites affichés
+		if (this.getKeyFrameIndex() > min) {
+			this.setKeyFrame(start);
+			//on met en pause
+			this.setAnimationPaused(true);
+			//on met un sprite immobile
+			this.setKeyFrame(idle);
+		}
 	}
 
 	/**
@@ -184,40 +179,17 @@ public class PlayerGame extends GameActorAnimation implements InputAdapter {
 	public void act(float delta) {
 		super.act(delta);
 
-		if (this.facedDirection == Direction.LEFT) {
-			//on controle les sprites affichés
-			if (this.getKeyFrameIndex() > 5) {
-				this.setKeyFrame(4);
-				//on met en pause
-				this.setAnimationPaused(true);
-				//on met un sprite immobile
-				this.setKeyFrame(5);
-			}
-		}
+		if (this.facedDirection == Direction.LEFT)
+			setSprite(5,4,5);//6 ?
 
-		if (this.facedDirection == Direction.RIGHT) {
-			if (this.getKeyFrameIndex() > 7) {
-				this.setKeyFrame(6);
-				this.setAnimationPaused(true);
-				this.setKeyFrame(8);
-			}
-		}
+		if (this.facedDirection == Direction.RIGHT)
+			setSprite(7,6,8);
 
-		if (this.facedDirection == Direction.BOTTOM) {
-			if (this.getKeyFrameIndex() > 1) {
-				this.setKeyFrame(0);
-				this.setAnimationPaused(true);
-				this.setKeyFrame(2);
-			}
-		}
+		if (this.facedDirection == Direction.BOTTOM)
+			setSprite(1,0,2);
 
-		if (this.facedDirection == Direction.TOP) {
-			if (this.getKeyFrameIndex() > 10) {
-				this.setKeyFrame(9);
-				this.setAnimationPaused(true);
-				this.setKeyFrame(11);
-			}
-		}
+		if (this.facedDirection == Direction.TOP)
+			setSprite(10,9,11);
 	}
 
 	/**
