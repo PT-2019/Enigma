@@ -150,6 +150,11 @@ public abstract class AbstractLivingEntity extends GameActorTextured implements 
 	}
 
 	@Override
+	public HashMap<Layer, Array<Float>> getTiles() {
+		return this.tiles;
+	}
+
+	@Override
 	public void setTiles(Array<Float> texture, Layer layer) {
 		this.tiles.put(layer, texture);
 	}

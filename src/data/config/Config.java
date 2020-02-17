@@ -275,6 +275,7 @@ public final class Config {
 	public static final String SKIN_PATH = "assets/files/atlas/uiskin.atlas";
 	/**
 	 * Répertoire des musiques
+	 * Dossier où sont stocker toute les musiques
 	 *
 	 * @since 6.7
 	 */

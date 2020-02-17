@@ -26,7 +26,7 @@ import java.awt.BorderLayout;
  */
 public class EnigmaFastGame implements Application {
 
-	private static final String PATH = "assets/files/map/cocoa.tmx";
+	private static final String PATH = "assets/files/map/test.tmx";
 	private static EnigmaFastGame launcher;
 	private CustomWindow window;
 	private JPanel gameScreen;

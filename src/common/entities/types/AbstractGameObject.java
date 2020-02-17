@@ -103,6 +103,11 @@ public abstract class AbstractGameObject extends GameActorAnimation implements G
 	}
 
 	@Override
+	public HashMap<Layer, Array<Float>> getTiles() {
+		return tiles;
+	}
+
+	@Override
 	public void setTiles(Array<Float> texture, Layer layer) {
 		this.tiles.put(layer, texture);
 	}

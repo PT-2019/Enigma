@@ -189,10 +189,10 @@
                 <property name="className" value="common.entities.players.NPC"/>
                 <property name="y2" value="12.0"/>
                 <property name="FLOOR2" value="4"/>
+                <property name="NAME" value="Joker"/>
                 <property name="KEY" value="Joker"/>
                 <property name="INVENTORY" value=""/>
                 <property name="HERO" value="true"/>
-                <property name="NAME" value="Joker"/>
                 <property name="JSON" value="assets/entities/players/players.json"/>
             </properties>
         </object>
@@ -200,37 +200,43 @@
             <properties>
                 <property name="className" value="common.entities.consumable.Key"/>
                 <property name="y2" value="-11.0"/>
-                <property name="FLOOR2" value="1"/>
-                <property name="COLLISION" value="1"/>
             </properties>
         </object>
         <object height="1.0" id="13" name="entity" width="1.0" x="-13.0" y="-13.0">
             <properties>
                 <property name="className" value="common.entities.consumable.Book"/>
                 <property name="y2" value="-13.0"/>
-                <property name="FLOOR2" value="1"/>
-                <property name="COLLISION" value="1"/>
-                <property name="CONTENT" value="Bill Gates n'est pas droitier."/>
+                <property name="CONTENT" value=""/>
             </properties>
         </object>
         <object height="0.0" id="14" name="entity" width="0.0" x="0.0" y="0.0">
             <properties>
                 <property name="className" value="common.entities.special.MusicEditor"/>
                 <property name="y2" value="0.0"/>
-                <property name="STARTER" value="false"/>
                 <property name="NAME" value="ouverture porte"/>
                 <property name="PATH" value="assets/files/music/ouverture porte.mp3"/>
                 <property name="MAIN" value="false"/>
+                <property name="STARTER" value="false"/>
             </properties>
         </object>
         <object height="0.0" id="15" name="entity" width="0.0" x="0.0" y="0.0">
             <properties>
                 <property name="className" value="common.entities.special.MusicEditor"/>
                 <property name="y2" value="0.0"/>
-                <property name="STARTER" value="false"/>
                 <property name="NAME" value="ouverture porte"/>
                 <property name="PATH" value="assets/files/music/ouverture porte.mp3"/>
                 <property name="MAIN" value="false"/>
+                <property name="STARTER" value="false"/>
+            </properties>
+        </object>
+        <object height="0.0" id="18" name="entity" width="0.0" x="0.0" y="0.0">
+            <properties>
+                <property name="className" value="common.entities.special.MusicEditor"/>
+                <property name="y2" value="0.0"/>
+                <property name="NAME" value="Destiny"/>
+                <property name="PATH" value="assets/files/music/Destiny.mp3"/>
+                <property name="MAIN" value="true"/>
+                <property name="STARTER" value="true"/>
             </properties>
         </object>
         <object height="11.0" id="1" name="entity" width="8.0" x="3.0" y="29.0">
@@ -321,10 +327,10 @@
                 <property name="className" value="common.entities.players.NPC"/>
                 <property name="y2" value="22.0"/>
                 <property name="FLOOR2" value="4"/>
+                <property name="NAME" value="Blonde"/>
                 <property name="KEY" value="Blonde"/>
                 <property name="INVENTORY" value=""/>
                 <property name="HERO" value="false"/>
-                <property name="NAME" value="Blonde"/>
                 <property name="JSON" value="assets/entities/players/players.json"/>
             </properties>
         </object>

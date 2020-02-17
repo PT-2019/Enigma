@@ -1,9 +1,12 @@
 package editor.menus.enimas.create.listeners;
 
+import api.utils.Utility;
+import common.enigmas.operation.Operation;
 import common.entities.special.MusicEditor;
 import common.hud.EnigmaOptionPane;
 import common.hud.EnigmaWindow;
 import common.map.MapTestScreen;
+import data.config.Config;
 import editor.menus.enimas.create.MusicPanel;
 import editor.menus.enimas.create.Operations;
 import game.EnigmaGame;
@@ -43,7 +46,15 @@ public class MusicListener implements MouseListener {
 		Object tmp;
 
 		if (!chose.equals(EnigmaOptionPane.CANCEL)) {
-			MusicEditor object = new MusicEditor(chose);
+			//on doit obtenir le chemin
+			String path;
+			if(this.operations == Operations.MAIN_MUSIC){
+				path = Config.MUSIC_FOLDER + chose + Utility.getExtension(Config.MUSIC_FOLDER, chose);
+			} else {
+				path = Config.SOUND_FOLDER + chose + Utility.getExtension(Config.SOUND_FOLDER, chose);
+			}
+
+			MusicEditor object = new MusicEditor(path, chose);
 			object.setTemp(true); //temporaire
 
 			tmp = e.getSource();

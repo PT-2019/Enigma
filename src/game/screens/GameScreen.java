@@ -112,6 +112,7 @@ public class GameScreen extends LibgdxScreen {
 	@Override
 	public void dispose() {
 		try {
+			this.map.getGameMusic().dispose();
 			this.main.dispose();
 			this.hud.dispose();
 		} catch (Exception e) {

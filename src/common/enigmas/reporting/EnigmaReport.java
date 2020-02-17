@@ -73,6 +73,11 @@ public class EnigmaReport {
 		this.fulfilled = fulfilled;
 	}
 
+	@Override
+	public String toString() {
+		return "EnigmaReport{" + "report=" + report + ", fulfilled=" + fulfilled + '}';
+	}
+
 	/**
 	 * Le message a reporter
 	 *

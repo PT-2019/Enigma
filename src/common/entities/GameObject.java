@@ -3,14 +3,15 @@ package common.entities;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-import common.entities.special.Room;
 import common.entities.types.IDInterface;
 import common.save.entities.SaveKey;
+import common.save.entities.serialization.EntitySerializable;
 import data.Layer;
 import data.TypeEntity;
 
 import java.util.EnumMap;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Un object du jeu
@@ -19,9 +20,7 @@ import java.util.HashMap;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 5.0
- * @see Entity
- * @see Room
+ * @version 6.2
  * @since 4.0 23/12/2019
  */
 public interface GameObject extends IDInterface {
@@ -76,6 +75,15 @@ public interface GameObject extends IDInterface {
 	 * @since 4.0
 	 */
 	Array<Float> getTiles(Layer layer);
+
+	/**
+	 * Renvoi les tiles représentant la texture de l'entité
+	 *
+	 * @return les tiles représentant la texture de l'entité
+	 * @see Layer
+	 * @since 6.2
+	 */
+	Map<Layer, Array<Float>> getTiles();
 
 	/**
 	 * Définit les tiles représentant la texture de l'entité au niveau Layer
@@ -141,4 +149,12 @@ public interface GameObject extends IDInterface {
 	 * @since 6.0
 	 */
 	void setTemp(boolean temp);
+
+	/**
+	 * Méthode pour charger des données en plus selon le gameObject
+	 * @param serializable entitySerializable
+	 * @param created l'object (this)
+	 * @since 6.1
+	 */
+	default void serialization(EntitySerializable serializable, GameObject created){}
 }

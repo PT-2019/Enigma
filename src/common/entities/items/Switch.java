@@ -1,11 +1,16 @@
 package common.entities.items;
 
+import api.utils.Utility;
 import com.badlogic.gdx.maps.MapProperties;
+import com.badlogic.gdx.utils.Array;
+import common.entities.GameObject;
 import common.entities.types.Activatable;
 import common.language.GameFields;
 import common.language.GameLanguage;
 import common.save.entities.PlayerSave;
 import common.save.entities.SaveKey;
+import common.save.entities.SaveTiles;
+import common.save.entities.serialization.EntitySerializable;
 import data.TypeEntity;
 
 import java.util.EnumMap;
@@ -68,6 +73,8 @@ public class Switch extends Activatable {
 		return "Switch{" + "activated=" + activated + ", enigmas=" + enigmas + ", id=" + id + '}';
 	}
 
+	//imp
+
 	@Override
 	public EnumMap<TypeEntity, Boolean> getImplements() {
 		EnumMap<TypeEntity, Boolean> imp = TypeEntity.emptyMap();
@@ -84,15 +91,19 @@ public class Switch extends Activatable {
 		return GameLanguage.gl.get(GameFields.SWITCH);
 	}
 
+	//save
+
 	@Override
 	public HashMap<SaveKey, String> getSave() {
 		HashMap<SaveKey, String> save = new HashMap<>();
 		save.put(PlayerSave.ACTIVATED, String.valueOf(this.activated));
+		save.put(PlayerSave.ALT_TILES, SaveTiles.save(this.altTiles));
 		return save;
 	}
 
 	@Override
 	public void load(MapProperties data) {
 		this.activated = Boolean.parseBoolean(data.get(PlayerSave.ACTIVATED.getKey(), String.class));
+		this.altTiles = SaveTiles.load(data.get(PlayerSave.ALT_TILES.getKey(), String.class));
 	}
 }

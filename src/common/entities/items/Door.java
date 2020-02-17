@@ -2,14 +2,13 @@ package common.entities.items;
 
 import com.badlogic.gdx.maps.MapProperties;
 import common.entities.Item;
-import common.entities.types.AbstractItem;
+import common.entities.types.AbstractLockable;
 import common.entities.types.Lockable;
-import common.entities.types.Passage;
 import common.language.GameFields;
 import common.language.GameLanguage;
-import common.map.model.Room;
 import common.save.entities.PlayerSave;
 import common.save.entities.SaveKey;
+import common.save.entities.SaveTiles;
 import data.TypeEntity;
 
 import java.util.EnumMap;
@@ -22,28 +21,12 @@ import java.util.HashMap;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 4.0 24/12/2019
+ * @version 6.0
  * @see Item
  * @see Lockable
- * @see Passage
  * @since 2.0
  */
-public class Door extends AbstractItem implements Passage, Lockable {
-
-	/**
-	 * Indique si l'objet est verrouillé
-	 */
-	private boolean locked;
-
-	/**
-	 * Pièce 1
-	 */
-	private Room room1;
-
-	/**
-	 * Pièce 2
-	 */
-	private Room room2;
+public class Door extends AbstractLockable {
 
 	/**
 	 * Crée une porte
@@ -61,10 +44,7 @@ public class Door extends AbstractItem implements Passage, Lockable {
 	 * @since 2.0
 	 */
 	public Door(int id) {
-		super(id);
-		this.locked = true;
-		this.room1 = null;
-		this.room2 = null;
+		super(id, true);
 	}
 
 
@@ -75,45 +55,15 @@ public class Door extends AbstractItem implements Passage, Lockable {
 	 * @since 2.0
 	 */
 	public Door(boolean locked) {
-		this(-1);
-		this.locked = locked;
-	}
-
-	//passage
-
-	@Override
-	public Room getRoom1() {
-		return this.room1;
-	}
-
-	@Override
-	public Room getRoom2() {
-		return this.room2;
-	}
-
-	//lock
-
-	@Override
-	public void lock() {
-		this.locked = true;
-	}
-
-	@Override
-	public void unlock() {
-		this.locked = false;
-	}
-
-	@Override
-	public boolean isLocked() {
-		return this.locked;
+		super(-1, locked);
 	}
 
 	//toString
 
+
 	@Override
 	public String toString() {
-		return "Door{" + "locked=" + locked + ", room1=" + room1 + ", room2=" + room2 +
-				", enigmas=" + enigmas + ", id=" + id + '}';
+		return "Door{" + "locked=" + locked + ", enigmas=" + enigmas + ", id=" + id + '}';
 	}
 
 	@Override
@@ -137,11 +87,13 @@ public class Door extends AbstractItem implements Passage, Lockable {
 	public HashMap<SaveKey, String> getSave() {
 		HashMap<SaveKey, String> save = new HashMap<>();
 		save.put(PlayerSave.LOCKED, String.valueOf(this.locked));
+		save.put(PlayerSave.ALT_TILES, SaveTiles.save(this.altTiles));
 		return save;
 	}
 
 	@Override
 	public void load(MapProperties data) {
 		this.locked = Boolean.parseBoolean(data.get(PlayerSave.LOCKED.getKey(), String.class));
+		this.altTiles = SaveTiles.load(data.get(PlayerSave.ALT_TILES.getKey(), String.class));
 	}
 }

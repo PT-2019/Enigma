@@ -61,8 +61,10 @@ public class GameActor extends Group {
 	 * Renvoi s'il y a collision entre deux acteurs dont un en mouvement
 	 *
 	 * @param actor une autre acteur
+	 * @param x nouvelle position acteur
+	 * @param y nouvelle position acteur
 	 * @return true s'il y a collision sinon false
-	 * @since 4.0 20/12/2019
+	 * @since 6.0
 	 */
 	public boolean overlaps(Actor actor, float x, float y) {
 		return GameActorUtilities.overlaps(this, actor, x, y);

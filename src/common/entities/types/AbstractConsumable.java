@@ -1,11 +1,19 @@
 package common.entities.types;
 
 import api.utils.annotations.ConvenienceClass;
+import com.badlogic.gdx.utils.Array;
 import common.enigmas.Enigma;
+import common.enigmas.TileEventEnum;
+import common.enigmas.reporting.EnigmaReport;
 import common.entities.Consumable;
+import common.entities.GameObject;
 import common.entities.players.Player;
+import common.entities.players.PlayerGame;
+import common.save.entities.serialization.EntitySerializable;
+import data.Layer;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 
 /**
@@ -23,7 +31,12 @@ import java.util.Iterator;
  * @since 4.0 24/12/2019
  */
 @ConvenienceClass
-public abstract class AbstractConsumable extends AbstractGameObject implements Consumable {
+public abstract class AbstractConsumable extends AbstractGameObject implements Consumable, ChangeState {
+
+	/**
+	 * Tiles alternatives si changement d'état
+	 */
+	protected HashMap<String, Array<Float>> altTiles;
 
 	/**
 	 * Enigmes données à l'objet
@@ -31,6 +44,11 @@ public abstract class AbstractConsumable extends AbstractGameObject implements C
 	 * @since 4.0
 	 */
 	protected ArrayList<Enigma> enigmas;
+
+	/**
+	 * Si ajouté dans l'inventaire
+	 */
+	private boolean addedToInventory;
 
 	/**
 	 * Ce classe ne doit pas se retrouver ailleurs que dans un extends
@@ -50,7 +68,8 @@ public abstract class AbstractConsumable extends AbstractGameObject implements C
 	 */
 	protected AbstractConsumable(int id) {
 		super(id);
-		this.enigmas = new ArrayList<Enigma>();
+		this.enigmas = new ArrayList<>();
+		this.addedToInventory = false;
 	}
 
 	//Enigmas
@@ -62,6 +81,8 @@ public abstract class AbstractConsumable extends AbstractGameObject implements C
 			else e.verifyConditions(p);
 		}
 	}
+
+	//enigmas
 
 	@Override
 	public void addEnigma(Enigma e) {
@@ -96,6 +117,43 @@ public abstract class AbstractConsumable extends AbstractGameObject implements C
 		return s.toString();
 	}
 
+	//imp
+	@Override
+	public void serialization(EntitySerializable serializable, GameObject created) {
+		HashMap<String, Array<Float>> altTiles = serializable.getAltTiles();
+		if(altTiles != null){//il y a des tiles
+			this.altTiles = altTiles;
+		}
+	}
+
+	//toString
+
 	@Override
 	public abstract String toString();
+
+	@Override
+	public EnigmaReport changeState(PlayerGame actor, TileEventEnum event) {
+		if(event.equals(TileEventEnum.ON_USE)){
+			//Récupère l'inventaire du joueur
+			//ajoute cet item
+			//return que c'est ok
+			this.addedToInventory = true;
+			return new EnigmaReport(ChangeStateReport.INVENTORY, true);
+		}
+		return null;
+	}
+
+	@Override
+	public boolean isNormalState() {
+		return !addedToInventory;
+	}
+
+	@Override
+	public Array<Float> getTilesFromState(Layer layer) {
+		if(isNormalState()){
+			return this.tiles.get(layer);
+		} else {
+			return this.altTiles.get(layer.name());
+		}
+	}
 }
