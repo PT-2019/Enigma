@@ -1,8 +1,17 @@
 package common.entities.special;
 
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import common.enigmas.Enigma;
 import common.entities.Item;
+import common.entities.consumable.Key;
+import common.entities.players.Player;
+import common.entities.types.Container;
+import game.EnigmaGame;
+import org.lwjgl.Sys;
 
+import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Inventaire d'un joueur
@@ -11,7 +20,7 @@ import java.util.ArrayList;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 5.0
+ * @version 6.0
  * @see common.entities.players.Player
  * @since 5.0
  */
@@ -20,14 +29,17 @@ public class Inventory {
 	/**
 	 * Maximum d'items stockables
 	 */
-	public final static int MAX_ITEMS = 20;
-	/***
+	public final static int MAX_ITEMS = 15;
+	/**
 	 * Items de l'inventaire
 	 */
-	private ArrayList<Item> items;
+	private Item[] items;
+	@Deprecated
+	private ArrayList<Item> item;
+
 
 	public Inventory() {
-		this.items = new ArrayList<>();
+		this.items = new Item[MAX_ITEMS];
 	}
 
 	/**
@@ -36,9 +48,14 @@ public class Inventory {
 	 * @param i Item
 	 */
 	public void add(Item i) {
-		if (this.items.size() < MAX_ITEMS)
-			this.items.add(i);
-		else
+		if (!this.isFull()) {
+			for(int j = 0; j < this.items.length; j++){
+				if(this.items[j] == null){
+					this.items[j] = i;
+					return;
+				}
+			}
+		} else
 			throw new IllegalStateException("Inventaire plein");
 	}
 
@@ -48,7 +65,9 @@ public class Inventory {
 	 * @param i Item
 	 */
 	public void remove(Item i) {
-		this.items.remove(i);
+		int tmp = this.indexOf(i);
+		if(tmp != -1)
+			this.items[tmp] = null;
 	}
 
 	/**
@@ -56,9 +75,8 @@ public class Inventory {
 	 *
 	 * @return Liste des items
 	 */
-	@SuppressWarnings("unchecked")
-	public ArrayList<Item> getItems() {
-		return (ArrayList<Item>) this.items.clone();
+	public Item[] getItems() {
+		return this.items;
 	}
 
 	/**
@@ -68,7 +86,7 @@ public class Inventory {
 	 * @return Item
 	 */
 	public Item getByIndex(int index) {
-		return this.items.get(index);
+		return this.items[index];
 	}
 
 	/**
@@ -116,6 +134,54 @@ public class Inventory {
 	 * @return true si contient l'item, false sinon
 	 */
 	public boolean contains(Item i) {
-		return this.items.contains(i);
+		return (this.indexOf(i) >= 0);
+	}
+
+	/**
+	 * Retroune l'index d'un item
+	 * @param i Item
+	 * @return Son index
+	 */
+	public int indexOf(Item i){
+		for(int j = 0; j < this.items.length; j++){
+			if(this.items[j] != null && this.items[j].equals(i))
+				return j;
+		}
+		return -1;
+	}
+
+	/**
+	 * Interverti l'emplacement des 2 items
+	 * @param index1 Item 1
+	 * @param index2 Item 2
+	 */
+	public void swap(int index1, int index2){
+		Item tmp = this.items[index1];
+		this.items[index1] = this.items[index2];
+		this.items[index2] = tmp;
+	}
+
+	/**
+	 * L'inventaire est-il plein?
+	 * @return true si l'inventaire est plein, false sinon
+	 */
+	public boolean isFull(){
+		for(Item i : this.items){
+			if(i == null)
+				return false;
+		}
+		return true;
+	}
+
+	/**
+	 * L'inventaire est-il vide?
+	 * @return true si l'inventaire est vide, false sinon
+	 */
+	public boolean isEmpty(){
+		for(Item i : this.items){
+			if(i != null)
+				return false;
+		}
+		return true;
 	}
 }

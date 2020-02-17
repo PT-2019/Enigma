@@ -3,10 +3,13 @@ package common.entities.players;
 import common.entities.Item;
 import common.entities.special.Inventory;
 import common.entities.types.AbstractLivingEntity;
+import common.entities.types.Container;
 import common.language.GameFields;
 import common.language.GameLanguage;
 import data.TypeEntity;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.EnumMap;
 
 /**
@@ -21,7 +24,7 @@ import java.util.EnumMap;
  * @see common.entities.types.Living
  * @since 2.0
  */
-public class Player extends AbstractLivingEntity {
+public class Player extends AbstractLivingEntity implements Container {
 
 	/**
 	 * Points de vie maximaux du joueur
@@ -34,9 +37,14 @@ public class Player extends AbstractLivingEntity {
 	private Inventory inventory;
 
 	/**
-	 * Main
+	 * Main droite
 	 */
-	private Item hand;
+	private Item rightHand;
+
+	/**
+	 * Main gauche
+	 */
+	private Item leftHand;
 
 	public Player() {
 		this(-1);
@@ -64,7 +72,6 @@ public class Player extends AbstractLivingEntity {
 		super(id, name);
 		this.pv = MAX_PLAYER_PV;
 		this.inventory = new Inventory();
-		this.hand = null;
 	}
 
 	// implements
@@ -87,20 +94,112 @@ public class Player extends AbstractLivingEntity {
 
 	// inventory
 
-	public Item getItemInHand() {
-		return hand;
+	/**
+	 * Obtenir l'objet dans la main droite
+	 * @return Objet dans la main droite, null si il n'y en a pas
+	 */
+	public Item getItemInRightHand() {
+		return rightHand;
 	}
 
-	public void setItemInHand(Item hand) {
-		this.hand = hand;
+	/**
+	 * Obtenir l'objet dans la main gauche
+	 * @return Objet dans la main gauche, null si il n'y en a pas
+	 */
+	public Item getItemInLeftHand() {
+		return leftHand;
 	}
 
-	public boolean holdSomething() {
-		return (this.hand != null);
+	/**
+	 * Définir l'objet dans la main droite
+	 * null pour dire qu'il ne tien rien
+	 *
+	 * @param item Objet dans la main droite
+	 */
+	public void setItemInRightHand(Item item) {
+		Item tmp = this.rightHand;
+		this.rightHand = item;
+		if(tmp != null)
+			this.addItem(tmp);
 	}
 
+	/**
+	 * Définir l'objet dans la main gauche
+	 * null pour dire qu'il ne tien rien
+	 *
+	 * @param item Objet dans la main gauche
+	 */
+	public void setItemInLeftHand(Item item) {
+		Item tmp = this.leftHand;
+		this.leftHand = item;
+		if(tmp != null)
+			this.addItem(tmp);
+	}
+
+	/**
+	 * Est-ce que le joueur tiens un objet dans sa main droite
+	 * @return true s'il tiens un objet dans sa main droite, false sinon
+	 */
+	public boolean holdItemInRightHand() {
+		return (this.rightHand != null);
+	}
+
+	/**
+	 * Est-ce que le joueur tiens un objet dans sa main gauche
+	 * @return true s'il tiens un objet dans sa main gauche, false sinon
+	 */
+	public boolean holdItemInLeftHand() {
+		return (this.leftHand != null);
+	}
+
+	/**
+	 * Obtenir l'inventaire
+	 * @return Inventaire
+	 */
 	public Inventory getInventory() {
 		return inventory;
+	}
+
+	/**
+	 * Ajoute un item
+	 *
+	 * @param item un item
+	 * @return true si ajouté sans problèmes
+	 */
+	@Override
+	public boolean addItem(Item item) {
+		if(!this.inventory.isFull())
+			this.inventory.add(item);
+		else if(!this.holdItemInRightHand())
+			this.setItemInRightHand(item);
+		else if(!this.holdItemInLeftHand())
+			this.setItemInLeftHand(item);
+		else
+			return false;
+
+		return true;
+	}
+
+	/**
+	 * Retire un item
+	 *
+	 * @param item un item
+	 * @return true si retiré sans problèmes
+	 */
+	@Override
+	public boolean removeItem(Item item) {
+		this.inventory.remove(item);
+		return true;
+	}
+
+	/**
+	 * Retourne les items contenus
+	 *
+	 * @return retourne les items contenus
+	 */
+	@Override
+	public ArrayList<Item> getItems() {
+		return new ArrayList<>(Arrays.asList(this.inventory.getItems()));
 	}
 
 	//toString

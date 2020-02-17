@@ -47,10 +47,12 @@ public class HaveInHands extends Condition {
 	@Override
 	public EnigmaReport verify(Player p) {
 		Item i = (Item) this.entity;
-		if (p.holdSomething()) {
-			return new EnigmaReport(ConditionReport.DONE, p.getItemInHand().equals(i));
-		}
-		return new EnigmaReport(ConditionReport.DONE);
+		if (p.holdItemInRightHand() && p.getItemInRightHand().equals(i)) {
+			return new EnigmaReport(ConditionReport.FOUND_IN_HANDS, true);
+		} else if(p.holdItemInLeftHand() && p.getItemInLeftHand().equals(i))
+			return new EnigmaReport(ConditionReport.FOUND_IN_HANDS, true);
+
+		return new EnigmaReport(ConditionReport.NOT_IN_HANDS, false);
 	}
 
 	/**

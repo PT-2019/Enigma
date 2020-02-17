@@ -47,9 +47,12 @@ public class ShowRoom extends Operation {
 
 	@Override
 	public EnigmaReport run(Player p) {
-		Room room = (Room) this.entity;
-		room.setShowed(false);
-		return new EnigmaReport(OperationReport.DONE, true); //opération ok
+		if(!this.fulfilled) {
+			Room room = (Room) this.entity;
+			room.setShowed(false);
+			this.fulfilled = true;
+		}
+		return new EnigmaReport(OperationReport.ROOM_SHOWED, true); //opération ok
 	}
 
 	@Override
