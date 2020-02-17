@@ -121,4 +121,11 @@ public interface EnigmaAttributes {
 	 * @see common.enigmas.Enigma
 	 */
 	String TYPE = "type";
+
+	/**
+	 * Type associé à une énigme pour la sauvegarde
+	 *
+	 * @see common.enigmas.Enigma
+	 */
+    String FULFILLED = "fulfilled";
 }

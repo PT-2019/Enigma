@@ -64,7 +64,10 @@ public class Answer extends Condition {
 		Content c = (Content) this.entity;
 		//TODO: changer inclure réponse ...
 		String answer = EnigmaOptionPane.showInputDialog(new EnigmaWindow(), c.getContent());
-		return new EnigmaReport(ConditionReport.DONE, (answer.equals(this.question.getAnswer())));
+		if(answer.equals(this.question.getAnswer()))
+			return new EnigmaReport(ConditionReport.CORRECT_ANSWER, true);
+
+		return new EnigmaReport(ConditionReport.WRONG_ANSWER, false);
 	}
 
 	/**

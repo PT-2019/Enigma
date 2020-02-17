@@ -48,7 +48,7 @@ public class LaunchSound extends Operation {
 	@Override
 	public EnigmaReport run(Player p) {
 		this.musicGame.playSound((MusicEditor) this.entity);
-		return new EnigmaReport(OperationReport.DONE, true);
+		return new EnigmaReport(OperationReport.SOUND_LAUNCHED, true);
 	}
 
 	@Override

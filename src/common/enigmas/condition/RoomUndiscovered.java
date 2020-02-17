@@ -34,7 +34,10 @@ public class RoomUndiscovered extends Condition {
 	@Override
 	public EnigmaReport verify(Player p) {
 		Room r = (Room) this.entity;
-		return new EnigmaReport(ConditionReport.DONE, !r.isDiscovered());
+		if(!r.isDiscovered())
+			return new EnigmaReport(ConditionReport.UNDISCOVERED, true);
+
+		return new EnigmaReport(ConditionReport.DISCOVERED, false);
 	}
 
 	/**

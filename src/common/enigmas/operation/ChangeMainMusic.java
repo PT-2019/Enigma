@@ -47,8 +47,11 @@ public class ChangeMainMusic extends Operation {
 
 	@Override
 	public EnigmaReport run(Player p) {
-		this.musicGame.changeMusic((MusicEditor) this.entity);
-		return new EnigmaReport(OperationReport.DONE, true);
+		if(!this.fulfilled) {
+			this.musicGame.changeMusic((MusicEditor) this.entity);
+			this.fulfilled = true;
+		}
+		return new EnigmaReport(OperationReport.MAIN_MUSIC_CHANGED, true);
 	}
 
 	@Override
