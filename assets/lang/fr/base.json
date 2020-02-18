@@ -78,5 +78,6 @@
     unlock: Déverrouille
     lock: Verrouillé
     desactivated: Désactivé
+    end: Fin du Jeu
   }
 }

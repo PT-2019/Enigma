@@ -4,6 +4,7 @@ import com.badlogic.gdx.maps.MapProperties;
 import common.entities.Item;
 import common.entities.types.AbstractLivingEntity;
 import common.entities.types.Container;
+import common.entities.types.Content;
 import common.language.GameFields;
 import common.language.GameLanguage;
 import common.save.entities.PlayerSave;
@@ -25,7 +26,7 @@ import java.util.HashMap;
  * @version 5.0 25/01/2020
  * @since 5.0 25/01/2020
  */
-public class NPC extends AbstractLivingEntity implements Container {
+public class NPC extends AbstractLivingEntity implements Container, Content {
 
 	/**
 	 * Points de vie maximaux du joueur
@@ -36,6 +37,11 @@ public class NPC extends AbstractLivingEntity implements Container {
 	 * True si c'est un héro possible
 	 */
 	private boolean hero;
+
+	/**
+	 * Dialogue du monstre
+	 */
+	private String dialog;
 
 	private ArrayList<Item> items;
 
@@ -74,7 +80,7 @@ public class NPC extends AbstractLivingEntity implements Container {
 	public EnumMap<TypeEntity, Boolean> getImplements() {
 		EnumMap<TypeEntity, Boolean> imp = TypeEntity.emptyMap();
 		imp.put(TypeEntity.NPC, true);
-
+		imp.put(TypeEntity.CONTENT,true);
 		imp.put(TypeEntity.LIVING, true);
 		imp.put(TypeEntity.CONTAINER, true);
 		imp.put(TypeEntity.NEED_CONTAINER_MANAGER, true);
@@ -107,6 +113,7 @@ public class NPC extends AbstractLivingEntity implements Container {
 		//save des ids des éléments de l'inventaire
 		save.put(PlayerSave.INVENTORY, SaveInventory.save(this.items));
 		save.put(PlayerSave.NAME, this.name);
+		save.put(PlayerSave.CONTENT, this.dialog);
 		return save;
 	}
 
@@ -119,6 +126,7 @@ public class NPC extends AbstractLivingEntity implements Container {
 		//si chargement fini et si oui alors fini le chargement des items en récupérant selon ids.
 		SaveInventory.load(data.get(PlayerSave.INVENTORY.getKey(), String.class));
 		this.name = data.get(PlayerSave.NAME.getKey(), String.class);
+		this.dialog = data.get(PlayerSave.CONTENT.getKey(), String.class);
 		if (this.name.isEmpty() || this.name.isBlank()) this.name = this.key;
 	}
 
@@ -145,5 +153,15 @@ public class NPC extends AbstractLivingEntity implements Container {
 	@Override
 	public ArrayList<Item> getItems() {
 		return this.items;
+	}
+
+	@Override
+	public String getContent() {
+		return this.dialog;
+	}
+
+	@Override
+	public void setContent(String content) {
+		this.dialog = content;
 	}
 }

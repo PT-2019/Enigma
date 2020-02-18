@@ -33,6 +33,8 @@ public class EnigmaDialogPopup extends Window implements InputAdapter {
      */
     private Dialog dialog;
 
+    private GameMap map;
+
     /**
      * Layout de la fenêtre
      */
@@ -82,7 +84,7 @@ public class EnigmaDialogPopup extends Window implements InputAdapter {
      */
     private void init(){
         container = new Table(this.getSkin());
-        text = new Label("", getSkin());
+        text = new Label("", this.getSkin());
 
         enter = new Label("Appuyer sur Entrée pour continuer", getSkin());
         container.add(text).expand().top().fillX().padTop(25).padLeft(15);
@@ -145,11 +147,13 @@ public class EnigmaDialogPopup extends Window implements InputAdapter {
         this.dialog = new Dialog(text);
         this.answer = answer;
         init();
-        String dialogText = this.dialog.getCurrentText();
-        //pour avoir des saut de ligne
-        dialogText = dialogText.replace(NEW_LINE,"\n");
-        this.text.setText(dialogText);
-        this.setVisible(true);
+        if (!dialog.isFinish()){
+            String dialogText = this.dialog.getCurrentText();
+            //pour avoir des saut de ligne
+            dialogText = dialogText.replace(NEW_LINE,"\n");
+            this.text.setText(dialogText);
+            this.setVisible(true);
+        }
     }
 
     /**
@@ -189,11 +193,14 @@ public class EnigmaDialogPopup extends Window implements InputAdapter {
             this.clear();
             init();
         }
-        String dialogText = dialog.getCurrentText();
-        //pour avoir des saut de ligne
-        dialogText = dialogText.replace(NEW_LINE,"\n");
-        text.setText(dialogText);
-        this.setVisible(true);
+
+        if (!dialog.isFinish()){
+            String dialogText = dialog.getCurrentText();
+            //pour avoir des saut de ligne
+            dialogText = dialogText.replace(NEW_LINE,"\n");
+            text.setText(dialogText);
+            this.setVisible(true);
+        }
     }
 
     @Override

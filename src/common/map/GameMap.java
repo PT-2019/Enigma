@@ -761,14 +761,15 @@ public class GameMap extends AbstractMap {
 						npc.setHero(true);
 					} else {
 						//c'est un npc
-						entity = NpcFactory.createNpcGame(npc.getKey(), npc.getJson());
+						entity = NpcFactory.createNpcGame(npc.getKey(), npc.getJson(),npc.getContent());
 					}
 					this.addEntity(entity);
 					Vector2 pos = indexToPos((int) x, (int) y, this);
 					entity.setPosition(pos.x, pos.y);
 					doNotDisplay = true;
 				} else if (object instanceof Monster) {
-					GameActor monster = MonsterFactory.createMonsterGame(((Monster) object).getKey(), ((Monster) object).getJson());
+					GameActor monster = MonsterFactory.createMonsterGame(((Monster) object).getKey(),
+							((Monster) object).getJson(),((Monster) object).getContent());
 					this.addEntity(monster);
 					Vector2 pos = indexToPos((int) x, (int) y, this);
 					monster.setPosition(pos.x, pos.y);

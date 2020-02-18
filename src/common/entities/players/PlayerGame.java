@@ -139,9 +139,16 @@ public class PlayerGame extends GameActorAnimation implements InputAdapter {
 					tmpY = this.getY();
 				}
 
+				EnigmaDialogPopup dialog = map.getEnigmaDialog();
 				GameActor entityGame = map.collisionEntityGame(this, tmpX - this.getX(), tmpY - this.getY());
 				if (entityGame != null) {
 					Logger.printDebugALL("PlayerGame", entityGame.toString());
+					//on affiche le dialogue de l'entité si elle en à un
+					if (entityGame instanceof NpcGame ){
+						dialog.showDialog(((NpcGame) entityGame).getDialog(), map);
+					}else if(entityGame instanceof MonsterGame){
+						dialog.showDialog(((MonsterGame) entityGame).getDialog(), map);
+					}
 				}
 
 				//doAction

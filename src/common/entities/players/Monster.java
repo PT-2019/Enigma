@@ -2,6 +2,7 @@ package common.entities.players;
 
 import com.badlogic.gdx.maps.MapProperties;
 import common.entities.types.AbstractLivingEntity;
+import common.entities.types.Content;
 import common.language.GameFields;
 import common.language.GameLanguage;
 import common.save.entities.PlayerSave;
@@ -21,12 +22,17 @@ import java.util.HashMap;
  * @version 5.0 25/01/2020
  * @since 5.0 25/01/2020
  */
-public class Monster extends AbstractLivingEntity implements EntityGame {
+public class Monster extends AbstractLivingEntity implements EntityGame, Content {
 
 	/**
 	 * Points de vie maximaux du joueur
 	 */
 	private static final int MAX_MONSTER_PV = 100;
+
+	/**
+	 * Dialogue du monstre
+	 */
+	private String dialog;
 
 	public Monster() {
 		this(-1);
@@ -63,6 +69,7 @@ public class Monster extends AbstractLivingEntity implements EntityGame {
 		imp.put(TypeEntity.MONSTER, true);
 		imp.put(TypeEntity.LIVING, true);
 		imp.put(TypeEntity.NEED_CONTAINER_MANAGER, true);
+		imp.put(TypeEntity.CONTENT,true);
 		return imp;
 	}
 
@@ -79,6 +86,7 @@ public class Monster extends AbstractLivingEntity implements EntityGame {
 		save.put(PlayerSave.KEY, this.key);
 		save.put(PlayerSave.JSON, this.json);
 		save.put(PlayerSave.NAME, this.name);
+		save.put(PlayerSave.CONTENT, this.dialog);
 		return save;
 	}
 
@@ -87,6 +95,7 @@ public class Monster extends AbstractLivingEntity implements EntityGame {
 		this.key = data.get(PlayerSave.KEY.getKey(), String.class);
 		this.json = data.get(PlayerSave.JSON.getKey(), String.class);
 		this.name = data.get(PlayerSave.NAME.getKey(), String.class);
+		this.dialog = data.get(PlayerSave.CONTENT.getKey(), String.class);
 		if (this.name.isEmpty() || this.name.isBlank()) this.name = this.key;
 	}
 
@@ -96,5 +105,15 @@ public class Monster extends AbstractLivingEntity implements EntityGame {
 	public String toString() {
 		return "Monster{" + "MAX_PLAYER_PV=" + MAX_MONSTER_PV + ", pv=" + pv + ", id=" + id +
 				", tiles=" + tiles + ", bounds=" + bounds + '}';
+	}
+
+	@Override
+	public String getContent() {
+		return this.dialog;
+	}
+
+	@Override
+	public void setContent(String content) {
+		this.dialog = content;
 	}
 }

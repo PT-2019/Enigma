@@ -8,6 +8,7 @@ import common.dialog.EnigmaDialogPopup;
 import common.entities.players.PlayerGame;
 import common.map.AbstractMap;
 import common.map.GameMap;
+import common.timer.TimerFrame;
 import common.utils.Logger;
 import data.config.Config;
 import game.EnigmaGame;
@@ -46,6 +47,11 @@ public class GameScreen extends LibgdxScreen {
 	private GameMap map;
 
 	/**
+	 * Screen de fin
+	 */
+	private static EndScreen endScreen;
+
+	/**
 	 * Retourne le chemin de la map actuelle
 	 *
 	 * @return le chemin de la map
@@ -62,6 +68,7 @@ public class GameScreen extends LibgdxScreen {
 		if(MAP_PATH != null && !MAP_PATH.isEmpty()){
 			this.map = new GameMap(MAP_PATH, Config.UNIT_SCALE);
 			EnigmaDialogPopup dialog = map.getEnigmaDialog();
+			this.endScreen = new EndScreen();
 
 			//ajout au stage
 			this.main.addActor(this.map);
@@ -78,7 +85,10 @@ public class GameScreen extends LibgdxScreen {
 			}
 
 			this.hud.addActor(dialog);
-
+			//ecran de fin
+			this.hud.addActor(this.endScreen);
+			//timer
+			this.hud.addActor(new TimerFrame());
 			this.listen(dialog);
 		}
 
@@ -154,5 +164,9 @@ public class GameScreen extends LibgdxScreen {
 	@Override
 	public AbstractMap getMap() {
 		return this.map;
+	}
+
+	public static EndScreen getEndScreen(){
+		return endScreen;
 	}
 }

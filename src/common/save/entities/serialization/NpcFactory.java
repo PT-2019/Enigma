@@ -2,6 +2,7 @@ package common.save.entities.serialization;
 
 import api.utils.Utility;
 import com.badlogic.gdx.utils.Json;
+import common.dialog.Dialog;
 import common.entities.players.NpcGame;
 import data.Layer;
 
@@ -28,8 +29,9 @@ public class NpcFactory {
 	 * @return un playerGame du Json
 	 */
 	@SuppressWarnings("unchecked")
-	public static NpcGame createNpcGame(String name, String path) {
-		NpcGame game = new NpcGame();
+	public static NpcGame createNpcGame(String name, String path,String content) {
+		Dialog d = new Dialog(content);
+		NpcGame game = new NpcGame(d);
 		Json json = new Json();
 		PlayerSerializable playerInfo = null;
 
