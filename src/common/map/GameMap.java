@@ -761,7 +761,7 @@ public class GameMap extends AbstractMap {
 						npc.setHero(true);
 					} else {
 						//c'est un npc
-						entity = NpcFactory.createNpcGame(npc.getKey(), npc.getJson(),npc.getContent());
+						entity = NpcFactory.createNpcGame(npc.getKey(), npc.getJson(), npc.getContent());
 					}
 					this.addEntity(entity);
 					Vector2 pos = indexToPos((int) x, (int) y, this);

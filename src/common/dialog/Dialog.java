@@ -41,6 +41,7 @@ public class Dialog {
     }
 
     private void addText(String content){
+        if(content == null) return;
         if (content.length() <= MAX_CHAR) {
             this.text.add(content);
         }else {

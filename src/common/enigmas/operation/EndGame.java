@@ -6,6 +6,7 @@ import common.entities.GameObject;
 import common.entities.players.Player;
 import common.language.EnigmaField;
 import game.screens.GameScreen;
+import org.jetbrains.annotations.Nullable;
 
 import static common.language.GameLanguage.gl;
 
@@ -16,9 +17,9 @@ public class EndGame extends Operation {
 
     /**
      * On peut mettre n'importe quel objet
-     * @param object
+     * @param object un gameObject ou null
      */
-    public EndGame(GameObject object){
+    public EndGame(@Nullable GameObject object){
         super(object);
     }
 
@@ -27,7 +28,7 @@ public class EndGame extends Operation {
         //on affiche l'écran de fin
         GameScreen.getEndScreen().showVictory();
 
-        return new EnigmaReport(OperationReport.DONE, true);
+        return new EnigmaReport(OperationReport.END, true);
     }
 
     @Override

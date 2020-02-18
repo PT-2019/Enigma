@@ -4,6 +4,7 @@ import api.libgdx.actor.GameActor;
 import api.libgdx.actor.GameActorAnimation;
 import api.libgdx.utils.InputAdapter;
 import com.badlogic.gdx.graphics.Camera;
+import common.dialog.EnigmaDialogPopup;
 import common.enigmas.TileEventEnum;
 import common.map.GameMap;
 import common.utils.Logger;

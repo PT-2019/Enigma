@@ -24,8 +24,9 @@ public class NpcFactory {
 	/**
 	 * Permet de créer un Npcgame à partir d'un fichier Json
 	 *
-	 * @param name
-	 * @param path
+	 * @param name nom (clef)
+	 * @param path chemin json
+	 *
 	 * @return un playerGame du Json
 	 */
 	@SuppressWarnings("unchecked")

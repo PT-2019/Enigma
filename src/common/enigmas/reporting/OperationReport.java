@@ -18,7 +18,8 @@ public enum OperationReport implements Report {
 	ROOM_SHOWED("Une salle a été dévoilée.",MAY_BE_SHOWED),
 	SOUND_LAUNCHED("Un son a été lancé.", SHOULD_NOT_BE_SHOWED),
 	ENTITY_SPAWNED("Une entité est apparue.",SHOULD_NOT_BE_SHOWED),
-	UNLOCKED("Quelque chose a été déverrouillé", MUST_BE_SHOWED);
+	UNLOCKED("Quelque chose a été déverrouillé", MUST_BE_SHOWED),
+	END("", SHOULD_NOT_BE_SHOWED );
 
 	/**
 	 * Rapport
