@@ -38,6 +38,7 @@ public class StartGameRunnable implements Runnable {
 		EnigmaGame.getCurrentScreen().setMap(mapPath);
 		//recharge écran avec la nouvelle map
 		EnigmaGame.reload(EnigmaScreens.GAME.name());
+		//cache le layer de collision
 		EnigmaGame.getCurrentScreen().getMap().showLayer(Layer.COLLISION, false);
 		//charge les énigmes sur la bonne map !
 		EmptyMapGenerator.load(GameScreen.getMapPath());

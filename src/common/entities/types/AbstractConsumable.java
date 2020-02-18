@@ -15,6 +15,7 @@ import data.Layer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 /**
  * Ce classe ne doit pas se retrouver ailleurs que dans un extends
@@ -155,6 +156,11 @@ public abstract class AbstractConsumable extends AbstractGameObject implements C
 		} else {
 			return this.altTiles.get(layer.name());
 		}
+	}
+
+	@Override
+	public HashMap<String, Array<Float>> getTilesFromState() {
+		return this.altTiles;
 	}
 
 	@Override

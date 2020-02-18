@@ -1,8 +1,12 @@
 package common.entities.items;
 
 import com.badlogic.gdx.maps.MapProperties;
+import common.enigmas.TileEventEnum;
+import common.enigmas.reporting.EnigmaReport;
 import common.entities.Item;
+import common.entities.players.PlayerGame;
 import common.entities.types.AbstractLockable;
+import common.entities.types.ChangeStateReport;
 import common.entities.types.Container;
 import common.entities.types.Lockable;
 import common.language.GameFields;
@@ -107,6 +111,23 @@ public class Chest extends AbstractLockable implements Container {
 	@Override
 	public ArrayList<Item> getItems() {
 		return this.items;
+	}
+
+	@Override
+	public EnigmaReport changeState(PlayerGame actor, TileEventEnum event) {
+		if(event.equals(TileEventEnum.ON_USE)){
+			if(isLocked()){
+				this.alreadyUnlocked = false;
+				return new EnigmaReport(ChangeStateReport.LOCKED, true, this);
+			} else if(!this.alreadyUnlocked) {
+				this.alreadyUnlocked = true;
+				this.hidden = false;
+				return new EnigmaReport(ChangeStateReport.UNLOCK, true, this);
+			} else {
+				return new EnigmaReport(ChangeStateReport.OPEN, true, this);
+			}
+		}
+		return null;
 	}
 
 	@Override

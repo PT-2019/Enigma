@@ -32,8 +32,8 @@
 0,0,425,426,426,427,337,337,425,426,426,427,0,0,417,418,418,418,418,0,0,0,0,418,418,418,418,418,418,0,0,0,0,0,0,0,0,0,0,0,
 0,0,337,337,337,337,337,337,337,337,337,337,0,0,425,426,426,426,426,0,0,0,0,426,426,426,426,426,426,0,417,418,418,418,418,419,0,0,0,0,
 0,0,337,337,337,337,337,337,337,337,337,337,0,0,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,0,425,426,426,426,426,427,0,0,0,0,
-0,0,337,337,337,337,337,337,337,337,337,337,0,419,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,0,337,337,337,337,337,337,0,0,0,0,
-0,0,337,337,337,337,337,337,337,337,337,337,0,427,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,0,0,0,0,
+0,0,337,337,337,337,337,337,337,337,337,337,417,419,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,0,337,337,337,337,337,337,0,0,0,0,
+0,0,337,337,337,337,337,337,337,337,337,337,425,427,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,0,0,0,0,
 0,0,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,0,0,0,0,
 0,0,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,0,337,337,337,337,337,337,0,0,0,0,
 0,0,337,337,337,337,337,337,337,337,337,337,0,0,337,337,337,337,337,337,337,337,337,337,337,337,337,337,337,0,337,337,337,337,337,337,0,0,0,0,
@@ -68,7 +68,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,761,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,769,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1306,0,0,0,0,0,0,0,0,0,1306,0,0,0,0,0,2121,2122,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,285,0,0,0,0,0,0,0,0,0,0,2201,2202,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,1307,0,0,0,0,0,0,0,0,285,0,0,0,0,0,0,0,0,0,0,2201,2202,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -134,8 +134,8 @@
 0,13,0,0,0,0,0,0,0,0,0,0,13,13,0,0,0,0,0,418,418,418,418,418,0,0,0,0,419,9,3,3,3,3,3,3,10,0,0,0,
 0,13,0,0,0,0,0,0,0,0,0,0,13,13,0,0,0,0,0,426,426,426,426,426,0,0,0,0,427,21,0,0,0,0,0,0,13,0,0,0,
 0,13,0,0,0,0,0,0,0,0,0,0,21,21,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,419,0,0,0,0,0,0,13,0,0,0,
-0,13,0,0,0,0,0,0,0,0,0,0,417,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,427,0,0,0,0,0,0,13,0,0,0,
-0,13,0,0,0,0,0,0,0,0,0,0,425,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13,0,0,0,
+0,13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,427,0,0,0,0,0,0,13,0,0,0,
+0,13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13,0,0,0,
 0,13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13,0,0,0,
 0,13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,5,0,0,0,0,0,0,13,0,0,0,
 0,13,0,0,0,0,0,0,0,0,0,0,5,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,13,0,0,0,0,0,0,13,0,0,0,
@@ -170,7 +170,7 @@
 0,2041,0,0,0,0,0,0,0,0,0,0,2041,2041,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2041,2041,2041,2041,2041,2041,2041,2041,0,0,0,
 0,2041,0,0,0,0,0,0,0,0,0,0,2041,2041,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2041,0,0,0,0,2041,0,2041,0,0,0,
 0,2041,0,0,0,0,0,0,0,0,0,0,2041,2041,0,0,2041,0,0,0,0,0,0,0,0,0,2041,0,0,0,0,0,0,0,0,0,2041,0,0,0,
-0,2041,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2041,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2041,0,0,0,
+0,2041,0,0,0,0,0,0,0,0,0,0,2041,0,0,0,0,0,0,0,0,2041,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2041,0,0,0,
 0,2041,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2041,0,0,0,0,0,0,2041,0,0,0,
 0,2041,0,0,0,0,0,0,0,0,0,0,2041,2041,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2041,0,0,0,0,0,0,2041,0,0,0,
 0,2041,0,0,0,0,0,0,0,0,0,0,2041,2041,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2041,0,0,0,0,0,0,2041,0,0,0,
@@ -191,8 +191,8 @@
                 <property name="FLOOR2" value="4"/>
                 <property name="KEY" value="Joker"/>
                 <property name="JSON" value="assets/entities/players/players.json"/>
-                <property name="NAME" value="Joker"/>
                 <property name="HERO" value="true"/>
+                <property name="NAME" value="Joker"/>
                 <property name="INVENTORY" value=""/>
             </properties>
         </object>
@@ -207,8 +207,8 @@
             <properties>
                 <property name="className" value="common.entities.consumable.Book"/>
                 <property name="y2" value="-13.0"/>
-                <property name="ALT_TILES" value=""/>
                 <property name="CONTENT" value=""/>
+                <property name="ALT_TILES" value=""/>
             </properties>
         </object>
         <object height="2.0" id="21" name="entity" width="2.0" x="-23.0" y="-23.0">
@@ -224,50 +224,50 @@
             <properties>
                 <property name="className" value="common.entities.special.MusicEditor"/>
                 <property name="y2" value="0.0"/>
-                <property name="MAIN" value="true"/>
-                <property name="NAME" value="Demented Nightmare MP3"/>
                 <property name="STARTER" value="true"/>
+                <property name="MAIN" value="true"/>
                 <property name="PATH" value="assets/files/music/Demented Nightmare MP3.mp3"/>
+                <property name="NAME" value="Demented Nightmare MP3"/>
             </properties>
         </object>
         <object height="0.0" id="19" name="entity" width="0.0" x="0.0" y="0.0">
             <properties>
                 <property name="className" value="common.entities.special.MusicEditor"/>
                 <property name="y2" value="0.0"/>
-                <property name="MAIN" value="false"/>
-                <property name="NAME" value="ouverture porte"/>
                 <property name="STARTER" value="false"/>
+                <property name="MAIN" value="false"/>
                 <property name="PATH" value="assets/files/sound/ouverture porte.mp3"/>
+                <property name="NAME" value="ouverture porte"/>
             </properties>
         </object>
         <object height="0.0" id="18" name="entity" width="0.0" x="0.0" y="0.0">
             <properties>
                 <property name="className" value="common.entities.special.MusicEditor"/>
                 <property name="y2" value="0.0"/>
-                <property name="MAIN" value="false"/>
-                <property name="NAME" value="ouverture porte"/>
                 <property name="STARTER" value="false"/>
+                <property name="MAIN" value="false"/>
                 <property name="PATH" value="assets/files/sound/ouverture porte.mp3"/>
+                <property name="NAME" value="ouverture porte"/>
             </properties>
         </object>
         <object height="0.0" id="15" name="entity" width="0.0" x="0.0" y="0.0">
             <properties>
                 <property name="className" value="common.entities.special.MusicEditor"/>
                 <property name="y2" value="0.0"/>
-                <property name="MAIN" value="false"/>
-                <property name="NAME" value="ouverture porte"/>
                 <property name="STARTER" value="false"/>
+                <property name="MAIN" value="false"/>
                 <property name="PATH" value="assets/files/sound/ouverture porte.mp3"/>
+                <property name="NAME" value="ouverture porte"/>
             </properties>
         </object>
         <object height="0.0" id="22" name="entity" width="0.0" x="0.0" y="0.0">
             <properties>
                 <property name="className" value="common.entities.special.MusicEditor"/>
                 <property name="y2" value="0.0"/>
-                <property name="MAIN" value="true"/>
-                <property name="NAME" value="Battle-Furious"/>
                 <property name="STARTER" value="false"/>
+                <property name="MAIN" value="true"/>
                 <property name="PATH" value="assets/files/music/Battle-Furious.mp3"/>
+                <property name="NAME" value="Battle-Furious"/>
             </properties>
         </object>
         <object height="1.0" id="6" name="entity" width="1.0" x="16.0" y="12.0">
@@ -354,8 +354,8 @@
                 <property name="FLOOR2" value="4"/>
                 <property name="KEY" value="Blonde"/>
                 <property name="JSON" value="assets/entities/players/players.json"/>
-                <property name="NAME" value="Blonde"/>
                 <property name="HERO" value="false"/>
+                <property name="NAME" value="Blonde"/>
                 <property name="INVENTORY" value=""/>
             </properties>
         </object>
@@ -377,6 +377,16 @@
                 <property name="COLLISION" value="1"/>
                 <property name="ACTIVATED" value="false"/>
                 <property name="ALT_TILES" value="{FLOOR2:[1314,]COLLISION:[2041,]}"/>
+            </properties>
+        </object>
+        <object height="1.0" id="23" name="entity" width="1.0" x="12.0" y="11.0">
+            <properties>
+                <property name="className" value="common.entities.items.Button"/>
+                <property name="y2" value="11.0"/>
+                <property name="FLOOR2" value="1"/>
+                <property name="COLLISION" value="1"/>
+                <property name="ACTIVATED" value="false"/>
+                <property name="ALT_TILES" value="{FLOOR2:[1315,]COLLISION:[2041,]}"/>
             </properties>
         </object>
         <object height="13.0" id="2" name="entity" width="17.0" x="13.0" y="17.0">

@@ -205,7 +205,7 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 	 * @param posX coordonnées X
 	 * @param posY coordonnées Y
 	 * @param map  la map
-	 * @return la position sur la map
+	 * @return la position sur la grille
 	 */
 	public static Vector2 posToIndex(float posX, float posY, final AbstractMap map) {
 		Vector2 index = new Vector2();
@@ -218,6 +218,26 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 
 		index.x = column;
 		index.y = row;
+
+		return index;
+	}
+
+	/**
+	 * Convertit la position sur la grille en position sur la map
+	 *
+	 * @param column colonne
+	 * @param row ligne
+	 * @param map  la map
+	 * @return la position sur la map
+	 */
+	public static Vector2 indexToPos(int column, int row, final AbstractMap map) {
+		Vector2 index = new Vector2();
+
+		//on soustrait et augmente pour que ce soit à la bonne position
+		//par rapport à la taille du joueur
+
+		index.x = (column + 0.5f) * map.getUnitScale() * map.getTileWidth();
+		index.y =  (row - 2) * map.getUnitScale() * map.getTileHeight();
 
 		return index;
 	}
@@ -444,7 +464,7 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 	 * @since 5.1
 	 */
 	public String removeEntity(GameObject entity) {
-		Logger.printDebug("deleteEntity", entity + " (" +
+		Logger.printDebug("deleteEntity", entity.getReadableName() + " (" +
 				entity.getGameObjectWidth() + " " + entity.getGameObjectHeight() + ")"
 		);
 		if (this.objects.contains(entity)) {//peut la supprimer

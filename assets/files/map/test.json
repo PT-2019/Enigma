@@ -7,7 +7,8 @@
                               {
                                    "common.enigmas.operation.Unlock": [
                                         {
-                                             "entities": "4"
+                                             "entities": "4",
+                                             "fulfilled": "false"
                                         }
                                    ]
                               },
@@ -15,7 +16,8 @@
                               {
                                    "common.enigmas.operation.Unlock": [
                                         {
-                                             "entities": "3"
+                                             "entities": "3",
+                                             "fulfilled": "false"
                                         }
                                    ]
                               },
@@ -23,19 +25,20 @@
                               {
                                    "common.enigmas.operation.LaunchSound": [
                                         {
-                                             "entities": "9"
+                                             "entities": "8",
+                                             "fulfilled": "false"
                                         }
                                    ]
                               }
                          ],
                          "known": "false",
                          "currentAdviceIndex": "-1",
+                         "fulfilled": "false",
                          "description": "",
-                         "fulfilled": false,
                          "advices": [
                          ],
-                         "id": "3",
-                         "title": "OpenDoor2",
+                         "id": "4",
+                         "title": "Open",
                          "type": "ON_USE",
                          "conditions": [
                               {
@@ -57,7 +60,8 @@
                               {
                                    "common.enigmas.operation.Unlock": [
                                         {
-                                             "entities": "4"
+                                             "entities": "4",
+                                             "fulfilled": "false"
                                         }
                                    ]
                               },
@@ -65,7 +69,8 @@
                               {
                                    "common.enigmas.operation.Unlock": [
                                         {
-                                             "entities": "3"
+                                             "entities": "3",
+                                             "fulfilled": "false"
                                         }
                                    ]
                               },
@@ -73,19 +78,20 @@
                               {
                                    "common.enigmas.operation.LaunchSound": [
                                         {
-                                             "entities": "8"
+                                             "entities": "9",
+                                             "fulfilled": "false"
                                         }
                                    ]
                               }
                          ],
                          "known": "false",
                          "currentAdviceIndex": "-1",
+                         "fulfilled": "false",
                          "description": "",
                          "advices": [
                          ],
-                         "fulfilled": false,
-                         "id": "4",
-                         "title": "Open",
+                         "id": "3",
+                         "title": "OpenDoor2",
                          "type": "ON_USE",
                          "conditions": [
                               {

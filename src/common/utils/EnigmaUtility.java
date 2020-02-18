@@ -4,6 +4,7 @@ import api.utils.Utility;
 import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.math.Vector2;
 import common.entities.GameObject;
 import common.map.MapTestScreenCell;
 import data.TypeEntity;
@@ -18,7 +19,7 @@ import java.util.ArrayList;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 6.0
+ * @version 6.1
  * @since 6.0
  */
 public final class EnigmaUtility {
@@ -67,7 +68,6 @@ public final class EnigmaUtility {
 		return Utility.getAllFiles(Config.SOUND_FOLDER, Config.SOUND_EXTENSIONS, true);
 	}
 
-
 	/**
 	 * Retourne la cellule contenant l'entité la plus intéressante
 	 *
@@ -115,5 +115,19 @@ public final class EnigmaUtility {
 		}
 
 		return relevant;
+	}
+
+	/**
+	 * Retourne la position d'une cellule (x,y) depuis son indice
+	 * @param c une cellule
+	 * @return la position d'une cellule (x,y) depuis son indice
+	 * @since 6.1
+	 */
+	public static Vector2 getPosFromCellIndex(MapTestScreenCell c) {
+		Vector2 pos = new Vector2();
+		TiledMapTileLayer layer = c.getLayer();
+		pos.y = c.getIndex() / layer.getWidth();
+		pos.x = c.getIndex() % layer.getWidth();
+		return pos;
 	}
 }

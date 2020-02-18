@@ -20,7 +20,8 @@ public enum ChangeStateReport implements Report {
 	DONE("", SHOULD_NOT_BE_SHOWED),
 	UNLOCK(GameLanguage.gl.get(EnigmaField.UNLOCK), MUST_BE_SHOWED),
 	INVENTORY("Ajout dans l'inventaire", SHOULD_NOT_BE_SHOWED),
-	LOCKED(GameLanguage.gl.get(EnigmaField.LOCK), MUST_BE_SHOWED);
+	LOCKED(GameLanguage.gl.get(EnigmaField.LOCK), MUST_BE_SHOWED),
+	OPEN("", SHOULD_NOT_BE_SHOWED);
 
 	private final String value;
 	private final int importance;

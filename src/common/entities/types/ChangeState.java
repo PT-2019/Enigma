@@ -6,6 +6,8 @@ import common.enigmas.reporting.EnigmaReport;
 import common.entities.players.PlayerGame;
 import data.Layer;
 
+import java.util.Map;
+
 /**
  * Pour les objects ayant un état
  *
@@ -41,6 +43,13 @@ public interface ChangeState {
 	 * @param layer un niveau
 	 */
 	Array<Float> getTilesFromState(Layer layer);
+
+	/**
+	 * Retourne les tiles alternatives ou les tiles normales en fonction de l'état
+	 * @return les tiles alternatives ou les tiles normales en fonction de l'état
+	 * @since 6.0
+	 */
+	Map<String, Array<Float>> getTilesFromState();
 
 	/**
 	 * true pour être "automatiquement" re-dessiné au changement

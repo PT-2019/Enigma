@@ -18,7 +18,7 @@ import data.Layer;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 4.0 20/12/2019
+ * @version 6.0
  * @since 4.0 20/12/2019
  */
 public class GameActor extends Group {
@@ -93,6 +93,15 @@ public class GameActor extends Group {
 	}
 
 	/**
+	 * Retourne la position sous la forme d'un vecteur
+	 * @return la position
+	 * @since 6.0
+	 */
+	public Vector2 getPosition(){
+		return new Vector2(getX(), getY());
+	}
+
+	/**
 	 * Retourne le recouvrement du gameActor
 	 *
 	 * @return le recouvrement du gameActor
@@ -138,6 +147,8 @@ public class GameActor extends Group {
 	 * Retourne le niveau auquel l'entité sera dessiné
 	 *
 	 * @return le niveau
+	 *
+	 * @since 5.0
 	 */
 	public Layer getLayer() {
 		return this.layer;
@@ -147,6 +158,8 @@ public class GameActor extends Group {
 	 * Définit le niveau auquel l'entité sera dessiné
 	 *
 	 * @param l niveau
+	 *
+	 * @since 5.0
 	 */
 	public void setLayer(Layer l) {
 		this.layer = l;

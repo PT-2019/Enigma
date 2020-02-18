@@ -116,6 +116,11 @@ public abstract class Activatable extends AbstractItem implements ChangeState {
 	}
 
 	@Override
+	public HashMap<String, Array<Float>> getTilesFromState() {
+		return this.altTiles;
+	}
+
+	@Override
 	public Array<Float> getTilesFromState(Layer layer) {
 		if(!this.activated){
 			return this.getTiles(layer);

@@ -55,9 +55,9 @@ public class PlayerGame extends GameActorAnimation implements InputAdapter {
 	public void center() {
 		Camera cam = this.getStage().getCamera();
 		//pour éviter un bug graphique on crée 2 variables
-		int posy = (int) (cam.position.y);
-		int posx = (int) (cam.position.x);
-		cam.translate(-posx + this.getX(), -posy + this.getY(), 0);
+		int posY = (int) (cam.position.y);
+		int posX = (int) (cam.position.x);
+		cam.translate(-posX + this.getX(), -posY + this.getY(), 0);
 	}
 
 	/**
@@ -75,10 +75,10 @@ public class PlayerGame extends GameActorAnimation implements InputAdapter {
 		float y = this.getY();
 
 		//on vérifie que la case où l'on compte se rendre est disponible
-		if (this.map.isWalkable(x + offX, y + offY) && (!this.map.collision(this, offX, offY))) {
+		if (this.map.isWalkable(this, offX, offY) && (!this.map.collision(this, offX, offY))) {
 			this.map.doAction(x,y, this, TileEventEnum.ON_EXIT);//quitte
-			this.setPosition(x + offX, y + offY);
-			this.map.doAction(x+offX, y+offY, this, TileEventEnum.ON_ENTER); //entre
+			this.moveBy(offX, offY);
+			this.map.doAction(getX(), getY(), this, TileEventEnum.ON_ENTER); //entre
 			//pour changer de sprite proprement
 			if (isAnimationPaused() || this.facedDirection != d) {
 				this.setKeyFrame(keyF);

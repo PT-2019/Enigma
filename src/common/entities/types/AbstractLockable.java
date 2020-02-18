@@ -36,7 +36,12 @@ public abstract class AbstractLockable extends AbstractItem implements Lockable,
 	/**
 	 * Object déjà déverrouillé
 	 */
-	private boolean alreadyUnlocked;
+	protected boolean alreadyUnlocked;
+
+	/**
+	 * Le lockable est affiché fermé même si ouvert
+	 */
+	protected boolean hidden;
 
 	/**
 	 * Crée une object verrouillable avec un id unique pour identifier ses énigmes
@@ -48,6 +53,8 @@ public abstract class AbstractLockable extends AbstractItem implements Lockable,
 	public AbstractLockable(int id, boolean locked) {
 		super(id);
 		this.locked = locked;
+		this.alreadyUnlocked = false;
+		this.hidden = true;
 	}
 
 	//lock
@@ -82,10 +89,11 @@ public abstract class AbstractLockable extends AbstractItem implements Lockable,
 	public EnigmaReport changeState(PlayerGame actor, TileEventEnum event) {
 		if(event.equals(TileEventEnum.ON_USE)){
 			if(isLocked()){
-				alreadyUnlocked = false;
+				this.alreadyUnlocked = false;
 				return new EnigmaReport(ChangeStateReport.LOCKED, true, this);
-			} else if(!alreadyUnlocked) {
-				alreadyUnlocked = true;
+			} else if(!this.alreadyUnlocked) {
+				this.alreadyUnlocked = true;
+				this.hidden = false;
 				return new EnigmaReport(ChangeStateReport.UNLOCK, true, this);
 			}
 		}
@@ -99,11 +107,16 @@ public abstract class AbstractLockable extends AbstractItem implements Lockable,
 
 	@Override
 	public Array<Float> getTilesFromState(Layer layer) {
-		if(this.locked){
+		if(isNormalState() || this.hidden){
 			return this.getTiles(layer);
 		} else {
 			return this.altTiles.get(layer.name());
 		}
+	}
+
+	@Override
+	public HashMap<String, Array<Float>> getTilesFromState() {
+		return this.altTiles;
 	}
 
 	@Override
