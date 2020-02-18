@@ -53,8 +53,8 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,2427,2428,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,2507,2508,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,1305,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,2279,2280,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -68,7 +68,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,761,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,769,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1306,0,0,0,0,0,0,0,0,0,1306,0,0,0,0,0,2121,2122,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,1307,0,0,0,0,0,0,0,0,285,0,0,0,0,0,0,0,0,0,0,2201,2202,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,285,0,0,0,0,0,0,0,0,0,0,2201,2202,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -155,7 +155,7 @@
 0,0,0,2041,2041,2041,2041,2041,2041,2041,2041,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,2041,2041,2041,2041,2041,2041,2041,2041,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,2041,2041,2041,2041,2041,2041,2041,2041,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,2041,0,0,0,0,0,0,2041,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,2041,0,0,2041,0,0,0,2041,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,2041,0,0,0,0,0,0,2041,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,2041,0,0,0,0,0,0,2041,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,2041,0,0,0,0,0,0,2041,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -170,7 +170,7 @@
 0,2041,0,0,0,0,0,0,0,0,0,0,2041,2041,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2041,2041,2041,2041,2041,2041,2041,2041,0,0,0,
 0,2041,0,0,0,0,0,0,0,0,0,0,2041,2041,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2041,0,0,0,0,2041,0,2041,0,0,0,
 0,2041,0,0,0,0,0,0,0,0,0,0,2041,2041,0,0,2041,0,0,0,0,0,0,0,0,0,2041,0,0,0,0,0,0,0,0,0,2041,0,0,0,
-0,2041,0,0,0,0,0,0,0,0,0,0,2041,0,0,0,0,0,0,0,0,2041,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2041,0,0,0,
+0,2041,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2041,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2041,0,0,0,
 0,2041,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2041,0,0,0,0,0,0,2041,0,0,0,
 0,2041,0,0,0,0,0,0,0,0,0,0,2041,2041,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2041,0,0,0,0,0,0,2041,0,0,0,
 0,2041,0,0,0,0,0,0,0,0,0,0,2041,2041,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2041,0,0,0,0,0,0,2041,0,0,0,
@@ -189,11 +189,12 @@
                 <property name="className" value="common.entities.players.NPC"/>
                 <property name="y2" value="12.0"/>
                 <property name="FLOOR2" value="4"/>
-                <property name="KEY" value="Joker"/>
-                <property name="JSON" value="assets/entities/players/players.json"/>
                 <property name="HERO" value="true"/>
-                <property name="NAME" value="Joker"/>
+                <property name="JSON" value="assets/entities/players/players.json"/>
                 <property name="INVENTORY" value=""/>
+                <property name="KEY" value="Joker"/>
+                <property name="NAME" value="Joker"/>
+                <property name="CONTENT" value=""/>
             </properties>
         </object>
         <object height="1.0" id="11" name="entity" width="1.0" x="-11.0" y="-11.0">
@@ -207,67 +208,68 @@
             <properties>
                 <property name="className" value="common.entities.consumable.Book"/>
                 <property name="y2" value="-13.0"/>
-                <property name="CONTENT" value=""/>
                 <property name="ALT_TILES" value=""/>
+                <property name="CONTENT" value=""/>
             </properties>
         </object>
         <object height="2.0" id="21" name="entity" width="2.0" x="-23.0" y="-23.0">
             <properties>
                 <property name="className" value="common.entities.players.Monster"/>
                 <property name="y2" value="-23.0"/>
-                <property name="KEY" value=""/>
                 <property name="JSON" value=""/>
+                <property name="KEY" value=""/>
                 <property name="NAME" value=""/>
+                <property name="CONTENT" value=""/>
             </properties>
         </object>
         <object height="0.0" id="20" name="entity" width="0.0" x="0.0" y="0.0">
             <properties>
                 <property name="className" value="common.entities.special.MusicEditor"/>
                 <property name="y2" value="0.0"/>
-                <property name="STARTER" value="true"/>
                 <property name="MAIN" value="true"/>
-                <property name="PATH" value="assets/files/music/Demented Nightmare MP3.mp3"/>
                 <property name="NAME" value="Demented Nightmare MP3"/>
+                <property name="STARTER" value="true"/>
+                <property name="PATH" value="assets/files/music/Demented Nightmare MP3.mp3"/>
             </properties>
         </object>
         <object height="0.0" id="19" name="entity" width="0.0" x="0.0" y="0.0">
             <properties>
                 <property name="className" value="common.entities.special.MusicEditor"/>
                 <property name="y2" value="0.0"/>
-                <property name="STARTER" value="false"/>
                 <property name="MAIN" value="false"/>
-                <property name="PATH" value="assets/files/sound/ouverture porte.mp3"/>
                 <property name="NAME" value="ouverture porte"/>
+                <property name="STARTER" value="false"/>
+                <property name="PATH" value="assets/files/sound/ouverture porte.mp3"/>
             </properties>
         </object>
         <object height="0.0" id="18" name="entity" width="0.0" x="0.0" y="0.0">
             <properties>
                 <property name="className" value="common.entities.special.MusicEditor"/>
                 <property name="y2" value="0.0"/>
-                <property name="STARTER" value="false"/>
                 <property name="MAIN" value="false"/>
-                <property name="PATH" value="assets/files/sound/ouverture porte.mp3"/>
                 <property name="NAME" value="ouverture porte"/>
+                <property name="STARTER" value="false"/>
+                <property name="PATH" value="assets/files/sound/ouverture porte.mp3"/>
             </properties>
         </object>
         <object height="0.0" id="15" name="entity" width="0.0" x="0.0" y="0.0">
             <properties>
                 <property name="className" value="common.entities.special.MusicEditor"/>
                 <property name="y2" value="0.0"/>
-                <property name="STARTER" value="false"/>
                 <property name="MAIN" value="false"/>
-                <property name="PATH" value="assets/files/sound/ouverture porte.mp3"/>
                 <property name="NAME" value="ouverture porte"/>
+                <property name="STARTER" value="false"/>
+                <property name="PATH" value="assets/files/sound/ouverture porte.mp3"/>
             </properties>
         </object>
         <object height="0.0" id="22" name="entity" width="0.0" x="0.0" y="0.0">
             <properties>
                 <property name="className" value="common.entities.special.MusicEditor"/>
                 <property name="y2" value="0.0"/>
-                <property name="STARTER" value="false"/>
                 <property name="MAIN" value="true"/>
-                <property name="PATH" value="assets/files/music/Battle-Furious.mp3"/>
                 <property name="NAME" value="Battle-Furious"/>
+                <property name="STARTER" value="false"/>
+                <property name="PATH" value="assets/files/music/Battle-Furious.mp3"/>
             </properties>
         </object>
         <object height="1.0" id="6" name="entity" width="1.0" x="16.0" y="12.0">
@@ -276,8 +278,8 @@
                 <property name="y2" value="12.0"/>
                 <property name="FLOOR2" value="1"/>
                 <property name="COLLISION" value="1"/>
-                <property name="ACTIVATED" value="false"/>
                 <property name="ALT_TILES" value="{FLOOR2:[1314,]COLLISION:[2041,]}"/>
+                <property name="ACTIVATED" value="false"/>
             </properties>
         </object>
         <object height="1.0" id="14" name="entity" width="1.0" x="2.0" y="3.0">
@@ -315,8 +317,8 @@
                 <property name="y2" value="17.0"/>
                 <property name="DECORATIONS1" value="2"/>
                 <property name="COLLISION" value="2"/>
-                <property name="LOCKED" value="true"/>
                 <property name="ALT_TILES" value="{COLLISION:[0,0,]DECORATIONS1:[0,0,]}"/>
+                <property name="LOCKED" value="true"/>
             </properties>
         </object>
         <object height="2.0" id="12" name="entity" width="1.0" x="6.0" y="17.0">
@@ -325,8 +327,8 @@
                 <property name="y2" value="17.0"/>
                 <property name="DECORATIONS1" value="2"/>
                 <property name="COLLISION" value="2"/>
-                <property name="LOCKED" value="true"/>
                 <property name="ALT_TILES" value="{COLLISION:[0,0,]DECORATIONS1:[0,0,]}"/>
+                <property name="LOCKED" value="true"/>
             </properties>
         </object>
         <object height="17.0" id="0" name="entity" width="12.0" x="1.0" y="18.0">
@@ -340,23 +342,17 @@
                 <property name="COLLISION" value="204"/>
             </properties>
         </object>
-        <object height="2.0" id="16" name="entity" width="2.0" x="6.0" y="26.0">
-            <properties>
-                <property name="className" value="common.entities.special.GameExit"/>
-                <property name="y2" value="26.0"/>
-                <property name="FLOOR2" value="4"/>
-            </properties>
-        </object>
         <object height="2.0" id="17" name="entity" width="2.0" x="6.0" y="22.0">
             <properties>
                 <property name="className" value="common.entities.players.NPC"/>
                 <property name="y2" value="22.0"/>
                 <property name="FLOOR2" value="4"/>
-                <property name="KEY" value="Blonde"/>
-                <property name="JSON" value="assets/entities/players/players.json"/>
                 <property name="HERO" value="false"/>
-                <property name="NAME" value="Blonde"/>
+                <property name="JSON" value="assets/entities/players/players.json"/>
                 <property name="INVENTORY" value=""/>
+                <property name="KEY" value="Blonde"/>
+                <property name="NAME" value="Blonde"/>
+                <property name="CONTENT" value="Merci d'avoir testé la map de test d'Enigma.&amp;amp;amp;#10;&amp;amp;amp;#10;L'équipe de développement d'Enigma."/>
             </properties>
         </object>
         <object height="1.0" id="8" name="entity" width="1.0" x="11.0" y="3.0">
@@ -365,8 +361,8 @@
                 <property name="y2" value="3.0"/>
                 <property name="FLOOR2" value="1"/>
                 <property name="COLLISION" value="1"/>
-                <property name="LOCKED" value="true"/>
                 <property name="ALT_TILES" value="{FLOOR2:[918,]COLLISION:[2041,]}"/>
+                <property name="LOCKED" value="true"/>
             </properties>
         </object>
         <object height="1.0" id="7" name="entity" width="1.0" x="26.0" y="12.0">
@@ -375,18 +371,18 @@
                 <property name="y2" value="12.0"/>
                 <property name="FLOOR2" value="1"/>
                 <property name="COLLISION" value="1"/>
-                <property name="ACTIVATED" value="false"/>
                 <property name="ALT_TILES" value="{FLOOR2:[1314,]COLLISION:[2041,]}"/>
+                <property name="ACTIVATED" value="false"/>
             </properties>
         </object>
-        <object height="1.0" id="23" name="entity" width="1.0" x="12.0" y="11.0">
+        <object height="1.0" id="16" name="entity" width="1.0" x="6.0" y="26.0">
             <properties>
                 <property name="className" value="common.entities.items.Button"/>
-                <property name="y2" value="11.0"/>
+                <property name="y2" value="26.0"/>
                 <property name="FLOOR2" value="1"/>
                 <property name="COLLISION" value="1"/>
+                <property name="ALT_TILES" value="{FLOOR2:[1313,]COLLISION:[2041,]}"/>
                 <property name="ACTIVATED" value="false"/>
-                <property name="ALT_TILES" value="{FLOOR2:[1315,]COLLISION:[2041,]}"/>
             </properties>
         </object>
         <object height="13.0" id="2" name="entity" width="17.0" x="13.0" y="17.0">

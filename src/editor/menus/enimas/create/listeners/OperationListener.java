@@ -105,7 +105,7 @@ public class OperationListener implements ActionListener, ItemListener {
 			if (this.object instanceof Room)
 				ope = new HideRoom((Room) this.object);
 		} else if(selectedOperation.equals(Operations.END_GAME.name())){
-			ope = new EndGame(null);
+			ope = new EndGame((GameObject) null);
 		}else if (selectedOperation.equals(Operations.SOUND.name())) {
 			if (this.object instanceof MusicEditor) {
 				this.object.setTemp(false);//plus temporaire

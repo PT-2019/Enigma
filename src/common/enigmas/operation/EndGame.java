@@ -3,24 +3,47 @@ package common.enigmas.operation;
 import common.enigmas.reporting.EnigmaReport;
 import common.enigmas.reporting.OperationReport;
 import common.entities.GameObject;
+import common.entities.NullGameObject;
 import common.entities.players.Player;
 import common.language.EnigmaField;
 import game.screens.GameScreen;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Map;
+
 import static common.language.GameLanguage.gl;
 
 /**
  * Lorsqu'on a fini le jeu
+ *
+ * @author Jorys-Micke ALAÏS
+ * @author Louka DOZ
+ * @author Loic SENECAT
+ * @author Quentin RAMSAMY-AGEORGES
+ *
+ * @version 6.0 18/02/2020
+ * @since 6.0 18/02/2020
  */
 public class EndGame extends Operation {
 
     /**
-     * On peut mettre n'importe quel objet
-     * @param object un gameObject ou null
+     * Lorsqu'on a fini le jeu
+     * @param object On peut mettre n'importe quel objet/null
      */
     public EndGame(@Nullable GameObject object){
-        super(object);
+        super(new NullGameObject());
+        if(object != null){
+            this.entity = object;
+        }
+    }
+
+    /**
+     * @param attributes Attributs de la classe
+     * @throws IllegalArgumentException Si un attribut est manquant
+     */
+    @SuppressWarnings("unused")
+    public EndGame(Map<String, Object> attributes) {
+        super(new NullGameObject());
     }
 
     @Override
@@ -48,7 +71,6 @@ public class EndGame extends Operation {
 
     @Override
     public String getEnigmaElementReadablePrint() {
-        return "[" + gl.get(EnigmaField.END) + ": " +
-                this.entity.getReadableName() + " (id=" + this.entity.getID() + ") ]";
+        return "[" + gl.get(EnigmaField.END) +" ]";
     }
 }

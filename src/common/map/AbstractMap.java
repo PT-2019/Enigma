@@ -464,7 +464,7 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 	 * @since 5.1
 	 */
 	public String removeEntity(GameObject entity) {
-		Logger.printDebug("deleteEntity", entity.getReadableName() + " (" +
+		Logger.printDebugALL("deleteEntity", entity.getReadableName() + " (" +
 				entity.getGameObjectWidth() + " " + entity.getGameObjectHeight() + ")"
 		);
 		if (this.objects.contains(entity)) {//peut la supprimer
@@ -624,7 +624,7 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 					} else {
 						//sinon on renvoi le conteneur
 						if (withDelete)
-							Logger.printDebug("DeleteGetParent", item.toString() + "(" + ent + " overlaps " + other + ")");
+							Logger.printDebugALL("DeleteGetParent", item.toString() + "(" + ent + " overlaps " + other + ")");
 						obj.put(item.getKey(), object);
 						if (!all) return obj;
 					}
