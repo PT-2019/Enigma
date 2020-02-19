@@ -31,6 +31,14 @@ public abstract class AbstractConsumable extends AbstractGameObject implements C
 	 * @since 4.0
 	 */
 	protected ArrayList<Enigma> enigmas;
+	/**
+	 *
+	 */
+	protected String atlasPath = "assets/files/atlas/uiskin.atlas";
+	/**
+	 *
+ 	 */
+	protected String atlasName;
 
 	/**
 	 * Ce classe ne doit pas se retrouver ailleurs que dans un extends
@@ -78,6 +86,35 @@ public abstract class AbstractConsumable extends AbstractGameObject implements C
 	public Iterator<Enigma> getAllEnigmas() {
 		ArrayList<Enigma> e = (ArrayList<Enigma>) this.enigmas.clone();
 		return e.iterator();
+	}
+
+	/**
+	 * Chemin vers l'atlas
+	 *
+	 * @return Chemin vers l'atlas
+	 */
+	public String getAtlasPath() {
+		return this.atlasPath;
+	}
+
+	/**
+	 * Nom de la région dans l'atlas
+	 *
+	 * @return Nom de la région dans l'atlas
+	 */
+	public String getAtlasRegionName() {
+		return this.atlasName;
+	}
+
+	/**
+	 * Définie les données de l'atlas
+	 *
+	 * @param atlasPath Chemin vers l'atlas
+	 * @param atlasName Nom de la région dans l'atlas
+	 */
+	public void setAtlas(String atlasPath, String atlasName) {
+		this.atlasPath = atlasPath;
+		this.atlasName = atlasName;
 	}
 
 	//toString

@@ -308,14 +308,14 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 			if (start.x >= 0 && start.y >= 0) {
 				//TILES
 				HashMap<String, Array<Float>> tiles = new HashMap<>();
-				for (Layer layer : Layer.values()) {
-					String sizeS = prop.get(layer.toString(), String.class);
-					if (sizeS == null || sizeS.length() == 0) continue;
-					int size = Integer.parseInt(sizeS);
-					Array<Float> tile = new Array<>();
-					for (int i = 0; i < size; i++) {
-						tile.add(0f);
-					}
+					for (Layer layer : Layer.values()) {
+						String sizeS = prop.get(layer.toString(), String.class);
+						if (sizeS == null || sizeS.length() == 0) continue;
+						int size = Integer.parseInt(sizeS);
+						Array<Float> tile = new Array<>();
+						for (int i = 0; i < size; i++) {
+							tile.add(0f);
+						}
 					tiles.put(layer.toString(), tile);
 				}
 				e = new EntitySerializable(width, height, className, tiles);
@@ -361,7 +361,6 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 
 			//récupère les tiles de l'entités pour ce niveau
 			Array<Float> entities = entity.getTiles(Utility.stringToEnum(tileLayer.getName(), Layer.values()));
-
 			//si pas de tiles a mettre sur ce layer, on passe au suivant
 			if (entities == null) continue;
 

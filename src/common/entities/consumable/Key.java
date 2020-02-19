@@ -1,12 +1,17 @@
 package common.entities.consumable;
 
+import api.utils.Utility;
+import com.badlogic.gdx.maps.MapProperties;
 import common.entities.types.AbstractConsumable;
 import common.entities.types.NeedContainer;
 import common.language.GameFields;
 import common.language.GameLanguage;
+import common.save.entities.PlayerSave;
+import common.save.entities.SaveKey;
 import data.TypeEntity;
 
 import java.util.EnumMap;
+import java.util.HashMap;
 
 /**
  * Une clef
@@ -18,7 +23,7 @@ import java.util.EnumMap;
  * @version 4.0 24/12/2019
  * @since 4.0 24/12/2019
  */
-public class Key extends AbstractConsumable implements NeedContainer {
+public class Key extends AbstractConsumable implements NeedContainer,Stackable {
 
 	/**
 	 * Crée un clef
@@ -59,5 +64,20 @@ public class Key extends AbstractConsumable implements NeedContainer {
 	@Override
 	public String getReadableName() {
 		return GameLanguage.gl.get(GameFields.KEY);
+	}
+
+	@Override
+	public HashMap<SaveKey, String> getSave() {
+		HashMap<SaveKey, String> save = new HashMap<>();
+		save.put(PlayerSave.KEY,this.atlasName);
+		save.put(PlayerSave.PATH,this.atlasPath);
+		return save;
+	}
+
+	@Override
+	public void load(MapProperties data) {
+		//récupère la chaîne non échappée
+		this.atlasName = Utility.asciiEscapedToNormalString(data.get(PlayerSave.KEY.getKey(), String.class));
+		this.atlasPath = Utility.asciiEscapedToNormalString(data.get(PlayerSave.PATH.getKey(), String.class));
 	}
 }

@@ -192,4 +192,8 @@ public class GameActorAnimation extends GameActor {
 	public void setFacedDirection(Direction facedDirection) {
 		this.facedDirection = facedDirection;
 	}
+
+	public Direction getFacedDirection() {
+		return facedDirection;
+	}
 }

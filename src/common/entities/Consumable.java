@@ -15,5 +15,10 @@ import common.entities.types.NeedContainer;
  */
 public interface Consumable extends EnigmaContainer, Entity, NeedContainer, Item {
 
+    public String getAtlasPath();
+
+    public String getAtlasRegionName();
+
+    public void setAtlas(String atlasPath, String atlasName);
 	//stack-able ?
 }

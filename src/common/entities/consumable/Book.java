@@ -92,6 +92,8 @@ public class Book extends AbstractConsumable implements Content {
 	public HashMap<SaveKey, String> getSave() {
 		HashMap<SaveKey, String> save = new HashMap<>();
 		save.put(PlayerSave.CONTENT, this.content);
+		save.put(PlayerSave.KEY,this.atlasName);
+		save.put(PlayerSave.PATH,this.atlasPath);
 		return save;
 	}
 
@@ -99,5 +101,7 @@ public class Book extends AbstractConsumable implements Content {
 	public void load(MapProperties data) {
 		//récupère la chaîne non échappée
 		this.content = Utility.asciiEscapedToNormalString(data.get(PlayerSave.CONTENT.getKey(), String.class));
+		this.atlasName = Utility.asciiEscapedToNormalString(data.get(PlayerSave.KEY.getKey(), String.class));
+		this.atlasPath = Utility.asciiEscapedToNormalString(data.get(PlayerSave.PATH.getKey(), String.class));
 	}
 }

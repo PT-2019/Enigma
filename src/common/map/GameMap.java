@@ -23,6 +23,7 @@ import common.save.entities.serialization.MonsterFactory;
 import common.save.entities.serialization.NpcFactory;
 import common.save.entities.serialization.PlayerFactory;
 import common.utils.Logger;
+import data.Direction;
 import data.Layer;
 import org.jetbrains.annotations.NotNull;
 
@@ -51,7 +52,7 @@ public class GameMap extends AbstractMap {
 	 */
 	private GameMusic music;
 
-	private EnigmaDialogPopup enigmaDialog;
+	private static EnigmaDialogPopup enigmaDialog;
 
 	/**
 	 * Resultat suite à un dialogue
@@ -241,6 +242,52 @@ public class GameMap extends AbstractMap {
 	}
 
 	/**
+	 * ajoute une entité et l'affiche sur la carte si c'est possible
+	 * @param actor
+	 */
+	public void addEntityToMap(@NotNull GameActor actor){
+		this.entities.add(actor);
+
+		for (GameActor game: entities) {
+			if (game instanceof PlayerGame){
+				float posX,posY;
+				Direction direct = ((PlayerGame) game).getFacedDirection();
+				if (direct == Direction.BOTTOM){
+					posX = game.getX();
+					posY = game.getY() - 10;
+				}else if(direct == Direction.TOP){
+					posX = game.getX();
+					posY = game.getY() + 10;
+				}else if(direct == Direction.LEFT){
+					posX = game.getX() - 10;
+					posY = game.getY();
+				}else {
+					posX = game.getX() + 10;
+					posY = game.getY();
+				}
+				if(!collision(actor,posX,posY)){
+					//todo fonctionnel
+					HashMap<String, Array<Float>> tiles = new HashMap<>();
+					for (Layer layer : Layer.values()) {
+						Array<Float> tile = new Array<>();
+						for (int i = 0; i < 1; i++) {
+							tile.add(1003f);
+						}
+						tiles.put(layer.toString(), tile);
+					}
+
+					EntitySerializable e = new EntitySerializable(1, 1, "common.entities.consumable.Book", tiles);
+					GameObject object = EntityFactory.createEntity(e,589, posToIndex(posX,posY,this), this.idFactory);
+
+					set(object,posToIndex(posX,posY,this));
+				}else{
+					System.out.println("impossible de déposer l'objet");
+				}
+			}
+		}
+	}
+
+	/**
 	 * Supprime une entité de l'array d'entités
 	 *
 	 * @param actor entité à supprimer
@@ -398,7 +445,7 @@ public class GameMap extends AbstractMap {
 		this.resultDialog = resultDialog;
 	}
 
-	public EnigmaDialogPopup getEnigmaDialog() {
+	public static EnigmaDialogPopup getEnigmaDialog() {
 		return enigmaDialog;
 	}
 }

@@ -44,7 +44,7 @@ public class Give extends Operation {
 		if (p.holdSomething())
 			p.getInventory().add(i);
 		else
-			p.setItemInHand(i);
+			p.setItemInRightHand(i);
 
 		return new EnigmaReport(OperationReport.DONE, true); //opération ok
 	}
