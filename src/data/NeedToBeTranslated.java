@@ -276,4 +276,5 @@ public interface NeedToBeTranslated {
 	String INPUT_QUESTION = "Question";
 	String INPUT_ANSWER = "Réponse";
 	String NEW_USER = "Bienvenue sur Enigma.\n Quel sera votre nom d'utilisateur ?\n";
+	String NO_CONTENT = "Aucun contenu";
 }

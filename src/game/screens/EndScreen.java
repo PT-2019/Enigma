@@ -8,7 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 
 /**
- * Ecran de fin de jeu
+ * écran de fin de jeu
  */
 public class EndScreen extends Window {
 
@@ -18,7 +18,7 @@ public class EndScreen extends Window {
 
     private static String RETURN = "Retour au menu";
 
-    public EndScreen() {
+    EndScreen() {
         super("", LibgdxUtility.loadSkin(SKIN_PATH,ATLAS_PATH));
 
         this.setSize(Gdx.graphics.getWidth()/3, Gdx.graphics.getHeight()/4);

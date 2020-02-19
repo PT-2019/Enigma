@@ -45,11 +45,10 @@ public class GameScreen extends LibgdxScreen {
 	 * La map libgdx
 	 */
 	private GameMap map;
-
 	/**
-	 * Screen de fin
+	 * Timer personnalisé
 	 */
-	private static EndScreen endScreen;
+	private static float timer = 0;
 
 	/**
 	 * Retourne le chemin de la map actuelle
@@ -68,7 +67,6 @@ public class GameScreen extends LibgdxScreen {
 		if(MAP_PATH != null && !MAP_PATH.isEmpty()){
 			this.map = new GameMap(MAP_PATH, Config.UNIT_SCALE);
 			EnigmaDialogPopup dialog = map.getEnigmaDialog();
-			this.endScreen = new EndScreen();
 
 			//ajout au stage
 			this.main.addActor(this.map);
@@ -85,10 +83,12 @@ public class GameScreen extends LibgdxScreen {
 			}
 
 			this.hud.addActor(dialog);
-			//ecran de fin
-			this.hud.addActor(this.endScreen);
 			//timer
-			this.hud.addActor(new TimerFrame());
+			if(timer == 0) this.hud.addActor(new TimerFrame());
+			else {
+				this.hud.addActor(new TimerFrame(0, timer));
+				timer = 0;//supprime le timer custom pour la prochaine partie
+			}
 			this.listen(dialog);
 		}
 
@@ -161,12 +161,16 @@ public class GameScreen extends LibgdxScreen {
 		return false;
 	}
 
+	/**
+	 * Définit la valeur de départ pour un timer personnalisé
+	 * @param minutes nombre de minutes
+	 */
+	public static void setTimerDuration(float minutes){
+		timer = minutes;
+	}
+
 	@Override
 	public AbstractMap getMap() {
 		return this.map;
-	}
-
-	public static EndScreen getEndScreen(){
-		return endScreen;
 	}
 }

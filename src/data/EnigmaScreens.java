@@ -15,5 +15,6 @@ public enum EnigmaScreens {
 	TEST,
 	MENU,
 	INVENTORY,
-	SETTINGS
+	SETTINGS,
+	GAME_END
 }

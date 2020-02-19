@@ -6,6 +6,9 @@ import common.entities.GameObject;
 import common.entities.NullGameObject;
 import common.entities.players.Player;
 import common.language.EnigmaField;
+import data.EnigmaScreens;
+import game.EnigmaGame;
+import game.screens.GameEndScreen;
 import game.screens.GameScreen;
 import org.jetbrains.annotations.Nullable;
 
@@ -14,7 +17,7 @@ import java.util.Map;
 import static common.language.GameLanguage.gl;
 
 /**
- * Lorsqu'on a fini le jeu
+ * Lorsqu'on a fini le jeu (victoire)
  *
  * @author Jorys-Micke ALAÏS
  * @author Louka DOZ
@@ -48,8 +51,10 @@ public class EndGame extends Operation {
 
     @Override
     public EnigmaReport run(Player p) {
+        //a gagné
+        GameEndScreen.setHasWin(true);
         //on affiche l'écran de fin
-        GameScreen.getEndScreen().showVictory();
+        EnigmaGame.reload(EnigmaScreens.GAME_END.name());
 
         return new EnigmaReport(OperationReport.END, true);
     }

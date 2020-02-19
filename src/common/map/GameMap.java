@@ -43,6 +43,7 @@ import common.utils.EnigmaUtility;
 import common.utils.Logger;
 import common.entities.types.EnigmaContainer;
 import data.Layer;
+import data.NeedToBeTranslated;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -57,7 +58,7 @@ import java.util.Map;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 6.4
+ * @version 6.5
  * @since 6.0
  */
 public class GameMap extends AbstractMap {
@@ -177,9 +178,11 @@ public class GameMap extends AbstractMap {
 		//si retourne null alors il n'y a pas collision
 		if (c == null || c.getTile() == null) {
 			//si la case est walkable, on fait une petite vérification
+			int directionX = offX == 0?0:offX < 0?-1:1;
+			int directionY = offY == 0?0:offY < 0?-1:1;
 			//collision avancée
-			final float xC = offX == 0?0:offX < 0?-actor.getOriginX()/2:actor.getOriginX()/2;
-			final float yC = offY == 0?0:offY < 0?-actor.getOriginY():actor.getOriginY();
+			final float xC = directionX * actor.getOriginX()/2;//ça marche avec /2 mais je sais pas pk.
+			final float yC = directionY * actor.getOriginY();//et là il faut pas faire /2, vraiment bizarre
 			Vector2 accurate = posToIndex(posX + offX + xC, posY + offY + yC, this);
 
 			MapTestScreenCell correct = (MapTestScreenCell) tiledMap.getCell((int) accurate.x, (int) accurate.y);
@@ -195,8 +198,19 @@ public class GameMap extends AbstractMap {
 			//correction sur le layer
 			if(correct != null && correct.getTile() != null){
 				this.correctMap(actor, c, correct);
-			} else {
+			}
+
+			if(correct != null){
 				//gérer les cases supérieures et inférieures au centre de gravité
+				Vector2 myCellPos = EnigmaUtility.getPosFromCellIndex(correct);
+				//noinspection SuspiciousNameCombination
+				Vector2 supCellPos = myCellPos.cpy().add(directionY, directionX);//case sup
+				Vector2 opposedCellPos = myCellPos.cpy().add(-directionY, -directionX);//case opposée
+
+				MapTestScreenCell cell = (MapTestScreenCell) tiledMap.getCell((int) supCellPos.x, (int) supCellPos.y);
+				this.correctMap(actor, c, cell);
+				cell = (MapTestScreenCell) tiledMap.getCell((int) opposedCellPos.x, (int) opposedCellPos.y);
+				this.correctMap(actor, c, cell);
 			}
 
 			return true;
@@ -243,36 +257,35 @@ public class GameMap extends AbstractMap {
 		//le joueur est au dessus
 		if(cPos.y >= correctPos.y){
 			if(result > 0){//on doit augmenter layer de l'entité sur laquelle on permet le chevauchement
-				//save tiles
-				saveChild(entity);
-				//save pos
-				Vector2 pos = this.objects.getVectorByObject(entity);
-				//supprime
-				removeEntity(entity);
-				//augmente layer
-				changeEntityLayer(entity, entityLayer, actor.getLayer());
-				//ré-ajoute
-				set(entity, pos);
-				//repaint
-				repaint(entity);
+				this.changeLayer(entity, entityLayer, actor.getLayer());
 			}
-		//le joueur est en dessous
-		} else {
+		} else {//le joueur est en dessous
 			if(result <= 0){//on doit baisser l'entité sur laquelle on permet le chevauchement
-				//save tiles
-				saveChild(entity);
-				//save pos
-				Vector2 pos = this.objects.getVectorByObject(entity);
-				//supprime
-				removeEntity(entity);
-				//augmente layer
-				changeEntityLayer(entity, entityLayer, Layer.values()[actor.getLayer().ordinal()-1]);
-				//ré-ajoute
-				set(entity, pos);
-				//repaint
-				repaint(entity);
+				this.changeLayer(entity, entityLayer, Layer.values()[actor.getLayer().ordinal()-1]);
 			}
 		}
+	}
+
+	/**
+	 * La procédure de changement de niveau
+	 * @param entity entité
+	 * @param entityLayer son niveau
+	 * @param increaseTo le niveau auquel là placer
+	 */
+	private void changeLayer(GameObject entity, Layer entityLayer, Layer increaseTo){
+		//TODO: optimiser, obliger de supprimer puis remettre c'est pas top
+		//save tiles
+		saveChild(entity);
+		//save pos
+		Vector2 pos = this.objects.getVectorByObject(entity);
+		//supprime
+		removeEntity(entity);
+		//augmente layer
+		changeEntityLayer(entity, entityLayer, increaseTo);
+		//ré-ajoute
+		set(entity, pos);
+		//repaint
+		repaint(entity);
 	}
 
 	/**
@@ -442,7 +455,9 @@ public class GameMap extends AbstractMap {
 			//si c'est une entité dont on affiche le contenu
 			} else if (entity instanceof ShowContent) {
 				EnigmaDialogPopup dialog = this.getEnigmaDialog();
-				Dialog node = new Dialog(((Content) entity).getContent());
+				String content = ((Content) entity).getContent();
+				if(content == null || content.isEmpty()) content = NeedToBeTranslated.NO_CONTENT;
+				Dialog node = new Dialog(content);
 				dialog.showDialog(node, this);
 			}
 
@@ -562,7 +577,7 @@ public class GameMap extends AbstractMap {
 		boolean result = false;
 
 		//on va itérer tout les actors connu sur la map
-		//todo : peut être un autre système
+		//todo : peut être un autre système --> se limiter au acteur au même niveau ?
 		ArrayList<GameActor> actors = (ArrayList<GameActor>) this.entities.clone();
 		actors.remove(actor);
 		for (GameActor act : actors) {
