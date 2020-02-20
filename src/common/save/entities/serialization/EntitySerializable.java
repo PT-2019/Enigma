@@ -66,6 +66,7 @@ public class EntitySerializable {
 	 * @param width     largeur
 	 * @param height    hauteur
 	 * @param className chemin classe entité
+	 * @param tiles     tiles de l'entité
 	 * @since 5.0
 	 */
 	public EntitySerializable(int width, int height, String className, HashMap<String, Array<Float>> tiles) {
@@ -155,7 +156,7 @@ public class EntitySerializable {
 	 * @since 3.0
 	 */
 	public HashMap<String, Array<Float>> getAltTiles() {
-		if(tilesAlt == null) return null;
+		if (tilesAlt == null) return null;
 		return new HashMap<>(this.tilesAlt);
 	}
 

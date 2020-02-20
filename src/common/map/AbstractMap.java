@@ -146,6 +146,7 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 	 *
 	 * @param path      chemin d'une map
 	 * @param unitScale taux de distortion
+	 * @param isInit    true si on fait l'initialisation sinon false
 	 * @since 6.2
 	 */
 	AbstractMap(@NotNull final String path, final float unitScale, boolean isInit) {
@@ -226,8 +227,8 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 	 * Convertit la position sur la grille en position sur la map
 	 *
 	 * @param column colonne
-	 * @param row ligne
-	 * @param map  la map
+	 * @param row    ligne
+	 * @param map    la map
 	 * @return la position sur la map
 	 */
 	public static Vector2 indexToPos(int column, int row, final AbstractMap map) {
@@ -237,7 +238,7 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 		//par rapport à la taille du joueur
 
 		index.x = (column + 0.5f) * map.getUnitScale() * map.getTileWidth();
-		index.y =  (row - 2) * map.getUnitScale() * map.getTileHeight();
+		index.y = (row - 2) * map.getUnitScale() * map.getTileHeight();
 
 		return index;
 	}
@@ -248,10 +249,11 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 	 * Retourne une liste des propriétés contenant name
 	 *
 	 * @param name un name (tag name d'une property d'un .tmx)
+	 * @param map  la map
 	 * @return une liste des propriétés contenant name
 	 * @since 5.0
 	 */
-	@SuppressWarnings({"", "WeakerAccess", "SameParameterValue"})
+	@SuppressWarnings({"WeakerAccess", "SameParameterValue"})
 	protected static ArrayList<MapProperties> getProperty(String name, AbstractMap map) {
 		ArrayList<MapProperties> props = new ArrayList<>();
 		for (MapLayer layer : map.getTiledMap().getLayers()) {
@@ -285,9 +287,10 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 
 	/**
 	 * Recharge des éléments de la map
+	 *
 	 * @since 6.3
 	 */
-	public void reload(){
+	public void reload() {
 	}
 
 	/**

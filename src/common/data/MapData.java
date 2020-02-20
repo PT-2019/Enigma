@@ -36,7 +36,10 @@ public class MapData {
 	private String mapName;
 
 	/**
-	 * @param author Auteur
+	 * Donnée propre à une map
+	 *
+	 * @param author  Auteur
+	 * @param mapName nom de la map
 	 */
 	public MapData(String author, String mapName) {
 		this.author = author;

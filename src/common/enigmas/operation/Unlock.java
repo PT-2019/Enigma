@@ -46,7 +46,7 @@ public class Unlock extends Operation {
 	 */
 	@Override
 	public EnigmaReport run(Player p) {
-		if(!this.fulfilled) {
+		if (!this.fulfilled) {
 			Lockable l = (Lockable) this.entity;
 			l.unlock();
 			this.fulfilled = true;

@@ -1,5 +1,6 @@
 package common.entities.players;
 
+import api.utils.Utility;
 import com.badlogic.gdx.maps.MapProperties;
 import common.entities.types.AbstractLivingEntity;
 import common.entities.types.Content;
@@ -69,7 +70,7 @@ public class Monster extends AbstractLivingEntity implements EntityGame, Content
 		imp.put(TypeEntity.MONSTER, true);
 		imp.put(TypeEntity.LIVING, true);
 		imp.put(TypeEntity.NEED_CONTAINER_MANAGER, true);
-		imp.put(TypeEntity.CONTENT,true);
+		imp.put(TypeEntity.CONTENT, true);
 		return imp;
 	}
 
@@ -96,6 +97,7 @@ public class Monster extends AbstractLivingEntity implements EntityGame, Content
 		this.json = data.get(PlayerSave.JSON.getKey(), String.class);
 		this.name = data.get(PlayerSave.NAME.getKey(), String.class);
 		this.dialog = data.get(PlayerSave.CONTENT.getKey(), String.class);
+		if (dialog != null) this.dialog = Utility.asciiEscapedToNormalString(this.dialog);
 		if (this.name.isEmpty() || this.name.isBlank()) this.name = this.key;
 	}
 

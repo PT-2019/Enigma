@@ -37,6 +37,7 @@ public class PlayerSerializableToJson extends EntitySerializable {
 	 * @param width     largeur
 	 * @param height    hauteur
 	 * @param className chemin classe entité
+	 * @param tiles     tiles
 	 * @since 5.0
 	 */
 	@SuppressWarnings("unused")

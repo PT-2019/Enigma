@@ -127,5 +127,5 @@ public interface EnigmaAttributes {
 	 *
 	 * @see common.enigmas.Enigma
 	 */
-    String FULFILLED = "fulfilled";
+	String FULFILLED = "fulfilled";
 }

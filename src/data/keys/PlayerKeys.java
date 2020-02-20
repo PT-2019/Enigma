@@ -17,8 +17,7 @@ public enum PlayerKeys implements EnigmaKeys {
 	PLAYER_RIGHT(Keys.RIGHT, Keys.D),
 	PLAYER_UP(Keys.UP, Keys.Z),
 	PLAYER_DOWN(Keys.DOWN, Keys.S),
-	PLAYER_USE(Keys.E, Keys.ENTER)
-	;
+	PLAYER_USE(Keys.E, Keys.ENTER);
 
 	private int key1, key2;
 

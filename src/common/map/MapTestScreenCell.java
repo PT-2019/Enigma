@@ -14,7 +14,6 @@ import game.screens.TestScreen;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 5.0
  * @since 3.0 14 décembre 2019
  */
@@ -68,6 +67,7 @@ public class MapTestScreenCell extends TiledMapTileLayer.Cell {
 
 	/**
 	 * Retourne le niveau Libgdx
+	 *
 	 * @return le niveau libgdx
 	 */
 	public TiledMapTileLayer getLayer() {
@@ -76,15 +76,17 @@ public class MapTestScreenCell extends TiledMapTileLayer.Cell {
 
 	/**
 	 * Retourne le nom du niveau
+	 *
 	 * @return le nom du niveau
 	 */
-	@SuppressWarnings("WeakerAccess")
 	public Layer getLayerName() {
 		return Utility.stringToEnum(this.layer.getName(), Layer.values());
 	}
 
 	/**
 	 * Vide la case
+	 *
+	 * @return message de suppression
 	 */
 	public String removeEntity() {
 		return ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap().removeEntity(entity);

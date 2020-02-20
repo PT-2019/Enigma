@@ -47,7 +47,7 @@ public class PlayerGame extends GameActorAnimation implements InputAdapter {
 	public PlayerGame(GameMap map) {
 		this.setAnimationPaused(true);
 		this.map = map;
-		this.joueur=new Player();
+		this.joueur = new Player();
 	}
 
 	/**
@@ -63,21 +63,22 @@ public class PlayerGame extends GameActorAnimation implements InputAdapter {
 
 	/**
 	 * Met à jour les informations du joueur
-	 * @param offX déplacement x
-	 * @param offY déplacement y
-	 * @param keyF start key frame
+	 *
+	 * @param offX     déplacement x
+	 * @param offY     déplacement y
+	 * @param keyF     start key frame
 	 * @param resetKey base key frame
-	 * @param d direction du déplacement
+	 * @param d        direction du déplacement
 	 * @since 6.1
 	 */
-	private void upPlayer(float offX, float offY, int keyF, int resetKey, Direction d){
+	private void upPlayer(float offX, float offY, int keyF, int resetKey, Direction d) {
 		//position actuelle
 		float x = this.getX();
 		float y = this.getY();
 
 		//on vérifie que la case où l'on compte se rendre est disponible
 		if (this.map.isWalkable(this, offX, offY) && (!this.map.collision(this, offX, offY))) {
-			this.map.doAction(x,y, this, TileEventEnum.ON_EXIT);//quitte
+			this.map.doAction(x, y, this, TileEventEnum.ON_EXIT);//quitte
 			this.moveBy(offX, offY);
 			this.map.doAction(getX(), getY(), this, TileEventEnum.ON_ENTER); //entre
 			//pour changer de sprite proprement
@@ -105,7 +106,7 @@ public class PlayerGame extends GameActorAnimation implements InputAdapter {
 	 */
 	@Override
 	public boolean keyDown(int i) {
-		if(!map.getEnigmaDialog().isVisible()){
+		if (!map.getEnigmaDialog().isVisible()) {
 			//TODO: interdit de faire input et update en même temps !
 			if (PlayerKeys.PLAYER_LEFT.isKey(i)) {
 				this.upPlayer(-PlayerGame.SPEED, 0, 3, 5, Direction.LEFT);
@@ -127,16 +128,16 @@ public class PlayerGame extends GameActorAnimation implements InputAdapter {
 
 				if (facedDirection == Direction.BOTTOM) {
 					tmpX = this.getX();
-					tmpY = this.getY() - PlayerGame.SPEED;
+					tmpY = this.getY() - PlayerGame.SPEED - this.getOriginY();
 				} else if (facedDirection == Direction.TOP) {
 
 					tmpX = this.getX();
-					tmpY = this.getY() + PlayerGame.SPEED;
+					tmpY = this.getY() + PlayerGame.SPEED + this.getOriginY();
 				} else if (facedDirection == Direction.RIGHT) {
-					tmpX = this.getX() + PlayerGame.SPEED;
+					tmpX = this.getX() + PlayerGame.SPEED + this.getOriginX() / 2;
 					tmpY = this.getY();
 				} else {
-					tmpX = this.getX() - PlayerGame.SPEED;
+					tmpX = this.getX() - PlayerGame.SPEED - this.getOriginX() / 2;
 					tmpY = this.getY();
 				}
 
@@ -145,9 +146,9 @@ public class PlayerGame extends GameActorAnimation implements InputAdapter {
 				if (entityGame != null) {
 					Logger.printDebugALL("PlayerGame", entityGame.toString());
 					//on affiche le dialogue de l'entité si elle en à un
-					if (entityGame instanceof NpcGame ){
+					if (entityGame instanceof NpcGame) {
 						dialog.showDialog(((NpcGame) entityGame).getDialog(), map);
-					}else if(entityGame instanceof MonsterGame){
+					} else if (entityGame instanceof MonsterGame) {
 						dialog.showDialog(((MonsterGame) entityGame).getDialog(), map);
 					}
 				}
@@ -163,11 +164,12 @@ public class PlayerGame extends GameActorAnimation implements InputAdapter {
 
 	/**
 	 * Change le sprite
-	 * @param min minimum pour effectuer le changement
+	 *
+	 * @param min   minimum pour effectuer le changement
 	 * @param start sprite de départ
-	 * @param idle sprite de base
+	 * @param idle  sprite de base
 	 */
-	private void setSprite(int min, int start, int idle){
+	private void setSprite(int min, int start, int idle) {
 		//on contrôle les sprites affichés
 		if (this.getKeyFrameIndex() > min) {
 			this.setKeyFrame(start);
@@ -188,20 +190,21 @@ public class PlayerGame extends GameActorAnimation implements InputAdapter {
 		super.act(delta);
 
 		if (this.facedDirection == Direction.LEFT)
-			setSprite(5,4,5);//6 ?
+			setSprite(5, 4, 5);//6 ?
 
 		if (this.facedDirection == Direction.RIGHT)
-			setSprite(7,6,8);
+			setSprite(7, 6, 8);
 
 		if (this.facedDirection == Direction.BOTTOM)
-			setSprite(1,0,2);
+			setSprite(1, 0, 2);
 
 		if (this.facedDirection == Direction.TOP)
-			setSprite(10,9,11);
+			setSprite(10, 9, 11);
 	}
 
 	/**
 	 * Retourne le joueur (model)
+	 *
 	 * @return le joueur (model)
 	 */
 	public Player getPlayer() {

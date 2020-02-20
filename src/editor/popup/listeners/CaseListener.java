@@ -1,7 +1,7 @@
 package editor.popup.listeners;
 
 import api.utils.Observer;
-import api.utils.WindowClosing;
+import api.utils.convenience.WindowClosing;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
@@ -100,6 +100,8 @@ public class CaseListener extends ClickListener {
 	/**
 	 * Ferme tous les popups
 	 *
+	 * @param closePopup une restriction sur les popup à fermer
+	 * @see ClosePopup
 	 * @since 6.1
 	 */
 	public static void close(ClosePopup closePopup) {
@@ -251,7 +253,6 @@ public class CaseListener extends ClickListener {
 	public void setPop(SpecialPopUp pop) {
 		this.pop = pop;
 	}
-
 
 
 	/**

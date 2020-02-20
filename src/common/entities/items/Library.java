@@ -6,11 +6,9 @@ import common.enigmas.TileEventEnum;
 import common.enigmas.reporting.EnigmaReport;
 import common.entities.Item;
 import common.entities.players.PlayerGame;
-import common.entities.types.AbstractItem;
 import common.entities.types.AbstractLockable;
 import common.entities.types.ChangeStateReport;
 import common.entities.types.Container;
-import common.entities.types.Lockable;
 import common.language.GameFields;
 import common.language.GameLanguage;
 import common.save.entities.PlayerSave;
@@ -112,7 +110,7 @@ public class Library extends AbstractLockable implements Container {
 	public void load(MapProperties data) {
 		this.locked = Boolean.parseBoolean(data.get(PlayerSave.LOCKED.getKey(), String.class));
 		this.altTiles = new HashMap<>();
-		for(Map.Entry<Layer, Array<Float>> entry: this.getTiles().entrySet()) {
+		for (Map.Entry<Layer, Array<Float>> entry : this.getTiles().entrySet()) {
 			this.altTiles.put(entry.getKey().name(), entry.getValue());
 		}
 	}
@@ -120,11 +118,11 @@ public class Library extends AbstractLockable implements Container {
 	//alt
 	@Override
 	public EnigmaReport changeState(PlayerGame actor, TileEventEnum event) {
-		if(event.equals(TileEventEnum.ON_USE)){
-			if(isLocked()){
+		if (event.equals(TileEventEnum.ON_USE)) {
+			if (isLocked()) {
 				this.alreadyUnlocked = false;
 				return new EnigmaReport(ChangeStateReport.LOCKED, true, this);
-			} else if(!this.alreadyUnlocked) {
+			} else if (!this.alreadyUnlocked) {
 				this.alreadyUnlocked = true;
 				this.hidden = false;
 				return new EnigmaReport(ChangeStateReport.UNLOCK, true, this);
@@ -133,5 +131,10 @@ public class Library extends AbstractLockable implements Container {
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public boolean needReloadAfterStateChange() {
+		return true;
 	}
 }

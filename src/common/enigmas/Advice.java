@@ -29,6 +29,7 @@ public class Advice implements EnigmaElementReadablePrint {
 
 	/**
 	 * Délai avant de montrer l'indice (2 minute de base)
+	 *
 	 * @deprecated
 	 */
 	@Deprecated

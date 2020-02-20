@@ -40,7 +40,7 @@ public class Give extends Operation {
 
 	@Override
 	public EnigmaReport run(Player p) {
-		if(!this.fulfilled) {
+		if (!this.fulfilled) {
 			Item i = (Item) this.entity;
 			if (!p.getInventory().isFull())
 				p.addItem(i);

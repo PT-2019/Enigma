@@ -11,16 +11,16 @@ package common.enigmas.reporting;
  * @since 6.0 12/02/2020
  */
 public enum ConditionReport implements Report {
-	ACTIVATED("Quelque chose est activé.",SHOULD_NOT_BE_SHOWED),
-	UNACTIVATED("Quelque chose n'est pas activé.",MAY_BE_SHOWED),
-	FOUND_IN_HANDS("Le joueur a l'objet dans ses mains.",SHOULD_NOT_BE_SHOWED),
-	NOT_IN_HANDS("Le joueur n'a pas l'objet dans ses mains.",MAY_BE_SHOWED),
+	ACTIVATED("Quelque chose est activé.", SHOULD_NOT_BE_SHOWED),
+	UNACTIVATED("Quelque chose n'est pas activé.", MAY_BE_SHOWED),
+	FOUND_IN_HANDS("Le joueur a l'objet dans ses mains.", SHOULD_NOT_BE_SHOWED),
+	NOT_IN_HANDS("Le joueur n'a pas l'objet dans ses mains.", MAY_BE_SHOWED),
 	CORRECT_ANSWER("La réponse est correcte", MUST_BE_SHOWED),
 	WRONG_ANSWER("Mauvaise réponse.", MUST_BE_SHOWED),
-	FOUND_IN_INVENTORY("Le joueur a l'objet dans son inventaire.",SHOULD_NOT_BE_SHOWED),
-	NOT_IN_INVENTORY("Le joueur n'a pas l'objet dans son inventaire.",MAY_BE_SHOWED),
-	DISCOVERED("La pièce a été découverte.",SHOULD_NOT_BE_SHOWED),
-	UNDISCOVERED("La pièce n'a pas été découverte.",SHOULD_NOT_BE_SHOWED),
+	FOUND_IN_INVENTORY("Le joueur a l'objet dans son inventaire.", SHOULD_NOT_BE_SHOWED),
+	NOT_IN_INVENTORY("Le joueur n'a pas l'objet dans son inventaire.", MAY_BE_SHOWED),
+	DISCOVERED("La pièce a été découverte.", SHOULD_NOT_BE_SHOWED),
+	UNDISCOVERED("La pièce n'a pas été découverte.", SHOULD_NOT_BE_SHOWED),
 	NO_ANSWER("Aucune réponse saisie", SHOULD_NOT_BE_SHOWED);
 
 	/**
@@ -36,7 +36,7 @@ public enum ConditionReport implements Report {
 	private final int importance;
 
 	/**
-	 * @param report Rapport
+	 * @param report     Rapport
 	 * @param importance Importance
 	 */
 	ConditionReport(String report, int importance) {

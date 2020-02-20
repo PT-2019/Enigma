@@ -3,7 +3,6 @@ package api.utils;
 import api.utils.annotations.ConvenienceClass;
 import api.utils.annotations.ConvenienceMethod;
 import com.badlogic.gdx.utils.Array;
-import data.config.Config;
 import org.jetbrains.annotations.Nullable;
 
 import java.awt.Component;
@@ -59,7 +58,7 @@ public class Utility implements Serializable {
 
 		if (list != null) {
 			for (String s : list) {
-				if(extensions != null) {
+				if (extensions != null) {
 					for (String ext : extensions) {
 						if (s.endsWith(ext)) {
 							if (removeExtension) {
@@ -206,6 +205,7 @@ public class Utility implements Serializable {
 	 * @param m         object méthode
 	 * @param className nom de la classe
 	 * @param <T>       type de retour
+	 * @param args      les arguments de la méthode
 	 * @return appel une méthode et retourne son résultat
 	 */
 	@SuppressWarnings("unchecked")
@@ -537,8 +537,7 @@ public class Utility implements Serializable {
 	}
 
 	/**
-	 * Retourne la version non échappée d'une string. tel que la string suivante.
-	 * "ZSdz ef e&#10;&#10;zse&#10;ev&#10;&#10;&#10;ez&#10;&#10;ze"
+	 * Retourne la version non échappée d'une string.
 	 *
 	 * @param asciiEscapedString un string contenant des caractères ascii échappés
 	 * @return un string sans caractères échappés
@@ -589,7 +588,8 @@ public class Utility implements Serializable {
 
 	/**
 	 * Retourne l'extension d'un fichier depuis son nom et son dossier
-	 * @param folder son dossier
+	 *
+	 * @param folder   son dossier
 	 * @param fileName son nom
 	 * @return son extension
 	 * @throws IllegalArgumentException si problème
@@ -597,9 +597,9 @@ public class Utility implements Serializable {
 	public static String getExtension(String folder, String fileName) {
 		ArrayList<String> allFiles = Utility.getAllFiles(folder, null, false);
 		for (String file : allFiles) {
-			if(file.startsWith(fileName)){
+			if (file.startsWith(fileName)) {
 				StringBuilder extension = new StringBuilder();
-				for (int i = file.lastIndexOf("."); i < file.length() ; i++) {
+				for (int i = file.lastIndexOf("."); i < file.length(); i++) {
 					extension.append(file.charAt(i));
 				}
 				return extension.toString();

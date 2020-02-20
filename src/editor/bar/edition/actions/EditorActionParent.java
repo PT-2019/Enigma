@@ -18,6 +18,7 @@ public interface EditorActionParent<T> {
 	/**
 	 * Ajoute un object
 	 *
+	 * @param arg  argument principal
 	 * @param args les arguments pour supprimer l'object
 	 * @since 6.0
 	 */
@@ -26,6 +27,7 @@ public interface EditorActionParent<T> {
 	/**
 	 * Retire un object
 	 *
+	 * @param arg  argument principal
 	 * @param args les arguments pour supprimer l'object
 	 * @since 6.0
 	 */

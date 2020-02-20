@@ -61,7 +61,7 @@ public class LaunchSound extends Operation {
 		super(attributes);
 		//récupère le gestionnaire
 		AbstractMap map = EnigmaGame.getCurrentScreen().getMap();
-		if(map instanceof GameMap){
+		if (map instanceof GameMap) {
 			this.musicGame = ((GameMap) map).getGameMusic();
 		}
 	}

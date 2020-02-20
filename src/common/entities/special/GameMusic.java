@@ -38,9 +38,10 @@ public class GameMusic implements Observer, Disposable {
 
 	/**
 	 * Classe qui gère les music à lancer dans le jeu et les sons
+	 *
 	 * @since 6.1
 	 */
-	public GameMusic(){
+	public GameMusic() {
 		this.volume = 0.5f;
 		this.sounds = new ArrayList<>();
 		this.music = null;
@@ -112,17 +113,19 @@ public class GameMusic implements Observer, Disposable {
 
 	/**
 	 * Libère les sons
+	 *
 	 * @since 6.1
 	 */
 	@Override
 	public void dispose() {
-		for (Sound s: this.sounds) {
+		for (Sound s : this.sounds) {
 			s.dispose();
 		}
 	}
 
 	/**
 	 * Retourne s'il y a une musique qui peut être jouée
+	 *
 	 * @return true s'il y a une musique qui peut être jouée
 	 * @since 6.1
 	 */
@@ -134,7 +137,7 @@ public class GameMusic implements Observer, Disposable {
 	 * Arrête la lecture des musiques
 	 */
 	public void stop() {
-		if(this.music != null && this.music.isPlaying()) this.music.stop();
+		if (this.music != null && this.music.isPlaying()) this.music.stop();
 		this.dispose();
 	}
 }

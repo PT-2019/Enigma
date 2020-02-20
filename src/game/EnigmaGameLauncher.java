@@ -3,7 +3,7 @@ package game;
 import api.Application;
 import api.libgdx.utils.LoadGameLibgdxApplication;
 import api.ui.CustomWindow;
-import api.utils.WindowClosing;
+import api.utils.convenience.WindowClosing;
 import com.badlogic.gdx.Gdx;
 import common.hud.EnigmaWindow;
 import common.utils.Logger;

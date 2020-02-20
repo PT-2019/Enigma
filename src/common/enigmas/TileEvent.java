@@ -53,6 +53,7 @@ public class TileEvent {
 
 	/**
 	 * Ajoute le contenu d'un tileEvent à un autre
+	 *
 	 * @param event un tileEvent
 	 */
 	public void add(TileEvent event) {
@@ -92,12 +93,13 @@ public class TileEvent {
 	 * A l'entrée sur la tile
 	 *
 	 * @param player Joueur concerné
+	 * @return liste des reports
 	 */
 	public ArrayList<EnigmaReport> onEnter(Player player) {
 		ArrayList<EnigmaReport> reports = new ArrayList<>();
-		for (Enigma e : this.onEnter){
+		for (Enigma e : this.onEnter) {
 			ArrayList<EnigmaReport> tmp = e.verifyConditions(player);
-			if(tmp != null) reports.addAll(tmp);
+			if (tmp != null) reports.addAll(tmp);
 		}
 
 		return reports;
@@ -107,12 +109,13 @@ public class TileEvent {
 	 * Lors de la sortie de la tile
 	 *
 	 * @param player Joueur concerné
+	 * @return liste des reports
 	 */
 	public ArrayList<EnigmaReport> onExit(Player player) {
 		ArrayList<EnigmaReport> reports = new ArrayList<>();
-		for (Enigma e : this.onExit){
+		for (Enigma e : this.onExit) {
 			ArrayList<EnigmaReport> tmp = e.verifyConditions(player);
-			if(tmp != null) reports.addAll(tmp);
+			if (tmp != null) reports.addAll(tmp);
 		}
 
 		return reports;
@@ -122,14 +125,13 @@ public class TileEvent {
 	 * Lors d'interaction avec la tile
 	 *
 	 * @param player Joueur concerné
-	 *
 	 * @return tous les retours des conditions et opérations
 	 */
 	public ArrayList<EnigmaReport> onUse(Player player) {
 		ArrayList<EnigmaReport> reports = new ArrayList<>();
 		for (Enigma e : this.onUse) {
 			ArrayList<EnigmaReport> tmp = e.verifyConditions(player);
-			if(tmp != null) reports.addAll(tmp);
+			if (tmp != null) reports.addAll(tmp);
 		}
 
 		return reports;

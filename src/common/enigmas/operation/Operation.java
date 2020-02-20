@@ -97,7 +97,7 @@ public abstract class Operation implements EnigmaElementReadablePrint {
 	public HashMap<String, Object> objectToMap() {
 		HashMap<String, Object> object = new HashMap<>();
 		object.put(EnigmaAttributes.PATH, this.getClass().getName());
-		if(this.entity != null) object.put(EnigmaAttributes.ENTITY, this.entity.getID() + "");
+		if (this.entity != null) object.put(EnigmaAttributes.ENTITY, this.entity.getID() + "");
 		object.put(EnigmaAttributes.FULFILLED, this.fulfilled + "");
 		return object;
 	}

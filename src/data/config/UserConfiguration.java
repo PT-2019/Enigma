@@ -40,7 +40,7 @@ public class UserConfiguration {
 	private UserConfiguration() {
 		//récupère le fichier des préférences
 		Preferences prefs;
-		if(Gdx.app == null){
+		if (Gdx.app == null) {
 			//récupération des préférences manuellement
 			LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 			prefs = new LwjglPreferences(new LwjglFileHandle(new File(config.preferencesDirectory,

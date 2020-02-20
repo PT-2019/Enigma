@@ -96,18 +96,11 @@ public class Player extends AbstractLivingEntity implements Container {
 
 	/**
 	 * Obtenir l'objet dans la main droite
+	 *
 	 * @return Objet dans la main droite, null si il n'y en a pas
 	 */
 	public Item getItemInRightHand() {
 		return rightHand;
-	}
-
-	/**
-	 * Obtenir l'objet dans la main gauche
-	 * @return Objet dans la main gauche, null si il n'y en a pas
-	 */
-	public Item getItemInLeftHand() {
-		return leftHand;
 	}
 
 	/**
@@ -119,8 +112,17 @@ public class Player extends AbstractLivingEntity implements Container {
 	public void setItemInRightHand(Item item) {
 		Item tmp = this.rightHand;
 		this.rightHand = item;
-		if(tmp != null)
+		if (tmp != null)
 			this.addItem(tmp);
+	}
+
+	/**
+	 * Obtenir l'objet dans la main gauche
+	 *
+	 * @return Objet dans la main gauche, null si il n'y en a pas
+	 */
+	public Item getItemInLeftHand() {
+		return leftHand;
 	}
 
 	/**
@@ -132,12 +134,13 @@ public class Player extends AbstractLivingEntity implements Container {
 	public void setItemInLeftHand(Item item) {
 		Item tmp = this.leftHand;
 		this.leftHand = item;
-		if(tmp != null)
+		if (tmp != null)
 			this.addItem(tmp);
 	}
 
 	/**
 	 * Est-ce que le joueur tiens un objet dans sa main droite
+	 *
 	 * @return true s'il tiens un objet dans sa main droite, false sinon
 	 */
 	public boolean holdItemInRightHand() {
@@ -146,6 +149,7 @@ public class Player extends AbstractLivingEntity implements Container {
 
 	/**
 	 * Est-ce que le joueur tiens un objet dans sa main gauche
+	 *
 	 * @return true s'il tiens un objet dans sa main gauche, false sinon
 	 */
 	public boolean holdItemInLeftHand() {
@@ -154,6 +158,7 @@ public class Player extends AbstractLivingEntity implements Container {
 
 	/**
 	 * Obtenir l'inventaire
+	 *
 	 * @return Inventaire
 	 */
 	public Inventory getInventory() {
@@ -168,11 +173,11 @@ public class Player extends AbstractLivingEntity implements Container {
 	 */
 	@Override
 	public boolean addItem(Item item) {
-		if(!this.inventory.isFull())
+		if (!this.inventory.isFull())
 			this.inventory.add(item);
-		else if(!this.holdItemInRightHand())
+		else if (!this.holdItemInRightHand())
 			this.setItemInRightHand(item);
-		else if(!this.holdItemInLeftHand())
+		else if (!this.holdItemInLeftHand())
 			this.setItemInLeftHand(item);
 		else
 			return false;

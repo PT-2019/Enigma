@@ -1,8 +1,8 @@
 import api.Application;
 import api.libgdx.utils.LoadGameLibgdxApplication;
 import api.ui.CustomWindow;
-import api.utils.WindowClosing;
 import api.utils.annotations.NeedPatch;
+import api.utils.convenience.WindowClosing;
 import common.hud.EnigmaWindow;
 import common.language.GameLanguage;
 import common.utils.runnable.StartGameRunnable;
@@ -26,7 +26,7 @@ import java.awt.BorderLayout;
  */
 public class EnigmaFastGame implements Application {
 
-	private static final String PATH = "assets/files/map/test.tmx";
+	private static final String PATH = "assets/files/map/cocoa.tmx";
 	private static EnigmaFastGame launcher;
 	private CustomWindow window;
 	private JPanel gameScreen;

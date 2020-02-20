@@ -26,6 +26,15 @@ public class GameEndScreen extends LibgdxScreen {
 	 */
 	private Stage main;
 
+	/**
+	 * Définit s'il ont gagné ou perdu
+	 *
+	 * @param win true gagné sinon perdu
+	 */
+	public static void setHasWin(boolean win) {
+		GameEndScreen.win = win;
+	}
+
 	@Override
 	public void init() {
 		this.main = new Stage();
@@ -35,7 +44,7 @@ public class GameEndScreen extends LibgdxScreen {
 		//écran de fin
 		this.main.addActor(endScreen);
 
-		if(win){
+		if (win) {
 			endScreen.showVictory();
 		} else {
 			endScreen.showGameOver();
@@ -78,20 +87,18 @@ public class GameEndScreen extends LibgdxScreen {
 	@Override
 	public void show() {
 		super.show();
-		Gdx.gl20.glClearColor( 1.0f,1.0f,1.0f,1.0f);
+		Gdx.gl20.glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 	}
 
-	@Override@DoNothing
-	public boolean setMap(String absolutePath) {return false;}
+	@Override
+	@DoNothing
+	public boolean setMap(String absolutePath) {
+		return false;
+	}
 
-	@Override@DoNothing
-	public AbstractMap getMap() { return null; }
-
-	/**
-	 * Définit s'il ont gagné ou perdu
-	 * @param win true gagné sinon perdu
-	 */
-	public static void setHasWin(boolean win){
-		GameEndScreen.win = win;
+	@Override
+	@DoNothing
+	public AbstractMap getMap() {
+		return null;
 	}
 }

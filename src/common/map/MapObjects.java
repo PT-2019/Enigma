@@ -199,8 +199,9 @@ public class MapObjects {
 	 * On regarde toutes les classes parent.
 	 * On regarde seulement les interfaces de première génération.
 	 *
-	 * @param t   Classe
-	 * @param <T> Type de la classe
+	 * @param t     Classe
+	 * @param <T>   Type de la classe
+	 * @param clone si on doit faire une copie
 	 * @return Les éléments
 	 * @since 5.0
 	 */

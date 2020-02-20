@@ -44,7 +44,6 @@ public class GameActorUtilities {
 	 * @return true s'il y a collision sinon false
 	 * @since 4.0 20/12/2019
 	 */
-	@SuppressWarnings("WeakerAccess")
 	public static boolean overlaps(Actor actor, Actor target) {
 		//récupère le recouvrement (mis à jour)
 		Polygon poly1, poly2;
@@ -76,10 +75,11 @@ public class GameActorUtilities {
 	 *
 	 * @param actor  un actor
 	 * @param target une autre acteur
+	 * @param movX   déplacement X
+	 * @param movY   déplacement Y
 	 * @return true s'il y a collision sinon false
 	 * @since 4.0 20/12/2019
 	 */
-	@SuppressWarnings("WeakerAccess")
 	public static boolean overlaps(Actor actor, Actor target, float movX, float movY) {
 		//récupère le recouvrement (mis à jour)
 		Polygon poly1, poly2;

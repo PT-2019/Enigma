@@ -47,7 +47,7 @@ public class HideRoom extends Operation {
 
 	@Override
 	public EnigmaReport run(Player p) {
-		if(!this.fulfilled) {
+		if (!this.fulfilled) {
 			Room room = (Room) this.entity;
 			room.setShowed(false);
 			this.fulfilled = true;

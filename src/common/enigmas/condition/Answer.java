@@ -4,17 +4,11 @@ import common.enigmas.reporting.ConditionReport;
 import common.enigmas.reporting.EnigmaReport;
 import common.entities.GameObject;
 import common.entities.players.Player;
-import common.entities.types.Content;
 import common.entities.types.EnigmaContainer;
-import common.hud.EnigmaOptionPane;
-import common.hud.EnigmaWindow;
 import common.language.EnigmaField;
-import common.map.AbstractMap;
-import common.map.GameMap;
-import common.save.enigmas.EnigmaAttributes;
 import common.utils.Question;
 import data.NeedToBeTranslated;
-import game.EnigmaGame;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -66,8 +60,8 @@ public class Answer extends Condition {
 		super(attributes);
 
 		//re-crée la question
-		if(attributes.containsKey(QUESTION) && attributes.containsKey(ANSWER)){
-			this.question = new Question((String)attributes.get(QUESTION), (String) attributes.get(ANSWER));
+		if (attributes.containsKey(QUESTION) && attributes.containsKey(ANSWER)) {
+			this.question = new Question((String) attributes.get(QUESTION), (String) attributes.get(ANSWER));
 		}
 
 		this.answer = null;
@@ -88,15 +82,16 @@ public class Answer extends Condition {
 	 * @return true si la condition est satisfaite, false sinon
 	 */
 	@Override
-	public EnigmaReport verify(Player p) {
-		if(this.answer == null){
+	public EnigmaReport verify(@Nullable Player p) {
+		if (this.answer == null) {
 			return new EnigmaReport(ConditionReport.NO_ANSWER, false, this);
 		}
 
 		//s'il a donné une réponse qui contient la bonne
-		if(this.answer.trim().contains(this.question.getAnswer().trim()))
+		if (this.answer.trim().contains(this.question.getAnswer().trim()))
 			return new EnigmaReport(ConditionReport.CORRECT_ANSWER, true);
 
+		this.answer = null;//supprime la réponse
 		return new EnigmaReport(ConditionReport.WRONG_ANSWER, false);
 	}
 
@@ -137,6 +132,7 @@ public class Answer extends Condition {
 
 	/**
 	 * Définit la réponse de l'utilisateur
+	 *
 	 * @param answer la réponse de l'utilisateur
 	 */
 	public void setAnswer(String answer) {

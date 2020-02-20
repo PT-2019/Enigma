@@ -100,7 +100,8 @@ public class Book extends AbstractConsumable implements Content {
 	@Override
 	public void load(MapProperties data) {
 		//récupère la chaîne non échappée
-		this.content = Utility.asciiEscapedToNormalString(data.get(PlayerSave.CONTENT.getKey(), String.class));
+		this.content = data.get(PlayerSave.CONTENT.getKey(), String.class);
+		if (this.content != null) this.content = Utility.asciiEscapedToNormalString(this.content);
 		this.altTiles = SaveTiles.load(data.get(PlayerSave.ALT_TILES.getKey(), String.class));
 	}
 }

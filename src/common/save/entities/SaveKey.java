@@ -2,7 +2,7 @@ package common.save.entities;
 
 /**
  * Utilisée pour la sauvegarde.
- * On enregistre de la forme "clef" => valeur.
+ * On enregistre de la forme "clef" =&gt; valeur.
  * On utilise une interface par convenience.
  *
  * @author Jorys-Micke ALAÏS

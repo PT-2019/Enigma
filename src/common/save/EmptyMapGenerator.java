@@ -137,7 +137,7 @@ public class EmptyMapGenerator {
 		AbstractMap map = EnigmaGame.getCurrentScreen().getMap();
 
 		//retire l'extension tmx
-		if(path.contains(".tmx"))
+		if (path.contains(".tmx"))
 			path = path.substring(0, path.length() - 4) + ".json";
 
 		//charge les énigmes
@@ -149,11 +149,12 @@ public class EmptyMapGenerator {
 
 	/**
 	 * Charge les énigmes
+	 *
 	 * @param json chemin du json
-	 * @param map la map
+	 * @param map  la map
 	 * @since 6.1
 	 */
-	private static void loadEnigmas(String json, AbstractMap map){
+	private static void loadEnigmas(String json, AbstractMap map) {
 		ArrayList<Enigma> enigmas;
 		ArrayList<Enigma> copy = new ArrayList<>();
 

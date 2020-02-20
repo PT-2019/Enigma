@@ -212,9 +212,9 @@ public class OperationPanel extends AbstractSubPopUpView implements Observer<Gam
 		} else if (object == null && operations != null) {
 			if (operations.menuDrag.contains(SelectionsModes.SPECIAL)) {
 				this.entityName.setText(operations.restrict);
-			} else if(operations == Operations.END_GAME){
+			} else if (operations == Operations.END_GAME) {
 				this.entityName.setText("");
-			}else this.entityName.setText(ASK_SELECT + " (" + operations.menuDrag.msg + ")");
+			} else this.entityName.setText(ASK_SELECT + " (" + operations.menuDrag.msg + ")");
 		} else if (object != null) {
 			msg += object.getReadableName() + " (id=" + object.getID() + ")";
 			this.entityName.setText(msg);

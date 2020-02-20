@@ -72,6 +72,7 @@ public final class EnigmaUtility {
 	 * Retourne la cellule contenant l'entité la plus intéressante
 	 *
 	 * @param cell cellule dont on veut l'entité la plus intéressante
+	 * @param map  la map
 	 * @return la cellule contenant l'entité la plus intéressante
 	 * @since 5.0
 	 */
@@ -110,7 +111,7 @@ public final class EnigmaUtility {
 			}
 		}
 
-		if(relevant == null){
+		if (relevant == null) {
 			relevant = cell;
 		}
 
@@ -119,6 +120,7 @@ public final class EnigmaUtility {
 
 	/**
 	 * Retourne la position d'une cellule (x,y) depuis son indice
+	 *
 	 * @param c une cellule
 	 * @return la position d'une cellule (x,y) depuis son indice
 	 * @since 6.1

@@ -61,12 +61,12 @@ public class ChangeMainMusic extends Operation {
 		super(attributes);
 		//récupère le gestionnaire
 		AbstractMap map = EnigmaGame.getCurrentScreen().getMap();
-		if(map instanceof GameMap) this.musicGame = ((GameMap) map).getGameMusic();
+		if (map instanceof GameMap) this.musicGame = ((GameMap) map).getGameMusic();
 	}
 
 	@Override
 	public EnigmaReport run(Player p) {
-		if(!this.fulfilled) {
+		if (!this.fulfilled) {
 			this.musicGame.changeMusic((MusicEditor) this.entity);
 			this.fulfilled = true;
 		}

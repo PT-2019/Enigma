@@ -196,10 +196,11 @@ public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyl
 	/**
 	 * Affiche un popup personnalisé
 	 *
-	 * @param parent  parent
-	 * @param message possiblement un tableau, des composants a afficher dans le popup
-	 * @param title   titre de la fenêtre
-	 * @param options option (ok, confirmer, ...), par exemple un tableau de string
+	 * @param parent         parent
+	 * @param message        possiblement un tableau, des composants a afficher dans le popup
+	 * @param title          titre de la fenêtre
+	 * @param options        option (ok, confirmer, ...), par exemple un tableau de string
+	 * @param preventDefault pas d'ajout des styles
 	 * @return la position dans le tableau d'options choisie
 	 */
 	private static int showOptionDialog(CustomWindow parent, Object message, String title, String[] options,
@@ -236,8 +237,10 @@ public class EnigmaOptionPane extends CustomOptionPane implements OptionPaneStyl
 	/**
 	 * Crée un popup avec une liste de choix.
 	 *
-	 * @param parent parent
-	 * @param size   taille
+	 * @param parent  parent
+	 * @param title   titre
+	 * @param size    taille
+	 * @param choices tableaux des choix de la liste
 	 * @return le nom du choix sélectionné
 	 * @since 5.0
 	 */

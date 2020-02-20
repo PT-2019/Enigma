@@ -152,9 +152,11 @@ public interface GameObject extends IDInterface {
 
 	/**
 	 * Méthode pour charger des données en plus selon le gameObject
+	 *
 	 * @param serializable entitySerializable
-	 * @param created l'object (this)
+	 * @param created      l'object (this)
 	 * @since 6.1
 	 */
-	default void serialization(EntitySerializable serializable, GameObject created){}
+	default void serialization(EntitySerializable serializable, GameObject created) {
+	}
 }

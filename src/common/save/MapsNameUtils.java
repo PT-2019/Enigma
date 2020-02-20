@@ -1,6 +1,5 @@
 package common.save;
 
-import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import common.map.GameMap;
 
 /**

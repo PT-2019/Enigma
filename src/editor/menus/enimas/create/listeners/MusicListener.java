@@ -1,7 +1,6 @@
 package editor.menus.enimas.create.listeners;
 
 import api.utils.Utility;
-import common.enigmas.operation.Operation;
 import common.entities.special.MusicEditor;
 import common.hud.EnigmaOptionPane;
 import common.hud.EnigmaWindow;
@@ -48,7 +47,7 @@ public class MusicListener implements MouseListener {
 		if (!chose.equals(EnigmaOptionPane.CANCEL)) {
 			//on doit obtenir le chemin
 			String path;
-			if(this.operations == Operations.MAIN_MUSIC){
+			if (this.operations == Operations.MAIN_MUSIC) {
 				path = Config.MUSIC_FOLDER + chose + Utility.getExtension(Config.MUSIC_FOLDER, chose);
 			} else {
 				path = Config.SOUND_FOLDER + chose + Utility.getExtension(Config.SOUND_FOLDER, chose);

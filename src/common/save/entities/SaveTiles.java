@@ -13,21 +13,20 @@ import java.util.Map;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.0 15/02/2020
  * @since 6.0 15/02/2020
  */
 public final class SaveTiles {
 
-	public static String save(HashMap<String, Array<Float>> tiles){
-		if(tiles == null) return "";
+	public static String save(HashMap<String, Array<Float>> tiles) {
+		if (tiles == null) return "";
 		StringBuilder sb = new StringBuilder("{");
 
-		for (Map.Entry<String, Array<Float>> entry: tiles.entrySet()){
+		for (Map.Entry<String, Array<Float>> entry : tiles.entrySet()) {
 			sb.append(entry.getKey());
 			sb.append(":[");
 			//tiles
-			for (Float val: new Array.ArrayIterator<>(entry.getValue())) {
+			for (Float val : new Array.ArrayIterator<>(entry.getValue())) {
 				sb.append(MathUtils.round(val));
 				sb.append(",");
 			}
@@ -38,29 +37,29 @@ public final class SaveTiles {
 		return sb.toString();
 	}
 
-	public static HashMap<String, Array<Float>> load(String tiles){
-		if(tiles == null || tiles.isEmpty() || tiles.isBlank()) return null;
+	public static HashMap<String, Array<Float>> load(String tiles) {
+		if (tiles == null || tiles.isEmpty() || tiles.isBlank()) return null;
 		HashMap<String, Array<Float>> map = new HashMap<>();
 
-		if(tiles.charAt(0) != '{') return null;
+		if (tiles.charAt(0) != '{') return null;
 
 		StringBuilder name, number;
 		Array<Float> tilesArray;
-		for (int i = 1; i < tiles.length() - 1 ; i++) {
+		for (int i = 1; i < tiles.length() - 1; i++) {
 			name = new StringBuilder();
 			tilesArray = new Array<>();
 			//lis le nom du niveau
-			for (char r = tiles.charAt(i);  r != ':'; i++, r = tiles.charAt(i)) {
+			for (char r = tiles.charAt(i); r != ':'; i++, r = tiles.charAt(i)) {
 				name.append(r);
-				if(i+1 > tiles.length()) break;
+				if (i + 1 > tiles.length()) break;
 			}
-			if(i+1 > tiles.length()) break;
+			if (i + 1 > tiles.length()) break;
 			//saute : et [
-			i+=2;
-			for (char r = tiles.charAt(i); r != ']' ; i++,  r = tiles.charAt(i)) {
+			i += 2;
+			for (char r = tiles.charAt(i); r != ']'; i++, r = tiles.charAt(i)) {
 				//lis le nombre
 				number = new StringBuilder();
-				for (; r != ',' &&  r != ']' ; i++,  r = tiles.charAt(i)) {
+				for (; r != ',' && r != ']'; i++, r = tiles.charAt(i)) {
 					number.append(r);
 				}
 				tilesArray.add(Float.parseFloat(number.toString()));

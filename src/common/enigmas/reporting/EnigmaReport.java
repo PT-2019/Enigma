@@ -37,14 +37,14 @@ public class EnigmaReport {
 	 * Le message retourné l'exécution d'une opération
 	 * ou d'une condition.
 	 *
-	 * @param report Message sur la réalisation de l'action
+	 * @param report   Message sur la réalisation de l'action
 	 * @param entities Entités qui sont concernées par un changement
 	 */
-	public EnigmaReport(Report report, GameObject ... entities) {
+	public EnigmaReport(Report report, GameObject... entities) {
 		this.report = report;
 		this.fulfilled = false;
 		this.entities = new ArrayList<>();
-		if(entities != null) for (GameObject e : entities) this.add(e);
+		if (entities != null) for (GameObject e : entities) this.add(e);
 	}
 
 	/**
@@ -53,23 +53,24 @@ public class EnigmaReport {
 	 *
 	 * @param report    Message sur la réalisation de l'action
 	 * @param fulfilled true si l'action c'est faite sinon false
-	 * @param entities Entités qui sont concernées par un changement
+	 * @param entities  Entités qui sont concernées par un changement
 	 */
-	public EnigmaReport(Report report, boolean fulfilled, Object ... entities) {
+	public EnigmaReport(Report report, boolean fulfilled, Object... entities) {
 		this.report = report;
 		this.fulfilled = fulfilled;
 		this.entities = new ArrayList<>();
-		if(entities != null) for (Object e : entities) this.add(e);
+		if (entities != null) for (Object e : entities) this.add(e);
 	}
 
 	/**
 	 * Retourne liste des rapports depuis liste des enigmaReport
+	 *
 	 * @param reports liste des enigmaReport
 	 * @return liste des rapports depuis liste des enigmaReport
 	 */
 	public static ArrayList<Report> getAllReports(ArrayList<EnigmaReport> reports) {
 		ArrayList<Report> cpy = new ArrayList<>();
-		for (EnigmaReport r :reports) {
+		for (EnigmaReport r : reports) {
 			cpy.add(r.report);
 		}
 		return cpy;
@@ -77,14 +78,15 @@ public class EnigmaReport {
 
 	/**
 	 * Retourne liste des entités depuis liste des enigmaReport
+	 *
 	 * @param reports liste des enigmaReport
 	 * @return liste des entités depuis liste des enigmaReport
 	 */
 	public static Array<GameObject> getAllEntities(ArrayList<EnigmaReport> reports) {
 		Array<GameObject> entities = new Array<>();
-		for (EnigmaReport r :reports) {
-			for (Object o:r.entities) {
-				if(o instanceof GameObject) entities.add((GameObject) o);
+		for (EnigmaReport r : reports) {
+			for (Object o : r.entities) {
+				if (o instanceof GameObject) entities.add((GameObject) o);
 			}
 		}
 		return entities;
@@ -127,7 +129,7 @@ public class EnigmaReport {
 	 *
 	 * @param entity Entitée concernée par une modification
 	 */
-	public void add(Object entity){
+	public void add(Object entity) {
 		this.entities.add(entity);
 	}
 
@@ -136,7 +138,7 @@ public class EnigmaReport {
 	 *
 	 * @param entity Entitée
 	 */
-	public void remove(Object entity){
+	public void remove(Object entity) {
 		this.entities.remove(entity);
 	}
 

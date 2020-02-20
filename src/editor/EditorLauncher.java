@@ -49,6 +49,8 @@ public class EditorLauncher implements Application {
 
 	/**
 	 * Construit l'éditeur d'escape game
+	 *
+	 * @param launcher fenêtre parent
 	 */
 	private EditorLauncher(EnigmaWindow launcher) {
 		if (launcher != null) {

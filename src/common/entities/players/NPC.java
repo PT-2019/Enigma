@@ -1,5 +1,6 @@
 package common.entities.players;
 
+import api.utils.Utility;
 import com.badlogic.gdx.maps.MapProperties;
 import common.entities.Item;
 import common.entities.types.AbstractLivingEntity;
@@ -80,7 +81,7 @@ public class NPC extends AbstractLivingEntity implements Container, Content {
 	public EnumMap<TypeEntity, Boolean> getImplements() {
 		EnumMap<TypeEntity, Boolean> imp = TypeEntity.emptyMap();
 		imp.put(TypeEntity.NPC, true);
-		imp.put(TypeEntity.CONTENT,true);
+		imp.put(TypeEntity.CONTENT, true);
 		imp.put(TypeEntity.LIVING, true);
 		imp.put(TypeEntity.CONTAINER, true);
 		imp.put(TypeEntity.NEED_CONTAINER_MANAGER, true);
@@ -127,6 +128,7 @@ public class NPC extends AbstractLivingEntity implements Container, Content {
 		SaveInventory.load(data.get(PlayerSave.INVENTORY.getKey(), String.class));
 		this.name = data.get(PlayerSave.NAME.getKey(), String.class);
 		this.dialog = data.get(PlayerSave.CONTENT.getKey(), String.class);
+		if (dialog != null) this.dialog = Utility.asciiEscapedToNormalString(this.dialog);
 		if (this.name.isEmpty() || this.name.isBlank()) this.name = this.key;
 	}
 

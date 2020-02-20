@@ -1,7 +1,15 @@
 package editor.menus.enimas.create.listeners;
 
 import com.badlogic.gdx.math.Vector2;
-import common.enigmas.operation.*;
+import common.enigmas.operation.ChangeMainMusic;
+import common.enigmas.operation.EndGame;
+import common.enigmas.operation.Give;
+import common.enigmas.operation.HideRoom;
+import common.enigmas.operation.LaunchSound;
+import common.enigmas.operation.Operation;
+import common.enigmas.operation.ShowRoom;
+import common.enigmas.operation.Summon;
+import common.enigmas.operation.Unlock;
 import common.entities.Entity;
 import common.entities.GameObject;
 import common.entities.Item;
@@ -104,9 +112,9 @@ public class OperationListener implements ActionListener, ItemListener {
 		} else if (selectedOperation.equals(Operations.HIDE_ROOM.name())) {
 			if (this.object instanceof Room)
 				ope = new HideRoom((Room) this.object);
-		} else if(selectedOperation.equals(Operations.END_GAME.name())){
+		} else if (selectedOperation.equals(Operations.END_GAME.name())) {
 			ope = new EndGame((GameObject) null);
-		}else if (selectedOperation.equals(Operations.SOUND.name())) {
+		} else if (selectedOperation.equals(Operations.SOUND.name())) {
 			if (this.object instanceof MusicEditor) {
 				this.object.setTemp(false);//plus temporaire
 				ope = new LaunchSound((MusicEditor) this.object);

@@ -88,7 +88,7 @@ public class Summon extends Operation {
 
 	@Override
 	public EnigmaReport run(Player p) {
-		if(!this.fulfilled) {
+		if (!this.fulfilled) {
 			this.spawn.setEntity(this.entity);
 			this.fulfilled = true;
 		}

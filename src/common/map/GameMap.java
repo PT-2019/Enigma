@@ -29,8 +29,10 @@ import common.entities.special.GameMusic;
 import common.entities.special.MusicEditor;
 import common.entities.special.Room;
 import common.entities.types.ChangeState;
+import common.entities.types.ChangeStateReport;
 import common.entities.types.Container;
 import common.entities.types.Content;
+import common.entities.types.EnigmaContainer;
 import common.entities.types.ShowContent;
 import common.save.MapsNameUtils;
 import common.save.TmxProperties;
@@ -41,7 +43,6 @@ import common.save.entities.serialization.NpcFactory;
 import common.save.entities.serialization.PlayerFactory;
 import common.utils.EnigmaUtility;
 import common.utils.Logger;
-import common.entities.types.EnigmaContainer;
 import data.Layer;
 import data.NeedToBeTranslated;
 import org.jetbrains.annotations.NotNull;
@@ -86,7 +87,7 @@ public class GameMap extends AbstractMap {
 	/**
 	 * Map du jeu
 	 *
-	 * @param path chemin
+	 * @param path      chemin
 	 * @param unitScale taux de zoom
 	 */
 	public GameMap(final String path, float unitScale) {
@@ -115,14 +116,15 @@ public class GameMap extends AbstractMap {
 
 	/**
 	 * Charge les tileEvent
+	 *
 	 * @since 6.1
 	 */
 	private void loadTileEvents() {
 		//parcours de tous les niveaux
-		for (MapLayer l :this.map.getMap().getLayers()) {
+		for (MapLayer l : this.map.getMap().getLayers()) {
 			//si collision ou pas un niveau de tiles
-			if(!(l instanceof TiledMapTileLayer)) continue;
-			if(l.getName().equals(Layer.COLLISION.name())) continue;
+			if (!(l instanceof TiledMapTileLayer)) continue;
+			if (l.getName().equals(Layer.COLLISION.name())) continue;
 
 			//Récupération du niveau
 			TiledMapTileLayer layer = (TiledMapTileLayer) l;
@@ -134,19 +136,19 @@ public class GameMap extends AbstractMap {
 					MapTestScreenCell cell = (MapTestScreenCell) layer.getCell(j, i);
 
 					//si instance of EnigmaContainer
-					if(cell != null && cell.getEntity() instanceof EnigmaContainer){
+					if (cell != null && cell.getEntity() instanceof EnigmaContainer) {
 						//alors on ajoute au TileEvent ses énigmes
 						Vector2 pos = new Vector2(j, i);
 						TileEvent event = new TileEvent();
 
 						//parcourir  toutes les enigmes de l'object
 						Iterator<Enigma> enigma = ((EnigmaContainer) cell.getEntity()).getAllEnigmas();
-						while(enigma.hasNext()){
+						while (enigma.hasNext()) {
 							//ajout à l'event
 							event.add(enigma.next());
 						}
 						//ajout au tileEvent existant
-						if(this.enigmes.containsKey(pos)){
+						if (this.enigmes.containsKey(pos)) {
 							this.enigmes.get(pos).add(event);
 						} else {//sinon crée
 							this.enigmes.put(pos, event);
@@ -161,16 +163,15 @@ public class GameMap extends AbstractMap {
 	 * Définit si la case est accessible
 	 *
 	 * @param actor celui qui veut se déplacer
-	 * @param offX décalage X
-	 * @param offY décalage Y
+	 * @param offX  décalage X
+	 * @param offY  décalage Y
 	 * @return true = accessible, false = non accessible
-	 *
 	 * @since 6.0
 	 */
 	public boolean isWalkable(GameActor actor, float offX, float offY) {
 		final float posX = actor.getX(), posY = actor.getY();
 		//collision basique
-		Vector2 official =  posToIndex(posX + offX, posY + offY, this);
+		Vector2 official = posToIndex(posX + offX, posY + offY, this);
 
 		TiledMapTileLayer tiledMap = (TiledMapTileLayer) this.map.getMap().getLayers().get(Layer.COLLISION.name());
 		MapTestScreenCell c = (MapTestScreenCell) tiledMap.getCell((int) official.x, (int) official.y);
@@ -178,29 +179,29 @@ public class GameMap extends AbstractMap {
 		//si retourne null alors il n'y a pas collision
 		if (c == null || c.getTile() == null) {
 			//si la case est walkable, on fait une petite vérification
-			int directionX = offX == 0?0:offX < 0?-1:1;
-			int directionY = offY == 0?0:offY < 0?-1:1;
+			int directionX = offX == 0 ? 0 : offX < 0 ? -1 : 1;
+			int directionY = offY == 0 ? 0 : offY < 0 ? -1 : 1;
 			//collision avancée
-			final float xC = directionX * actor.getOriginX()/2;//ça marche avec /2 mais je sais pas pk.
+			final float xC = directionX * actor.getOriginX() / 2;//ça marche avec /2 mais je sais pas pk.
 			final float yC = directionY * actor.getOriginY();//et là il faut pas faire /2, vraiment bizarre
 			Vector2 accurate = posToIndex(posX + offX + xC, posY + offY + yC, this);
 
 			MapTestScreenCell correct = (MapTestScreenCell) tiledMap.getCell((int) accurate.x, (int) accurate.y);
 
 			//vérifie tiles exclusifs
-			for (MapLayer l :this.getTiledMap().getLayers()) {
-				if(!(l instanceof TiledMapTileLayer)) continue;
-				MapTestScreenCell tmp = (MapTestScreenCell) ((TiledMapTileLayer)l).getCell((int) accurate.x, (int) accurate.y);
-				if(tmp != null && tmp.getTile() != null && tmp.getTile().getId() == MapsNameUtils.ABYSS)
+			for (MapLayer l : this.getTiledMap().getLayers()) {
+				if (!(l instanceof TiledMapTileLayer)) continue;
+				MapTestScreenCell tmp = (MapTestScreenCell) ((TiledMapTileLayer) l).getCell((int) accurate.x, (int) accurate.y);
+				if (tmp != null && tmp.getTile() != null && tmp.getTile().getId() == MapsNameUtils.ABYSS)
 					return false;
 			}
 
 			//correction sur le layer
-			if(correct != null && correct.getTile() != null){
+			if (correct != null && correct.getTile() != null) {
 				this.correctMap(actor, c, correct);
 			}
 
-			if(correct != null){
+			if (correct != null) {
 				//gérer les cases supérieures et inférieures au centre de gravité
 				Vector2 myCellPos = EnigmaUtility.getPosFromCellIndex(correct);
 				//noinspection SuspiciousNameCombination
@@ -221,23 +222,27 @@ public class GameMap extends AbstractMap {
 
 	/**
 	 * Corrige l'affichage du joueur et des tiles de la map.
-	 *
+	 * <p>
 	 * Si le joueur (Y) est supérieur à celui de la case ou il veut se déplacer
 	 * et on tolère la collision. Alors le joueur doit être affiché derrière l'object.
-	 *
+	 * <p>
 	 * Si le joueur (Y) est inférieur à à celui de la case ou il veut se déplacer
 	 * et on tolère la collision. Alors le joueur doit être affiché devant l'object.
 	 *
-	 * @param actor acteur qui veut se déplacer
-	 * @param c la cellule ou on croit qu'il est
+	 * @param actor   acteur qui veut se déplacer
+	 * @param c       la cellule ou on croit qu'il est
 	 * @param correct la vraie cellule qu'il chevauche
-	 *
 	 * @since 6.5
 	 */
 	private void correctMap(GameActor actor, MapTestScreenCell c, MapTestScreenCell correct) {
 		//problèmes
-		if(c == null || correct == null){ System.out.println("c null ou correct null");return; }
-		if(correct.getEntity() instanceof Room){ return; }
+		if (c == null || correct == null) {
+			System.out.println("c null ou correct null");
+			return;
+		}
+		if (correct.getEntity() instanceof Room) {
+			return;
+		}
 
 		//System.out.println("Correction de l'affichage, problème avec "+correct.getEntity().getReadableName());
 
@@ -247,7 +252,7 @@ public class GameMap extends AbstractMap {
 		//l'entité sur laquelle on permet le chevauchement
 		GameObject entity = correct.getEntity();
 
-		if(entity instanceof Consumable) return;
+		if (entity instanceof Consumable) return;
 
 		Layer entityLayer = getLayer(entity);
 
@@ -255,24 +260,25 @@ public class GameMap extends AbstractMap {
 		int result = Layer.compare(actor.getLayer(), entityLayer);
 
 		//le joueur est au dessus
-		if(cPos.y >= correctPos.y){
-			if(result > 0){//on doit augmenter layer de l'entité sur laquelle on permet le chevauchement
+		if (cPos.y >= correctPos.y) {
+			if (result > 0) {//on doit augmenter layer de l'entité sur laquelle on permet le chevauchement
 				this.changeLayer(entity, entityLayer, actor.getLayer());
 			}
 		} else {//le joueur est en dessous
-			if(result <= 0){//on doit baisser l'entité sur laquelle on permet le chevauchement
-				this.changeLayer(entity, entityLayer, Layer.values()[actor.getLayer().ordinal()-1]);
+			if (result <= 0) {//on doit baisser l'entité sur laquelle on permet le chevauchement
+				this.changeLayer(entity, entityLayer, Layer.values()[actor.getLayer().ordinal() - 1]);
 			}
 		}
 	}
 
 	/**
 	 * La procédure de changement de niveau
-	 * @param entity entité
+	 *
+	 * @param entity      entité
 	 * @param entityLayer son niveau
-	 * @param increaseTo le niveau auquel là placer
+	 * @param increaseTo  le niveau auquel là placer
 	 */
-	private void changeLayer(GameObject entity, Layer entityLayer, Layer increaseTo){
+	private void changeLayer(GameObject entity, Layer entityLayer, Layer increaseTo) {
 		//TODO: optimiser, obliger de supprimer puis remettre c'est pas top
 		//save tiles
 		saveChild(entity);
@@ -290,16 +296,17 @@ public class GameMap extends AbstractMap {
 
 	/**
 	 * Change le niveau des tiles
-	 * @param entity entité
+	 *
+	 * @param entity      entité
 	 * @param entityLayer niveau de l'entité a changer
-	 * @param increaseTo niveau auquel mettre l'entité
+	 * @param increaseTo  niveau auquel mettre l'entité
 	 * @since 6.5
 	 */
 	private void changeEntityLayer(GameObject entity, Layer entityLayer, Layer increaseTo) {
 		//change les tiles alternatives
-		if(entity instanceof ChangeState){
+		if (entity instanceof ChangeState) {
 			Map<String, Array<Float>> tilesFromState = ((ChangeState) entity).getTilesFromState();
-			if(tilesFromState.containsKey(entityLayer.name())) {
+			if (tilesFromState.containsKey(entityLayer.name())) {
 				Array<Float> tiles = tilesFromState.get(entityLayer.name());
 				tilesFromState.put(increaseTo.name(), tiles);
 				tilesFromState.remove(entityLayer.name());
@@ -308,7 +315,7 @@ public class GameMap extends AbstractMap {
 
 		//change les tiles normales
 		Map<Layer, Array<Float>> tilesFromState = entity.getTiles();
-		if(tilesFromState.containsKey(entityLayer)) {
+		if (tilesFromState.containsKey(entityLayer)) {
 			Array<Float> tiles = tilesFromState.get(entityLayer);
 			tilesFromState.put(increaseTo, tiles);
 			tilesFromState.remove(entityLayer);
@@ -317,33 +324,35 @@ public class GameMap extends AbstractMap {
 
 	/**
 	 * Retourne le plus haut niveau ou se trouve un entité
+	 *
 	 * @param entity une entité
 	 * @return le plus haut niveau ou se trouve une entité
 	 * @since 6.5
 	 */
 	private Layer getLayer(GameObject entity) {
 		Layer highest = null;
-		for (Map.Entry<Layer, Array<Float>> entry:entity.getTiles().entrySet()) {
+		for (Map.Entry<Layer, Array<Float>> entry : entity.getTiles().entrySet()) {
 			Layer layer = entry.getKey();
-			if(layer.name().equals(Layer.COLLISION.name())) continue;//veut pas le layer de collision
-			if(highest == null) highest = layer;
-			else if(Layer.compare(layer, highest) > 0) highest = layer;//si le nouveau est plus grand
+			if (layer.name().equals(Layer.COLLISION.name())) continue;//veut pas le layer de collision
+			if (highest == null) highest = layer;
+			else if (Layer.compare(layer, highest) > 0) highest = layer;//si le nouveau est plus grand
 		}
 		return highest;
 	}
 
 	/**
 	 * Execute les actions sur une case
-	 * @param posX coordonnées x de la case
-	 * @param posY coordonnées y de la case
-	 * @param actor acteur qui exécute l'action
+	 *
+	 * @param posX   coordonnées x de la case
+	 * @param posY   coordonnées y de la case
+	 * @param actor  acteur qui exécute l'action
 	 * @param action le type d'action
 	 * @return true si une action a étée faite
 	 * @since 6.3
 	 */
-	public boolean doAction(float posX, float posY, PlayerGame actor, TileEventEnum action){
+	public boolean doAction(float posX, float posY, PlayerGame actor, TileEventEnum action) {
 		//convertit pos
-		Vector2 position = posToIndex(posX,posY,this);
+		Vector2 position = posToIndex(posX, posY, this);
 		//entité en face
 		final GameObject current = posToEntities((int) position.y, (int) position.x);
 
@@ -354,42 +363,47 @@ public class GameMap extends AbstractMap {
 		String stated = updateGameMap(current, actor, action);
 
 		//récupère actions case
-		for (Map.Entry<Vector2, TileEvent> e : this.enigmes.entrySet()){
-			if (position.equals(e.getKey())){
+		for (Map.Entry<Vector2, TileEvent> e : this.enigmes.entrySet()) {
+			if (position.equals(e.getKey())) {
 				//test type avec action
-				if (action == TileEventEnum.ON_USE){
+				if (action == TileEventEnum.ON_USE) {
 					reports.addAll(e.getValue().onUse(actor.getPlayer()));
-				}else if (action == TileEventEnum.ON_ENTER){
+				} else if (action == TileEventEnum.ON_ENTER) {
 					reports.addAll(e.getValue().onEnter(actor.getPlayer()));
-				}else if (action == TileEventEnum.ON_EXIT){
+				} else if (action == TileEventEnum.ON_EXIT) {
 					reports.addAll(e.getValue().onExit(actor.getPlayer()));
 				}
 			}
 		}
 
-		if(!reports.isEmpty()){
+		if (!reports.isEmpty()) {
 			Report.sort(EnigmaReport.getAllReports(reports));
 			//Récupère le report le plus important
 			Report report = reports.get(0).getReport();
 			//Affiche que si c'est au moins un peu important xD
-			if(report.getImportance() == Report.MUST_BE_SHOWED){
+			if (report.getImportance() == Report.MUST_BE_SHOWED) {
 				EnigmaDialogPopup dialog = this.getEnigmaDialog();
 				Dialog node = new Dialog(report.getReport());
 				dialog.showDialog(node, this);
-			} else if(stated != null && !stated.isEmpty()){
+			} else if (stated != null && !stated.isEmpty()) {
 				EnigmaDialogPopup dialog = this.getEnigmaDialog();
 				Dialog node = new Dialog(stated);
 				dialog.showDialog(node, this);
-			} else if(report.equals(ConditionReport.NO_ANSWER)) {//demande réponse
+			} else if (report.equals(ConditionReport.NO_ANSWER)) {//demande réponse
 				EnigmaDialogPopup dialog = this.getEnigmaDialog();
 				//seul object du report noAnswer est l'answer
-				//TODO: answer laisse jeu état pas cohérent.
 				dialog.showAnswer((Answer) reports.get(0).getEntities().get(0), this);
+			}
+			if (current instanceof ChangeState) {
+				ChangeState o = (ChangeState) current;
+				if (o.needReloadAfterStateChange()) {
+					o.changeState(actor, action);
+				}
 			}
 			//up des entités modifiées
 			Array<GameObject> allEntities = EnigmaReport.getAllEntities(reports);
 			this.repaint(allEntities, current);
-		} else if(stated != null && !stated.isEmpty()){
+		} else if (stated != null && !stated.isEmpty()) {
 			EnigmaDialogPopup dialog = this.getEnigmaDialog();
 			Dialog node = new Dialog(stated);
 			dialog.showDialog(node, this);
@@ -400,18 +414,18 @@ public class GameMap extends AbstractMap {
 
 	/**
 	 * Re-dessine les entités passées en argument
-	 * @param object les entités a re-dessiner. Instance de ChangeState uniquement.
-	 * @param current l'object current, forcément re-dessiné
 	 *
+	 * @param object  les entités a re-dessiner. Instance de ChangeState uniquement.
+	 * @param current l'object current, forcément re-dessiné
 	 * @since 6.5
 	 */
-	public void repaint(Array<GameObject> object, GameObject current){
+	public void repaint(Array<GameObject> object, GameObject current) {
 		for (GameObject o : new Array.ArrayIterator<>(object)) {
-			if(!(o instanceof ChangeState)) continue; //pas de repaint, si change pas
+			if (!(o instanceof ChangeState)) continue; //pas de repaint, si change pas
 			//save
 			saveChild(o);
 			//repaint si doit être re-dessiné
-			if(((ChangeState) o).shouldAutomaticRepaint() || o.equals(current)) {
+			if (((ChangeState) o).shouldAutomaticRepaint() || o.equals(current)) {
 				this.updateEntity(o, true);
 			}
 		}
@@ -419,11 +433,11 @@ public class GameMap extends AbstractMap {
 
 	/**
 	 * Re-dessine les entités passées en argument
-	 * @param object l'entité a re-dessiner.
 	 *
+	 * @param object l'entité a re-dessiner.
 	 * @since 6.5
 	 */
-	public void repaint(GameObject object){
+	public void repaint(GameObject object) {
 		//save
 		saveChild(object);
 		//repaint
@@ -437,14 +451,12 @@ public class GameMap extends AbstractMap {
 	 *
 	 * @param entity objects dont on doit changer/mettre à jour l'affichage
 	 * @param action action effectuée
-	 * @param actor la personne qui fait l'action
-	 *
+	 * @param actor  la personne qui fait l'action
 	 * @return le message que l'on veux afficher
-	 *
 	 * @since 6.5
 	 */
 	private String updateGameMap(GameObject entity, PlayerGame actor, TileEventEnum action) {
-		if(action == TileEventEnum.ON_USE) {
+		if (action == TileEventEnum.ON_USE) {
 			EnigmaReport report = null;
 			//si c'est une entité qui change d'état
 			if (entity instanceof ChangeState) {
@@ -452,17 +464,17 @@ public class GameMap extends AbstractMap {
 				saveChild(entity);
 				//change state
 				report = ((ChangeState) entity).changeState(actor, action);
-			//si c'est une entité dont on affiche le contenu
+				//si c'est une entité dont on affiche le contenu
 			} else if (entity instanceof ShowContent) {
 				EnigmaDialogPopup dialog = this.getEnigmaDialog();
 				String content = ((Content) entity).getContent();
-				if(content == null || content.isEmpty()) content = NeedToBeTranslated.NO_CONTENT;
+				if (content == null || content.isEmpty()) content = NeedToBeTranslated.NO_CONTENT;
 				Dialog node = new Dialog(content);
 				dialog.showDialog(node, this);
 			}
 
 			//si rien fait, on quitte
-			if(report == null) return null;
+			if (report == null) return null;
 
 			//parcours des (de l'entité xD) entités modifiées
 			for (Object obj : report.getEntities()) {
@@ -474,6 +486,12 @@ public class GameMap extends AbstractMap {
 					EnigmaDialogPopup dialog = this.getEnigmaDialog();
 
 					if (o instanceof Container && !(o instanceof NPC)) {
+						if (report.getReport().equals(ChangeStateReport.LOCKED)) {
+							//si verrouillé, fait rien
+							String msg = report.getReport().getReport();
+							if (msg == null || msg.isEmpty()) continue;
+							return msg;
+						}
 						//fake (affiche son inventaire pour prendre/retirer)
 						Dialog node = new Dialog("Affichage de l'inventaire (fake) de " + o.getReadableName());
 						dialog.showDialog(node, this);
@@ -501,12 +519,13 @@ public class GameMap extends AbstractMap {
 
 	/**
 	 * Sauvegarde les tiles d'un enfant
+	 *
 	 * @param o un gameObject
 	 * @since 6.5
 	 */
 	@ConvenienceMethod
 	private void saveChild(GameObject o) {
-		if(restored.contains(o)) return;
+		if (restored.contains(o)) return;
 		HashMap<Vector2, GameObject> m = new HashMap<>();
 		m.put(this.objects.getVectorByObject(o), o);
 		saveParents(m);
@@ -514,16 +533,18 @@ public class GameMap extends AbstractMap {
 
 	/**
 	 * Re-affiche les tiles d'une entité
+	 *
 	 * @param o un entité
 	 * @since 6.5
 	 */
-	private void updateEntity(GameObject o){
+	private void updateEntity(GameObject o) {
 		this.updateEntity(o, false);
 	}
 
 	/**
 	 * Re-affiche les tiles d'une entité
-	 * @param o un entité
+	 *
+	 * @param o          un entité
 	 * @param interacted s'il y a eu interaction (touche utiliser)
 	 * @since 6.5
 	 */
@@ -568,8 +589,9 @@ public class GameMap extends AbstractMap {
 	 * Permet de savoir si c'est possible de bouger un personnage en fonction des autres GameActor
 	 *
 	 * @param actor On va tester en fonction de cet actor
+	 * @param movX  déplacement X
+	 * @param movY  déplacement Y
 	 * @return boolean true si collision false sinon
-	 *
 	 * @since 6.2
 	 */
 	@SuppressWarnings({"unchecked", "UnusedAssignment"})
@@ -595,11 +617,9 @@ public class GameMap extends AbstractMap {
 	 * Renvoie EntityGame avec laquelle il a touché
 	 *
 	 * @param actor entité
-	 * @param movX position x
-	 * @param movY position y
-	 *
+	 * @param movX  position x
+	 * @param movY  position y
 	 * @return Renvoie EntityGame avec laquelle il a touché
-	 *
 	 * @since 6.2
 	 */
 	@SuppressWarnings("unchecked")
@@ -662,7 +682,6 @@ public class GameMap extends AbstractMap {
 	 * Ajoute une entité à l'array d'entités
 	 *
 	 * @param actor entité à ajouter
-	 *
 	 * @since 6.0
 	 */
 	@SuppressWarnings("WeakerAccess")
@@ -675,7 +694,6 @@ public class GameMap extends AbstractMap {
 	 * Supprime une entité de l'array d'entités
 	 *
 	 * @param actor entité à supprimer
-	 *
 	 * @since 6.0
 	 */
 	public void removeEntity(@NotNull GameActor actor) {
@@ -715,6 +733,10 @@ public class GameMap extends AbstractMap {
 
 	/**
 	 * Renvoi les entités présente sur cette case
+	 *
+	 * @param col colonne
+	 * @param row ligne
+	 * @return le gameObject a cette position, null si aucun
 	 * @since 6.2
 	 */
 	private GameObject posToEntities(int row, int col) {
@@ -784,7 +806,7 @@ public class GameMap extends AbstractMap {
 					doNotDisplay = true;
 				} else if (object instanceof Monster) {
 					GameActor monster = MonsterFactory.createMonsterGame(((Monster) object).getKey(),
-							((Monster) object).getJson(),((Monster) object).getContent());
+							((Monster) object).getJson(), ((Monster) object).getContent());
 					this.addEntity(monster);
 					Vector2 pos = indexToPos((int) x, (int) y, this);
 					monster.setPosition(pos.x, pos.y);
@@ -822,6 +844,7 @@ public class GameMap extends AbstractMap {
 
 	/**
 	 * Lance la musique
+	 *
 	 * @since 6.2
 	 */
 	public void launchMusic() {
@@ -831,6 +854,7 @@ public class GameMap extends AbstractMap {
 
 	/**
 	 * Retournes les entités (actor) de la map
+	 *
 	 * @return les entités (actor) de la map
 	 * @since 6.2
 	 */
@@ -840,6 +864,7 @@ public class GameMap extends AbstractMap {
 
 	/**
 	 * Retourne le gestionnaire de la musique du jeu
+	 *
 	 * @return le gestionnaire de la musique du jeu
 	 * @since 6.4
 	 */
@@ -849,6 +874,7 @@ public class GameMap extends AbstractMap {
 
 	/**
 	 * Le popup de dialogue
+	 *
 	 * @return Le popup de dialogue
 	 * @since 6.4
 	 */

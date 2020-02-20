@@ -22,11 +22,13 @@ public class MonsterFactory {
 	/**
 	 * Permet de créer un monsterGame à partir d'un fichier Json
 	 *
-	 * @param path chemin
+	 * @param path    chemin
+	 * @param content dialogue
+	 * @param name    nom
 	 * @return un playerGame du Json
 	 */
 	@SuppressWarnings("unchecked")
-	public static MonsterGame createMonsterGame(String name, String path,String content) {
+	public static MonsterGame createMonsterGame(String name, String path, String content) {
 		Dialog d = new Dialog(content);
 		MonsterGame game = new MonsterGame(d);
 		Json json = new Json();

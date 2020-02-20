@@ -74,6 +74,7 @@ public class Enigma implements ActionListener, IDInterface {
 	private boolean known;
 	/**
 	 * Chronomètre le temps qui sépare deux énigmes
+	 *
 	 * @deprecated
 	 */
 	@Deprecated
@@ -192,7 +193,7 @@ public class Enigma implements ActionListener, IDInterface {
 	 * @return un message d'une condition ou opération. null si énigme terminée
 	 */
 	public ArrayList<EnigmaReport> verifyConditions(Player p) {
-		if(isFulfilled()) return null;//si terminée, on quitte
+		if (isFulfilled()) return null;//si terminée, on quitte
 		ArrayList<EnigmaReport> report = new ArrayList<>();
 		EnigmaReport tmp;
 		boolean conditionsOk = true;
@@ -200,21 +201,21 @@ public class Enigma implements ActionListener, IDInterface {
 			//On teste que les conditions sont remplies, si ce n'est pas le cas, la méthode s'arrête là
 			tmp = condition.verify(p);
 			report.add(tmp);
-			if(!tmp.isFulfilled()) conditionsOk = false;
+			if (!tmp.isFulfilled()) conditionsOk = false;
 		}
 
-		if(conditionsOk) {
+		if (conditionsOk) {
 			//vide les reports pour garder que ce qu'il y a de mieux dans opérations
 			report.clear();
 
 			//On lance toutes les opérations de l'enigme
 			for (Operation operation : this.operations) {
 				tmp = operation.run(p);
-				if(!tmp.isFulfilled()) conditionsOk = false;
+				if (!tmp.isFulfilled()) conditionsOk = false;
 				report.add(tmp);//ajoute tous les report
 			}
 
-			if(!conditionsOk) return report;
+			if (!conditionsOk) return report;
 
 			//énigme terminée
 			this.fulfilled = true;
@@ -424,8 +425,8 @@ public class Enigma implements ActionListener, IDInterface {
 		return this.known;
 	}
 
-	public void nextAdvice(){
-		if(this.currentAdvice < this.advices.size())
+	public void nextAdvice() {
+		if (this.currentAdvice < this.advices.size())
 			this.currentAdvice++;
 	}
 

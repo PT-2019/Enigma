@@ -49,7 +49,7 @@ public class HaveInHands extends Condition {
 		Item i = (Item) this.entity;
 		if (p.holdItemInRightHand() && p.getItemInRightHand().equals(i)) {
 			return new EnigmaReport(ConditionReport.FOUND_IN_HANDS, true);
-		} else if(p.holdItemInLeftHand() && p.getItemInLeftHand().equals(i))
+		} else if (p.holdItemInLeftHand() && p.getItemInLeftHand().equals(i))
 			return new EnigmaReport(ConditionReport.FOUND_IN_HANDS, true);
 
 		return new EnigmaReport(ConditionReport.NOT_IN_HANDS, false);

@@ -1,16 +1,12 @@
 package common.entities.items;
 
-import api.utils.Utility;
 import com.badlogic.gdx.maps.MapProperties;
-import com.badlogic.gdx.utils.Array;
-import common.entities.GameObject;
 import common.entities.types.Activatable;
 import common.language.GameFields;
 import common.language.GameLanguage;
 import common.save.entities.PlayerSave;
 import common.save.entities.SaveKey;
 import common.save.entities.SaveTiles;
-import common.save.entities.serialization.EntitySerializable;
 import data.TypeEntity;
 
 import java.util.EnumMap;

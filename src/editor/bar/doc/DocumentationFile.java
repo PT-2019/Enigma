@@ -22,6 +22,7 @@ public final class DocumentationFile {
 	private String tooltip = "";
 	private String title = "";
 	private ArrayList<DocItems> docItems = new ArrayList<>();
+
 	DocumentationFile() {
 	}
 

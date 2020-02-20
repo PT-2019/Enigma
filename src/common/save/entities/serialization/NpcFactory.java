@@ -24,13 +24,13 @@ public class NpcFactory {
 	/**
 	 * Permet de créer un Npcgame à partir d'un fichier Json
 	 *
-	 * @param name nom (clef)
-	 * @param path chemin json
-	 *
+	 * @param name    nom (clef)
+	 * @param path    chemin json
+	 * @param content dialogue
 	 * @return un playerGame du Json
 	 */
 	@SuppressWarnings("unchecked")
-	public static NpcGame createNpcGame(String name, String path,String content) {
+	public static NpcGame createNpcGame(String name, String path, String content) {
 		Dialog d = new Dialog(content);
 		NpcGame game = new NpcGame(d);
 		Json json = new Json();

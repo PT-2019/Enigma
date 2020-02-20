@@ -81,6 +81,9 @@ public class Toast extends Window {
 	/**
 	 * Crée un toast, caché {@link #setVisible(boolean)}
 	 *
+	 * @param title    titre
+	 * @param jsonPath chemin json
+	 * @param skinPath chemin atlas
 	 * @since 6.0
 	 */
 	public Toast(String jsonPath, String skinPath, String title) {

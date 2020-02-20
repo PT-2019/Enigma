@@ -15,7 +15,6 @@ import data.Layer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 
 /**
  * Ce classe ne doit pas se retrouver ailleurs que dans un extends
@@ -122,7 +121,7 @@ public abstract class AbstractConsumable extends AbstractGameObject implements C
 	@Override
 	public void serialization(EntitySerializable serializable, GameObject created) {
 		HashMap<String, Array<Float>> altTiles = serializable.getAltTiles();
-		if(altTiles != null){//il y a des tiles
+		if (altTiles != null) {//il y a des tiles
 			this.altTiles = altTiles;
 		}
 	}
@@ -134,7 +133,7 @@ public abstract class AbstractConsumable extends AbstractGameObject implements C
 
 	@Override
 	public EnigmaReport changeState(PlayerGame actor, TileEventEnum event) {
-		if(event.equals(TileEventEnum.ON_USE)){
+		if (event.equals(TileEventEnum.ON_USE)) {
 			//Récupère l'inventaire du joueur
 			//ajoute cet item
 			//return que c'est ok
@@ -145,13 +144,18 @@ public abstract class AbstractConsumable extends AbstractGameObject implements C
 	}
 
 	@Override
+	public boolean needReloadAfterStateChange() {
+		return false;
+	}
+
+	@Override
 	public boolean isNormalState() {
 		return !addedToInventory;
 	}
 
 	@Override
 	public Array<Float> getTilesFromState(Layer layer) {
-		if(isNormalState()){
+		if (isNormalState()) {
 			return this.tiles.get(layer);
 		} else {
 			return this.altTiles.get(layer.name());

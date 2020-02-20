@@ -1,14 +1,11 @@
 package common.map;
 
 import api.libgdx.utils.Bounds;
-import api.utils.Utility;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.Array;
 import common.enigmas.Enigma;
 import common.enigmas.condition.Condition;
 import common.enigmas.operation.Operation;

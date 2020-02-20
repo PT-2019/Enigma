@@ -50,7 +50,7 @@ public class ChooseListener extends MenuListener implements Observer<MapLoaded> 
 
 			final String path = Config.MUSIC_FOLDER + choice + Utility.getExtension(Config.MUSIC_FOLDER, choice);
 
-			MusicEditor object = new MusicEditor(path,choice);
+			MusicEditor object = new MusicEditor(path, choice);
 			map.getIdFactory().newID(object);
 			object.setMainMusic(true);
 			object.setStarter(true);
@@ -69,7 +69,7 @@ public class ChooseListener extends MenuListener implements Observer<MapLoaded> 
 					map.removeEntity(music);
 				}
 			}
-			for (MusicEditor m: tmp) {
+			for (MusicEditor m : tmp) {
 				musics.remove(m);
 			}
 			tmp.clear();

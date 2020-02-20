@@ -47,7 +47,7 @@ public class HaveInInventory extends Condition {
 	@Override
 	public EnigmaReport verify(Player p) {
 		Item i = (Item) this.entity;
-		if(p.getInventory().contains(i))
+		if (p.getInventory().contains(i))
 			return new EnigmaReport(ConditionReport.FOUND_IN_INVENTORY, true);
 
 		return new EnigmaReport(ConditionReport.NOT_IN_INVENTORY, false);

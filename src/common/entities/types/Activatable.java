@@ -80,7 +80,7 @@ public abstract class Activatable extends AbstractItem implements ChangeState {
 
 	@Override
 	public EnigmaReport changeState(PlayerGame actor, TileEventEnum event) {
-		if(event.equals(TileEventEnum.ON_USE)){
+		if (event.equals(TileEventEnum.ON_USE)) {
 			this.activated = !activated;
 			return new EnigmaReport(ChangeStateReport.DONE, true, this);
 		}
@@ -95,7 +95,7 @@ public abstract class Activatable extends AbstractItem implements ChangeState {
 	@Override
 	public void serialization(EntitySerializable serializable, GameObject created) {
 		HashMap<String, Array<Float>> altTiles = serializable.getAltTiles();
-		if(altTiles != null){//il y a des tiles
+		if (altTiles != null) {//il y a des tiles
 			this.altTiles = altTiles;
 		}
 	}
@@ -103,6 +103,11 @@ public abstract class Activatable extends AbstractItem implements ChangeState {
 	@Override
 	public boolean isNormalState() {
 		return this.activated;
+	}
+
+	@Override
+	public boolean needReloadAfterStateChange() {
+		return false;
 	}
 
 	@Override
@@ -122,7 +127,7 @@ public abstract class Activatable extends AbstractItem implements ChangeState {
 
 	@Override
 	public Array<Float> getTilesFromState(Layer layer) {
-		if(!this.activated){
+		if (!this.activated) {
 			return this.getTiles(layer);
 		} else {
 			return this.altTiles.get(layer.name());

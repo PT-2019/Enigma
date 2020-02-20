@@ -141,7 +141,8 @@ public class ManageEnigmasAddView extends AbstractSubPopUpView {
 	/**
 	 * Change la card lue
 	 *
-	 * @param name nom d'une card
+	 * @param name  nom d'une card
+	 * @param title titre du sous-menu
 	 * @since 6.1
 	 */
 	public void setCard(String name, String title) {

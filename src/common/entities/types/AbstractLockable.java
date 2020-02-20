@@ -17,7 +17,6 @@ import java.util.HashMap;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- *
  * @version 6.0 17/02/2020
  * @since 6.0 17/02/2020
  */
@@ -46,7 +45,7 @@ public abstract class AbstractLockable extends AbstractItem implements Lockable,
 	/**
 	 * Crée une object verrouillable avec un id unique pour identifier ses énigmes
 	 *
-	 * @param id ID
+	 * @param id     ID
 	 * @param locked true si l'objet est verrouillé de base, false sinon
 	 * @since 2.0
 	 */
@@ -78,7 +77,7 @@ public abstract class AbstractLockable extends AbstractItem implements Lockable,
 	@Override
 	public void serialization(EntitySerializable serializable, GameObject created) {
 		HashMap<String, Array<Float>> altTiles = serializable.getAltTiles();
-		if(altTiles != null){//il y a des tiles
+		if (altTiles != null) {//il y a des tiles
 			this.altTiles = altTiles;
 		}
 	}
@@ -87,11 +86,11 @@ public abstract class AbstractLockable extends AbstractItem implements Lockable,
 
 	@Override
 	public EnigmaReport changeState(PlayerGame actor, TileEventEnum event) {
-		if(event.equals(TileEventEnum.ON_USE)){
-			if(isLocked()){
+		if (event.equals(TileEventEnum.ON_USE)) {
+			if (isLocked()) {
 				this.alreadyUnlocked = false;
 				return new EnigmaReport(ChangeStateReport.LOCKED, true, this);
-			} else if(!this.alreadyUnlocked) {
+			} else if (!this.alreadyUnlocked) {
 				this.alreadyUnlocked = true;
 				this.hidden = false;
 				return new EnigmaReport(ChangeStateReport.UNLOCK, true, this);
@@ -101,13 +100,18 @@ public abstract class AbstractLockable extends AbstractItem implements Lockable,
 	}
 
 	@Override
+	public boolean needReloadAfterStateChange() {
+		return true;
+	}
+
+	@Override
 	public boolean isNormalState() {
 		return this.locked;
 	}
 
 	@Override
 	public Array<Float> getTilesFromState(Layer layer) {
-		if(isNormalState() || this.hidden){
+		if (isNormalState() || this.hidden) {
 			return this.getTiles(layer);
 		} else {
 			return this.altTiles.get(layer.name());

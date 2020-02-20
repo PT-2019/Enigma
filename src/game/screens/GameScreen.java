@@ -31,7 +31,10 @@ public class GameScreen extends LibgdxScreen {
 	 * Chemin de la map du jeu
 	 */
 	private static String MAP_PATH = "";
-
+	/**
+	 * Timer personnalisé
+	 */
+	private static float timer = 0;
 	/**
 	 * Stage de la map et du jeu
 	 */
@@ -40,15 +43,10 @@ public class GameScreen extends LibgdxScreen {
 	 * Stage de l'interface
 	 */
 	private Stage hud;
-
 	/**
 	 * La map libgdx
 	 */
 	private GameMap map;
-	/**
-	 * Timer personnalisé
-	 */
-	private static float timer = 0;
 
 	/**
 	 * Retourne le chemin de la map actuelle
@@ -59,12 +57,21 @@ public class GameScreen extends LibgdxScreen {
 		return MAP_PATH;
 	}
 
+	/**
+	 * Définit la valeur de départ pour un timer personnalisé
+	 *
+	 * @param minutes nombre de minutes
+	 */
+	public static void setTimerDuration(float minutes) {
+		timer = minutes;
+	}
+
 	@Override
 	public void init() {
 		this.main = new Stage();
 		this.hud = new Stage();
 
-		if(MAP_PATH != null && !MAP_PATH.isEmpty()){
+		if (MAP_PATH != null && !MAP_PATH.isEmpty()) {
 			this.map = new GameMap(MAP_PATH, Config.UNIT_SCALE);
 			EnigmaDialogPopup dialog = map.getEnigmaDialog();
 
@@ -84,7 +91,7 @@ public class GameScreen extends LibgdxScreen {
 
 			this.hud.addActor(dialog);
 			//timer
-			if(timer == 0) this.hud.addActor(new TimerFrame());
+			if (timer == 0) this.hud.addActor(new TimerFrame());
 			else {
 				this.hud.addActor(new TimerFrame(0, timer));
 				timer = 0;//supprime le timer custom pour la prochaine partie
@@ -140,14 +147,14 @@ public class GameScreen extends LibgdxScreen {
 		super.show();
 		Gdx.gl20.glClearColor(0.20f, 0.20f, 0.20f, 1.0f);
 
-		if(this.map != null) this.map.launchMusic();
+		if (this.map != null) this.map.launchMusic();
 	}
 
 	@Override
 	public void hide() {
 		super.hide();
 
-		if(this.map != null && this.map.getGameMusic().hasMusic()){
+		if (this.map != null && this.map.getGameMusic().hasMusic()) {
 			this.map.getGameMusic().stop();
 		}
 	}
@@ -159,14 +166,6 @@ public class GameScreen extends LibgdxScreen {
 			return true;
 		}
 		return false;
-	}
-
-	/**
-	 * Définit la valeur de départ pour un timer personnalisé
-	 * @param minutes nombre de minutes
-	 */
-	public static void setTimerDuration(float minutes){
-		timer = minutes;
 	}
 
 	@Override

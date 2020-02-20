@@ -115,11 +115,11 @@ public class Chest extends AbstractLockable implements Container {
 
 	@Override
 	public EnigmaReport changeState(PlayerGame actor, TileEventEnum event) {
-		if(event.equals(TileEventEnum.ON_USE)){
-			if(isLocked()){
+		if (event.equals(TileEventEnum.ON_USE)) {
+			if (isLocked()) {
 				this.alreadyUnlocked = false;
 				return new EnigmaReport(ChangeStateReport.LOCKED, true, this);
-			} else if(!this.alreadyUnlocked) {
+			} else if (!this.alreadyUnlocked) {
 				this.alreadyUnlocked = true;
 				this.hidden = false;
 				return new EnigmaReport(ChangeStateReport.UNLOCK, true, this);
@@ -128,6 +128,11 @@ public class Chest extends AbstractLockable implements Container {
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public boolean needReloadAfterStateChange() {
+		return true;
 	}
 
 	@Override

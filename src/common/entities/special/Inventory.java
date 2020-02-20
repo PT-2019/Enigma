@@ -1,17 +1,8 @@
 package common.entities.special;
 
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import common.enigmas.Enigma;
 import common.entities.Item;
-import common.entities.consumable.Key;
-import common.entities.players.Player;
-import common.entities.types.Container;
-import game.EnigmaGame;
-import org.lwjgl.Sys;
 
-import java.awt.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Inventaire d'un joueur
@@ -49,8 +40,8 @@ public class Inventory {
 	 */
 	public void add(Item i) {
 		if (!this.isFull()) {
-			for(int j = 0; j < this.items.length; j++){
-				if(this.items[j] == null){
+			for (int j = 0; j < this.items.length; j++) {
+				if (this.items[j] == null) {
 					this.items[j] = i;
 					return;
 				}
@@ -66,7 +57,7 @@ public class Inventory {
 	 */
 	public void remove(Item i) {
 		int tmp = this.indexOf(i);
-		if(tmp != -1)
+		if (tmp != -1)
 			this.items[tmp] = null;
 	}
 
@@ -139,12 +130,13 @@ public class Inventory {
 
 	/**
 	 * Retroune l'index d'un item
+	 *
 	 * @param i Item
 	 * @return Son index
 	 */
-	public int indexOf(Item i){
-		for(int j = 0; j < this.items.length; j++){
-			if(this.items[j] != null && this.items[j].equals(i))
+	public int indexOf(Item i) {
+		for (int j = 0; j < this.items.length; j++) {
+			if (this.items[j] != null && this.items[j].equals(i))
 				return j;
 		}
 		return -1;
@@ -152,10 +144,11 @@ public class Inventory {
 
 	/**
 	 * Interverti l'emplacement des 2 items
+	 *
 	 * @param index1 Item 1
 	 * @param index2 Item 2
 	 */
-	public void swap(int index1, int index2){
+	public void swap(int index1, int index2) {
 		Item tmp = this.items[index1];
 		this.items[index1] = this.items[index2];
 		this.items[index2] = tmp;
@@ -163,11 +156,12 @@ public class Inventory {
 
 	/**
 	 * L'inventaire est-il plein?
+	 *
 	 * @return true si l'inventaire est plein, false sinon
 	 */
-	public boolean isFull(){
-		for(Item i : this.items){
-			if(i == null)
+	public boolean isFull() {
+		for (Item i : this.items) {
+			if (i == null)
 				return false;
 		}
 		return true;
@@ -175,11 +169,12 @@ public class Inventory {
 
 	/**
 	 * L'inventaire est-il vide?
+	 *
 	 * @return true si l'inventaire est vide, false sinon
 	 */
-	public boolean isEmpty(){
-		for(Item i : this.items){
-			if(i != null)
+	public boolean isEmpty() {
+		for (Item i : this.items) {
+			if (i != null)
 				return false;
 		}
 		return true;

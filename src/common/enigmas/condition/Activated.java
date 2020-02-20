@@ -47,7 +47,7 @@ public class Activated extends Condition {
 	@Override
 	public EnigmaReport verify(Player p) {
 		Activatable a = (Activatable) this.entity;
-		if(a.isActivated())
+		if (a.isActivated())
 			return new EnigmaReport(ConditionReport.ACTIVATED, true);
 
 		return new EnigmaReport(ConditionReport.UNACTIVATED, false);

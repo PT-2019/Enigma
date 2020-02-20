@@ -7,6 +7,7 @@ import common.dialog.Dialog;
  * Entités pnj dans le jeu
  */
 public class NpcGame extends GameActorAnimation {
+
 	/**
 	 * Dialogue du monster
 	 */
