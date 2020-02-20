@@ -417,17 +417,30 @@ public class Enigma implements ActionListener, IDInterface {
 	}
 
 	/**
+	 * Passe a l'indice suivant
+	 * S'il n'y a pas d'autre d'indice, alors ne fait rien
+	 */
+	public void nextAdvice(){
+		if(this.hasNextAdvice())
+			this.currentAdvice++;
+	}
+
+	/**
+	 * Indique s'il y a au moins un autre indice
+	 *
+	 * @return true s'il y a un autre indice, sinon false
+	 */
+	public boolean hasNextAdvice(){
+		return (this.currentAdvice < this.advices.size());
+	}
+
+	/**
 	 * Savoir si l'énigme à déjà été découverte
 	 *
 	 * @return true si l'énigme à été découverte, false sinon
 	 */
 	public boolean isKnown() {
 		return this.known;
-	}
-
-	public void nextAdvice() {
-		if (this.currentAdvice < this.advices.size())
-			this.currentAdvice++;
 	}
 
 	/**

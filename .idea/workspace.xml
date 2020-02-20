@@ -10,109 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3988e985-92ab-48ae-ab5d-41247abb4cd3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Enigma_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/libs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/libs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/files/map/cocoa.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/map/cocoa.tmx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EnigmaFastGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/EnigmaFastGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/libgdx/actor/GameActor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/libgdx/actor/GameActor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/libgdx/actor/GameActorUtilities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/libgdx/actor/GameActorUtilities.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/libgdx/ui/Toast.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/libgdx/ui/Toast.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/libgdx/utils/LoadGameLibgdxApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/libgdx/utils/LoadGameLibgdxApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/ui/CustomOptionPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/ui/CustomOptionPane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/ui/CustomWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/ui/CustomWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/utils/Utility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/utils/Utility.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/utils/WindowClosing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/utils/convenience/WindowClosing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/data/GameData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/data/GameData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/data/MapData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/data/MapData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/dialog/Dialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/dialog/Dialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/dialog/EnigmaDialogPopup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/dialog/EnigmaDialogPopup.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/dialog/ItemDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/dialog/ItemDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/enigmas/Advice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/enigmas/Advice.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/common/enigmas/Enigma.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/enigmas/Enigma.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/enigmas/TileEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/enigmas/TileEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/enigmas/condition/Activated.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/enigmas/condition/Activated.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/enigmas/condition/Answer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/enigmas/condition/Answer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/enigmas/condition/HaveInHands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/enigmas/condition/HaveInHands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/enigmas/condition/HaveInInventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/enigmas/condition/HaveInInventory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/enigmas/condition/RoomDiscovered.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/enigmas/condition/RoomDiscovered.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/enigmas/condition/RoomUndiscovered.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/enigmas/condition/RoomUndiscovered.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/enigmas/operation/ChangeMainMusic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/enigmas/operation/ChangeMainMusic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/enigmas/operation/EndGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/enigmas/operation/EndGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/enigmas/operation/Give.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/enigmas/operation/Give.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/enigmas/operation/HideRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/enigmas/operation/HideRoom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/enigmas/operation/LaunchSound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/enigmas/operation/LaunchSound.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/enigmas/operation/Operation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/enigmas/operation/Operation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/enigmas/operation/ShowRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/enigmas/operation/ShowRoom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/enigmas/operation/Summon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/enigmas/operation/Summon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/enigmas/operation/Unlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/enigmas/operation/Unlock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/enigmas/reporting/ConditionReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/enigmas/reporting/ConditionReport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/enigmas/reporting/EnigmaReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/enigmas/reporting/EnigmaReport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/enigmas/reporting/OperationReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/enigmas/reporting/OperationReport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/enigmas/reporting/Report.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/enigmas/reporting/Report.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/GameObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/NullGameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/NullGameObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/consumable/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/consumable/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/items/Chest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/items/Chest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/items/Library.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/items/Library.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/items/Pane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/items/Pane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/items/Switch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/items/Switch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/players/Monster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/players/Monster.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/players/NPC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/players/NPC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/players/NpcGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/players/NpcGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/players/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/players/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/players/PlayerGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/players/PlayerGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/special/GameMusic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/special/GameMusic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/special/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/special/Inventory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/types/AbstractConsumable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/types/AbstractConsumable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/types/AbstractLockable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/types/AbstractLockable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/types/Activatable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/types/Activatable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/types/ChangeState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/types/ChangeState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/types/ChangeStateReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/types/ChangeStateReport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/types/ShowContent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/types/ShowContent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/hud/EnigmaOptionPane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/hud/EnigmaOptionPane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/map/AbstractMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/map/AbstractMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/map/GameMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/map/GameMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/map/MapObjects.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/map/MapObjects.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/map/MapTestScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/map/MapTestScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/map/MapTestScreenCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/map/MapTestScreenCell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/save/EmptyMapGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/save/EmptyMapGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/save/ImportExport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/save/ImportExport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/save/MapsNameUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/save/MapsNameUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/save/enigmas/EnigmaAttributes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/save/enigmas/EnigmaAttributes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/save/entities/SaveKey.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/save/entities/SaveKey.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/save/entities/SaveTiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/save/entities/SaveTiles.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/save/entities/serialization/EntitySerializable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/save/entities/serialization/EntitySerializable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/save/entities/serialization/MonsterFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/save/entities/serialization/MonsterFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/save/entities/serialization/NpcFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/save/entities/serialization/NpcFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/save/entities/serialization/PlayerSerializableToJson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/save/entities/serialization/PlayerSerializableToJson.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/timer/TimerFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/timer/TimerFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/utils/EnigmaUtility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/utils/EnigmaUtility.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/Layer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/Layer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/config/UserConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/config/UserConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/keys/PlayerKeys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/keys/PlayerKeys.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/EditorLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/EditorLauncher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/bar/doc/DocumentationFile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/doc/DocumentationFile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/bar/edition/ActionsManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/edition/ActionsManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/bar/edition/actions/EditorActionParent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/edition/actions/EditorActionParent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/bar/listeners/ChooseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/bar/listeners/ChooseListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/menus/AvailableOptionRunnable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/menus/AvailableOptionRunnable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/menus/enimas/create/ManageEnigmaAddMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/menus/enimas/create/ManageEnigmaAddMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/menus/enimas/create/ManageEnigmasAddView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/menus/enimas/create/ManageEnigmasAddView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/menus/enimas/create/OperationPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/menus/enimas/create/OperationPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/menus/enimas/create/listeners/ListenerMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/menus/enimas/create/listeners/ListenerMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/menus/enimas/create/listeners/MusicListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/menus/enimas/create/listeners/MusicListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/menus/enimas/create/listeners/OperationListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/menus/enimas/create/listeners/OperationListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/menus/name/AddNameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/menus/name/AddNameView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/popup/cases/SpecialPopUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/popup/cases/SpecialPopUp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/popup/cases/panel/NavigationPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/popup/cases/panel/NavigationPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/editor/popup/listeners/CaseListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/popup/listeners/CaseListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/EnigmaGameLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/EnigmaGameLauncher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/screens/EndScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/screens/EndScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/screens/GameEndScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/screens/GameEndScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/screens/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/screens/GameScreen.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/libs/packer/" />
@@ -146,45 +44,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Pack.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="20" column="49" selection-start-line="20" selection-start-column="49" selection-end-line="20" selection-end-column="49" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="334">
-              <caret line="26" column="22" selection-start-line="26" selection-start-column="22" selection-end-line="26" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/common/language/GameLanguage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="89" column="89" selection-start-line="89" selection-start-column="89" selection-end-line="89" selection-end-column="89" />
-              <folding>
-                <element signature="e#1183#1184#0" expanded="true" />
-                <element signature="e#1222#1223#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/common/language/Language.java">
+        <entry file="file://$PROJECT_DIR$/src/common/enigmas/Enigma.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="28" column="29" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="29" />
+            <state relative-caret-position="490">
+              <caret line="444" selection-start-line="444" selection-end-line="444" />
             </state>
           </provider>
         </entry>
@@ -256,7 +120,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/EnigmaFastGame.java" />
         <option value="$PROJECT_DIR$/src/common/entities/types/ChangeState.java" />
         <option value="$PROJECT_DIR$/src/common/entities/types/AbstractConsumable.java" />
         <option value="$PROJECT_DIR$/src/common/entities/items/Library.java" />
@@ -307,6 +170,7 @@
         <option value="$PROJECT_DIR$/exe/windows.json" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/Pack.java" />
+        <option value="$PROJECT_DIR$/src/common/enigmas/Enigma.java" />
       </list>
     </option>
   </component>
@@ -316,7 +180,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1300" />
@@ -419,7 +283,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="EnigmaFastGame" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="EnigmaFastGame" />
       <module name="Enigma" />
@@ -448,7 +312,7 @@
         <option name="com.soywiz.korge.intellij.UpdateResourceBeforeRunTask" enabled="false" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="Enigma" />
       <method v="2">
@@ -489,8 +353,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Pack" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Pack" />
         <item itemvalue="Application.FromTmxToJson$MainFromRoomToJson" />
         <item itemvalue="JUnit.TestIDFactory" />
       </list>
@@ -564,7 +428,7 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20226537" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20226537" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -574,7 +438,7 @@
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32949308" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.26612905" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.26612905" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39976957" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -799,13 +663,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/editor/bar/edition/actions/EditorActionParent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="29" column="36" selection-start-line="29" selection-start-column="36" selection-end-line="29" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/api/libgdx/actor/GameActorUtilities.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="125">
@@ -1133,20 +990,17 @@
     <entry file="file://$PROJECT_DIR$/exe/jdk/release">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Pack.java">
+    <entry file="file://$PROJECT_DIR$/src/META-INF/MANIFEST.MF">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="20" column="49" selection-start-line="20" selection-start-column="49" selection-end-line="20" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="17">
+          <caret line="1" column="16" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/common/language/Language.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="26" column="22" selection-start-line="26" selection-start-column="22" selection-end-line="26" selection-end-column="22" />
+        <state relative-caret-position="323">
+          <caret line="28" column="29" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -1161,17 +1015,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/META-INF/MANIFEST.MF">
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="16" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
+        <state relative-caret-position="334">
+          <caret line="26" column="22" selection-start-line="26" selection-start-column="22" selection-end-line="26" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/common/language/Language.java">
+    <entry file="file://$PROJECT_DIR$/src/Pack.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="28" column="29" selection-start-line="28" selection-start-column="29" selection-end-line="28" selection-end-column="29" />
+        <state relative-caret-position="96">
+          <caret line="20" column="49" selection-start-line="20" selection-start-column="49" selection-end-line="20" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/common/enigmas/Enigma.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="490">
+          <caret line="444" selection-start-line="444" selection-end-line="444" />
         </state>
       </provider>
     </entry>
