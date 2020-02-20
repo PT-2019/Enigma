@@ -85,7 +85,6 @@ public class Select extends ClickListener {
                     }
                 }
             }else{
-                System.out.println("azef");
                 try{
                     ButtonInventory[] buttons = display.getButtonInventory();
                     //on regarde tout les boutons pour trouver une place pour notre item

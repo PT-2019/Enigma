@@ -12,8 +12,13 @@ import common.entities.Item;
  */
 public class ButtonInventory extends ImageButton {
 
+    /**
+     * L'item du bouton
+     */
     private Item item;
-
+    /**
+     * Image contenu dans le bouton
+     */
     private Image img;
 
     public ButtonInventory(Skin skin,Item i){
@@ -34,6 +39,9 @@ public class ButtonInventory extends ImageButton {
         return item;
     }
 
+    /**
+     * Ajoute l'image de l'item si possible
+     */
     public void refreshButton(){
         if(item != null){
             img = new Image(

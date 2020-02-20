@@ -11,8 +11,10 @@ import common.entities.special.inventory.InventoryDisplay;
 import common.entities.types.Content;
 import common.map.GameMap;
 import game.EnigmaGame;
-import game.screens.GameScreen;
 
+/**
+ * Evènement lorsque le joueur veut utiliser un objet
+ */
 public class Use implements EventListener {
     private InventoryDisplay display;
 

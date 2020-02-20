@@ -6,8 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="3988e985-92ab-48ae-ab5d-41247abb4cd3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/entities/special/inventory/ButtonInventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/special/inventory/ButtonInventory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/entities/special/inventory/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/special/inventory/Inventory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/common/entities/special/inventory/InventoryDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/special/inventory/InventoryDisplay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/entities/special/inventory/InventoryItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/special/inventory/InventoryItem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/common/entities/special/inventory/manager/Select.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/special/inventory/manager/Select.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/entities/special/inventory/manager/Throw.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/special/inventory/manager/Throw.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/entities/special/inventory/manager/Use.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/special/inventory/manager/Use.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -252,7 +257,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582128100670</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="résolution bug model">
+      <created>1582208705219</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1582208705219</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -304,7 +316,8 @@
     <MESSAGE value="fix" />
     <MESSAGE value="fix multi heroes" />
     <MESSAGE value="inventaire fonctionnel" />
-    <option name="LAST_COMMIT_MESSAGE" value="inventaire fonctionnel" />
+    <MESSAGE value="résolution bug model" />
+    <option name="LAST_COMMIT_MESSAGE" value="résolution bug model" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2355" y="188" width="806" height="679" key="#Console" />

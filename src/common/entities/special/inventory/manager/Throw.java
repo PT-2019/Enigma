@@ -2,24 +2,17 @@ package common.entities.special.inventory.manager;
 
 import api.libgdx.actor.GameActor;
 import api.libgdx.utils.CheckEventType;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
-import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.SnapshotArray;
-import common.entities.GameObject;
 import common.entities.Item;
 import common.entities.special.inventory.ButtonInventory;
 import common.entities.special.inventory.InventoryDisplay;
 import common.map.GameMap;
-import common.save.entities.serialization.EntityFactory;
-import common.save.entities.serialization.EntitySerializable;
-import data.Layer;
 import game.EnigmaGame;
 
-import java.util.Arrays;
-import java.util.HashMap;
-
+/**
+ * Gère les évènements lorsque le joueur jette un item
+ */
 public class Throw implements EventListener {
     private InventoryDisplay display;
 

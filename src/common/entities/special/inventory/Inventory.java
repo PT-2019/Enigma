@@ -1,18 +1,9 @@
 package common.entities.special.inventory;
 
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import common.enigmas.Enigma;
 import common.entities.Item;
-import common.entities.consumable.Key;
 import common.entities.consumable.Stackable;
 import common.entities.players.Player;
-import common.entities.types.Container;
-import game.EnigmaGame;
-import org.lwjgl.Sys;
-
-import java.awt.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Inventaire d'un joueur

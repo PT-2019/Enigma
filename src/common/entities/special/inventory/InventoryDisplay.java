@@ -1,8 +1,6 @@
 package common.entities.special.inventory;
 
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
-import com.badlogic.gdx.utils.SnapshotArray;
 import common.entities.Consumable;
 import common.entities.Item;
 import common.entities.consumable.Book;
@@ -16,7 +14,13 @@ import common.language.GameFields;
 import common.language.GameLanguage;
 import java.util.ArrayList;
 
+/**
+ * Vue de l'inventaire
+ */
 public class InventoryDisplay extends Window {
+    /**
+     * Taille des icônes de l'inventaire
+     */
     public final static int ACTOR_WIDTH = 80;
     public final static int ACTOR_HEIGHT = 80;
     public final static int MARGIN = 2;
@@ -28,17 +32,33 @@ public class InventoryDisplay extends Window {
     private TextButton throwButton;
 
     private TextButton useButton;
-
+    /**
+     * Ces boutons représente les cases de l'inventaire
+     */
     private ButtonInventory[] buttonInventory;
-
+    /**
+     * Ces boutons représente les mains du personnage
+     */
     private ButtonInventory[] handInventory;
-
+    /**
+     * Main gauche
+     */
     public static final int LEFT = 0;
-
+    /**
+     * Main droite
+     */
     public static final int RIGHT = 1;
-
+    /**
+     * Nombre de colonne par ligne dans l'inventaire
+     */
     private int rowLength;
+    /**
+     * Case de l'inventaire sélectionner
+     */
     private ButtonInventory selected;
+    /**
+     * Modèle de l'inventaire
+     */
     private Inventory container;
 
     public static final String SKIN_PATH = "assets/files/atlas/inventory.json";
@@ -54,12 +74,11 @@ public class InventoryDisplay extends Window {
 
     public InventoryDisplay(String title, Skin skin) {
         super(title, skin);
-        this.rowLength = 5;
         this.name = new Label("", this.getSkin());
         this.quantity = new Label("", this.getSkin());
         this.throwButton = new TextButton(THROW, this.getSkin());
         this.useButton = new TextButton(USE, this.getSkin());
-
+        this.rowLength = 5;
         this.throwButton.addListener(new Throw(this));
         this.useButton.addListener(new Use(this));
         this.buttonInventory = new ButtonInventory[15];
@@ -82,6 +101,11 @@ public class InventoryDisplay extends Window {
         this.refreshInfo();
     }
 
+    /**
+     * Affiche l'inventaire
+     * @param c
+     * @return
+     */
     public boolean showInventory(Container c){
         this.selected = null;
         int j = 1;
