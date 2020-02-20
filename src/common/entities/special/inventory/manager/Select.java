@@ -57,13 +57,13 @@ public class Select extends ClickListener {
             if(display.getContainer().contains(current)){
                 ButtonInventory[] hand = display.getHandInventory();
 
-                if (hand[InventoryDisplay.RIGHT].getItem() == null){
+                if (hand[InventoryDisplay.RIGHT].getItem() == null && (!target.equals(hand[InventoryDisplay.LEFT]))){
                     hand[InventoryDisplay.RIGHT].setItem(current);
                     hand[InventoryDisplay.RIGHT].refreshButton();
                     //on enlève de l'inventaire
                     display.getContainer().remove(current);
                     display.removeItem(current,(ButtonInventory)target);
-                }else if (hand[InventoryDisplay.LEFT].getItem() == null){
+                }else if (hand[InventoryDisplay.LEFT].getItem() == null && (!target.equals(hand[InventoryDisplay.RIGHT]))){
                     //on met dans la main gauche l'objet
                     hand[InventoryDisplay.LEFT].setItem(current);
                     hand[InventoryDisplay.LEFT].refreshButton();
@@ -85,6 +85,7 @@ public class Select extends ClickListener {
                     }
                 }
             }else{
+                System.out.println("azef");
                 try{
                     ButtonInventory[] buttons = display.getButtonInventory();
                     //on regarde tout les boutons pour trouver une place pour notre item

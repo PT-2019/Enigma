@@ -5,24 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3988e985-92ab-48ae-ab5d-41247abb4cd3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/files/atlas/inventory.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/atlas/inventory.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/files/atlas/uiskin.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/atlas/uiskin.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/files/map/cocoa.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/map/cocoa.tmx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/libgdx/actor/GameActorAnimation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/libgdx/actor/GameActorAnimation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/enigmas/condition/HaveInHands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/enigmas/condition/HaveInHands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/enigmas/operation/Give.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/enigmas/operation/Give.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/Consumable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/Consumable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/consumable/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/consumable/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/consumable/Key.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/consumable/Key.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/players/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/players/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/special/Inventory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/types/AbstractConsumable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/types/AbstractConsumable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/map/AbstractMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/map/AbstractMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/map/GameMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/map/GameMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/screens/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/screens/GameScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/common/enigma/ConditionsOperationsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/common/enigma/ConditionsOperationsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/entities/special/inventory/InventoryDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/special/inventory/InventoryDisplay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/entities/special/inventory/manager/Select.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/special/inventory/manager/Select.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -88,7 +73,7 @@
     <property name="jdk.selected.JAVA_MODULE" value="11" />
     <property name="last.edited.regexp" value="Sample Text" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/editor/entity" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/common/entities/special" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/choix" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -260,7 +245,14 @@
       <option name="project" value="LOCAL" />
       <updated>1580590268008</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="inventaire fonctionnel">
+      <created>1582128100670</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1582128100670</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -311,7 +303,8 @@
     <MESSAGE value="Fix commit Loïc" />
     <MESSAGE value="fix" />
     <MESSAGE value="fix multi heroes" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix multi heroes" />
+    <MESSAGE value="inventaire fonctionnel" />
+    <option name="LAST_COMMIT_MESSAGE" value="inventaire fonctionnel" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2355" y="188" width="806" height="679" key="#Console" />

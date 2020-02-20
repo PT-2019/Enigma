@@ -72,6 +72,7 @@ public class InventoryDisplay extends Window {
         k.setAtlas("assets/files/atlas/items.atlas","key");
         b.setAtlas("assets/files/atlas/items.atlas","redBook");
         k2.setAtlas("assets/files/atlas/items.atlas","key");
+
         p.addItem(k);
         p.addItem(k2);
         p.setItemInRightHand(b);
@@ -199,10 +200,6 @@ public class InventoryDisplay extends Window {
             selected = null;
             buttonInventory.setItem(null);
             buttonInventory.removeActor(buttonInventory.getImg());
-            SnapshotArray<Actor> actors = buttonInventory.getChildren();
-            for (Actor actor: actors) {
-                buttonInventory.removeActor(actor);
-            }
         }
     }
 
@@ -213,10 +210,6 @@ public class InventoryDisplay extends Window {
         selected = null;
         buttonInventory.setItem(null);
         buttonInventory.removeActor(buttonInventory.getImg());
-        SnapshotArray<Actor> actors = buttonInventory.getChildren();
-        for (Actor actor: actors) {
-            buttonInventory.removeActor(actor);
-        }
     }
 
     public void setSelectItem(ButtonInventory i) {
