@@ -4,9 +4,12 @@ import api.utils.Utility;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
+import common.entities.Consumable;
 import common.entities.GameObject;
+import common.entities.Item;
 import common.entities.players.EntityGame;
 import common.utils.IDFactory;
+import common.utils.Logger;
 import data.EntitiesCategories;
 import data.Layer;
 import org.jetbrains.annotations.Nullable;
@@ -156,6 +159,12 @@ public class EntityFactory {
 			//Logger.printDebug("EntityFactory", "PlayerSerializable loaded.");
 		}
 
+		if (entity instanceof ItemSerializableToJson && object instanceof Item) {
+			ItemSerializableToJson player = ((ItemSerializableToJson) entity);
+			((Consumable) object).setAtlas(player.getAtlas(), player.getKey());
+			Logger.printDebug("EntityFactory", "ItemSerializableToJson loaded.");
+		}
+
 		if (pos != null)
 			object.setGameObjectPosition(pos);
 		//layers
@@ -182,6 +191,20 @@ public class EntityFactory {
 		 * constructeur par défaut pour new Instance de {@link Json#fromJson(Class, String)}
 		 **/
 		PlayerFactory() {
+		}
+	}
+
+
+	private static final class ItemFactory {
+		/**
+		 * hashmap locale des entités chargés pour {@link Json#fromJson(Class, String)}
+		 **/
+		private Array<ItemSerializableToJson> content = new Array<>();
+
+		/**
+		 * constructeur par défaut pour new Instance de {@link Json#fromJson(Class, String)}
+		 **/
+		ItemFactory() {
 		}
 	}
 }
