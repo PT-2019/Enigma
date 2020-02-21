@@ -4,7 +4,9 @@
     {
       className: common.entities.consumable.Book
       path: assets/map/datas/bookBlue.png
-      hover: un livre bleu
+      hover: un livre bleu,
+      key: blueBook,
+      atlas: assets/files/atlas/items.atlas,
       category: ITEMS
       tiles: {
         FLOOR2: [
@@ -19,6 +21,8 @@
       className: common.entities.consumable.Book
       path: assets/map/datas/bookBlue1.png
       hover: un livre bleu ouvert
+      key: openedBlueBook,
+      atlas: assets/files/atlas/items.atlas,
       category: ITEMS
       tiles: {
         FLOOR2: [
@@ -33,6 +37,8 @@
       className: common.entities.consumable.Book
       path: assets/map/datas/bookRed.png
       hover: un livre rouge
+      key: redBook,
+      atlas: assets/files/atlas/items.atlas,
       category: ITEMS
       tiles: {
         FLOOR2: [
@@ -47,6 +53,8 @@
       className: common.entities.consumable.Book
       path: assets/map/datas/bookRed1.png
       hover: un livre rouge ouvert
+      key: openedRedBook,
+      atlas: assets/files/atlas/items.atlas,
       category: ITEMS
       tiles: {
         FLOOR2: [
@@ -61,6 +69,8 @@
       className: common.entities.consumable.Book
       path: assets/map/datas/bookGreen.png
       hover: un livre vert
+      key: greenBook,
+      atlas: assets/files/atlas/items.atlas,
       category: ITEMS
       tiles: {
         FLOOR2: [
@@ -75,6 +85,8 @@
       className: common.entities.consumable.Book
       path: assets/map/datas/bookGreen1.png
       hover: un livre vert ouvert
+      key: openedGreenBook,
+      atlas: assets/files/atlas/items.atlas,
       category: ITEMS
       tiles: {
         FLOOR2: [
@@ -89,6 +101,8 @@
       className: common.entities.consumable.Book
       path: assets/map/datas/bookBlack.png
       hover: un livre noir
+      key: blackBook,
+      atlas: assets/files/atlas/items.atlas,
       category: ITEMS
       tiles: {
         FLOOR2: [
@@ -103,6 +117,8 @@
       className: common.entities.consumable.Book
       path: assets/map/datas/bookBlack1.png
       hover: un livre noir ouvert
+      key: openedBlackBook,
+      atlas: assets/files/atlas/items.atlas,
       category: ITEMS
       tiles: {
         FLOOR2: [
@@ -119,6 +135,8 @@
       className: common.entities.consumable.Key
       path: assets/map/datas/key.png
       hover: une clef
+      key: key,
+      atlas: assets/files/atlas/items.atlas,
       category: ITEMS
       tiles: {
         FLOOR2: [

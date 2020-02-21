@@ -25,7 +25,7 @@
                               {
                                    "common.enigmas.operation.LaunchSound": [
                                         {
-                                             "entities": "15",
+                                             "entities": "19",
                                              "fulfilled": "false"
                                         }
                                    ]
@@ -37,8 +37,8 @@
                          "description": "",
                          "advices": [
                          ],
-                         "id": "9",
-                         "title": "Open2",
+                         "id": "12",
+                         "title": "Open",
                          "type": "ON_USE",
                          "conditions": [
                               {
@@ -78,7 +78,7 @@
                               {
                                    "common.enigmas.operation.LaunchSound": [
                                         {
-                                             "entities": "19",
+                                             "entities": "15",
                                              "fulfilled": "false"
                                         }
                                    ]
@@ -90,8 +90,8 @@
                          "description": "",
                          "advices": [
                          ],
-                         "id": "12",
-                         "title": "Open",
+                         "id": "9",
+                         "title": "Open2",
                          "type": "ON_USE",
                          "conditions": [
                               {
@@ -101,6 +101,34 @@
                                         }
                                    ]
                               }
+                         ]
+                    }
+               ]
+          },
+
+          {
+               "common.enigmas.Enigma": [
+                    {
+                         "operations": [
+                              {
+                                   "common.enigmas.operation.EndGame": [
+                                        {
+                                             "entities": "-2147483648",
+                                             "fulfilled": "false"
+                                        }
+                                   ]
+                              }
+                         ],
+                         "known": "false",
+                         "currentAdviceIndex": "-1",
+                         "fulfilled": "false",
+                         "description": "",
+                         "advices": [
+                         ],
+                         "id": "16",
+                         "title": "End",
+                         "type": "ON_USE",
+                         "conditions": [
                          ]
                     }
                ]
@@ -138,34 +166,6 @@
                                         }
                                    ]
                               }
-                         ]
-                    }
-               ]
-          },
-
-          {
-               "common.enigmas.Enigma": [
-                    {
-                         "operations": [
-                              {
-                                   "common.enigmas.operation.EndGame": [
-                                        {
-                                             "entities": "-2147483648",
-                                             "fulfilled": "false"
-                                        }
-                                   ]
-                              }
-                         ],
-                         "known": "false",
-                         "currentAdviceIndex": "-1",
-                         "fulfilled": "false",
-                         "description": "",
-                         "advices": [
-                         ],
-                         "id": "16",
-                         "title": "End",
-                         "type": "ON_USE",
-                         "conditions": [
                          ]
                     }
                ]
