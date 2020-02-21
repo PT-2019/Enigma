@@ -2,10 +2,12 @@ package game.screens;
 
 import api.libgdx.LibgdxScreen;
 import api.libgdx.actor.GameActor;
+import api.libgdx.utils.LibgdxUtility;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import common.dialog.EnigmaDialogPopup;
 import common.entities.players.PlayerGame;
+import common.entities.special.inventory.InventoryDisplay;
 import common.map.AbstractMap;
 import common.map.GameMap;
 import common.timer.TimerFrame;
@@ -68,43 +70,47 @@ public class GameScreen extends LibgdxScreen {
 
 	@Override
 	public void init() {
-		this.main = new Stage();
-		this.hud = new Stage();
+		try {
+			this.main = new Stage();
+			this.hud = new Stage();
 
-		if (MAP_PATH != null && !MAP_PATH.isEmpty()) {
-			this.map = new GameMap(MAP_PATH, Config.UNIT_SCALE);
-			EnigmaDialogPopup dialog = map.getEnigmaDialog();
+			if (MAP_PATH != null && !MAP_PATH.isEmpty()) {
+				this.map = new GameMap(MAP_PATH, Config.UNIT_SCALE);
+				EnigmaDialogPopup dialog = GameMap.getEnigmaDialog();
 
-			//ajout au stage
-			this.main.addActor(this.map);
-			this.map.showGrid(false);
+				//ajout au stage
+				this.main.addActor(this.map);
+				this.map.showGrid(false);
 
-			//compléter ici
-			ArrayList<GameActor> actors = this.map.getGameEntities();
+				//compléter ici
+				ArrayList<GameActor> actors = this.map.getGameEntities();
 
-			for (GameActor actor : actors) {
-				if (actor instanceof PlayerGame) {
-					((PlayerGame) actor).center();
-					this.listen(((PlayerGame) actor));
+				for (GameActor actor : actors) {
+					if (actor instanceof PlayerGame) {
+						((PlayerGame) actor).center();
+						this.listen(((PlayerGame) actor));
+					}
 				}
+				this.hud.addActor(new InventoryDisplay(LibgdxUtility.loadSkin("assets/files/atlas/uiskin.json",
+						"assets/files/atlas/uiskin.atlas")
+				));
+				this.hud.addActor(dialog);
+				//timer
+				if (timer == 0) this.hud.addActor(new TimerFrame());
+				else {
+					this.hud.addActor(new TimerFrame(0, timer));
+					timer = 0;//supprime le timer custom pour la prochaine partie
+				}
+				this.listen(dialog);
 			}
-            this.hud.addActor(new InventoryDisplay(LibgdxUtility.loadSkin("assets/files/atlas/uiskin.json",
-                    "assets/files/atlas/uiskin.atlas")
-            ));
-			this.hud.addActor(dialog);
-			//timer
-			if (timer == 0) this.hud.addActor(new TimerFrame());
-			else {
-				this.hud.addActor(new TimerFrame(0, timer));
-				timer = 0;//supprime le timer custom pour la prochaine partie
-			}
-			this.listen(dialog);
+
+
+			//écoute des inputProcessor et des listeners
+			this.listen(this.hud);
+			this.listen(this.main);
+		}catch (Exception e){
+			e.printStackTrace();
 		}
-
-
-		//écoute des inputProcessor et des listeners
-		this.listen(this.hud);
-		this.listen(this.main);
 	}
 
 	@Override//géré par input processor

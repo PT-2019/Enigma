@@ -1,20 +1,22 @@
 package common.entities.special;
 
 import common.entities.Item;
-
+import common.entities.consumable.Stackable;
+import common.entities.players.Player;
+import common.entities.special.inventory.InventoryItem;
 import java.util.ArrayList;
 
-/**
- * Inventaire d'un joueur
- *
- * @author Jorys-Micke ALAÏS
- * @author Louka DOZ
- * @author Loic SENECAT
- * @author Quentin RAMSAMY-AGEORGES
- * @version 6.0
- * @see common.entities.players.Player
- * @since 5.0
- */
+    /**
+     * Inventaire d'un joueur
+     *
+     * @author Jorys-Micke ALAÏS
+     * @author Louka DOZ
+     * @author Loic SENECAT
+     * @author Quentin RAMSAMY-AGEORGES
+     * @version 6.0
+     * @see Player
+     * @since 5.0
+     */
 public class Inventory {
 
 	/**
@@ -24,13 +26,14 @@ public class Inventory {
 	/**
 	 * Items de l'inventaire
 	 */
-	private Item[] items;
+	private InventoryItem[] items;
+
 	@Deprecated
 	private ArrayList<Item> item;
 
 
 	public Inventory() {
-		this.items = new Item[MAX_ITEMS];
+		this.items = new InventoryItem[MAX_ITEMS];
 	}
 
 	/**
@@ -40,9 +43,14 @@ public class Inventory {
 	 */
 	public void add(Item i) {
 		if (!this.isFull()) {
-			for (int j = 0; j < this.items.length; j++) {
-				if (this.items[j] == null) {
-					this.items[j] = i;
+			for(int j = 0; j < this.items.length; j++){
+				if(this.items[j] == null){
+					this.items[j] = new InventoryItem(i,1);
+					return;
+				}else if(this.items[j].getItem().getClass().equals(i.getClass())
+						&& i instanceof Stackable){
+					//on a vérifier que l'item est bien stackable
+					this.items[j].plusNumber();
 					return;
 				}
 			}
@@ -57,8 +65,13 @@ public class Inventory {
 	 */
 	public void remove(Item i) {
 		int tmp = this.indexOf(i);
-		if (tmp != -1)
-			this.items[tmp] = null;
+
+		if(tmp != -1) {
+			//on enlève 1
+			this.items[tmp].lessNumber();
+			if (this.items[tmp].getNumber() <= 0)
+				this.items[tmp] = null;
+		}
 	}
 
 	/**
@@ -67,7 +80,15 @@ public class Inventory {
 	 * @return Liste des items
 	 */
 	public Item[] getItems() {
-		return this.items;
+		Item[] items = new Item[MAX_ITEMS];
+		int i = 0;
+		for (InventoryItem item: this.items) {
+			if (item != null){
+				items[i] = item.getItem();
+				i++;
+			}
+		}
+		return items;
 	}
 
 	/**
@@ -77,7 +98,7 @@ public class Inventory {
 	 * @return Item
 	 */
 	public Item getByIndex(int index) {
-		return this.items[index];
+		return this.items[index].getItem();
 	}
 
 	/**
@@ -87,9 +108,9 @@ public class Inventory {
 	 * @return Item, null si aucun item a cet ID
 	 */
 	public Item getByID(int id) {
-		for (Item i : this.items) {
-			if (i.getID() == id)
-				return i;
+		for (InventoryItem i : this.items) {
+			if (i.getItem().getID() == id)
+				return i.getItem();
 		}
 		return null;
 	}
@@ -118,6 +139,17 @@ public class Inventory {
 		return i;
 	}
 
+	public int getNumber(Item i){
+		for (InventoryItem items:
+			 this.items) {
+			if (items != null)
+			if (items.getItem().equals(i)){
+				return items.getNumber();
+			}
+		}
+		return 0;
+	}
+
 	/**
 	 * Contient l'item
 	 *
@@ -130,13 +162,12 @@ public class Inventory {
 
 	/**
 	 * Retroune l'index d'un item
-	 *
 	 * @param i Item
 	 * @return Son index
 	 */
-	public int indexOf(Item i) {
-		for (int j = 0; j < this.items.length; j++) {
-			if (this.items[j] != null && this.items[j].equals(i))
+	public int indexOf(Item i){
+		for(int j = 0; j < this.items.length; j++){
+			if(this.items[j] != null && this.items[j].getItem().equals(i))
 				return j;
 		}
 		return -1;
@@ -144,24 +175,22 @@ public class Inventory {
 
 	/**
 	 * Interverti l'emplacement des 2 items
-	 *
 	 * @param index1 Item 1
 	 * @param index2 Item 2
 	 */
-	public void swap(int index1, int index2) {
-		Item tmp = this.items[index1];
-		this.items[index1] = this.items[index2];
-		this.items[index2] = tmp;
+	public void swap(int index1, int index2){
+		Item tmp = this.items[index1].getItem();
+		this.items[index1].setItem(this.items[index2].getItem());
+		this.items[index2].setItem(tmp);
 	}
 
 	/**
 	 * L'inventaire est-il plein?
-	 *
 	 * @return true si l'inventaire est plein, false sinon
 	 */
-	public boolean isFull() {
-		for (Item i : this.items) {
-			if (i == null)
+	public boolean isFull(){
+		for(InventoryItem i : this.items){
+			if(i == null)
 				return false;
 		}
 		return true;
@@ -169,12 +198,11 @@ public class Inventory {
 
 	/**
 	 * L'inventaire est-il vide?
-	 *
 	 * @return true si l'inventaire est vide, false sinon
 	 */
-	public boolean isEmpty() {
-		for (Item i : this.items) {
-			if (i != null)
+	public boolean isEmpty(){
+		for(InventoryItem i : this.items){
+			if(i != null)
 				return false;
 		}
 		return true;

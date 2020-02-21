@@ -12,8 +12,6 @@ import common.entities.special.inventory.ButtonInventory;
 import common.entities.special.inventory.InventoryDisplay;
 import common.map.AbstractMap;
 import common.map.GameMap;
-import common.save.entities.serialization.EntityFactory;
-import common.save.entities.serialization.EntitySerializable;
 import data.Direction;
 import data.Layer;
 import game.EnigmaGame;
@@ -61,7 +59,7 @@ public class Throw implements EventListener {
                             posX = game.getX() + 10;
                             posY = game.getY();
                         }
-                        if(!(map.collision(game,posX,posY) && map.isWalkable(posX,posY,game))){
+                        if(!(map.collision(game,posX,posY) && map.isWalkable(game,posX,posY))){
                             map.set(item, AbstractMap.posToIndex(posX,posY,map));
                         }else{
                             System.out.println("impossible de déposer l'objet");

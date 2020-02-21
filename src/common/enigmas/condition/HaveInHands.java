@@ -1,6 +1,7 @@
 package common.enigmas.condition;
 
 import common.enigmas.Enigma;
+import common.enigmas.reporting.ConditionReport;
 import common.enigmas.reporting.EnigmaReport;
 import common.enigmas.reporting.OperationReport;
 import common.entities.Item;

@@ -189,6 +189,9 @@
                 <property name="className" value="common.entities.consumable.Key"/>
                 <property name="y2" value="-11.0"/>
                 <property name="ALT_TILES" value=""/>
+                <property name="ALT_TILES" value=""/>
+                <property name="PATH" value=""/>
+                <property name="KEY" value=""/>
             </properties>
         </object>
         <object height="1.0" id="13" name="entity" width="1.0" x="-13.0" y="-13.0">
@@ -197,6 +200,8 @@
                 <property name="y2" value="-13.0"/>
                 <property name="ALT_TILES" value=""/>
                 <property name="CONTENT" value=""/>
+                <property name="PATH" value=""/>
+                <property name="KEY" value=""/>
             </properties>
         </object>
         <object height="2.0" id="21" name="entity" width="2.0" x="-23.0" y="-23.0">
@@ -276,6 +281,8 @@
                 <property name="FLOOR2" value="1"/>
                 <property name="COLLISION" value="1"/>
                 <property name="ALT_TILES" value="{}"/>
+                <property name="PATH" value=""/>
+                <property name="KEY" value=""/>
             </properties>
         </object>
         <object height="2.0" id="23" name="entity" width="2.0" x="32.0" y="8.0">

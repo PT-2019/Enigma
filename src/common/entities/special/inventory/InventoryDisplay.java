@@ -6,6 +6,7 @@ import common.entities.Item;
 import common.entities.consumable.Book;
 import common.entities.consumable.Key;
 import common.entities.players.Player;
+import common.entities.special.Inventory;
 import common.entities.special.inventory.manager.Select;
 import common.entities.special.inventory.manager.Throw;
 import common.entities.special.inventory.manager.Use;

@@ -82,7 +82,7 @@ public class GameMap extends AbstractMap {
 	/**
 	 * Popup de dialogue
 	 */
-	private EnigmaDialogPopup enigmaDialog;
+	private static EnigmaDialogPopup enigmaDialog;
 
 	/**
 	 * Map du jeu
@@ -878,7 +878,7 @@ public class GameMap extends AbstractMap {
 	 * @return Le popup de dialogue
 	 * @since 6.4
 	 */
-	public EnigmaDialogPopup getEnigmaDialog() {
+	public static EnigmaDialogPopup getEnigmaDialog() {
 		return enigmaDialog;
 	}
 }
