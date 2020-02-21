@@ -73,7 +73,7 @@ public class InventoryDisplay extends Window {
     private static final String THROW = "Jeter";
     private static final String USE = "Utiliser";
 
-    public InventoryDisplay( Skin skin) {
+    public InventoryDisplay(Skin skin) {
         super("", skin);
         this.name = new Label("", this.getSkin());
         this.quantity = new Label("", this.getSkin());
@@ -85,7 +85,7 @@ public class InventoryDisplay extends Window {
         this.buttonInventory = new ButtonInventory[15];
         this.handInventory = new ButtonInventory[2];
 
-        Player p = new Player(0);
+        /*Player p = new Player(0);
         Key k = new Key(1);
         Key k2 = new Key(3);
         Book b = new Book(2);
@@ -98,7 +98,8 @@ public class InventoryDisplay extends Window {
         p.setItemInRightHand(b);
         container = p.getInventory();
 
-        this.showInventory(p);
+        this.showInventory(p);*/
+        this.setVisible(false);
         this.refreshInfo();
     }
 
@@ -107,7 +108,7 @@ public class InventoryDisplay extends Window {
      * @param c
      * @return
      */
-    public boolean showInventory(Container c){
+    public void showInventory(Container c){
         this.selected = null;
         int j = 1;
         int bottomSpace = 20;
@@ -122,6 +123,7 @@ public class InventoryDisplay extends Window {
         ArrayList<Item> items = c.getItems();
 
         if(c instanceof Player){
+            this.container = ((Player) c).getInventory();
             Player p = (Player) c;
             ButtonInventory buttonRight = new ButtonInventory(this.getSkin());
             ButtonInventory buttonLeft = new ButtonInventory(this.getSkin());
@@ -170,19 +172,22 @@ public class InventoryDisplay extends Window {
         table.add(this.name).colspan(this.rowLength);
         table.row();
         table.add(this.quantity).colspan(this.rowLength);
-        table.row();
-        table.add(this.useButton).colspan(cosplan);
+        if(c instanceof Player) {
+            table.row();
+            table.add(this.useButton).colspan(cosplan);
 
-        if((this.rowLength % 2) != 0) {
-            for(int i = (cosplan * 2); i < this.rowLength; i++)
-                table.add();
+            if ((this.rowLength % 2) != 0) {
+                for (int i = (cosplan * 2); i < this.rowLength; i++)
+                    table.add();
+            }
+            table.add(this.throwButton).colspan(cosplan);
         }
-        table.add(this.throwButton).colspan(cosplan);
+
         this.addActor(table);
         this.setWidth(table.getPrefWidth());
         this.setHeight(table.getPrefWidth() + 15);
 
-        return true;
+        this.setVisible(true);
     }
 
     /**

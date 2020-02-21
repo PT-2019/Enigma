@@ -10,14 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3988e985-92ab-48ae-ab5d-41247abb4cd3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/files/map/cocoa.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/map/cocoa.tmx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/enigmas/condition/HaveInHands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/enigmas/condition/HaveInHands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/special/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/special/Inventory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/special/inventory/Inventory.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/common/entities/special/inventory/InventoryDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/special/inventory/InventoryDisplay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/special/inventory/manager/Throw.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/special/inventory/manager/Throw.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/entities/types/AbstractConsumable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/types/AbstractConsumable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/common/map/GameMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/map/GameMap.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game/screens/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/screens/GameScreen.java" afterDir="false" />
     </list>
@@ -98,13 +94,13 @@
         <option value="louka &lt;dozlouka@gmail.com&gt;" />
       </list>
     </option>
-    <option name="UPDATE_TYPE" value="MERGE" />
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="senecat/virtuose" />
+        <entry key="$PROJECT_DIR$" value="QuentinRa/game" />
       </map>
     </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="ProjectId" id="1T4PWZYsjf2nuTU9Vgk0aB5pF47" />
   <component name="ProjectViewState">
@@ -135,12 +131,12 @@
     <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/src/editor/utils/save/view/cases/CaseListener.java" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="api.utils.convenience" />
-      <recent name="api.utils" />
-      <recent name="editor.bar.edition.actions" />
-      <recent name="editor.popup.cases" />
-      <recent name="game.gui.listeners" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Quentin Ra\Desktop\Enigma\exe" />
+      <recent name="C:\Users\Quentin Ra\Desktop\Enigma\libs\gdx" />
+      <recent name="C:\Users\Quentin Ra\Desktop\Enigma\assets\map\map_system" />
+      <recent name="C:\Users\Quentin Ra\Desktop\Enigma\assets\lang\fr" />
+      <recent name="C:\Users\Quentin Ra\Desktop\Enigma\assets\lang\en" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="common.utils" />
@@ -163,12 +159,12 @@
       <recent name="editor.menus.name" />
       <recent name="editor.menus.set" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Quentin Ra\Desktop\Enigma\exe" />
-      <recent name="C:\Users\Quentin Ra\Desktop\Enigma\libs\gdx" />
-      <recent name="C:\Users\Quentin Ra\Desktop\Enigma\assets\map\map_system" />
-      <recent name="C:\Users\Quentin Ra\Desktop\Enigma\assets\lang\fr" />
-      <recent name="C:\Users\Quentin Ra\Desktop\Enigma\assets\lang\en" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="api.utils.convenience" />
+      <recent name="api.utils" />
+      <recent name="editor.bar.edition.actions" />
+      <recent name="editor.popup.cases" />
+      <recent name="game.gui.listeners" />
     </key>
   </component>
   <component name="RunDashboard">

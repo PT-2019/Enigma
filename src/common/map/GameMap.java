@@ -21,6 +21,7 @@ import common.enigmas.reporting.EnigmaReport;
 import common.enigmas.reporting.Report;
 import common.entities.Consumable;
 import common.entities.GameObject;
+import common.entities.Item;
 import common.entities.players.Monster;
 import common.entities.players.NPC;
 import common.entities.players.PlayerGame;
@@ -28,6 +29,7 @@ import common.entities.special.GameExit;
 import common.entities.special.GameMusic;
 import common.entities.special.MusicEditor;
 import common.entities.special.Room;
+import common.entities.special.inventory.InventoryDisplay;
 import common.entities.types.ChangeState;
 import common.entities.types.ChangeStateReport;
 import common.entities.types.Container;
@@ -45,6 +47,7 @@ import common.utils.EnigmaUtility;
 import common.utils.Logger;
 import data.Layer;
 import data.NeedToBeTranslated;
+import game.screens.GameScreen;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -492,15 +495,19 @@ public class GameMap extends AbstractMap {
 							if (msg == null || msg.isEmpty()) continue;
 							return msg;
 						}
+						InventoryDisplay inventoryView = GameScreen.getInventoryDisplay();
+						inventoryView.showInventory(actor.getPlayer());
+
 						//fake (affiche son inventaire pour prendre/retirer)
 						Dialog node = new Dialog("Affichage de l'inventaire (fake) de " + o.getReadableName());
 						dialog.showDialog(node, this);
 					} else if (o instanceof Consumable) {
-						//ajout
-						//...
+						InventoryDisplay inventoryView = GameScreen.getInventoryDisplay();
+						actor.getPlayer().addItem((Item)o);
+						inventoryView.showInventory(actor.getPlayer());
 
 						//préviens
-						Dialog node = new Dialog("Ajoute dans l'inventaire (fake) " + o.getReadableName());
+						Dialog node = new Dialog("Ajoute dans l'inventaire " + o.getReadableName());
 						dialog.showDialog(node, this);
 
 						//supprime de la map

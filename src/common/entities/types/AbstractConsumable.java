@@ -47,7 +47,7 @@ public abstract class AbstractConsumable extends AbstractGameObject implements C
 	/**
 	 *
 	 */
-	protected String atlasPath = "assets/files/atlas/uiskin.atlas";
+	protected String atlasPath;
 	/**
 	 *
  	 */
