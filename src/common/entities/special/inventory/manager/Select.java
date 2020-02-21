@@ -54,23 +54,24 @@ public class Select extends ClickListener {
         //si c'est un click droit alors c'est un déplacement d'item
         if(Input.Buttons.RIGHT == event.getButton()){
             //on regarde si l'objet fait partie des mains ou non du joueur
-            if(display.getContainer().contains(current)){
+            if(display.getInventory().contains(current)){
                 ButtonInventory[] hand = display.getHandInventory();
 
                 if (hand[InventoryDisplay.RIGHT].getItem() == null && (!target.equals(hand[InventoryDisplay.LEFT]))){
                     hand[InventoryDisplay.RIGHT].setItem(current);
                     hand[InventoryDisplay.RIGHT].refreshButton();
                     //on enlève de l'inventaire
-                    display.getContainer().remove(current);
+                    display.getInventory().remove(current);
                     display.removeItem(current,(ButtonInventory)target);
                 }else if (hand[InventoryDisplay.LEFT].getItem() == null && (!target.equals(hand[InventoryDisplay.RIGHT]))){
                     //on met dans la main gauche l'objet
                     hand[InventoryDisplay.LEFT].setItem(current);
                     hand[InventoryDisplay.LEFT].refreshButton();
                     //on l'enlève de l'inventaire
-                    display.getContainer().remove(current);
+                    display.getInventory().remove(current);
                     display.removeItem(current,(ButtonInventory)target);
-                }else if(hand[InventoryDisplay.LEFT].getItem() != null || hand[InventoryDisplay.RIGHT].getItem() != null){
+                }/*else if(hand[InventoryDisplay.LEFT].getItem() != null || hand[InventoryDisplay.RIGHT].getItem() != null){
+                    todo ce morceaux de code ne sert a rien actuellement car le modèle ne permet pas d'implémenter des items stackable
                     //pour que ce soit que quand on click sur les mains
                     if(target.equals(hand[InventoryDisplay.LEFT]) || target.equals(hand[InventoryDisplay.RIGHT])) {
                         //si on a un item qui est identique dans l'inventaire et qu'on le possède dans la main
@@ -78,12 +79,12 @@ public class Select extends ClickListener {
                         for (ButtonInventory buttonInventory : buttons) {
                             if (buttonInventory.getItem().getClass() == current.getClass() && current instanceof Stackable) {
                                 display.removeHandItem((ButtonInventory) target);
-                                display.getContainer().add(current);
+                                display.getInventory().add(current);
                                 break;
                             }
                         }
                     }
-                }
+                }*/
             }else{
                 try{
                     ButtonInventory[] buttons = display.getButtonInventory();
@@ -91,7 +92,7 @@ public class Select extends ClickListener {
                     for (ButtonInventory buttonInventory: buttons) {
                         if (buttonInventory.getItem() == null){
                             display.removeItem(current,(ButtonInventory)target);
-                            display.getContainer().add(current);
+                            display.getInventory().add(current);
                             buttonInventory.setItem(current);
                             buttonInventory.refreshButton();
                             break;

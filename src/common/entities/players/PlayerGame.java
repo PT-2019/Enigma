@@ -6,10 +6,12 @@ import api.libgdx.utils.InputAdapter;
 import com.badlogic.gdx.graphics.Camera;
 import common.dialog.EnigmaDialogPopup;
 import common.enigmas.TileEventEnum;
+import common.entities.special.inventory.InventoryDisplay;
 import common.map.GameMap;
 import common.utils.Logger;
 import data.Direction;
 import data.keys.PlayerKeys;
+import game.screens.GameScreen;
 
 /**
  * Cette classe permet de déplacer le joueur et d'actionner son animation
@@ -40,6 +42,11 @@ public class PlayerGame extends GameActorAnimation implements InputAdapter {
 	private Player joueur;
 
 	/**
+	 * Inventaire graphique
+	 */
+	private InventoryDisplay inventoryView;
+
+	/**
 	 * Cette classe permet de déplacer le joueur et d'actionner son animation
 	 *
 	 * @param map La map dans la laquelle est placé le joueur
@@ -48,6 +55,7 @@ public class PlayerGame extends GameActorAnimation implements InputAdapter {
 		this.setAnimationPaused(true);
 		this.map = map;
 		this.joueur = new Player();
+		this.inventoryView = new InventoryDisplay(this.joueur);
 	}
 
 	/**
@@ -158,6 +166,16 @@ public class PlayerGame extends GameActorAnimation implements InputAdapter {
 
 				return true;
 			}
+
+			if (PlayerKeys.PLAYER_INVENTORY.isKey(i)){
+				if (this.inventoryView.isVisible())
+					this.inventoryView.setVisible(false);
+				else
+					this.inventoryView.setVisible(true);
+				//on enlève également l'inventaire d'un objet si il est activé
+				if (GameScreen.getInventoryDisplay().isVisible())
+					GameScreen.getInventoryDisplay().setVisible(false);
+			}
 		}
 		return false;
 	}
@@ -209,5 +227,9 @@ public class PlayerGame extends GameActorAnimation implements InputAdapter {
 	 */
 	public Player getPlayer() {
 		return this.joueur;
+	}
+
+	public InventoryDisplay getInventoryView(){
+		return this.inventoryView;
 	}
 }

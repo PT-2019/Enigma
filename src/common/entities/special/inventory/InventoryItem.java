@@ -8,7 +8,8 @@ import common.entities.Item;
 public class InventoryItem {
 
     /**
-     * Le type d'item utilisé
+     * Les différents stackable items sur la case
+     * si non stackable alors il y a qu'un seul élément
      */
     private Item item;
 

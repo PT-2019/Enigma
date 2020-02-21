@@ -47,7 +47,7 @@ public class Inventory {
 				if(this.items[j] == null){
 					this.items[j] = new InventoryItem(i,1);
 					return;
-				}else if(this.items[j].getItem().getClass().equals(i.getClass())
+				}else if(this.items[j].getItem().getClass().equals(i)
 						&& i instanceof Stackable){
 					//on a vérifier que l'item est bien stackable
 					this.items[j].plusNumber();

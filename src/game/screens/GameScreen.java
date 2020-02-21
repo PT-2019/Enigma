@@ -53,8 +53,7 @@ public class GameScreen extends LibgdxScreen {
 	/**
 	 * Le stage en charge de l'inventaire
 	 */
-	private static InventoryDisplay inventoryDisplay = new InventoryDisplay(LibgdxUtility.loadSkin("assets/files/atlas/uiskin.json",
-			"assets/files/atlas/uiskin.atlas"));
+	private static InventoryDisplay inventoryDisplay = new InventoryDisplay();
 
 	/**
 	 * Retourne le chemin de la map actuelle
@@ -95,6 +94,7 @@ public class GameScreen extends LibgdxScreen {
 					if (actor instanceof PlayerGame) {
 						((PlayerGame) actor).center();
 						this.listen(((PlayerGame) actor));
+						this.hud.addActor(((PlayerGame) actor).getInventoryView());
 					}
 				}
 				this.hud.addActor(inventoryDisplay);
@@ -107,7 +107,6 @@ public class GameScreen extends LibgdxScreen {
 				}
 				this.listen(dialog);
 			}
-
 
 			//écoute des inputProcessor et des listeners
 			this.listen(this.hud);

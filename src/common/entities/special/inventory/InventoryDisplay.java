@@ -1,10 +1,10 @@
 package common.entities.special.inventory;
 
+import api.libgdx.utils.LibgdxUtility;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import common.entities.Consumable;
 import common.entities.Item;
 import common.entities.consumable.Book;
-import common.entities.consumable.Key;
 import common.entities.players.Player;
 import common.entities.special.Inventory;
 import common.entities.special.inventory.manager.Select;
@@ -60,11 +60,15 @@ public class InventoryDisplay extends Window {
     /**
      * Modèle de l'inventaire
      */
-    private Inventory container;
+    private Inventory inventory;
 
-    public static final String SKIN_PATH = "assets/files/atlas/inventory.json";
+    private Container container;
 
-    public static final String ATLAS_PATH = "assets/files/atlas/uiskin.atlas";
+    private static final String SKIN_PATH = "assets/files/atlas/inventory.json";
+
+    private static final String ATLAS_PATH = "assets/files/atlas/uiskin.atlas";
+
+    private Table table;
 
     /**
      * Textes
@@ -73,58 +77,54 @@ public class InventoryDisplay extends Window {
     private static final String THROW = "Jeter";
     private static final String USE = "Utiliser";
 
-    public InventoryDisplay(Skin skin) {
-        super("", skin);
-        this.name = new Label("", this.getSkin());
-        this.quantity = new Label("", this.getSkin());
+    public InventoryDisplay(Container c) {
+        super("", LibgdxUtility.loadSkin(SKIN_PATH, ATLAS_PATH));
+        init();
         this.throwButton = new TextButton(THROW, this.getSkin());
         this.useButton = new TextButton(USE, this.getSkin());
-        this.rowLength = 5;
         this.throwButton.addListener(new Throw(this));
         this.useButton.addListener(new Use(this));
         this.buttonInventory = new ButtonInventory[15];
         this.handInventory = new ButtonInventory[2];
-
-        /*Player p = new Player(0);
-        Key k = new Key(1);
-        Key k2 = new Key(3);
-        Book b = new Book(2);
-        k.setAtlas("assets/files/atlas/items.atlas","key");
-        b.setAtlas("assets/files/atlas/items.atlas","redBook");
-        k2.setAtlas("assets/files/atlas/items.atlas","key");
-
-        p.addItem(k);
-        p.addItem(k2);
-        p.setItemInRightHand(b);
-        container = p.getInventory();
-
-        this.showInventory(p);*/
+        this.container = c;
+        this.initInventory();
         this.setVisible(false);
         this.refreshInfo();
     }
 
+    public InventoryDisplay() {
+        super("", LibgdxUtility.loadSkin(SKIN_PATH, ATLAS_PATH));
+        init();
+        this.setVisible(false);
+    }
+
+    private void init(){
+        this.name = new Label("", this.getSkin());
+        this.quantity = new Label("", this.getSkin());
+        this.rowLength = 5;
+        table = new Table(this.getSkin());
+    }
+
     /**
      * Affiche l'inventaire
-     * @param c
      * @return
      */
-    public void showInventory(Container c){
+    private void initInventory(){
         this.selected = null;
         int j = 1;
         int bottomSpace = 20;
         int tablePad = 10;
         int index = 0;
-        Table table = new Table(this.getSkin());
         table.setFillParent(true);
         table.bottom();
         table.left();
         table.pad(tablePad);
 
-        ArrayList<Item> items = c.getItems();
+        ArrayList<Item> items = container.getItems();
 
-        if(c instanceof Player){
-            this.container = ((Player) c).getInventory();
-            Player p = (Player) c;
+        if(container instanceof Player){
+            this.inventory = ((Player) container).getInventory();
+            Player p = (Player) container;
             ButtonInventory buttonRight = new ButtonInventory(this.getSkin());
             ButtonInventory buttonLeft = new ButtonInventory(this.getSkin());
             this.handInventory[RIGHT] = buttonRight;
@@ -172,7 +172,7 @@ public class InventoryDisplay extends Window {
         table.add(this.name).colspan(this.rowLength);
         table.row();
         table.add(this.quantity).colspan(this.rowLength);
-        if(c instanceof Player) {
+        if(container instanceof Player) {
             table.row();
             table.add(this.useButton).colspan(cosplan);
 
@@ -186,8 +186,61 @@ public class InventoryDisplay extends Window {
         this.addActor(table);
         this.setWidth(table.getPrefWidth());
         this.setHeight(table.getPrefWidth() + 15);
+    }
 
-        this.setVisible(true);
+    /**
+     * Lorsqu'on change de container il faut invoquer cette méthode pour que la vue
+     * s'adapte à ce nouveau conteneur
+     */
+    public void changeView(){
+        this.clear();
+        ArrayList<Item> items = container.getItems();
+        int sizeItems = items.size();
+        int tablePad = 10;
+        table = new Table(this.getSkin());
+        table.setFillParent(true);
+        table.bottom();
+        table.left();
+        table.pad(tablePad);
+
+        //pour l'esthétisme
+        if (sizeItems < 5){
+            buttonInventory = new ButtonInventory[5];
+            for (int i = 0; i < 5; i++) {
+                if (sizeItems > i){
+                    buttonInventory[i] = new ButtonInventory(this.getSkin(),items.get(i));
+                }else{
+                    buttonInventory[i] = new ButtonInventory(this.getSkin());
+                }
+                table.add(buttonInventory[i]).pad(MARGIN).width(ACTOR_WIDTH).height(ACTOR_HEIGHT);
+            }
+        }else{
+            buttonInventory = new ButtonInventory[sizeItems];
+            for (int i = 0; i < sizeItems; i++) {
+                buttonInventory[i] = new ButtonInventory(this.getSkin(),items.get(i));
+                table.add(buttonInventory[i]).pad(MARGIN).width(ACTOR_WIDTH).height(ACTOR_HEIGHT);
+
+                if((i % this.rowLength) == 0)
+                    table.row();
+            }
+        }
+
+        this.addActor(table);
+        this.setWidth(table.getPrefWidth());
+        this.setHeight(table.getPrefHeight() + 15);
+    }
+
+    /**
+     * Permet de rafraichir l'inventaire
+     */
+    public void addItem(Item item){
+        for (int i = 0; i < buttonInventory.length; i++) {
+            if (buttonInventory[i].getItem() == null){
+                buttonInventory[i].setItem(item);
+                buttonInventory[i].refreshButton();
+                break;
+            }
+        }
     }
 
     /**
@@ -203,10 +256,10 @@ public class InventoryDisplay extends Window {
                     msg = GameLanguage.gl.get(GameFields.KEY);
                 this.name.setText(msg);
 
-                if(this.container.getNumber(this.selected.getItem()) == 0)
+                if(this.inventory.getNumber(this.selected.getItem()) == 0)
                     this.quantity.setText(QUANTITY + ": 1");
                 else
-                    this.quantity.setText(QUANTITY + ": " + this.container.getNumber(this.selected.getItem()));
+                    this.quantity.setText(QUANTITY + ": " + this.inventory.getNumber(this.selected.getItem()));
 
 
                 this.useButton.setDisabled(false);
@@ -221,12 +274,12 @@ public class InventoryDisplay extends Window {
     }
 
     /**
-     * Méthode qui permet de retirer un item d'un boutton inventaire
+     * Méthode qui permet de retirer un item d'un boutton inventaire tout en vérifiant la quantité
      * @param item
      */
     public void removeItem(Item item,ButtonInventory buttonInventory){
         //si la quantité n'est pas égale à zéro c'est qu'il en reste
-        if (this.container.getNumber(item) == 0){
+        if (this.inventory.getNumber(item) == 0){
             selected = null;
             buttonInventory.setItem(null);
             buttonInventory.removeActor(buttonInventory.getImg());
@@ -259,8 +312,8 @@ public class InventoryDisplay extends Window {
         this.rowLength = rowLength;
     }
 
-    public Inventory getContainer() {
-        return container;
+    public Inventory getInventory() {
+        return inventory;
     }
 
     public ButtonInventory[] getButtonInventory(){
@@ -269,5 +322,9 @@ public class InventoryDisplay extends Window {
 
     public ButtonInventory[] getHandInventory() {
         return handInventory;
+    }
+
+    public void setContainer(Container container) {
+        this.container = container;
     }
 }

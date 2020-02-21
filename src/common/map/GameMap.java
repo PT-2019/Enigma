@@ -25,10 +25,7 @@ import common.entities.Item;
 import common.entities.players.Monster;
 import common.entities.players.NPC;
 import common.entities.players.PlayerGame;
-import common.entities.special.GameExit;
-import common.entities.special.GameMusic;
-import common.entities.special.MusicEditor;
-import common.entities.special.Room;
+import common.entities.special.*;
 import common.entities.special.inventory.InventoryDisplay;
 import common.entities.types.ChangeState;
 import common.entities.types.ChangeStateReport;
@@ -495,20 +492,23 @@ public class GameMap extends AbstractMap {
 							if (msg == null || msg.isEmpty()) continue;
 							return msg;
 						}
-						InventoryDisplay inventoryView = GameScreen.getInventoryDisplay();
-						inventoryView.showInventory(actor.getPlayer());
+						actor.getInventoryView().setVisible(true);
+						InventoryDisplay objectInventory = GameScreen.getInventoryDisplay();
+						objectInventory.setContainer((Container)o);
+						//on met la fenêtre au dessus de celle de l'inventaire
+						objectInventory.setPosition(0,actor.getInventoryView().getHeight());
+						objectInventory.changeView();
+						objectInventory.setVisible(true);
 
-						//fake (affiche son inventaire pour prendre/retirer)
-						Dialog node = new Dialog("Affichage de l'inventaire (fake) de " + o.getReadableName());
-						dialog.showDialog(node, this);
 					} else if (o instanceof Consumable) {
-						InventoryDisplay inventoryView = GameScreen.getInventoryDisplay();
+						InventoryDisplay inventoryView = actor.getInventoryView();
 						actor.getPlayer().addItem((Item)o);
-						inventoryView.showInventory(actor.getPlayer());
+						inventoryView.addItem((Item)o);
+						inventoryView.setVisible(true);
 
 						//préviens
-						Dialog node = new Dialog("Ajoute dans l'inventaire " + o.getReadableName());
-						dialog.showDialog(node, this);
+						/*Dialog node = new Dialog("Ajoute dans l'inventaire " + o.getReadableName());
+						dialog.showDialog(node, this);*/
 
 						//supprime de la map
 						this.removeEntity(o);

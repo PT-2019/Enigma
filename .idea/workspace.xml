@@ -13,7 +13,14 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/files/map/cocoa.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/map/cocoa.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/files/map/cocoa.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/map/cocoa.tmx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/consumable/Key.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/consumable/Key.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/entities/players/PlayerGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/players/PlayerGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/entities/special/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/special/Inventory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/entities/special/inventory/InventoryDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/special/inventory/InventoryDisplay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/entities/special/inventory/InventoryItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/special/inventory/InventoryItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/entities/special/inventory/manager/Select.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/special/inventory/manager/Select.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/map/GameMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/map/GameMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/keys/PlayerKeys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/keys/PlayerKeys.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/screens/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/screens/GameScreen.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,43 +55,6 @@
         <option value="Class" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>hasScree</find>
-      <find>setScree</find>
-      <find>user.</find>
-      <find>user</find>
-      <find>clo</find>
-      <find>clone</find>
-      <find>System.out.println</find>
-      <find>Syd</find>
-      <find>Sys</find>
-      <find>extends Co</find>
-      <find>Syste</find>
-      <find>parent</find>
-      <find>save</find>
-      <find>ALT_TILES</find>
-      <find>Pay</find>
-      <find>isso</find>
-      <find>lock</find>
-      <find>Appuyer sur</find>
-      <find>to</find>
-      <find>isW</find>
-      <find>set</find>
-      <find>.set</find>
-      <find>increase</find>
-      <find>System</find>
-      <find>act(</find>
-      <find>les rooms</find>
-      <find>EndGame</find>
-      <find>System.out.println(</find>
-      <find>deleteEntit</find>
-      <find>DeleteGet</find>
-    </findStrings>
-    <dirStrings>
-      <dir>C:\Users\Quentin Ra\Desktop\Enigma\src</dir>
-    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
@@ -323,7 +293,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582307471923</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="merge enfin fini avec la branche de louka">
+      <created>1582308629292</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1582308629292</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -374,7 +351,8 @@
     <MESSAGE value="Fix commit Loïc" />
     <MESSAGE value="fix" />
     <MESSAGE value="fix multi heroes" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix multi heroes" />
+    <MESSAGE value="merge enfin fini avec la branche de louka" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge enfin fini avec la branche de louka" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2355" y="188" width="806" height="679" key="#Console" />
