@@ -153,7 +153,6 @@ public class GameMap extends AbstractMap {
 		boolean result = false;
 
 		//on va itérer tout les actors connu sur la map
-		//todo : peut être un autre système
 		ArrayList<GameActor> actors = (ArrayList<GameActor>) this.entities.clone();
 		actors.remove(actor);
 		for (GameActor act : actors) {
@@ -239,52 +238,6 @@ public class GameMap extends AbstractMap {
 	public void addEntity(@NotNull GameActor actor) {
 		if (actor instanceof PlayerGame) this.addActor(actor);
 		this.entities.add(actor);
-	}
-
-	/**
-	 * ajoute une entité et l'affiche sur la carte si c'est possible
-	 * @param actor
-	 */
-	public void addEntityToMap(@NotNull GameActor actor){
-		this.entities.add(actor);
-
-		for (GameActor game: entities) {
-			if (game instanceof PlayerGame){
-				float posX,posY;
-				Direction direct = ((PlayerGame) game).getFacedDirection();
-				if (direct == Direction.BOTTOM){
-					posX = game.getX();
-					posY = game.getY() - 10;
-				}else if(direct == Direction.TOP){
-					posX = game.getX();
-					posY = game.getY() + 10;
-				}else if(direct == Direction.LEFT){
-					posX = game.getX() - 10;
-					posY = game.getY();
-				}else {
-					posX = game.getX() + 10;
-					posY = game.getY();
-				}
-				if(!collision(actor,posX,posY)){
-					//todo fonctionnel
-					HashMap<String, Array<Float>> tiles = new HashMap<>();
-					for (Layer layer : Layer.values()) {
-						Array<Float> tile = new Array<>();
-						for (int i = 0; i < 1; i++) {
-							tile.add(1003f);
-						}
-						tiles.put(layer.toString(), tile);
-					}
-
-					EntitySerializable e = new EntitySerializable(1, 1, "common.entities.consumable.Book", tiles);
-					GameObject object = EntityFactory.createEntity(e,589, posToIndex(posX,posY,this), this.idFactory);
-
-					set(object,posToIndex(posX,posY,this));
-				}else{
-					System.out.println("impossible de déposer l'objet");
-				}
-			}
-		}
 	}
 
 	/**

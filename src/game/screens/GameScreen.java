@@ -81,8 +81,8 @@ public class GameScreen extends LibgdxScreen {
 				}
 			}
 
-			this.hud.addActor(new InventoryDisplay(INVENTORY,
-					LibgdxUtility.loadSkin("assets/files/atlas/uiskin.json", "assets/files/atlas/uiskin.atlas")
+			this.hud.addActor(new InventoryDisplay(LibgdxUtility.loadSkin("assets/files/atlas/uiskin.json",
+					"assets/files/atlas/uiskin.atlas")
 			));
 			this.hud.addActor(dialog);
 			this.map.launchMusic();

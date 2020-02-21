@@ -5,14 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3988e985-92ab-48ae-ab5d-41247abb4cd3" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/special/inventory/ButtonInventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/special/inventory/ButtonInventory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/special/inventory/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/special/inventory/Inventory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/common/entities/special/inventory/InventoryDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/special/inventory/InventoryDisplay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/special/inventory/InventoryItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/special/inventory/InventoryItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/special/inventory/manager/Select.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/special/inventory/manager/Select.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/common/entities/special/inventory/manager/Throw.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/special/inventory/manager/Throw.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/special/inventory/manager/Use.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/special/inventory/manager/Use.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/map/GameMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/map/GameMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/game/screens/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/screens/GameScreen.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

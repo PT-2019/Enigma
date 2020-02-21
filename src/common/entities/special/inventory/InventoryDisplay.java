@@ -72,8 +72,8 @@ public class InventoryDisplay extends Window {
     private static final String THROW = "Jeter";
     private static final String USE = "Utiliser";
 
-    public InventoryDisplay(String title, Skin skin) {
-        super(title, skin);
+    public InventoryDisplay( Skin skin) {
+        super("", skin);
         this.name = new Label("", this.getSkin());
         this.quantity = new Label("", this.getSkin());
         this.throwButton = new TextButton(THROW, this.getSkin());
