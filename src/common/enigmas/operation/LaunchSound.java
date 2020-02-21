@@ -5,7 +5,12 @@ import common.enigmas.reporting.OperationReport;
 import common.entities.players.Player;
 import common.entities.special.GameMusic;
 import common.entities.special.MusicEditor;
+import common.map.AbstractMap;
+import common.map.GameMap;
 import data.NeedToBeTranslated;
+import game.EnigmaGame;
+
+import java.util.Map;
 
 /**
  * Lance un son suite à la résolution d'une énigme
@@ -25,7 +30,7 @@ public class LaunchSound extends Operation {
 	private GameMusic musicGame;
 
 	/**
-	 * Lance une musique
+	 * Lance une son
 	 *
 	 * @param object une musique
 	 */
@@ -34,7 +39,7 @@ public class LaunchSound extends Operation {
 	}
 
 	/**
-	 * Lance une musique
+	 * Lance une son
 	 *
 	 * @param object une musique
 	 * @param music  gestionnaire des musiques
@@ -45,10 +50,26 @@ public class LaunchSound extends Operation {
 		this.musicGame = music;
 	}
 
+	/**
+	 * Lance une son
+	 *
+	 * @param attributes Attributs de la classe
+	 * @throws IllegalArgumentException Si un attribut est manquant
+	 */
+	@SuppressWarnings("unused")
+	public LaunchSound(Map<String, Object> attributes) {
+		super(attributes);
+		//récupère le gestionnaire
+		AbstractMap map = EnigmaGame.getCurrentScreen().getMap();
+		if (map instanceof GameMap) {
+			this.musicGame = ((GameMap) map).getGameMusic();
+		}
+	}
+
 	@Override
 	public EnigmaReport run(Player p) {
 		this.musicGame.playSound((MusicEditor) this.entity);
-		return new EnigmaReport(OperationReport.DONE, true);
+		return new EnigmaReport(OperationReport.SOUND_LAUNCHED, true);
 	}
 
 	@Override

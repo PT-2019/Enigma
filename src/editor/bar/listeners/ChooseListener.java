@@ -1,12 +1,14 @@
 package editor.bar.listeners;
 
 import api.utils.Observer;
+import api.utils.Utility;
 import com.badlogic.gdx.math.Vector2;
 import common.entities.special.MusicEditor;
 import common.hud.EnigmaOptionPane;
 import common.hud.EnigmaWindow;
 import common.map.MapObjects;
 import common.map.MapTestScreen;
+import data.config.Config;
 import game.EnigmaGame;
 import game.screens.TestScreen;
 import org.jetbrains.annotations.Nullable;
@@ -46,7 +48,9 @@ public class ChooseListener extends MenuListener implements Observer<MapLoaded> 
 		if (!choice.equals(EnigmaOptionPane.CANCEL)) {
 			MapTestScreen map = ((TestScreen) EnigmaGame.getInstance().getScreen()).getMap();
 
-			MusicEditor object = new MusicEditor(choice);
+			final String path = Config.MUSIC_FOLDER + choice + Utility.getExtension(Config.MUSIC_FOLDER, choice);
+
+			MusicEditor object = new MusicEditor(path, choice);
 			map.getIdFactory().newID(object);
 			object.setMainMusic(true);
 			object.setStarter(true);
@@ -57,13 +61,18 @@ public class ChooseListener extends MenuListener implements Observer<MapLoaded> 
 			//lorsqu'on supprime une entité on supprime toute les entités au même endroit donc
 			// les musiques sont toutes placées au même endroit donc on va toutes les virer
 
+			ArrayList<MusicEditor> tmp = new ArrayList<>();
 			for (MusicEditor music : musics) {
 				if (music.isMainMusic() && music.isStarter()) {
-					musics.remove(music);
+					tmp.add(music);
 					//cela va détruire toutes les musiques
 					map.removeEntity(music);
 				}
 			}
+			for (MusicEditor m : tmp) {
+				musics.remove(m);
+			}
+			tmp.clear();
 			//on remet nos chères musiques sur la map
 			for (MusicEditor music : musics) {
 				map.set(music, new Vector2(0, 0));

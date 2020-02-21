@@ -12,8 +12,8 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 4.0 21/12/2019
- * @since 4.0 21/12/2019
+ * @version 6.0
+ * @since 4.0
  */
 public class GameActorUtilities {
 
@@ -75,10 +75,12 @@ public class GameActorUtilities {
 	 *
 	 * @param actor  un actor
 	 * @param target une autre acteur
+	 * @param movX   déplacement X
+	 * @param movY   déplacement Y
 	 * @return true s'il y a collision sinon false
 	 * @since 4.0 20/12/2019
 	 */
-	public static boolean overlaps(Actor actor, Actor target, float movx, float movy) {
+	public static boolean overlaps(Actor actor, Actor target, float movX, float movY) {
 		//récupère le recouvrement (mis à jour)
 		Polygon poly1, poly2;
 
@@ -93,7 +95,7 @@ public class GameActorUtilities {
 		//correct coordinates
 		Vector2 coordinates = getAbsolutePosition(actor), autre = getAbsolutePosition(target);
 
-		poly1.setPosition(coordinates.x + movx, coordinates.y + movy);
+		poly1.setPosition(coordinates.x + movX, coordinates.y + movY);
 		poly2.setPosition(autre.x, autre.y);
 
 		//test rectangles

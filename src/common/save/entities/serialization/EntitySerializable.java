@@ -32,6 +32,12 @@ public class EntitySerializable {
 	 * les tiles (a convertir en int)
 	 */
 	private HashMap<String, Array<Float>> tiles = new HashMap<>();
+
+	/**
+	 * les tiles (a convertir en int)
+	 */
+	private HashMap<String, Array<Float>> tilesAlt = new HashMap<>();
+
 	/**
 	 * catégorie de l'entité
 	 */
@@ -46,7 +52,7 @@ public class EntitySerializable {
 	private String hover = null;
 
 	public EntitySerializable() {
-		//TOUTES LES VARIABLES DOIVENT ETRE INSTANCIEES EN DEHORS A CAUSE DE LA LIBGDX
+		//TOUTES LES VARIABLES DOIVENT être instanciées EN DEHORS A CAUSE DE LA LIBGDX
 		//ET DE Json.fromJson qui fait des trucs bizarres avec une classe qui
 		//peut mettre un float dans une variable de type int et qui lève une
 		//NumberFormatException lorsque l'on passe ce int a une méthode qui attends
@@ -54,12 +60,13 @@ public class EntitySerializable {
 	}
 
 	/**
-	 * Une entité sérializable avec juste assez d'infos pour utiliser la fonction
+	 * Une entité serializable avec juste assez d'infos pour utiliser la fonction
 	 * {@link EntityFactory#createEntity(EntitySerializable, Integer, Vector2, IDFactory)}
 	 *
 	 * @param width     largeur
 	 * @param height    hauteur
 	 * @param className chemin classe entité
+	 * @param tiles     tiles de l'entité
 	 * @since 5.0
 	 */
 	public EntitySerializable(int width, int height, String className, HashMap<String, Array<Float>> tiles) {
@@ -67,6 +74,7 @@ public class EntitySerializable {
 		this.height = height;
 		this.className = className;
 		this.tiles = tiles;
+		this.tilesAlt = null; //pas de nouvelles tiles alt
 	}
 
 	/**
@@ -83,6 +91,7 @@ public class EntitySerializable {
 		this.tiles = entity.tiles;
 		this.category = entity.category;
 		this.hover = entity.hover;
+		this.tilesAlt = entity.tilesAlt;
 	}
 
 	/**
@@ -136,6 +145,19 @@ public class EntitySerializable {
 	 */
 	public Array<Float> getTiles(Layer layer) {
 		return this.tiles.get(layer.name());
+	}
+
+	/**
+	 * Retourne un tableau de tiles TILED représentant l'entité
+	 * dans un autre état que l'état originel.
+	 *
+	 * @return Retourne un tableau de tiles TILED représentant l'entité
+	 * @see data.Layer
+	 * @since 3.0
+	 */
+	public HashMap<String, Array<Float>> getAltTiles() {
+		if (tilesAlt == null) return null;
+		return new HashMap<>(this.tilesAlt);
 	}
 
 	/**

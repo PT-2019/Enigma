@@ -41,7 +41,8 @@ public class ManageEnigmaAddMenu extends AbstractSubPopUpView {
 	/**
 	 * Menu d'ajout d'une énigme
 	 *
-	 * @param parent parent
+	 * @param parent  parent
+	 * @param addView vue du menu d'ajout d'une énigme
 	 */
 	ManageEnigmaAddMenu(AbstractPopUpView parent, ManageEnigmasAddView addView) {
 		super("", parent, false);

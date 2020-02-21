@@ -165,6 +165,10 @@
           2041
         ]
       }
+      tilesAlt: {
+        DECORATIONS1:[0,0]
+        COLLISION: [0,0]
+      }
     }
     {
       className: common.entities.items.Door
@@ -183,6 +187,10 @@
           2041,
           2041
         ]
+      }
+      tilesAlt: {
+        DECORATIONS1:[0,0]
+        COLLISION: [0,0]
       }
     }
     {
@@ -203,6 +211,10 @@
           2041
         ]
       }
+      tilesAlt: {
+        DECORATIONS1:[0,0]
+        COLLISION: [0,0]
+      }
     }
     {
       className: common.entities.items.Door
@@ -221,6 +233,10 @@
           2041,
           2041
         ]
+      }
+      tilesAlt: {
+        DECORATIONS1:[0,0]
+        COLLISION: [0,0]
       }
     }
     {
@@ -241,6 +257,10 @@
           2041
         ]
       }
+      tilesAlt: {
+        DECORATIONS1:[0,0]
+        COLLISION: [0,0]
+      }
     }
     {
       className: common.entities.items.Door
@@ -259,6 +279,10 @@
           2041,
           2041
         ]
+      }
+      tilesAlt: {
+        DECORATIONS1:[0,0]
+        COLLISION: [0,0]
       }
     }
     {
@@ -279,6 +303,10 @@
           2041
         ]
       }
+      tilesAlt: {
+        DECORATIONS1:[0,0]
+        COLLISION: [0,0]
+      }
     }
     {
       className: common.entities.items.Door
@@ -297,6 +325,10 @@
           2041,
           2041
         ]
+      }
+      tilesAlt: {
+        DECORATIONS1:[0,0]
+        COLLISION: [0,0]
       }
     }
     {
@@ -317,6 +349,10 @@
           2041
         ]
       }
+      tilesAlt: {
+        DECORATIONS1:[0,0]
+        COLLISION: [0,0]
+      }
     }
 
     //boutons
@@ -327,12 +363,12 @@
       category: DECORS
       height: 1
       tiles: {
-        FLOOR2: [
-          1305
-        ]
-        COLLISION: [
-          2041
-        ]
+        FLOOR2: [1305]
+        COLLISION: [2041]
+      }
+      tilesAlt: {
+        FLOOR2: [1313]
+        COLLISION: [2041]
       }
     }
     {
@@ -342,12 +378,12 @@
       category: DECORS
       height: 1
       tiles: {
-        FLOOR2: [
-          1307
-        ]
-        COLLISION: [
-          2041
-        ]
+        FLOOR2: [1307]
+        COLLISION: [2041]
+      }
+      tilesAlt: {
+        FLOOR2: [1315]
+        COLLISION: [2041]
       }
     }
     {
@@ -364,6 +400,10 @@
           2041
         ]
       }
+      tilesAlt: {
+        FLOOR2: [1317]
+        COLLISION: [2041]
+      }
     }
     {
       className: common.entities.items.Button
@@ -379,6 +419,10 @@
           2041
         ]
       }
+      tilesAlt: {
+        FLOOR2: [1319]
+        COLLISION: [2041]
+      }
     }
 
     //leviers
@@ -391,6 +435,14 @@
       tiles: {
         FLOOR2: [
           1306
+        ]
+        COLLISION: [
+          2041
+        ]
+      }
+      tilesAlt: {
+        FLOOR2: [
+          1314
         ]
         COLLISION: [
           2041
@@ -411,6 +463,14 @@
           2041
         ]
       }
+      tilesAlt: {
+        FLOOR2: [
+          1306
+        ]
+        COLLISION: [
+          2041
+        ]
+      }
     }
     {
       className: common.entities.items.Switch
@@ -421,6 +481,14 @@
       tiles: {
         FLOOR2: [
           1308
+        ]
+        COLLISION: [
+          2041
+        ]
+      }
+      tilesAlt: {
+        FLOOR2: [
+          1316
         ]
         COLLISION: [
           2041
@@ -441,6 +509,14 @@
           2041
         ]
       }
+      tilesAlt: {
+        FLOOR2: [
+          1308
+        ]
+        COLLISION: [
+          2041
+        ]
+      }
     }
     {
       className: common.entities.items.Switch
@@ -456,6 +532,14 @@
           2041
         ]
       }
+      tilesAlt: {
+        FLOOR2: [
+          1318
+        ]
+        COLLISION: [
+          2041
+        ]
+      }
     }
     {
       className: common.entities.items.Switch
@@ -466,6 +550,14 @@
       tiles: {
         FLOOR2: [
           1318
+        ]
+        COLLISION: [
+          2041
+        ]
+      }
+      tilesAlt: {
+        FLOOR2: [
+          1310
         ]
         COLLISION: [
           2041
@@ -488,6 +580,10 @@
           2041
         ]
       }
+      tilesAlt: {
+        FLOOR2: [918]
+        COLLISION: [2041]
+      }
     }
     {
       className: common.entities.items.Chest
@@ -503,6 +599,10 @@
           2041
         ]
       }
+      tilesAlt: {
+        FLOOR2: [919]
+        COLLISION: [2041]
+      }
     }
     {
       className: common.entities.items.Chest
@@ -517,6 +617,10 @@
         COLLISION: [
           2041
         ]
+      }
+      tilesAlt: {
+        FLOOR2: [920]
+        COLLISION: [2041]
       }
     }
   ]

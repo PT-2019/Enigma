@@ -563,8 +563,10 @@ public class CustomOptionPane implements OptionPaneStyle {
 	/**
 	 * Crée un popup avec une liste de choix.
 	 *
-	 * @param parent parent
-	 * @param size   taille
+	 * @param parent  parent
+	 * @param title   titre
+	 * @param size    taille
+	 * @param choices tableaux des choix de la liste
 	 * @return le nom du choix sélectionné
 	 * @since 6.0
 	 */
@@ -575,7 +577,9 @@ public class CustomOptionPane implements OptionPaneStyle {
 	/**
 	 * Crée un popup avec une liste de choix.
 	 *
-	 * @param parent parent
+	 * @param parent  parent
+	 * @param title   titre
+	 * @param choices choix
 	 * @return le nom du choix sélectionné
 	 * @since 6.0
 	 */
@@ -586,8 +590,11 @@ public class CustomOptionPane implements OptionPaneStyle {
 	/**
 	 * Crée un popup avec une liste de choix.
 	 *
-	 * @param parent parent
-	 * @param size   taille
+	 * @param parent  parent
+	 * @param title   titre
+	 * @param size    taille
+	 * @param choices tableaux des choix de la liste
+	 * @param style   style des éléments
 	 * @return le nom du choix sélectionné
 	 * @since 6.0
 	 */

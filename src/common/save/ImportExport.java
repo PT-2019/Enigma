@@ -74,6 +74,7 @@ public class ImportExport {
 	 *
 	 * @param mapName    Nom de la map
 	 * @param exportPath Chemin où créer le fichier exporté
+	 * @param gameName   nom de la partie
 	 */
 	public static void exportGame(String mapName, String gameName, String exportPath) {
 		ExportGame exportGame = new ExportGame(mapName, gameName, exportPath);

@@ -13,6 +13,8 @@ import common.entities.items.Door;
 import common.entities.players.Player;
 import common.utils.Question;
 
+import java.util.Arrays;
+
 public class ConditionsOperationsTest {
     public static void main(String[] args){
         Enigma e = new Enigma();
@@ -33,8 +35,8 @@ public class ConditionsOperationsTest {
        e.verifyConditions(p);
        bu.interactsWith(p);
        p.getInventory().add(bu);
-       //p.setItemInHand(b);
+       p.setItemInLeftHand(b);
        e.verifyConditions(p);
-       System.out.println(p.getInventory().getItems().toString());
+       System.out.println(Arrays.toString(p.getInventory().getItems()));
     }
 }

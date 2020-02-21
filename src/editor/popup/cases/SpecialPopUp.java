@@ -1,7 +1,7 @@
 package editor.popup.cases;
 
 import api.utils.Utility;
-import api.utils.WindowClosing;
+import api.utils.convenience.WindowClosing;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import common.entities.GameObject;
 import common.entities.types.Container;

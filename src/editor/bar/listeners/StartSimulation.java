@@ -4,7 +4,7 @@ import api.utils.Observer;
 import com.badlogic.gdx.Gdx;
 import common.hud.EnigmaMenuItem;
 import common.hud.EnigmaWindow;
-import common.save.EmptyMapGenerator;
+import common.utils.runnable.StartSimulationRunnable;
 import data.EditorState;
 import data.EnigmaScreens;
 import editor.EditorLauncher;
@@ -52,7 +52,7 @@ public class StartSimulation extends MenuListener implements Observer<MapLoaded>
 
 		//change la map avant de recharger
 		EnigmaGame.load(EnigmaScreens.GAME.name()).setMap(TestScreen.getMapPath());
-		Gdx.app.postRunnable(new Start());
+		Gdx.app.postRunnable(new StartSimulationRunnable(TestScreen.getMapPath()));
 
 		//désactive le bouton start
 		this.parent.setEnabled(false);
@@ -72,26 +72,5 @@ public class StartSimulation extends MenuListener implements Observer<MapLoaded>
 	@Override
 	public void update(MapLoaded object) {
 		this.parent.setEnabled(object.isMapLoaded());
-	}
-
-	/**
-	 * Lance
-	 *
-	 * @author Jorys-Micke ALAÏS
-	 * @author Louka DOZ
-	 * @author Loic SENECAT
-	 * @author Quentin RAMSAMY-AGEORGES
-	 * @version 6.0 08/02/2020
-	 * @since 6.0 08/02/2020
-	 */
-	private static final class Start implements Runnable {
-
-		@Override
-		public void run() {
-			//rechargement de la map
-			EnigmaGame.reload(EnigmaScreens.GAME.name());
-			//charge les entités sur la bonne map !
-			EmptyMapGenerator.load(TestScreen.getMapPath(), false);
-		}
 	}
 }

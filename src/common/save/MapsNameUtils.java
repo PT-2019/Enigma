@@ -13,6 +13,8 @@ import common.map.GameMap;
  * @since 1.0 03 december 2019
  */
 public enum MapsNameUtils {
+
+
 	//specials
 	/**
 	 * Indique le point maximal ou la caméra peut décendre si on n'est pas inside.
@@ -88,6 +90,10 @@ public enum MapsNameUtils {
 	Y("y"),
 	;
 
+	/**
+	 * Patch temporaire d'un tile ou on peut pas aller
+	 */
+	public static final int ABYSS = 15;
 	/**
 	 * Valeur de la constante
 	 */

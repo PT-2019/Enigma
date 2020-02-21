@@ -51,6 +51,9 @@ public interface NeedToBeTranslated {
 
 	String MUSIC = "Jouer un son";
 	String CHANGE_MAIN_MUSIC = "Change la musique ambiante";
+	String CHOSE_MUSIC = "Choisir Musique";
+	String CHOSE_SOUND = "Choisir son";
+	String END_GAME = "Finir le jeu";
 
 	String ACTIVATED_DESC = "Un object doit être activé";
 	String ACTIVATED_RES = "Seulement un objet actionnable.";
@@ -273,4 +276,5 @@ public interface NeedToBeTranslated {
 	String INPUT_QUESTION = "Question";
 	String INPUT_ANSWER = "Réponse";
 	String NEW_USER = "Bienvenue sur Enigma.\n Quel sera votre nom d'utilisateur ?\n";
+	String NO_CONTENT = "Aucun contenu";
 }

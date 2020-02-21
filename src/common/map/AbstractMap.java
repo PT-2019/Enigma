@@ -55,7 +55,7 @@ import static common.save.MapsNameUtils.WIDTH_P;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 6.1
+ * @version 6.4
  * @since 3.0
  */
 @SuppressWarnings("WeakerAccess")
@@ -123,6 +123,14 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 	protected boolean showGrid;
 
 	/**
+	 * Liste des éléments déjà restaurés par saveParent
+	 *
+	 * @see #saveParents(HashMap)
+	 * @since 6.1
+	 */
+	protected ArrayList<GameObject> restored;
+
+	/**
 	 * Le seul constructeur possible d'une map, ne fait rien
 	 *
 	 * @param path      chemin d'une map
@@ -138,7 +146,8 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 	 *
 	 * @param path      chemin d'une map
 	 * @param unitScale taux de distortion
-	 * @since 3.0
+	 * @param isInit    true si on fait l'initialisation sinon false
+	 * @since 6.2
 	 */
 	AbstractMap(@NotNull final String path, final float unitScale, boolean isInit) {
 		// charge la map
@@ -146,20 +155,12 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 		this.map = new OrthogonalTiledMapRenderer(tiledMap, unitScale);
 		String data = null;
 
-		//TODO: if else à retirer lorsque TestScreen.MAP_PATH ne vaudra plus assets/map/map_system/EmptyMap.tmx
-		if (!path.equals("assets/map/map_system/EmptyMap.tmx")) {    //évite des exceptions, à effacer le moment venu
-			try {
-				//noinspection ConstantConditions
-				data = path.replace(Config.MAP_FOLDER, Config.MAP_DATA_FOLDER).replace(Config.MAP_EXTENSION, Config.DATA_EXTENSION);
-				this.data = DataSave.readMapData(data);
-			} catch (IOException e) {
-				Logger.printError("AbstractMap.java", "impossible de charger les données: " + data + " de la map: " + path);
-				//TODO: annuler le chargement
-				//TODO: a retirer, temporaire pour les anciennes maps
-				this.data = new MapData("à retirer", "à retirer");
-			}
-		} else {
-			this.data = new MapData("à retirer", "à retirer");
+		try {
+			//noinspection ConstantConditions
+			data = path.replace(Config.MAP_FOLDER, Config.MAP_DATA_FOLDER).replace(Config.MAP_EXTENSION, Config.DATA_EXTENSION);
+			this.data = DataSave.readMapData(data);
+		} catch (IOException e) {
+			Logger.printError("AbstractMap.java", "impossible de charger les données: " + data + " de la map: " + path);
 		}
 
 		//sauvegarde des propriétés de la map
@@ -182,9 +183,14 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 		this.border = new Border(width, height, this.tileHeight);
 		this.showGrid = false;
 
+		//entités
 		this.objects = new MapObjects();
 
+		//idFactory
 		this.idFactory = new IDFactory();
+
+		//entités tiles restaurés
+		this.restored = new ArrayList<>();
 
 		if (isInit) {
 			//initialise la map
@@ -200,7 +206,7 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 	 * @param posX coordonnées X
 	 * @param posY coordonnées Y
 	 * @param map  la map
-	 * @return la position sur la map
+	 * @return la position sur la grille
 	 */
 	public static Vector2 posToIndex(float posX, float posY, final AbstractMap map) {
 		Vector2 index = new Vector2();
@@ -217,16 +223,37 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 		return index;
 	}
 
+	/**
+	 * Convertit la position sur la grille en position sur la map
+	 *
+	 * @param column colonne
+	 * @param row    ligne
+	 * @param map    la map
+	 * @return la position sur la map
+	 */
+	public static Vector2 indexToPos(int column, int row, final AbstractMap map) {
+		Vector2 index = new Vector2();
+
+		//on soustrait et augmente pour que ce soit à la bonne position
+		//par rapport à la taille du joueur
+
+		index.x = (column + 0.5f) * map.getUnitScale() * map.getTileWidth();
+		index.y = (row - 2) * map.getUnitScale() * map.getTileHeight();
+
+		return index;
+	}
+
 	// utils (static)
 
 	/**
 	 * Retourne une liste des propriétés contenant name
 	 *
 	 * @param name un name (tag name d'une property d'un .tmx)
+	 * @param map  la map
 	 * @return une liste des propriétés contenant name
 	 * @since 5.0
 	 */
-	@SuppressWarnings({"", "WeakerAccess", "SameParameterValue"})
+	@SuppressWarnings({"WeakerAccess", "SameParameterValue"})
 	protected static ArrayList<MapProperties> getProperty(String name, AbstractMap map) {
 		ArrayList<MapProperties> props = new ArrayList<>();
 		for (MapLayer layer : map.getTiledMap().getLayers()) {
@@ -256,6 +283,14 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 
 		//bounds
 		this.setMapBounds();
+	}
+
+	/**
+	 * Recharge des éléments de la map
+	 *
+	 * @since 6.3
+	 */
+	public void reload() {
 	}
 
 	/**
@@ -372,7 +407,6 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 					MapTestScreenCell c = (MapTestScreenCell) tileLayer.getCell(j, i);
 					c.setTile(this.map.getMap().getTileSets().getTile(MathUtils.ceil(entities.get(index))));
 					c.setEntity(entity);
-
 					tileLayer.setCell(j, i, c);
 				}
 			}
@@ -432,7 +466,7 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 	 * @since 5.1
 	 */
 	public String removeEntity(GameObject entity) {
-		Logger.printDebug("deleteEntity", entity + " (" +
+		Logger.printDebugALL("deleteEntity", entity.getReadableName() + " (" +
 				entity.getGameObjectWidth() + " " + entity.getGameObjectHeight() + ")"
 		);
 		if (this.objects.contains(entity)) {//peut la supprimer
@@ -592,7 +626,7 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 					} else {
 						//sinon on renvoi le conteneur
 						if (withDelete)
-							Logger.printDebug("DeleteGetParent", item.toString() + "(" + ent + " overlaps " + other + ")");
+							Logger.printDebugALL("DeleteGetParent", item.toString() + "(" + ent + " overlaps " + other + ")");
 						obj.put(item.getKey(), object);
 						if (!all) return obj;
 					}
@@ -613,6 +647,60 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 		}
 
 		return obj;
+	}
+
+	/**
+	 * Restaure les tiles des parents s'ils viennent d'une sauvegarde en case
+	 * de suppression de l'enfant.
+	 *
+	 * @param parents parent
+	 * @since 6.1
+	 */
+	protected void saveParents(HashMap<Vector2, GameObject> parents) {
+		boolean stop;
+		for (Map.Entry<Vector2, GameObject> entry : parents.entrySet()) {
+			GameObject value = entry.getValue();
+			Vector2 start = entry.getKey();
+			if (this.restored.contains(value)) continue;
+			stop = false;
+
+			//on parcours toutes les niveaux de la map et on y ajoute les tiles de l'entité
+			for (MapLayer mapLayer : this.map.getMap().getLayers()) {
+				//c'est un layer de tiles ?
+				if (!(mapLayer instanceof TiledMapTileLayer)) continue;
+
+				TiledMapTileLayer tileLayer = (TiledMapTileLayer) mapLayer;
+
+				//récupère les tiles de l'entités pour ce niveau
+				Array<Float> ent = value.getTiles(Utility.stringToEnum(tileLayer.getName(), Layer.values()));
+
+				//System.out.println("avant"+ent);
+
+				//si pas de tiles a mettre sur ce layer, on passe au suivant
+				if (ent == null) continue;
+
+				//calcul pour placer les tiles depuis x et y
+				//sachant que y est inversé, on part de la dernière tile et on remonte
+				//pas de problème pour x
+				for (int i = (int) start.y - 1, index = 0; i >= (start.y - value.getGameObjectHeight()); i--) {
+					for (int j = (int) start.x; j < start.x + value.getGameObjectWidth() && index < ent.size; j++, index++) {
+						MapTestScreenCell c = (MapTestScreenCell) tileLayer.getCell(j, i);
+						if (c == null || c.getTile() == null) continue;
+						if (c.getEntity() != value) continue; //vole pas les tiles des autres
+						if (ent.get(index) != 0) {
+							stop = true;
+							break;
+						}
+						ent.set(index, (float) c.getTile().getId());
+					}
+					if (stop) break;
+				}
+				//System.out.println("après"+ent);
+				if (stop) break;
+			}
+
+			this.restored.add(value);
+		}
 	}
 
 	@Override

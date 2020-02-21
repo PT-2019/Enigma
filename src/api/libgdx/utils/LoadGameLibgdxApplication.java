@@ -63,8 +63,9 @@ public final class LoadGameLibgdxApplication<T extends LibgdxGame> {
 	 * <p>
 	 * For a JFrame, container should ne {@link JFrame#getContentPane()}.
 	 *
-	 * @param container conteneur de la libgdx qui va être chargée
-	 * @param frame     la fenêtre swing
+	 * @param container        conteneur de la libgdx qui va être chargée
+	 * @param frame            la fenêtre swing
+	 * @param addCloseListener true pour ajouter un listener qui ferme proprement la libgdx.
 	 * @since 6.0
 	 */
 	public static void load(Container container, @NotNull JFrame frame, boolean addCloseListener) {

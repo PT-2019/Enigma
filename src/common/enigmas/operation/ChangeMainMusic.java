@@ -5,7 +5,12 @@ import common.enigmas.reporting.OperationReport;
 import common.entities.players.Player;
 import common.entities.special.GameMusic;
 import common.entities.special.MusicEditor;
+import common.map.AbstractMap;
+import common.map.GameMap;
 import data.NeedToBeTranslated;
+import game.EnigmaGame;
+
+import java.util.Map;
 
 /**
  * Changer la musique de fond suite à la résolution d'une énigme
@@ -42,13 +47,30 @@ public class ChangeMainMusic extends Operation {
 	@SuppressWarnings("unused")
 	public ChangeMainMusic(MusicEditor object, GameMusic music) {
 		super(object);
-		musicGame = music;
+		this.musicGame = music;
+	}
+
+	/**
+	 * Change la musique ambiante
+	 *
+	 * @param attributes Attributs de la classe
+	 * @throws IllegalArgumentException Si un attribut est manquant
+	 */
+	@SuppressWarnings("unused")
+	public ChangeMainMusic(Map<String, Object> attributes) {
+		super(attributes);
+		//récupère le gestionnaire
+		AbstractMap map = EnigmaGame.getCurrentScreen().getMap();
+		if (map instanceof GameMap) this.musicGame = ((GameMap) map).getGameMusic();
 	}
 
 	@Override
 	public EnigmaReport run(Player p) {
-		this.musicGame.changeMusic((MusicEditor) this.entity);
-		return new EnigmaReport(OperationReport.DONE, true);
+		if (!this.fulfilled) {
+			this.musicGame.changeMusic((MusicEditor) this.entity);
+			this.fulfilled = true;
+		}
+		return new EnigmaReport(OperationReport.MAIN_MUSIC_CHANGED, true);
 	}
 
 	@Override

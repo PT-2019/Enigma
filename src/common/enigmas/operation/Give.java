@@ -40,13 +40,20 @@ public class Give extends Operation {
 
 	@Override
 	public EnigmaReport run(Player p) {
-		Item i = (Item) this.entity;
-		if (p.holdSomething())
-			p.getInventory().add(i);
-		else
-			p.setItemInRightHand(i);
+		if (!this.fulfilled) {
+			Item i = (Item) this.entity;
+			if (!p.getInventory().isFull())
+				p.addItem(i);
+			else if (!p.holdItemInRightHand())
+				p.setItemInRightHand(i);
+			else if (!p.holdItemInLeftHand())
+				p.setItemInLeftHand(i);
+			else
+				return new EnigmaReport(OperationReport.INVENTORY_FULL, false);
+		}
 
-		return new EnigmaReport(OperationReport.DONE, true); //opération ok
+		this.fulfilled = true;
+		return new EnigmaReport(OperationReport.GIVEN, true); //opération ok
 	}
 
 	/**

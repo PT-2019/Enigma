@@ -99,9 +99,10 @@ public class CreateListener extends MenuListener {
 		String[] choices = new String[2];
 		choices[CREATE_POS] = CREATE;
 		choices[CANCEL_POS] = CANCEL;
-		boolean error = false;
+		boolean error;
 
 		do {
+			error = false;
 			int choice = EnigmaOptionPane.showOptionDialog(this.window, this.content, TITLE, choices);
 			//s'il ne veut pas/plus créer, on quitte
 			if (choice != CREATE_POS) break;

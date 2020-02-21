@@ -54,5 +54,22 @@ public enum Layer {
 			this.name = this.name();
 		}
 	}
+
+	/**
+	 * Tri du niveau le plus haut au plus bas
+	 *
+	 * @param layer un niveau
+	 * @param other un autre niveau
+	 * @return 0 si égaux, -1 si l'autre niveau est plus haut, 1 si l'autre niveau est plus bas
+	 */
+	public static int compare(Layer layer, Layer other) {
+		if (layer.equals(other)) return 0;
+		if (layer.ordinal() < other.ordinal()) { //si layer est avant dans la liste
+			//alors c'est comme Floor1 avant Decorations1
+			//donc layer est après other
+			return -1;
+		}
+		return 1;//sinon avant
+	}
 }
 

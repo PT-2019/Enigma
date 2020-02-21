@@ -2,15 +2,15 @@ package game.screens;
 
 import api.libgdx.LibgdxScreen;
 import api.libgdx.actor.GameActor;
-import api.libgdx.utils.LibgdxUtility;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import common.dialog.EnigmaDialogPopup;
 import common.entities.players.PlayerGame;
-import common.entities.special.inventory.InventoryDisplay;
 import common.map.AbstractMap;
 import common.map.GameMap;
+import common.timer.TimerFrame;
 import common.utils.Logger;
+import data.config.Config;
 import game.EnigmaGame;
 
 import java.util.ArrayList;
@@ -30,8 +30,11 @@ public class GameScreen extends LibgdxScreen {
 	/**
 	 * Chemin de la map du jeu
 	 */
-	private static String MAP_PATH = "assets/files/map/cocoa.tmx";
-
+	private static String MAP_PATH = "";
+	/**
+	 * Timer personnalisé
+	 */
+	private static float timer = 0;
 	/**
 	 * Stage de la map et du jeu
 	 */
@@ -40,7 +43,6 @@ public class GameScreen extends LibgdxScreen {
 	 * Stage de l'interface
 	 */
 	private Stage hud;
-
 	/**
 	 * La map libgdx
 	 */
@@ -56,17 +58,23 @@ public class GameScreen extends LibgdxScreen {
 	}
 
 	/**
-	 * Textes
+	 * Définit la valeur de départ pour un timer personnalisé
+	 *
+	 * @param minutes nombre de minutes
 	 */
-	private final static String INVENTORY = "Inventaire";
+	public static void setTimerDuration(float minutes) {
+		timer = minutes;
+	}
 
 	@Override
 	public void init() {
-		try {
-			this.main = new Stage();
-			this.hud = new Stage();
-			this.map = new GameMap(MAP_PATH, 2.5f);
+		this.main = new Stage();
+		this.hud = new Stage();
+
+		if (MAP_PATH != null && !MAP_PATH.isEmpty()) {
+			this.map = new GameMap(MAP_PATH, Config.UNIT_SCALE);
 			EnigmaDialogPopup dialog = map.getEnigmaDialog();
+
 			//ajout au stage
 			this.main.addActor(this.map);
 			this.map.showGrid(false);
@@ -80,19 +88,23 @@ public class GameScreen extends LibgdxScreen {
 					this.listen(((PlayerGame) actor));
 				}
 			}
-
-			this.hud.addActor(new InventoryDisplay(LibgdxUtility.loadSkin("assets/files/atlas/uiskin.json",
-					"assets/files/atlas/uiskin.atlas")
-			));
+            this.hud.addActor(new InventoryDisplay(LibgdxUtility.loadSkin("assets/files/atlas/uiskin.json",
+                    "assets/files/atlas/uiskin.atlas")
+            ));
 			this.hud.addActor(dialog);
-			this.map.launchMusic();
-			//écoute des inputProcessor et des listeners
+			//timer
+			if (timer == 0) this.hud.addActor(new TimerFrame());
+			else {
+				this.hud.addActor(new TimerFrame(0, timer));
+				timer = 0;//supprime le timer custom pour la prochaine partie
+			}
 			this.listen(dialog);
-			this.listen(this.hud);
-			this.listen(this.main);
-		}catch (Exception e){
-			e.printStackTrace();
 		}
+
+
+		//écoute des inputProcessor et des listeners
+		this.listen(this.hud);
+		this.listen(this.main);
 	}
 
 	@Override//géré par input processor
@@ -123,6 +135,8 @@ public class GameScreen extends LibgdxScreen {
 	@Override
 	public void dispose() {
 		try {
+			MAP_PATH = "";
+			this.map.getGameMusic().dispose();
 			this.main.dispose();
 			this.hud.dispose();
 		} catch (Exception e) {
@@ -134,6 +148,17 @@ public class GameScreen extends LibgdxScreen {
 	public void show() {
 		super.show();
 		Gdx.gl20.glClearColor(0.20f, 0.20f, 0.20f, 1.0f);
+
+		if (this.map != null) this.map.launchMusic();
+	}
+
+	@Override
+	public void hide() {
+		super.hide();
+
+		if (this.map != null && this.map.getGameMusic().hasMusic()) {
+			this.map.getGameMusic().stop();
+		}
 	}
 
 	@Override

@@ -72,5 +72,6 @@
     summon: Summon
     location: at
     unlock: Unlock
+    end: End Game
   }
 }

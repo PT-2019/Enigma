@@ -29,7 +29,10 @@ public class Advice implements EnigmaElementReadablePrint {
 
 	/**
 	 * Délai avant de montrer l'indice (2 minute de base)
+	 *
+	 * @deprecated
 	 */
+	@Deprecated
 	private int delay;
 
 	/**
@@ -47,7 +50,9 @@ public class Advice implements EnigmaElementReadablePrint {
 	 * @param delay Délai en minute avant de montrer l'indice
 	 * @throws IllegalArgumentException Si la chaîne de caractères est vide
 	 * @throws IllegalArgumentException Si le délai est inférieur à 0
+	 * @deprecated
 	 */
+	@Deprecated
 	public Advice(String a, int delay) {
 		if (a.length() < 1) throw new IllegalArgumentException("L'indice ne peut pas être vide");
 		if (delay < 1) throw new IllegalArgumentException("Le délai ne peut pas être inférieur à 0");
@@ -92,7 +97,9 @@ public class Advice implements EnigmaElementReadablePrint {
 	 * Obtenir le délai avant de montrer l'indice
 	 *
 	 * @return Le délai en minute
+	 * @deprecated
 	 */
+	@Deprecated
 	public int getDelay() {
 		return this.delay;
 	}
@@ -102,7 +109,9 @@ public class Advice implements EnigmaElementReadablePrint {
 	 *
 	 * @param delay Délai en minute avant de montrer l'indice
 	 * @throws IllegalArgumentException Si le délai est inférieur à 0
+	 * @deprecated
 	 */
+	@Deprecated
 	public void setDelay(int delay) {
 		if (delay < 1) throw new IllegalArgumentException("Le délai ne peut pas être inférieur à 0");
 		this.delay = delay;

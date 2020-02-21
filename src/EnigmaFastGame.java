@@ -2,17 +2,16 @@ import api.Application;
 import api.libgdx.utils.LoadGameLibgdxApplication;
 import api.ui.CustomWindow;
 import api.utils.annotations.NeedPatch;
+import api.utils.convenience.WindowClosing;
 import common.hud.EnigmaWindow;
 import common.language.GameLanguage;
+import common.utils.runnable.StartGameRunnable;
 import data.EnigmaScreens;
 import game.EnigmaGame;
-import game.configure.LaunchGameDisplay;
 
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import java.awt.BorderLayout;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 
 /**
  * UNE CLASSE TEMPORAIRE POUR LANCER LE JEU RAPIDEMENT,
@@ -27,6 +26,7 @@ import java.awt.event.WindowEvent;
  */
 public class EnigmaFastGame implements Application {
 
+	private static final String PATH = "assets/files/map/cocoa.tmx";
 	private static EnigmaFastGame launcher;
 	private CustomWindow window;
 	private JPanel gameScreen;
@@ -41,13 +41,7 @@ public class EnigmaFastGame implements Application {
 		this.window = new EnigmaWindow();
 		this.window.setLayout(new BorderLayout());
 		//TEMPORAIRE
-		this.window.addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				System.exit(0);
-			}
-		});
-		this.gameScreen = LaunchGameDisplay.getInstance().getPanel();
+		this.window.addWindowListener((WindowClosing) e -> System.exit(0));
 	}
 
 	/**
@@ -90,6 +84,7 @@ public class EnigmaFastGame implements Application {
 		this.gameScreen = new JPanel();
 		LoadGameLibgdxApplication.load(this.gameScreen, window);
 		EnigmaGame.setStartScreen(EnigmaScreens.GAME);
+		EnigmaGame.setOnLoad(new StartGameRunnable(PATH));
 		this.window.add(this.gameScreen, BorderLayout.CENTER);
 		this.window.setVisible(true);
 	}

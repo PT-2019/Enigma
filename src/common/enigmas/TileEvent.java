@@ -1,5 +1,6 @@
 package common.enigmas;
 
+import common.enigmas.reporting.EnigmaReport;
 import common.entities.players.Player;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
  * @version 5.0
  * @since 5.0
  */
+@SuppressWarnings("WeakerAccess")
 public class TileEvent {
 
 	/**
@@ -43,6 +45,21 @@ public class TileEvent {
 	public void add(Enigma enigma) {
 		if (enigma.getType().equals(TileEventEnum.ON_ENTER))
 			this.addOnEnter(enigma);
+		else if (enigma.getType().equals(TileEventEnum.ON_USE))
+			this.addOnUse(enigma);
+		else if (enigma.getType().equals(TileEventEnum.ON_EXIT))
+			this.addOnExit(enigma);
+	}
+
+	/**
+	 * Ajoute le contenu d'un tileEvent à un autre
+	 *
+	 * @param event un tileEvent
+	 */
+	public void add(TileEvent event) {
+		this.onExit.addAll(event.onExit);
+		this.onEnter.addAll(event.onEnter);
+		this.onUse.addAll(event.onUse);
 	}
 
 	/**
@@ -76,30 +93,52 @@ public class TileEvent {
 	 * A l'entrée sur la tile
 	 *
 	 * @param player Joueur concerné
+	 * @return liste des reports
 	 */
-	public void onEnter(Player player) {
-		for (Enigma e : this.onEnter)
-			e.verifyConditions(player);
+	public ArrayList<EnigmaReport> onEnter(Player player) {
+		ArrayList<EnigmaReport> reports = new ArrayList<>();
+		for (Enigma e : this.onEnter) {
+			ArrayList<EnigmaReport> tmp = e.verifyConditions(player);
+			if (tmp != null) reports.addAll(tmp);
+		}
+
+		return reports;
 	}
 
 	/**
 	 * Lors de la sortie de la tile
 	 *
 	 * @param player Joueur concerné
+	 * @return liste des reports
 	 */
-	public void onExit(Player player) {
-		for (Enigma e : this.onExit)
-			e.verifyConditions(player);
+	public ArrayList<EnigmaReport> onExit(Player player) {
+		ArrayList<EnigmaReport> reports = new ArrayList<>();
+		for (Enigma e : this.onExit) {
+			ArrayList<EnigmaReport> tmp = e.verifyConditions(player);
+			if (tmp != null) reports.addAll(tmp);
+		}
+
+		return reports;
 	}
 
 	/**
 	 * Lors d'interaction avec la tile
 	 *
 	 * @param player Joueur concerné
+	 * @return tous les retours des conditions et opérations
 	 */
-	public void onUse(Player player) {
-		//TODO: choisi un message et le retourner
-		for (Enigma e : this.onUse)
-			e.verifyConditions(player);
+	public ArrayList<EnigmaReport> onUse(Player player) {
+		ArrayList<EnigmaReport> reports = new ArrayList<>();
+		for (Enigma e : this.onUse) {
+			ArrayList<EnigmaReport> tmp = e.verifyConditions(player);
+			if (tmp != null) reports.addAll(tmp);
+		}
+
+		return reports;
+	}
+
+	@Override
+	public String toString() {
+		return "TileEvent{" + "onEnter=" + onEnter + ", onExit=" + onExit + ", onUse=" + onUse + '}';
 	}
 }

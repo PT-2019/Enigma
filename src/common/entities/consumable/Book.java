@@ -8,6 +8,7 @@ import common.language.GameFields;
 import common.language.GameLanguage;
 import common.save.entities.PlayerSave;
 import common.save.entities.SaveKey;
+import common.save.entities.SaveTiles;
 import data.TypeEntity;
 
 import java.util.EnumMap;
@@ -92,6 +93,7 @@ public class Book extends AbstractConsumable implements Content {
 	public HashMap<SaveKey, String> getSave() {
 		HashMap<SaveKey, String> save = new HashMap<>();
 		save.put(PlayerSave.CONTENT, this.content);
+		save.put(PlayerSave.ALT_TILES, SaveTiles.save(this.altTiles));
 		save.put(PlayerSave.KEY,this.atlasName);
 		save.put(PlayerSave.PATH,this.atlasPath);
 		return save;
@@ -100,6 +102,9 @@ public class Book extends AbstractConsumable implements Content {
 	@Override
 	public void load(MapProperties data) {
 		//récupère la chaîne non échappée
+		this.content = data.get(PlayerSave.CONTENT.getKey(), String.class);
+		if (this.content != null) this.content = Utility.asciiEscapedToNormalString(this.content);
+		this.altTiles = SaveTiles.load(data.get(PlayerSave.ALT_TILES.getKey(), String.class));
 		this.content = Utility.asciiEscapedToNormalString(data.get(PlayerSave.CONTENT.getKey(), String.class));
 		this.atlasName = Utility.asciiEscapedToNormalString(data.get(PlayerSave.KEY.getKey(), String.class));
 		this.atlasPath = Utility.asciiEscapedToNormalString(data.get(PlayerSave.PATH.getKey(), String.class));

@@ -143,6 +143,9 @@ public class EntityFactory {
 		//location
 		object.setDimension(entity.getWidth(), entity.getHeight());
 
+		//données en plus
+		object.serialization(entity, object);
+
 		//pas top, ajoute les informations en plus
 		//on devrait faire une méthode qui demande a l'entité s'il elle veut
 		//ajouter des info et une interface plutôt que donner direct NPC

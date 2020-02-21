@@ -40,7 +40,10 @@ public class NavigationPanel extends EnigmaPanel implements ResetComponent {
 	}
 
 	/**
-	 * Méthode qui dispose les différents bouttons de naviguation
+	 * Méthode qui dispose les différents boutons de navigation
+	 *
+	 * @param index  indice de la position dans la navigation des niveaux
+	 * @param layers les niveaux
 	 */
 	public void displayNavBouton(int index, MapLayers layers) {
 		int x, y;

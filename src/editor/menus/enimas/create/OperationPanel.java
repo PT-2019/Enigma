@@ -41,8 +41,8 @@ public class OperationPanel extends AbstractSubPopUpView implements Observer<Gam
 	public static final String NOT_AVAILABLE_OPERATION = NeedToBeTranslated.NOT_AVAILABLE_OPERATION;
 	public static final String TITLE = NeedToBeTranslated.ADD_OPERATION;
 	//todo: !!!!
-	public static final String BUT_MUS = "Choisir musique";
-	public static final String BUT_SOUND = "Choisir son";
+	public static final String BUT_MUS = NeedToBeTranslated.CHOSE_MUSIC;
+	public static final String BUT_SOUND = NeedToBeTranslated.CHOSE_SOUND;
 	/**
 	 * Textes
 	 */
@@ -202,6 +202,9 @@ public class OperationPanel extends AbstractSubPopUpView implements Observer<Gam
 			}
 		}
 
+		if (operations == Operations.END_GAME)
+			msg = "";
+
 		if (object == null && wrong) {
 			msg += INVALID_ENTITY + " ";
 			msg += operations.restrict;
@@ -209,6 +212,8 @@ public class OperationPanel extends AbstractSubPopUpView implements Observer<Gam
 		} else if (object == null && operations != null) {
 			if (operations.menuDrag.contains(SelectionsModes.SPECIAL)) {
 				this.entityName.setText(operations.restrict);
+			} else if (operations == Operations.END_GAME) {
+				this.entityName.setText("");
 			} else this.entityName.setText(ASK_SELECT + " (" + operations.menuDrag.msg + ")");
 		} else if (object != null) {
 			msg += object.getReadableName() + " (id=" + object.getID() + ")";

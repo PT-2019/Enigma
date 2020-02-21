@@ -18,7 +18,7 @@ import data.Layer;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 4.0 20/12/2019
+ * @version 6.0
  * @since 4.0 20/12/2019
  */
 public class GameActor extends Group {
@@ -61,8 +61,10 @@ public class GameActor extends Group {
 	 * Renvoi s'il y a collision entre deux acteurs dont un en mouvement
 	 *
 	 * @param actor une autre acteur
+	 * @param x     nouvelle position acteur
+	 * @param y     nouvelle position acteur
 	 * @return true s'il y a collision sinon false
-	 * @since 4.0 20/12/2019
+	 * @since 6.0
 	 */
 	public boolean overlaps(Actor actor, float x, float y) {
 		return GameActorUtilities.overlaps(this, actor, x, y);
@@ -88,6 +90,16 @@ public class GameActor extends Group {
 	public void setBounds() {
 		float w = getWidth() / 2, h = getHeight() / 2;
 		this.bounds = new Polygon(new float[]{0, 0, w, 0, w, h, 0, h});
+	}
+
+	/**
+	 * Retourne la position sous la forme d'un vecteur
+	 *
+	 * @return la position
+	 * @since 6.0
+	 */
+	public Vector2 getPosition() {
+		return new Vector2(getX(), getY());
 	}
 
 	/**
@@ -136,6 +148,7 @@ public class GameActor extends Group {
 	 * Retourne le niveau auquel l'entité sera dessiné
 	 *
 	 * @return le niveau
+	 * @since 5.0
 	 */
 	public Layer getLayer() {
 		return this.layer;
@@ -145,6 +158,7 @@ public class GameActor extends Group {
 	 * Définit le niveau auquel l'entité sera dessiné
 	 *
 	 * @param l niveau
+	 * @since 5.0
 	 */
 	public void setLayer(Layer l) {
 		this.layer = l;

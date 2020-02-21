@@ -28,6 +28,10 @@ public interface AvailableOptionRunnable {
 
 	/**
 	 * Lance le code pour ajouter l'option
+	 *
+	 * @param view   popup
+	 * @param panel  panneau sur lequel on ajoute
+	 * @param object object concerné
 	 */
 	void run(AbstractPopUpView view, Drawable panel, GameObject object);
 }

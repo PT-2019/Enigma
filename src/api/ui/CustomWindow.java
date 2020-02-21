@@ -14,8 +14,8 @@ import api.ui.manager.window.ResizeTop;
 import api.ui.manager.window.Smaller;
 import api.ui.skin.CustomButtonUI;
 import api.ui.skin.CustomMenuBarUI;
-import api.utils.WindowClosing;
 import api.utils.annotations.ConvenienceMethod;
+import api.utils.convenience.WindowClosing;
 import com.badlogic.gdx.utils.Array;
 import org.jetbrains.annotations.NotNull;
 

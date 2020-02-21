@@ -5,6 +5,7 @@ import api.ui.CustomWindow;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import data.EnigmaScreens;
+import game.screens.GameEndScreen;
 import game.screens.GameScreen;
 import game.screens.TestScreen;
 
@@ -76,7 +77,6 @@ public class EnigmaGame extends LibgdxGame {
 	 *
 	 * @param r Exécutable lancé après initialisation de la libgdx
 	 */
-	@SuppressWarnings("WeakerAccess")
 	public static void setOnLoad(Runnable r) {
 		EnigmaGame.onLoad = r;
 	}
@@ -92,10 +92,12 @@ public class EnigmaGame extends LibgdxGame {
 		//ajout des screens disponibles
 		EnigmaGame.addScreen(EnigmaScreens.TEST.name(), TestScreen.class);
 		EnigmaGame.addScreen(EnigmaScreens.GAME.name(), GameScreen.class);
+		EnigmaGame.addScreen(EnigmaScreens.GAME_END.name(), GameEndScreen.class);
 
 		//chargement des screens au début pour éviter les chargement pendant le jeu
 		EnigmaGame.load(EnigmaScreens.TEST.name());
 		EnigmaGame.load(EnigmaScreens.GAME.name());
+		EnigmaGame.load(EnigmaScreens.GAME_END.name());
 
 		//définit l'écran actuel de l'application
 		EnigmaGame.setScreen(EnigmaGame.startScreen.name());
@@ -103,6 +105,7 @@ public class EnigmaGame extends LibgdxGame {
 		//lance onLoad
 		if (EnigmaGame.onLoad != null) EnigmaGame.onLoad.run();
 
+		//supprime
 		EnigmaGame.onLoad = null;
 	}
 

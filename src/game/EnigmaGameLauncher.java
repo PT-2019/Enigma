@@ -3,13 +3,15 @@ package game;
 import api.Application;
 import api.libgdx.utils.LoadGameLibgdxApplication;
 import api.ui.CustomWindow;
-import api.utils.WindowClosing;
+import api.utils.convenience.WindowClosing;
 import com.badlogic.gdx.Gdx;
 import common.hud.EnigmaWindow;
 import common.utils.Logger;
 import common.utils.runnable.StartGameRunnable;
 import data.EnigmaScreens;
+import data.config.GameConfiguration;
 import game.hmi.MHIManager;
+import game.screens.GameScreen;
 
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
@@ -108,6 +110,8 @@ public class EnigmaGameLauncher implements Application {
 	 */
 	public void setContentToGame(String mapPath) {
 		if (Gdx.app == null) {
+			//définit le timer
+			GameScreen.setTimerDuration(GameConfiguration.getInstance().getDuration());
 			//méthode a exécuter au lancement
 			EnigmaGame.setOnLoad(new StartGameRunnable(mapPath));
 			//charge la libgdx

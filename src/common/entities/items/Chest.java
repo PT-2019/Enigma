@@ -1,14 +1,19 @@
 package common.entities.items;
 
 import com.badlogic.gdx.maps.MapProperties;
+import common.enigmas.TileEventEnum;
+import common.enigmas.reporting.EnigmaReport;
 import common.entities.Item;
-import common.entities.types.AbstractItem;
+import common.entities.players.PlayerGame;
+import common.entities.types.AbstractLockable;
+import common.entities.types.ChangeStateReport;
 import common.entities.types.Container;
 import common.entities.types.Lockable;
 import common.language.GameFields;
 import common.language.GameLanguage;
 import common.save.entities.PlayerSave;
 import common.save.entities.SaveKey;
+import common.save.entities.SaveTiles;
 import data.TypeEntity;
 
 import java.util.ArrayList;
@@ -27,12 +32,8 @@ import java.util.HashMap;
  * @see common.entities.Item
  * @since 2.0
  */
-public class Chest extends AbstractItem implements Lockable, Container {
+public class Chest extends AbstractLockable implements Container {
 
-	/**
-	 * Indique si l'objet est verrouillé
-	 */
-	private boolean locked;
 	private ArrayList<Item> items;
 
 	/**
@@ -51,8 +52,7 @@ public class Chest extends AbstractItem implements Lockable, Container {
 	 * @since 2.0
 	 */
 	public Chest(int id) {
-		super(id);
-		this.locked = false;
+		super(id, false);
 		this.items = new ArrayList<>();
 	}
 
@@ -60,8 +60,7 @@ public class Chest extends AbstractItem implements Lockable, Container {
 	 * @param locked true si l'objet est verrouillé de base, false sinon
 	 */
 	public Chest(boolean locked) {
-		this(-1);
-		this.locked = locked;
+		super(-1, locked);
 		this.items = new ArrayList<>();
 	}
 
@@ -70,26 +69,8 @@ public class Chest extends AbstractItem implements Lockable, Container {
 	 * @param id     ID
 	 */
 	public Chest(boolean locked, int id) {
-		this(id);
-		this.locked = locked;
+		super(id, locked);
 		this.items = new ArrayList<>();
-	}
-
-	//lock
-
-	@Override
-	public void lock() {
-		this.locked = true;
-	}
-
-	@Override
-	public void unlock() {
-		this.locked = false;
-	}
-
-	@Override
-	public boolean isLocked() {
-		return this.locked;
 	}
 
 	//toString
@@ -133,14 +114,38 @@ public class Chest extends AbstractItem implements Lockable, Container {
 	}
 
 	@Override
+	public EnigmaReport changeState(PlayerGame actor, TileEventEnum event) {
+		if (event.equals(TileEventEnum.ON_USE)) {
+			if (isLocked()) {
+				this.alreadyUnlocked = false;
+				return new EnigmaReport(ChangeStateReport.LOCKED, true, this);
+			} else if (!this.alreadyUnlocked) {
+				this.alreadyUnlocked = true;
+				this.hidden = false;
+				return new EnigmaReport(ChangeStateReport.UNLOCK, true, this);
+			} else {
+				return new EnigmaReport(ChangeStateReport.OPEN, true, this);
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public boolean needReloadAfterStateChange() {
+		return true;
+	}
+
+	@Override
 	public HashMap<SaveKey, String> getSave() {
 		HashMap<SaveKey, String> save = new HashMap<>();
 		save.put(PlayerSave.LOCKED, String.valueOf(this.locked));
+		save.put(PlayerSave.ALT_TILES, SaveTiles.save(this.altTiles));
 		return save;
 	}
 
 	@Override
 	public void load(MapProperties data) {
 		this.locked = Boolean.parseBoolean(data.get(PlayerSave.LOCKED.getKey(), String.class));
+		this.altTiles = SaveTiles.load(data.get(PlayerSave.ALT_TILES.getKey(), String.class));
 	}
 }

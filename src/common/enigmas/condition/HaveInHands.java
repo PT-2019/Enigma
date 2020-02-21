@@ -48,15 +48,12 @@ public class HaveInHands extends Condition {
 	@Override
 	public EnigmaReport verify(Player p) {
 		Item i = (Item) this.entity;
-		boolean is = false;
+		if (p.holdItemInRightHand() && p.getItemInRightHand().equals(i)) {
+			return new EnigmaReport(ConditionReport.FOUND_IN_HANDS, true);
+		} else if (p.holdItemInLeftHand() && p.getItemInLeftHand().equals(i))
+			return new EnigmaReport(ConditionReport.FOUND_IN_HANDS, true);
 
-		if (p.holdItemInLeftHand())
-			is = (p.getItemInLeftHand().equals(i));
-
-		if(!is && p.holdItemInRightHand())
-			is = (p.getItemInRightHand().equals(i));
-
-		return new EnigmaReport(OperationReport.DONE,is);
+		return new EnigmaReport(ConditionReport.NOT_IN_HANDS, false);
 	}
 
 	/**
@@ -81,7 +78,7 @@ public class HaveInHands extends Condition {
 
 	@Override
 	public String getEnigmaElementReadablePrint() {
-		return "["+gl.get(EnigmaField.HAVE_IN_HANDS)+": "+
-				this.entity.getReadableName() + " (id="+this.entity.getID()+") ]";
+		return "[" + gl.get(EnigmaField.HAVE_IN_HANDS) + ": " +
+				this.entity.getReadableName() + " (id=" + this.entity.getID() + ") ]";
 	}
 }

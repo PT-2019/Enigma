@@ -28,7 +28,7 @@ import java.util.Iterator;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 6.0
+ * @version 6.1
  * @since 4.0 23/12/2019
  */
 public class EmptyMapGenerator {
@@ -130,20 +130,40 @@ public class EmptyMapGenerator {
 	public static void load(String path, boolean clear) {
 		Logger.printDebug("EmptyMapGenerator#load", path);
 
-		//------------ charge .tmx ------------
+		//change le chemin de la map
 		EnigmaGame.getCurrentScreen().setMap(path);
 
-		//------------ charge .json ------------
+		//récupère la map
 		AbstractMap map = EnigmaGame.getCurrentScreen().getMap();
-		MapObjects entities = map.getEntities();
 
+		//retire l'extension tmx
+		if (path.contains(".tmx"))
+			path = path.substring(0, path.length() - 4) + ".json";
+
+		//charge les énigmes
+		loadEnigmas(path, map);
+
+		// clear de l'historique
+		if (clear) ActionsManager.reset();
+	}
+
+	/**
+	 * Charge les énigmes
+	 *
+	 * @param json chemin du json
+	 * @param map  la map
+	 * @since 6.1
+	 */
+	private static void loadEnigmas(String json, AbstractMap map) {
 		ArrayList<Enigma> enigmas;
 		ArrayList<Enigma> copy = new ArrayList<>();
-		path = path.substring(0, path.length() - 4) + ".json"; //retire l'extension tmx
+
 		int id;
 		try {
-			enigmas = EnigmaJsonReader.readEnigmas(path);
-			for (GameObject o : entities.getAllObjectsByClass(GameObject.class, false)) {
+			//lecture du json
+			enigmas = EnigmaJsonReader.readEnigmas(json);
+			//ajoute toutes les enigmes ou entités si leur id est le même
+			for (GameObject o : map.getEntities().getAllObjectsByClass(GameObject.class, false)) {
 				if (!(o instanceof EnigmaContainer)) continue;
 				//récupère les énigmes de cet object
 				for (Enigma en : enigmas) {
@@ -160,12 +180,9 @@ public class EmptyMapGenerator {
 				copy.clear();
 			}
 		} catch (IOException | ClassNotFoundException | InvocationTargetException | NoSuchMethodException |
-				InstantiationException | IllegalAccessException ignore) {
-		} catch (IllegalStateException e) {
+				InstantiationException | IllegalAccessException e) {
 			Logger.printError("EmptyMapGenerator#load", e.toString());
+			e.printStackTrace();
 		}
-
-		// clear de l'historique
-		if (clear) ActionsManager.reset();
 	}
 }

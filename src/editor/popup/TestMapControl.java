@@ -9,6 +9,7 @@ import common.map.MapTestScreen;
 import common.utils.runnable.RunActionPerformed;
 import data.EditorState;
 import data.config.Config;
+import data.keys.CameraKeys;
 import editor.EditorLauncher;
 import editor.bar.listeners.RedoListener;
 import editor.bar.listeners.SaveAsListener;
@@ -133,19 +134,19 @@ public class TestMapControl implements InputAdapter {
 
 	@Override
 	public boolean keyUp(int keycode) {
-		if (keycode == Input.Keys.LEFT) {
+		if (CameraKeys.CAMERA_LEFT.isKey(keycode)) {
 			this.camera.translate(-Config.CAMERA_OFFSET, 0);
 			this.camera.update();
 			return true;
-		} else if (keycode == Input.Keys.RIGHT) {
+		} else if (CameraKeys.CAMERA_RIGHT.isKey(keycode)) {
 			this.camera.translate(Config.CAMERA_OFFSET, 0);
 			this.camera.update();
 			return true;
-		} else if (keycode == Input.Keys.UP) {
+		} else if (CameraKeys.CAMERA_UP.isKey(keycode)) {
 			this.camera.translate(0, Config.CAMERA_OFFSET);
 			this.camera.update();
 			return true;
-		} else if (keycode == Input.Keys.DOWN) {
+		} else if (CameraKeys.CAMERA_DOWN.isKey(keycode)) {
 			this.camera.translate(0, -Config.CAMERA_OFFSET);
 			this.camera.update();
 			return true;

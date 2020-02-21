@@ -24,7 +24,7 @@ import java.util.Map;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 5.1
+ * @version 6.0
  * @see common.enigmas.condition.Condition
  * @see common.enigmas.operation.Operation
  * @see common.enigmas.Advice
@@ -69,27 +69,35 @@ public class Enigma implements ActionListener, IDInterface {
 	 */
 	private int currentAdvice;
 	/**
-	 * Est-ce que l'énigme à été trouvée
+	 * Est-ce que l'énigme à été trouvée ?
 	 */
 	private boolean known;
 	/**
 	 * Chronomètre le temps qui sépare deux énigmes
+	 *
+	 * @deprecated
 	 */
+	@Deprecated
 	private Timer timer;
 	/**
 	 * Id associé à une entité pour la sauvegarde
 	 */
 	private int id;
+	/**
+	 * Est-ce que l'énigme est terminée ?
+	 */
+	private boolean fulfilled;
 
 	public Enigma() {
 		this.currentAdvice = ADVICE_INDEX_STARTING_VALUE;
 		this.title = "";
 		this.description = "";
 		this.known = false;
+		this.fulfilled = false;
 		this.timer = new Timer(0, this);
-		this.conditions = new ArrayList<Condition>();
-		this.operations = new ArrayList<Operation>();
-		this.advices = new ArrayList<Advice>();
+		this.conditions = new ArrayList<>();
+		this.operations = new ArrayList<>();
+		this.advices = new ArrayList<>();
 		this.id = -1;
 		this.type = TileEventEnum.ON_USE;
 	}
@@ -103,10 +111,11 @@ public class Enigma implements ActionListener, IDInterface {
 		this.title = title;
 		this.description = description;
 		this.known = false;
+		this.fulfilled = false;
 		this.timer = new Timer(0, this);
-		this.conditions = new ArrayList<Condition>();
-		this.operations = new ArrayList<Operation>();
-		this.advices = new ArrayList<Advice>();
+		this.conditions = new ArrayList<>();
+		this.operations = new ArrayList<>();
+		this.advices = new ArrayList<>();
 		this.id = -1;
 		this.type = TileEventEnum.ON_USE;
 	}
@@ -127,6 +136,7 @@ public class Enigma implements ActionListener, IDInterface {
 		attr.add(EnigmaAttributes.OPERATIONS);
 		attr.add(EnigmaAttributes.ID);
 		attr.add(EnigmaAttributes.TYPE);
+		attr.add(EnigmaAttributes.FULFILLED);
 
 		for (String a : attr) {
 			if (!attributes.containsKey(a))
@@ -162,41 +172,55 @@ public class Enigma implements ActionListener, IDInterface {
 				case EnigmaAttributes.TYPE:
 					this.type = TileEventEnum.valueOf((String) get);
 					break;
+				case EnigmaAttributes.FULFILLED:
+					this.fulfilled = Boolean.parseBoolean((String) get);
+					break;
 			}
 		}
 
-		this.timer = new Timer(0, this);
+		/*this.timer = new Timer(0, this);
 		if (this.known && this.currentAdvice + 1 < this.advices.size()) {
 			this.timer.setInitialDelay(this.advices.get(this.currentAdvice + 1).getDelay() * ONE_MINUTES_IN_MILLISECOND);
 			this.timer.setRepeats(false);
 			this.timer.start();
-		}
+		}*/
 	}
 
 	/**
 	 * Vérifie que toutes les conditions sont satisfaites
 	 *
 	 * @param p Joueur ayant intéragit avec l'entité ayant appelé cette méthode
-	 * @return un message d'une condition ou opération
+	 * @return un message d'une condition ou opération. null si énigme terminée
 	 */
-	public EnigmaReport verifyConditions(Player p) {
-		EnigmaReport report = null;
+	public ArrayList<EnigmaReport> verifyConditions(Player p) {
+		if (isFulfilled()) return null;//si terminée, on quitte
+		ArrayList<EnigmaReport> report = new ArrayList<>();
+		EnigmaReport tmp;
+		boolean conditionsOk = true;
 		for (Condition condition : this.conditions) {
 			//On teste que les conditions sont remplies, si ce n'est pas le cas, la méthode s'arrête là
-			report = condition.verify(p);
-			if (!report.isFulfilled()) {
-				System.out.println("Toutes les conditions n'ont pas été validées");
-				System.out.println(report.getReport());
-				return report;
+			tmp = condition.verify(p);
+			report.add(tmp);
+			if (!tmp.isFulfilled()) conditionsOk = false;
+		}
+
+		if (conditionsOk) {
+			//vide les reports pour garder que ce qu'il y a de mieux dans opérations
+			report.clear();
+
+			//On lance toutes les opérations de l'enigme
+			for (Operation operation : this.operations) {
+				tmp = operation.run(p);
+				if (!tmp.isFulfilled()) conditionsOk = false;
+				report.add(tmp);//ajoute tous les report
 			}
-		}
 
-		//On lance toutes les opérations de l'enigme
-		for (Operation operation : this.operations) {
-			report = operation.run(p);
-		}
+			if (!conditionsOk) return report;
 
-		return report; //TODO: on devrait stocker un report, le plus pertinent ? et le renvoyer
+			//énigme terminée
+			this.fulfilled = true;
+		}
+		return report;
 	}
 
 	/**
@@ -363,9 +387,10 @@ public class Enigma implements ActionListener, IDInterface {
 	 * @return Texte de l'indice actuel
 	 */
 	public String getTextAdvice() {
-		if (this.currentAdvice != ADVICE_INDEX_STARTING_VALUE && this.currentAdvice < this.advices.size())
+		if (this.currentAdvice != ADVICE_INDEX_STARTING_VALUE)
 			return this.advices.get(this.currentAdvice).getAdvice();
-		else return "Aucune aide pour l'instant";
+
+		return "Aucune aide pour l'instant";
 	}
 
 	/**
@@ -374,9 +399,10 @@ public class Enigma implements ActionListener, IDInterface {
 	 * @return Indice actuel, null sinon
 	 */
 	public Advice getAdvice() {
-		if (this.currentAdvice != ADVICE_INDEX_STARTING_VALUE && this.currentAdvice < this.advices.size())
+		if (this.currentAdvice != ADVICE_INDEX_STARTING_VALUE)
 			return this.advices.get(this.currentAdvice);
-		else return null;
+
+		return null;
 	}
 
 	/**
@@ -388,6 +414,24 @@ public class Enigma implements ActionListener, IDInterface {
 	public Iterator<Advice> getAllAdvices() {
 		ArrayList<Advice> a = (ArrayList<Advice>) this.advices.clone();
 		return a.iterator();
+	}
+
+	/**
+	 * Passe a l'indice suivant
+	 * S'il n'y a pas d'autre d'indice, alors ne fait rien
+	 */
+	public void nextAdvice(){
+		if(this.hasNextAdvice())
+			this.currentAdvice++;
+	}
+
+	/**
+	 * Indique s'il y a au moins un autre indice
+	 *
+	 * @return true s'il y a un autre indice, sinon false
+	 */
+	public boolean hasNextAdvice(){
+		return (this.currentAdvice < this.advices.size());
 	}
 
 	/**
@@ -403,24 +447,26 @@ public class Enigma implements ActionListener, IDInterface {
 	 * Indique que l'énigme à été découverte
 	 */
 	public void discovered() {
-		if (!this.known) {
+		this.known = true;
+		/*if (!this.known) {
 			this.known = true;
-			System.out.println("Nouvelle énigme découverte!");
-			System.out.println(this.getTitle() + " : " + this.getDescription());
+
 			if (this.currentAdvice + 1 < this.advices.size()) {
 				this.timer.setInitialDelay(this.advices.get(this.currentAdvice + 1).getDelay() * ONE_MINUTES_IN_MILLISECOND);
 				this.timer.setRepeats(false);
 				this.timer.start();
 			}
-		}
+		}*/
 	}
 
 	/**
 	 * Passe à l'indice suivant
 	 *
 	 * @param actionEvent Evénement
+	 * @deprecated
 	 */
 	@Override
+	@Deprecated
 	public void actionPerformed(ActionEvent actionEvent) {
 		if (this.currentAdvice + 1 < this.advices.size()) {
 			this.currentAdvice++;
@@ -443,6 +489,7 @@ public class Enigma implements ActionListener, IDInterface {
 		object.put(EnigmaAttributes.TITLE, this.title);
 		object.put(EnigmaAttributes.DESCRIPTION, this.description);
 		object.put(EnigmaAttributes.KNOWN, this.known + "");
+		object.put(EnigmaAttributes.FULFILLED, this.fulfilled + "");
 		object.put(EnigmaAttributes.CURRENT_ADVICE_INDEX, this.currentAdvice + "");
 		object.put(EnigmaAttributes.ID, String.valueOf(id));
 		object.put(EnigmaAttributes.TYPE, this.type.toString());
@@ -503,13 +550,22 @@ public class Enigma implements ActionListener, IDInterface {
 	}
 
 	/**
+	 * Obtenir si l'énigme a été résolue
+	 *
+	 * @return true si l'énigme a été résolue, false sinon
+	 */
+	private boolean isFulfilled() {
+		return this.fulfilled;
+	}
+
+	/**
 	 * Version texte de l'énigme
 	 *
 	 * @return Texte représentant l'énigme
 	 */
 	@Override
 	public String toString() {
-		return "[Enigma  : title = \"" + this.title + "\", descrption = \"" + this.description + "\", type = \"" + this.type + "\", isKnown = " + this.isKnown() + ", currentAdviceIndex = " + this.currentAdvice + ", currentAdvice = " + this.getAdvice() + ", currentTextAdvice = \"" + this.getTextAdvice() + "\"]";
+		return "[Enigma  : title = \"" + this.title + "\", descrption = \"" + this.description + "\", type = \"" + this.type + "\", isKnown = " + this.isKnown() + ", isFulfilled = " + this.isFulfilled() + ", currentAdviceIndex = " + this.currentAdvice + ", currentAdvice = " + this.getAdvice() + ", currentTextAdvice = \"" + this.getTextAdvice() + "\"]";
 	}
 
 	/**
@@ -518,7 +574,7 @@ public class Enigma implements ActionListener, IDInterface {
 	 * @return Texte représentant l'énigme
 	 */
 	public String toLongString() {
-		StringBuilder s = new StringBuilder("[Enigma (" + this.id + ")  : title = \"" + this.title + "\", descrption = \"" + this.description + "\", type = \"" + this.type + "\", isKnown = " + this.isKnown() + ", currentAdviceIndex = " + this.currentAdvice + ", currentAdvice = " + this.getAdvice() + ", currentTextAdvice = \"" + this.getTextAdvice() + "\", allAdvices = {");
+		StringBuilder s = new StringBuilder("[Enigma (" + this.id + ")  : title = \"" + this.title + "\", descrption = \"" + this.description + "\", type = \"" + this.type + "\", isKnown = " + this.isKnown() + ", isFulfilled = " + this.isFulfilled() + ", currentAdviceIndex = " + this.currentAdvice + ", currentAdvice = " + this.getAdvice() + ", currentTextAdvice = \"" + this.getTextAdvice() + "\", allAdvices = {");
 		int sizeA = this.advices.size() - 1;
 		int sizeC = this.conditions.size() - 1;
 		int sizeO = this.operations.size() - 1;

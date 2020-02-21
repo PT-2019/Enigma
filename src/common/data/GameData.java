@@ -68,7 +68,16 @@ public class GameData {
 	private int maxPlayers;
 
 	/**
-	 * @param mapName Nom de la map
+	 * Donnée propre à une partie
+	 * Les données ne sont pas modifiables pour l'instant
+	 * Certaines données ne doivent jamais être modifiables
+	 *
+	 * @param name        nom partie
+	 * @param author      nom auteur
+	 * @param mapName     Nom de la map
+	 * @param description description
+	 * @param duration    durée (minutes)
+	 * @param maxPlayers  nombre max de joueurs
 	 */
 	public GameData(String name, String author, String mapName, String description, int duration, int maxPlayers) {
 		this.mapName = mapName;

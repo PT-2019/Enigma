@@ -1,14 +1,11 @@
 package common.map;
 
 import api.libgdx.utils.Bounds;
-import api.utils.Utility;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.Array;
 import common.enigmas.Enigma;
 import common.enigmas.condition.Condition;
 import common.enigmas.operation.Operation;
@@ -64,13 +61,6 @@ public class MapTestScreen extends AbstractMap {
 	 * Surveille les actions effectuées
 	 */
 	private ActionsManager manager;
-	/**
-	 * Liste des éléments déjà restorés
-	 *
-	 * @see #saveParents(HashMap)
-	 * @since 6.1
-	 */
-	private ArrayList<GameObject> restored = new ArrayList<>();
 
 	/**
 	 * Crée une map depuis un fichier tmx
@@ -266,60 +256,6 @@ public class MapTestScreen extends AbstractMap {
 		saveParents(parentObject);
 
 		return null;
-	}
-
-	/**
-	 * Restaure les tiles des parents s'ils viennent d'une sauvegarde en case
-	 * de suppression de l'enfant.
-	 *
-	 * @param parents parent
-	 * @since 6.1
-	 */
-	private void saveParents(HashMap<Vector2, GameObject> parents) {
-		boolean stop;
-		for (Map.Entry<Vector2, GameObject> entry : parents.entrySet()) {
-			GameObject value = entry.getValue();
-			Vector2 start = entry.getKey();
-			if (this.restored.contains(value)) continue;
-			stop = false;
-
-			//on parcours toutes les niveaux de la map et on y ajoute les tiles de l'entité
-			for (MapLayer mapLayer : this.map.getMap().getLayers()) {
-				//c'est un layer de tiles ?
-				if (!(mapLayer instanceof TiledMapTileLayer)) continue;
-
-				TiledMapTileLayer tileLayer = (TiledMapTileLayer) mapLayer;
-
-				//récupère les tiles de l'entités pour ce niveau
-				Array<Float> ent = value.getTiles(Utility.stringToEnum(tileLayer.getName(), Layer.values()));
-
-				//System.out.println("avant"+ent);
-
-				//si pas de tiles a mettre sur ce layer, on passe au suivant
-				if (ent == null) continue;
-
-				//calcul pour placer les tiles depuis x et y
-				//sachant que y est inversé, on part de la dernière tile et on remonte
-				//pas de problème pour x
-				for (int i = (int) start.y - 1, index = 0; i >= (start.y - value.getGameObjectHeight()); i--) {
-					for (int j = (int) start.x; j < start.x + value.getGameObjectWidth() && index < ent.size; j++, index++) {
-						MapTestScreenCell c = (MapTestScreenCell) tileLayer.getCell(j, i);
-						if (c == null || c.getTile() == null) continue;
-						if (c.getEntity() != value) continue; //vole pas les tiles des autres
-						if (ent.get(index) != 0) {
-							stop = true;
-							break;
-						}
-						ent.set(index, (float) c.getTile().getId());
-					}
-					if (stop) break;
-				}
-				//System.out.println("après"+ent);
-				if (stop) break;
-			}
-
-			this.restored.add(value);
-		}
 	}
 
 	@Override

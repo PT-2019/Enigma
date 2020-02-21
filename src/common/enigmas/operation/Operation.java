@@ -30,12 +30,17 @@ public abstract class Operation implements EnigmaElementReadablePrint {
 	 * Entité concernée par l'opération
 	 */
 	protected GameObject entity;
+	/**
+	 * L'opération a déjà été réalisée?
+	 */
+	protected boolean fulfilled;
 
 	/**
 	 * @param e Entité concernée par l'opération
 	 */
 	public Operation(GameObject e) {
 		this.entity = e;
+		this.fulfilled = false;
 	}
 
 	/**
@@ -45,16 +50,22 @@ public abstract class Operation implements EnigmaElementReadablePrint {
 	public Operation(Map<String, Object> attributes) {
 		ArrayList<String> attr = new ArrayList<>();
 		attr.add(EnigmaAttributes.ENTITY);
+		attr.add(EnigmaAttributes.FULFILLED);
 
 		for (String a : attr) {
-			if (!attributes.containsKey(a))
+			if (!attributes.containsKey(a) && !a.equals(EnigmaAttributes.FULFILLED)) {//TODO: ...
 				throw new IllegalArgumentException("Attribut \"" + a + "\" absent");
+			}
 
 			Object get = attributes.get(a);
 
 			if (EnigmaAttributes.ENTITY.equals(a)) {
 				this.entity = EnigmaGame.getCurrentScreen().getMap()
 						.getEntities().getObjectByID(Integer.parseInt((String) get));
+			}
+
+			if (EnigmaAttributes.FULFILLED.equals(a)) {
+				this.fulfilled = Boolean.parseBoolean((String) get);
 			}
 		}
 	}
@@ -84,10 +95,10 @@ public abstract class Operation implements EnigmaElementReadablePrint {
 	 * @see EnigmaAttributes
 	 */
 	public HashMap<String, Object> objectToMap() {
-		System.out.println(this);
 		HashMap<String, Object> object = new HashMap<>();
 		object.put(EnigmaAttributes.PATH, this.getClass().getName());
-		object.put(EnigmaAttributes.ENTITY, this.entity.getID() + "");
+		if (this.entity != null) object.put(EnigmaAttributes.ENTITY, this.entity.getID() + "");
+		object.put(EnigmaAttributes.FULFILLED, this.fulfilled + "");
 		return object;
 	}
 

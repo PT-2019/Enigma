@@ -58,8 +58,9 @@ public class ActionsManager implements Subject<ActionsManager> {
 	}
 
 	/**
-	 * Crée un historique des actions effectuées
+	 * Historique des actions effectuées
 	 *
+	 * @return instance de l'Historique des actions effectuées
 	 * @since 5.0
 	 */
 	public static ActionsManager getInstance() {
@@ -136,6 +137,7 @@ public class ActionsManager implements Subject<ActionsManager> {
 	 * Ajoute une action
 	 *
 	 * @param action une action
+	 * @return true si ajouté sinon false
 	 * @since 5.0
 	 */
 	public boolean add(EditorAction action) {

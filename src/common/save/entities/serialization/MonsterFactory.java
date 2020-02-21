@@ -2,6 +2,7 @@ package common.save.entities.serialization;
 
 import api.utils.Utility;
 import com.badlogic.gdx.utils.Json;
+import common.dialog.Dialog;
 import common.entities.players.MonsterGame;
 import data.Layer;
 
@@ -21,12 +22,15 @@ public class MonsterFactory {
 	/**
 	 * Permet de créer un monsterGame à partir d'un fichier Json
 	 *
-	 * @param path chemin
+	 * @param path    chemin
+	 * @param content dialogue
+	 * @param name    nom
 	 * @return un playerGame du Json
 	 */
 	@SuppressWarnings("unchecked")
-	public static MonsterGame createMonsterGame(String name, String path) {
-		MonsterGame game = new MonsterGame();
+	public static MonsterGame createMonsterGame(String name, String path, String content) {
+		Dialog d = new Dialog(content);
+		MonsterGame game = new MonsterGame(d);
 		Json json = new Json();
 		PlayerSerializable playerInfo = null;
 

@@ -119,6 +119,8 @@ public class AddNameView extends AbstractPopUpView {
 
 	/**
 	 * instance du menu pour changer de nom
+	 *
+	 * @return instance
 	 */
 	public static AddNameView getInstance() {
 		return instance;

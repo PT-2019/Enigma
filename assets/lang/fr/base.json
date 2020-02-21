@@ -76,7 +76,8 @@
     summon: Invoque
     location: à
     unlock: Déverrouille
-    lock:Vérouillé
+    lock: Verrouillé
     desactivated: Désactivé
+    end: Fin du Jeu
   }
 }
