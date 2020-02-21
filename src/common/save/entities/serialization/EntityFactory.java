@@ -102,6 +102,31 @@ public class EntityFactory {
 	}
 
 	/**
+	 * Charge les entités depuis un fichier json et le sauvegarde dans la classe.
+	 * <p>
+	 * On peut les récupérer avec {@link #getEntitiesByCategory(EntitiesCategories)}
+	 *
+	 * @param path chemin du json
+	 * @since 5.0
+	 */
+	public static void loadItems(String path) {
+		Json j = new Json();
+		Array<? extends EntitySerializable> content = j.fromJson(ItemFactory.class, Utility.loadFile(path)).content;
+
+		//ajout a la factory des entités chargés
+		for (EntitySerializable entity : new Array.ArrayIterator<>(content)) {
+			String key = entity.getClassName();//className
+			if (loaded.containsKey(key))
+				loaded.get(key).addAll(entity);
+			else {
+				Array<EntitySerializable> array = new Array<>();
+				array.addAll(entity);
+				loaded.put(key, array);
+			}
+		}
+	}
+
+	/**
 	 * Renvoi toutes les entités appartenant a une catégorie
 	 *
 	 * @param categories la catégorie voulue
