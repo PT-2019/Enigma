@@ -9,18 +9,12 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3988e985-92ab-48ae-ab5d-41247abb4cd3" name="Default Changelist" comment="">
+    <list default="true" id="3988e985-92ab-48ae-ab5d-41247abb4cd3" name="Default Changelist" comment="fix multi heroes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/files/map/cocoa.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/map/cocoa.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/files/map/cocoa.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/files/map/cocoa.tmx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/players/PlayerGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/players/PlayerGame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/common/entities/special/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/special/Inventory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/common/entities/special/inventory/InventoryDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/special/inventory/InventoryDisplay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/special/inventory/InventoryItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/special/inventory/InventoryItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/special/inventory/manager/Select.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/special/inventory/manager/Select.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/map/GameMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/map/GameMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/keys/PlayerKeys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/keys/PlayerKeys.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/screens/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/screens/GameScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/common/entities/special/inventory/manager/Throw.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/special/inventory/manager/Throw.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -56,19 +50,56 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>hasScree</find>
+      <find>setScree</find>
+      <find>user.</find>
+      <find>user</find>
+      <find>clo</find>
+      <find>clone</find>
+      <find>System.out.println</find>
+      <find>Syd</find>
+      <find>Sys</find>
+      <find>extends Co</find>
+      <find>Syste</find>
+      <find>parent</find>
+      <find>save</find>
+      <find>ALT_TILES</find>
+      <find>Pay</find>
+      <find>isso</find>
+      <find>lock</find>
+      <find>Appuyer sur</find>
+      <find>to</find>
+      <find>isW</find>
+      <find>set</find>
+      <find>.set</find>
+      <find>increase</find>
+      <find>System</find>
+      <find>act(</find>
+      <find>les rooms</find>
+      <find>EndGame</find>
+      <find>System.out.println(</find>
+      <find>deleteEntit</find>
+      <find>DeleteGet</find>
+    </findStrings>
+    <dirStrings>
+      <dir>C:\Users\Quentin Ra\Desktop\Enigma\src</dir>
+    </dirStrings>
+  </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
         <option value="louka &lt;dozlouka@gmail.com&gt;" />
       </list>
     </option>
+    <option name="UPDATE_TYPE" value="MERGE" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="QuentinRa/game" />
+        <entry key="$PROJECT_DIR$" value="senecat/virtuose" />
       </map>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="ProjectId" id="1T4PWZYsjf2nuTU9Vgk0aB5pF47" />
   <component name="ProjectViewState">
@@ -147,7 +178,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.EnigmaFastGame">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="EnigmaFastGame" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="EnigmaFastGame" />
       <module name="Enigma" />
@@ -272,35 +303,7 @@
       <option name="project" value="LOCAL" />
       <updated>1580590268008</updated>
     </task>
-    <task id="LOCAL-00002" summary="fix multi heroes">
-      <created>1582307373082</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1582307373082</updated>
-    </task>
-    <task id="LOCAL-00003" summary="fix multi heroes">
-      <created>1582307383256</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1582307383256</updated>
-    </task>
-    <task id="LOCAL-00004" summary="fix multi heroes">
-      <created>1582307471923</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1582307471923</updated>
-    </task>
-    <task id="LOCAL-00005" summary="merge enfin fini avec la branche de louka">
-      <created>1582308629292</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1582308629292</updated>
-    </task>
-    <option name="localTasksCounter" value="6" />
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -351,8 +354,7 @@
     <MESSAGE value="Fix commit Loïc" />
     <MESSAGE value="fix" />
     <MESSAGE value="fix multi heroes" />
-    <MESSAGE value="merge enfin fini avec la branche de louka" />
-    <option name="LAST_COMMIT_MESSAGE" value="merge enfin fini avec la branche de louka" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix multi heroes" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2355" y="188" width="806" height="679" key="#Console" />

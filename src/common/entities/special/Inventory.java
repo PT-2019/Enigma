@@ -67,10 +67,7 @@ public class Inventory {
 		int tmp = this.indexOf(i);
 
 		if(tmp != -1) {
-			//on enlève 1
-			this.items[tmp].lessNumber();
-			if (this.items[tmp].getNumber() <= 0)
-				this.items[tmp] = null;
+			this.items[tmp] = null;
 		}
 	}
 

@@ -36,8 +36,6 @@ public class Throw implements EventListener {
             inventory = display.getSelectedItem();
             item = inventory.getItem();
             if(item != null) {
-                //enlève de l'inventaire
-                display.removeItem(item,inventory);
 
                 //on pose l'objet par terre
                 GameMap map = (GameMap) EnigmaGame.getCurrentScreen().getMap();
@@ -47,20 +45,24 @@ public class Throw implements EventListener {
                         float posX,posY;
                         Direction direct = ((PlayerGame) game).getFacedDirection();
                         if (direct == Direction.BOTTOM){
-                            posX = game.getX();
-                            posY = game.getY() - 10;
+                            posX = 0;
+                            posY = -10;
                         }else if(direct == Direction.TOP){
-                            posX = game.getX();
-                            posY = game.getY() + 10;
+                            posX = 0;
+                            posY = 10;
                         }else if(direct == Direction.LEFT){
-                            posX = game.getX() - 10;
-                            posY = game.getY();
+                            posX = -10;
+                            posY = 0;
                         }else {
-                            posX = game.getX() + 10;
-                            posY = game.getY();
+                            posX = 10;
+                            posY = 0;
                         }
-                        if(!(map.collision(game,posX,posY) && map.isWalkable(game,posX,posY))){
-                            map.set(item, AbstractMap.posToIndex(posX,posY,map));
+
+                        if((!(map.collision(game,posX,posY)) && map.isWalkable(game,posX,posY))){
+                            map.set(item, AbstractMap.posToIndex(game.getX() + posX,game.getY() + posY,map));
+                            //enlève de l'inventaire
+                            display.removeItem(item,inventory);
+                            display.getInventory().remove(item);
                         }else{
                             System.out.println("impossible de déposer l'objet");
                         }

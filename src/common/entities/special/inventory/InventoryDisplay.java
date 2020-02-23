@@ -279,11 +279,9 @@ public class InventoryDisplay extends Window {
      */
     public void removeItem(Item item,ButtonInventory buttonInventory){
         //si la quantité n'est pas égale à zéro c'est qu'il en reste
-        if (this.inventory.getNumber(item) == 0){
-            selected = null;
-            buttonInventory.setItem(null);
-            buttonInventory.removeActor(buttonInventory.getImg());
-        }
+        selected = null;
+        buttonInventory.setItem(null);
+        buttonInventory.removeActor(buttonInventory.getImg());
     }
 
     /**

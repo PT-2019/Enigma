@@ -66,7 +66,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,761,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,769,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,910,910,0,0,769,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1306,0,0,0,0,0,0,0,0,0,1306,0,0,0,0,0,2121,2122,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,285,0,0,0,0,0,0,0,0,0,1001,2201,2202,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1104,1104,0,0,0,0,0,0,0,
@@ -168,7 +168,7 @@
 0,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,0,0,0,
 0,2041,0,0,0,0,0,0,0,0,0,0,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,2041,0,0,0,
 0,2041,0,0,0,0,0,0,0,0,0,0,2041,2041,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2041,2041,2041,2041,2041,2041,2041,2041,0,0,0,
-0,2041,0,0,0,0,0,0,0,0,0,0,2041,2041,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2041,0,0,0,0,2041,0,2041,0,0,0,
+0,2041,0,0,0,0,0,0,0,0,0,0,2041,2041,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2041,2041,2041,0,0,2041,0,2041,0,0,0,
 0,2041,0,0,0,0,0,0,0,0,0,0,2041,2041,0,0,2041,0,0,0,0,0,0,0,0,0,2041,0,0,0,0,0,0,0,0,0,2041,0,0,0,
 0,2041,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2041,0,0,0,0,0,0,0,0,0,2041,0,0,0,0,2041,0,0,0,
 0,2041,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2041,0,2041,2041,0,0,0,2041,0,0,0,
@@ -188,19 +188,19 @@
             <properties>
                 <property name="className" value="common.entities.consumable.Book"/>
                 <property name="y2" value="-13.0"/>
+                <property name="ALT_TILES" value=""/>
+                <property name="PATH" value=""/>
                 <property name="CONTENT" value=""/>
                 <property name="KEY" value=""/>
-                <property name="PATH" value=""/>
-                <property name="ALT_TILES" value=""/>
             </properties>
         </object>
         <object height="1.0" id="11" name="entity" width="1.0" x="-11.0" y="-11.0">
             <properties>
                 <property name="className" value="common.entities.consumable.Key"/>
                 <property name="y2" value="-11.0"/>
-                <property name="KEY" value=""/>
-                <property name="PATH" value=""/>
                 <property name="ALT_TILES" value=""/>
+                <property name="PATH" value=""/>
+                <property name="KEY" value=""/>
             </properties>
         </object>
         <object height="2.0" id="21" name="entity" width="2.0" x="-23.0" y="-23.0">
@@ -209,58 +209,58 @@
                 <property name="y2" value="-23.0"/>
                 <property name="JSON" value=""/>
                 <property name="NAME" value=""/>
-                <property name="CONTENT" value=""/>
                 <property name="KEY" value=""/>
+                <property name="CONTENT" value=""/>
             </properties>
         </object>
         <object height="0.0" id="20" name="entity" width="0.0" x="0.0" y="0.0">
             <properties>
                 <property name="className" value="common.entities.special.MusicEditor"/>
                 <property name="y2" value="0.0"/>
-                <property name="MAIN" value="true"/>
                 <property name="NAME" value="Demented Nightmare MP3"/>
-                <property name="PATH" value="assets/files/music/Demented Nightmare MP3.mp3"/>
                 <property name="STARTER" value="true"/>
+                <property name="PATH" value="assets/files/music/Demented Nightmare MP3.mp3"/>
+                <property name="MAIN" value="true"/>
             </properties>
         </object>
         <object height="0.0" id="19" name="entity" width="0.0" x="0.0" y="0.0">
             <properties>
                 <property name="className" value="common.entities.special.MusicEditor"/>
                 <property name="y2" value="0.0"/>
-                <property name="MAIN" value="false"/>
                 <property name="NAME" value="ouverture porte"/>
-                <property name="PATH" value="assets/files/sound/ouverture porte.mp3"/>
                 <property name="STARTER" value="false"/>
+                <property name="PATH" value="assets/files/sound/ouverture porte.mp3"/>
+                <property name="MAIN" value="false"/>
             </properties>
         </object>
         <object height="0.0" id="18" name="entity" width="0.0" x="0.0" y="0.0">
             <properties>
                 <property name="className" value="common.entities.special.MusicEditor"/>
                 <property name="y2" value="0.0"/>
-                <property name="MAIN" value="false"/>
                 <property name="NAME" value="ouverture porte"/>
-                <property name="PATH" value="assets/files/sound/ouverture porte.mp3"/>
                 <property name="STARTER" value="false"/>
+                <property name="PATH" value="assets/files/sound/ouverture porte.mp3"/>
+                <property name="MAIN" value="false"/>
             </properties>
         </object>
         <object height="0.0" id="15" name="entity" width="0.0" x="0.0" y="0.0">
             <properties>
                 <property name="className" value="common.entities.special.MusicEditor"/>
                 <property name="y2" value="0.0"/>
-                <property name="MAIN" value="false"/>
                 <property name="NAME" value="ouverture porte"/>
-                <property name="PATH" value="assets/files/sound/ouverture porte.mp3"/>
                 <property name="STARTER" value="false"/>
+                <property name="PATH" value="assets/files/sound/ouverture porte.mp3"/>
+                <property name="MAIN" value="false"/>
             </properties>
         </object>
         <object height="0.0" id="22" name="entity" width="0.0" x="0.0" y="0.0">
             <properties>
                 <property name="className" value="common.entities.special.MusicEditor"/>
                 <property name="y2" value="0.0"/>
-                <property name="MAIN" value="true"/>
                 <property name="NAME" value="Battle-Furious"/>
-                <property name="PATH" value="assets/files/music/Battle-Furious.mp3"/>
                 <property name="STARTER" value="false"/>
+                <property name="PATH" value="assets/files/music/Battle-Furious.mp3"/>
+                <property name="MAIN" value="true"/>
             </properties>
         </object>
         <object height="1.0" id="6" name="entity" width="1.0" x="16.0" y="12.0">
@@ -269,8 +269,8 @@
                 <property name="y2" value="12.0"/>
                 <property name="FLOOR2" value="1"/>
                 <property name="COLLISION" value="1"/>
-                <property name="ACTIVATED" value="false"/>
                 <property name="ALT_TILES" value="{FLOOR2:[1314,]COLLISION:[2041,]}"/>
+                <property name="ACTIVATED" value="false"/>
             </properties>
         </object>
         <object height="1.0" id="14" name="entity" width="1.0" x="2.0" y="3.0">
@@ -279,9 +279,9 @@
                 <property name="y2" value="3.0"/>
                 <property name="FLOOR2" value="1"/>
                 <property name="COLLISION" value="1"/>
-                <property name="KEY" value="key"/>
-                <property name="PATH" value="assets/files/atlas/items.atlas"/>
                 <property name="ALT_TILES" value="{}"/>
+                <property name="PATH" value="assets/files/atlas/items.atlas"/>
+                <property name="KEY" value="key"/>
             </properties>
         </object>
         <object height="2.0" id="23" name="entity" width="2.0" x="32.0" y="8.0">
@@ -289,12 +289,12 @@
                 <property name="className" value="common.entities.players.NPC"/>
                 <property name="y2" value="8.0"/>
                 <property name="FLOOR2" value="4"/>
-                <property name="HERO" value="false"/>
                 <property name="JSON" value="assets/entities/players/players.json"/>
                 <property name="NAME" value="Eri"/>
-                <property name="CONTENT" value="Salut!"/>
-                <property name="KEY" value="Eri"/>
+                <property name="HERO" value="false"/>
                 <property name="INVENTORY" value=""/>
+                <property name="KEY" value="Eri"/>
+                <property name="CONTENT" value="Salut!"/>
             </properties>
         </object>
         <object height="2.0" id="4" name="entity" width="2.0" x="32.0" y="12.0">
@@ -302,12 +302,12 @@
                 <property name="className" value="common.entities.players.NPC"/>
                 <property name="y2" value="12.0"/>
                 <property name="FLOOR2" value="4"/>
-                <property name="HERO" value="true"/>
                 <property name="JSON" value="assets/entities/players/players.json"/>
                 <property name="NAME" value="Joker"/>
-                <property name="CONTENT" value=""/>
-                <property name="KEY" value="Joker"/>
+                <property name="HERO" value="true"/>
                 <property name="INVENTORY" value=""/>
+                <property name="KEY" value="Joker"/>
+                <property name="CONTENT" value=""/>
             </properties>
         </object>
         <object height="1.0" id="5" name="entity" width="1.0" x="21.0" y="11.0">
@@ -356,8 +356,8 @@
                 <property name="y2" value="26.0"/>
                 <property name="FLOOR2" value="1"/>
                 <property name="COLLISION" value="1"/>
-                <property name="ACTIVATED" value="false"/>
                 <property name="ALT_TILES" value="{FLOOR2:[1313,]COLLISION:[2041,]}"/>
+                <property name="ACTIVATED" value="false"/>
             </properties>
         </object>
         <object height="12.0" id="3" name="entity" width="8.0" x="29.0" y="16.0">
@@ -380,15 +380,35 @@
                 <property name="LOCKED" value="true"/>
             </properties>
         </object>
+        <object height="1.0" id="25" name="entity" width="1.0" x="31.0" y="13.0">
+            <properties>
+                <property name="className" value="common.entities.items.Chest"/>
+                <property name="y2" value="13.0"/>
+                <property name="FLOOR2" value="1"/>
+                <property name="COLLISION" value="1"/>
+                <property name="LOCKED" value="false"/>
+                <property name="ALT_TILES" value="{FLOOR2:[918,]COLLISION:[2041,]}"/>
+            </properties>
+        </object>
         <object height="1.0" id="27" name="entity" width="1.0" x="32.0" y="10.0">
             <properties>
                 <property name="className" value="common.entities.consumable.Key"/>
                 <property name="y2" value="10.0"/>
                 <property name="FLOOR2" value="1"/>
                 <property name="COLLISION" value="1"/>
-                <property name="KEY" value="key"/>
-                <property name="PATH" value="assets/files/atlas/items.atlas"/>
                 <property name="ALT_TILES" value="{}"/>
+                <property name="PATH" value="assets/files/atlas/items.atlas"/>
+                <property name="KEY" value="key"/>
+            </properties>
+        </object>
+        <object height="1.0" id="26" name="entity" width="1.0" x="30.0" y="13.0">
+            <properties>
+                <property name="className" value="common.entities.items.Chest"/>
+                <property name="y2" value="13.0"/>
+                <property name="FLOOR2" value="1"/>
+                <property name="COLLISION" value="1"/>
+                <property name="LOCKED" value="false"/>
+                <property name="ALT_TILES" value="{FLOOR2:[918,]COLLISION:[2041,]}"/>
             </properties>
         </object>
         <object height="11.0" id="1" name="entity" width="8.0" x="3.0" y="29.0">
@@ -418,9 +438,9 @@
                 <property name="y2" value="10.0"/>
                 <property name="FLOOR2" value="1"/>
                 <property name="COLLISION" value="1"/>
-                <property name="KEY" value="key"/>
-                <property name="PATH" value="assets/files/atlas/items.atlas"/>
                 <property name="ALT_TILES" value="{}"/>
+                <property name="PATH" value="assets/files/atlas/items.atlas"/>
+                <property name="KEY" value="key"/>
             </properties>
         </object>
         <object height="2.0" id="17" name="entity" width="2.0" x="6.0" y="22.0">
@@ -428,12 +448,12 @@
                 <property name="className" value="common.entities.players.NPC"/>
                 <property name="y2" value="22.0"/>
                 <property name="FLOOR2" value="4"/>
-                <property name="HERO" value="false"/>
                 <property name="JSON" value="assets/entities/players/players.json"/>
                 <property name="NAME" value="Blonde"/>
-                <property name="CONTENT" value="Merci d'avoir testé la map de test d'Enigma.&#10;&#10;&#10;L'équipe de développement d'Enigma."/>
-                <property name="KEY" value="Blonde"/>
+                <property name="HERO" value="false"/>
                 <property name="INVENTORY" value=""/>
+                <property name="KEY" value="Blonde"/>
+                <property name="CONTENT" value="Merci d'avoir testé la map de test d'Enigma.&#10;&#10;&#10;L'équipe de développement d'Enigma."/>
             </properties>
         </object>
         <object height="1.0" id="7" name="entity" width="1.0" x="26.0" y="12.0">
@@ -442,8 +462,8 @@
                 <property name="y2" value="12.0"/>
                 <property name="FLOOR2" value="1"/>
                 <property name="COLLISION" value="1"/>
-                <property name="ACTIVATED" value="false"/>
                 <property name="ALT_TILES" value="{FLOOR2:[1314,]COLLISION:[2041,]}"/>
+                <property name="ACTIVATED" value="false"/>
             </properties>
         </object>
         <object height="13.0" id="2" name="entity" width="17.0" x="13.0" y="17.0">
@@ -463,10 +483,10 @@
                 <property name="y2" value="11.0"/>
                 <property name="FLOOR2" value="1"/>
                 <property name="COLLISION" value="1"/>
+                <property name="ALT_TILES" value="{}"/>
+                <property name="PATH" value="assets/files/atlas/items.atlas"/>
                 <property name="CONTENT" value=""/>
                 <property name="KEY" value="redBook"/>
-                <property name="PATH" value="assets/files/atlas/items.atlas"/>
-                <property name="ALT_TILES" value="{}"/>
             </properties>
         </object>
     </objectgroup>
