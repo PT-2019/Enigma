@@ -47,10 +47,7 @@ import data.NeedToBeTranslated;
 import game.screens.GameScreen;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Map de la libgdx
@@ -85,13 +82,19 @@ public class GameMap extends AbstractMap {
 	private static EnigmaDialogPopup enigmaDialog;
 
 	/**
+	 * écran du jeu
+	 */
+	private final GameScreen gameScreen;
+
+	/**
 	 * Map du jeu
 	 *
 	 * @param path      chemin
 	 * @param unitScale taux de zoom
 	 */
-	public GameMap(final String path, float unitScale) {
+	public GameMap(final String path, float unitScale, GameScreen gameScreen) {
 		super(path, unitScale, false);
+		this.gameScreen = gameScreen;
 
 		//affiche le layer de collision
 		this.showLayer(Layer.COLLISION, true);
@@ -99,7 +102,7 @@ public class GameMap extends AbstractMap {
 		//attributes
 		this.entities = new ArrayList<>();
 		this.enigmes = new HashMap<>();
-		this.enigmaDialog = new EnigmaDialogPopup();
+		GameMap.enigmaDialog = new EnigmaDialogPopup();
 		this.music = new GameMusic();
 
 		//relance init
@@ -256,6 +259,11 @@ public class GameMap extends AbstractMap {
 
 		Layer entityLayer = getLayer(entity);
 
+		if(entityLayer == null){
+			Logger.printError("GameMap#correctMap", "Pas de tiles.");
+			return;
+		}
+
 		//compare les deux niveaux
 		int result = Layer.compare(actor.getLayer(), entityLayer);
 
@@ -330,8 +338,11 @@ public class GameMap extends AbstractMap {
 	 * @since 6.5
 	 */
 	private Layer getLayer(GameObject entity) {
+		if(entity == null || entity.getTiles() == null) return null;
 		Layer highest = null;
-		for (Map.Entry<Layer, Array<Float>> entry : entity.getTiles().entrySet()) {
+		Set<Map.Entry<Layer, Array<Float>>> entries = entity.getTiles().entrySet();
+
+		for (Map.Entry<Layer, Array<Float>> entry : entries) {
 			Layer layer = entry.getKey();
 			if (layer.name().equals(Layer.COLLISION.name())) continue;//veut pas le layer de collision
 			if (highest == null) highest = layer;
@@ -382,15 +393,15 @@ public class GameMap extends AbstractMap {
 			Report report = reports.get(0).getReport();
 			//Affiche que si c'est au moins un peu important xD
 			if (report.getImportance() == Report.MUST_BE_SHOWED) {
-				EnigmaDialogPopup dialog = this.getEnigmaDialog();
+				EnigmaDialogPopup dialog = getEnigmaDialog();
 				Dialog node = new Dialog(report.getReport());
 				dialog.showDialog(node, this);
 			} else if (stated != null && !stated.isEmpty()) {
-				EnigmaDialogPopup dialog = this.getEnigmaDialog();
+				EnigmaDialogPopup dialog = getEnigmaDialog();
 				Dialog node = new Dialog(stated);
 				dialog.showDialog(node, this);
 			} else if (report.equals(ConditionReport.NO_ANSWER)) {//demande réponse
-				EnigmaDialogPopup dialog = this.getEnigmaDialog();
+				EnigmaDialogPopup dialog = getEnigmaDialog();
 				//seul object du report noAnswer est l'answer
 				dialog.showAnswer((Answer) reports.get(0).getEntities().get(0), this);
 			}
@@ -404,7 +415,7 @@ public class GameMap extends AbstractMap {
 			Array<GameObject> allEntities = EnigmaReport.getAllEntities(reports);
 			this.repaint(allEntities, current);
 		} else if (stated != null && !stated.isEmpty()) {
-			EnigmaDialogPopup dialog = this.getEnigmaDialog();
+			EnigmaDialogPopup dialog = getEnigmaDialog();
 			Dialog node = new Dialog(stated);
 			dialog.showDialog(node, this);
 		}
@@ -466,7 +477,7 @@ public class GameMap extends AbstractMap {
 				report = ((ChangeState) entity).changeState(actor, action);
 				//si c'est une entité dont on affiche le contenu
 			} else if (entity instanceof ShowContent) {
-				EnigmaDialogPopup dialog = this.getEnigmaDialog();
+				EnigmaDialogPopup dialog = getEnigmaDialog();
 				String content = ((Content) entity).getContent();
 				if (content == null || content.isEmpty()) content = NeedToBeTranslated.NO_CONTENT;
 				Dialog node = new Dialog(content);
@@ -483,7 +494,7 @@ public class GameMap extends AbstractMap {
 					//met à jour son affichage
 					this.updateEntity(o, true);
 
-					EnigmaDialogPopup dialog = this.getEnigmaDialog();
+					EnigmaDialogPopup dialog = getEnigmaDialog();
 
 					if (o instanceof Container && !(o instanceof NPC)) {
 						if (report.getReport().equals(ChangeStateReport.LOCKED)) {
@@ -493,7 +504,7 @@ public class GameMap extends AbstractMap {
 							return msg;
 						}
 						actor.getInventoryView().setVisible(true);
-						InventoryDisplay objectInventory = GameScreen.getInventoryDisplay();
+						InventoryDisplay objectInventory = this.gameScreen.getInventoryDisplay();
 						objectInventory.setContainer((Container)o);
 						//on met la fenêtre au dessus de celle de l'inventaire
 						objectInventory.setPosition(0,actor.getInventoryView().getHeight());
@@ -887,5 +898,9 @@ public class GameMap extends AbstractMap {
 	 */
 	public static EnigmaDialogPopup getEnigmaDialog() {
 		return enigmaDialog;
+	}
+
+	public GameScreen getGameScreen() {
+		return gameScreen;
 	}
 }

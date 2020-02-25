@@ -12,6 +12,7 @@ import common.entities.special.inventory.ButtonInventory;
 import common.entities.special.inventory.InventoryDisplay;
 import common.map.AbstractMap;
 import common.map.GameMap;
+import common.utils.Logger;
 import data.Direction;
 import data.Layer;
 import game.EnigmaGame;
@@ -33,7 +34,11 @@ public class Throw implements EventListener {
         ButtonInventory inventory;
         Item item;
         if(CheckEventType.isMouseClicked(event)) {
-            inventory = display.getSelectedItem();
+            inventory = this.display.getSelectedItem();
+            if(inventory == null){
+                Logger.printError("Throw#handle", "suppression mais pas d'item.");
+                return true;
+            }
             item = inventory.getItem();
             if(item != null) {
 

@@ -2,7 +2,6 @@ package game.screens;
 
 import api.libgdx.LibgdxScreen;
 import api.libgdx.actor.GameActor;
-import api.libgdx.utils.LibgdxUtility;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import common.dialog.EnigmaDialogPopup;
@@ -46,6 +45,10 @@ public class GameScreen extends LibgdxScreen {
 	 */
 	private Stage hud;
 	/**
+	 * Stage du dnd
+	 */
+	private Stage dnd;
+	/**
 	 * La map libgdx
 	 */
 	private GameMap map;
@@ -53,7 +56,7 @@ public class GameScreen extends LibgdxScreen {
 	/**
 	 * Le stage en charge de l'inventaire
 	 */
-	private static InventoryDisplay inventoryDisplay = new InventoryDisplay();
+	private InventoryDisplay inventoryDisplay;
 
 	/**
 	 * Retourne le chemin de la map actuelle
@@ -78,9 +81,13 @@ public class GameScreen extends LibgdxScreen {
 		try {
 			this.main = new Stage();
 			this.hud = new Stage();
+			this.dnd = new Stage();
 
 			if (MAP_PATH != null && !MAP_PATH.isEmpty()) {
-				this.map = new GameMap(MAP_PATH, Config.UNIT_SCALE);
+				//création de l'inventaire d'un objet
+				this.inventoryDisplay = new InventoryDisplay(this.dnd);
+
+				this.map = new GameMap(MAP_PATH, Config.UNIT_SCALE, this);
 				EnigmaDialogPopup dialog = GameMap.getEnigmaDialog();
 
 				//ajout au stage
@@ -109,6 +116,7 @@ public class GameScreen extends LibgdxScreen {
 			}
 
 			//écoute des inputProcessor et des listeners
+			this.listen(this.dnd);
 			this.listen(this.hud);
 			this.listen(this.main);
 		}catch (Exception e){
@@ -122,6 +130,7 @@ public class GameScreen extends LibgdxScreen {
 
 	@Override
 	public void update(float dt) {
+		this.dnd.act(dt);
 		this.hud.act(dt);
 		this.main.act(dt);
 	}
@@ -130,10 +139,13 @@ public class GameScreen extends LibgdxScreen {
 	public void render() {
 		this.main.draw();
 		this.hud.draw();
+		this.dnd.draw();
 	}
 
 	@Override
 	public void resize(int width, int height) {
+		this.dnd.getViewport().setScreenSize(width, height);
+		this.dnd.getViewport().update(width, height);
 		this.hud.getViewport().setScreenSize(width, height);
 		this.hud.getViewport().update(width, height);
 		this.main.getViewport().setScreenSize(width, height);
@@ -148,6 +160,7 @@ public class GameScreen extends LibgdxScreen {
 			this.map.getGameMusic().dispose();
 			this.main.dispose();
 			this.hud.dispose();
+			this.dnd.dispose();
 		} catch (Exception e) {
 			Logger.printError("GameScreen#dispose", "échec de la libération des ressources.");
 		}
@@ -184,7 +197,19 @@ public class GameScreen extends LibgdxScreen {
 		return this.map;
 	}
 
-	public static InventoryDisplay getInventoryDisplay(){
+	/**
+	 * Retourne l'affichage de l'inventaire
+	 * @return l'affichage de l'inventaire
+	 */
+	public InventoryDisplay getInventoryDisplay(){
 		return inventoryDisplay;
+	}
+
+	/**
+	 * Retourne le stage du drag and drop
+	 * @return le stage du drag and drop
+	 */
+	public Stage getDnd() {
+		return dnd;
 	}
 }

@@ -113,7 +113,7 @@ public class SpecialPopUp extends AbstractPopUp {
 		} else {
 			if (entity instanceof Living) {
 				String name = ((Living) entity).getName();
-				if (name == null || name.isBlank() || name.isEmpty()) {
+				if (name == null || Utility.isBlank(name) || name.isEmpty()) {
 					this.navigation.setText(entity.getReadableName());
 				} else {
 					this.navigation.setText(name);

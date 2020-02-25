@@ -1,0 +1,173 @@
+[
+  {
+    title: Accueil
+    docItems: [
+      {
+        type: TITLE
+        content: [
+          Documentation d'Enigma
+        ]
+      },
+      {
+        type: MESSAGE
+        content : [
+          "Bienvenue dans l'éditeur de maps d'Enigma.\n"
+          "\n"
+          "Vous trouverez ici, une aide pour créer des escapes games.\n"
+          "\n"
+          "Amusez-vous bien !\n"
+          "\n"
+          "L'équipe de développement d'Enigma."
+        ]
+      }
+      {
+        type: IMAGE
+        content : [
+          "assets/files/doc/exemple.png"
+        ]
+      }
+    ]
+  },
+  {
+    title: Outils
+    docItems: [
+      {type: TITLE
+        content: [Outils de dessin]},
+      {type: IMAGE
+        content : ["assets/files/doc/modes.png"]}
+      {type: TITLE_SMALL
+        content: ["A. Pinceau"]},
+      {type: MESSAGE
+        content : [
+          "Le pinceau correspond au mode normal de l'application.\n"
+          "\n"
+          "Vous pouvez déplacer des éléments d'une catégorie vers la map.\n"
+          "\n"
+          "Il permet également d'accéder au menu des entités en faisant un clic gauche sur une case.\n"
+        ]
+      }
+      {type: IMAGE
+       content : ["assets/files/doc/entMenu.png"]}
+      {type: TITLE_SMALL
+        content: ["B. Gomme"]},
+      {type: MESSAGE
+        content : [
+          "La gomme supprime une entité en cliquant dessus.\n"
+          "\n"
+          "Si c'est une salle, alors tout ce qu'elle contient est supprimé.\n"
+          "\n"
+          "Pour plus de précision, vous pouvez supprimer directement une entité via son menu"
+          "(cf image plus haut).\n"
+        ]
+      }
+      {type: TITLE_SMALL
+        content: ["C. Déplacement"]},
+      {type: MESSAGE
+        content : [
+          "L'outil de déplacement vous permet de quitter le mode pinceau.\n"
+          "\n"
+          "Si vous cliquez alors sur la map, vous pouvez vous déplacer avec les flèches de votre clavier.\n"
+          "\n"
+          "Le zoom est également activé avec : CTRL+MOLETTE."
+        ]
+      }
+    ]
+  },
+  {
+    title: Salles
+    docItems: [
+      {type: TITLE
+        content: [Salles]},
+      {type: MESSAGE
+        content : [
+          "Vous pouvez placer des salles en cliquant dans la catégorie salles.\n"
+          "\n"
+          "La disposition des salles dans la map est libre. Les salles peuvent se chevaucher, "
+          "a condition que cela n'écrase pas d'éventuellent entités.\n"
+          "\n"
+          "Attention! Bien que la disposition soit libre, il est de votre devoir de tester que tous "
+          "les endroits restent accessibles. Afficher les cases bloquants peut grandement vous aider, "
+          "en cochant : Clic gauche > Affichage > Cases bloquantes\n"
+          "\n"
+        ]
+      }
+      {type: IMAGE
+        content : ["assets/files/doc/collision.png"]}
+      {type: MESSAGE
+        content : [
+          "Le joueur ne peut pas se déplacer dans toutes les cases rouges.\n"
+        ]
+      }
+    ]
+  },
+  {
+    title: Personnages
+    docItems: [
+      {type: TITLE
+        content: [Personnages]},
+      {type: MESSAGE
+        content : [
+          "Vous pouvez ajouter depuis la catégorie \"Personnages\" des monstres et des joueurs.\n"
+          "\n"
+          "Pour qu'un joueur soit contrôlé par un humain, alors il doit être déclaré comme \"héros\"\n"
+        ]
+      }
+      {type: IMAGE
+        content : ["assets/files/doc/player.png"]}
+      {type: MESSAGE
+        content : [
+          "Vous pouvez changer le nom de vos personnages et leur donner des objets dans leur inventaire.\n"
+          "\n"
+        ]
+      }
+    ]
+  },
+  {
+    title: Objets
+    docItems: [
+      {type: TITLE
+        content: [Objets]},
+      {type: MESSAGE
+        content : [
+          "En construction\n"
+        ]
+      }
+    ]
+  }
+  {
+    title: Inventaire
+    docItems: [
+      {type: TITLE
+        content: [Inventaire]},
+      {type: MESSAGE
+        content : [
+          "En construction\n"
+        ]
+      }
+    ]
+  }
+  {
+    title: Enigmes
+    docItems: [
+      {type: TITLE
+        content: [Enigmes]},
+      {type: MESSAGE
+        content : [
+          "En construction\n"
+        ]
+      }
+    ]
+  }
+  {
+    title: Simulation
+    docItems: [
+      {type: TITLE
+        content: [Simulation]},
+      {type: MESSAGE
+        content : [
+          "En construction\n"
+        ]
+      }
+    ]
+  },
+]

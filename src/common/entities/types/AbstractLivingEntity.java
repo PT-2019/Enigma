@@ -1,6 +1,7 @@
 package common.entities.types;
 
 import api.libgdx.actor.GameActorTextured;
+import api.utils.Utility;
 import api.utils.annotations.ConvenienceClass;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -100,7 +101,7 @@ public abstract class AbstractLivingEntity extends GameActorTextured implements 
 		this.json = json;
 		this.key = key;
 		//si pas de nom, alors sa clef est son nom
-		if (this.name == null || this.name.isEmpty() || this.name.isBlank()) this.name = this.key;
+		if (this.name == null || this.name.isEmpty() || Utility.isBlank(this.name)) this.name = this.key;
 	}
 
 	@Override

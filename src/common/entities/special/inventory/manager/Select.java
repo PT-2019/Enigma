@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Event;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
+import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -35,19 +36,23 @@ public class Select extends ClickListener {
 
     @Override
     public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-        System.out.println("----");
+        if(event == null) return false;
+        //System.out.println("----");
         Actor target = event.getTarget();
         Item current;
 
         if (! (target instanceof ButtonInventory)){
             target = target.getParent();
         }
+        if (! (target instanceof ButtonInventory)){
+            return false;
+        }
         //on prend l'item de la target
         current = ((ButtonInventory) target).getItem();
 
         display.setSelectItem((ButtonInventory) target);
         display.refreshInfo();
-        System.out.println("selectted");
+       // System.out.println("selectted");
 
         if (current == null)
             return false;

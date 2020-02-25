@@ -82,6 +82,7 @@ public class Key extends AbstractConsumable implements NeedContainer,Stackable {
 	@Override
 	public void load(MapProperties data) {
 		this.altTiles = SaveTiles.load(data.get(PlayerSave.ALT_TILES.getKey(), String.class));
+		if(altTiles == null) this.altTiles = new HashMap<>();
         this.atlasName = Utility.asciiEscapedToNormalString(data.get(PlayerSave.KEY.getKey(), String.class));
         this.atlasPath = Utility.asciiEscapedToNormalString(data.get(PlayerSave.PATH.getKey(), String.class));
 	}

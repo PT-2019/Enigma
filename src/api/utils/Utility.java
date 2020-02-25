@@ -12,12 +12,7 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Window;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.Reader;
-import java.io.Serializable;
+import java.io.*;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -151,7 +146,7 @@ public class Utility implements Serializable {
 	 * @since 2.0
 	 */
 	@ConvenienceMethod
-	public static <T extends Enum> T stringToEnum(String name, T[] enumValues) {
+	public static <T extends Enum<?>> T stringToEnum(String name, T[] enumValues) {
 		name = normalize(name).toLowerCase();
 
 		for (T screen : enumValues) {
@@ -171,11 +166,13 @@ public class Utility implements Serializable {
 	 */
 	@ConvenienceMethod
 	public static Reader loadFile(String path) {
-		try {
-			return new BufferedReader(new FileReader(path));
-		} catch (IOException e) {
-			throw new IllegalStateException("error loading file");
+		InputStream resourceAsStream = Utility.class.getResourceAsStream("/"+path);
+
+		if(resourceAsStream == null) {
+			throw new IllegalArgumentException("File not found");
 		}
+
+		return new BufferedReader(new InputStreamReader(resourceAsStream));
 	}
 
 	/**
@@ -190,7 +187,7 @@ public class Utility implements Serializable {
 			System.out.print(entry.getKey() + "-> ");
 			Object value = entry.getValue();
 			if (value instanceof ArrayList) {
-				System.out.println(Arrays.toString(((ArrayList) value).toArray()));
+				System.out.println(Arrays.toString(((ArrayList<?>) value).toArray()));
 			} else if (value.getClass().isArray()) {
 				System.out.println(Arrays.toString((Object[]) value));
 			} else {
@@ -251,7 +248,7 @@ public class Utility implements Serializable {
 	@ConvenienceMethod
 	public static Object instance(Class<?> aClass) {
 		Object object;
-		Constructor declaredConstructor = null;
+		Constructor<?> declaredConstructor = null;
 		try {
 			declaredConstructor = aClass.getDeclaredConstructor();
 			object = declaredConstructor.newInstance();
@@ -277,7 +274,7 @@ public class Utility implements Serializable {
 	@ConvenienceMethod
 	public static Object instance(Class<?> aClass, Object value) {
 		Object object;
-		Constructor declaredConstructor = null;
+		Constructor<?> declaredConstructor = null;
 		try {
 			try {
 				declaredConstructor = aClass.getDeclaredConstructor(value.getClass());
@@ -344,7 +341,7 @@ public class Utility implements Serializable {
 				//crée instance
 				object = selected.newInstance(args);
 			} else {
-				Constructor declaredConstructor = aClass.getDeclaredConstructor();
+				Constructor<?> declaredConstructor = aClass.getDeclaredConstructor();
 				object = declaredConstructor.newInstance();
 			}
 		} catch (IllegalAccessException | InstantiationException | NoSuchMethodException
@@ -545,6 +542,7 @@ public class Utility implements Serializable {
 	 */
 	public static String asciiEscapedToNormalString(String asciiEscapedString) {
 		StringBuilder sb = new StringBuilder();
+		if(asciiEscapedString == null) return "";
 		for (int i = 0; i < asciiEscapedString.length(); i++) {
 			char read = asciiEscapedString.charAt(i);
 			if (read != '&') {
@@ -583,7 +581,7 @@ public class Utility implements Serializable {
 	 * @since 6.7
 	 */
 	public static boolean isStringValid(String string) {
-		return string != null && !string.isEmpty() && !string.isBlank();
+		return string != null && !string.isEmpty() && !Utility.isBlank(string);
 	}
 
 	/**
@@ -606,5 +604,19 @@ public class Utility implements Serializable {
 			}
 		}
 		throw new IllegalArgumentException("Erreur lors de la recherche. Fichier non trouvé.");
+	}
+
+	/**
+	 * Retourne si une chaîne ne contient que des caractères blancs
+	 * @param name chaîne
+	 * @return true si une chaîne ne contient que des caractères blancs
+	 * @since 6.7
+	 */
+	public static boolean isBlank(String name) {
+		int lastIndexOf = 0;
+		while (lastIndexOf < name.length() && lastIndexOf != ' ' && lastIndexOf != '\t' && !Character.isWhitespace(lastIndexOf)) {
+			lastIndexOf++;
+		}
+		return name.length() == lastIndexOf;
 	}
 }

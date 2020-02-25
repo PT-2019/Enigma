@@ -105,6 +105,7 @@ public class Book extends AbstractConsumable implements Content {
 		this.content = data.get(PlayerSave.CONTENT.getKey(), String.class);
 		if (this.content != null) this.content = Utility.asciiEscapedToNormalString(this.content);
 		this.altTiles = SaveTiles.load(data.get(PlayerSave.ALT_TILES.getKey(), String.class));
+		if(altTiles == null) this.altTiles = new HashMap<>();
 		this.content = Utility.asciiEscapedToNormalString(data.get(PlayerSave.CONTENT.getKey(), String.class));
 		this.atlasName = Utility.asciiEscapedToNormalString(data.get(PlayerSave.KEY.getKey(), String.class));
 		this.atlasPath = Utility.asciiEscapedToNormalString(data.get(PlayerSave.PATH.getKey(), String.class));
