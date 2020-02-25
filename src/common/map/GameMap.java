@@ -47,10 +47,7 @@ import data.NeedToBeTranslated;
 import game.screens.GameScreen;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Map de la libgdx
@@ -335,9 +332,11 @@ public class GameMap extends AbstractMap {
 	 * @return le plus haut niveau ou se trouve une entité
 	 * @since 6.5
 	 */
-	private Layer getLayer(GameObject entity) {
+	private Layer getLayer//(GameObject entity) {
 		Layer highest = null;
-		for (Map.Entry<Layer, Array<Float>> entry : entity.getTiles().entrySet()) {
+		Set<Map.Entry<Layer, Array<Float>>> entries = entity.getTiles().entrySet();
+
+		for (Map.Entry<Layer, Array<Float>> entry : entries) {
 			Layer layer = entry.getKey();
 			if (layer.name().equals(Layer.COLLISION.name())) continue;//veut pas le layer de collision
 			if (highest == null) highest = layer;
