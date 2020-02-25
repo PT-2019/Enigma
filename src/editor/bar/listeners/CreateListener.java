@@ -117,12 +117,12 @@ public class CreateListener extends MenuListener {
 				if (col > Config.MAP_MAX_WIDTH) {
 					error = true;
 					this.width.setText(NeedToBeTranslated.WIDTH + " (" + "max " + Config.MAP_MAX_WIDTH + ") :");
+				} else {
+					if (col <= 0) throw new NumberFormatException();
+
+					//reset
+					this.width.setText(WIDTH);
 				}
-
-				if (col <= 0) throw new NumberFormatException();
-
-				//reset
-				this.width.setText(WIDTH);
 			} catch (NumberFormatException ex) {
 				error = true;
 				this.width.setText(NeedToBeTranslated.WIDTH + " (" + INVALID + ") :");
@@ -135,12 +135,12 @@ public class CreateListener extends MenuListener {
 				if (row > Config.MAP_MAX_HEIGHT) {
 					error = true;
 					this.height.setText(NeedToBeTranslated.HEIGHT + " (" + "max " + Config.MAP_MAX_HEIGHT + ") :");
+				} else {
+					if (row <= 0) throw new NumberFormatException();
+
+					//reset
+					this.height.setText(HEIGHT);
 				}
-
-				if (row <= 0) throw new NumberFormatException();
-
-				//reset
-				this.height.setText(HEIGHT);
 			} catch (NumberFormatException ex) {
 				error = true;
 				this.height.setText(NeedToBeTranslated.HEIGHT + " (" + INVALID + ") :");

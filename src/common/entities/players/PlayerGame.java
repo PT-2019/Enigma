@@ -33,6 +33,11 @@ public class PlayerGame extends GameActorAnimation implements InputAdapter {
 	public static final int SPEED = 7;
 
 	/**
+	 * Inventaire d'un object
+	 */
+	private final InventoryDisplay containerInventory;
+
+	/**
 	 * La map dans la laquelle est placé le joueur
 	 */
 	private GameMap map;
@@ -56,6 +61,7 @@ public class PlayerGame extends GameActorAnimation implements InputAdapter {
 		this.map = map;
 		this.joueur = new Player();
 		this.inventoryView = new InventoryDisplay(this.joueur);
+		this.containerInventory = map.getGameScreen().getInventoryDisplay();
 	}
 
 	/**
@@ -114,7 +120,7 @@ public class PlayerGame extends GameActorAnimation implements InputAdapter {
 	 */
 	@Override
 	public boolean keyDown(int i) {
-		if (!map.getEnigmaDialog().isVisible()) {
+		if (!GameMap.getEnigmaDialog().isVisible()) {
 			//TODO: interdit de faire input et update en même temps !
 			if (PlayerKeys.PLAYER_LEFT.isKey(i)) {
 				this.upPlayer(-PlayerGame.SPEED, 0, 3, 5, Direction.LEFT);
@@ -149,7 +155,7 @@ public class PlayerGame extends GameActorAnimation implements InputAdapter {
 					tmpY = this.getY();
 				}
 
-				EnigmaDialogPopup dialog = map.getEnigmaDialog();
+				EnigmaDialogPopup dialog = GameMap.getEnigmaDialog();
 				GameActor entityGame = map.collisionEntityGame(this, tmpX - this.getX(), tmpY - this.getY());
 				if (entityGame != null) {
 					Logger.printDebugALL("PlayerGame", entityGame.toString());
@@ -172,9 +178,10 @@ public class PlayerGame extends GameActorAnimation implements InputAdapter {
 					this.inventoryView.setVisible(false);
 				else
 					this.inventoryView.setVisible(true);
+
 				//on enlève également l'inventaire d'un objet si il est activé
-				if (GameScreen.getInventoryDisplay().isVisible())
-					GameScreen.getInventoryDisplay().setVisible(false);
+				if (this.containerInventory.isVisible())
+					this.containerInventory.setVisible(false);
 			}
 		}
 		return false;
