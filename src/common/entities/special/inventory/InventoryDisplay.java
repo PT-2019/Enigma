@@ -1,6 +1,7 @@
 package common.entities.special.inventory;
 
 import api.libgdx.utils.LibgdxUtility;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import common.entities.Consumable;
 import common.entities.Item;
@@ -13,6 +14,8 @@ import common.entities.special.inventory.manager.Use;
 import common.entities.types.Container;
 import common.language.GameFields;
 import common.language.GameLanguage;
+import common.map.GameMap;
+
 import java.util.ArrayList;
 
 /**
@@ -25,6 +28,11 @@ public class InventoryDisplay extends Window {
     public final static int ACTOR_WIDTH = 80;
     public final static int ACTOR_HEIGHT = 80;
     public final static int MARGIN = 2;
+
+    /**
+     * Stage du drag and drop
+     */
+    private final Stage dnd;
 
     private Label name;
 
@@ -77,8 +85,9 @@ public class InventoryDisplay extends Window {
     private static final String THROW = "Jeter";
     private static final String USE = "Utiliser";
 
-    public InventoryDisplay(Container c) {
+    public InventoryDisplay(Container c, Stage dnd) {
         super("", LibgdxUtility.loadSkin(SKIN_PATH, ATLAS_PATH));
+        this.dnd = dnd;
         init();
         this.throwButton = new TextButton(THROW, this.getSkin());
         this.useButton = new TextButton(USE, this.getSkin());
@@ -92,8 +101,9 @@ public class InventoryDisplay extends Window {
         this.refreshInfo();
     }
 
-    public InventoryDisplay() {
+    public InventoryDisplay(Stage dnd) {
         super("", LibgdxUtility.loadSkin(SKIN_PATH, ATLAS_PATH));
+        this.dnd = dnd;
         init();
         this.setVisible(false);
     }
@@ -125,8 +135,8 @@ public class InventoryDisplay extends Window {
         if(container instanceof Player){
             this.inventory = ((Player) container).getInventory();
             Player p = (Player) container;
-            ButtonInventory buttonRight = new ButtonInventory(this.getSkin());
-            ButtonInventory buttonLeft = new ButtonInventory(this.getSkin());
+            ButtonInventory buttonRight = new ButtonInventory(this.getSkin(), this.dnd);
+            ButtonInventory buttonLeft = new ButtonInventory(this.getSkin(), this.dnd);
             this.handInventory[RIGHT] = buttonRight;
             this.handInventory[LEFT] = buttonLeft;
 
@@ -154,7 +164,7 @@ public class InventoryDisplay extends Window {
 
         //inventaire
         for(Item item : items){
-            ButtonInventory button = new ButtonInventory(this.getSkin(),item);
+            ButtonInventory button = new ButtonInventory(this.getSkin(),item, this.dnd);
             this.buttonInventory[index] = button;
 
             button.addListener(new Select(this));
@@ -208,16 +218,16 @@ public class InventoryDisplay extends Window {
             buttonInventory = new ButtonInventory[5];
             for (int i = 0; i < 5; i++) {
                 if (sizeItems > i){
-                    buttonInventory[i] = new ButtonInventory(this.getSkin(),items.get(i));
+                    buttonInventory[i] = new ButtonInventory(this.getSkin(),items.get(i), this.dnd);
                 }else{
-                    buttonInventory[i] = new ButtonInventory(this.getSkin());
+                    buttonInventory[i] = new ButtonInventory(this.getSkin(), this.dnd);
                 }
                 table.add(buttonInventory[i]).pad(MARGIN).width(ACTOR_WIDTH).height(ACTOR_HEIGHT);
             }
         }else{
             buttonInventory = new ButtonInventory[sizeItems];
             for (int i = 0; i < sizeItems; i++) {
-                buttonInventory[i] = new ButtonInventory(this.getSkin(),items.get(i));
+                buttonInventory[i] = new ButtonInventory(this.getSkin(), items.get(i), this.dnd);
                 table.add(buttonInventory[i]).pad(MARGIN).width(ACTOR_WIDTH).height(ACTOR_HEIGHT);
 
                 if((i % this.rowLength) == 0)
@@ -274,14 +284,14 @@ public class InventoryDisplay extends Window {
     }
 
     /**
-     * Méthode qui permet de retirer un item d'un boutton inventaire tout en vérifiant la quantité
+     * Méthode qui permet de retirer un item d'un bouton inventaire tout en vérifiant la quantité
      * @param item
      */
-    public void removeItem(Item item,ButtonInventory buttonInventory){
+    public void removeItem(Item item, ButtonInventory buttonInventory){
         //si la quantité n'est pas égale à zéro c'est qu'il en reste
         selected = null;
         buttonInventory.setItem(null);
-        buttonInventory.removeActor(buttonInventory.getImg());
+        buttonInventory.refreshButton();
     }
 
     /**

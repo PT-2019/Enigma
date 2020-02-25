@@ -69,6 +69,19 @@ public class GameActorTextured extends GameActor {
 		this.setOrigin(width / 2, height / 2);
 	}
 
+	/**
+	 * Définit la texture de l'acteur depuis une texture
+	 *
+	 * @param texture la texture
+	 * @since 6.0
+	 */
+	public void setTexture(TextureRegion texture) {
+		this.texture = new TextureRegion(texture);
+		float width = this.texture.getRegionWidth(), height = this.texture.getRegionHeight();
+		this.setSize(width, height);
+		this.setOrigin(width / 2, height / 2);
+	}
+
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
 		Color parentColor = getColor();

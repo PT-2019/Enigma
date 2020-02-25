@@ -62,7 +62,7 @@ public class UserConfiguration {
 		if (!data.containsKey(UserPreferencesFields.NAME.value)) {
 			//demande son nom
 			String name = "";
-			while (name.isEmpty() || name.isBlank() || name.equals(EnigmaOptionPane.CANCEL)) {
+			while (name.isEmpty() || Utility.isBlank(name) || name.equals(EnigmaOptionPane.CANCEL)) {
 				name = EnigmaOptionPane.showInputUserName();
 			}
 			data.put(UserPreferencesFields.NAME.value, Utility.normalize(Utility.escape(name)));

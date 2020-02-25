@@ -1,5 +1,6 @@
 package common.save.entities;
 
+import api.utils.Utility;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 
@@ -38,7 +39,7 @@ public final class SaveTiles {
 	}
 
 	public static HashMap<String, Array<Float>> load(String tiles) {
-		if (tiles == null || tiles.isEmpty() || tiles.isBlank()) return null;
+		if (tiles == null || tiles.isEmpty() || Utility.isBlank(tiles)) return null;
 		HashMap<String, Array<Float>> map = new HashMap<>();
 
 		if (tiles.charAt(0) != '{') return null;

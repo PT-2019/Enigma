@@ -259,6 +259,11 @@ public class GameMap extends AbstractMap {
 
 		Layer entityLayer = getLayer(entity);
 
+		if(entityLayer == null){
+			Logger.printError("GameMap#correctMap", "Pas de tiles.");
+			return;
+		}
+
 		//compare les deux niveaux
 		int result = Layer.compare(actor.getLayer(), entityLayer);
 
@@ -332,7 +337,8 @@ public class GameMap extends AbstractMap {
 	 * @return le plus haut niveau ou se trouve une entité
 	 * @since 6.5
 	 */
-	private Layer getLayer//(GameObject entity) {
+	private Layer getLayer(GameObject entity) {
+		if(entity == null || entity.getTiles() == null) return null;
 		Layer highest = null;
 		Set<Map.Entry<Layer, Array<Float>>> entries = entity.getTiles().entrySet();
 

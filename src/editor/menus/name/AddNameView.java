@@ -1,5 +1,6 @@
 package editor.menus.name;
 
+import api.utils.Utility;
 import com.badlogic.gdx.Gdx;
 import common.entities.GameObject;
 import common.entities.types.Living;
@@ -159,7 +160,7 @@ public class AddNameView extends AbstractPopUpView {
 			//ajout du contenu
 			String name = this.parent.field.getText();
 			String old = this.entity.getName();
-			if (name.isEmpty() || name.isBlank()) {
+			if (name.isEmpty() || Utility.isBlank(name)) {
 				this.entity.setName(this.entity.getKey());//nom de base
 			} else {
 				this.entity.setName(name);

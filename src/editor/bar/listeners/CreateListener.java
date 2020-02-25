@@ -148,7 +148,7 @@ public class CreateListener extends MenuListener {
 
 			//test map
 			boolean mapNameError = false;
-			if (mapName.isEmpty() || mapName.isBlank()) {
+			if (mapName.isEmpty() || Utility.isBlank(mapName)) {
 				error = true;
 				mapNameError = true;
 				this.nom.setText(NeedToBeTranslated.INPUT_NAME + " (" + EMPTY + ") :");

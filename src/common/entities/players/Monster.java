@@ -98,7 +98,7 @@ public class Monster extends AbstractLivingEntity implements EntityGame, Content
 		this.name = data.get(PlayerSave.NAME.getKey(), String.class);
 		this.dialog = data.get(PlayerSave.CONTENT.getKey(), String.class);
 		if (dialog != null) this.dialog = Utility.asciiEscapedToNormalString(this.dialog);
-		if (this.name.isEmpty() || this.name.isBlank()) this.name = this.key;
+		if (this.name.isEmpty() || Utility.isBlank(this.name)) this.name = this.key;
 	}
 
 	//toString

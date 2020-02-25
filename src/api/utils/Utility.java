@@ -581,7 +581,7 @@ public class Utility implements Serializable {
 	 * @since 6.7
 	 */
 	public static boolean isStringValid(String string) {
-		return string != null && !string.isEmpty() && !string.isBlank();
+		return string != null && !string.isEmpty() && !Utility.isBlank(string);
 	}
 
 	/**
@@ -604,5 +604,19 @@ public class Utility implements Serializable {
 			}
 		}
 		throw new IllegalArgumentException("Erreur lors de la recherche. Fichier non trouvé.");
+	}
+
+	/**
+	 * Retourne si une chaîne ne contient que des caractères blancs
+	 * @param name chaîne
+	 * @return true si une chaîne ne contient que des caractères blancs
+	 * @since 6.7
+	 */
+	public static boolean isBlank(String name) {
+		int lastIndexOf = 0;
+		while (lastIndexOf < name.length() && lastIndexOf != ' ' && lastIndexOf != '\t' && !Character.isWhitespace(lastIndexOf)) {
+			lastIndexOf++;
+		}
+		return name.length() == lastIndexOf;
 	}
 }
