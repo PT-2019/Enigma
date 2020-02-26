@@ -11,14 +11,9 @@
   <component name="ChangeListManager">
     <list default="true" id="3988e985-92ab-48ae-ab5d-41247abb4cd3" name="Default Changelist" comment="fix multi heroes">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/special/inventory/ButtonInventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/special/inventory/ButtonInventory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/special/inventory/InventoryDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/special/inventory/InventoryDisplay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/common/entities/special/inventory/manager/Select.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/common/entities/special/inventory/manager/Select.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/dnd/inventory/DragAndDropInventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/dnd/inventory/DragAndDropInventory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/dnd/inventory/InventoryDndBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/dnd/inventory/InventoryDndBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game/dnd/inventory/InventoryDraggedItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/dnd/inventory/InventoryDraggedItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/editor/popup/TestMapControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/editor/popup/TestMapControl.java" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -130,6 +125,18 @@
       <recent name="editor.bar.edition.actions" />
       <recent name="editor.popup.cases" />
     </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="EnigmaFastGame" type="Application" factoryName="Application" nameIsGenerated="true">

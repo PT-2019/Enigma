@@ -127,14 +127,7 @@ public class TestMapControl implements InputAdapter {
 			SwingUtilities.invokeLater(new RunActionPerformed(this.redo, this));
 		} else if (Config.SAVE_AS.check(keycode, this.ctrlPush, this.altPush)) {
 			SwingUtilities.invokeLater(new RunActionPerformed(this.saveAs, this));
-		}
-
-		return false;
-	}
-
-	@Override
-	public boolean keyUp(int keycode) {
-		if (CameraKeys.CAMERA_LEFT.isKey(keycode)) {
+		}else if (CameraKeys.CAMERA_LEFT.isKey(keycode)) {
 			this.camera.translate(-Config.CAMERA_OFFSET, 0);
 			this.camera.update();
 			return true;
@@ -142,7 +135,7 @@ public class TestMapControl implements InputAdapter {
 			this.camera.translate(Config.CAMERA_OFFSET, 0);
 			this.camera.update();
 			return true;
-		} else if (CameraKeys.CAMERA_UP.isKey(keycode)) {
+		} else if (CameraKeys.CAMERA_UP.isKey(keycode) && !(this.ctrlPush)) {
 			this.camera.translate(0, Config.CAMERA_OFFSET);
 			this.camera.update();
 			return true;
@@ -150,8 +143,15 @@ public class TestMapControl implements InputAdapter {
 			this.camera.translate(0, -Config.CAMERA_OFFSET);
 			this.camera.update();
 			return true;
-		}//dés-activation control
-		else if (keycode == Input.Keys.CONTROL_LEFT) {
+		}
+
+		return false;
+	}
+
+	@Override
+	public boolean keyUp(int keycode) {
+		//dés-activation control
+		if (keycode == Input.Keys.CONTROL_LEFT) {
 			this.ctrlPush = false;
 			return true;
 			//dés-activation alt
