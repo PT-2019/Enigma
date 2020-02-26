@@ -352,7 +352,13 @@ public class Create extends Content {
 			return false;
 		} else {
 			try {
-				int i = Integer.parseInt(Utility.normalize(this.duration.getText()));
+				int i = Integer.parseInt(this.duration.getText().trim());
+
+				if(i < 1 || i > 999){
+					EnigmaOptionPane.showAlert(EnigmaGameLauncher.getInstance().getWindow(), WRONG_DURATION);
+					return false;
+				}
+
 			} catch (NumberFormatException e) {
 				EnigmaOptionPane.showAlert(EnigmaGameLauncher.getInstance().getWindow(), WRONG_DURATION);
 				return false;
