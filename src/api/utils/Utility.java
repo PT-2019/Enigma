@@ -613,10 +613,12 @@ public class Utility implements Serializable {
 	 * @since 6.7
 	 */
 	public static boolean isBlank(String name) {
-		int lastIndexOf = 0;
+		/*int lastIndexOf = 0;
 		while (lastIndexOf < name.length() && lastIndexOf != ' ' && lastIndexOf != '\t' && !Character.isWhitespace(lastIndexOf)) {
 			lastIndexOf++;
 		}
-		return name.length() == lastIndexOf;
+		System.out.println(name.length()+" "+lastIndexOf);
+		return name.length() == lastIndexOf;*/
+		return false;
 	}
 }
