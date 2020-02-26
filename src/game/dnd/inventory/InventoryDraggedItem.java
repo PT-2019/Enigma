@@ -33,6 +33,7 @@ public class InventoryDraggedItem extends GameActorDragAndDrop {
 		super();
 		this.inventoryDisplay = inventoryDisplay;
 		Vector2 v = GameActorUtilities.getAbsolutePosition(container);
+		v.y -= container.getTexture().getRegionHeight();
 		this.setPosition(v.x,v.y);
 		this.setTexture(container.getTexture());
 		this.setSize(InventoryDisplay.ACTOR_WIDTH,InventoryDisplay.ACTOR_HEIGHT);

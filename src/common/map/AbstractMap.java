@@ -24,6 +24,9 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Array;
 import common.data.MapData;
 import common.entities.GameObject;
+import common.entities.Item;
+import common.entities.consumable.Key;
+import common.entities.types.Container;
 import common.entities.types.ContainersManager;
 import common.entities.types.IDInterface;
 import common.save.DataSave;
@@ -253,7 +256,7 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 	 * @return une liste des propriétés contenant name
 	 * @since 5.0
 	 */
-	@SuppressWarnings({"WeakerAccess", "SameParameterValue"})
+	@SuppressWarnings("SameParameterValue")
 	protected static ArrayList<MapProperties> getProperty(String name, AbstractMap map) {
 		ArrayList<MapProperties> props = new ArrayList<>();
 		for (MapLayer layer : map.getTiledMap().getLayers()) {
@@ -283,6 +286,9 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 
 		//bounds
 		this.setMapBounds();
+
+		//charges les conteneurs
+		this.loadContainers();
 	}
 
 	/**
@@ -372,6 +378,26 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 				this.objects.put(start, object);
 
 				Logger.printDebug("(tmp) MapTestScreen#initEntities", object + " " + start);
+			}
+		}
+	}
+
+	/**
+	 * Rempli les containers
+	 * @since 6.7
+	 */
+	protected void loadContainers(){
+		for (Map.Entry<Vector2, ArrayList<GameObject>> o: this.objects.getOriginalMap().entrySet()) {
+			for (GameObject gameObject:o.getValue()) {
+				if(!(gameObject instanceof Container)) continue;
+
+				//récupère le container
+				Container c = (Container) gameObject;
+
+				//ajout de tous ses objets
+				for (Integer i :c.getLoadItems()) {
+					c.addItem((Item) this.objects.getObjectByID(i));
+				}
 			}
 		}
 	}

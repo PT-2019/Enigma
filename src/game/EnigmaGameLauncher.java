@@ -121,7 +121,6 @@ public class EnigmaGameLauncher implements Application {
 		}
 		//affiche
 		this.window.add(this.gameScreen, BorderLayout.CENTER);
-		this.window.addWindowListener((WindowClosing) e -> window.close());
 	}
 
 	@Override

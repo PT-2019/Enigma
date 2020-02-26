@@ -46,6 +46,11 @@ public class NPC extends AbstractLivingEntity implements Container, Content {
 
 	private ArrayList<Item> items;
 
+	/**
+	 * Id des items chargés
+	 */
+	private ArrayList<Integer> load;
+
 	public NPC() {
 		this(-1);
 	}
@@ -123,9 +128,7 @@ public class NPC extends AbstractLivingEntity implements Container, Content {
 		this.key = data.get(PlayerSave.KEY.getKey(), String.class);
 		this.json = data.get(PlayerSave.JSON.getKey(), String.class);
 		this.hero = Boolean.parseBoolean(data.get(PlayerSave.HERO.getKey(), String.class));
-		//pourrait passer la map en argument de load ? Fait une boucle qui dans un thread demande en permanence
-		//si chargement fini et si oui alors fini le chargement des items en récupérant selon ids.
-		SaveInventory.load(data.get(PlayerSave.INVENTORY.getKey(), String.class));
+		this.load = SaveInventory.load(data.get(PlayerSave.INVENTORY.getKey(), String.class));
 		this.name = data.get(PlayerSave.NAME.getKey(), String.class);
 		this.dialog = data.get(PlayerSave.CONTENT.getKey(), String.class);
 		if (dialog != null) this.dialog = Utility.asciiEscapedToNormalString(this.dialog);
@@ -165,5 +168,10 @@ public class NPC extends AbstractLivingEntity implements Container, Content {
 	@Override
 	public void setContent(String content) {
 		this.dialog = content;
+	}
+
+	@Override
+	public ArrayList<Integer> getLoadItems() {
+		return this.load;
 	}
 }

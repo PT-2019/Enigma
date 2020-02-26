@@ -56,7 +56,7 @@ public class GameScreen extends LibgdxScreen {
 	/**
 	 * Le stage en charge de l'inventaire
 	 */
-	private InventoryDisplay inventoryDisplay;
+	private InventoryDisplay inventoryDisplay, playerInventory;
 
 	/**
 	 * Retourne le chemin de la map actuelle
@@ -85,7 +85,7 @@ public class GameScreen extends LibgdxScreen {
 
 			if (MAP_PATH != null && !MAP_PATH.isEmpty()) {
 				//création de l'inventaire d'un objet
-				this.inventoryDisplay = new InventoryDisplay(this.dnd);
+				this.inventoryDisplay = new InventoryDisplay(this);
 
 				this.map = new GameMap(MAP_PATH, Config.UNIT_SCALE, this);
 				EnigmaDialogPopup dialog = GameMap.getEnigmaDialog();
@@ -211,5 +211,13 @@ public class GameScreen extends LibgdxScreen {
 	 */
 	public Stage getDnd() {
 		return dnd;
+	}
+
+	public InventoryDisplay getPlayerInventory() {
+		return playerInventory;
+	}
+
+	public void setPlayerInventory(InventoryDisplay playerInventory) {
+		this.playerInventory = playerInventory;
 	}
 }

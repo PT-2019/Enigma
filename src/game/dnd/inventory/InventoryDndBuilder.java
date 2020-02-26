@@ -1,28 +1,14 @@
 package game.dnd.inventory;
 
-import api.libgdx.actor.GameActorTextured;
-import api.libgdx.actor.GameActorUtilities;
-import api.libgdx.utils.LibgdxUtility;
-import api.utils.Observer;
-import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import common.entities.GameObject;
+import com.badlogic.gdx.utils.Array;
 import common.entities.Item;
 import common.entities.special.inventory.ButtonInventory;
 import common.entities.special.inventory.InventoryDisplay;
-import common.map.MapTestScreen;
-import common.utils.Logger;
-import data.EditorState;
-import editor.EditorLauncher;
-import game.EnigmaGame;
+import common.entities.special.inventory.manager.Select;
 import game.dnd.DragAndDrop;
-import game.dnd.DraggedEntity;
-import game.dnd.EntityContainer;
-import game.screens.TestScreen;
-
-import java.awt.Cursor;
 
 /**
  * Constructeur d'objects drag and drop. Si on clique sur une entité, alors
@@ -57,7 +43,7 @@ public class InventoryDndBuilder extends InputListener {
 
 	@Override
 	public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-		if(!container.isSelected()){ return false; } //doit être choisi pour être déplacé
+		//if(!container.isSelected()){ return false; } //doit être choisi pour être déplacé
 		Item item = container.getItem();
 
 		if(item == null){
@@ -68,10 +54,18 @@ public class InventoryDndBuilder extends InputListener {
 		InventoryDraggedItem g = new InventoryDraggedItem(this.container, this.inventoryDisplay);
 
 		//ajout au layer dnd
-		this.inventoryDisplay.getDnd().addActor(g);
+		this.inventoryDisplay.getGameScreen().getDnd().addActor(g);
 
 		//on transmet le clic a l'entité clone
 		g.fire(event);
+
+		//appel select
+		for (EventListener l : new Array.ArrayIterator<>(container.getListeners())) {
+			if(l instanceof Select) {
+				event.setTarget(this.container);
+				((Select) l).touchDown(event, x, y, pointer, button);
+			}
+		}
 
 		return true;//évènement géré
 	}

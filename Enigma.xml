@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch4jConfig>
+  <dontWrapJar>false</dontWrapJar>
+  <headerType>gui</headerType>
+  <jar>C:\Users\Quentin Ra\Desktop\Enigma\Enigma.jar</jar>
+  <outfile>C:\Users\Quentin Ra\Desktop\Enigma\Enigma.exe</outfile>
+  <errTitle></errTitle>
+  <cmdLine></cmdLine>
+  <chdir>src</chdir>
+  <priority>normal</priority>
+  <downloadUrl>http://java.com/download</downloadUrl>
+  <supportUrl></supportUrl>
+  <stayAlive>false</stayAlive>
+  <restartOnCrash>false</restartOnCrash>
+  <manifest></manifest>
+  <icon>C:\Users\Quentin Ra\Desktop\Enigma\src\assets\logo.ico</icon>
+  <jre>
+    <path>C:\Users\Quentin Ra\Desktop\Enigma\jre-10-windows</path>
+    <bundledJre64Bit>true</bundledJre64Bit>
+    <bundledJreAsFallback>false</bundledJreAsFallback>
+    <minVersion></minVersion>
+    <maxVersion></maxVersion>
+    <jdkPreference>preferJdk</jdkPreference>
+    <runtimeBits>64/32</runtimeBits>
+    <opt>-Dfile.encoding=UTF-8</opt>
+  </jre>
+</launch4jConfig>

@@ -1,7 +1,6 @@
 package common.entities.special.inventory;
 
 import api.libgdx.utils.LibgdxUtility;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import common.entities.Consumable;
 import common.entities.Item;
@@ -14,7 +13,7 @@ import common.entities.special.inventory.manager.Use;
 import common.entities.types.Container;
 import common.language.GameFields;
 import common.language.GameLanguage;
-import common.map.GameMap;
+import game.screens.GameScreen;
 
 import java.util.ArrayList;
 
@@ -29,10 +28,7 @@ public class InventoryDisplay extends Window {
     public final static int ACTOR_HEIGHT = 80;
     public final static int MARGIN = 2;
 
-    /**
-     * Stage du drag and drop
-     */
-    private final Stage dnd;
+    private final GameScreen gameScreen;
 
     private Label name;
 
@@ -78,6 +74,8 @@ public class InventoryDisplay extends Window {
 
     private Table table;
 
+    private boolean playerInventory;
+
     /**
      * Textes
      */
@@ -85,9 +83,10 @@ public class InventoryDisplay extends Window {
     private static final String THROW = "Jeter";
     private static final String USE = "Utiliser";
 
-    public InventoryDisplay(Container c, Stage dnd) {
+    public InventoryDisplay(Container c, GameScreen gameScreen) {
         super("", LibgdxUtility.loadSkin(SKIN_PATH, ATLAS_PATH));
-        this.dnd = dnd;
+        this.gameScreen = gameScreen;
+        this.playerInventory = true;
         init();
         this.throwButton = new TextButton(THROW, this.getSkin());
         this.useButton = new TextButton(USE, this.getSkin());
@@ -101,9 +100,10 @@ public class InventoryDisplay extends Window {
         this.refreshInfo();
     }
 
-    public InventoryDisplay(Stage dnd) {
+    public InventoryDisplay(GameScreen gameScreen) {
         super("", LibgdxUtility.loadSkin(SKIN_PATH, ATLAS_PATH));
-        this.dnd = dnd;
+        this.gameScreen = gameScreen;
+        this.playerInventory = false;
         this.init();
         this.setVisible(false);
     }
@@ -222,6 +222,7 @@ public class InventoryDisplay extends Window {
                 }else{
                     buttonInventory[i] = new ButtonInventory(this);
                 }
+                buttonInventory[i].setSelected(true);
                 table.add(buttonInventory[i]).pad(MARGIN).width(ACTOR_WIDTH).height(ACTOR_HEIGHT);
             }
         }else{
@@ -257,6 +258,7 @@ public class InventoryDisplay extends Window {
      * Permet de refresh la vue en bas
      */
     public void refreshInfo() {
+        if(!this.playerInventory) return;
         if (this.selected != null) {
             if (this.selected.getItem() != null) {
                 String msg;
@@ -311,7 +313,7 @@ public class InventoryDisplay extends Window {
             this.selected.setSelected(false);
         }
         this.selected = i;
-        i.setSelected(true);
+        if(i != null) i.setSelected(true);
         this.refreshInfo();
     }
 
@@ -343,7 +345,23 @@ public class InventoryDisplay extends Window {
         this.container = container;
     }
 
-    public Stage getDnd() {
-        return dnd;
+    public GameScreen getGameScreen() {
+        return gameScreen;
+    }
+
+    public boolean isPlayerInventory() {
+        return playerInventory;
+    }
+
+    public Container getContainer() {
+        return container;
+    }
+
+    @Override
+    public void setVisible(boolean visible) {
+        super.setVisible(visible);
+        if(!visible){
+            this.refreshInfo();
+        }
     }
 }

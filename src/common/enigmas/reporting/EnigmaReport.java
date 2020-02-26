@@ -147,8 +147,7 @@ public class EnigmaReport {
 	 *
 	 * @return entités
 	 */
-	@SuppressWarnings("unchecked")
 	public ArrayList<Object> getEntities() {
-		return (ArrayList<Object>) entities.clone();
+		return entities;
 	}
 }

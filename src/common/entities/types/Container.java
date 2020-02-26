@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * @author Louka DOZ
  * @author Loic SENECAT
  * @author Quentin RAMSAMY-AGEORGES
- * @version 4.0 23/12/2019
+ * @version 6.0
  * @since 4.0 23/12/2019
  */
 @SuppressWarnings("UnusedReturnValue")
@@ -39,4 +39,11 @@ public interface Container {
 	 * @return retourne les items contenus
 	 */
 	ArrayList<Item> getItems();
+
+	/**
+	 * Retourne le tableau des items chargés depuis une sauvegarde
+	 * @return le tableau des id des items chargés depuis une sauvegarde
+	 * @since 6.0
+	 */
+	default ArrayList<Integer> getLoadItems(){ return new ArrayList<>(); }
 }

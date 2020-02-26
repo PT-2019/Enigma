@@ -1,0 +1,2 @@
+JAVA_VERSION="10"
+MODULES="java.base java.datatransfer java.logging java.activation java.compiler java.xml java.prefs java.desktop java.security.sasl java.naming java.rmi java.transaction jdk.unsupported java.corba java.instrument java.management java.management.rmi java.scripting java.security.jgss java.sql java.sql.rowset java.xml.crypto java.se java.xml.bind java.xml.ws.annotation jdk.httpserver java.xml.ws java.se.ee java.smartcardio"

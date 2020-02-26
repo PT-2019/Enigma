@@ -60,8 +60,9 @@ public class PlayerGame extends GameActorAnimation implements InputAdapter {
 		this.setAnimationPaused(true);
 		this.map = map;
 		this.joueur = new Player();
-		this.inventoryView = new InventoryDisplay(this.joueur, map.getGameScreen().getDnd());
+		this.inventoryView = new InventoryDisplay(this.joueur, map.getGameScreen());
 		this.containerInventory = map.getGameScreen().getInventoryDisplay();
+		map.getGameScreen().setPlayerInventory(this.inventoryView);
 	}
 
 	/**

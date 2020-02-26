@@ -12,6 +12,7 @@ import common.entities.types.Container;
 import common.language.GameFields;
 import common.language.GameLanguage;
 import common.save.entities.PlayerSave;
+import common.save.entities.SaveInventory;
 import common.save.entities.SaveKey;
 import data.Layer;
 import data.TypeEntity;
@@ -34,6 +35,11 @@ import java.util.Map;
 public class Library extends AbstractLockable implements Container {
 
 	private ArrayList<Item> items;
+
+	/**
+	 * Id des items chargés
+	 */
+	private ArrayList<Integer> load;
 
 	/**
 	 * Crée une bibliothèque
@@ -103,6 +109,8 @@ public class Library extends AbstractLockable implements Container {
 	public HashMap<SaveKey, String> getSave() {
 		HashMap<SaveKey, String> save = new HashMap<>();
 		save.put(PlayerSave.LOCKED, String.valueOf(this.locked));
+		//save des ids des éléments de l'inventaire
+		save.put(PlayerSave.INVENTORY, SaveInventory.save(this.items));
 		return save;
 	}
 
@@ -113,6 +121,7 @@ public class Library extends AbstractLockable implements Container {
 		for (Map.Entry<Layer, Array<Float>> entry : this.getTiles().entrySet()) {
 			this.altTiles.put(entry.getKey().name(), entry.getValue());
 		}
+		this.load = SaveInventory.load(data.get(PlayerSave.INVENTORY.getKey(), String.class));
 	}
 
 	//alt
@@ -136,5 +145,10 @@ public class Library extends AbstractLockable implements Container {
 	@Override
 	public boolean needReloadAfterStateChange() {
 		return true;
+	}
+
+	@Override
+	public ArrayList<Integer> getLoadItems() {
+		return this.load;
 	}
 }

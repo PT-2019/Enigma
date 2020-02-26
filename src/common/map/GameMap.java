@@ -22,6 +22,7 @@ import common.enigmas.reporting.Report;
 import common.entities.Consumable;
 import common.entities.GameObject;
 import common.entities.Item;
+import common.entities.consumable.Key;
 import common.entities.players.Monster;
 import common.entities.players.NPC;
 import common.entities.players.PlayerGame;
@@ -494,8 +495,6 @@ public class GameMap extends AbstractMap {
 					//met à jour son affichage
 					this.updateEntity(o, true);
 
-					EnigmaDialogPopup dialog = getEnigmaDialog();
-
 					if (o instanceof Container && !(o instanceof NPC)) {
 						if (report.getReport().equals(ChangeStateReport.LOCKED)) {
 							//si verrouillé, fait rien
@@ -850,6 +849,7 @@ public class GameMap extends AbstractMap {
 				//entité temporaire, pas sur la map
 				e = new EntitySerializable(width, height, className, new HashMap<>());
 				GameObject object = EntityFactory.createEntity(e, id, start, this.idFactory);
+				object.load(prop);
 
 				//ajout à la liste des entités de la map
 				//this.added.put(start, object);

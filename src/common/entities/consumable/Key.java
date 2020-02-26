@@ -50,9 +50,10 @@ public class Key extends AbstractConsumable implements NeedContainer,Stackable {
 
 	//toString
 
+
 	@Override
 	public String toString() {
-		return "Key{" + "enigmas=" + enigmas + ", id=" + id + '}';
+		return "Key{" + "enigmas=" + enigmas + ", atlasPath='" + atlasPath + '\'' + ", atlasName='" + atlasName + '\'' + ", id=" + id + '}';
 	}
 
 	@Override
@@ -74,8 +75,8 @@ public class Key extends AbstractConsumable implements NeedContainer,Stackable {
 	public HashMap<SaveKey, String> getSave() {
 		HashMap<SaveKey, String> save = new HashMap<>();
 		save.put(PlayerSave.ALT_TILES, SaveTiles.save(this.altTiles));
-        save.put(PlayerSave.KEY,this.atlasName);
-        save.put(PlayerSave.PATH,this.atlasPath);
+        save.put(PlayerSave.KEY, this.atlasName);
+        save.put(PlayerSave.PATH, this.atlasPath);
 		return save;
 	}
 

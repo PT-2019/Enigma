@@ -12,6 +12,7 @@ import common.entities.types.Lockable;
 import common.language.GameFields;
 import common.language.GameLanguage;
 import common.save.entities.PlayerSave;
+import common.save.entities.SaveInventory;
 import common.save.entities.SaveKey;
 import common.save.entities.SaveTiles;
 import data.TypeEntity;
@@ -35,6 +36,11 @@ import java.util.HashMap;
 public class Chest extends AbstractLockable implements Container {
 
 	private ArrayList<Item> items;
+
+	/**
+	 * Id des items chargés
+	 */
+	private ArrayList<Integer> load;
 
 	/**
 	 * Un coffre
@@ -140,6 +146,8 @@ public class Chest extends AbstractLockable implements Container {
 		HashMap<SaveKey, String> save = new HashMap<>();
 		save.put(PlayerSave.LOCKED, String.valueOf(this.locked));
 		save.put(PlayerSave.ALT_TILES, SaveTiles.save(this.altTiles));
+		//save des ids des éléments de l'inventaire
+		save.put(PlayerSave.INVENTORY, SaveInventory.save(this.items));
 		return save;
 	}
 
@@ -147,5 +155,11 @@ public class Chest extends AbstractLockable implements Container {
 	public void load(MapProperties data) {
 		this.locked = Boolean.parseBoolean(data.get(PlayerSave.LOCKED.getKey(), String.class));
 		this.altTiles = SaveTiles.load(data.get(PlayerSave.ALT_TILES.getKey(), String.class));
+		this.load = SaveInventory.load(data.get(PlayerSave.INVENTORY.getKey(), String.class));
+	}
+
+	@Override
+	public ArrayList<Integer> getLoadItems() {
+		return this.load;
 	}
 }

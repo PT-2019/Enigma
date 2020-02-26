@@ -20,7 +20,6 @@ import java.util.ArrayList;
  * @since 6.0 04/02/2020
  */
 @ConvenienceClass
-@Deprecated
 public final class SaveInventory {
 
 	/**
@@ -30,6 +29,7 @@ public final class SaveInventory {
 	 * @return string pour sauvegarder
 	 */
 	public static String save(ArrayList<Item> items) {
+		if(items == null) return null;
 		StringBuilder save = new StringBuilder();
 		for (Item i : items) {
 			save.append(i.getID());
@@ -45,6 +45,7 @@ public final class SaveInventory {
 	 * @return liste (int) des ids
 	 */
 	public static ArrayList<Integer> load(String items) {
+		if(items == null) return new ArrayList<>();
 		ArrayList<Integer> list = new ArrayList<>();
 		if (items.contains(",")) {
 			String[] split = items.split(",");
