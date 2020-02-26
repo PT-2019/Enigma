@@ -47,6 +47,7 @@ public class Select extends ClickListener {
         if (! (target instanceof ButtonInventory)){
             return false;
         }
+
         //on prend l'item de la target
         current = ((ButtonInventory) target).getItem();
 

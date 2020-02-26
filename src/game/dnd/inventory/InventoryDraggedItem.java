@@ -22,14 +22,16 @@ import game.dnd.EntityContainer;
 public class InventoryDraggedItem extends GameActorDragAndDrop {
 
 	private final ButtonInventory buttonInventory;
+	private InventoryDisplay inventoryDisplay;
 
 	/**
 	 * Crée une entité déplaçable
 	 *
 	 * @param container patron de conception ^^ (son model)
 	 */
-	public InventoryDraggedItem(ButtonInventory container) {
+	public InventoryDraggedItem(ButtonInventory container, InventoryDisplay inventoryDisplay) {
 		super();
+		this.inventoryDisplay = inventoryDisplay;
 		Vector2 v = GameActorUtilities.getAbsolutePosition(container);
 		this.setPosition(v.x,v.y);
 		this.setTexture(container.getTexture());
@@ -42,5 +44,9 @@ public class InventoryDraggedItem extends GameActorDragAndDrop {
 
 	public ButtonInventory getButtonInventory() {
 		return buttonInventory;
+	}
+
+	public InventoryDisplay getInventoryDisplay() {
+		return inventoryDisplay;
 	}
 }

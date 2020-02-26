@@ -1,7 +1,14 @@
 package game.dnd.inventory;
 
+import api.libgdx.actor.GameActorUtilities;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import common.entities.special.inventory.ButtonInventory;
+import common.utils.Logger;
 import editor.EditorLauncher;
 
 import java.awt.Cursor;
@@ -57,9 +64,48 @@ public class DragAndDropInventory extends InputListener {
 		if(EditorLauncher.getInstance() != null && EditorLauncher.getInstance().getWindow() != null)
 			EditorLauncher.getInstance().getWindow().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 
-		System.out.println("dépot!");
-
+		//supprime
 		this.dragged.remove();
+
+		ButtonInventory buttonInventory = this.dragged.getButtonInventory();
+		//récupère tous les boutons inventory
+		Group g = buttonInventory.getParent();
+
+		Vector2 pos = GameActorUtilities.getAbsolutePosition(this.dragged);//x,y de l'object bas gauche
+		//correction parce que je veux haut à gauche
+		pos.y += this.dragged.getHeight();
+
+		ButtonInventory find = null;
+		for(Actor c: g.getChildren()){
+			if(c instanceof ButtonInventory){
+				if(GameActorUtilities.contains(c, pos)){
+					find = (ButtonInventory) c;
+					break;
+				}
+			}
+		}
+
+		if(find == null) return;
+
+		if(find.getItem() != null){
+			return;
+		}
+
+		Logger.printDebug("DndInventory","Dépot dans une case.");
+
+		//copie
+		find.setItem(buttonInventory.getItem());
+		find.refreshButton();
+
+		this.dragged.getInventoryDisplay().setSelectItem(find);
+
+		//supprime l'ancien
+		buttonInventory.setItem(null);
+		buttonInventory.refreshButton();
+
+		this.dragged.addAction(Actions.fadeOut(0.3f));
+
+
 	}
 
 	// Drag

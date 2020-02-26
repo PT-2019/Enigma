@@ -104,7 +104,7 @@ public class InventoryDisplay extends Window {
     public InventoryDisplay(Stage dnd) {
         super("", LibgdxUtility.loadSkin(SKIN_PATH, ATLAS_PATH));
         this.dnd = dnd;
-        init();
+        this.init();
         this.setVisible(false);
     }
 
@@ -112,7 +112,7 @@ public class InventoryDisplay extends Window {
         this.name = new Label("", this.getSkin());
         this.quantity = new Label("", this.getSkin());
         this.rowLength = 5;
-        table = new Table(this.getSkin());
+        this.table = new Table(this.getSkin());
     }
 
     /**
@@ -135,8 +135,8 @@ public class InventoryDisplay extends Window {
         if(container instanceof Player){
             this.inventory = ((Player) container).getInventory();
             Player p = (Player) container;
-            ButtonInventory buttonRight = new ButtonInventory(this.getSkin(), this.dnd);
-            ButtonInventory buttonLeft = new ButtonInventory(this.getSkin(), this.dnd);
+            ButtonInventory buttonRight = new ButtonInventory(this);
+            ButtonInventory buttonLeft = new ButtonInventory(this);
             this.handInventory[RIGHT] = buttonRight;
             this.handInventory[LEFT] = buttonLeft;
 
@@ -164,7 +164,7 @@ public class InventoryDisplay extends Window {
 
         //inventaire
         for(Item item : items){
-            ButtonInventory button = new ButtonInventory(this.getSkin(),item, this.dnd);
+            ButtonInventory button = new ButtonInventory(this, item);
             this.buttonInventory[index] = button;
 
             button.addListener(new Select(this));
@@ -218,16 +218,16 @@ public class InventoryDisplay extends Window {
             buttonInventory = new ButtonInventory[5];
             for (int i = 0; i < 5; i++) {
                 if (sizeItems > i){
-                    buttonInventory[i] = new ButtonInventory(this.getSkin(),items.get(i), this.dnd);
+                    buttonInventory[i] = new ButtonInventory(this, items.get(i));
                 }else{
-                    buttonInventory[i] = new ButtonInventory(this.getSkin(), this.dnd);
+                    buttonInventory[i] = new ButtonInventory(this);
                 }
                 table.add(buttonInventory[i]).pad(MARGIN).width(ACTOR_WIDTH).height(ACTOR_HEIGHT);
             }
         }else{
             buttonInventory = new ButtonInventory[sizeItems];
             for (int i = 0; i < sizeItems; i++) {
-                buttonInventory[i] = new ButtonInventory(this.getSkin(), items.get(i), this.dnd);
+                buttonInventory[i] = new ButtonInventory(this, items.get(i));
                 table.add(buttonInventory[i]).pad(MARGIN).width(ACTOR_WIDTH).height(ACTOR_HEIGHT);
 
                 if((i % this.rowLength) == 0)
@@ -298,13 +298,20 @@ public class InventoryDisplay extends Window {
      * Enlève un item des cases des mains
      */
     public void removeHandItem(ButtonInventory buttonInventory){
-        selected = null;
+        if(this.selected != null){
+            this.selected.setSelected(false);
+        }
+        this.selected = null;
         buttonInventory.setItem(null);
         buttonInventory.removeActor(buttonInventory.getImg());
     }
 
     public void setSelectItem(ButtonInventory i) {
+        if(this.selected != null){
+            this.selected.setSelected(false);
+        }
         this.selected = i;
+        i.setSelected(true);
         this.refreshInfo();
     }
 
@@ -334,5 +341,9 @@ public class InventoryDisplay extends Window {
 
     public void setContainer(Container container) {
         this.container = container;
+    }
+
+    public Stage getDnd() {
+        return dnd;
     }
 }

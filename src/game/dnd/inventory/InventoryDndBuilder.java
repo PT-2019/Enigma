@@ -38,28 +38,26 @@ import java.awt.Cursor;
  */
 public class InventoryDndBuilder extends InputListener {
 
-	/**
-	 * le stage du drag and drop
-	 *
-	 * @since 4.2
-	 */
-	private final Stage dnd;
+
+	private final InventoryDisplay inventoryDisplay;
+
 	private final ButtonInventory container;
 
 	/**
 	 * Constructeur d'objects drag and drop.
 	 *
 	 * @param container entity qui sera déplaçable
-	 * @param dnd       le stage du drag and drop
+	 * @param inventoryDisplay       affichage de l'inventaire
 	 * @since 4.0
 	 */
-	public InventoryDndBuilder(ButtonInventory container, Stage dnd) {
+	public InventoryDndBuilder(ButtonInventory container, InventoryDisplay inventoryDisplay) {
 		this.container = container;
-		this.dnd = dnd;
+		this.inventoryDisplay = inventoryDisplay;
 	}
 
 	@Override
 	public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+		if(!container.isSelected()){ return false; } //doit être choisi pour être déplacé
 		Item item = container.getItem();
 
 		if(item == null){
@@ -67,10 +65,10 @@ public class InventoryDndBuilder extends InputListener {
 		}
 
 		//Crée une copie de l'entité
-		InventoryDraggedItem g = new InventoryDraggedItem(this.container);
+		InventoryDraggedItem g = new InventoryDraggedItem(this.container, this.inventoryDisplay);
 
 		//ajout au layer dnd
-		this.dnd.addActor(g);
+		this.inventoryDisplay.getDnd().addActor(g);
 
 		//on transmet le clic a l'entité clone
 		g.fire(event);
