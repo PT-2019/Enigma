@@ -222,6 +222,7 @@ public class IDFactory {
 			//pas de doublons
 			if (!this.deleted.contains(object.getID()))
 				this.deleted.add(object.getID());
+
 			//retire l'id
 			object.setID(ID_FACTORY_NO_ID);
 
@@ -256,6 +257,15 @@ public class IDFactory {
 				return i;
 		}
 		return new NullIDInterfaceObject();
+	}
+
+
+	/**
+	 * Retourne le cache
+	 * @return le cache
+	 */
+	public ArrayList<IDInterface> getChache() {
+		return tmp;
 	}
 
 	/**

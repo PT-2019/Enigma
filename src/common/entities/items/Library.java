@@ -121,6 +121,7 @@ public class Library extends AbstractLockable implements Container {
 		for (Map.Entry<Layer, Array<Float>> entry : this.getTiles().entrySet()) {
 			this.altTiles.put(entry.getKey().name(), entry.getValue());
 		}
+
 		this.load = SaveInventory.load(data.get(PlayerSave.INVENTORY.getKey(), String.class));
 	}
 

@@ -109,24 +109,37 @@ public class TestMapControl implements InputAdapter {
 	@Override
 	public boolean keyDown(int keycode) {
 		//alt activé
-		if (keycode == Input.Keys.ALT_LEFT)
+		if (keycode == Input.Keys.ALT_LEFT) {
 			this.altPush = true;
+			return true;
+		}
 			//control activé
-		else if (keycode == Input.Keys.CONTROL_LEFT)
+		else if (keycode == Input.Keys.CONTROL_LEFT) {
 			this.ctrlPush = true;
+			return true;
+		}
 			//zoom ou de-zoom
-		else if (keycode == Input.Keys.PLUS && this.ctrlPush)
+		else if (keycode == Input.Keys.PLUS && this.ctrlPush) {
 			this.plusCamera();
-		else if (keycode == Input.Keys.MINUS && this.ctrlPush)
+			return true;
+		}
+		else if (keycode == Input.Keys.MINUS && this.ctrlPush) {
 			this.minCamera();
+			return true;
+		}
+
 		else if (Config.SAVE.check(keycode, this.ctrlPush, this.altPush)) {
 			SwingUtilities.invokeLater(new RunActionPerformed(this.save, this));
+			return true;
 		} else if (Config.UNDO.check(keycode, this.ctrlPush, this.altPush)) {
 			SwingUtilities.invokeLater(new RunActionPerformed(this.undo, this));
+			return true;
 		} else if (Config.REDO.check(keycode, this.ctrlPush, this.altPush)) {
 			SwingUtilities.invokeLater(new RunActionPerformed(this.redo, this));
+			return true;
 		} else if (Config.SAVE_AS.check(keycode, this.ctrlPush, this.altPush)) {
 			SwingUtilities.invokeLater(new RunActionPerformed(this.saveAs, this));
+			return true;
 		}else if (CameraKeys.CAMERA_LEFT.isKey(keycode)) {
 			this.camera.translate(-Config.CAMERA_OFFSET, 0);
 			this.camera.update();

@@ -77,6 +77,7 @@ public class Key extends AbstractConsumable implements NeedContainer,Stackable {
 		save.put(PlayerSave.ALT_TILES, SaveTiles.save(this.altTiles));
         save.put(PlayerSave.KEY, this.atlasName);
         save.put(PlayerSave.PATH, this.atlasPath);
+		save.put(PlayerSave.TILES, SaveTiles.saveLayers(this.tiles));
 		return save;
 	}
 

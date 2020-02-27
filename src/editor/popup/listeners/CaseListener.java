@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.SnapshotArray;
+import common.entities.GameObject;
 import common.map.MapTestScreenCell;
 import common.utils.EnigmaUtility;
 import data.EditorState;
@@ -156,17 +157,21 @@ public class CaseListener extends ClickListener {
 	private void erase(InputEvent event) {
 		CaseView actor = (CaseView) event.getTarget();
 		MapTestScreenCell cell = EnigmaUtility.getRelevantEntity(actor.getCell(), this.popUp.getTileMap());
-		if (cell != null && cell.getEntity() != null) {
-			if (this.popUp != null && this.popUp.getCell() != null
-					&& this.popUp.getCell().getEntity() != null) {
-				//si supprime l'entité dans le popup
-				if (this.popUp.getCell().getEntity().getID() == cell.getEntity().getID()) {
-					close();
+		if (cell != null) {
+			GameObject entity = cell.getEntity();
+			if (entity != null) {
+				if (this.popUp != null && this.popUp.getCell() != null
+						&& this.popUp.getCell().getEntity() != null) {
+					//si supprime l'entité dans le popup
+					if (this.popUp.getCell().getEntity().getID() == entity.getID()) {
+						close();
+					}
 				}
-			}
-			String s = cell.removeEntity();
-			if (s != null) {//error
-				EnigmaGame.getCurrentScreen().showToast(s);
+				String s = cell.removeEntity();
+				System.out.println(entity.getReadableName() + " " + entity.getID());
+				if (s != null) {//error
+					EnigmaGame.getCurrentScreen().showToast(s);
+				}
 			}
 		}
 	}

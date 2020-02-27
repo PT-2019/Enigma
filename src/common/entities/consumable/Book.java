@@ -2,6 +2,7 @@ package common.entities.consumable;
 
 import api.utils.Utility;
 import com.badlogic.gdx.maps.MapProperties;
+import com.badlogic.gdx.utils.Array;
 import common.entities.types.AbstractConsumable;
 import common.entities.types.Content;
 import common.language.GameFields;
@@ -9,6 +10,7 @@ import common.language.GameLanguage;
 import common.save.entities.PlayerSave;
 import common.save.entities.SaveKey;
 import common.save.entities.SaveTiles;
+import data.Layer;
 import data.TypeEntity;
 
 import java.util.EnumMap;
@@ -94,8 +96,9 @@ public class Book extends AbstractConsumable implements Content {
 		HashMap<SaveKey, String> save = new HashMap<>();
 		save.put(PlayerSave.CONTENT, this.content);
 		save.put(PlayerSave.ALT_TILES, SaveTiles.save(this.altTiles));
-		save.put(PlayerSave.KEY,this.atlasName);
-		save.put(PlayerSave.PATH,this.atlasPath);
+		save.put(PlayerSave.KEY, this.atlasName);
+		save.put(PlayerSave.PATH, this.atlasPath);
+		save.put(PlayerSave.TILES, SaveTiles.saveLayers(this.tiles));
 		return save;
 	}
 

@@ -64,7 +64,6 @@ public class UserConfiguration {
 			String name = "";
 			while (name.isEmpty() || Utility.isBlank(name) || name.equals(EnigmaOptionPane.CANCEL)) {
 				name = EnigmaOptionPane.showInputUserName();
-				System.out.println(name);
 			}
 			data.put(UserPreferencesFields.NAME.value, Utility.normalize(Utility.escape(name)));
 		}

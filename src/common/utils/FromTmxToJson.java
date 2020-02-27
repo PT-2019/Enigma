@@ -185,7 +185,7 @@ class FromTmxToJson {
 		 * @since 4.1
 		 */
 		public static void main(String[] ignore) {
-			System.out.println(fromRoomToJson("assets/map/map_system/Room1.tmx", "Room1"));
+			/*System.out.println(fromRoomToJson("assets/map/map_system/Room1.tmx", "Room1"));
 			System.out.println(fromRoomToJson("assets/map/map_system/Room2.tmx", "Room2"));
 			System.out.println(fromRoomToJson("assets/map/map_system/Room3.tmx", "Room3"));
 			System.out.println(fromRoomToJson("assets/map/map_system/Room4.tmx", "Room4"));
@@ -196,7 +196,7 @@ class FromTmxToJson {
 			//System.out.println(fromRoomToJson("assets/map/map_system/Room9.tmx", "Room9"));
 			System.out.println(fromRoomToJson("assets/map/map_system/Room10.tmx", "Room10"));
 			System.out.println(fromRoomToJson("assets/map/map_system/Room11.tmx", "Room11"));
-			System.out.println(fromRoomToJson("assets/map/map_system/Room12.tmx", "Room12"));
+			System.out.println(fromRoomToJson("assets/map/map_system/Room12.tmx", "Room12"));*/
 			System.out.println(fromRoomToJson("assets/map/map_system/Room13.tmx", "Room13"));
 		}
 	}
