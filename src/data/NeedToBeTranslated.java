@@ -143,7 +143,7 @@ public interface NeedToBeTranslated {
 	String DESCRIPTION = "Description";
 	String NB_PLAYERS = "Nombre de joueurs";
 	String DURATION = "Durée";
-	String MULTI_PLAYERS = "Multijoueurs";
+	String MULTI_PLAYERS = "Multijoueur";
 	String YES = "Oui";
 	String NO = "Non";
 	String NO_NAME = "La partie n'a pas de nom";
@@ -170,8 +170,8 @@ public interface NeedToBeTranslated {
 	String QUIT = "Quitter";
 	String CREATE = "Créer";
 	String IMPORT = "Importer";
-	String SOLO_TITLE = "Parties solo";
-	String MULTI_TITLE = "Multijoueurs";
+	String SOLO_TITLE = "Parties solos";
+	String MULTI_TITLE = "Multijoueur";
 	String CREATE_TITLE = "Nouvelle partie";
 
 	//Operations

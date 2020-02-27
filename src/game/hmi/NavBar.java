@@ -45,7 +45,7 @@ public class NavBar extends Content {
 	 */
 	private EnigmaButton solo;
 	/**
-	 * Bouron pour les parties multijoueurs
+	 * Bouron pour les parties multijoueur
 	 */
 	private EnigmaButton multi;
 	/**
@@ -77,7 +77,6 @@ public class NavBar extends Content {
 		this.selectedUI = new EnigmaButtonUI();
 		this.selectedUI.setAllBackgrounds(red, red, red);
 		this.selectedUI.setAllShowedBorders(EnigmaUIValues.ALL_BORDER_HIDDEN, EnigmaUIValues.ALL_BORDER_HIDDEN, EnigmaUIValues.ALL_BORDER_HIDDEN);
-		this.selectedUI.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 		this.selectedUI.setAllForegrounds(Color.WHITE, Color.WHITE, Color.WHITE);
 
 		this.initContent();

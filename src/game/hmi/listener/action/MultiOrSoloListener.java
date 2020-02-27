@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Gestionnaire des boutons "oui" et "non" pour indiquer si la partie créée sera multijoueurs
+ * Gestionnaire des boutons "oui" et "non" pour indiquer si la partie créée sera multijoueur
  *
  * @author Jorys-Micke ALAÏS
  * @author Louka DOZ

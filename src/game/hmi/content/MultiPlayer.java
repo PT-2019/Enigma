@@ -34,7 +34,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Affichage des parties multijoueurs
+ * Affichage des parties multijoueur
  *
  * @author Jorys-Micke ALAÏS
  * @author Louka DOZ

@@ -541,6 +541,16 @@ public class ImportExport {
 					String mapName = ImportExport.readToString(reader, epp, value);
 					String gameName = ImportExport.readToString(reader, epp, value);
 
+					for (String s : EnigmaUtility.getAllGameName()) {
+						if (s.equals(gameName)) {
+							if (!EnigmaOptionPane.showConfirmDialog(EditorLauncher.getInstance().getWindow(),
+									new Dimension(600, 250),
+									REPLACE_GAME)) {
+								throw new IllegalStateException("Import annulé");
+							}
+						}
+					}
+
 					for (String s : EnigmaUtility.getAllMapNames()) {
 						if (s.equals(mapName)) {
 							if (!EnigmaOptionPane.showConfirmDialog(EditorLauncher.getInstance().getWindow(),
@@ -551,17 +561,6 @@ public class ImportExport {
 						}
 					}
 
-					if (gameName.length() > 0) {
-						for (String s : EnigmaUtility.getAllGameName()) {
-							if (s.equals(gameName)) {
-								if (!EnigmaOptionPane.showConfirmDialog(EditorLauncher.getInstance().getWindow(),
-										new Dimension(600, 250),
-										REPLACE_GAME)) {
-									throw new IllegalStateException("Import annulé");
-								}
-							}
-						}
-					}
 					//Récupération des données de la map
 					writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(Config.MAP_DATA_FOLDER + mapName + Config.DATA_EXTENSION)));
 					read = ImportExport.readToString(reader, epp, value);

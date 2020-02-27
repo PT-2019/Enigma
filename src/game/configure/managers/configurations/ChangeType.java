@@ -9,7 +9,7 @@ import game.configure.LaunchGameDisplay;
 import java.awt.event.MouseEvent;
 
 /**
- * Gère l'action de changer le type de la partie (solo ou multijoueurs)
+ * Gère l'action de changer le type de la partie (solo ou multijoueur)
  *
  * @author Jorys-Micke ALAÏS
  * @author Louka DOZ
@@ -32,7 +32,7 @@ public class ChangeType implements ChangeConfiguration {
 		CustomButton[] opt = new CustomButton[2];
 		opt[0] = EnigmaOptionPane.getStyle().getButtonStyle(yes);
 		opt[1] = EnigmaOptionPane.getStyle().getButtonStyle(no);
-		String value = EnigmaOptionPane.showChoicesDialog(EnigmaGameLauncher.getInstance().getWindow(), "Partie multijoueurs?", opt);
+		String value = EnigmaOptionPane.showChoicesDialog(EnigmaGameLauncher.getInstance().getWindow(), "Partie multijoueur?", opt);
 
 		if (!value.equals(EnigmaOptionPane.CANCEL)) {
 			GameConfigurationDeprecated.getInstance().setMultiPlayer(value.equals(yes));

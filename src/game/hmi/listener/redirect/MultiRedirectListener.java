@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Redirige vers l'affichage des parties multijoueurs
+ * Redirige vers l'affichage des parties multijoueur
  *
  * @author Jorys-Micke ALAÏS
  * @author Louka DOZ

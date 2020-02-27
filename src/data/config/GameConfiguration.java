@@ -193,11 +193,11 @@ public class GameConfiguration {
 	}
 
 	/**
-	 * Est multijoueurs
+	 * Est multijoueur
 	 *
-	 * @return true si multijoueurs, false sinon
+	 * @return true si multijoueur, false sinon
 	 */
-	public boolean isMultiPlayers() {
+	public boolean isMultiPlayer() {
 		return this.data.isMultiPlayer();
 	}
 }

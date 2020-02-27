@@ -174,9 +174,9 @@ public class GameData {
 	}
 
 	/**
-	 * Obtenir si multijoueurs
+	 * Obtenir si multijoueur
 	 *
-	 * @return true si multijoueurs, false sinon
+	 * @return true si multijoueur, false sinon
 	 */
 	public boolean isMultiPlayer() {
 		return (this.maxPlayers > 1);

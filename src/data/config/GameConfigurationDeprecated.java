@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 /**
  * Défini les configurations et informations de la partie actuelle
- * Ces informations peuvent être celle d'une partie locale ou d'une partie multijoueurs
+ * Ces informations peuvent être celle d'une partie locale ou d'une partie multijoueur
  * Dans ce second cas, elles doivent contenir les mêmes informations et configurations que celle du créateur de la partie
  *
  * @author Jorys-Micke ALAÏS
@@ -107,20 +107,20 @@ public class GameConfigurationDeprecated {
 	}
 
 	/**
-	 * Indique si la partie est multijoueurs
+	 * Indique si la partie est multijoueur
 	 *
-	 * @return true si la partie est multijoueurs, false sinon
+	 * @return true si la partie est multijoueur, false sinon
 	 */
 	public boolean isMultiPlayer() {
 		return this.isMultiPlayer;
 	}
 
 	/**
-	 * Indiquer la partie est multijoueurs
+	 * Indiquer la partie est multijoueur
 	 * Si false, le nombre de joueurs est automatiquement passé à
 	 * Si true, le nombre de joueurs est automatiquement passé au nombre maximum de joueurs autorisés par parties
 	 *
-	 * @param isMultiPlayer true pour une partie multijoueurs, false sinon
+	 * @param isMultiPlayer true pour une partie multijoueur, false sinon
 	 * @deprecated
 	 */
 	public void setMultiPlayer(boolean isMultiPlayer) {

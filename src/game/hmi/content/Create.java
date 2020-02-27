@@ -71,7 +71,7 @@ public class Create extends Content {
 	 */
 	private EnigmaTextArea description;
 	/**
-	 * Gestionnaire du choix si multijoueurs ou non
+	 * Gestionnaire du choix si multijoueur ou non
 	 */
 	private RadioButtonManager multi;
 	/**

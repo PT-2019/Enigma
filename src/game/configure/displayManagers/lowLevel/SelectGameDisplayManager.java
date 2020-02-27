@@ -159,7 +159,7 @@ public class SelectGameDisplayManager implements DisplayManager {
 		bui.setAllSelectedBorders(null, null, null);
 		bui.setSelectedCursor(new Cursor(Cursor.HAND_CURSOR));
 		EnigmaButton filter1 = new EnigmaButton("Solo");
-		EnigmaButton filter2 = new EnigmaButton("Multijoueurs");
+		EnigmaButton filter2 = new EnigmaButton("Multijoueur");
 		filter1.setComponentUI(bui);
 		filter2.setComponentUI(bui);
 		CheckBoxManager cbm = new CheckBoxManager();
