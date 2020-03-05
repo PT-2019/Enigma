@@ -259,6 +259,14 @@ public class IDFactory {
 	}
 
 	/**
+	 * Retourne le cache
+	 * @return le cache
+	 */
+	public ArrayList<IDInterface> getFactoryCache() {
+		return tmp;
+	}
+
+	/**
 	 * Un null object représentant IDInterface
 	 *
 	 * @author Jorys-Micke ALAÏS

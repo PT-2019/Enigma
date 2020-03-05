@@ -1,0 +1,128 @@
+{
+     "Enigmas": [
+          {
+               "common.enigmas.Enigma": [
+                    {
+                         "operations": [
+                              {
+                                   "common.enigmas.operation.Unlock": [
+                                        {
+                                             "entities": "5",
+                                             "fulfilled": "false"
+                                        }
+                                   ]
+                              }
+                         ],
+                         "known": "false",
+                         "currentAdviceIndex": "-1",
+                         "fulfilled": "false",
+                         "description": "",
+                         "advices": [
+                         ],
+                         "id": "5",
+                         "title": "levier",
+                         "type": "ON_USE",
+                         "conditions": [
+                              {
+                                   "common.enigmas.condition.Activated": [
+                                        {
+                                             "entities": "10"
+                                        }
+                                   ]
+                              }
+                         ]
+                    }
+               ]
+          },
+
+          {
+               "common.enigmas.Enigma": [
+                    {
+                         "operations": [
+                              {
+                                   "common.enigmas.operation.Unlock": [
+                                        {
+                                             "entities": "6",
+                                             "fulfilled": "false"
+                                        }
+                                   ]
+                              },
+
+                              {
+                                   "common.enigmas.operation.Unlock": [
+                                        {
+                                             "entities": "7",
+                                             "fulfilled": "false"
+                                        }
+                                   ]
+                              },
+
+                              {
+                                   "common.enigmas.operation.LaunchSound": [
+                                        {
+                                             "entities": "15",
+                                             "fulfilled": "false"
+                                        }
+                                   ]
+                              }
+                         ],
+                         "known": "false",
+                         "currentAdviceIndex": "-1",
+                         "fulfilled": "false",
+                         "description": "description",
+                         "advices": [
+                         ],
+                         "id": "6",
+                         "title": "deverrouiller",
+                         "type": "ON_USE",
+                         "conditions": [
+                              {
+                                   "common.enigmas.condition.HaveInHands": [
+                                        {
+                                             "entities": "9"
+                                        }
+                                   ]
+                              }
+                         ]
+                    }
+               ]
+          },
+
+          {
+               "common.enigmas.Enigma": [
+                    {
+                         "operations": [
+                              {
+                                   "common.enigmas.operation.Unlock": [
+                                        {
+                                             "entities": "12",
+                                             "fulfilled": "false"
+                                        }
+                                   ]
+                              }
+                         ],
+                         "known": "false",
+                         "currentAdviceIndex": "-1",
+                         "fulfilled": "false",
+                         "description": "",
+                         "advices": [
+                         ],
+                         "id": "12",
+                         "title": "reponse",
+                         "type": "ON_USE",
+                         "conditions": [
+                              {
+                                   "common.enigmas.condition.Answer": [
+                                        {
+                                             "question": "Mot de passe?",
+                                             "answer": "123",
+                                             "entities": "12"
+                                        }
+                                   ]
+                              }
+                         ]
+                    }
+               ]
+          }
+     ]
+}

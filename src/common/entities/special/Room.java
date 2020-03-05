@@ -1,12 +1,17 @@
 package common.entities.special;
 
+import com.badlogic.gdx.maps.MapProperties;
 import common.entities.types.AbstractGameObject;
 import common.entities.types.ContainersManager;
 import common.language.GameFields;
 import common.language.GameLanguage;
+import common.save.entities.PlayerSave;
+import common.save.entities.SaveKey;
+import common.save.entities.SaveTiles;
 import data.TypeEntity;
 
 import java.util.EnumMap;
+import java.util.HashMap;
 
 /**
  * Une pièce
@@ -103,5 +108,20 @@ public class Room extends AbstractGameObject implements ContainersManager {
 	 */
 	public void setShowed(boolean showed) {
 		this.showed = showed;
+	}
+
+	@Override
+	public HashMap<SaveKey, String> getSave() {
+		HashMap<SaveKey, String> save = new HashMap<>();
+		save.put(PlayerSave.ALT_TILES, SaveTiles.saveLayers(this.tiles));
+		return save;
+	}
+
+	@Override
+	public void load(MapProperties data) {
+		this.tiles = SaveTiles.loadLayers(data.get(PlayerSave.ALT_TILES.getKey(), String.class));
+		if(tiles == null){
+			this.tiles = new HashMap<>();
+		}
 	}
 }

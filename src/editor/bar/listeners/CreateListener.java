@@ -162,7 +162,7 @@ public class CreateListener extends MenuListener {
 			//nom déjà pris
 			if (!mapNameError) {
 				for (String s : EnigmaUtility.getAllMapNames()) {
-					if (s.equals(mapName)) {
+					if (s.equalsIgnoreCase(mapName)) {
 						//this.nom.setText(NeedToBeTranslated.INPUT_NAME + " (" + ALREADY_TAKEN + ") :");
 						EnigmaOptionPane.showAlert(this.window, NAME_ALREADY_EXIST);
 						error = true;

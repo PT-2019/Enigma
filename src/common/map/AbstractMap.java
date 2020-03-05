@@ -373,6 +373,7 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 				//entité temporaire, pas sur la map
 				e = new EntitySerializable(width, height, className, new HashMap<>());
 				GameObject object = EntityFactory.createEntity(e, id, start, this.idFactory);
+				object.load(prop);
 
 				//ajout à la liste des entités de la map
 				this.objects.put(start, object);
@@ -948,7 +949,13 @@ public abstract class AbstractMap extends Group implements EditorActionParent<Ga
 	 */
 	public void freeId(IDInterface object) {
 		if (object == null) {
-			this.idFactory.clearCache();
+			//this.idFactory.clearCache();
+			ArrayList<IDInterface> cache = this.idFactory.getFactoryCache();
+			for (IDInterface i:cache) {
+				if(!this.objects.contains((GameObject) i))
+					this.idFactory.free(i, true);
+			}
+			this.idFactory.getFactoryCache().clear();
 		} else {
 			this.idFactory.free(object, true);
 		}

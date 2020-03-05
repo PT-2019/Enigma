@@ -17,9 +17,7 @@ import game.EnigmaGame;
 
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.GridBagLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -72,7 +70,18 @@ public class AddContentView extends AbstractPopUpView {
 	 * @param popUp  parent
 	 * @param object object implémente content
 	 */
-	AddContentView(CasePopUp popUp, GameObject object) {
+	AddContentView(CasePopUp popUp, GameObject object){
+		this(popUp, object, popUp);
+	}
+
+	/**
+	 * La classe de base des vues de la popup
+	 *
+	 * @param popUp  parent
+	 * @param object object implémente content
+	 * @param parent parent
+	 */
+	AddContentView(CasePopUp popUp, GameObject object, Component parent) {
 		super(TITLE, popUp);
 
 		//instance
@@ -96,7 +105,7 @@ public class AddContentView extends AbstractPopUpView {
 		this.field.getComponentUI().setAllForegrounds(Color.BLACK, Color.BLACK, Color.BLACK);
 		//submit button
 		EnigmaButton submit = new EnigmaButton(SUBMIT);
-		submit.addActionListener(new SubmitListener(this));
+		submit.addActionListener(new SubmitListener(this, parent));
 		//panel pour que submit ne prenne pas tout l'espace
 		EnigmaPanel tmp = new EnigmaPanel(new GridBagLayout());
 		tmp.setBorder(new EmptyBorder(PADDING, PADDING, PADDING, PADDING));
@@ -143,10 +152,12 @@ public class AddContentView extends AbstractPopUpView {
 	private static class SubmitListener implements ActionListener {
 		private final AddContentView parent;
 		private final Content entity;
+		private final Component showParent;
 
-		SubmitListener(AddContentView parent) {
+		SubmitListener(AddContentView parent, Component showParent) {
 			this.parent = parent;
 			this.entity = parent.entity;
+			this.showParent = showParent;
 		}
 
 		@Override
@@ -162,7 +173,7 @@ public class AddContentView extends AbstractPopUpView {
 
 			this.parent.dispose();//supprime fenêtre
 			EnigmaGame.getCurrentScreen().showToast(CONTENT_SAVED);
-			this.parent.popUp.setVisible(true);
+			this.showParent.setVisible(true);
 		}
 	}
 }

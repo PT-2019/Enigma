@@ -13,7 +13,7 @@ package common.save.entities;
 public enum PlayerSave implements SaveKey {
 	JSON, KEY, NAME, INVENTORY, HERO, ACTIVATED, LOCKED,
 	CONTENT, PATH, MAIN, STARTER,
-	ALT_TILES,
+	ALT_TILES,TILES,
 	;
 
 	@Override

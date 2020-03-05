@@ -57,9 +57,9 @@ public class SetContent implements AvailableOptionRunnable {
 		panel.getDrawable().add(this.contentButton);
 		this.contentButton.addActionListener((e) -> {
 			this.parent.setVisible(false);
-			AddContentView addItemView = new AddContentView(this.parent, object);
+			AddContentView addItemView = new AddContentView(this.parent, object, view);
 			addItemView.setVisible(true);
-			addItemView.addWindowListener(new EnigmaWindowListener(this.parent));
+			addItemView.addWindowListener(new EnigmaWindowListener(view));
 		});
 	}
 }
